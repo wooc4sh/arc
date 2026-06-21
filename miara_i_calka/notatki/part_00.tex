@@ -1,0 +1,149 @@
+\chapter{Wiadomości wstępne.}
+Regularnie będziemy aktualizowali ten ustęp o pojęcia z zewnątrz, które są potrzebne, a o których naturze miałem braki.
+
+\section{Ciągi, szeregi, granice- nie tylko liczb.}
+
+Wprowadzimy najpierw używaną terminologię, tzn. niech $A_{n}$ będzie \textbf{ciągiem zbiorów} z ustalonej przestrzeni X.
+\begin{definition}[Ciąg rosnący(wstępujący) zbiorów.]
+
+		Jeżeli dla każdego $n$ $A_{n}\subseteq A_{n+1} $ to mówimy, że ciąg $A_{n}$ jest \textbf{rosnący(wstępujący)}. 
+\end{definition} 
+\begin{definition}[Ciąg malejący(zstępujący) zbiorów.]
+	
+		Jeżeli dla każdego $n$ $A_{n} \supseteq A_{n+1}$ to mówimy, że ciąg $A_{n}$ jest \textbf{malejący(zstępujący)}. 	
+\end{definition} 
+
+\subsection{Czym są $\sum_{n=1}^{\infty}$ oraz $\prod_{n=1}^{\infty}$?}
+
+W analizie matematycznej symbol $\sum_{n=1}^{\infty} \varphi\left( n \right) $ nie oznacza dodawania nieskończenie wielu liczb(bo nikt docześnie nie ma tyle czasu). Tak samo symbol $\prod_{n=1}^{\infty} \psi\left( n \right)$ nie oznacza mnożenia nieskończenie wielu liczb
+
+Są to \textbf{skróty myślowe} oznaczające granicę \textbf{ciągu sum częściowych} oraz granicę \textbf{ciągu produktów częściowych} .
+
+\textbf{Definicja:}
+\begin{align*}
+	\sum_{n=1}^{\infty} \varphi\left( n \right)  &\overset{def.}{=} \lim_{N \to \infty} \left( \sum_{n=1}^{N} \varphi\left( n \right)  \right) \\
+	\prod_{n=1}^{\infty} \psi\left( n \right) &\overset{\Def}{=} \lim_{N \to \infty} \left( \prod_{n=1}^{N} \psi\left( n \right) \right)  
+.\end{align*}
+
+Nasuwa się tu analogia do tematyki \textbf{ciągu zbiorów}.
+
+Mianowicie tak jak nieskończona suma(produkt) liczb, jest granicą ciągu sum częściowych, tak nieskończona suma(produkt) zbiorów, jest granicą ciągu ,,sum(produktów) częściowych zbiorów''.
+
+\begin{enumerate}[label=\arabic*.]
+	\item \textbf{Analogia: Szeregi Liczbowe vs. Szeregi Zbiorów} 
+		\begin{itemize}
+				\item \textbf{Świat Liczb(Szeregi):} Mamy ciąg liczb $\varphi_{n}$. Definiujemy \textbf{ciąg sum częściowych} $s_{N}$ :
+			\[
+			s_{N} = \sum_{n = 1}^{N} \varphi_{n} = \varphi_1 + \varphi_2 + \ldots + \varphi_{N}
+			.\] 
+			Wtedy suma nieskończona to granica sum częściowych:
+			\[
+			\sum_{n = 1}^{\infty} \varphi_{n} \overset{\Def}{=} \lim_{N\to \infty}\sum_{n = 1}^{N} \varphi_{n} 
+			.\] 
+				\item \textbf{Świat Zbiorów(Sumy mnogościowe):} Mamy ciąg zbiorów $A_{n}$. Definiujemy \textbf{ciąg sum częściowych} $S_{N}:$
+			\[
+			S_{N} = \bigcup_{n=1} ^{N} = A_1\cup A_2\cup \ldots\cup A_{N}
+			.\] 
+			Zauważmy kluczową rzecz: ten ciąg zbiorów jest \textbf{rosnący(wstępujący)}:
+			\[
+			S_1\subseteq S_2\subseteq S_3\subseteq \ldots
+			.\] 
+			Zatem analogicznie do liczb:
+			\[
+			\bigcup_{n=1} ^{\infty}A_{n} \overset{\Def}{=} \lim_{N \to \infty} S_{N} = \lim_{N \to \infty} \bigcup_{n=1} ^{N}A_{n}
+			.\] 
+		\end{itemize}
+	\item \textbf{Analogia: Produkty Liczbowe vs. Produkty Zbiorów} 
+		\begin{itemize}
+			\item \textbf{Świat Liczb(Produkty):} Mamy ciąg liczb $\psi_{n}$. Definiujemy \textbf{ciąg produktów częściowych} $p_{N}$ :
+			\[
+			p_{N} = \prod_{n = 1}^{N} \psi_{n} = \psi_1 \cdot  \psi_2 \cdot  \ldots \cdot  \psi_{N}
+			.\] 
+			Wtedy produkt nieskończony to granica produktów częściowych:
+			\[
+			\prod_{n = 1}^{\infty} \psi_{n} \overset{\Def}{=} \lim_{N\to \infty}\prod_{n = 1}^{N} \psi_{n} 
+			.\] 
+				\item \textbf{Świat Zbiorów(Produkty(Iloczyny) mnogości owe)} Mamy ciąg zbiorów $A_{n}$. Definiujemy \textbf{ciąg produktów częściowych} $P_{N}:$
+			\[
+			P_{N} = \bigcap_{n=1} ^{N} = A_1\cap A_2\cap \ldots\cap A_{N}
+			.\] 
+			Zauważmy kluczową rzecz: ten ciąg zbiorów jest \textbf{malejący(zstępujący)}:
+			\[
+			P_1\supseteq P_2\supseteq P_3\supseteq \ldots
+			.\] 
+			Zatem analogicznie do liczb:
+			\[
+			\bigcap_{n=1} ^{\infty}A_{n} \overset{\Def}{=} \lim_{N \to \infty} P_{N} = \lim_{N \to \infty} \bigcap_{n=1} ^{N}A_{n}
+			.\] 
+ 
+		\end{itemize}
+
+\end{enumerate}
+\begin{definition}[Granica górna i granica dolna ciągu zbiorów $A_{n}$]
+	Dla \textbf{ciągu zbiorów}  $\left( A_{n} \right)_{n} $ zbiory
+	\[
+		\limsup_{n \to \infty} A_{n} = \bigcap_{n=1} ^{\infty}\bigcup_{k=n} ^{\infty}A_{k}, \quad \liminf_{n \to \infty}A_{n} = \bigcup_{n=1}^{\infty}\bigcap_{k=n} ^{\infty}A_{k} 
+	.\] 
+	nazywamy odpowiednio \textbf{granicą górną} oraz \textbf{granicą dolną} ciągu $\left( A_{n} \right)_{n}$  
+\end{definition} 
+\begin{intuition}
+	Jest to język do opisywania ,,zachowania granicznego'' punktów. Trzeba abstrahować od suchych znaczków i myśleć co one oznaczają.
+
+	Wyobraźmy sobie $x$ oraz ciąg zbiorów $A_{n}$. Pytamy ,,co się dzieje z x w tym ciągu?''
+
+	\begin{itemize}
+		\item $\textbf{Granica Dolna(liminf): } \bigcup_{n=1}^{\infty}\bigcap_{k=n} ^{\infty}A_{k}$ 
+
+			$\liminf_{n \to \infty} A_{n} = \lim_{n \to \infty} \left( \inf_{k\ge n} A_{k}  \right)= \sup \{ \inf\{A_{k}: k>n\}: n>0 \} $
+			\begin{itemize}[label=$\ast$]
+				\item $\bigcap_{k\ge n} A_{k}$ to zbiór punktów, które są we wszystkich $A_{n}$  od indeksu n wzwyż.
+				\item $\bigcup_{n} \left( \ldots \right) $ oznacza, że x musi być w którymś z tych ogonów.
+				\item \textbf{Intuicja:} $x\in \liminf_{n \to \infty} A_{n}$ oznacza, że x należy do $A_{n}$ dla \textbf{wszystkich $n$ poza conajwyżej skończoną liczbą}. Od pewnego miejsca $x$ ,,stabilizuje się'' i już zawsze jest w $A_{n}$.  
+			\end{itemize}
+		\item $\textbf{Granica Górna): } \bigcap_{n=1}^{\infty}\bigcup_{k=n} ^{\infty}A_{k}$ 
+
+			$\limsup_{n \to \infty} A_{n} = \lim_{n \to \infty} (\sup_{k\ge n}A_{k}) = \inf \{ \sup \{A_{k}: k>n\}: n>0 \} $
+			\begin{itemize}[label=$\ast$]
+				\item $\bigcup_{k\ge n} $ to zbiór punktów, które są w jakimkolwiek $A_{k}$ od indeksu n wzwyż.
+				\item $\bigcap_{n} \left( \ldots \right) $ oznacza, że x musi być w każdej takiej ,,ogonowej'' sumie. Nieważne jak daleko pójdziesz(jak duże n), x zawsze się jeszcze gdzieś pojawi w $A_{k}$ dla $k\ge n$.
+				\item \textbf{Intuicja:}$x\in \limsup A_{n}$ oznacza, że x należy do $A_{n}$ dla nieskończnie wielu  $n$. x,,powraca'' bez końca.
+			\end{itemize}
+	\end{itemize}
+	Zawsze $\liminf_{n \to \infty} A_{n} \subseteq \limsup_{n \to \infty} A_{n}$. Jeśli x jest prawie we wszystkich, to jest w niekończnie wielu). Ciąg $A_{n}$ jest zbieżny do $A$ jesli $\limsup_{n \to \infty}A_{n} = \liminf_{n \to \infty} A_{n}$.
+\end{intuition} 
+
+\begin{theorem}[Rozkład zbiorów otwartych.]
+	Każdy niepusty zbiór otwarty $U\in \R$ jest postaci
+	\[
+	U = \bigcup_{n=1} ^{\infty}\left( a_{i}, b_{i} \right) 
+	,\] 
+
+	dla pewnych liczb wymiernych $a_{n}, b_{n}$
+\end{theorem} 
+\begin{proof}
+	Każdego $x\in U$, możemy otoczyć liczbami wymiernymi- wynika to z gęstości liczb wymiernych.
+\end{proof} 
+\begin{remark}
+	Mamy nieprzeliczalnie wiele punktów, ale wciskamy je w przeliczalnie wiele ,,klatek''. W pewien sposób ,,skompresowaliśmy'' nieprzeliczalny zbiór w przeliczalną sumę przedziałów.
+\end{remark} 
+
+Ważna własność odcinków domkniętych- w topologii nazywana \textbf{zwartością}. Nazywa też się to jakoś Twierdzeniem Heinego-Borela- z kazdego pokrycia zbioru domknietego mozna wybrac podpkrycie skonczone? Anyway tutaj w formie przedziałów:
+\begin{theorem}[Pokrycie skończone przedziału domkniętego.]
+	Jeżeli $[a,b] \subseteq \bigcup_{n=1} ^{\infty}(a_{n}, b_{n}) $ to istnieje $n\in N$, takie że $[a,b] \subseteq \bigcup_{i=1} ^{n}(a_{i},b_{i})$ 
+\end{theorem} 
+\begin{corollary}[Uogólnienie na zbiory zwarte(czyli ograniczone i domknięte)]
+	Niech $F$ będzie domkniętym i ograniczonym podzbiorem prostej. Jeżeli  $F\subseteq \bigcup_{n=1} ^{\infty}(a_{i},b_{i})$ to istnieje $n\in \N$, takie że $F\subseteq \bigcup_{i=1} ^{n}(a_{i},b_{i})$.
+\end{corollary}
+\begin{intuition}
+	Każdy zbiór domknięty i ograniczony ,,siedzi'' wewnątrz jakiegoś dużego odcinka $[A,B].$ Zbiór $F$ ma ,,dziury'' (tam gdzie go nie ma). Te dziury tworzą zbiór otwarty $F^{c}$.
+
+	Konkretnie, to
+	\begin{enumerate}[label=\arabic*.]
+		\item Przykrywamy $F$ naszymi odcinkami otwartymi(w których $F$ się zawiera).
+		\item Resztę dużego odcinka $[A,B]$ przykrywamy zbiorem  $F^{c}$, który jest otwarty.
+		\item Teraz mamy pokrycie całego $[A,B]$.
+		\item Z Tw. Heinego-Borela możemy wybrać dla niego podpokrycie skończone.
+		\item  Z tego podpokrycia skończonego wyrzucamy $F^{c}$.
+		\item Zostaje nam skończone pokrycie $F$.
+	\end{enumerate}
+\end{intuition} 

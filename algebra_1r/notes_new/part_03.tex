@@ -1,0 +1,37 @@
+\chapter{Wykład III.}
+
+\section{Działania grup na zbiorach.}
+
+Jeśli grupa przekształceń zbioru $X$ to mamy funkcję $G\times X\to X$ zadaną wzorem $\left( g, x\right) \mapsto g\left( x \right) \in X$, gdzie $g\in G$ oraz $x \in X$, która ma pewne własności.
+
+\begin{definition}
+	Niech $G$ będzie dowolną grupą (działanie w $G$ oznaczamy przez ,,nic'', tzn. $g_1g_2$), oraz niech $X$ będzie zbiorem (lewym) działaniem $G$ na $X$ nazywamy funkcję \[
+	G \times X \overset{\cdot }{\to} X \text{, oznaczamy $g\cdot x = \cdot \left( g,x \right) $} 
+	,\] 
+	taka że
+	\begin{enumerate}[label=\arabic*)]
+		\item $\left(\forall x \in X \right)\left( e\cdot x = x \right)$.
+		\item $\left(\forall g,h \in G \right)\left(\forall x \in  X \right)\left( \left( gh \right) \cdot x = g\cdot \left( h\cdot x \right)  \right)  $, 
+
+			gdzie:
+
+
+	\begin{figure}[H]
+	\centering
+	\begin{equation*}
+	\left( g\tikzmark{G1}h \right) \cdot\tikzmark{G2} x = g\cdot\tikzmark{G3}\left( h\cdot\tikzmark{G4} x \right) 
+	\end{equation*}
+	\begin{tikzpicture}[overlay,remember picture]
+    		\node (Ge) [below left of = G1, node distance = 3.5 em, anchor=center]{\footnotesize \textsf{Działanie w grupie G}};
+    		\draw[<-, in=90, out=-90] ([xshift=-1pt]G1.south)++(.25em,-.5ex) to (Ge.north);
+
+    		\node (Gue) [below right of = G4, node distance = 3.5 em] {\footnotesize \textsf{Działanie G na X}};
+    		\draw[<-, in =180, out=-90] ([xshift=-4.2pt]G4.south)++(.25em,-.5ex) to (Gue.west);
+     		\draw[<-, in=180, out=-90] ([xshift=-3pt]G3.south)++(.25em,-.5ex) to (Gue.west);
+    		\draw[<-, in=180, out=-90] ([xshift=-4pt]G2.center)++(.25em,-.5ex) to (Gue.west);
+	\end{tikzpicture}
+	\end{figure}
+	\vspace{3.5em}
+	\end{enumerate}
+\end{definition} 
+

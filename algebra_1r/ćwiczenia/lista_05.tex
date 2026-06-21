@@ -1,0 +1,229 @@
+\chapter{Lista 5.}
+\begin{problem}[1]
+
+	Załóżmy, że grupa H działa przez automorfizmy na grupie N. Dowieść, że elementem odwrotnym do $\left(n,h\right)$ w otrzymanym iloczynie półprostym $N\rtimes H$, jest element $\left( h^{-1}\cdot n^{-1}, h^{-1} \right)$.
+\end{problem}
+\begin{solution}
+	
+	
+	Pokażemy, że $\left(h^{-1}\cdot n^{-1}, h^{-1} \right) * \left( n,h \right) = \left( n,h \right) * \left( h^{-1}\cdot n^{-1}, h^{-1} \right) = \left( e_{N}, e_{H} \right) $	
+
+ \textbf{Przypomnienie:} Mamy dowolnie dwie grupy H, N oraz H działa na N przez automorfizmy, wtedy $\forall\left(h,h' \in H\right)\forall\left(n,n' \in N\right)$ zachodzi 
+ \begin{enumerate}[label=\alph*)]
+ 	\item $e_{H}\cdot n = n$,
+	\item $h\cdot \left( h' \cdot n \right) = \left( hh' \right)\cdot n$,
+	\item $\left( h\cdot n \right)\left( h\cdot n' \right) = h\cdot \left( nn' \right)$
+ \end{enumerate}
+ Mamy wtedy też $c')\quad h\cdot e_{N} = e_{N}$
+	\begin{align*}
+		\left( h^{-1}\cdot n^{-1},h^{-1} \right) * \left( n,h \right) =& \left( \bm{\left( h^{-1}\cdot n^{-1} \right)\left( h^{-1}\cdot n \right)},h^{-1}h  \right) \overset{c)}{=} \\
+		\left( \bm{h^{-1}\cdot \left( n^{-1}n \right)}, e_{H} \right) =& \left( \bm{h^{-1}\cdot e_{N}}, e_{H} \right) \overset{c')}{=} \left( \bm{e_{N}}, e_{H} \right) \\
+	\text{oraz} \\
+		\left( n,h \right) * \left( h^{-1}\cdot n^{-1}, h^{-1} \right) =& \left( n\left(\bm{h\cdot \left( h^{-1}\cdot n^{-1}} \right)\right), hh^{-1} \right) \overset{b)}{=} \\
+		\left( n\left(\bm{\left( hh^{-1} \right) \cdot n^{-1}} \right), e_{H} \right) =& \left( n\left( \bm{e_{H}\cdot n^{-1}} \right), e_{H}  \right) \overset{a)}{=} \left( n\bm{n^{-1}}, e_{H} \right) = \left( e_{N}, e_{H} \right)  
+	.\end{align*}
+\end{solution} 
+\begin{problem}[2]
+	
+	Załóżmy, że $\cdot _{1}$ jest działaniem przez automorfizmy grupy $H_1$ na grupie $N_1$. Niech $f: H_1\rightarrow H_2$ oraz $g: N_1\rightarrow N_2$ będą izomorfizami. Definiujemy dla $h_2\in H_2, n_2 \in N_2$
+	\[
+	h_2 \cdot _{2} n_2 :=g\left( f^{-1}\left( h_1 \right) \cdot_{1}g^{-1}\left( n_2 \right)  \right) 
+	.\] 
+	\begin{enumerate}[label=\alph*)]
+		\item Sprawdzić, że $\cdot _{2}$ jest działaniem przez automorfizmy grupy $H_2$ na grupie $N_2$,
+		\item Udowodnić, że funkcja $F: N_1 \rtimes_{\cdot _{1}}H_1 \rightarrow N_2\rtimes_{\cdot _{2}} H_2$ zadana wzorem $F\left( \left( n_1,h_1 \right)  \right) = \left( g\left( n_1 \right) , f\left( h_1 \right)  \right) $ jest izomorfizmem.
+	\end{enumerate}
+\end{problem} 
+\begin{solution}
+	
+	TODO
+\end{solution} 
+\begin{problem}[3]
+	
+	Udowodnić, że $\text{Aut}\left( \Z_2\times \Z_2 \right) \cong \Z_3$
+\end{problem} 
+\begin{solution}
+	
+	TODO
+\end{solution} 
+\begin{problem}[4]
+	
+	Niech $\varphi: \Z_2\rightarrow \text{Aut}\left( \Z_{n} \right) $ będzie działaniem z zadania 9. z listy 3.. Udowodnić, że $D_{n}\cong \Z_{n}\rtimes \Z_2.$
+\end{problem} 
+\begin{solution}
+	
+	TODO
+\end{solution} 
+\begin{problem}[5]
+	
+	Udowodnić, że $A_4 \cong \left( \Z_2\times \Z_2 \right) \rtimes \Z_3$.
+\end{problem} 
+\begin{solution}
+	
+	TODO
+\end{solution} 
+\begin{problem}[6]
+	
+	Niech G będzie podgrupą grupy $S_{\R}$ składającą się z bijekcji \textit{afinicznych}, tzn postaci $x \mapsto ax+b $. Udowodnić, że $G\cong\left( \R,+ \right) \rtimes \left( \R^{*},\cdot  \right) $.
+\end{problem} 
+\begin{solution}
+	
+	TODO
+\end{solution} 
+\begin{problem}[7]
+	
+	Niech G będzie grupą rzędu 8. Załóżmy, że $g\in G$ jest elementem rzędu 4 i że wszystkie elementy z $G\setminus\langle g \rangle $ są rzędu 4. Dowieść, że $g^2 \in Z\left( G \right) $.
+\end{problem} 
+\begin{solution}
+	
+	Ustalmy dowolne $h\in G$. Rozważmy przypadki:
+	\begin{enumerate}[label=\arabic*.]
+		\item $h\in \langle g \rangle $:
+
+			Wtedy $h = g^{n}$, dla pewnego $0\le n\le 3$. Zatem $hg^2 = g^{n}g^2 = g^{n+2} = g^{2+n} = g^2g^{n} = g^2h$.
+		\item $h\not\in \langle g \rangle $ :
+
+			Wtedy $hg^2 = k$ dla pewnego $k \in G$, ponieważ $h\not\in \langle g \rangle $ więc rząd$\left( h \right) = 4$. Zatem $g^2 = h^3k$, a co za tym idzie 
+			\begin{align*}
+				e = g^{4} =& g^2g^2 = h^3kh^3k\\
+				h =& kg^2 \\
+				g^2 =& h^3k
+			.\end{align*}
+			Wtedy 
+			\begin{align*}
+				g^2h &= \\
+				g^2h\bm{e} &= g^2h\bm{h^3kh^3k} = \\
+				g^2\bm{hh^3}kh^3k &= g^2\bm{e}kh^3k = \\
+				g^2 k\bm{kh^3} &= g^2kg^2 = \\
+				\bm{g^2k}g^2 =& \bm{h}g^2\\
+					=& hg^2
+			.\end{align*}
+	\end{enumerate}
+\end{solution} 
+\begin{problem}[8]
+	
+	Niech $H_1\unlhd H$ oraz $G_1\unlhd G$. Udowodnić, że $H_1\times G_1 \unlhd H\times G$ oraz (korzystając z zasadniczego twierdzenia o homomorfizmach grup), że 
+	\[
+		\left( H\times G \right) / \left( H_1\times G_1 \right)\cong \left( H /H_1\right) \times \left( G / G_1 \right)   
+	.\] 
+\end{problem} 
+\begin{solution}
+	Ustalmy dowolny $\left( h_1,g_1 \right) \in H_1\times G_1 $ oraz $\left( h,g \right) \in H\times G$.
+
+	Wtedy
+	\begin{align*}
+		\left( h,g \right) \left( h_1,g_1 \right)\left( h,g \right) ^{-1} =& \left( h,g \right) \left( h_1,g_1 \right)\left( h^{-1},g^{-1} \right) \\ 
+		\left( h,g \right) \left( h_1h^{-1}, g_1g^{-1} \right) =& \left( hh_1h^{-1}, gg_1g^{-1} \right)
+	.\end{align*}
+	Ponieważ $H_1\unlhd H$ oraz $G_1 \unlhd G$, więc $hh_1h^{-1} \in H_1$ oraz $gg_1g^{-1} \in G_1$.
+
+	Zatem $\left( hh_1h^{-1}, gg_1g^{-1} \right) \in \left( H_1, G_1 \right) $, a co za tym idzie
+	\[
+	H_1\times G_1\unlhd H\times G.
+	.\] 
+
+	Ustalmy $\varphi: H\times G \rightarrow \aut\left(\right) $
+
+\end{solution} 
+\begin{problem}[9]
+	
+	Niech $\varphi: G \rightarrow \text{Aut}\left( H \right) $ będzie działaniem. Udowodnić, że następujące warunki są równoważne.
+	\begin{enumerate}[label=\alph*)]
+		\item Grupa $H\rtimes_{\varphi}G $ jest przemienna.
+		\item Grupy $H$ i $G$ są przemienne oraz $\varphi$ jest trywialne.
+	\end{enumerate}
+\end{problem} 
+\begin{solution}
+	TODO
+\end{solution} 
+\begin{problem}[10]
+	
+	Niech $\Psi: G\rightarrow H$ będzie epimorfizmem. Załóżmy, że istnieje \textit{cięcie} $\Psi$, tzn. homomorfizm $s: H \rightarrow G$, taki że $\Psi \circ s = \id_{H}$. Opisać naturalne działanie $H$ na $\ker(\Psi) $ i udowodnić, że
+	\[
+	G \cong \ker(\Psi) \rtimes H
+	.\] 
+\end{problem} 
+\begin{solution}
+	
+	Zauważmy, że $s$ jest \textbf{monomorfizmem}. Istotnie, dla dowolnego $x\in \ker(s), s(x) = e_{G}$. Ponieważ $\left(\Psi\circ s\right)= \id_{H}$, więc
+	\[
+	e_{H} = \Psi\left( e_{G} \right) = \Psi\left( s\left( x \right)  \right) = \left( \Psi\circ s \right) \left( x \right) = \id_{H}\left( x \right) = x
+	.\] 
+
+	Zatem $s[H]$ jest zanurzeniem grupy  $H$ w grupę $G$. Ponadto  $S\left[ H \right] \cap \ker(\Psi) = e_{G}$(bo $s$ jest monomorfizmem). Ponieważ $\ker(\Psi) \unlhd G$, więc $G\cong \ker(\Psi) \rtimes s\left[ H \right] $. Z tego, że $\Psi$ jest epimorfizmem, czyli $\Psi\left[ H \right] = H$, więc $\Psi\rvert_{s\left[ H \right] }$ izomorfizmem $s\left[ H \right] \rightarrow H$. Zatem $G \cong \ker(\Psi) \rtimes s\left[ H \right] \cong \ker(\Psi) \rtimes H$.
+
+
+		Niech oraz $G' = N'\rtimes H' = \left( \ker(\Psi)\times H, * \right) $. Rozważmy podgrupy $\{e_{G}\}\times H$ oraz $\ker(\Psi) \times \{e_{H}\} $ grupy $G'$. 
+	\begin{goall}
+		
+		
+	\end{goall}
+
+
+
+
+
+
+
+	\textbf{Jak wygląda "naturalne" działanie $H$ na $\ker(\Psi) $?}
+	
+	\begin{goall}[Naturalne działanie H na $\ker(\Psi)$]
+	
+
+	\end{goall}
+
+
+	\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    node distance=3cm, % Zmniejszony odstęp poziomy
+    % Style
+    grupa/.style={draw, ellipse,  align=center, inner sep=0.001pt},
+    subgrupa/.style={draw, ellipse, minimum height = 1cm,minimum width = 1.4cm, fill=gray!10, label={below:{\scriptsize$\ker(\Psi)$}}},
+    obraz-g/.style={draw, ellipse, minimum height=2.8cm, minimum width = 2.1cm, fill=gray!10, label={above:$H = \Psi[G]$}},  
+    obraz-s/.style={draw, ellipse, minimum height=2.8cm, minimum width=2.1cm, fill=blue!10, label={[label distance = 0.25pt]above:{\scriptsize $s[H]$}}},
+    punkt/.style={font=\large}
+]
+
+% --- Grupa G (Lewa strona) ---
+% 1. Komponenty wewnętrzne
+\node[subgrupa] (K) {}; % Jądro
+\node[obraz-s, above=0.025cm of K] (sH) {}; % Obraz s(H)
+\node[punkt] (eG) at (K.north){$\bullet$}; % e_G
+% 2. Duży owal G
+\node[grupa, fit=(K) (eG) (sH), label={above:$G$}] (G) {};
+
+% 3. Podpis e_G
+\node[below=0.025cm of eG] {\scriptsize $e_G$};
+
+% --- Grupa H (Prawa strona) ---
+\node[obraz-g, right=of G, minimum width=2.5cm] (H) {};
+\node[punkt] (eH) at (H.south) {$\bullet$}; % e_H
+\node[below=0.025cm of eH] {\scriptsize $e_H$};
+
+% --- Strzałki (Mapowania) ---
+    
+% Epimorfizm Psi
+\draw[->>, thick] (G.north) to[out=30, in=135] 
+    node[midway, above] {$\Psi$} (H.north west);
+    
+% Cięcie s
+\draw[->, thick] (H.west) to[out=180, in=0] 
+    node[midway, below] {$s$} (sH.east);
+    
+% Mapowanie jądra
+\draw[->, thick, dashed] (K.north) to[out=0, in=180] (eH);
+\draw[->, thick, dashed] (K.south) to[out=0, in=180] (eH);
+
+\end{tikzpicture}
+\end{figure}
+
+\end{solution} 
+\begin{problem}[11]
+	
+	Uzasadnić, że w każdym wierszu w klasyfikacji grup rzędu $\le 8$ podanej na wykładzie wypisane są parami nieizomorficzne grupy.
+\end{problem} 
+\begin{solution}
+	
+	
+\end{solution} 

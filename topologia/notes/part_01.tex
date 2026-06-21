@@ -1,0 +1,957 @@
+\chapter{Przestrzenie metryczne i przestrzenie topologiczne.}
+
+\section{Przestrzenie metryczne}
+Metryka pozwala mierzyć odległości pomiędzy punktami danej przestrzeni. Interesować nas będą wyznaczone przez nie rodziny zbiorów otwartych -- topologie.
+
+\begin{definition}[Metryka]
+	\textbf{Metryką} na zbiorze $X$ nazywa się funkcję $d: X\times X \to \mathbb{R}$ spełniającą następujące warunki:
+	\begin{enumerate}[label=\arabic*)]
+		\item $d\left( x,y \right) = 0$ wtedy i tylko wtedy, gdy $x = y$. Warunek ten nazywamy \textbf{identycznością.} 
+		\item $d\left( x,y \right) = d\left( y,x \right) $, dla dowolnych $x,y \in X$. Warunek ten nazywamy \textbf{symetrycznością}. 
+		\item $d\left( x,z \right) \le d\left( x,y \right) + d\left( y,z \right) $ dla dowolnych $x,y,z \in X$. Warunek ten nazywamy \textbf{nierównością trójkąta.} 
+	\end{enumerate}
+\end{definition} 
+
+\begin{fact}
+
+	Metryka przyjmuje tylko wartości nieujemne, tzn
+	 \[
+	d\left( x,y \right) \ge 0\text{ dla dowolnych } x,y \in X
+	.\] 
+\end{fact}
+\begin{proof}
+	Ustalmy dowolne $x,y \in X$. Z warunku $1)$ mamy:
+	 \[
+	d\left( x,x \right) = 0
+	,\] 
+	następnie, z nierówności trójkąta mamy:
+	\[
+	d \left( x,x \right) \le d\left( x,y \right) + d\left( y,x \right) 
+	,\]
+	oraz z warunku symetrii:
+	\[
+	d\left( x,y  \right) + d\left( y,x \right) = 2d\left( x,y \right)  
+	.\] 
+
+	Łącząc je otrzymujemy
+	\[
+	0 = d \left( x,x \right) \le d\left( x,y \right) + d\left( y,x \right) = 2 d\left( x,y \right)  
+	.\] 
+
+	Zatem $d\left( x,y \right) \ge 0$ dla dowolnych $x,y \in X$.
+\end{proof} 
+
+Parę $\left( X,d \right) $ nazywamy \textbf{przestrzenią metryczną}, elementy tej przestrzeni nazywamy \textbf{punktami} a liczbę $d\left( x,y \right) $-- odległością pomiędzy punktami $x,y \in X$.
+
+\begin{definition}[Rzeczywista przestrzeń euklidesowa $n$- wymiarowa.]
+	Parę $\left( \mathbb{R}^{n}, d_{e} \right) $ nazywamy \textbf{przestrzenią euklidesową}($n$- wymiarową), gdzie $d_{e}$ jest dana poniższym wzorem:
+	\[
+	d _{e}\left( a,b \right) = \sqrt{\sum_{i=1}^{n} \left( a\left( i \right) - b\left( i \right)  \right)^2 } 
+	.\] 
+
+	Elementami $\mathbb{R}^{n}$ są $n$-elementowe ciągi liczb rzeczywistych. Tutaj dla  $a, b \in \mathbb{R}^{n}$, notacja $a\left( i \right) , b\left( i \right) $ oznacza $i$--tą współrzędną ciągu.
+\end{definition} 
+Pokażemy, że tak zdefiniowane $d_{e}$ istotnie jest metryką.
+\begin{proof}
+\noindent \textbf{1) Identyczność}:\\ 
+	Ustalmy dowolne $a,b \in \mathbb{R}^{n}$. Jeśli $d\left( a,b \right) = 0 $, oznacza to, suma $\sum_{i=1}^{n} \left( a\left( i \right) - b\left( i \right)  \right)^2$ jest równa zero. Ponieważ składniki tej sumy jako kwadraty liczb rzeczywistych są nieujemne, oznacza to, że każdy składnik z osobna jest równy zero. Dla $i$--tego składnika, mamy $\left( a\left( i \right) - b\left( i \right)  \right) ^2 = 0$, czyli $a\left( i \right) = b\left( i \right) $, a co za tym idzie $a = b$. \\ Odwrotnie, jeśli $a = b$, to odpowiednie elementy ciągów $a,b$ są równe, czyli $i$--ty składnik sumy, jest zerem, a więc cała suma jest zerem. Czyli $d_{e}\left( a,b \right) = 0$.
+
+\noindent \textbf{2) Symetria:}\\
+Ustalmy dowolne $a,b \in \mathbb{R}^{n}$. Rozpisując $d_{e}$ z definicji:
+\[
+d_{e}\left( a,b \right) = \sqrt{\sum_{i=1}^{n} \left( a\left( i \right) - b\left( i \right)  \right)^{2}} = \sqrt{\sum_{i=1}^{n} \left( \left( -1 \right) \left(-a\left( i \right) + b\left( i \right) \right) \right)^{2}} = \sqrt{\sum_{i=1}^{n} \left( b\left( i \right) - a\left( i \right)  \right)^{2}} = d_{e}\left( b,a \right) 
+.\] 
+Zatem $d_{e}\left( a,b \right) = d_{e}\left( b,a \right) $, dla dowolnych $a,b \in \mathbb{R}^{n}$.\\
+\noindent\textbf{3) Nierówność trójkąta} \\
+Udowodnimy najpierw lemat -- Nierówność Cauchy'ego: dla $a,b \in \mathbb{R}^{n}$, 
+\[
+\sum_{i=1}^{n} \left| a\left( i \right) b\left( i \right)  \right| \le \sqrt{\sum_{i=1}^{n} a\left( i \right) ^{2}} \sqrt{\sum_{i=1}^{n} b\left( i \right) ^{2}}.
+.\] 
+\noindent Dowód: \\
+Niech $A = \sqrt{\sum_{i = 1}^{n} a\left( i \right) ^2} $ oraz $B = \sqrt{\sum_{i = 1}^{n} b\left( i \right) ^2} $. Dodatkowo niech $s_{i} = \frac{\left| a_{i} \right| }{A}$ oraz $t_{i} = \frac{\left| b_{i} \right| }{B}$(normalizujemy wektory $a$ i $b$ ). Zauważmy, że sumy kwadratów $s_{i}$ oraz $t_{i}$ wynoszą $\sum_{i = 1}^{n} s_{i}^2 = \sum_{i = 1}^{n} t_{i}^2 = 1$. Ponadto dla ustalonego $i$ mamy $2s_{i}t_{i} \le s_{i}^2 + t_{i}^2$, a co za tym idzie $2 \sum_{i = 1}^{n} s_{i}t_{i} \le \sum_{i = 1}^{n} s_{i}^2 + \sum_{i = 1}^{n} t_{i}^2 = 2$. Zatem $\sum_{i=1}^{n} s_{i}t_{i} \le 1$. Wracając do pierwotnych oznaczeń, otrzymujemy
+\[
+\sum_{i = 1}^{n} s_{i}t_{i} = \sum_{i = 1}^{n} \frac{\left| a\left( i \right)  \right| \left| b\left( i \right)  \right| }{AB} = \sum_{i = 1}^{n} \frac{\left| a\left( i \right) b\left( i \right)  \right| }{AB} \le 1   
+,\] 
+a stąd
+\[
+\sum_{i = 1}^{n} \left| a\left( i \right) b\left( i \right)  \right| \le AB = \sqrt{\sum_{i = 1}^{n} a\left( i \right) ^2 } \sqrt{\sum_{i = 1}^{n} b\left( i \right) ^2 }  
+.\] 
+Co było do pokazania $\diamond $.
+
+Wracając do głównego dowodu, pokażemy najpierw, że nierówność trójkąta zachodzi dla $\mathbf{0} = \left( 0,\ldots, 0 \right) $, czyli że
+\[
+d_{e}\left( a,b \right) \le d_{e}\left( a, \mathbf{0} \right) + d_{e}\left( \mathbf{0}, b \right) 
+.\] 
+Rozpisując obie strony nierówności
+\[
+d_{e}\left( a,b \right) = \sqrt{\sum_{i = 1}^{n} \left( a\left( i \right) - b\left( i \right)  \right) ^2 } = \sqrt{\sum_{i = 1}^{n} \left( a\left( i \right) ^2 -2a\left( i \right) b\left( i \right) + b\left( i \right) ^2 \right) }
+,\] 
+oraz 
+ \[
+d_{e}\left( a, \mathbf{0} \right) + d_{e}\left( \mathbf{0}, b \right) = \sqrt{\sum_{i = 1}^{n} a\left( i \right) ^2 } + \sqrt{\sum_{i = 1}^{n} b\left( i \right) ^2 }  
+,\] 
+oraz podnosząc do kwadratu mamy
+\begin{align*}
+	sum_{i = 1}^{n} a\left( i \right) ^2 - 2a\left( i \right) b\left( i \right) + b\left( i \right) ^2 &= \sum_{i = 1}^{n} a\left( i \right) ^2 - 2\sum_{i = 1}^{n} a\left( i \right) b\left( i \right) + \sum_{i = 1}^{n} b\left( i \right) ^2 \\										   &\le \sum_{i = 1}^{n} a\left( i \right) ^2 + \sum_{i = 1}^{n} +2\sqrt{\sum_{i = 1}^{n} a\left( i \right)  } \sqrt{\sum_{i = 1}^{n} b\left( i \right)  } +  b\left( i \right) ^2 
+.\end{align*}
+Po zredukowaniu otrzymujemy
+\[
+-\sum_{i = 1}^{n} a\left( i \right) b\left( i \right) \le \sqrt{\sum_{i = 1}^{n} a\left( i \right)  }  \sqrt{\sum_{i = 1}^{n} b\left( i \right)  } 
+.\] 
+Ponieważ 
+\[
+-\sum_{i = 1}^{n} a\left( i \right) b\left( i \right) \le \sum_{i = 1}^{n} \left| a\left( i \right) b\left( i \right)  \right|
+.\] 
+więc z udowodnionej nierówności Cauchy'ego wnioskujemy, że
+\[
+-\sum_{i = 1}^{n} a\left( i \right) b\left( i \right) \le \sum_{i = 1}^{n} \left| a\left( i \right) b\left( i \right)  \right| \le \sqrt{\sum_{i = 1}^{n} a\left( i \right)  }  \sqrt{\sum_{i = 1}^{n} b\left( i \right)  } 
+.\] 
+Zatem nierówność trójkąta zachodzi dla $a,b, \mathbf{0} \in \mathbb{R}^{n}$.
+
+Aby dokończyć dowód, zauważmy, że metryka euklidesowa $d_{e}$ jest niezmiennicza na przesunięcia. Istotnie dla  $a,b,c \in \mathbb{R}^{n}$ mamy
+ \[
+d_{e}\left( a-c, b-c \right) = \sqrt{\sum_{i = 1}^{n} \left( a-c - b + c \right) ^{2} } = \sqrt{\sum_{i = 1}^{n} \left( a-b \right) ^2 } = d_{e}\left( a,b \right) 
+.\] 
+Ponadto
+\begin{align*}
+		d_{e}\left( a-c, \mathbf{0} \right) = \sqrt{\sum_{i = 1}^{n} \left( a\left( i \right) - c\left( i \right)  \right) ^2 } &= d_{e}\left( a,c \right) \\
+	d_{e}\left( \mathbf{0}, b-c \right) =  \sqrt{\sum_{i = 1}^{n} \left( c\left( i \right) -b\left( i \right)  \right) ^2 } &= d_{e}\left( c,b \right)  
+.\end{align*}
+Korzystając z już udowodnionej nierówności trójkąta dla $a,b,\mathbf{0} \in \mathbb{R}^{n}$ i powyższych faktów, zauważamy że
+\[
+d_{e}\left( a,b \right) = d_{e}\left( a-c, b-c \right) \le d_{e}\left( a-c, \mathbf{0} \right) + d_{e}\left( \mathbf{0}, b-c \right) = d_{e}\left( a,c \right) + d_{e}\left( c,b \right) 
+.\] 
+\end{proof} 
+\begin{definition}[Kula]
+	Kulą w przestrzeni metrycznej $\left( X,d \right) $ o środku w punkcie $a\in X$ oraz promieniu $r > 0$ nazywamy zbiór
+	\[
+	B\left( a,r \right) = \{x \in X : d\left( a,x \right) < r\} 
+	.\] 
+\end{definition} 
+\begin{definition}[Zbiory otwarte i topologia]
+	W przestrzeni metrycznej $\left( X,d \right) $, zbiór $U \subseteq X$ jest \textbf{otwarty}, jeśli dla każdego $x \in U$ istnieje $r>0$, takie, że $B\left( x,r \right) \subseteq U$. Rodzinę $T\left( d \right) $ wszystkich zbiorów otwartych w $\left( X, d \right) $ nazywamy \textbf{topologią} tej przestrzeni metrycznej lub \textbf{topologią generowaną przez metrykę $d$} .
+\end{definition} 
+
+\begin{remark}
+	\noindent$\bullet$ Każda kula w przestrzeni metrycznej $\left( X,d \right) $ jest otwarta. Istotnie, jeśli weźmiemy dowolną kulę $B\left( a,r \right) $ oraz dowolny punkt do niej należący $b\in B\left( a,r \right) $, to dla $s = r - d\left( a,x \right) $, mamy $B\left( b,s \right) \subseteq B\left( a,r \right) \subseteq X$. Dlaczego? Chcemy pokazać, że kula $B\left( b,s \right) $ ,,nie wystaje'' poza kulę $B\left( a,r \right) $. Weźmy zatem dowolny punkt $x \in B\left( b,s \right) $. Zauważmy, że z nierówności trójkąta $d\left( a,x \right) \le d\left( a,b \right) + d\left( b,x \right) $. Ponieważ $d\left( b,x \right) < s = r - d\left( a,b \right) $, otrzymujemy, że
+	\[
+	d\left( a,x) \right) \le  d\left( a,b \right) + d\left( b,x \right) < d\left( a,b \right) + r - d\left( a,b \right) = r
+	.\] 
+Zatem, istotnie kula $B\left( b,s \right) $ jest zawarta w kuli $B\left( a,r \right) $, zatem kula $B\left( a,r \right) $ jest otwarta w przestrzeni $\left( X,d \right) $.\\
+\noindent$\bullet$ Dopełnienie $X\setminus F$ zbioru skończonego $F$ w przestrzeni metrycznej $\left( X,d \right) $ jest otwarte. Dlaczego?
+Mamy zbiór skończony $F = \{y_1,y_2,\ldots, y_{n}\} $, bierzemy punkt $x$, który do niego nie należy -- $x \not\in F$. Następnie definiujemy promień $r$ jako minimum odległości punktów z $F$ oraz  $x$ -- $r = \min \{d\left( x,y \right) : y \in F\} $. Ponieważ punkty $x,y$ dla $y \in F$ są różne, więc ich odległość $d\left( x,y \right) $ jest nie zerowa. Ponadto w kuli $B\left( x,r \right) $ nie znajdzie się żaden punkt $y \in F$, bo promień $r$ został zdefiniowany jako minimum odległości pomiędzy $x$ a punktami $y \in F$, zatem kula  $B\left( x,r \right) $ w całości jest zawarta w dopełnieniu  $X\setminus F$.
+
+\noindent \textbf{Uwaga:} Dla zbioru nieskończonego to nie zachodzi -- weźmy przestrzeń metryczną $\left( \mathbb{R}, d_{e} \right) $ oraz zbiór punktów $F = \{1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4}, \ldots\}$. Czy dopełnienie tego zbioru może być otwarte? Weźmy dowolny $x = 0 \not\in F$ oraz kulę o środku w punkcie $x$ i promieniu $r > 0$ --  $B\left( x,r \right) $. Bez straty ogólności, zakładamy, że $r \in \left( 0,1 \right) $. Istnieje wtedy $n$, takie że $F \ni \frac{1}{n} < r$. Zatem dla ustalonego $r$ istnieje punkt z $F$, który znajduje się (a nie powinien) w naszej kuli -- sprzeczność.
+\end{remark} 
+
+Własności topologii przestrzeni metrycznej, wyróżnione poniżej, posłużą nam w dalszej części do określenia ogólnych przestrzeni topologicznych.
+
+\begin{theorem}
+	Topologia $T\left( d \right) $ przestrzeni metrycznej $\left( X,d \right) $ ma następujące własności:
+	\begin{enumerate}[label=\arabic*)]
+		\item $\emptyset, X \in T\left( d \right) $,
+		\item Przekrój skończenie wielu elementów $T\left( d \right) $ jest elementem $T\left( d \right) $.
+		\item Suma dowolnie wielu elementów $T\left( d \right) $ jest elementem $T\left( d \right) $.
+	\end{enumerate}
+\end{theorem} 
+\begin{proof}
+	\begin{enumerate}[label=\arabic*)]
+		\item Ponieważ $x \not\in \emptyset$ dla każdego $x \in X$ warunek określający zbiory otwarte w przestrzeni $\left( X,d \right) $ jest spełniony trywialnie. Analogicznie $X \in T\left( d \right) $, biorąc kulę zawierającą wszystkie elementy $X$.
+		\item Niech $U_1, U_2 \in T\left( d \right) $. Dla dowolnego $x \in U_1\cap U_2$ istnieją $r_1,r_2 >0$, takie że $x \in B\left( x, r_1 \right) \subseteq U_2$ oraz $x \in B\left( x, r_2 \right) \subseteq U_1$. Biorąc $r = \min \{r_1,r_2\} $, otrzymujemy, że $B\left( x,r \right) \subseteq U_1\cap U_2$.
+		\item Niech $V = \bigcup \mathcal{U} $ będzie sumą rodziny $\mathcal{U} \subseteq T\left( d \right) $. Jeśli $x \in V$, to $x \in U$ dla pewnego $U \in \mathcal{U}$, a więc istnieje $r>0$, takie że $B\left( x,r \right) \subseteq U \subseteq V$. Zatem $V \in T\left( d \right) $.
+	\end{enumerate}
+\end{proof} 
+
+\begin{eg}[1.1.6]
+\noindent \textbf{Równoważność metryk} \\
+	Metryki na tym samym zbiorze o różnych własnościach geometrycznych, mogą generować tę samą topologię -- zbiór jest otwarty jeśli każdy jego punkt możemy otoczyć kulą.
+
+	Dla ilustracji rozpatrzmy w $\mathbb{R}^{n}$ metryki:
+	\begin{enumerate}[label=\arabic*)]
+		\item Euklidesowa -- $d_{e}$,
+		\item Taksówkowa -- $d_{s}\left( a,b \right) = \sum_{i = 1}^{n} \left| a\left( i \right) - b\left( i \right)  \right|$,
+		\item Maksimum -- $d_{m}\left( a,b \right) = \max_{i}\left| a\left( i \right) - b\left( i \right)  \right| $.
+	\end{enumerate}
+
+Choć geometrycznie kule w tych metrykach mają inne kształty to wszystkie one generuję tę samą topologię: 
+ \[
+T\left( T_{e} \right) = T\left( d_{s} \right) = T\left( d_{m} \right) 
+.\] 
+Wynika to z następujących nierówności:
+\begin{enumerate}[label=\arabic*)]
+	\item $d_{e} \le \sqrt{n} d_{m}$,
+	\item $d_{m} \le d_{s}$,
+	\item $d_{s}\le \sqrt{n} d_{e}$.
+\end{enumerate}
+Dzięki temu każda kula w jednej metryce zawiera kulę o tym samym środku w drugiej metryce, co zapewnia identyczność rodzin zbiorów otwartych.
+
+\noindent \textbf{Obcięcie metryki}\\
+Niech $\left( X,d \right) $ będzie przestrzenią metryczną i $\delta > 0$. Wówczas funkcja $d_{\delta} = \min \{d\left( x,y \right), \delta\} $ jest metryką w $X$, generującą tę samą topologię co metryka $d$. Wynika to z tego, że w obu przestrzeniach metrycznych $\left( X,d \right) $ i $\left( X, d_{\delta} \right) $ kule o promieniach $< \delta$ są identyczne. 
+
+\noindent \textbf{Wniosek:} Identyczność topologii pozwala nam wybierać metrykę najwygodniejszą do obliczeń (np. $d_{m}$ zamiast $d_{e}$ przy badaniu zbieżności po współrzędnych) nie zmieniając przy tym właściwości przestrzeni takich jak domkniętość czy ciągłość funkcji.
+\end{eg}
+
+\begin{eg}[1.1.7A]
+	\noindent \textbf{Metryka ,,gwiazdy'' na $\mathbb{R}$} \\
+	Rozważamy metrykę $d$ określoną następująco:
+	\[
+	d\left( x,y \right) = \begin{cases}
+		\left| x \right| + \left| y \right|, &\text{ gdy } x \neq y \\
+		0, &\text{ gdy } x = y
+	\end{cases}
+	.\] 
+	Została ona tak ,,zaprojektowana'' aby wyróżnić punkt zero. Odległość między dwoma różnymi punktami z tej przestrzeni to suma ich odległości od zera.
+
+	Zauważmy, że topologia ta ma kilka kluczowych własności:
+	\begin{enumerate}[label=\arabic*)]
+		\item \textbf{Punkty poza zerem są otwarte.} Jeśli weźmiemy $x\neq 0$ oraz promień $r = \left| x \right| $, to kula $B\left( x,r \right) = \{y \in \mathbb{R}: d\left( x,y \right) < \left| x \right| \} $ zawiera tylko punkt $x$. Dzieje się tak, ponieważ dla każdego $y\neq x$, $d\left( x,y \right) = \left| x \right| + \left| x \right| \ge \left| x \right| $. Zatem kula $B\left( x, \left| x \right|  \right) $ zawiera tylko singleton $x$, czyli zbiór $\{x\} $ jest otwarty w tej przestrzeni.
+		\item \textbf{Otoczenie zera.} Kula o środku w $0$ i promieniu $r$ to zbiór $B\left( 0,r \right) = \{y \in \mathbb{R}: d\left( 0,r \right) < r \} $. Ponieważ dla $y \neq 0$ mamy $d\left( 0,y \right)  = 0 + \left| y \right| $ kula ta jest identyczna z euklidesowym przedziałem $\left( -r,r \right) $.
+		\item \textbf{Charakterystyka całej topologii.} Zauważmy, że topologia $T\left( d \right) $ składa się z:
+			\begin{itemize}
+				\item Wszystkich podzbiorów $\mathbb{R}\setminus \{0\} $ -- bo każdy punkt jest poza zerem jest otwarty, a suma zbiorów otwartych jest zbiorem otwartym.
+				\item Wszystkich zbiorów zawierających pewien przedział $\left( -r,r \right) $ wokół zera.
+			\end{itemize}
+		Jest to topologia znacznie silniejsza od euklidesowej: $T\left( d_{e} \right) \subsetneq T\left( d \right) $. Każdy zbiór otwarty przestrzeni euklidesowej jest też otwarty w tej metryce. Odwrotnie to nie zachodzi, bowiem przykładowy zbiór $\{1\} $ jest otwarty tutaj ale nie jest otwarty w metryce euklidesowej.
+	\end{enumerate}
+\end{eg} 
+
+\begin{eg}[1.1.7B]
+	Niech $\mathbb{R}^{\infty}$ będzie zbiorem ciągów liczb rzeczywistych $\left( x_1,x_2,\ldots \right) $ o prawie wszystkich (tzn. Po za skończenie wieloma) współrzędnych równych zeru. Będziemy identyfikować $\mathbb{R}^{n}$ ze zbiorem punktów $\left( x_1,x_2,\ldots,x_{n},0,0,\ldots \right) $ w $\mathbb{R}^{\infty}$. Na $\mathbb{R}^{\infty}$ definiujemy dwie metryki (analogicznie do swoich odpowiedników w $\mathbb{R}^{n}$ :
+	\begin{enumerate}[label=\arabic*)]
+		\item $d_{e}\left( a,b \right) = \sqrt{\sum_{i = 1}^{\infty} \left( a\left( i \right) - b\left( i \right)  \right)^2 } $,
+		\item $d_{s}\left( a,b \right) = \sum_{i = 1}^{\infty} \left( a\left( i \right) - b\left( i \right)  \right)  $.
+	\end{enumerate}
+Przypomnijmy, że na $\mathbb{R}^{n} \subseteq \mathbb{R}^{\infty}$ metryki te są równoważne (generują te same topologie). Pokażemy, że $d_{e}$ i $d_{s}$ generują różne topologie w $\mathbb{R}^{\infty}$. Istotnie niech $\mathbf{0} = \left( 0,0,\ldots \right) $ i niech $B_{s}\left( \mathbf{0},1 \right) $ będzie kulą w przestrzeni $\left( \mathbb{R}^{\infty}, d_{s} \right) $ o środku w $\mathbf{0}$ i promieniu $1$. Pokażemy, że $B_{s}\left( \mathbf{0}, 1 \right) \not\in T\left( d_{e} \right) $. Załóżmy nie wprost, i niech $B_{e}\left( \mathbf{0},r \right) \subseteq B_{s}\left( \mathbf{0}, 1 \right) $, gdzie $B_{e}\left( \mathbf{0},r \right) $ będzie kulą w przestrzeni $\left( \mathbb{R}^{\infty}, d_{e} \right) $ o środku w $\mathbf{0}$ i promieniu $r>0$. Ustalmy $n$ takie że $\frac{1}{n}< r^2$ i niech $a = \left( \frac{1}{n},\frac{1}{n},\ldots, \frac{1}{n},0,0,\ldots \right) $ mającym dokładnie $n$ współrzędnych niezerowych. Wówczas $d_{e}\left( a,\mathbf{0} \right) = \sqrt{n\cdot \left( \frac{1}{n} \right)^2} = \sqrt{\frac{1}{n}} < r $. Dla dużego $n$ wartość ta jest mniejsza od dowolnego $r$, skąd $a \in B_{e}\left( \mathbf{0},r \right) $. Z drugiej strony $d_{s}\left( a, \mathbf{0} \right) = n \cdot \frac{1}{n} = 1$, zatem odległość $a$ do zera w metryce $d_{s}$ jest dokładnie równa $1$, czyli $a \not\in B_{s}\left( \mathbf{0}, 1 \right) $. Zatem $a$ wpada do kuli $B_{e}\left( \mathbf{0},r \right) $, ale nie wpada do kuli $B_{s}\left( \mathbf{0},1 \right) $ -- sprzeczność.
+\end{eg} 
+
+Spojrzymy teraz na zagadnienie dotyczące topologii podprzestrzeni przestrzeni metrycznych.
+\begin{remark}[1.1.8]
+	Jeśli mamy przestrzeń metryczną $\left( X,d_{X} \right) $ oraz dowolny podzbiór $Y \subseteq  X$ to możemy zdefiniować funkcję $d_{Y}: Y\times Y \to \mathbb{R}$ jako obcięcie metryki $d_{X}$ do zbioru $Y$ :
+	\[
+	d_{Y} := d_{X}\restriction_{Y\times Y} 
+	.\] 
+
+	Oznacza to, że dla dowolnych punktów $y_1,y_2 \in Y$ odległość $d_{Y\left( y_1,y_2 \right) }$ jest dokładnie taka sama jak w przestrzeni $X$. Funkcja $d_{Y}$ dziedziczy własności metryki po $d_{X}$, czyniąc $\left( Y, d_{Y} \right) $ nową, mniejszą przestrzenią metryczną. Dlaczego? Kluczowe jest tu spojrzenie na kształt kul w podprzestrzeni. Dla dowolnego punktu $y \in Y$ i promienia $r > 0$, kula w przestrzeni $Y$ (oznaczmy ją $B_{Y}\left( y, r \right) $ ) jest zbiorem:
+	\[
+	B_{Y}\left( y,r \right) = \{z \in Y: d_{Y}\left( y,z \right) < r\} 
+	.\] 
+Ponieważ $d_{Y}$ to po prostu $d_{X}$ ograniczona do $Y$, możemy to zapisać jako:
+\[
+B_{Y}\left( y,r \right) = \{z \in X: d_{X\left( y,z \right) < r}\} \cap Y = B_{X}\left( y,r \right) \cap Y
+.\] 
+Zatem kula w podprzestrzeni to nic innego jak ,,ślad'' (przecięcie) kuli z dużej przestrzeni na zbiorze $Y$.
+
+\noindent Jak wygląda struktura topologii $T\left( d_{Y} \right) $?\\
+Z powyższych uwag wynika bezpośrednio postać całej rodziny zbiorów otwartych w $Y$. Zgodnie z własnościami topologii, zbiory otwarte to sumy kul. Skoro każda kula w $Y$ jest przecięciem pewnej kuli z $X$ z zbiorem $Y$, to dowolna suma takich kul również będzie przecięciem pewnej sumy kul z $X$ ze zbiorem $Y$. Prowadzi to do głównej tezy tego fragmentu:
+\[
+T\left( d_{Y} \right) = \{U\cap Y: U \in T\left( d_{X} \right) \} 
+.\] 
+Zbiór jest otwarty w podprzestrzeni $Y$ wtedy i tylko wtedy, gdy można go przedstawić jako część wspólną zbioru $Y$ i pewnego zbioru $U$ będącego zbiorem otwartym w przestrzeni $X$.
+\end{remark} 
+
+Poniższy przykład ilustruje działanie topologii podprzestrzeni (omówionej powyżej) na konkretnym i ważnym w topologii zbiorze. Analizuje on strukturę zbiorów otwartych w zbiorze $Y = \{0\} \cup \{\frac{1}{n}: n = 1,2,3,\ldots\} $, rozpatrywanym z metryką euklidesową $d_{e}\left( x,y \right) = \left| x-y \right| $. Omówimy to bardziej szczegółowo.
+\begin{enumerate}[label=\arabic*)]
+	\item \textbf{Struktura punktów postaci $\frac{1}{n}$.} Punkty te nazywamy punktami \textbf{izolowanymi} podprzestrzeni $Y$. Choć w całej przestrzeni $\left( \mathbb{R}, d_{e} \right) $ singletony nie są otwarte, to wewnątrz podprzestrzeni $Y$ sytuacja wygląda inaczej.
+		\begin{itemize}
+			\item Dla każdego ustalonego $n$ możemy dobrać tak mały promień $r$, aby kula $B_{e}\left( \frac{1}{n}, r \right) $ na prostej nie zawierała żadnego innego punktu ze zbioru $Y$.
+			\item Zgodnie z spostrzeżeniem 1.1.8, kula w podprzestrzeni $Y$ to $B_{Y}\left( \frac{1}{n}, r \right) = B_{e}\left( \frac{1}{n}, r \right) \cap Y$,
+			\item Dla dostatecznie małego $r$ otrzymamy $B_{Y}\left( \frac{1}{n},r \right) = \{\frac{1}{n}\} $. Ponieważ kula jest zbiorem otwartym, każdy singleton $\{\frac{1}{n}\} $ jest otwarty w $Y$.
+		\end{itemize}
+	\item \textbf{Otoczenie punktu $0$.} Punkt $0$ ma zupełnie inny charakter -- jest punktem skupienia zbioru $Y$.
+		\begin{itemize}
+			\item Każda kula euklidesowa $B_{e}\left( 0,r \right)$ zawiera nieskończenie wiele punktów zbioru $Y$ -- wszystkie $\frac{1}{n}$ dla $n > \frac{1}{r}$.
+			\item Ślad takiej kuli na zbiorze $Y$, czyli $B_{Y}\left( 0,r \right) = B_{e}\left( 0,r \right) \cap Y$, zawiera zero oraz prawie wszystkie punkty postaci $\frac{1}{n}$ (wszystkie poza skończoną liczbą początkowych wyrazów ciągu),
+			\item Zatem każdy zbiór otwarty w $Y$, który zawiera zero, musi automatycznie zawierać niemal wszystkie punkty tego zbioru. Jego dopełnienie w $Y$ musi być zbiorem skończonym.
+		\end{itemize}
+	\item \textbf{Pełna charakterystyka topologii $T\left( d_{Y} \right) $.} Na podstawie powyższych obserwacji, topologia podprzestrzeni $Y$ składa się z dwóch rodzajów zbiorów:
+		\begin{itemize}
+			\item \textbf{Dowolnych podzbiorów $Y\setminus \{0\} $ :} Ponieważ każdy punkt $\frac{1}{n}$ jest otwarty, każda suma takich punktów jest zbiorem otwartym.
+			\item \textbf{Podzbiorów zawierających 0, których dopełnienie w $Y$ jest skończone :} Wynika to z faktu, że taki zbiór musi zawierać jakąś kulę wokół zera, a każda taka kula ,,wyrzuca'' poza siebie tylko skończoną liczbę punktów $\frac{1}{n}$. 
+		\end{itemize}
+	\item \textbf{Porównanie z metryką ,,gwiazdy''(jeża?):} Zauważmy, że obcięcie metryki ,,gwiazdy'' -- $d\left( x,y \right) = \left| x \right| + \left| y \right| $ dla $x \neq y$ do zbioru $Y$, generuje tę samą topologię:
+		\begin{itemize}
+			\item W metryce ,,gwiazdy'' punkty $x\neq 0$ są otwarte z definicji metryki -- kula o promieniu $\left| x \right| $ to singleton,
+			\item Kule wokół zera w metryce ,,gwiazdy'' są identyczne z kulami euklidesowymi,
+			\item Choć metryki te różnią się drastycznie na całej prostej $\mathbb{R}$, to na tym konkretnym zbiorze $Y$ ich działanie jest topologiczne nierozróżnialne.
+		\end{itemize}
+\end{enumerate}
+\begin{remark}
+	Na wykładzie była alternatywna definicja zbiorów otwartych, mianowicie jako sumy kul. Dokładniej to:
+
+	\begin{quote}
+		Niech $\left( X,d \right) $ będzie przestrzenią metryczną, a $\mathcal{B} = \{B\left( x,r \right) : x\in X, r>0\} $ niech będzie rodziną wszystkich kul otwartych w tej przestrzeni. Zbiór $U \subseteq X$ nazywamy \textbf{otwartym}, jeżeli istnieje taka podrodzina kul $\mathcal{A} \subseteq \mathcal{B}$, że \[
+		U = \bigcup \mathcal{A}
+		.\] 
+		Dodatkowo przyjmujemy, że zbiór pusty $\emptyset$ jest sumą pustej podrodziny kul.
+	\end{quote} 
+\end{remark} 
+
+\section{Przestrzenie topologiczne}
+Własności wyróżnione w twierdzeniu 1.1.2 przyjmujemy jako określenie topologii w przestrzeniach bez metryki.
+
+\begin{definition}[1.2.1 - topologia]
+	Rodzina $T$ podzbiorów zbioru $X$ jest topologią w $X$, jeśli
+	\begin{enumerate}[label=\arabic*)]
+		\item $\emptyset, X \in T$,
+		\item Przekrój skończenie wielu elementów z $T$ jest elementem $T$,
+		\item Suma dowolnie wielu elementów z $T$ jest elementem $T$.
+	\end{enumerate}
+
+	\noindent Parę $\left( X,T \right) $ nazywamy \textbf{przestrzenią topologiczną}, elementy zbioru $X$ \textbf{punktami} tej przestrzeni a elementy rodziny $T$ \textbf{zbiorami otwartymi} w $\left( X, T \right) $.	
+\end{definition} 
+
+\begin{definition}[Przestrzeń metryzowalna]
+	
+	Jeśli dla danej przestrzeni topologicznej $\left( X,T \right) $ można określić metrykę $d$ na $X$, dla której $T = T\left( d \right) $, to mówimy, że przestrzeń $\left( X,T \right) $ jest \textbf{metryzowalna} .
+\end{definition} 
+
+Istnieje wiele ważnych przestrzeni topologicznych, które nie są metryzowalne. Jedną z nich omówimy poniżej.
+
+\begin{eg}[1.2.2.]
+	Rozważmy $\left( \mathbb{R}^{\infty}, d_{e} \right) $. Jak wygląda ta przestrzeń? 
+
+	\noindent \textbf{Zbiór punktów $R^{\infty}$}: Jest to zbiór wszystkich nieskończonych ciągów liczb rzeczywistych $\left( x_1, x_2,\ldots \right) $, które mają tylko skończenie wiele niezerowych wyrazów. Dla wygody utożsamiamy standardową przestrzeń euklidesową $\mathbb{R}^{n}$ ze zbiorem tych punktów w $\mathbb{R}^{\infty}$, które mają zera na wszystkich pozycjach od  $n+1$ włącznie w górę. Tworzy to ciąg wstępujący podprzestrzeni 
+	\[
+	\mathbb{R}^{1} \subsetneq \mathbb{R}^{2}  \subsetneq \mathbb{R}^{3}  \subsetneq \ldots  \subsetneq \mathbb{R}^{\infty}
+	.\] 
+
+	\noindent\textbf{Topologia $T_{\infty}$} : Niech $T_{n}$ oznacza standardową topologię euklidesową na $\mathbb{R}^{n}$. Definiujemy nową topologię na $\mathbb{R}^{\infty}$ w następujący sposób:
+	\begin{quote}
+		Zbiór $U \subseteq T_{\infty}$ jest otwarty w $T_{\infty}$ wtedy i tylko wtedy, gdy dla każdej liczby naturalnej $n=1,2,3,\ldots$ jego przekrój z $\mathbb{R}^{n}$ jest zbiorem otwartym w $\left( \mathbb{R}^{n},T_{n} \right) $ 
+		\[
+		T_{\infty} = \{U \subseteq \mathbb{R}^{\infty}: U \cap \mathbb{R}^{n} \in T_{n} \text{ dla wszystkich } n\in \N \} 
+		.\] 
+	\end{quote} 
+\noindent \textbf{Weryfikacja, że $T_{\infty}$ jest topologią}:
+\begin{itemize}
+	\item \textbf{Zbiór pusty i cała przestrzeń}: $\emptyset \cap \mathbb{R}^{n} = \emptyset \in T_{n} $ oraz $\mathbb{R}^{\infty}\cap \mathbb{R}^{n} = \mathbb{R}^{n} \in T_{n}$. Zatem $\emptyset, \mathbb{R}^{\infty} \in T_{\infty}$
+	\item \textbf{Skończone przekroje}: Niech $U, V \in T_{\infty}$. Wtedy  
+		\[
+		\left( U\cap V \right) \cap \mathbb{R}^{n} = \left( U\cap \mathbb{R}^{n} \right) \cap \left( V \cap \mathbb{R}^{n} \right)
+		.\] 
+	Ponieważ oba składniki -- $\left( U\cap \mathbb{R}^{n} \right) $ oraz $\left( V\cap \mathbb{R}^{n} \right) $ należą do $T_{n}$, a $T_{n}$ jest topologią, więc ich przekrój również należy do $T_{n}$. Zatem $U\cap V \in T_{\infty}$
+	\item \textbf{Dowolne sumy}: Niech $\{U_{s}\}_{s \in S} \subseteq T_{\infty}$. Wtedy $\left( \bigcup_{s \in S} U_{s} \right) \cap \mathbb{R}^{n} = \bigcup_{s \in S} \left( U_{s}\cap \mathbb{R}^{n} \right) $. Ponieważ każdy składnik $U_{s}\cap \mathbb{R}^{n}$ należy do $T_{n}$ oraz $T_{n}$ jest topologią, więc ich suma również należy do $T_{n}$. Zatem $\bigcup_{s \in S} U_{s} \in T_{\infty}$ 
+\end{itemize}
+Wszystkie warunki są spełnione, zatem $\left( \mathbb{R}^{\infty}, T_{\infty} \right) $ jest poprawnie zdefiniowaną przestrzenią topologiczną.
+
+\noindent Pokażemy teraz, że istotnie, przestrzeń $\left( \mathbb{R}^{\infty}, T_{\infty} \right) $ nie jest \textbf{metryzowalna}. Przeprowadzimy  dowód nie wprost. 
+
+Załóżmy zatem, że przestrzeń $\left( \mathbb{R}^{\infty}, T_{\infty} \right) $ jest metryzowalna. Oznacza to, że istnieje jakaś metryka $d$ na zbiorze $\mathbb{R}^{\infty}$, taka że topologia $T\left( d \right) $ generowana przez tę metrykę jest dokładnie równa $T_{\infty}$, tzn
+\[
+T\left( d \right) = T_{\infty}
+.\] 
+
+Rozważmy punkt $\mathbf{0} = \left( 0,0,\ldots \right) \in \mathbb{R}^{\infty}$. Dla dowolnej liczby naturalnej $n$ weźmy kulę w przestrzeni metrycznej $\left( \mathbb{R}^{\infty},d \right) $ o środku w $\mathbf{0}$ i promieniu $\frac{1}{n}$, czyli 
+\[
+B\left( \mathbf{0}, \frac{1}{n} \right) = \{x \in \mathbb{R}^{\infty} : d\left( \mathbf{0}, x \right) < \frac{1}{n}\} 
+.\] 
+\begin{itemize}
+	\item Z definicji topologii metrycznej, każda kula $B\left( \mathbf{0}, \frac{1}{n} \right) $ jest zbiorem otwartym w $T\left( d \right) $ 
+	\item Z naszego założenia $T_{\infty} = T\left( d \right) $ wynika, że $B\left( \mathbf{0}, \frac{1}{n} \right) \in T_{\infty}$
+\end{itemize}
+Skoro $B\left( \mathbf{0}, \frac{1}{n} \right) $ należy do $T_{\infty}$, to z definicji $T_{\infty}$ jej przekrój z $\mathbb{R}^{n}$ musi być otwarte w $\mathbb{R}^{n}$. Zbiór $B\left( \mathbf{0},\frac{1}{n} \right) \cap \mathbb{R}^{n}$ jest więc otoczeniem otwartym punktu $\mathbf{0}$ w przestrzeni euklidesowej $\mathbb{R}^{n}$.
+
+W przestrzeni euklidesowej $\mathbb{R}^{n}$ każde otoczenie otwarte punktu $\mathbf{0}$ zawiera pewną kulę $B_{\mathbb{R}^{n}}\left( \mathbf{0}, \varepsilon  \right) $, a ta z kolei zawiera punkty leżące na osiach współrzędnych. Możemy zatem wybrać punkt, który ma niezerową współrzędną tylko na $n$-tej pozycji. Formalnie istnieje $r_{n} \neq 0$, takie że punkt
+\[
+p_{n} := \left( 0,0,\ldots,0, r_{n},0,\ldots \right) \in B\left( \mathbf{0},\frac{1}{n} \right) \cap \mathbb{R}^{n}
+.\] 
+W ten sposób konstruujemy nieskończony zbiór $A = \{p_1,p_2,p_3,\ldots\} $.
+
+Spójrzmy teraz na zbiór $\mathbb{R}^{\infty}\setminus A$, czyli dopełnienie zbioru $A$. Aby sprawdzić, czy należy on do $T_{\infty}$, musimy zbadać jego przekrój z każdym $\mathbb{R}^{n}$ :
+\[
+	\left( \mathbb{R}^{\infty} \setminus A \right) \cap \mathbb{R}^{n}
+.\] 
+Korzystając z podstawowych własności działań na zbiorach, otrzymujemy
+\[
+	\left( \mathbb{R}^{\infty}\setminus A \right) \cap \mathbb{R}^{n} = \left( \mathbb{R}^{\infty} \cap  \mathbb{R}^{n} \right) \setminus \left( A \cap \mathbb{R}^{n} \right) = \mathbb{R}^{n}\setminus \left( A\cap \mathbb{R}^{n} \right) 
+.\] 
+Teraz chcemy zobaczyć, czym jest zbiór $A\cap \mathbb{R}^{n}$. Z konstrukcji punktów $p_{k}$ wynika, że $p_{k} \in \mathbb{R}^{k}$, ale $p_{k} \not\in \mathbb{R}^{k-1}$. Oznacza to, że
+\begin{itemize}
+	\item Dla $k\le n$, punkt $p_{k}\in \mathbb{R}^{k}\subseteq \mathbb{R}^{n}$,
+	 \item Dla $k>n$, punkt $p_{k} \not\in \mathbb{R}^{n}$.
+\end{itemize}
+Zatem $A\cap \mathbb{R}^{n} = \{p_1, p_2,\ldots,p_{n} \} $.
+
+Wracając do naszego wyrażenia
+\[
+	\left( \mathbb{R}^{\infty}\setminus A \right) \cap \mathbb{R}^{n} = \mathbb{R}^{n}\setminus \left( A \cap \mathbb{R}^{n} \right) = \mathbb{R}^{n}\setminus \{p_1,p_2,\ldots,p_{n}\} 
+.\] 
+Otrzymaliśmy przestrzeń $\mathbb{R}^{n}$ z usuniętymi skończenie wieloma punktami. W topologii euklidesowej zbiór taki jest otwarty. Dlaczego? (Wcześniej pokazywaliśmy) Ponieważ jego dopełnienie w $\mathbb{R}^{n}$ (czyli zbiór $\{p_1,p_2,\ldots,p_{n} \} $) jest skończone, a każdy zbiór skończony w przestrzeni metrycznej jest domknięty. Zatem jego dopełnienie jest otwarte.
+
+Podsumowując ten wywód: skoro $\left( \mathbb{R}^{\infty}\setminus A \right) \cap \mathbb{R}^{n}$ jest otwarty w $\mathbb{R}^{n}$ dla każdego $n$, to z definicji topologii $T_{\infty}$ wynika, że $\mathbb{R}^{\infty}\setminus A \in T_{\infty}$. Innymi słowy dopełnienie zbioru $A$ jest zbiorem otwartym w naszej przestrzeni.
+
+\noindent \textbf{Osiągnięcie sprzeczności:} Punkt $\mathbf{0}$ na pewno nie należy do $A$ (bo każdy $p_{n}$ ma $r_{n} \neq 0$ ), zatem $\mathbf{0} \in \mathbb{R}^{\infty}\setminus A$. Ponieważ $\mathbb{R}^{\infty}\setminus A$ jest otwarty w $T_{\infty}$, a z naszego założenia $T_{\infty} = T\left( d \right) $, to $\mathbb{R}^{\infty}\setminus A$ jest również otwarty w sensie metryki $d$. Oznacza to, że punkt $\mathbf{0}$ musi posiadać w metryce $d$ kulę, która w całości zawiera się w  $\mathbb{R}^{\infty}\setminus A$. Innymi słowy musi istnieć taka liczba naturalna $m$, że
+\[
+B\left( \mathbf{0}, \frac{1}{m} \right) \subseteq \mathbb{R}^{\infty}\setminus A
+.\] 
+Spójrzmy jednak na konstrukcję punktów $p_{m}$. Punkt $p_{m}$ został wybrany właśnie z kuli $B\left( \mathbf{0}, \frac{1}{m} \right) $. Zatem $p_{m}\in B\left( \mathbf{0},\frac{1}{m} \right) $. Jednocześnie $p_{m} \in A$. To oznacza, że kula $B\left( \mathbf{0},\frac{1}{m} \right) $ zawiera punkt $p_{m}$, który nie należy do zbioru $\mathbb{R}^{\infty}\setminus A$. Jest to bezpośrednia sprzeczność z tym, że cała ta kula powinna być zawarta w $\mathbb{R}^{\infty}\setminus A$.
+
+\noindent \textbf{Intuicja i wniosek}: W topologii $T_{\infty}$ zbiór $A$ jest ,,niewidoczny'' -- jego punkty są odizolowane od siebie na tyle, że nie stanowią przeszkody dla otwartości swojego dopełnienia. Jednak z perspektywy jakiejkolwiek metryki, ciąg $p_{n}$ zbiegałby do $0$ (bo odległości $d\left( \mathbf{0},\frac{1}{n} \right) < \frac{1}{n}$), co uniemożliwia oddzielenie zera od zbioru $A$ za pomocą otwartej kuli. To pokazuje, że topologia $T_{\infty}$ jest subtelniejsza niż jakakolwiek topologia metryczna na tym zbiorze.
+\end{eg} 
+
+\begin{eg}[1.2.3.]
+	Niech $X$ będzie ustalonym zbiorem. Wśród wszystkich topologii jakie można określić na zbiorze $X$, dwie skrajne to antydyskretna $T_{a} = \{\emptyset, X\} $ oraz dyskretna $T_{d}$ złożona z wszystkich podzbiorów zbioru $X$. 
+
+	Jeśli $X$ zawiera co najmniej dwa punkty, to przestrzeń $\left( X, T_{a} \right) $ nie jest metryzowalna, bo wówczas, dla dowolnego $x \in X$, $X\setminus \{x\}  \not\in T_{a}$. Z uwagi 1.1.4 B, wiemy, że dopełnienie zbioru skończonego w przestrzeni metrycznej jest zbiorem otwartym -- ponieważ $X\setminus \{x\} \neq \emptyset, X$ więc mamy sprzeczność -- $\left( X,T_{a} \right) $ nie może być metryzowalna. 
+
+Topologia $T_{d}$ jest generowana przez metrykę dyskretną w $X$, tj
+ \[
+d\left( x,y \right) = \begin{cases}
+	1 &\text{ dla } x = y,\\
+	0 &\text{ dla } x \neq y
+\end{cases}
+.\] 
+W tej topologii singletony są otwarte, tj $\{x\} \in T_{d}$. Ponieważ, każdy podzbiór $A \subseteq X$, jest sumą singletonów, tzn
+\[
+A = \bigcup_{a \in A} \{a\} 
+,\] 
+więc dowolny podzbiór $A \subseteq X$ jest otwarty w $T_{d}$.
+\end{eg} 
+\begin{definition}[Baza topologii.]
+	Rodzinę $\mathcal{B}$ podzbiorów otwartych przestrzeni topologicznej $\left( X,T \right) $ nazywamy \textbf{bazą} topologii $T$, jeśli dla dowolnego $U \in T$ oraz $x\in U$ istnieje $B \in \mathcal{B}$ spełniające $x \in B \subseteq U$.
+\end{definition} 
+
+\begin{eg}[1.2.5]
+	Niech $\left( X,d \right) $ będzie przestrzenią metryczną i niech $A\subseteq X$ będzie zbiorem takim, że każda kula w $\left( X,d \right) $ zawiera element $A$. Wówczas rodzina $\mathcal{B} = \{B\left( a, \frac{1}{n}: a\in A, n = 1,2,\ldots \right) \} $ jest bazą topologii $T\left( d \right) $.
+\end{eg} 
+\begin{remark}
+	Baza topologii jednoznacznie wyznacza tę topologię: zbiór jest otwarty wtedy i tylko wtedy, gdy jest sumą pewnej rodziny zbiorów z bazy.
+\end{remark} 
+\begin{proof}
+	Niech $\left( X,T \right) $ będzie przestrzenią topologiczną oraz zbiór $\mathcal{B}$ będzie bazą topologii $T$.
+
+	\noindent $\left( \implies \right) $
+
+	Załóżmy, że zbiór $U \in T$. Pokażemy, że jest sumą pewnej rodziny zbiorów z $\mathcal{B}$. Z definicji bazy, wiemy, że dla każdego $x \in U$ istnieje $B_{x} \in \mathcal{B}$, takie, że $x \in B_{x}\subseteq U$. Chcemy pokazać, że $\bigcup_{x \in U} B_{x} = U$. Pokażemy obustronne zawieranie niech $y \in \bigcup_{x \in U} B_{x}$, wtedy dla pewnego $x \in U$, $y \in B_{x}\subseteq U$, zatem $y \in U$. Odwrotnie, jeśli $y \in U$, to z definicji bazy $\mathcal{B}$, istnieje $B_{y} \in \mathcal{B}$, takie że $y \in B_{y} \subseteq U$. Ponieważ $B_{y}\subseteq \bigcup_{x\in U} B_{x}$ więc $y \in \bigcup_{x \in U} B_{x}$ .
+
+	\noindent $\left( \impliedby \right) $
+
+Ustalmy rodzinę zbiorów $\{B_{i}\}_{i \in I} $, gdzie $B_{i}\in \mathcal{B}$. Pokażemy, że $\bigcup_{i \in  I} B_{i}$ jest otwarta w $T$. Zauważmy, że każdy  $B_{i} \in T$, ponieważ $T$ jest topologią więc z definicji suma zbiorów jest zbiorem otwartym, zatem $\bigcup_{i \in  I} B_{i} \in T$.
+\end{proof} 
+Opiszemy teraz metodę generowania topologii przy pomocy rodzin mających dwie własności przysługujące każdej bazie.
+\begin{theorem}[1.2.6.]
+	Niech $\mathcal{B}$ będzie rodziną podzbiorów  zbioru $X$ spełniającą warunki
+	\begin{enumerate}[label=\arabic*)]
+		\item $\bigcup \mathcal{B} = X$,
+		\item dla dowolnych $B_1, B_2 \in \mathcal{B}$ i $x \in B_1\cap B_2$ istnieje $B\in \mathcal{B}$, takie że $x \in B \subseteq B_1\cap B_2$.
+	\end{enumerate}
+	Wówczas rodzina $T$ zbiorów $U \subseteq X$, takich że jeśli $x \in U$ to $x \in B \subseteq U$ dla pewnego $B\in \mathcal{B}$, jest topologią w $X$.
+\end{theorem} 
+\begin{proof}
+Formalnie, przy tak określonym zbiorze $\mathcal{B}$, zbiór $T$ jest zdefiniowany następująco:
+\[
+T = \{U \subseteq X : \left(\forall x \in U \right)\left(\exists B \in \mathcal{B} \right) \left( x \in B \subseteq U \right)  \} 
+.\] 
+Chcemy pokazać, że tak zdefiniowane $T$ jest topologią.
+\begin{itemize}
+	\item $\emptyset \in T$ zachodzi trywialnie, natomiast dla $X$ chcemy pokazać, że dla dowolnego $x \in X$ istnieje $B \in \mathcal{B}$, takie że $x \in B \subseteq X$. Ponieważ $\bigcup \mathcal{B} = X$, więc dla dowolnego $x \in X$ istnieje $B \in \mathcal{B}$, takie że $x \in B$. Ponieważ każde $B$ jest podzbiorem $X$, więc $X \in T$.
+	\item Skończone przekroje: weźmy dowolne dwa $U, V \in T$. Chcemy pokazać, że $U\cap V \in T$. Weźmy dowolny $x \in U\cap V$. Oznacza to, że istnieją $B_{U}, B_{V} \in \mathcal{B}$, takie że $x \in B_{U}\subseteq U$ oraz $x \in B_{V}\subseteq V$. Z definicji zbioru $\mathcal{B}$, istnieje $B \in \mathcal{B}$, takie że $x\in B\subseteq B_{U}\cap B_{V}$. Ponieważ $B_{U}\cap B_{V} \subseteq U$ i $B_{U}\cap B_{V} \subseteq V$, więc $B\subseteq U\cap V$. Zatem $U\cap V \in T$. 
+	\item Sumy: weźmy dowolną rodzinę zbiorów $\{U_{i}\}_{i \in I} \in T$. Pokażemy, że $\bigcup_{i \in  I} U_{i} \in T$. Weźmy dowolny $x \in \bigcup_{i \in  I} U_{i}$, wtedy istnieje indeks $i\in I$, taki że $x \in U_{i}$. Ponieważ $U_{i} \in T$ więc istnieje $B\in \mathcal{B}$, takie że $x \in B \subseteq U_{i}$. Zatem $x \in B \subseteq U_{i} \subseteq \bigcup_{i \in  I} U_{i}$, czyli $\bigcup_{i \in  I} U_{i} \in T$
+\end{itemize}
+\end{proof} 
+\begin{remark}[1.2.7]
+	Rodzina $\mathcal{B}$ podzbiorów $X$ spełniająca warunki $1$ i $2$ twierdzenia 1.2.6 jest bazą topologii $T$ opisanej w tym twierdzeniu. Będziemy mówić, że baza $\mathcal{B}$ generuje topologię $T$.
+\end{remark} 
+\begin{proof}
+	Weźmy dowolny $U \in T$. Z definicji topologii $T$, dla dowolnego $x \in U$ istnieje $B \in \mathcal{B}$, że $x \in B \subseteq U$. Zatem istotnie jest to baza.	
+\end{proof} 
+
+\begin{eg}[1.2.8 $T(<)$]
+	Niech $\left( X, < \right) $ będzie zbiorem zawierającym co najmniej dwa elementy, z wyróżnionym porządkiem liniowym. Definiujemy bazę $\mathcal{B}$ jako rodzinę trzech rodzajów zbiorów:
+			\begin{itemize}
+				\item \textbf{Przedziały otwarte:} $\left( x,y \right) = \{z \in X: x < z < y\} $
+				\item \textbf{Półproste lewe:} $ \left( \leftarrow , x \right) \{y \in X: y < x\} $
+				\item \textbf{Półproste prawe:} $\left( x, \rightarrow  \right) \{y \in X : x < y\} $
+			\end{itemize}
+\noindent Formalnie $\mathcal{B}$ jest zdefiniowana następująco:
+	\[
+	\mathcal{B} = \mathcal{B}_{1}\cup \mathcal{B}_{2} \cup \mathcal{B}_{3}
+	,\] 
+	gdzie
+	\begin{itemize}
+		\item $\mathcal{B}_{1} = \{z\in X: x<z<y\} = \left( x,y \right) $,
+		\item $\mathcal{B}_{2} = \{y \in X: y < x\} = \left( \leftarrow, x \right) $,
+		\item $\mathcal{B}_{3} = \{y \in X: x < y\} = \left( x, \rightarrow  \right) $.
+	\end{itemize}
+	Pokażemy, teraz, że tak zdefiniowany zbiór $\mathcal{B}$ jest rzeczywiście bazą topologii $T$ na $X$, tzn że spełnia warunki twierdzenia 1.2.6.
+
+\noindent \textbf{Warunek $\bigcup \mathcal{B} = X $ :}
+
+Pokażemy obustronne zawieranie. Ustalmy dowolny element $b \in \bigcup \mathcal{B}$. Wtedy $b$ jest elementem, które któregoś $\mathcal{B}_{i}$, co z definicji oznacza, że $b\in X$. W drugą stronę, ustaliwszy dowolny element $a \in X$, wiemy że $X$ zawiera co najmniej dwa elementy oraz jest na $X$ porządek liniowy, zatem istnieje $b\neq a$. WLOG możemy przyjąć, że $a<b$ -- wtedy  $a \in \left( \leftarrow, b \right) \subseteq \bigcup B $. Zatem $\bigcup \mathcal{B} = X$.
+
+\noindent\textbf{ Warunek ,,przecięcia'': } 
+
+Ustalmy dowolne $B_1,B_2 \in \mathcal{B}$ oraz $a \in B_1\cap B_2$. Chcemy pokazać, że istnieje $B \subseteq B_1\cap B_2$, takie że $a \in B$.
+
+Mamy następujące możliwości:
+\begin{itemize}
+	\item $B_{1} = \left( \leftarrow ,x \right) $
+		\begin{itemize}
+			\item $B_2 = \left( \leftarrow , y \right) $,
+				\begin{itemize}
+					\item $x<y$: Mamy $ B_1\cap B_2 = \left( \leftarrow ,x \right) $
+					\item $y<x$: Mamy $ B_1\cap B_2 = \left( \leftarrow , y \right) $
+				\end{itemize}
+			\item $B_2 = \left( y, \rightarrow  \right) $,
+				\begin{itemize}
+					\item $x<y$ Mamy $ B_1\cap B_2 =\emptyset$
+					\item $y<x$
+				\end{itemize}
+			\item $B_2 = \left( z,y \right) $.
+				\begin{itemize}
+					\item $x<z$ Mamy $ B_1\cap B_2 =\emptyset$
+					\item $z<x<y$
+					\item $y<x$
+				\end{itemize}
+		\end{itemize}
+	\item $B_1 = \left( x, \rightarrow  \right) $
+		\begin{itemize}
+			\item $B_2 = \left( \leftarrow , y \right) $,
+				\begin{itemize}
+					\item $x<y$
+					\item $y<x$ Mamy $ B_1\cap B_2 = \emptyset$
+				\end{itemize}
+			\item $B_2 = \left( y, \rightarrow  \right) $,
+				\begin{itemize}
+					\item $x<y$
+					\item $y<x$
+				\end{itemize}
+			\item $B_2 = \left( z,y \right) $.
+				\begin{itemize}
+					\item $x<z$
+					\item $z<x<y$
+					\item $y<x$ Mamy $ B_1\cap B_2 =\emptyset$
+				\end{itemize}
+
+		\end{itemize}
+	\item $B_1 = \left( x, y  \right) $
+		\begin{itemize}
+			\item $B_2 = \left( \leftarrow , z \right) $,
+				\begin{itemize}
+					\item $z<x$ Mamy $ B_1\cap B_2 =\emptyset$
+					\item $x<z<y$
+					\item $y<z$
+				\end{itemize}
+			\item $B_2 = \left( z, \rightarrow  \right) $,
+				\begin{itemize}
+					\item $z<x$
+					\item $x<z<y$
+					\item $y<z$ Mamy $ B_1\cap B_2 =\emptyset$
+				\end{itemize}
+			\item $B_2 = \left( v,z \right) $.
+				\begin{itemize}
+					\item $z<x$ Mamy $ B_1\cap B_2 =\emptyset$
+					\item $v<x<z<y$
+					\item $\left( v,z \right) \subseteq \left( x,y \right) $ 
+					\item $x<v<y<z$
+					\item $y<v$ Mamy $ B_1\cap B_2 =\emptyset$
+				\end{itemize}
+		\end{itemize}
+\end{itemize}
+Zauważmy, że w każdym przypadku nietrywialny przekrój jest szukanym zbiorem $B$.
+
+\noindent Zatem rodzina przedziałów $\mathcal{B}$: $\{y: y <x\}, \{y: x < y\}$ oraz $\{z: x<z<y\} $ spełnia warunki Twierdzenia 1.2.6. Topologię generowaną przez tę bazę będziemy oznaczać symbolem $T\left( < \right) $.
+\end{eg}
+\begin{eg}[1.2.8 $T(<) = T(d_e)$]	
+\noindent Zauważmy, że jeśli $<$ jest zwykłym porządkiem na prostej rzeczywistej $\mathbb{R}$, to $T\left( < \right) $ jest topologią euklidesową. W zasadzie oznacza to, że topologia $T\left( d_{e} \right) $ oraz $T\left( < \right) $ określona na $\mathbb{R}$ są równe.
+
+\noindent \textbf{Porównanie baz} :
+\begin{itemize}
+	\item \textbf{Baza porządkowa $\mathcal{B}_{<}$ :} Składa się z przedziałów $\left( a,b \right) $ oraz półprostych $\left( \leftarrow , a \right) $ i $\left( a, \rightarrow  \right) $.
+	\item \textbf{Baza euklidesowa $\mathcal{B}_{e}$ :} Składa się z kul $B\left( x,r \right) $, które na prostej są po prostu przedziałami $\left( x-r, x+r \right) $.
+\end{itemize}
+\noindent \textbf{Dlaczego to jest to samo?}
+\begin{itemize}
+	\item Każdy zbiór bazowy euklidesowy jest przedziałem porządkowym. Kula $B\left( x,r \right) $ to po prostu przedział $\left( x-r,x+r \right) $. W terminologii porządkowej jest to elementy typu $\left( a,b \right) $ dla $a = x-r$ i $b = x+r$. 
+	\item Każdy element bazy porządkowej jest otwarty euklidesowo.
+		\begin{itemize}
+			\item Przedział $\left( a,b \right) $ jest kulą w środku $\tfrac{a+b}{2}$ i promieniu $\tfrac{b-a}{2}$.
+			\item Półprosta $\left( a, \rightarrow  \right) $ nie jest pojedynczą kulą, ale jest sumą kul
+				\[
+					\left( a, \rightarrow  \right) = \bigcup_{n=1}^{\infty}B\left( a+n, n \right) 
+				,\] 
+			a jak wiadomo suma zbiorów otwartych jest otwarta.
+		\end{itemize}
+\end{itemize}
+\end{eg}
+\begin{eg}[1.2.8 Kwadrat leksykograficzny]
+	Niech $<$ będzie \textbf{porządkiem leksykograficznym} w kwadracie $I^2 = \left[ 0,1 \right] \times \left[ 0,1 \right] $, to znaczy $\left( x_1,y_1 \right) < \left( x_2,y_2 \right) $ jeśli $x_1<x_2$ lub $x_1 =x_2$ i $y_1<y_2$. Przestrzeń topologiczną $\left( I^2, T\left( < \right)  \right) $ nazywa się kwadratem leksykograficznym. Kwadrat leksykograficzny nie jest przestrzenią metryzowalną (dowód później -- Uzupełnienie).
+
+Co tu się dzieje dokładniej?
+
+\begin{enumerate}[label=\arabic*)]
+	\item \textbf{Jak wyglądają elementy bazy?} W topologii porządkowej bazą są przedziały otwarte $\left( \left( x_1,y_1 \right) , \left( x_2,y_2 \right)  \right) $. Ich wygląd zależy od tego, czy punkty końcowe leżą na tej samej ,,pionowej linii'', czy nie. Mamy dwa przypadki:
+		\begin{itemize}
+			\item \textbf{Ta sama pionowa linia ($x_1= x_2$ ):} Przedział $\left( \left( x_1,y_1 \right) , \left( x_2,y_2 \right)  \right) $ to po prostu \textbf{pionowy odcinek} na ustalonej współrzędnej $x$, bez punktów końcowych. Wygląda to jak zwykły przedział euklidesowy, ale zawieszony w próżni pionu.
+			\item \textbf{Różne współrzędne $x$ ($x_1 < x_2$ ):} To jest moment, w którym porządek leksykograficzny pokazuje swoją siłę. Taki przedział zawiera:
+				\begin{enumerate}[label=\arabic*)]
+					\item Górną część pionowego odcinka nad punktem $\left( x_1,y_1 \right) $.
+					\item \textbf{Wszystkie}  punkty dla wszystkich współrzędnych $x \in \left( x_1,x_2 \right) $ (całe pionowe ,,szczebelki'').
+					\item Dolną cześć pionowego odcinka od punktem $\left( x_2,y_2 \right) $.
+				\end{enumerate}
+		\end{itemize}
+	\item \textbf{Dlaczego ta topologia jest inna niż euklidesowa?} W topologii euklidesowej na płaszczyźnie, aby zbiór był otwarty, musi zawierać małe \textbf{koło}. W topologii leksykograficznej wystarczy, że zawiera \textbf{mały pionowy odcinek}.
+
+		\noindent \textbf{Kluczowe różnice:} 
+		\begin{itemize}
+			\item \textbf{Punkty bliskie ,,euklidesowo'' mogą być ,,dalekie'' leksykograficznie.} Rozważmy punkty $A = \left( 0.5, 0.999 \right) $ oraz $B = \left( 0.5001, 0.0001 \right) $. Euklidesowo są bardzo blisko. Jednak leksykograficznie między nimi znajduje się \textbf{cała nieskończona liczba punktów} (wszystkie punkty z $x = 0.5$ powyżej $0.999$ oraz wszystkie punkty z $x = 0.501$ poniżej $0.001$). Są one ,,oddzielone'' ogromną masą innych punktów. 
+			\item \textbf{Pionowe odcinki są zbiorami otwartymi.} Zbiór $U = \{0.5\} \times \left( 0.2, 0.8 \right) $ jest otwarty w $I^2_{lex}$, bo sam jest elementem bazy. W topologii euklidesowej na płaszczyźnie taki odcinek \textbf{nigdy} nie jest otwarty, bo nie da się w nim wcisnąć żadnego koła.
+		\end{itemize}
+	\item \textbf{Problem niemetryzowalności:} Kwadrat leksykograficzny nie jest metryzowalny. Później to zostanie poruzone
+\end{enumerate}
+Na poniższej grafice, jest pokazane jak to mniej więcej wygląda
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{"kwadrat_leksykograficzny.png"}
+\end{figure}
+\end{eg} 
+
+\noindent Podzbiór przestrzeni topologicznej $\left( X, T \right) $ można rozpatrywać w naturalny sposób jako przestrzeń topologiczną, bo dla $Y \subseteq X$, rodzina $\{U\cap Y: U \in T\} $ śladów na $Y$ zbiorów otwartych w  $X$ jest topologią w $Y$ (wcześniej to pokazywaliśmy już)
+\begin{definition}[1.2.9 Topologia indukowana]
+	Niech $\left( X, T_{X} \right) $ będzie przestrzenią topologiczną oraz niech $Y\subseteq X$. Przestrzeń topologiczną $\left( Y, T_{Y} \right) $, gdzie $T_{Y} = \{U\cap Y: U \in T_{X}\} $ nazywamy podprzestrzenią przestrzeni $\left( X,T_{X} \right) $, a $T_{Y}$ -- \textbf{topologią indukowaną} w $Y$.
+\end{definition} 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{"topologia_indukowana.png"}
+	\caption{}
+	\label{fig:}
+\end{figure}
+
+\begin{eg}[1.2.10]
+	Niech $\left( I^2,T\left( < \right)  \right) $ będzie kwadratem leksykograficznym i niech $S = (0,1] \times \{0\} $. Topologia indukowana $T\left( < \right)_{S}$ na $S$ jest generowana przez bazę złożoną ze zbiorów $(a,b]\times \{0\} $, gdzie $0<a<b\le 1$.
+
+\noindent Co tu się dzieje?
+
+Rozważamy kwadrat leksykograficzny $I^2 = \left[ 0,1 \right] \times \left[ 0,1 \right] $ i wybieramy z niego tylko jego \textbf{dolny brzeg} bez punktu $\left( 0,0 \right) $ 
+\[
+	S = (0,1] \times \{0\} 
+.\] 
+
+Czyli interesują nas punkty $\left( x,0 \right) $ gdzie $x \in (0,1]$.
+
+\noindent Zgodnie z definicją 1.2.9 -- topologii indukowanej zbiory otwarte w przestrzeni $S$ to  przecięcia $U\cap S$, gdzie $U$ jest zbiorem otwartym w całym kwadracie $I^2$. Ponieważ każdy zbiór otwarty jest sumą elementów z bazy, wystarczy zbadać, jak z brzegiem $S$ przecinają się bazowe przedziały leksykograficzne(Uwaga możemy tu wziąć dowolny zbiór z bazy-- wynik będzie ten sam -- \textbf{zrób jak ćwiczenie} ).
+
+\noindent \textbf{1) Wybór przedziału bazowego w $I^2$:} Weźmy ogólny przedział otwarty w porządku leksykograficznym pomiędzy dwoma punktami $A$ i $B$ :
+\[
+U = \left( A,B \right) = \{\left( x,y \right) \in I^2: A <_{lex} \left( x,y \right) <_{lex} B\} 
+.\] 
+Niech $A = \left( a, y_{a} \right) $ oraz $B = \left( b, y_{b} \right) $, gdzie $a<b$. Aby analiza była ciekawsza dla naszej podprzestrzeni, załóżmy, że $y_{b}>0$. 
+
+\noindent \textbf{2) Analiza lewego ograniczenia (Dlaczego przedział jest otwarty z lewej?):} Szukamy punktów $\left( x,0 \right) \in S$, które są większe od $A = \left( a, y_{a} \right) $.
+\begin{itemize}
+	\item Jeśli $x<a$ to $\left( x,0 \right) <_{lex} \left( a, y_{a} \right) $ -- punkt nie wpada do przedziału.
+	\item Jeśli $x = a$, to musiałoby zachodzić  $0> y_{a}$. Ponieważ w kwadracie $y \in \left[ 0,1 \right] $, jest to niemożliwe (lub w granicznym przypadku $y_{a} = 0$, ale przedział jest otwarty, więc punkt $\left( a,0 \right) $ i tak do niego nie należy).
+	\item Jeśli $x>a$, to $\left( x,0 \right) >_{lex} \left( a, y_{a} \right) $ niezależnie od wartości $y_{a}$.
+\end{itemize}
+\noindent \textbf{Wniosek:} Warunek lewostronny sprawdza się do $x > a$.
+
+ \noindent \textbf{3) Analiza prawego ograniczenia (Dlaczego przedział jest domknięty z prawej?):} Szukamy punktów $\left( x,0 \right) \in S$, które są mniejsze od $B = \left( b, y_{b} \right) $.
+ \begin{itemize}
+ 	\item Jeśli $x<b$, to $\left( x,0 \right) <_{lex} \left( b,y_{b} \right) $ -- warunek spełniony.
+	\item \textbf{Kluczowy moment:}  jeśli $x = b$, sprawdzamy relację  $\left( b,0 \right) <_{lex} \left( b, y_{b} \right)$. Ponieważ pierwsze współrzędne są równe, patrzymy na drugie: czy $0 < y_{b}$? Skoro założyliśmy, że $y_{b} > 0$, to ta nierówność jest \textbf{prawdziwa}.
+ \end{itemize}
+ To oznacza, że punkt $\left( b,0 \right) $ \textbf{należy} do przedziału $U = \left( A,B \right) $, mimo że jego pierwsza współrzędna jest równa prawej współrzędnej ograniczenia $B$. 
+
+\noindent \textbf{4) Synteza -- kształt zbioru w przestrzeni:} Łącząc oba warunki dla punktów $\left( x,0 \right) \in S$ :
+\begin{enumerate}[label=\arabic*)]
+	\item $x>a$,
+	\item $x\le b$ (włącznie z $b$, o ile $y_{b}>0$.
+\end{enumerate}
+Otrzymujemy zbiór punktów:
+\[
+	U\cap S = \{\left( x,0 \right) \in S: a < x \le b\} = \left( a,b \right] \times \{0\}  
+.\] 
+
+\noindent \textbf{5) Dlaczego to definiuje ,,Strzałkę''?} W topologii ,,Strzałką'' nazywamy linię rzeczywistą, w której bazą są przedziały prawostronnie domknięte $(a,b]$.
+ \begin{itemize}
+	 \item W standardowej topologii euklidesowej zbiór $(a,b]$ nie jest otwarty(bo nie zawiera kuli wokół  $b$ ),
+	 \item W topologii Strzałki zbiór $(a,b]$ \textbf{jest}  bazowym zbiorem otwartym.
+\end{itemize}
+Pokazaliśmy właśnie, że naturalna topologia indukowana z kwadratu leksykograficznego na jego dolną krawędź wymusza dokładnie taki kształt zbiorów. Każdy punkt $(b,0)$ ma otoczenia, które sięgają w lewo, ale kończą się gwałtownie na samym punkcie  $b$, ponieważ każdy punkt tuż na prawo od niego(w sensie leksykograficznym) ma już większą pierwszą współrzędną lub ,,wystaje'' w górę pionowego odcinka. 
+
+Ten przykład pokazuje, że podprzestrzeń przestrzeni metryzowalnej (płaszczyzny euklidesowej) zawsze jest metryzowalna, ale podprzestrzeń przestrzeni niemetryzowalnej (tutaj kwadrat leksykograficzny) mogą prowadzić do struktur takich jak Strzałka, które wymykają się standardowemu mierzeniu odległości.
+\end{eg} 
+
+\begin{remark}
+	W przestrzeni metrycznej $\left( X,d \right) $, dla każdej pary różnych punktów $x_1,x_2 \in X$ istnieją rozłączne zbiory otwarte $U_1,U_2$, takie że $x_{i} \in U_{i}$ -- wystarczy przyjąć $U_{i} = B\left( x_{i}, \frac{r}{2} \right) $, gdzie $r = d\left( x_1,x_2 \right) $.
+\end{remark} 
+
+\begin{definition}[Przestrzeń Hausdorffa]
+	Przestrzeń topologiczną $\left( X,T \right) $ nazywamy \textbf{przestrzenią Huasdorffa}, jeśli dla każdej pary różnych punktów $x_1,x_2 \in X$ istnieją $U_{i} \in T$, takie że $x_{i}\in U_{i}$ oraz $U_1\cap U_2 = \emptyset$.
+\end{definition} 
+
+\begin{remark}
+\noindent Każda przestrzeń metryczna jest przestrzenią Hausdorffa(jak już wcześniej zaważyliśmy).
+
+	Przestrzenie niemetryzowalne $\left( \mathbb{R}^{\infty}, T_{\infty} \right) $ oraz $\left( I^2, T\left( < \right)  \right) $ są przestrzeniami Hausdorffa. Przestrzeń z topologią antydyskretną nie jest Hausdorffa.
+\end{remark} 
+\begin{proof}
+\noindent \textbf{Przestrzeń $\left( \mathbb{R}^{\infty}, T_{\infty} \right) $:} jak wiadomo nie jest ona metryzowalna, ale jest Hausdorffa:
+\begin{itemize}
+	\item Weźmy dwa różne ciągi $a,b \in \mathbb{R}^{\infty}$. Skoro są różne, to muszą różnić się na co najmniej jednej współrzędnej, dajmy na to na $n$ : $a_{n} \neq b_{n} $.
+	\item Możemy je oddzielić wewnątrz ,,małej'' przestrzeni $\mathbb{R}^{n}$ za pomocą rozłącznych kul euklidesowych $V_{a}, V_{b} \subseteq \mathbb{R}^{n}$.
+	\item Ponieważ każda kula euklidesowa w $\mathbb{R}^{n}$ daje się rozszerzyć do zbioru otwartego w $\mathbb{R}^{\infty}$ (wystarczy ,,uwolnić''(cokolwiek to oznacza) pozostałe współrzędne lub skorzystać z faktu, że $T_{\infty}$ zawiera topologię metryczną), punkty te pozostają odseparowane.
+\end{itemize}
+
+\noindent \textbf{Kwadrat leksykograficzny $\left( I^2, T\left( < \right)  \right) $ :} tutaj także nie ma metryki, więc będziemy polegać na bazie porządkowej. Weźmy dwa różne punkty $A = \left( x_1,y_1 \right) $ oraz $B = \left( x_2,y_2 \right) $. Załóżmy, że $A <_{lex} B$.
+\begin{itemize}
+	\item \textbf{Przypadek 1: Punkty leżą na różnych pionach ($x_1<x_2)$.} Między nimi zawsze znajdziemy jakiś ,,pion'' $x_{c}$(bo liczby rzeczywiste są gęsto ułożone). Wtedy zbiory $U_1 = \left( \leftarrow , \left( x_{c}, 0 \right)  \right) $ oraz $U_2 = \left( \left( x_{c}, 0 \right) , \rightarrow  \right) $ są otwarte, rozłączne i oddzielają $A$ od $B$.
+	\item \textbf{Przypadek 2: Punkty leżą na tym samym ,,pionie''($x_1 = x_2)$, ale $y_1<y_2$:} skoro $y_1<y_2$ na prostej $\mathbb{R}$ to istnieje liczba $c$, taka że $y_1<c<y_2$. Możemy wtedy stworzyć przedziały $U_1 = \left( \leftarrow , \left( x_1,c \right)  \right) $ oraz $U_2 = \left(\left( x_1,c \right) , \rightarrow  \right) $. $U_1$ to wszystko ,,pod'' punktem rozdzielającym na tym pionie, a $U_2$ to wszystko ,,nad'' punktem rozdzielającym. Punkty $A$ i $B$ wpadają do odpowiednich, rozłącznych półprostych.
+\end{itemize}
+\end{proof} 
+\begin{eg}[1.2.12 Topologia Zariskiego]
+	Niech $X$ będzie zbiorem nieskończonym. Topologia $T = \{U \subseteq X: U = \emptyset \text{ lub } X\setminus U \text{ jest zbiorem skończonym}\} $ nazywa się \textbf{topologią Zariskiego} w $X$. W przestrzeni $\left( X,T \right) $ każde dwa niepuste zbiory otwarte mają niepuste przecięcie, w szczególności przestrzeń $\left( X, T \right) $ nie jest Hausdorffa.
+\end{eg} 
+\begin{proof}
+	Niech $U,V \in T$ będą dowolnymi niepustymi zbiorami otwartymi (topologia $T$- Zariskiego). Z definicji, ich dopełnienia, czyli zbiory $X\setminus U$ oraz $X\setminus V$ są skończone. Spójrzmy na dopełnienie ich części wspólnej:
+	 \[
+	X\setminus \left( U\cap V \right) = \left( X\setminus U \right) \cup \left( X\setminus V \right) 
+	.\] 
+	\begin{itemize}
+		\item Suma dwóch zbiorów skończonych jest skończona.
+		\item Zatem dopełnienie $U\cap V$ jest skończone.
+		\item Gdyby $U\cap V$ był zbiorem pustym, to jego dopełnieniem byłby cały zbiór $X$.
+		\item Ponieważ założyliśmy, że $X$ jest nieskończony, dopełnienie $U\cap V$ nie może być całym zbiorem $X$.
+	\end{itemize}
+	\noindent \textbf{Wniosek:} $U\cap V$ musi być niepusty (co więcej musi być zbiorem nieskończonym).
+
+\noindent \textbf{Dlaczego nie jest Hausdorffa?} Aby przestrzeń  była Hausdorffa, dla dowolnych dwóch różnych punktów $x,y \in X$ musielibyśmy znaleźć dwa rozłączne zbiory otwarte $U,V$ , takie że $x \in U$ oraz $y \in V$.
+\begin{itemize}
+	\item W topologii Zariskiego każde dwa niepuste zbiory otwarte (tak jak pokazaliśmy wyżej) \textbf{zawsze mają punkty wspólne}.
+	\item Nie istnieją zatem w tej przestrzeni żadne dwa niepuste zbiory otwarte, które byłyby rozłączne.
+	\item Skoro nie możemy znaleźć rozłącznych otoczeń dla punktów $x$ i $y$, warunek definicji przestrzeni Hausdorffa nie może być spełniony.
+\end{itemize}
+\noindent \textbf{Wniosek:} Przestrzeń $\left( X,T \right) $ nie jest Hausdorffa.
+\end{proof} 
+\begin{definition}[Otoczenie]
+	Otoczeniem punktu $a$ w przestrzeni topologicznej $\left( X,T \right) $, nazywamy zbiór $V$ taki, że dla pewnego $U\in T$, $a \in U \subseteq V$.
+\end{definition} 
+
+W przestrzeni metrycznej $\left( X,d \right) $ otoczeniami punktu $a$ są zbiory zawierające pewną kulę o środku w $a$.
+
+\begin{definition}[Domknięcie zbioru]
+	Niech $\left( X,T \right) $ będzie przestrzenią topologiczną i $A \subseteq X$. Domknięcie $\overline{A}$ zbioru $A$ jest zbiorem punktów $x \in X$ takich, że każde otoczenie $x$ przecina $A$. Znaczkowo
+	\[
+	\overline{A} := \{x \in X: \left(\forall V_{x} \right) \left( V_{x}\cap A \neq \emptyset \right)  \}, \text{ gdzie } V_{x} \text{ jest otoczeniem punktu } x
+	.\] 
+\end{definition} 
+
+W przestrzeniach metrycznych, często jest wygodnie opisywać domknięcie zbioru przy użyciu ciągów zbieżnych.
+
+\begin{definition}
+	W przestrzeni metrycznej $\left( X,d \right) $, ciąg punktów $\left( x_{n}  \right)_{n=1}^{\infty}$ jest zbieżny do punktu $x_0$, $x_{n} \to x_0$, jeśli $d\left( x_{n} ,x_0 \right) \to 0$.
+\end{definition} 
+\begin{theorem}[1.2.16]
+	W przestrzeni metrycznej $\left( X,d \right) $, warunek $x_0 \in \overline{A}$ jest równoważny temu, że istnieje ciąg punktów $x_{n} \in A$ taki, że $x_{n} \to x_0$.
+\end{theorem} 
+\begin{proof}
+\noindent $\bm{ \implies } $
+
+Załóżmy, że $x_0 \in \overline{A}$. Z definicji domknięcia każde otoczenie punktu $x_0$ przecina zbiór $A$. Kulę $B\left( x_0, \frac{1}{n} \right) $ traktujemy jako otoczenie punktu $x_0$. Dla każdej liczby naturalnej $n\ge 1$ możemy zatem wybrać punkt:
+\[
+x_{n} \in B\left( x_0,\frac{1}{n} \right) \cap A
+.\] 
+Ponieważ $d\left( x_0, x_{n}  \right) < \frac{1}{n}$ to z definicji zbieżności ciągu w przestrzeni metrycznej wynika, że $x_{n} \longrightarrow x_0$.
+
+\noindent $\bm{ \impliedby } $
+
+Zakładamy, że istnieje ciąg $\left( x_{n}  \right)_{n=1}^{\infty} \in A$, taki że $x_{n} \longrightarrow x_0$. Niech $V$ będzie dowolnym otoczeniem punktu $x_0$. Zgodnie z definicją otoczenia w przestrzeni metrycznej, istnieje promień $r>0$, taki że $B\left( x_0, r \right) \subseteq V$. Skoro $x_{n} \longrightarrow x_0$, to dla prawie wszystkich $n$ (poza skończoną liczbą) zachodzi $d\left( x_0, x_{n}  \right) < r$, co oznacza, że $x_{n} \in B\left( x_0, r \right) \subseteq V$. W szczególności, $V\cap A\neq \emptyset$, ponieważ $x_{n} \in A$. Skoro każde otoczenie punktu $x_0$ przecina zbiór $A$, to zgodnie z definicją $x_0\in \overline{A}$.
+	
+\end{proof} 
+\begin{definition}[Zbiór domknięty]
+	Zbiór $A$ w przestrzeni topologicznej $\left( X,T \right) $ jest \textbf{domknięty} jeśli $\overline{A} = A$.
+\end{definition} 
+\begin{theorem}[1.2.18]
+	Niech $\left( X,T \right) $ będzie przestrzenią topologiczną. Wówczas
+	\begin{enumerate}[label=\arabic*)]
+		\item $\overline{\left( \overline{A} \right) } = \overline{A}$,
+		\item zbiór $A \subseteq X$ jest domknięty wtedy i tylko wtedy, gdy jego dopełnienie jest otwarte,
+		\item $\overline{A} = \bigcap \{F: F \text{ jest zbiorem domkniętym w $X$ zawierającym $F$}\}  $
+	\end{enumerate}
+\end{theorem} 
+\begin{proof}
+	\noindent \textbf{Ad 1)}
+
+	Inkluzja $\overline{A} \subseteq \overline{\left( \overline{A} \right) }$ wynika bezpośrednio z faktu, że każdy zbiór jest zawarty w swoim domknięciu. Pokażmy, to, tzn że dla dowolnego zbioru $B$, $B \subseteq \overline{B}$. Niech $\left( X,T \right) $ będzie przestrzenią topologiczną oraz $B \subseteq X$. Weźmy dowolny $b \in B$ oraz otoczenie $V$ punktu $b$. Z definicji otoczenia, istnieje zbiór otwarty  $U$, taki że $x \in U \subseteq V$. Ponieważ $b \in B$ oraz $b \in U$ to $b \in B\cap U$ a co za tym idzie $B\cap U \neq \emptyset$. Skoro $U\subseteq V$ to tym bardziej $B\cap V \neq \emptyset$.
+
+	Dla inkluzji przeciwnej, ustalmy dowolny $x_0 \in \overline{\left( \overline{A} \right) }$. Niech $V$ będzie otoczeniem  $x_0$ i niech dla pewnego zbioru otwartego $U \in T$ zachodzi $x_0 \in U \subseteq V$. Ponieważ $U$ jest otoczeniem $x_0$, musi ono przeciąć zbiór $\overline{A}$, istnieje zatem punkt $y \in U\cap \overline{A}$. Skoro $U $ jest zbiorem otwartym zawierającym $y$, to $U$ jest również otoczeniem punktu $y$. Zatem $U\cap A \neq \emptyset$. Wykazaliśmy zatem, że dowolne otoczenie $x_0$ przecina zbiór $A$, co oznacza, że $x_0 \in \overline{A}$.
+
+\noindent \textbf{Ad 2)} 
+
+$\bm{ \left( \implies \right)  } $ 
+
+Załóżmy, że $X\setminus A$ jest zbiorem otwartym. Wówczas $X\setminus A$ jest otoczeniem każdego swojego punktu $x \not\in A$, które jest rozłączne z $A$. Z definicji domknięcia wynika więc, że żaden taki punkt $x$ nie należy do $\overline{A}$, skąd $\overline{A} = A$, czyli zbiór $A$ jest domknięty.
+
+$\bm{ \left( \impliedby \right)  } $ 
+
+Załóżmy, że $\overline{A} = A$. Dla każdego punktu $x\not\in A$ (czyli $x \not\in \overline{A}$ ) można wybrać otoczenie $U_{x}$ rozłączne z $A$, zatem $x \in U_{x}\subseteq X\setminus A$. Stąd dopełnienie $X\setminus A = \bigcup \{U_{x}: x\in X\setminus A\}  $ jest sumą zbiorów otwartych, a więc samo jest zbiorem otwartym.
+
+\noindent \textbf{Ad 3)}
+
+Jeśli $F$ jest dowolnym zbiorem domkniętym zawierającym $A$, to $\overline{A}\subseteq \overline{F} = F$, co dowodzi inkluzji 
+ \[
+\overline{A} \subseteq \bigcap \{F : F \supseteq A, F = \overline{F}\}  
+.\] 
+Ponieważ na mocy punktu 1) zbiór $\overline{A}$ sam jest domknięty i zawiera $A$, to $\overline{A}$, to $\overline{A}$ jest jednym z elementów przekroju po prawej stronie co daje inkluzję przeciwną.
+
+Zauważmy, że punkt $3)$ pozwala interpretować domknięcie zbioru $A$ jako najmniejszy (w sensie inkluzji) zbiór domknięty zawierający $A$.
+\end{proof} 
+\begin{remark}[1.2.19]
+	Zauważmy że:
+	\begin{itemize}
+		\item \textbf{Skończone sumy} zbiorów domkniętych są zbiorami domkniętymi.
+		\item \textbf{Dowolne przekroje} zbiorów domkniętych są zbiorami domkniętymi.
+	\end{itemize}
+	Możemy zatem zdefiniować topologię na zbiorze $X$ przez rodzinę zbiorów domkniętych $\mathcal{F}$. Jeśli rodzina $\mathcal{F}$ zawiera $\emptyset$ oraz $X$ i jest zamknięta ze względu na skończone sumy i dowolne przekroje to rodzina 
+	 \[
+	T = \{X\setminus F: F \in \mathcal{F}\} 
+	,\] 
+	jest poprawnie określoną topologią w $X$.
+
+\noindent \textbf{Domkniętość w podprzestrzeniach.} Jeśli $\left( Y, T_{Y} \right) $ jest podprzestrzenią przestrzeni $\left( X,T_{X} \right) $, to zbiór $A \subseteq Y$ jest domknięty w $\left( Y, T_{Y} \right) $ wtedy i tylko wtedy, gdy:
+\[
+A = Y \cap B
+,\] 
+dla pewnego zbioru domkniętego $B$ w $\left( X,T_{X} \right) $.
+
+\noindent \textbf{Wniosek:} Jeśli sama podprzestrzeń $Y$ jest zbiorem domkniętym w $X$, to każdy zbiór domknięty w $Y$ jest jednocześnie domknięty w całej przestrzeni $X$.
+\end{remark}
+\begin{proof}
+	TODO
+\end{proof} 
+
+\begin{definition}[Wnętrze zbioru.]
+	\textbf{Wnętrzem} $\text{Int}A$ zbioru $A$ w przestrzeni topologicznej  $\left( X,T \right) $ nazywamy zbiór punktów, których pewne otoczenia są zawarte w $A$.
+\end{definition} 
+\begin{remark}[1.2.20]
+	Wnętrze $\text{Int}A$ jest sumą zbiorów otwartych zawartych w $A$, jest więc największym w sensie inkluzji, otwartym podzbiorem zbioru $A$. Co więcej \[
+	\text{Int}A = X\setminus \overline{\left( X\setminus A \right) }
+	.\] 
+\end{remark} 
+\begin{proof}
+	TODO
+\end{proof} 
+\section{Ciągłość przekształceń}
+
+Klasyczna $\left( \varepsilon - \delta \right) $ - definicja ciągłości funkcji rzeczywistej $f: \mathbb{R}\to\mathbb{R}$ przenosi się na przypadek przekształceń $f: X \to Y $ między przestrzeniami metrycznymi  $\left( X, d_{X} \right) $ oraz $\left( Y, d_{Y} \right) $ w następujący sposób:
+\[
+\left(\forall a \in X \right)\left(\forall \varepsilon > 0 \right)\left(\exists \delta >0 \right)\left(\forall x \in X \right) \left( d_{X}\left( a,x \right) < \delta \implies d_{Y}\left( f\left( a \right) - f\left( x \right)  \right) < \varepsilon  \right)     
+.\] 
+Część powyższej formuły otrzymaną przez pominięcie pierwszych trzech kwantyfikatorów można zapisać w postaci 
+\[
+f\left[ B_{X}\left( a, \delta \right)  \right] \subseteq B_{Y}\left( f\left( a \right) , \varepsilon  \right) \text{ lub } B_{X}\left( a,\delta \right) \subseteq f^{-1}\left[ B_{Y}\left( f\left( a \right) , \varepsilon  \right)  \right] 
+,\] 
+gdzie $B_{X}\left( a, \delta \right) $ oraz $B_{Y}\left( f\left( a \right) ,\varepsilon  \right) $ są kulami w przestrzeniach $\left( X, d_{x} \right) $ oraz $\left( Y, d_{Y} \right) $ odpowiednio.
+
+Zastępując kule przez otoczenia, możemy rozszerzyć pojęcie ciągłości na przekształcenia pomiędzy dowolnymi przestrzeniami topologicznymi.
+
+Jako definicję ciągłości przekształceń przyjmiemy inny równoważny warunek wprowadzony w twierdzeniu 1.3.2, mający prostsze sformułowanie.
+
+\begin{definition}[1.3.1 Przekształcenie ciągłe]
+	Przekształcenie $f: X \to Y$ przestrzeni topologicznej $\left( X, T_{X} \right) $ w przestrzeń topologiczną $\left( Y, T_{Y} \right) $ jest ciągłe, jeśli dla każdego $U \in T_{Y}$ zachodzi $f^{-1}\left[ U \right] \in T_{X} $.
+\end{definition} 
+
+\begin{theorem}[1.3.2 Równoważne określenia ciągłości]
+	Dla przekształcenia $f: X \to Y$ przestrzeni topologicznej $\left( X,T_{X} \right) $ w przestrzeń topologiczną $\left( Y, T_{Y} \right) $ następujące warunki są równoważne:
+	\begin{enumerate}[label=(\roman*)]
+		\item $f$ jest przekształceniem ciągłym.
+		\item jeśli zbiór $F$ jest domknięty w w $\left( Y,T_{Y} \right) $, to $f^{-1}\left[ F \right] $ jest zbiorem domkniętym w $\left( X,T_{X} \right) $.
+		\item $f\left[ \overline{A} \right] \subseteq \overline{f\left[ A \right] }$ dla każdego $A \subseteq X$.
+		\item dla każdego otoczenia $a \in X$ i otoczenia $U$ punktu $f\left( a \right) $ w $\left( Y,T_{Y} \right) $ istnieje otoczenie $V$ punktu $a$ w $\left( X,T_{X} \right) $, takie że $f\left[ V \right] \subseteq U$
+	\end{enumerate}
+\end{theorem} 
+\begin{proof}
+\noindent $\bm{\left( i \right) \implies \left( iv \right)   } $ \\
+
+Załóżmy, że $f: X\to Y$ jest przekształceniem ciągłym przestrzeni topologicznej $\left( X, T_{X} \right) $ w przestrzeń $\left( Y, T_{Y} \right) $. Ustalmy dowolne otoczenia $V_{a} \subseteq X$ punktu $a\in X$ oraz $V_{f\left( a \right) } \subseteq Y$ punktu $f\left( a \right) $. Pokażemy, że istnieje otoczenie $U \subseteq X$ punktu $a$, takie że 
+
+\noindent $\bm{ \left( iv \right) \implies \left( iii \right)  } $
+
+\noindent $\bm{ \left( iii \right) \implies \left( ii \right)  } $ 
+
+\noindent $\bm{ \left( ii \right) \implies \left( i \right)  } $
+\end{proof} 
+
+\begin{remark}[1.3.3]
+	Jeśli w przestrzeni topologicznej $\left( Y, T_{Y} \right) $ jest wyróżniona baza $\mathcal{B}$ generująca topologię $T_{Y}$, to dla dowodu ciągłości przekształcenia $f : X \to Y$, gdzie $\left( X,T_{X} \right) $ jest przestrzenią topologiczną, wystarczy sprawdzić, że $f^{-1}\left[ U \right] \subseteq T_{X}$ dla każdego  $U \in \mathcal{B}$.
+\end{remark} 
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{remark}[1.3.4]
+	Ciągłość przekształcenia $f: X\to Y$ przestrzeni metrycznej $\left( X, d_{X} \right) $ w przestrzeń metryczną $\left( Y,d_{Y} \right) $ jest równoważna warunkowi, że jeśli $x_{n}\to x_0$, to $f\left( x_{n}  \right) \to f\left( x_0 \right) $.
+\end{remark} 
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{remark}[1.3.5 A]
+	Dla ustalonego $a \in X$, własność $iv$ w $1.3.2$ definiuje ciągłość przekształcenia $f$ w punkcie $a$. Dla przekształcenia między przestrzeniami metrycznymi, ciągłość w punkcie $a$ jest więc opisana formuła $1.3.0$, z pominięciem kwantyfikatora $\left(\forall a \in X \right) $
+\end{remark} 
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{remark}[1.3.5 B]
+	Niech $f_{n} , f : X \to Y$ będą przekształceniami przestrzeni topologicznej $\left( X,T \right) $ w przestrzeń metryczną $\left( Y,d \right) $ takimi, że $\varphi_{n} = \sup \{d\left( f_{n} \left( x \right) , f\left( x \right)  \right) : x \in X\} \longrightarrow 0 $. Wówczas, jeśli wszystkie przekształcenia $f_{n} $ są ciągłe w punkcie $a \in X$ (ze względu na topologię $T\left( d \right) $ w $Y$ ), to także $f$ jest ciągłe w tym punkcie.
+\end{remark} 
+\begin{proof}
+	TODO
+\end{proof} 
+
+Wprowadzimy teraz przekształcenia pozwalające na utożsamienie przestrzeni ze względu na własności, które można opisać w terminach topologii tych przestrzeni. TODO co to znaczy
+
+\begin{definition}[1.3.6 Homeomorfizm]
+	Przekształcenie $f: X \to Y$ przestrzeni topologicznej $\left( X, T_{X} \right) $ w przestrzeń topologiczną $\left( Y,T_{Y} \right) $ jest \textbf{homeomorfizmem} , jeśli:
+	\begin{enumerate}[label=\arabic*)]
+		\item $f$ jest różnowartościowe,
+		\item $f\left[ X \right] = Y$,
+		\item $f : X \to Y$ oraz $f^{-1}: Y \to X$ są ciągłe
+	\end{enumerate}
+
+	Jeśli $f$ jest homeomorfizmem przestrzeni $\left( X,T_{X} \right) $ na podprzestrzeń $\left( f\left[ X \right], \left( T_{Y} \right)_{f\left[ X \right] } \right) $ przestrzeni $\left( Y, T_{Y} \right) $, to mówimy, że $f$ jest \textbf{zanurzeniem homeomorficznym}.
+\end{definition} 
+
+\begin{remark}[1.3.7]
+	Złożenie przekształceń ciągłych jest ciągłe. W szczególności złożenie homeomorfizmów jest homeomorfizmem.
+	
+\end{remark} 
+\begin{proof}
+	TODO
+\end{proof} 
+
+\begin{eg}[1.3.8 A]
+	Każde dwa otwarte zbiory wypukłe w przestrzeni euklidesowej $\left( \mathbb{R}^{n},d_{e} \right) $ (rozpatrywane jako podprzestrzenie) są homeomorficzne. Jednakże, każde ciągłe przekształcenie $f: \mathbb{R}^2 \to \mathbb{R} $ płaszczyzny w prostą ma nieprzeliczalną warstwę.
+\end{eg} 
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{eg}[1.3.8 B]
+	Przekształcenie $f\left( t \right) = \left( \cos\left( t \right) , \sin\left( t \right) \right) $ odcinka $[0, 2\pi)$ na prostej euklidesowej na okrąg $S^{1} = \{\left( x,y \right) \in \mathbb{R}^2: x^2 + y^2 = 1\} $(z topologią podprzestrzeni płaszczyzny euklidesowej) jest ciągłą bijekcją, ale nie jest homeomorfizmem.
+\end{eg} 
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{remark}[1.3.9 A]
+	Niech $f: X \to Y$ będzie przekształceniem ciągłym przestrzeni topologicznej $\left( X,T_{X} \right) $ w przestrzeń topologiczną $\left( Y,T_{Y} \right) $ i niech $Z \subseteq X$. Wówczas obcięcie $f\restriction_{Z} : Z \to Y$ jest przekształceniem ciągłym, gdzie w $Z$ rozpatruje się topologię podprzestrzeni przestrzeni $X$. Ponadto $f\restriction_{Z} $ jest ciągłe jako przekształcenie z $Z$ na podprzestrzeń  $f\left[ Z \right] $ przestrzeni $Y$.
+\end{remark} 
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{remark}[1.3.9 B]
+	Niech $f: X \to Y$ będzie przekształceniem przestrzeni $\left( X, T_{X} \right) $ w przestrzeń $\left( Y, T_{Y} \right) $. Jeśli $X = F_1 \cup \ldots \cup F_{m}$ gdzie każdy ze zbiorów $F_{i}$ jest domknięty i każde obcięcie $f\restriction_{F_{i}} : F_{i} \to Y$ jest ciągłe, to przekształcenie $f$ jest ciągłe.
+\end{remark} 
+\begin{proof}
+	TODO
+\end{proof} 
+\section{Iloczyny skończone przestrzeni topologicznych}
+
+\begin{definition}
+	Niech $\left( X_{i}, T_{i} \right) $, $i = 1,2,3,\ldots, n$ będą przestrzeniami topologicznymi. Rodzina $\mathcal{B}$ iloczynów kartezjańskich $V_1\times V_2\times \ldots V_{n} $ zbiorów otwartych $V_{i}\in T_{i}$ spełnia warunki w 1.2.6 (TODO), a więc jest bazą pewnej topologii w iloczynie kartezjańskim $X_1\times X_2\times \ldots \times X_{n} $. Przestrzeń $\left( X_1\times X_2\times \ldots \times X_{n}, T  \right) $ z topologią $T$ generowaną przez bazę $\mathcal{B}$ nazywamy \textbf{iloczynem kartezjańskim przestrzeni topologicznych $\left( X_{i},T_{i} \right) $} .
+	
+\end{definition} 
+
+\section{Iloczyny przeliczalne przestrzeni topologicznych}
+
+\section{Twierdzenie Tietzego o przedłużaniu przekształceń}
+
+\section{Ośrodkowość}

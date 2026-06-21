@@ -1,0 +1,385 @@
+\chapter{Wykład III}
+
+\begin{intuition}
+Łukaszu, zanim przejdziemy do formalizmu: grupę ilorazową $G/H$ rozumiemy jako grupę $G$, w której "wyzerowaliśmy" elementy podgrupy $H$. Aby struktura grupy przetrwała taką operację, $H$ nie może być dowolną podgrupą — musi być \textit{dzielnikiem normalnym}. Poniższe definicje i twierdzenia stanowią fundament tej konstrukcji.
+\end{intuition}
+
+\section{Podgrupy normalne i Grupy ilorazowe}
+
+Zdefiniujmy warunek konieczny do utworzenia grupy ilorazowej.
+
+\begin{definition}[Dzielnik normalny]
+Podgrupę $H$ grupy $G$ nazywamy \textbf{podgrupą normalną} (lub dzielnikiem normalnym), jeżeli jest niezmiennicza ze względu na sprzężenia elementami z $G$. Oznaczamy to jako $H \trianglelefteq G$. Formalnie:
+\[ \forall_{g \in G} \forall_{h \in H} \quad ghg^{-1} \in H. \]
+\end{definition}
+
+\begin{theorem}[Równoważne warunki normalności]
+Niech $H \le G$. Następujące warunki są równoważne:
+\begin{enumerate}
+    \item $H \trianglelefteq G$.
+    \item $\forall_{g \in G} \quad gH = Hg$ (warstwy lewostronne są równe prawostronnym).
+    \item $\forall_{g \in G} \quad gHg^{-1} = H$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Pokażemy równoważność $(1) \iff (2)$.\\
+$(\implies)$ Załóżmy, że $H \trianglelefteq G$. Niech $x \in gH$. Wtedy $x = gh$ dla pewnego $h \in H$.
+Zauważmy, że $x = (ghg^{-1})g$. Z definicji normalności $ghg^{-1} \in H$, oznaczmy go $h'$. Zatem $x = h'g \in Hg$.
+Analogicznie, jeśli $y \in Hg$, to $y = hg = g(g^{-1}hg)$. Ponieważ $H$ jest normalna, $g^{-1}hg \in H$, więc $y \in gH$.
+Stąd $gH = Hg$.
+
+$(\impliedby)$ Załóżmy, że $gH = Hg$ dla każdego $g$. Niech $h \in H$. Wtedy $gh \in gH = Hg$, zatem istnieje $h' \in H$ takie, że $gh = h'g$. Mnożąc prawostronnie przez $g^{-1}$, otrzymujemy $ghg^{-1} = h' \in H$.
+\end{proof}
+
+\begin{definition}[Grupa Ilorazowa]
+Niech $H \trianglelefteq G$. \textbf{Grupą ilorazową} $G/H$ nazywamy zbiór wszystkich warstw lewostronnych $\{gH : g \in G\}$ z działaniem określonym wzorem:
+\[ (aH) \cdot (bH) = (ab)H. \]
+\end{definition}
+
+Poniższe twierdzenie jest kluczowe – bez normalności podgrupy $H$, definicja działania jest niepoprawna (zależy od wyboru reprezentanta warstwy).
+
+\begin{theorem}[Poprawność definicji działania]
+Jeżeli $H \trianglelefteq G$, to działanie w $G/H$ jest dobrze określone, łączne, posiada element neutralny i odwrotny.
+\end{theorem}
+
+\begin{proof}
+Sprawdźmy, czy wynik mnożenia nie zależy od wyboru reprezentantów.
+Niech $aH = a'H$ oraz $bH = b'H$. Oznacza to, że $a' = ah_1$ i $b' = bh_2$ dla pewnych $h_1, h_2 \in H$.
+Badamy iloczyn $a'b'$:
+\[ a'b' = (ah_1)(bh_2) = a(h_1b)h_2. \]
+Ponieważ $H$ jest normalna, $Hb = bH$, więc $h_1b = bh_3$ dla pewnego $h_3 \in H$.
+\[ a'b' = a(bh_3)h_2 = (ab)(h_3h_2). \]
+Ponieważ $h_3h_2 \in H$, to element $a'b'$ różni się od $ab$ o czynnik z $H$.
+Zatem $(ab)H = (a'b')H$.
+
+\noindent \textbf{Element neutralny:} $eH = H$. $(aH)(eH) = (ae)H = aH$. \\
+\noindent \textbf{Element odwrotny:} $(aH)^{-1} = a^{-1}H$.
+\end{proof}
+
+\section{Homomorfizmy i Zasadnicze Twierdzenie}
+
+\begin{definition}[Homomorfizm kanoniczny]
+Odwzorowanie $\pi: G \to G/H$ dane wzorem $\pi(g) = gH$ nazywamy \textbf{homomorfizmem kanonicznym} (lub naturalnym).
+\end{definition}
+
+\begin{fact}
+Jądrem homomorfizmu kanonicznego jest $\ker \pi = H$.
+\end{fact}
+
+To prowadzi nas do jednego z najważniejszych twierdzeń w algebrze.
+
+\begin{theorem}[Zasadnicze Twierdzenie o Homomorfizmie / I Twierdzenie o Izomorfizmie]
+Niech $\phi: G \to K$ będzie homomorfizmem grup. Wtedy:
+\begin{enumerate}
+    \item $\ker \phi \trianglelefteq G$.
+    \item Obraz $\im \phi$ jest izomorficzny z grupą ilorazową $G / \ker \phi$.
+    \item Izomorfizm ten, oznaczmy go $\psi: G/\ker \phi \to \im \phi$, jest zadany wzorem $\psi(g \ker \phi) = \phi(g)$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Niech $N = \ker \phi$.
+
+\noindent \textbf{1. Dobra określoność:}
+Niech $gN = g'N$. Wtedy $g^{-1}g' \in N = \ker \phi$, czyli $\phi(g^{-1}g') = e_K$.
+Z własności homomorfizmu: $\phi(g)^{-1}\phi(g') = e_K \implies \phi(g) = \phi(g')$.
+Zatem wartość $\psi$ nie zależy od reprezentanta.
+
+\noindent \textbf{2. Homomorfizm:}
+\[ \psi((aN)(bN)) = \psi((ab)N) = \phi(ab) = \phi(a)\phi(b) = \psi(aN)\psi(bN). \]
+
+\noindent \textbf{3. Iniekcja (Różnowartościowość):}
+Sprawdźmy jądro $\psi$.
+\[ \psi(gN) = e_K \iff \phi(g) = e_K \iff g \in \ker \phi = N \iff gN = N. \]
+Jądrem $\psi$ jest element neutralny grupy ilorazowej, co dowodzi iniekcji.
+
+\noindent \textbf{4. Suriekcja:}
+Z definicji, $\psi$ odwzorowuje w $\im \phi$. Dla każdego $y \in \im \phi$ istnieje $x \in G$ taki, że $\phi(x)=y$. Wtedy $\psi(xN) = y$.
+\end{proof}
+
+W języku diagramów przemiennych, twierdzenie to mówi, że każdy homomorfizm $\phi$ faktoryzuje się przez projekcję kanoniczną $\pi$:
+
+\begin{center}
+\begin{tikzcd}[column sep=large, row sep=large]
+G \arrow[r, "\phi"] \arrow[d, "\pi"'] & K \\
+G/\ker \phi \arrow[ur, dashed, "\exists! \psi"']
+\end{tikzcd}
+\end{center}
+
+\section{Permutacje: Własności i Zastosowania}
+
+Grupa permutacji $S_n$ jest prototypem dla wszystkich grup skończonych (Twierdzenie Cayleya). Łukaszu, tutaj kluczowa jest umiejętność sprawnego operowania cyklami.
+
+\begin{definition}[Grupa Symetryczna $S_n$]
+Zbiór wszystkich bijekcji $\sigma: \{1, \dots, n\} \to \{1, \dots, n\}$ z działaniem składania funkcji tworzy grupę rzędu $n!$, zwaną grupą symetryczną $S_n$.
+\end{definition}
+
+\begin{theorem}[Rozkład na cykle rozłączne]
+Każdą permutację $\sigma \in S_n$ można przedstawić w postaci iloczynu rozłącznych cykli. Przedstawienie to jest jednoznaczne (z dokładnością do kolejności cykli).
+\end{theorem}
+
+\begin{proof}[Szkic dowodu]
+Działanie podgrupy generowanej przez $\langle \sigma \rangle$ na zbiorze $\{1, \dots, n\}$ dzieli ten zbiór na rozłączne orbity. Każda orbita odpowiada jednemu cyklowi. Ponieważ orbity są rozłączne, cykle operują na różnych elementach, więc są przemienne.
+\end{proof}
+
+\begin{fact}[Rząd permutacji]
+Rząd permutacji $\sigma$ w rozkładzie na cykle rozłączne jest równy Najmniejszej Wspólnej Wielokrotności (NWW) długości tych cykli.
+\end{fact}
+
+\begin{theorem}[Znak permutacji i parzystość]
+Każdą permutację można przedstawić jako złożenie transpozycji (cykli długości 2). Choć liczba transpozycji nie jest jednoznaczna, ich parzystość jest niezmiennikiem permutacji.
+Definiujemy znak permutacji:
+\[ \sgn(\sigma) = (-1)^k, \]
+gdzie $k$ to liczba transpozycji. Permutacje o znaku $+1$ tworzą podgrupę normalną $A_n$ zwaną \textbf{grupą alternującą}.
+\end{theorem}
+
+\begin{eg}
+Niech $\sigma = (1\, 2\, 3)(4\, 5) \in S_5$.
+\begin{itemize}
+    \item Rozkład na transpozycje: $(1\, 3)(1\, 2)(4\, 5)$. Liczba transpozycji: 3.
+    \item Znak: $\sgn(\sigma) = (-1)^3 = -1$ (permutacja nieparzysta).
+    \item Rząd: $\text{NWW}(3, 2) = 6$.
+\end{itemize}
+\end{eg}
+
+\begin{note}
+Grupa $A_5$ jest najmniejszą grupą prostą nieprzemienną (nie posiada nietrywialnych dzielników normalnych). Ma to fundamentalne znaczenie w teorii Galois przy dowodzie braku ogólnego wzoru na pierwiastki wielomianu stopnia $\ge 5$.
+\end{note}
+
+\begin{theorem}[Twierdzenie Cayleya]
+Każda grupa $G$ jest izomorficzna z pewną podgrupą grupy permutacji $S_G$ (grupy bijekcji zbioru $G$ na siebie).
+\end{theorem}
+
+Twierdzenie to pozwala nam "zmaterializować" każdą abstrakcyjną grupę. Mówi ono, że nie ma innych grup skończonych niż podgrupy grup permutacji.
+
+\begin{intuition}
+Każdy element $g$ grupy "przesuwa" elementy tej grupy w sposób jednoznaczny. To przesunięcie jest właśnie permutacją.
+\end{intuition}
+
+\begin{proof}
+Zdefiniujmy odwzorowanie $L: G \to S_G$, które elementowi $g$ przyporządkowuje funkcję $L_g: G \to G$ (zwaną \textit{translacją lewostronną}) określoną wzorem:
+\[ L_g(x) = gx. \]
+Sprawdźmy kluczowe własności:
+\begin{enumerate}
+    \item \textbf{$L_g$ jest bijekcją (permutacją):}
+    Z prawa skracania: $L_g(x) = L_g(y) \implies gx = gy \implies x=y$ (iniekcja).
+    Dla dowolnego $y \in G$, $L_g(g^{-1}y) = g(g^{-1}y) = y$ (suriekcja).
+    Zatem $L_g \in S_G$.
+
+    \item \textbf{$L$ jest homomorfizmem (włożeniem):}
+    \[ L_{gh}(x) = (gh)x = g(hx) = L_g(L_h(x)) = (L_g \circ L_h)(x). \]
+    Zatem $L(gh) = L(g) \circ L(h)$.
+
+    \item \textbf{$L$ jest iniekcją (różnowartościowość):}
+    Sprawdźmy jądro odwzorowania $L$:
+    \[ \ker L = \{ g \in G \mid L_g = \id_G \}. \]
+    Jeśli $L_g = \id_G$, to dla każdego $x \in G$ mamy $gx = x$. Biorąc $x=e$, otrzymujemy $ge = e$, czyli $g=e$.
+    Jądro jest trywialne, więc $L$ jest monomorfizmem.
+\end{enumerate}
+Zatem $G \cong \im L \le S_G$.
+\end{proof}
+
+
+
+%%%%%%%%fffff
+\begin{intuition}
+Do tej pory badaliśmy wewnętrzną strukturę grupy. Teraz zmieniamy perspektywę: badamy, jak grupa \textit{interaguje} z otoczeniem. Działanie grupy na zbiorze to sformalizowanie idei symetrii. Co ciekawe, najgłębsze własności samej grupy (np. Twierdzenie Lagrange'a) wynikają z tego, jak grupa działa na samej sobie.
+\end{intuition}
+
+\section{Warstwy i Twierdzenie Lagrange'a}
+
+Zacznijmy od arytmetyki grup skończonych. Warstwy (które poznałeś przy grupach ilorazowych) służą nie tylko do dzielenia grupy, ale też do jej "mierzenia".
+
+\begin{definition}[Indeks podgrupy]
+Niech $H \le G$. Liczbę warstw lewostronnych podgrupy $H$ w grupie $G$ nazywamy \textbf{indeksem} podgrupy i oznaczamy symbolem $[G:H]$.
+\end{definition}
+
+\begin{lemma}[Równoliczność warstw]
+Dla dowolnej podgrupy $H \le G$, każda warstwa $gH$ jest równoliczna z $H$.
+\end{lemma}
+
+\begin{proof}
+Zdefiniujmy odwzorowanie $f: H \to gH$ wzorem $f(h) = gh$.
+Jest to bijekcja:
+\begin{itemize}
+    \item Suriekcja jest oczywista z definicji warstwy.
+    \item Iniekcja: $gh_1 = gh_2 \implies h_1 = h_2$ (z prawa skracania w grupie).
+\end{itemize}
+Zatem $|gH| = |H|$.
+\end{proof}
+
+\begin{theorem}[Twierdzenie Lagrange'a]
+Niech $G$ będzie grupą skończoną, a $H$ jej podgrupą. Wtedy rząd podgrupy dzieli rząd grupy:
+\[ |G| = [G:H] \cdot |H|. \]
+W szczególności, rząd każdego elementu dzieli rząd grupy.
+\end{theorem}
+
+\begin{proof}
+Relacja bycia w tej samej warstwie ($a \sim b \iff a^{-1}b \in H$) jest relacją równoważności. Zatem warstwy lewostronne tworzą podział zbioru $G$ na rozłączne podzbiory.
+Skoro jest $[G:H]$ warstw i każda ma liczność $|H|$ (na mocy lematu), to sumując elementy otrzymujemy:
+\[ |G| = \sum_{i=1}^{[G:H]} |g_i H| = [G:H] \cdot |H|. \]
+\end{proof}
+
+\begin{remark}
+To twierdzenie jest potężnym narzędziem negatywnym: jeśli grupa ma rząd 15, to nie może mieć podgrupy rzędu 4. Pamiętaj jednak: \textbf{Twierdzenie odwrotne do twierdzenia Lagrange'a na ogół nie zachodzi!} (Istnieją grupy rzędu $n$, które nie mają podgrupy rzędu $d$, mimo że $d|n$ — np. $A_4$ rzędu 12 nie ma podgrupy rzędu 6).
+\end{remark}
+
+\section{Działanie Grupy na Zbiorze}
+
+To jest moment przejścia do "algebry dynamicznej".
+
+\begin{definition}[Działanie grupy na zbiorze]
+Działaniem grupy $G$ na zbiorze $X$ nazywamy odwzorowanie $\cdot : G \times X \to X$, $(g, x) \mapsto g \cdot x$, spełniające dwa aksjomaty:
+\begin{enumerate}
+    \item $\forall_{x \in X} \quad e \cdot x = x$ (tożsamość działa trywialnie).
+    \item $\forall_{g,h \in G} \forall_{x \in X} \quad g \cdot (h \cdot x) = (gh) \cdot x$ (zgodność składania).
+\end{enumerate}
+Równoważnie: Działanie to homomorfizm $\phi: G \to S_X$, gdzie $S_X$ to grupa permutacji zbioru $X$.
+\end{definition}
+
+Kluczowe pojęcia w tej teorii to \textit{gdzie} element może trafić (orbita) i \textit{co} go trzyma w miejscu (stabilizator).
+
+\begin{definition}[Orbita i Stabilizator]
+Niech grupa $G$ działa na zbiorze $X$, a $x \in X$.
+\begin{itemize}
+    \item \textbf{Orbitą} elementu $x$ nazywamy zbiór:
+    \[ \mathcal{O}_x = \{ g \cdot x \mid g \in G \} \subseteq X. \]
+    \item \textbf{Stabilizatorem} elementu $x$ nazywamy zbiór:
+    \[ G_x = \{ g \in G \mid g \cdot x = x \} \subseteq G. \]
+\end{itemize}
+\end{definition}
+
+\begin{fact}
+Stabilizator $G_x$ jest zawsze podgrupą w $G$, ale nie musi być podgrupą normalną.
+\end{fact}
+
+\section{Twierdzenie o Orbicie i Stabilizatorze}
+
+Jest to fundamentalne twierdzenie wiążące wielkość orbity z "wielkością" symetrii zachowującej punkt.
+
+\begin{theorem}[Orbit-Stabilizer Theorem]
+Niech $G$ działa na $X$. Dla dowolnego $x \in X$ istnieje bijekcja pomiędzy zbiorem warstw lewostronnych stabilizatora $G_x$ a orbitą $\mathcal{O}_x$.
+W konsekwencji dla grup skończonych:
+\[ |G| = |\mathcal{O}_x| \cdot |G_x|. \]
+\end{theorem}
+
+\begin{proof}
+Zdefiniujmy odwzorowanie $\Psi: \{gG_x \mid g \in G\} \to \mathcal{O}_x$ wzorem:
+\[ \Psi(gG_x) = g \cdot x. \]
+\noindent \textbf{1. Dobra określoność i iniekcja:}
+\[ gG_x = hG_x \iff h^{-1}g \in G_x \iff (h^{-1}g) \cdot x = x \iff g \cdot x = h \cdot x. \]
+Równoważność ta pokazuje, że wartość funkcji zależy tylko od warstwy (dobra określoność) oraz że funkcja jest różnowartościowa.
+
+\noindent \textbf{2. Suriekcja:}
+Z definicji orbity, każdy element $y \in \mathcal{O}_x$ jest postaci $g \cdot x$ dla pewnego $g$, co jest obrazem warstwy $gG_x$.
+
+Zatem $|\mathcal{O}_x| = [G:G_x]$. Ze wzoru Lagrange'a $|G| = [G:G_x] \cdot |G_x|$, co daje tezę.
+\end{proof}
+
+\section{Działanie przez Automorfizmy i Sprzężenia}
+
+Najważniejszym przykładem działania grupy jest jej działanie na samej sobie. Rozróżniamy dwa główne typy: przesunięcia (użyte w dowodzie Cayleya) i \textbf{sprzężenia}.
+
+\begin{definition}[Działanie przez sprzężenia]
+Grupa $G$ działa na zbiorze $G$ poprzez sprzężenia (koniugację):
+\[ g \cdot x := gxg^{-1}. \]
+Orbita elementu $x$ w tym działaniu nazywana jest \textbf{klasą sprzężoności} elementu $x$ (ozn. $Cl(x)$), a stabilizator to \textbf{Centralizator} $C_G(x)$.
+\end{definition}
+
+\begin{corollary}[Równanie Klas]
+Ponieważ orbity tworzą podział zbioru, sumując ich liczności otrzymujemy tożsamość. Niech $Z(G)$ oznacza centrum grupy (elementy, których orbitą jest jednoelementowy zbiór $\{x\}$). Wtedy:
+\[ |G| = |Z(G)| + \sum_{i} [G : C_G(x_i)], \]
+gdzie suma przebiega po reprezentantach nietrywialnych klas sprzężoności (takich, że $|Cl(x_i)| > 1$).
+\end{corollary}
+
+\begin{intuition}
+Równanie klas to "chirurgiczny skalpel" teorii grup. Pozwala badać strukturę $p$-grup i dowodzić twierdzeń Sylowa.
+\end{intuition}
+
+\begin{definition}[Automorfizmy Wewnętrzne]
+Odwzorowanie $\phi_g: G \to G$ dane wzorem $\phi_g(x) = gxg^{-1}$ jest automorfizmem grupy $G$. Nazywamy go \textbf{automorfizmem wewnętrznym}.
+Zbiór wszystkich takich automorfizmów oznaczamy $\text{Inn}(G)$.
+\end{definition}
+
+\begin{theorem}[O izomorfizmie dla Inn(G)]
+Odwzorowanie $G \to \text{Aut}(G)$ przyporządkowujące elementowi $g$ automorfizm $\phi_g$ jest homomorfizmem, którego jądrem jest centrum $Z(G)$, a obrazem $\text{Inn}(G)$.
+Z Zasadniczego Twierdzenia o Homomorfizmie wynika:
+\[ G / Z(G) \cong \text{Inn}(G). \]
+\end{theorem}
+
+\begin{proposition}
+To twierdzenie mówi nam, że automorfizmy wewnętrzne "wyglądają" jak sama grupa, ale z "zapomnianą" informacją o elementach przemiennych ze wszystkim (centrum). Jeśli $Z(G)$ jest trywialne, to $G$ zanurza się w swoją grupę automorfizmów.
+\end{proposition}
+
+Badanie automorfizmów grupy to badanie jej symetrii. Wyróżniamy automorfizmy, które są "wbudowane" w strukturę grupy – te generowane przez sprzężenia.
+
+\begin{definition}[Automorfizm Wewnętrzny]
+Dla ustalonego $g \in G$, odwzorowanie $\phi_g: G \to G$ dane wzorem $\phi_g(x) = gxg^{-1}$ jest automorfizmem. Zbiór wszystkich takich odwzorowań tworzy grupę \textbf{automorfizmów wewnętrznych}, oznaczaną $\text{Inn}(G)$, która jest podgrupą normalną w grupie wszystkich automorfizmów $\text{Aut}(G)$.
+\end{definition}
+
+Poniższe twierdzenie jest fundamentalne, ponieważ wiąże centrum grupy (miarę przemienności) ze strukturą jej automorfizmów.
+
+\begin{theorem}[Izomorfizm dla $\text{Inn}(G)$]
+Dla dowolnej grupy $G$ zachodzi izomorfizm:
+\[ G / Z(G) \cong \text{Inn}(G). \]
+\end{theorem}
+
+\begin{proof}
+Rozważmy odwzorowanie $\Psi: G \to \text{Aut}(G)$ dane wzorem $\Psi(g) = \phi_g$.
+\begin{enumerate}
+    \item \textbf{$\Psi$ jest homomorfizmem:}
+    Dla dowolnego $x \in G$:
+    \[ \phi_{gh}(x) = (gh)x(gh)^{-1} = ghxh^{-1}g^{-1} = g(\phi_h(x))g^{-1} = \phi_g(\phi_h(x)). \]
+    Zatem $\Psi(gh) = \Psi(g) \circ \Psi(h)$.
+
+    \item \textbf{Obraz $\Psi$:}
+    Z definicji obrazem jest zbiór wszystkich automorfizmów wewnętrznych, czyli $\im \Psi = \text{Inn}(G)$.
+
+    \item \textbf{Jądro $\Psi$:}
+    \[ g \in \ker \Psi \iff \phi_g = \id_G \iff \forall_{x \in G} \ gxg^{-1} = x \iff \forall_{x \in G} \ gx = xg. \]
+    Elementy przemienne z każdym elementem grupy tworzą centrum. Zatem $\ker \Psi = Z(G)$.
+\end{enumerate}
+Korzystając z Zasadniczego Twierdzenia o Homomorfizmie (I Twierdzenia o Izomorfizmie):
+\[ G / \ker \Psi \cong \im \Psi \implies G / Z(G) \cong \text{Inn}(G). \]
+\end{proof}
+
+\subsection{Analiza przypadków i przykłady}
+
+To twierdzenie pozwala nam szybko identyfikować strukturę automorfizmów.
+
+\begin{eg}[Grupy abelowe]
+Jeżeli $G$ jest abelowa, to $Z(G) = G$. Wtedy:
+\[ \text{Inn}(G) \cong G/G \cong \{e\}. \]
+Jest to logiczne: w grupie przemiennej sprzężenie nic nie zmienia ($gxg^{-1} = gg^{-1}x = x$), więc jedynym automorfizmem wewnętrznym jest tożsamość.
+\end{eg}
+
+\begin{eg}[Grupa symetryczna $S_3$]
+Dla $n \ge 3$ centrum grupy $S_n$ jest trywialne, $Z(S_n) = \{e\}$.
+Zatem:
+\[ \text{Inn}(S_3) \cong S_3 / \{e\} \cong S_3. \]
+W rzeczywistości dla $n \neq 6$, zachodzi nawet mocniejsze twierdzenie: $\text{Aut}(S_n) \cong S_n$, co oznacza, że w tych grupach każdy automorfizm jest wewnętrzny.
+\end{eg}
+
+\begin{eg}[Grupa Kwaternionów $Q_8$ – przykład "tłusty"]
+Rozważmy grupę $Q_8 = \{ \pm 1, \pm i, \pm j, \pm k \}$.
+\begin{itemize}
+    \item \textbf{Centrum:} Elementy przemienne ze wszystkimi to tylko $1$ i $-1$. Zatem $Z(Q_8) = \{1, -1\}$.
+    \item \textbf{Grupa ilorazowa:} Rząd grupy to 8, rząd centrum to 2. Zatem $|\text{Inn}(Q_8)| = |Q_8|/|Z(Q_8)| = 4$.
+    \item \textbf{Struktura:} Mamy dwie grupy rzędu 4: cykliczną $\mathbb{Z}_4$ i grupę Kleina $V_4 \cong \mathbb{Z}_2 \times \mathbb{Z}_2$.
+    Sprawdźmy rzędy elementów w $Q_8/Z(Q_8)$. Warstwy to np. $\{i, -i\}$, $\{j, -j\}$.
+    \[ (iZ(Q_8))^2 = i^2 Z(Q_8) = (-1)Z(Q_8) = Z(Q_8) = e_{Q_8/Z(Q_8)}. \]
+    Każdy element w grupie ilorazowej ma rząd 2 (poza neutralnym). Grupą, w której każdy element niezerowy ma rząd 2, jest grupa Kleina $V_4$.
+\end{itemize}
+\textbf{Wniosek:} Mimo że $Q_8$ nie jest izomorficzna z $D_8$ (grupą diedralną), to ich grupy automorfizmów wewnętrznych są takie same (izomorficzne z $V_4$). To pokazuje, że operacja ilorazu "gubi" pewne subtelne informacje o strukturze, eksponując symetrie.
+\end{eg}
+
+\begin{lemma}[Test Cykliczności]
+Ważny wniosek z powyższego twierdzenia (często pojawia się na egzaminach):
+\textbf{Jeśli $G/Z(G)$ jest grupą cykliczną, to $G$ jest grupą abelową.}
+(Skoro $G$ abelowa, to $Z(G)=G$, więc $G/Z(G)$ musi być trywialna. Oznacza to, że $G/Z(G)$ nie może być nigdy nietrywialną grupą cykliczną).
+\end{lemma}
+
+
+
+

@@ -1,0 +1,514 @@
+\chapter{Lista 11.}
+\begin{context}
+
+	Niech $R$ będzie pierścieniem przemiennym z $\mathbf{1}$.
+\end{context}
+\begin{problem}[1]
+	Niech $r_1,\ldots,r_{n} \in R.$ Udowodnić, że 
+	\[
+		\left( r_1,\ldots,r_{n} \right) = r_1R + \ldots + r_{n}R
+	,\] 
+	
+\noindent gdzie $\left( r_1,\ldots,r_{n} \right) $ jest z definicji przekrojem wszystkich ideałów pierścienia $R$ zawierających $\{r_1, \ldots, r_{n}\} $, czyli najmniejszym ideałem zawierającym $\{r_1,\ldots, r_{n}\} $.
+\end{problem} 
+\begin{solution}
+	Trzeba pokazać, że najmniejszy w sensie inkluzji ideał zawierający zbiór $\{r_1,\ldots,r_{n}\}$, czyli \[
+		\left( r_1,\ldots,r_{n} \right) 
+	,\]  	
+	jest postaci kombinacji liniowej $r_1R + \ldots + r_{n}R = \{r_1a_1 + \ldots + r_{n}a_{n} : a_{i}\in R\} $.
+
+	Zdefiniujmy zbiór 
+	\[
+	\mathcal{J} = \{r_1a_1+ r_2a_2 + \ldots + r_{n}a_{n} : a_{i}\in R\} 
+	.\] 
+	Pokażemy, że $\mathcal{J}$
+	\begin{enumerate}[label=\alph*)]
+		\item Ideałem.
+		\item Najmniejszym w sensie zbiorem zawierającym $\{r_1,\ldots,r_{n}\} $.
+	\end{enumerate}
+	\noindent $\bullet$ $\mathcal{J}$ jest ideałem:
+	\begin{proof}
+
+		\vspace{1pt}
+		
+		\begin{enumerate}[label=\arabic*)]
+			\item \textbf{Podgrupa addytywna:} $\left( \mathcal{J}, + \right) \le \left( R, + \right) $, czyli że $\mathcal{J}$ jest podgrupą addytywną $R$.
+				\begin{itemize}
+					\item Niech $a_{i} = \mathbf{0}$. Wtedy $\mathbf{0}r_1 + \mathbf{0}r_2 + \ldots + \mathbf{0}r_{n} = \mathbf{0} \in \mathcal{J}$.
+					\item Ustalmy dowolne $a,b \in \mathcal{J}$. Pokażemy, że $a-b \in \mathcal{J}$.
+
+						Z tego, że  $a,b \in \mathcal{J}$, więc są one postaci
+						\begin{align*}
+							a &= r_1a_1 + \ldots + r_{n}a_{n}  \\
+							b &= r_1b_1 + \ldots + r_{n}b_{n} 
+						.\end{align*}
+
+						Wtedy $a-b$ jest postaci
+						\[
+						r_1\left( a_1-b_1 \right) + \ldots + r_{n}\left( a_{n} -b_{n}  \right) \in \mathcal{J}
+						.\] 
+				\end{itemize}
+			\item \textbf{Pochłanianie:} Ustalmy dowolny element $r \in R$ oraz $a = \sum_{i=1}^{n} r_{i}a_{i} \in  \mathcal{J}$. Wtedy 
+				\[
+				ra = r\sum_{i=1}^{n} r_{i}a_{i} = \sum_{i=1}^{n} rr_{i}a_{i} \overset{\text{przemienność R}}{=} \sum_{i=1}^{n} r_{i}\left( ra_{i} \right) 
+				.\] 
+				Ponieważ $ra_{i} \in R$, więc $ra \in \mathcal{J}$.
+		\end{enumerate}
+
+		Zatem $\mathcal{J}$ jest ideałem.
+	\end{proof} 
+
+	\noindent $\bullet$ $\mathcal{J}$ zawiera zbiór $\{r_1,\ldots, r_{n}\}$:
+	\begin{proof}
+
+		Dla elementu $r_{i}$, niech 
+		\[
+		a_{j} =
+		\begin{cases}
+			\mathbf{1} &\text{, gdy } j = i,\\
+			\mathbf{0} &\text{, gdy } j \neq i.
+		\end{cases}
+		\] 
+
+		Wtedy dla każdego $1 \le i \le n$,  $\sum_{k=1}^{n} r_{k}a_{k} = r_{i} \in \mathcal{J}$, a co za tym idzie $\{r_1,\ldots,r_{n}\} \subseteq \mathcal{J}$
+	\end{proof} 
+
+	
+	\noindent$\bullet$ $\mathcal{J}$ jest najmniejszym ideałem zawierającym $\{r_1,\ldots,r_{n}\} $:
+	\begin{proof}
+
+		Ustalmy dowolny ideał $\mathcal{I}$ zawierający zbiór $\{r_1,\ldots,r_{n}\}$. Pokażemy, że $\mathcal{J} \subseteq \mathcal{I}$.
+
+		Ustalmy dowolny element $a = \sum_{i=1}^{n} r_{i}a_{i} \in \mathcal{J}$. Ponieważ $r_{i} \in \mathcal{I}$ oraz $a_{i} \in R$, więc z definicji ideału $r_{i}a_{i} \in \mathcal{I}$ dla każdego $1 \le i \le n$. Ponieważ ideał jest zamknięty na dodawanie, więc $a$ jako suma elementów z $\mathcal{I}$, również należy do $\mathcal{I}$ 
+	\end{proof} 
+
+	\noindent \textbf{Konkluzja} 
+
+	$\mathcal{J}$ jest ideałem zawierającym zbiór $\{r_1,\ldots,r_{n}\} $ oraz $\mathcal{J}$ jest zawarte w każdym innym ideale $\mathcal{I}$ zawierającym zbiór $\{r_1,\ldots,r_{n}\} $. Zatem $\mathcal{J}$ jest częścią wspólną takich ideałów (jest jednym z nich i jest w nich wszystkich), czyli
+	\[
+	\mathcal{J} = \left( r_1,r_2,\ldots,r_{n} \right) 
+	.\] 
+\end{solution} 
+\begin{problem}[2]
+	Nich $\mathcal{I} \unlhd R$ oraz
+	 \[
+	\sqrt{\mathcal{I}} := \{a \in R: \left(\exists n\in \N \right)\left( a^{n}\in \mathcal{I} \right)  \} 
+	.\] 
+
+	Udowodnić, że $\sqrt{\mathcal{I}} \unlhd R$. 
+\end{problem} 
+\begin{solution}
+	Zbiór $\sqrt{\mathcal{I}} $ nazywa się \textbf{radykałem ideału $\mathcal{I}$}. Pokażemy, że jest on sam w sobie ideałem.
+
+        \noindent $\bullet$ $\left( \sqrt{\mathcal{I}}, + \right) \le \left( R, + \right) $, czyli $\sqrt{\mathcal{I}} $ jest podgrupą addytywną $R$.
+	\begin{proof}
+			\noindent \textbf{Zero:} $\mathbf{0} \in \mathcal{I}$, bo $\mathbf{0}^{1} \in \mathcal{I}$.
+
+			\noindent \textbf{Odwrotności:} Ustalmy dowolne $a \in \sqrt{\mathcal{I}}$. Pokażemy, że $-a \in \sqrt{\mathcal{I}} $. 
+
+				Skoro $a\in \sqrt{\mathcal{I}} $ więc istnieje $n \in \N$, takie że $a^{n} \in \mathcal{I}$. Ponieważ $\left( -\mathbf{1} \right)^{n}\in R $ więc z definicji ideału $\left( -1 \right)^{n}a^{n} \in \mathcal{I}$. Z definicji potęgowania $\left( -1 \right)^{n}a^{n} = \left( -a \right) ^{n}$. Zatem $\left( -a \right) ^{n}\in \mathcal{I}$, więc $-a \in \sqrt{\mathcal{I}} $.
+
+			\noindent \textbf{Zamkniętość dodawania:} Ustalmy dowolne $a,b \in \sqrt{\mathcal{I}} $. Z definicji istnieją takie $n,m \in \N$, że $a^{n}, b^{m} \in \mathcal{I}$. Pokażemy, że istnieje takie $k\in \N$, że $\left( a + b \right)^{k} \in \mathcal{I}$.
+
+			Zauważmy, że $R$ jest pierścieniem przemiennym, zatem możemy skorzystać z wzoru dwumianowego Newtona. Rozważmy $k = n+m$, wtedy
+			 \[
+				 \left( a + b \right)^{k} = \sum_{i=0}^{k} \begin{pmatrix} k \\ i \end{pmatrix} a^{i}b^{k-i}
+			.\] 
+
+			Następnie rozważmy, $i-ty$ składnik  tej sumy i spójrzmy na niego dokładniej:
+			\begin{itemize}
+				\item Jeśli $i \ge  n$, to  $i = n + j \implies a^{i} = a^{n+j} = a^{n}a^{j}$, dla $j\ge 0$ 
+
+					Wtedy $a^{i}b^{k-i} = a^{n}a^{j}b^{m-j} \overset{\text{przemienność R}}{=} \left( a^{j}b^{m-j} \right) a^{n}$. 
+					
+					Ponieważ $a^{n} \in I$ oraz $a^{j}b^{m-j} \in R$ więc z definicji ich iloczyn należy do $\mathcal{I}$.
+				\item Jeśli $i<n$, to $k-i = n+m - i > m$, i co za tym idzie  $k-i = m+j \implies b^{k-i} = b^{m+j}= b^{m}b^{j}$, dla $j> 0$. 
+
+					Wtedy $a^{i}b^{k-i} = a^{i}b^{m}b^{j} \overset{\text{przemienność R}}{=} \left( a^{i}b^{j} \right) b^{m}$.
+
+					Ponieważ $b^{m}\in \mathcal{I}$ oraz $a^{i}b^{j} \in R$ więc z definicji ich iloczyn należy do $\mathcal{I}$.
+			\end{itemize}
+			Zatem każdy składnik sumy, jest elementem ideału $\mathcal{I}$. Ponieważ ideał $\mathcal{I}$ jest zamknięty na dodawanie, więc cała suma należy do $\mathcal{I}$, tj
+			\[
+			\sum_{i=0}^{k} \begin{pmatrix} k \\ i \end{pmatrix} a^{i}b^{k-i} = \left( a + b \right) ^{k} \in \mathcal{I}
+			.\] 
+	\end{proof} 
+	\noindent $\bullet$ $\sqrt{\mathcal{I}}$ jest zamknięte na mnożenie przez elementy z $R$.
+	\begin{proof}
+		Ustalmy dowolny element  $r \in R$ oraz $a \in \sqrt{\mathcal{I}} $. Wtedy istnieje $n\in \N$, takie że $a^{n} \in \mathcal{I}$. Rozważmy element $r ^{n} \in R$. Ponieważ $\mathcal{I}$ jest ideałem, więc $\left( ra \right)^{n} = r^{n}a^{n} \in \mathcal{I}$. Zatem $ra \in \sqrt{\mathcal{I}} $.
+	\end{proof} 
+\end{solution} 
+\begin{intuition}[Radykał ideału.]
+	Spójrzmy na przykład, co robi radykał. Weźmy pierścień $R = \mathbb{Z} $. Niech $\mathcal{I} = \left( 12 \right) $. Wiemy, że $12 = 2^2 * 3$.
+	\begin{enumerate}[label=\arabic*)]
+		\item Czy $6 \in \left( 12 \right) $? Nie, bo 6 nie dzieli się przez 12.
+		\item Czy $6 \in \sqrt{\left( 12 \right) } $? Tak, bo $6^2 = 36$, a 36 dzieli się przez 12.
+	\end{enumerate}
+	W rzeczywistości $\sqrt{\left( 12 \right) } = \left( 2\cdot 3 \right) = \left( 6 \right) $.
+
+	Zasada ogólna w $\mathbb{Z} $ : jeśli $n=p_1^{k_1}p_2^{k_2}ldots p_{m}^{k_{m}}$ (rozkład $n$ na liczby pierwsze) to:
+	\[
+	\sqrt{\left( n \right) } = \left( p_1p_2\ldots p_{m} \right)  
+	.\] 
+	Radykał ,,spłaszcza'' strukturę ideału do jego \textbf{części bezkwadratowej} (square-free part).
+
+	TODO opisać to lepiej, ,,wyczuć''. TODO zobaczyć jak to wygląda w pierścieniu ilorazowym
+\end{intuition} 
+\begin{problem}[3]
+	Niech $f: R \to S$ będzie homomorfizmem pierścieni oraz $\mathcal{I} \trianglelefteqslant R$ i $\mathcal{J} \trianglelefteqslant S$.	
+	\begin{itemize}
+		\item Udowodnić, że $f^{-1}\left[ \mathcal{J} \right] \trianglelefteqslant  R$.
+		\item Udowodnić, że jeśli $f$ jest epimorfizmem to $f\left[ \mathcal{I} \right] \trianglelefteqslant  S$.
+		\item Podać przykład $f, \mathcal{I}$ takich, że $f\left[ \mathcal{I} \right] \ntrianglelefteqslant S$.
+	\end{itemize}	
+\end{problem} 
+\begin{solution}
+	\noindent $\bullet$ $ f^{-1}\left[ \mathcal{J} \right] \trianglelefteqslant R: $
+	\begin{proof}
+		Pokażemy, że $f^{-1}\left[ \mathcal{J} \right] = \{r \in R: f\left( r \right) \in \mathcal{J}\} \trianglelefteqslant R$.  
+		Dokładniej to, że
+		\begin{enumerate}[label=\arabic*.]
+			\item \textbf{Bycie podgrupą addytywną:} $\left( f^{-1}\left[ \mathcal{J} \right], +\right)$ jest podgrupą addytywną $\left( R, + \right) $.
+			\item \textbf{Zamkniętość na mnożenie przez elementy z $R$}: Dla każdego $r \in R$ oraz $a \in f^{-1}\left[ \mathcal{J} \right] $, $ra \in f^{-1}\left[ \mathcal{J} \right] $. 
+		\end{enumerate}
+		
+		\noindent Zacznijmy od bycia podgrupą addytywną $\left( R, + \right)$. 
+
+		\noindent$\bullet$ Ponieważ $\mathcal{J}$ jest ideałem, więc $0_{\scriptscriptstyle S} \in \mathcal{J}$. Ponadto $f$ jest homomorfizmem, więc $f\left( 0_{\scriptscriptstyle R} \right)  = 0_{\scriptscriptstyle S}$. Zatem $0_{\scriptscriptstyle R} \in f^{-1}\left[ \mathcal{J} \right]$.
+
+		\noindent$\bullet$ Ustalmy dowolny element $a \in f^{-1}\left[ \mathcal{J} \right] $. Zatem $f\left( a \right) \in \mathcal{J}$. $\mathcal{J}$ jest ideałem, więc $-f\left( a \right) \in \mathcal{J}$. Ponieważ $f$ jest homomorfizmem, więc $-f\left( a \right) = f\left( -a \right) $, zatem $f\left( -a \right) \in  \mathcal{J}$. Zatem $-a \in f^{-1}\left[ \mathcal{J} \right]$. 
+
+		\noindent$\bullet$ Ustalmy dwa dowolne elementy $a,b \in f^{-1}\left[ \mathcal{J} \right]$. Zatem $f\left( a \right), f\left( b \right) \in \mathcal{J}$. Ponieważ $f$ jest homomorfizmem, więc $f\left( a \right) + f\left( b \right) = f\left( a + b \right) $. Zatem $f\left( a + b \right) \in \mathcal{J}$, czyli $a+b \in f^{-1}\left[ \mathcal{J} \right] $
+
+		\noindent Przejdźmy teraz do zamkniętości na mnożenie przez elementy z $R$.
+
+		\noindent$\bullet$ Ustalmy dowolny $r \in R$ oraz $a \in f^{-1}\left[ \mathcal{J} \right]$. Ponieważ $f\left( a \right) \in \mathcal{J}$ oraz $f\left( r \right) \in S$ więc $f\left( r \right) f\left( a \right) \in \mathcal{J}$. Ponieważ $f$ jest homomorfizmem więc $f\left( r \right) f\left( a \right) = f\left( ra \right) $. Zatem $f\left( ra \right) \in \mathcal{J}$, więc  $ra \in f^{-1}\left[ \mathcal{J} \right] $.
+
+		\noindent \textbf{Podsumowanie}
+
+		$f^{-1}\left[ \mathcal{J} \right] $ zawiera element zerowy z $R$, jest zamknięte na branie elementu przeciwnego oraz na sumę. Zatem $f^{-1}\left[ \mathcal{J} \right] $ jest podgrupą addytywną $R$. Ponadto $f^{-1}\left( \mathcal{J} \right) $ jest zamknięte na mnożenie przez elementy z $R$. Zatem $f^{-1}\left[ \mathcal{J} \right]$ jest ideałem $R$.
+	\end{proof} 
+
+\noindent$\bullet$ Jeśli $f$ jest epimorfizmem to $f\left[ \mathcal{I} \right] \trianglelefteqslant S$.
+
+Załóżmy, że $f$ jest epimorfizmem. Pokażemy, że $f\left[ \mathcal{I} \right] \trianglelefteqslant S$. Czyli, że
+\begin{enumerate}[label=\arabic*.]
+	\item \textbf{Bycie podgrupą addytywną:} $\left( f\left[ \mathcal{I} \right] , + \right) $ jest podgrupą addytywną $\left( S, + \right) $.
+	\item \textbf{Zamkniętość na mnożenie przez elementy z $S$}: Dla każdego $s \in S$ oraz $a \in f\left[ \mathcal{I} \right]$, $sa  \in f\left[ \mathcal{I} \right]$. 
+\end{enumerate}
+
+\noindent$\bullet$ Pokażemy, że $0_{S} \in f\left[ \mathcal{I} \right]$. $0_{R} \in \mathcal{I}$, więc z tego, że $f$ jest homomorfizmem $f\left( 0_{R} = 0_{S} \right)$. Zatem $0_{S} in f\left[ \mathcal{I} \right] $.
+
+\noindent$\bullet$ Ustalmy dowolne $a \in f\left[ \mathcal{I} \right] $. Pokażę, że $-a \in f\left[ \mathcal{I} \right]$. 
+
+Z definicji obrazu $f\left[ \mathcal{I} \right]$, istnieje $r\in \mathcal{I}$, takie że $f\left( r \right) = a$. Skoro $r \in \mathcal{I}$, to z definicji ideału, $-r \in \mathcal{I}$. $f$ jest homomorfizmem, zatem $f\left( -r \right) = -f\left( r \right) = -a$. Zatem $-a \in f\left[ \mathcal{I} \right] $.
+
+\noindent$\bullet$ Ustalmy dowolne $a,b \in f\left[ \mathcal{I} \right] $. Pokażemy, że $a+b \in f\left[ \mathcal{I} \right]$. 
+
+Skoro $a,b \in f\left[ \mathcal{I} \right] $ więc istnieją $x,y \in \mathcal{I}$, takie że $f\left( x \right) = a$ oraz $f\left( y \right) = b$. $S$ jest pierścieniem, zatem $a+b \in S$. Ponieważ więc istnieje $z \in R$, takie że $f\left( z \right) = a + b$.
+
+Ponieważ $f$ jest homomorfizmem więc $f\left( x + y \right) = f\left( x \right) + f\left( y \right) = a + b$. Zatem $f\left( z \right) = f\left( x+y \right) $.
+
+$z$ nie musi być dokładnie równe $x+y$(chyba?), ale  nie jest to istotne. Istotne, jest to, że $x,y \in \mathcal{I}$, co pociąga za sobą to, że  $x+y \in \mathcal{I}$. Ponieważ $f\left( x+y \right) = a+b$, więc $a+b \in f\left[ \mathcal{I} \right] $.
+
+\noindent$\bullet$ Ustalmy dowolny element $s \in S$ oraz $a \in f\left[ \mathcal{I} \right]$. Pokażę, że $sa \in f\left[ \mathcal{I} \right]$. 
+
+Ponieważ $f$ jest epimorfizmem, więc istnieje $x \in R$, taki że $f\left( x \right) = s$. Ponieważ $a \in f\left[ \mathcal{I} \right] $, więc istnieje $y \in \mathcal{I}$. Z definicji ideału, $xy \in \mathcal{I}$. Ponieważ $f$ jest homomorfizmem, więc $sa = f\left( x \right) f\left( y \right) = f\left( xy \right) $. Zatem  $xy \in f\left[ \mathcal{I} \right] $.
+
+\noindent \textbf{Podsumowanie} 
+
+$f\left[ \mathcal{I} \right] $ jest podgrupą addytywną $S$ oraz jest zamknięty na mnożenie przez elementy z $S$. Zatem $f\left[ \mathcal{I} \right] $ jest ideałem $S$
+
+\noindent$\bullet$ Przykład $f, \mathcal{I}$, takich że $f\left[ \mathcal{I} \right] \ntrianglelefteqslant S$
+
+Rozważmy pierścień $R = \mathbb{Z} $ oraz pierścień (który jest ciałem) $S = \mathbb{Q} $. Rozważmy funkcję inkluzję, tzn
+\begin{align*}
+	f: \mathbb{Z}  &\longrightarrow \mathbb{Q}  \\
+	n &\longmapsto f(n) = n
+.\end{align*}
+
+Niech $\mathcal{I} = 2\mathbb{Z} $ oraz rozważmy $f\left[ \mathcal{I} \right] $. Zauważmy, że $f\left[ \mathcal{I} \right] $ nie jest domknięte na mnożenie, bowiem dla $r = \frac{1}{3} \in \mathbb{Q} $ oraz dowolnego $a = 2 \in \mathcal{I}$, $ra = \frac{2}{3}\not\in \mathcal{I}$.
+
+Zatem $f\left[ \mathcal{I} \right] = 2\mathbb{Z} \ntrianglelefteqslant S = \mathbb{Q} $.
+\end{solution} 
+\begin{problem}[4]
+	Znaleźć $f\in \mathbb{Q}\left[ X \right]$, taki że $\left( f \right) = \left( X^2-1, X^3+1 \right) $.
+\end{problem} 
+\begin{solution}
+	 Z definicji 
+	 \[
+		 \left( X^2-1, X^3+1 \right) = \left( X^2-1 \right)\mathbb{Q} \left[ X \right] + \left( X^3+1 \right)\mathbb{Q} \left[ X \right] = \{\left( X^2-1 \right)a + \left( X^3+1 \right)b : a,b \in \mathbb{Q}\left[ X \right]   \} 
+	 .\] 
+	Zwróćmy uwagę, że nawiasy $\left( \cdot  \right) $ po lewej oznaczają generowanie, a nawiasy $\left( \cdot  \right) $ po prawej to zwykłe nawiasy.
+
+	Ponadto 
+	\[
+	\left( f \right) = f\mathbb{Q} \left[ X \right] = \{f\cdot a : a \in \mathbb{Q} \left( X \right) \} 
+	.\] 
+
+	Szukanym $f$ jest wielomian $X+1$, jako NWD wyjściowych wielomianów. TODO Opisać bardziej
+\end{solution} 
+\begin{problem}[5]
+	Udowodnić, że ideał $\left( 2, X \right) \trianglelefteqslant \mathbb{Z} \left[ X \right] $ nie jest główny.
+\end{problem} 
+\begin{solution}
+	Załóżmy nie wprost, że ideał $\left(2, X\right) $ jest główny. Zatem istnieje $f \in \mathbb{Z} \left[ X \right]$, takie że
+	 \[
+		 \left( f \right) = \left( 2, X \right) 
+	.\] 
+	W szczególności $f$ musi dzielić $2$ oraz $f$ musi dzielić  $X$. Skoro  $f$ dzieli  $2$, więc  $f$ musi być wielomianem stałym, tzn $f \in \{\pm 1, \pm 2\}$.
+\end{solution} 
+\begin{problem}[6]
+	Niech $d\in \mathbb{C} \setminus \mathbb{Z} $ oraz $d^2\in \mathbb{Z} $. Rozważmy funkcję
+	\[
+	v: \mathbb{Q} \left( d \right) \to \mathbb{Q}, \quad v\left( n + md \right) = n^2 -m^2d^2
+	\] 
+	gdzie $m,n \in \mathbb{Q}.$ Udowodnić, że 
+	\begin{enumerate}[label=\alph*)]
+		\item dla każdych $\alpha , \beta  \in \mathbb{Q} \left( d \right) $ mamy $v\left(\alpha\beta\right) = v\left( \alpha  \right) v\left( \beta  \right) $.
+		\item dla każdego $\alpha \in \mathbb{Z} \left[ d \right]$ mamy: $\alpha \in \mathbb{Z} \left[d \right] ^{\ast} $ wtedy i tylko wtedy, kiedy $v\left( \alpha  \right)  \in \{-1, 1\} $
+	\end{enumerate}
+\end{problem} 
+\begin{note}
+
+	Dla  $d\in \mathbb{C} \setminus \mathbb{Z} $, gdzie $d^2\in \mathbb{Z} $, $\bm{ \mathbb{Q} \left( d \right)  } $ jest to rozszerzenie kwadratowe ciała $\mathbb{Q} $, konkretniej
+	\[
+	 \mathbb{Q} \left( d \right) := \{a + bd: a,b \in \mathbb{Q} \} 
+	.\] 
+	Istotnie $\mathbb{Q} \left( d \right) $ jest podciałem ciała liczb zespolonych $\mathbb{C} $ (każdy niezerowy element jest odwracalny w szczególności).
+
+	Natomiast $\mathbb{Z} \left[ d \right] := \{a + bd: a,b \in \mathbb{Z} \}$ jest podpierścieniem pierścienia liczb zespolonych $\mathbb{C} $.
+
+
+\end{note}
+\begin{solution}
+\noindent Dowód punktu \textbf{a)}:
+
+Ustalmy dowolny $\alpha, \beta \in \mathbb{Q} \left( d \right) $. Niech $\alpha = n + md$ oraz $\beta = k + ld$. Rozważmy funkcję $f$-\textbf{sprzężenie}:
+\begin{align*}
+	f: \mathbb{Q} \left( d \right)  &\longrightarrow \mathbb{Q} \left( d \right)  \\
+	\delta = a + bd &\longmapsto f(\delta = a + bd) = a - bd
+.\end{align*}
+
+Oznaczmy $f\left( \delta \right) \equiv \overline{\delta}$. Funkcja $f$ jest automorfizmem $\mathbb{Q} \left( d \right) $ bo spełnia:
+\begin{itemize}
+	\item \textbf{Homomorfizm:}
+
+		Dla $x,y \in \mathbb{Q} \left( d \right) $, $x = p +qd, y = r + sd$
+		 \[
+		f\left( x \right) f\left( y \right) = \left( p-qd \right) \left( r-sd \right) = \left( pr + qsd^2 \right) - \left( ps +qr \right)d = f\left( \left( p+qd \right)\left( r+sd \right)  \right) = f\left( xy \right) 
+		,\] 
+		oraz 
+		 \[
+		 f\left( x \right) + f\left( y \right) = \left( p-qd \right) + \left( r - sd \right) = \left( p+r \right) - \left( q+s \right)d = f\left( x + y \right) 
+		 .\] 
+	\item \textbf{Różnowartościowość:} 
+
+		Ustalmy dowolny $x = p +qd \in \ker(f) $. Wtedy $f\left( x \right) = p - qd = 0$, czyli  $p-qd = 0 - 0d$. Stad  $p=q=0$, czyli  $x=0$.
+	\item \textbf{Surjektywność:}
+
+		Ustalmy dowolny $y = r + sd \in \mathbb{Q} \left( d \right) $. Wtedy $y' = r +\left( -s \right) d \in \mathbb{Q}\left( d \right) $.
+
+		Czyli $f\left( y' \right) = r - \left( s \right) d = r + sd = y $
+\end{itemize}
+
+Następnie zauważmy, że $v\left( \alpha  \right) = n^2-m^2d^2 = \left(n + md\right)\left( n-md \right) = \alpha \overline{\alpha }$.
+
+Zatem 
+\[
+v\left( \alpha  \right) v\left( \beta  \right) = \alpha \overline{\alpha }\beta \overline{\beta } \overset{\text{przemienność }\mathbb{Q} \left[ d \right] }{=} \alpha \beta \overline{\alpha }\overline{\beta } = \alpha \beta \overline{\alpha \beta } = v\left( \alpha \beta  \right) 
+.\] 
+
+\noindent Dowód podpunktu \textbf{b)}:
+
+Ustalmy dowolny $\alpha \in \mathbb{Z} \left[ d \right]$.
+
+\noindent $\bm{ \left( \implies \right)  } $ 
+
+Załóżmy że $\alpha $ jest odwracalny, czyli $\alpha \in \mathbb{Z} \left[ d \right] ^{\ast} $. Pokażemy, że $v\left( \alpha  \right) \in \{-1,1\} $.
+
+Niech $\alpha = n + md$.
+Z założenia istnieje $\beta \in \mathbb{Z} \left[ d \right]$, takie że $\alpha \beta = 1$. Niech $\beta = x + yd$. 
+
+Z punktu \textbf{a)} mamy $v\left( \alpha \beta  \right) = v\left( \alpha  \right) v\left( \beta  \right) $. Korzystając z tej równości mamy
+\[
+v\left( \alpha \beta  \right) = v\left( 1 \right) 
+.\] 
+Ponieważ $v\left( 1 \right) = v\left( 1 + 0d \right) = 1^2 - 0^2d^2 = 1$, więc 
+\[
+v\left( \alpha  \right) v\left( \beta  \right) = 1
+.\] 
+
+Zauważmy, że $v\left( \alpha  \right) ,v\left( \beta  \right) \in \mathbb{Z}$. Jedynymi elementami odwracalnymi w $\mathbb{Z} $ są 1 lub -1. Zatem $v\left( \alpha  \right) \in \{-1,1\} $
+
+\noindent $\bm{ \left( \impliedby \right)  } $
+
+Załóżmy, że $v\left( \alpha  \right) \in \{-1,1\} $. Pokażemy, że $\alpha \in \mathbb{Z} \left[ d \right] ^{\ast} $.
+
+Niech $\alpha = n + md$, wtedy $v\left( \alpha  \right) = n^2-m^2d^2= \pm 1$.
+
+Chcemy znaleźć takie $\beta$, że $\alpha \beta = 1$. Bez straty ogólności, załóżmy, że $v\left( \alpha  \right) = 1$. Mówi nam to, że 
+\[
+n^2 - m^2d^2 = \left( n-md \right) \left( n+md \right) = 1
+.\] 
+Niech $\beta = \left( n+md \right) ^{-1} = n-md$, wtedy $\alpha \beta = 1$.
+
+\end{solution} 
+\begin{problem}[7]
+	Udowodnić, że pierścień $\mathbb{Z}\left[ \sqrt{2}  \right]$ jest euklidesowy.
+\end{problem} 
+\begin{note}
+
+	Najpierw przypomnienie, co to znaczy, że pierścień jest euklidesowy.
+	Mówimy, że funkcja $v: R\setminus \{0\} \to \N$ jest \textbf{normą euklidesową}  jeśli
+	\[
+	\left(\forall a\neq 0, b \in R \right)\left(\exists q,r \in R \right)\left( \left( b = qa + r \right) \text{ oraz } \left( v\left( r \right) < v\left( a \right) \text{ lub } r = 0 \right)  \right) 
+	.\] 
+
+	Pierścień $R$ jest \textbf{pierścieniem euklidesowym} jeśli istnieje norma euklidesowa na $R$.
+\end{note}
+\begin{solution}
+	Musimy wskazać funkcję (normę euklidesową) i pokazać, że możliwe jest dzielenie z resztą. 
+
+	Zdefiniujmy naszą normę $v$ jako wartość bezwzględną normy z zadania 6. To znaczy
+	\[
+	v\left( \alpha  \right) = \left| \alpha \overline{\alpha } \right| 
+	.\] 
+	Dokładniej, to dla $\alpha = n + m\sqrt{2}  \in \mathbb{Z} \left[ \sqrt{2}  \right] $,
+	\[
+	v\left( \alpha  \right) = \left| n^2 - 2m^2\right| 
+	.\] 
+
+	Teraz należy pokazać, że tak zdefiniowane $v$ jest normą euklidesową na $\mathbb{Z} \left[ \sqrt{2}  \right] $. Dokładniej, to dla dowolnych $\alpha , \beta \in \mathbb{Z} \left[ \sqrt{2}  \right] $, takich że $\beta \neq 0$, chcemy pokazać, że istnieją $q,r \in \mathbb{Z} \left[ \sqrt{2}  \right] $, takie że
+	\[
+	\alpha = q\beta a + r \quad \text{ oraz } v \left( a \right) < v\left( r \right) \text{ lub } r=0
+	.\] 
+
+	Rozważmy iloraz $\frac{\alpha}{\beta}$. Zauważmy, ten iloraz należy co ciała $\mathbb{Q} \left( \sqrt{2}  \right) $.
+
+	\begin{remark}
+	Dlaczego?
+
+	Niech $\alpha = a_1 + b_1\sqrt{2} $ oraz $\beta = a_2 + b_2\sqrt{2} $. Wtedy
+	\[
+	\frac{\alpha}{\beta} = \frac{a_1+b_1\sqrt{2} }{a_2+b_2\sqrt{2} } = \frac{\left( a_1+b_1\sqrt{2}  \right)\left( a_2-b_2\sqrt{2}\right)}{\left( a_2+b_2\sqrt{2}  \right) \left( a_2-b_2\sqrt{2}  \right) } = \frac{(a_1a_2 - 2b_1b_2) + \left( b_1a_2-a_1b_2 \right)\sqrt{2}}{a_2^{2}-2b_2^{2}}
+	.\] 
+
+	Czyli
+	\[
+	\frac{\alpha }{\beta } = \underbrace{\left(\frac{a_1a_2-2b_1b_2}{a_2^{2}-2b_2^{2}}\right)}_{\in \mathbb{Q} } + \underbrace{\left(\frac{a_2b_1-a_1b_2}{a_2^2-2b_2^2}\right)}_{\in \mathbb{Q} }\sqrt{2} \in \mathbb{Q} \left( \sqrt{2}  \right) 
+	.\] 
+	\end{remark} 
+
+	Zatem iloraz $\frac{\alpha }{\beta }\in \mathbb{Q} \left( \sqrt{2}  \right) $, czyli możemy go zapisać następująco:
+	\[
+	\frac{\alpha }{\beta } = x + y\sqrt{2}, \text{ gdzie } x,y \in \mathbb{Q}
+	.\] 
+
+	Niech $n,m \in \mathbb{Z} $ będą liczbami całkowitymi, które leżą ,,najbliżej'' liczb wymiernych $x,y$, tj:
+	 \[
+	\left| x - n \right| < \frac{1}{2} \text{ oraz } \left| y - m \right| < \frac{1}{2}
+	.\] 
+
+	Zdefiniujmy nasze $q$ i $r$ następująco:
+	\[
+	q = n + m\sqrt{2} \text{ oraz } r = \alpha - \beta q
+	.\] 
+
+	Jeśli $r = 0$, to  $\alpha = \beta q$. I co?
+
+	Chcemy następnie pokazać, że $v\left( r \right) < v\left( q \right) $. Zauważmy, że
+	\[
+	v\left( r \right) = v\left( \alpha - \beta q \right) = v\left( \beta \left( \frac{\alpha }{\beta } - q \right)  \right) = v\left( \beta \right) v\left( \frac{\alpha }{\beta }- q \right) 
+	.\] 
+
+	Spójrzmy dokładniej na 
+	\[
+	v\left( \frac{\alpha}{\beta }- q \right) = v\left( x+y\sqrt{2} - \left( n+m\sqrt{2}  \right)   \right) = v\left( \left( x-n \right) + \left( y-m \right)\sqrt{2}  \right) 
+	.\] 
+
+
+	Z definicji normy $v$, mamy
+	\[
+        v\left( \left( x-n \right) + \left( y-m \right)\sqrt{2}\right) = \left| \left(x-n\right)^2 - 2\left(y-m\right)^2 \right| 
+	.\] 
+	Następnie zauważmy, że
+	\begin{itemize}
+		\item $\left| x-n \right| < \frac{1}{2} \implies 0 \le \left( x-n \right)^2 < \frac{1}{4}$,
+		\item $\left| y-m \right| < \frac{1}{2} \implies 0 \le \left( y-m \right)^2 < \frac{1}{4}$.
+	\end{itemize}
+
+	Wyrażenie $ \left| \left(x-n\right)^2 - 2\left(y-m\right)^2 \right|$ jest nieujemne oraz mniejsze niż  $\frac{1}{2}$. 
+
+	Zatem $v\left( r \right) = v\left( B \right) v\left( \frac{\alpha }{\beta }-q \right) < \frac{1}{2} v\left( \beta  \right) $. Ponieważ $\beta \neq 0$ więc $v\left( \beta  \right) > 0$. Zatem $v\left( r \right) < \left( q \right) $. 
+\end{solution} 
+\begin{problem}[8]
+	Opisać grupę $\mathbb{Z} \left[ \sqrt{-5}  \right]^{\ast}$
+\end{problem} 
+\begin{solution}
+	Zauważmy z zadania 6, że jeśli $\alpha \in \mathbb{Z} \left[ \sqrt{-5}  \right] $, to $v\left( \alpha  \right) \in \{-1,1\} $.
+
+	Ustalmy więc dowolne $\alpha \in \mathbb{Z}\left[ \sqrt{-5}  \right] $. Niech $\alpha = n + m\sqrt{-5} $. Wtedy
+	\[
+	v\left( \alpha  \right) = n^2 -m^2 \left( \sqrt{-5}  \right) ^2 = n^2 + 5m^2
+	.\] 
+	Zatem $n^2 + 5m^2 = \pm 1$. Ponieważ $n^2 5m^2 \ge 0$, więc $n^2 + 5m^2 = 1$.
+
+	Rozważmy przypadki:
+	\begin{itemize}
+		\item $\left| m \right| > 0 $ to $5m^2 \ge 5 \implies n^2 + 5m^2 \ge  5 > 1$- sprzeczność.
+		\item $m = 0$ to  $n^2 = 1$, czyli $n = \pm 1$.
+	\end{itemize}
+
+	Zatem grupa $\mathbb{Z} \left[ \sqrt{-5}  \right] $ składa się tylko z elementów $\pm 1$.
+\end{solution} 
+\begin{problem}[9]
+	Udowodnić, że grupa $\mathbb{Z} \left[ \sqrt{2}  \right] ^{\ast} $ jest nieskończona.
+\end{problem} 
+\begin{solution}
+	Z zadania 6, że dla dowolnego $\alpha = n+ m\sqrt{2} \in \mathbb{Z} \left[ \sqrt{2}  \right]^{\ast} $, jego norma, czyli $v\left( \alpha  \right) $ musi być równa $\pm 1$. Dokładniej to
+	\[
+	n^2 -2m^2 = \pm 1
+	.\] 
+
+	Znajdźmy więc nietrywialny element pierścienia $\mathbb{Z} \left[ 2 \right] ^{\ast} $. Niech $n=3$ oraz  $m=2$. Wtedy 
+	 \[
+	n^2 - 2m^2 = 3^2 - 2\cdot \scriptscriptstyle r = 9 - 8 = 1
+	.\] 
+	Zatem element $3 + 2\sqrt{2} \in \mathbb{Z} \left[ \sqrt{2}  \right] ^{\ast}  $.
+
+	Ponadto $3 + 2\sqrt{2} > 1$. Zatem ciąg jego potęg
+	\[
+	3 + 2\sqrt{2} < \left( 3 + 2\sqrt{2}  \right) ^2 < \left( 3 + 2\sqrt{2}  \right) ^3 < \ldots
+	,\] 
+	jest ściśle rosnący, więc w szczególności każde dwa elementy są różne.
+
+	Z zadania 6 wiemy ponadto, że norma $v$ iloczynu elementów to iloczyn norm elementów. Zatem każda norma elementów w ciągu potęg, jest równa 1, zatem każdy element ciągu jest odwracalny. Grupa elementów odwracalnych jest zamknięta na mnożenie, więc każdy z nich jest elementem $\mathbb{Z} \left[ \sqrt{2}  \right] ^{\ast} $ . Ciąg jest nieskończony, więc grupa $\mathbb{Z} \left[ \sqrt{2}  \right] ^{\ast} $ również.
+\end{solution} 
+\section*{Dodatkowe zadania.}
+\begin{problem}[1: Radykały i Inkluzje]
+    Niech $\mathcal{I}, \mathcal{J} \trianglelefteq R$ będą ideałami w pierścieniu przemiennym z jedynką.
+    \begin{enumerate}
+        \item Udowodnij, że jeśli $\mathcal{I} \subseteq \mathcal{J}$, to $\sqrt{\mathcal{I}} \subseteq \sqrt{\mathcal{J}}$.
+        \item Udowodnij, że $\sqrt{\sqrt{\mathcal{I}}} = \sqrt{\mathcal{I}}$.
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}[2: Jądro homomorfizmu]
+    Niech $\phi: R \to S$ będzie homomorfizmem pierścieni. Udowodnij, że jądro homomorfizmu $\ker(\phi) = \{r \in R : \phi(r) = 0_S\}$ jest ideałem w pierścieniu $R$. Wskaż wyraźnie momenty wykorzystania aksjomatów homomorfizmu.
+\end{problem}
+
+\begin{problem}[3: Ideały główne]
+    Rozstrzygnij, czy poniższe ideały są główne. Jeśli tak, wskaż ich generator; jeśli nie, przedstaw dowód nie wprost:
+    \begin{enumerate}
+        \item $\mathcal{I} = (X^2 + 1, X^4 - 1)$ w pierścieniu $\mathbb{Q}[X]$.
+        \item $\mathcal{J} = (3, X)$ w pierścieniu $\mathbb{Z}[X]$.
+    \end{enumerate}
+\end{problem}
+
+\begin{problem}[4: Jednostki]
+    \begin{enumerate}
+        \item Wyznacz wszystkie elementy grupy jednostek $\mathbb{Z}[\sqrt{-2}]^{\ast}$.
+        \item Udowodnij, że grupa $\mathbb{Z}[\sqrt{3}]^{\ast}$ jest nieskończona, wskazując co najmniej jeden element $\epsilon$ o normie $v(\epsilon) = \pm 1$ różny od $\pm 1$.
+    \end{enumerate}
+\end{problem}

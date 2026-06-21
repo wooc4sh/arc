@@ -1,0 +1,650 @@
+\chapter{Lista 12.}
+
+\begin{problem}[1]
+	Niech $\varphi : R \to S $ będzie epimorfizmem pierścieni, gdzie $R$ jest noetherowski. Udowodnić, że $S$ też jest noetherowski.
+\end{problem} 
+\begin{solution}
+	Przypomnienie:
+
+	\begin{note}
+	
+		Pierścień $R$ jest noetherowski, gdy każdy ideał $\mathcal{I} \trianglelefteqslant R$ jest skończenie generowany. Czyli istnieją elementy $a_1,a_2,\ldots,a_{n} \in \mathcal{I}$, takie że $\mathcal{I} = \left( a_1,a_2,\ldots,a_{n}  \right) $.
+	\end{note}
+
+	Rozważmy dowolny ideał $\mathcal{J} \in S$. Niech $\mathcal{I} = \varphi ^{-1}\left[ \mathcal{J} \right]$. 
+
+	Zauważmy, że przeciwobraz ideału jest ideałem, czyli
+	\[
+	\mathcal{I} \trianglelefteqslant R
+	.\] 
+
+	Ponieważ $R$ jest noetherowski, więc $\mathcal{I}$ jest skończenie generowany. Niech
+	\[
+	\mathcal{I} = \left( a_1,a_2,\ldots,a_{n}  \right) 
+	.\] 
+
+	Skoro $\mathcal{I} = \left( a_1,a_2,\ldots,a_{n}  \right) $, to każdy element $r \in \mathcal{I}$ jest postaci 
+	\[
+	r = \sum_{i=1}^{n} r_{i}a_{i}, \text{ gdzie } r_{i} \in R, a_{i} \in \mathcal{I}
+	.\] 
+
+	Ustalmy dowolny element  $j \in \mathcal{J}$. Ponieważ $\varphi$ jest epimorfizmem, więc w szczególności jest surjekcją, zatem istnieje  $r \in \mathcal{I}, \text{ taki że } \varphi \left( r \right) = j$ .
+
+	Ponieważ $\varphi  $ jest w szczególności homomorfizmem, zatem
+	\[
+	\sum_{i=1}^{n} \varphi \left( r_{i} \right) \varphi \left( a_{i} \right) = \sum_{i=1}^{n} \varphi \left( r_{i}a_{i} \right) = \varphi \left( \sum_{i=1}^{n} r_{i}a_{i} \right) = \varphi \left( r \right) = j     
+	.\] 
+	 
+	Zauważmy teraz kluczowe fakty:
+    \begin{enumerate}
+        \item Ponieważ $\phi: R \to S$ jest epimorfizmem, to każdy element $s \in S$ jest postaci $\phi(r)$ dla pewnego $r \in R$. Zatem współczynniki $s_i = \phi(r_i)$ mogą być dowolnymi elementami pierścienia $S$.
+        \item Elementy $b_i = \phi(a_i)$ należą do $\mathcal{J}$ (jako obrazy elementów z przeciwobrazu).
+    \end{enumerate}
+
+    Wykazaliśmy więc, że każdy element $j \in \mathcal{J}$ daje się zapisać jako skończona kombinacja liniowa:
+    \[
+    j = s_1 b_1 + s_2 b_2 + \dots + s_n b_n, \quad \text{gdzie } s_i \in S, b_i \in \mathcal{J}
+    \]
+    To z definicji oznacza, że $\mathcal{J} = (b_1, b_2, \dots, b_n)_S$. 
+    
+    Skoro dowolny ideał $\mathcal{J} \trianglelefteqslant S$ posiada skończony zbiór generatorów $\{\phi(a_1), \dots, \phi(a_n)\}$, to pierścień $S$ jest noetherowski.
+\end{solution} 
+\begin{problem}[2]
+	Znaleźć podpierścień $R \subseteq \mathbb{Z} \left[ X \right]$, taki że $R$ nie jest noetherowski.
+\end{problem} 
+\begin{solution}
+	Przypomnienie:
+	\begin{note}
+	
+		$R$ jest pierścienie noetherowskim wtedy i tylko wtedy gdy każdy wstępujący łańcuch ideałów w $R$ stabilizuje się- czyli mając wstępujący łańcuch $\mathcal{I}_{1} \subseteq \mathcal{I}_{2} \subseteq \ldots$, istnieje takie $n$, że $\mathcal{I}_{n} = \mathcal{I}_{n+1} = \ldots$
+	\end{note}
+	Rozważmy podpierścień (z jedynką) $R$ będący wielomianami nad $\mathbb{Z} $ o parzystych współczynnikach przy dodatnich potęgach, czyli
+	\[
+	R = \mathbb{Z} + 2X\mathbb{Z}\left[ X \right] 
+	.\] 
+	$R$ jest podpierścieniem $\mathbb{Z} \left[ X \right] $, bo
+	\begin{itemize}
+		\item $1 \in R: 1 = 1 + 2X \cdot 0$.
+		\item Jest zamknięty na odejmowanie: jeśli $f$ i $g$ mają parzyste ,,ogony'' to ich różnica również.
+		\item Jest zamknięty na mnożenie: niech $f = a_0 + 2Xp\left( X \right) $ oraz $g = b_0 + 2Xq\left( X \right) $. Wtedy:
+			\[
+			f\cdot g = a_0b_0 + \underbrace{2X\left( a_0q\left( X \right) + b_0p\left( X \right) + 2Xp\left( X \right) q\left( X \right)  \right) }_{\in 2X\mathbb{Z} \left[ X \right] }
+			.\] 
+		Wynik ma postać (liczba całkowita) + (parzysty ogon), więc $f\cdot g\in R$.
+	\end{itemize}
+	
+	Rozważmy rodzinę ideałów:
+	\begin{itemize}
+		\item $\mathcal{I}_{1} = \left( 2X \right) $,
+		\item $\mathcal{I}_{2} = \left( 2X, 2X^2 \right) $,
+		\item $\mathcal{I}_{3} = \left( 2X, 2X^2, 2X^3 \right) $,
+		\item $\vdots$
+	\end{itemize}
+
+	Zauważmy, że
+	\begin{itemize}
+		\item Każdy z tych ideałów jest podzbiorem $R$:  $\mathcal{I}_{n} \subseteq R$.
+		\item Ideały te tworzą łańcuch wstępujący: $\mathcal{I}_{n} \subseteq \mathcal{I}_{n+1}$.
+	\end{itemize}
+
+	Załóżmy, że łańcuch $\left( \mathcal{I}, \subseteq  \right) $ stabilizuje się dla pewnego $n$. Wtedy $\mathcal{I}_{n} = \mathcal{I}_{n+1}$.
+
+	Oznacza to w szczególności, że  $2X^{n+1} \in \mathcal{I}_{n+1}$ należy do $\mathcal{I}_{n}$, czyli
+	\[
+	2X^{n+1} = \sum_{i=1}^{n} r_i (2X^i) = \sum_{i=1}^{n} \left( 2a_i X^i + 4X^{i+1} p_i(X) \right)
+	.\] 
+Porównajmy współczynniki przy $X^{n+1}$ po obu stronach równania:
+\begin{itemize}
+    \item \textbf{Lewa strona:} Współczynnik przy $X^{n+1}$ wynosi $2$.
+    \item \textbf{Prawa strona:} Analizujemy wkłady poszczególnych składników sumy dla każdego $i \in \{1, \dots, n\}$:
+    \begin{enumerate}[label=(\roman*)]
+        \item Ponieważ $i \le n$, to $i < n+1$, więc człon $2a_i X^i$ ma stopień mniejszy niż $n+1$. Zatem jego udział we współczynniku przy $X^{n+1}$ wynosi $0$.
+        \item Składnik $X^{n+1}$ może pochodzić jedynie z członów $4X^{i+1} p_i(X)$. Ponieważ każdy taki człon jest mnożony przez $4$, współczynnik przy $X^{n+1}$ w każdym z tych wyrażeń jest postaci $4 \cdot k_i$ dla pewnego $k_i \in \mathbb{Z}$.
+    \end{enumerate}
+\end{itemize}
+
+Sumując powyższe, otrzymujemy, że współczynnik przy $X^{n+1}$ po prawej stronie musi należeć do ideału $4\mathbb{Z}$. Prowadzi to do równości:
+\[
+2 = 4 \cdot \sum_{i=1}^{n} k_i \implies 2 \equiv 0 \pmod{4}
+.\] 
+Otrzymana sprzeczność dowodzi, że $2X^{n+1} \notin \mathcal{I}_n$, co oznacza, że łańcuch ideałów nie stabilizuje się, a zatem pierścień $R$ nie jest noetherowski.
+
+\end{solution} 
+\begin{problem}[3]
+	Niech $\mathcal{L}$ będzie łańcuchem (względem inkluzji) złożonym z ideałów pierścienia $R$. Dowieść, że $\bigcup \mathcal{L} $ też jest ideałem $R$.
+\end{problem} 
+\begin{solution}
+       Chcemy pokazać, że podzbiór $\bigcup \mathcal{L}$ pierścienia $R$ jest ideałem. Mamy więc do sprawdzenia dwa warunki:
+       \begin{enumerate}[label=\arabic*.]
+	\item Bycie podgrupą addytywną $R$: $\left(\bigcup\mathcal{L}, + \right) $ jest podgrupą addytywną $\left( R, + \right) $.
+		Tutaj z kolei mamy do wykazania, że
+		\begin{itemize}
+			\item Zawieranie zera: $0_{R} \in \bigcup \mathcal{L}$.
+			\item Zamkniętość na branie elementu przeciwnego: dla każdego $x \in \bigcup \mathcal{L}$, $-x \in \bigcup \mathcal{L}$.
+			\item Zamkniętość na sumę elementów: dla każdego $x,y \in \bigcup \mathcal{L}$, $x+y \in \bigcup\mathcal{L}$
+		\end{itemize}
+	\item Zamkniętość na mnożenie przez elementy z $R$: dla dowolnych $r\in R$ oraz $x \in \bigcup \mathcal{L}$, $rx \in \bigcup \mathcal{L}$
+       \end{enumerate}
+
+       Sprawdźmy to kolejno:
+
+       \noindent$\bullet$ Ponieważ $\mathcal{L}$ jest nie pustą rodziną ideałów, więc istnieje w niej przynajmniej jeden ideał, nazwijmy go $\mathcal{L}_{\alpha }$. Zatem $0_{R} \in \mathcal{L}_{\alpha }$ więc $0_{R}\in \bigcup \mathcal{L}$.
+
+       \noindent$\bullet$ Ustalmy dowolny element $x\in \bigcup \mathcal{L}$. Wtedy istnieje ideał $\mathcal{L}_{\alpha} \in \mathcal{L}$, taki że $x\in \mathcal{L}_{\alpha }$. Ponieważ $\mathcal{L}_{\alpha }$ jest ideałem, więc istnieje $-x \in \mathcal{L}_{\alpha }$. Zatem $-x \in \bigcup \mathcal{L}$.
+
+       \noindent$\bullet$ Ustalmy dwa dowolne elementy $x,y \in \bigcup \mathcal{L}$. Zatem $x\in \mathcal{L}_{\alpha }$ oraz $y \in \mathcal{L}_{\beta }$. Ponieważ $\mathcal{L}$ jest łańcuchem, więc musi zachodzić któraś inkluzja:
+       \[
+       \mathcal{L}_{\alpha }\subseteq \mathcal{L}_{\beta }\text{ lub } \mathcal{L}_{\beta } \subseteq \mathcal{L}_{\alpha }
+       .\] 
+
+       Bez straty ogólności załóżmy, że $\mathcal{L}_{\alpha }\subseteq \mathcal{L}_{\beta }$. Wtedy $x,y \in \mathcal{L}_{\beta}$. Ponieważ $\mathcal{L}_{\beta }$ jest ideałem, więc $x+y \in \mathcal{L}_{\beta}$. Zatem $x+y \in \bigcup \mathcal{L}$
+
+       \noindent$\bullet$ Ustalmy dowolny $x \in \bigcup \mathcal{L}$ oraz $r \in R$. Zatem  $x \in \mathcal{L}_{\alpha}$. Ponieważ $\mathcal{L}_{\alpha }$ jest ideałem, więc $rx \in \mathcal{L}_{\alpha }$, a co za tym idzie $rx \in \bigcup \mathcal{L}$.
+
+       \noindent Podsumowanie
+
+       Pokazaliśmy, że $\bigcup \mathcal{L}$ jest podgrupą addytywną $R$ oraz jest zamknięty na mnożenie elementów z $R$. Zatem $\bigcup \mathcal{L}$ jest ideałem $R$.
+\end{solution} 
+\begin{problem}[4]
+	Niech $\mathcal{I}, \mathcal{J} \trianglelefteqslant R$. Dowieść, że $\mathcal{I} + \mathcal{J} = \left( \mathcal{I} \cup \mathcal{J} \right)$.
+\end{problem} 
+\begin{solution}
+	Pokażemy obustronne zawieranie.
+
+	\noindent $\bm{ \left( \subseteq  \right)  } $
+
+	Ustalmy dowolny element $a \in \mathcal{J} + \mathcal{I}$. Wtedy z definicji sumy ideałów, $a$ jest postaci $a = i + j$, gdzie $i \in \mathcal{I}$ oraz $j \in \mathcal{J}$. Ponieważ $i,j \in \left( \mathcal{I} \cup \mathcal{J} \right) $, a ideał jest zamknięty na dodawanie, więc $a = i + j \in \left( \mathcal{I} \cup \mathcal{J} \right) $.
+
+	\noindent $\bm{ \left( \supseteq  \right)  } $ 
+
+	Ustalmy dowolny element $a \in \left( \mathcal{I}\cup \mathcal{J} \right) $. Z definicji ideału generowanego przez zbiór, $a$ jest skończoną kombinacją liniową postaci 
+\[
+	a = \sum_{i=1}^{n} r_{i}x_{i}, \text{ gdzie } r_{i} \in R \text{ oraz } x_{i} \in \mathcal{I}\cup \mathcal{J} 
+.\] 
+
+Dla każdego $k \in \{1,\ldots,n\} $ rozważmy składnik $q_{k} = r_{k}x_{k}$. 
+
+Zauważmy, że
+\begin{itemize}
+	\item jeśli  $x_{k} \in \mathcal{I}$, to z własności ideału wynika, że $q_{k} = r_{k}x_{k} \in \mathcal{I}$.
+	\item jeśli $x_{k} \in \mathcal{J}$, to analogicznie $q_{k} = r_{k}x_{k} \in \mathcal{J}$.
+\end{itemize}
+
+Zatem każdy składnik $q_{k}$ należy do zbioru $\mathcal{I} \cup \mathcal{J}$. Możemy teraz dokonać podziału zbioru indeksów $\{1,\ldots,n\} $ na dwa rozłączne podzbiory:
+\[
+K_{\mathcal{I}} = \{k : q_{k} \in \mathcal{I}\} \text{ oraz } K_{\mathcal{J}} = \{k : q_{k} \not\in \mathcal{I} \implies q_{k} \in \mathcal{J}\} 
+.\] 
+Wówczas sumę definiującą $a$ możemy pogrupować następująco:
+\[
+a = \underbrace{\sum_{k \in K_{\mathcal{I}}}}_{= \alpha } q_{k} + \underbrace{\sum_{k \in K_{\mathcal{J}}}}_{= \beta } q_{k}
+.\] 
+
+Ponieważ ideały $\mathcal{I}$ oraz $\mathcal{J}$ są zamknięte na dodawanie, zachodzi $\alpha \in \mathcal{I}$ oraz $\beta \in \mathcal{J}$.
+
+Otrzymaliśmy zatem przedstawienie elementu $a$ w postaci
+ \[
+a = \alpha + \beta \text{, gdzie } \alpha \in \mathcal{I}, \beta \in \mathcal{J}
+,\] 
+co z definicji sumy ideałów oznacza $a \in \mathcal{I} + \mathcal{J}$.
+\end{solution}
+\begin{problem}[5]
+	Udowodnić, że 3 jest rozkładalny i że 5 jest nierozkładalny w $\mathbb{Z}\left[ \sqrt{-2}  \right]$.
+\end{problem} 
+\begin{solution}
+
+Skorzystamy z normy $v$ z zadania 6 z listy 11
+
+\noindent$\bullet$ \textbf{3 jest rozkładalny}.
+
+Zauważmy, że $v\left( 3 \right) = 9 \implies 3 \not\in \mathbb{Z} \left[ \sqrt{-2}  \right] ^{\ast}$. Rozważmy elementy
+\begin{itemize}
+	\item $\alpha = 1 + \sqrt{-2} \implies v\left( \alpha  \right) = 3 \implies \alpha \not\in \mathbb{Z} \left[ \sqrt{-2}  \right] ^{\ast} $ 
+	\item $\beta = 1 - \sqrt{-2} v\left( \alpha  \right) = 3 \implies \beta  \not\in \mathbb{Z} \left[ \sqrt{-2}  \right] ^{\ast}$
+\end{itemize}
+Zatem $3$ nie jest odwracalny oraz istnieje rozkład $3$ na elementy nie odwracalne w $\mathbb{Z} \left[ \sqrt{-2}  \right] $. Zatem $3$ jest rozkładany
+
+
+\noindent$\bullet$\textbf{5 nie jest rozkładalny}
+
+Zauważmy, że $v\left( 5 \right) = 25 \implies 5 \not\in \mathbb{Z} \left[ \sqrt{-2}  \right] ^{\ast} $.
+
+Załóżmy nie wprost, że 5 jest rozkładalny. Jeżeli $5 = \alpha \beta $ jest rozkładem na elementy nieodwracalne, to $v\left( 5 \right) = v\left( \alpha  \right) v\left( \beta  \right)$, czyli $25 = v\left( \alpha  \right) v\left( \beta  \right) $. Ponieważ dla elementów nieodwracalnych $v\left( \alpha  \right) , v\left( \beta  \right) > 1$, a jedynym nietrywialnym rozkładem 25 w $\mathbb{Z}$ jest $5\cdot 5$, to musie zachodzić $v\left( \alpha  \right) = 5$. 
+
+Rozważmy przypadki
+\begin{itemize}
+	\item $\left| m \right| > 2: n^2 + 2m^2 \ge  n^2 + 8 > 5$ sprzeczność, zatem musi zachodzić $\left| m \right| \le 1$.
+	\item $\left| m \right| = 1: n^2 = 3 \implies n = \pm\sqrt{3} \not\in \mathbb{Z}$.
+	\item $m=0: n^2 = 5 \implies n = \pm\sqrt{5} \not\in \mathbb{Z} $.
+\end{itemize}
+
+Równanie $n^2 + 2m^2 = 5$ nie posiada jednak rozwiązań w liczbach całkowitych, co kończy dowód nie wprost.
+
+Zatem $5$ nie jest rozkładalne w  $\mathbb{Z} \left[ \sqrt{-2}  \right] $.
+\end{solution} 
+\begin{problem}[6]
+	Zbadać czy dana liczba jest elementem rozkładalnym w pierścieniu $R$.
+	 \begin{enumerate}[label=\alph*)]
+		\item $7 + \sqrt{-5}, 2 + 3\sqrt{-5}, 5+4\sqrt{-5}; R = \mathbb{Z} \left[ \sqrt{-5}\right]$ 
+		\item $-1 + 7i, 5, 23, 1+6i; R = \mathbb{Z} \left[i\right] $
+	\end{enumerate}
+\end{problem} 
+\begin{solution}
+	\begin{enumerate}[label=\alph*)]
+		\item $\bm{ R = \mathbb{Z} \left[ -5 \right] }$ 
+			\begin{itemize}
+				 \item $7 + \sqrt{-5}$. Ponieważ $v\left( 7 + \sqrt{-5}  \right) = 54$ więc nie jest odwracalny.
+
+					 Niech $\alpha = 1 + \sqrt{-5}  \implies v\left( \alpha  \right) = 6 \not\in \{-1,1\} $.
+
+					 Niech $\beta = 2 + \sqrt{-5} \implies v\left( \beta  \right) = 9 \not\in \{-1,1\} $
+
+					 Znaleźliśmy rozkład na elementy, które nie są odwracalne, zatem $7 + \sqrt{-5} $ jest rozkładalny.
+				 \item $2 + 3\sqrt{-5}$. Ponieważ $v\left( 2 +3 \sqrt{-5}  \right) = 49$ więc nie jest odwracalny.
+
+					 Załóżmy że jest rozkładalny, więc istnieją $\alpha, \beta \in \mathbb{Z} \left[ \sqrt{-5}  \right] ^{\ast} $, takie że $v\left( \alpha  \right) v\left( \beta  \right) = 49.$ Musi zatem zachodzić, że $v\left( \alpha  \right) = 7$.
+
+					 Czyli dla $\alpha = n + m\sqrt{-5} $, $n^2 + 5m^2 = 7$.
+					 
+					 Rozważmy przypadki:
+					 \begin{itemize}
+					 	\item $m=0 \implies n^2 = 7 \implies n = \pm \sqrt{7} \not\in \mathbb{Z} $
+						\item $\left| m \right| = 1 \implies n^2 = 6 \implies n = \pm \sqrt{6}  \not\in \mathbb{Z} $
+						\item $\left| m \right| > 2 \implies n^2 + 5m^2 > n^2 + 20 > 7$ sprzeczność.
+					 \end{itemize}
+
+					 Zatem nie istnieje rozkład.
+				 \item $5+4\sqrt{-5}$ 
+			\end{itemize}
+		\item $\bm{ R = \mathbb{Z} \left[ i \right]  } $ 
+			\begin{itemize}
+				\item $-1 + 7i$
+
+					TODO
+
+				\item $5$
+
+					Niech $\alpha = 1 + 2i $ oraz $\beta = 1- 2i$. Wtedy $v\left( \alpha  \right) = v\left( \beta  \right) = 5$ 
+
+					oraz $\alpha \beta = 1 - \left( 2i  \right) ^2 = 1 + 4 = 5$
+				\item $23$
+
+					Załóżmy nie wprost, że istnieje rozkład $23$ na elementy nieodwracalne, tj $23=\alpha \beta$. Wtedy
+					\[
+					23^2 = v\left( 23 \right) = v\left( \alpha  \right) v\left( \beta \right) 
+					.\] 
+					W ponieważ 23 jest liczbą pierwszą, więc istnieje tylko jeden nietrywialny rozkład liczby $23^2$ w liczbach całkowitych: $v(\alpha) = v(\beta) = 23$.
+
+					Niech $\alpha = n +mi$.
+
+					Rozważmy przypadki:
+					\begin{itemize}
+						\item $\left| m \right| \ge 5$: wtedy $n^2 + m^2 \ge n^2 + 25 > 23$. Niemożliwe, więc $\left| m \right| < 5.$
+						\item $\left|m\right| = 4$: wtedy $n^2 + 16 = 23 \implies n = \pm \sqrt{7} \not\in \mathbb{Z}$ 
+						\item $\left|m\right| = 3:$ wtedy $n^2 + 9 = 23 \implies n = \pm \sqrt{14} \not\in \mathbb{Z}$
+						\item $\left|m\right| = 2$: wtedy $n^2 + 4 = 23 \implies n = \pm \sqrt{19} \not\in \mathbb{Z}$ 
+						\item $\left|m\right| = 1:$ wtedy $n^2 + 1 = 23 \implies n = \pm \sqrt{22} \not\in \mathbb{Z}$ 
+						\item $m = 0:$ wtedy  $n^2 = 23 \implies n = \pm \sqrt{23} \not\in \mathbb{Z}$
+					\end{itemize}
+				\item $1+6i$ 
+
+					Norma $v\left( 1+6i \right)  = 37$. Jeśli zatem istnieje rozkład na elementy odwracalne $\alpha \beta $, to $v\left( \alpha  \right) v\left( \beta  \right) = 37$. Ponieważ $37$ jest liczbą pierwszą, więc nie istnieje nietrywialny rozkład.
+			\end{itemize}
+	\end{enumerate}
+\end{solution} 
+\begin{problem}[7]
+Wyznaczyć \textbf{z dokładnością do stowarzyszenia} wszystkie elementy nierozkładalne $K[[X]]$.
+\end{problem} 
+\begin{solution}
+	Przypomnienie:
+	\begin{note}
+	
+	\noindent$\bullet$Elementy stowarzyszone
+
+	Dwa elementy $a, b \in R$ nazywamy \textbf{stowarzyszonymi}, jeśli istnieje jednostka $u \in R^\times$ taka, że $a = u \cdot b$.
+
+	W dziedzinach ta definicja jest równoważne temu, że $x$ oraz  $y$ są stowarzyszone wtw kiedy
+	\[
+	x \mid y \text{ oraz } y \mid x
+	.\] 
+
+	\noindent$\bullet$Element nierozkładalny
+
+	Niezerowy element $a \in R$ nazywamy \textbf{nierozkładalnym}, jeśli:
+	\begin{enumerate}[label=(\roman*)]
+    		\item $a$ nie jest jednostką,
+    		\item jeżeli $a = b \cdot c$ dla pewnych $b, c \in R$, to $b$ jest jednostką lub $c$ jest jednostką.
+	\end{enumerate}
+
+	\end{note}
+	Zauważmy, że dla $f \in K\left[ \left[ X \right]  \right]$, $f$ jest odwracalny wtedy i tylko wtedy, gdy jego wyraz wolny $a_0 \in K^{\ast} $.
+
+	Ponieważ $K$ jest ciałem, oznacza to, że $f$ jest odwracalny wtedy i tylko wtedy, kiedy $a_0 \neq 0$.
+
+	Ponadto zauważmy, że każdy niezerowy szereg można przedstawić w postaci 
+	\[
+	X^{k}\left( a_{k} + a_{k+1}X + a_{k+2}X^{2} + \ldots\right) 
+	,\]
+	gdzie $k$ jest pierwszym indeksem, takim że $a_{k} \neq 0$.
+
+	Zauważmy, że szereg $u := a_{k} + a_{k+1}X + a_{k+2}X^2 + \ldots$ jest odwracalny, bowiem $a_{k} \neq 0$.
+
+	Rozważmy więc dowolny niezerowy element $f = X^{k}u \in K\left[ \left[ X \right]  \right] $.
+	\begin{itemize}
+		\item Dla $k = 0$:  $f = u$. Ponieważ  $u \in K\left[ \left[ X \right]  \right]^{\ast} $, więc $f$ nie jest nierozkładalny.
+		\item Dla $k=1:$  $f = Xu$. Pokażemy, że $X$ jest nierozkładalny. Ponieważ  $a_{0} = 0$, więc $X \not\in K\left[ \left[ X \right]  \right]^{\ast} $. $X$ jest niezerowy, więc możemy go przedstawić w postaci
+			\[
+			X = g\cdot h, \text{ gdzie } g = X^{m_1}u_1, h = X^{m_2}u_2 \in K\left[ \left[ X \right]  \right]  
+			.\] 
+
+	Wtedy
+	\[
+	X = X^{m_1 + m_2} \cdot (u_1 u_2).
+	\]
+	Porównując rzędy obu stron, otrzymujemy $m_1 + m_2 = 1$. Ponieważ $m_1, m_2 \in \mathbb{N}$, mamy tylko dwie możliwości:
+	\begin{itemize}
+    	\item $m_1 = 1$, $m_2 = 0$: wtedy $g = X u_1$ nie jest jednostką, ale $h = u_2$ jest jednostką.
+    	\item $m_1 = 0$, $m_2 = 1$: wtedy $g = u_1$ jest jednostką, a $h = X u_2$ nie jest jednostką.
+	\end{itemize}
+	Zatem w każdym możliwym rozkładzie $X = g \cdot h$ jeden z czynników jest jednostką, co oznacza, że $X$ jest nierozkładalny.
+	\item $k\ge 2$ Wtedy $f = X^n \cdot u$. Zapiszmy
+	\[
+	f = (X) \cdot (X^{n-1} u).
+	\]
+	Ponieważ $n \geq 2$, oba czynniki $X$ i $X^{n-1} u$ mają wyraz wolny równy $0$, więc nie są jednostkami (Lemat 1). Zatem $f$ jest rozkładalny.
+	\end{itemize}
+
+	\begin{remark}
+		Niech 
+		 \[
+		K\left[ \left[ X \right]  \right]_{n}  := \{a_1X + a_2X^2 + \ldots : a_1\neq 0\} 
+		.\] 
+		To znaczy $K\left[ \left[ X \right]  \right]_{n} $ jest zbiorem elementów nierozkładalnych w $K\left[ \left[ X \right]  \right]^{\ast}$.
+
+		Rozważamy teraz relację stowarzyszenia. Wielomiany $P$ i $Q$ są stowarzyszone, jeśli  $P = Qu$, tzn
+		\[
+		P \sim Q \iff P = Qu, \text{ gdzie } u \not\in K\left[ \left[ X \right]  \right]^{\ast} 
+		.\] 
+
+		Możemy wziąć konkretnego reprezentanta np $X$, tzn jego klasę abstrakcji $\left[ X \right]_{\sim}$.
+
+		Wtedy
+		 \[
+		\left[ X \right]_{\sim} = X\cdot K\left[ \left[ X\right]\right]^{\ast} = K\left[ \left[ X \right]\right]_{n} 
+		.\] 
+
+		TODO Rozpisać to bardziej.
+	\end{remark} 
+\end{solution}
+\begin{problem}[8]
+	Niech $p$ będzie liczbą pierwszą. Udowodnić, że następujące warunki są równoważne:
+	\begin{enumerate}[label=(\alph*)]
+		\item $p$ jest elementem rozkładalnym w $\mathbb{Z}\left[ i \right] $.
+		\item $p$ jest sumą dwóch kwadratów liczb całkowitych.
+		\item $p$ przystaje do 1 modulo 4.
+	\end{enumerate}
+\end{problem} 
+\begin{solution}
+	 \noindent$\bullet \bm{\left(\left(a\right)\implies \left(b\right)\right)}$ 
+
+	 Załóżmy, że $p$ jest elementem rozkładalnym w $\mathbb{Z}\left[ i \right]$. Pokażę, że $p$ jest sumą dwóch kwadratów liczb całkowitych.
+
+	 $\mathbb{Z}\left[ i \right] $ jest pierścieniem euklidesowym, więc jest UFD, zatem istnieje jednoznaczny rozkłada na czynniki  nierozkładalne, tzn
+	 \[
+	 p = \prod_{j=1}^{k}p_{j}
+	 .\] 
+	 Rozważamy normę $v$ z zadania 6 z listy 11:
+	 \[
+	 v\left( n + mi \right) = n^2 - m^2i^2 = n^2 + m^2
+	 .\] 
+	 Zauważmy teraz kilka faktów:
+	 \begin{itemize}
+	 	\item Ponieważ $p = p + 0\cdot i$ więc $p \in \mathbb{Z}\left[ i \right]$ jak i $p \in \mathbb{Z}$.
+		\item $v\left( p \right) = p^2  - 0^2i^2 = p^2$
+		\item $v\left( p \right) = \prod_{j=1}^{k}v\left( p_{j} \right)$.
+	 \end{itemize}
+	 \noindent Mamy więc w liczbach całkowitych dwa rozkłady liczby $p^2$: $p\cdot p$ oraz $\prod_{j=1}^{k}v\left( p_{j} \right)$.
+	 
+	 Ponieważ $\mathbb{Z}$ jest UFD więc $k = 2$ oraz $v\left( p_{1} \right) \sim p $ i $v\left( p_{2} \right) \sim p$. Oznacza to w szczególności, że $v\left( p_1 \right) = \pm p$ i $v\left( p_2 \right) = \pm p$.
+
+	 Zauważmy, że $p_1$ jest postaci $n + mi$. Zatem  $v\left( p_1 \right) = n^2 + m^2 \ge 0$, więc finalnie 
+	  \[
+	 v\left( p_1 \right) = n^2 + m^2 = p
+	 .\] 
+	 Analogicznie wygląda sytuacja dla $p_2$.
+
+	 Podsumowując, dowolna liczba $p$ jest sumą kwadratów liczb całkowitych.
+	 
+	 \noindent$\bullet \bm{\left(\left(b\right)\implies \left(c\right)\right)}$ 
+
+	 Załóżmy, że dowolna liczba pierwsza $p > 2$ jest sumą kwadratów liczb całkowitych. Pokażę, że $p \equiv 1 \pmod{4}$.
+
+	 Zauważmy następujący fakt: dla dowolnych liczb całkowitych $a,b \in \mathbb{Z}$, mamy następujące możliwości:
+	 \begin{itemize}
+	 	\item Jeśli obie są parzyste, tzn $a = 2k, b = 2n$ to suma ich kwadratów 
+			\[
+			 a^2+b^2 = 4k^2+4n^2 = 4\left( k^2+n^2 \right) 
+			,\] jest podzielna przez $4$, czyli
+			 \[
+			a^2+b^2 \equiv 0 \pmod{4} 
+			.\] 
+		\item Jeśli któraś jest nie parzysta, tzn $a = 2k + 1, b = 2n$ to suma ich kwadratów 
+			\[
+			 a^2 + b^2 = 4k^2 + 4k + 1 + 4n^2 = 4\left( k^2 + k + n^2 \right) + 1
+			,\] 
+			przy dzieleniu przez $4$ daje resztę $1$, czyli 
+			 \[
+			a^2 + b^2 \equiv 1 \pmod{4} 
+			.\] 
+		\item Jeśli obie są nieparzyste, tzn $a = 2k + 1, b = 2n + 1$ to suma ich kwadratów
+			 \[
+			a^2+ b^2 = 4k^2 + 4k + 1 + 4n^2 + 4n + 1 = 4\left( k^2 + k + n^2 + n \right) + 2
+			,\] 
+			przy dzieleniu przez $4$ daje resztę $2$, czyli
+			 \[
+			a^2 + b^2 \equiv 2 \pmod{4} 
+			.\] 
+	 \end{itemize}
+	 \noindent Następnie zauważmy, że $p$ jest liczbą pierwszą nieparzystą i jest sumą kwadratów liczb całkowitych. Przy dzieleniu $p$ przez $4$ możliwe reszty to 0,1 lub 2. Gdyby przy dzieleniu $p$ przez $4$ dostalibyśmy reszty 0 lub 2, oznaczałoby to w szczególności, że $p$ jest liczbą parzystą, co przy założeniu pierwszości $p$ oraz $p>2$ daje sprzeczność.
+
+	 Zatem jedyną możliwością jest sytuacja $p \equiv 1 \pmod{4} $.
+	
+	 \noindent$\bullet \bm{\left(\left(c\right)\implies \left(a\right)\right)}$ 
+
+	 Załóżmy, że $p \equiv 1 \pmod{4} $. Pokażemy, że $p$ jest elementem rozkładalnym w $\mathbb{Z}\left[ i \right] $.
+
+	 \begin{lemma}
+	 	Liczba $-1$ jest resztą kwadratową modulo $p$. Czyli $p \mid n^2 + 1$ dla pewnej liczby całkowitej $n$. 
+
+		Inaczej: istnieje $n \in \N$, takie że
+		\[
+		n^2 \equiv -1 \pmod{p} 
+		,\]
+		gdzie $p$ jest liczbą pierwszą postaci  $4k+1$, dla  $k \in \mathbb{Z}$.
+
+		Skorzystamy z twierdzenia Wilsona (lista 6 zadanie 8):
+		\[
+			\left( p-1 \right)! \equiv -1 \pmod{p} 
+		.\] 
+
+		\noindent \textbf{Dowód}:
+
+		Zauważmy, że z definicji silni:
+
+		$\left( p-1 \right)! = \underbrace{1\cdot 2 \cdot \ldots \cdot \frac{p-1}{2}}_{P}\cdot \underbrace{\left( \frac{p-1}{2}+1 \right) \cdot \ldots \cdot \left( p-2 \right)\cdot \left( p-1 \right) }_{Q}$
+	
+		Zauważmy, że 
+		\begin{itemize}
+			\item $p-1 \equiv -1 \pmod{p} $ 
+			\item $p-2 \equiv -2 \pmod{p}$ 
+			\item $\vdots$
+			\item W ogólności: $p-k \equiv -k \pmod{p} $
+		\end{itemize}
+		
+		Zatem
+		\[
+		 Q \equiv \left( - \tfrac{p-1}{2} \right)\cdot \ldots \cdot \left( -2 \right) \cdot \left( -1 \right) = \left( -1 \right)^{\frac{p-1}{2}}\left( \tfrac{p-1}{2} \right) \cdot \ldots \cdot 2 \cdot 1 \pmod{p} 
+		.\] 
+
+		Ponieważ $\tfrac{p-1}{2} = \tfrac{4k +1 -1}{2} = \tfrac{4k}{2} = 2k$, zatem powyższe minusy się redukują. 
+
+		Finalnie 
+		 \[
+		Q \equiv \left( \tfrac{p-1}{2} \right)! \pmod{p} 		
+		.\] 
+		Ponieważ $P = \left( \tfrac{p-1}{2} \right)!$, więc $Q \equiv P \pmod{p} $, a co za tym idzie
+		\[
+		P^2 \equiv PQ \equiv -1 \pmod{p} 
+		.\] 
+
+		Szukaną liczbą całkowitą $n$ która spełnia $n^2 \equiv -1 \pmod{p} $, jest
+		\[
+		n = P = \left(\tfrac{p-1}{2} \right)!
+		.\] 
+	\end{lemma}
+	 Z powyższego lematu wynika, że $p$ dzieli $n^2 + 1$. Zauważmy ponadto, że $n^2 + 1$  jest rozkładalne w $\mathbb{Z}\left[ i \right] $, jako
+	 \[
+	 n^2 + 1 = \left(n + i\right)\left( n-i \right) 
+	 .\] 
+
+	 Załóżmy, nie wprost, że $p$ nie jest elementem rozkładalnym w $\mathbb{Z}\left[ i \right] $. Ponieważ $\mathbb{Z}\left[ i \right] $ jest UFD, więc $p$ jako element nierozkładalny jest elementem pierwszym. Zatem $p$ dzieli  $n + i$ lub dzieli $n - i$.
+
+	\noindent Przypadek $p$ dzieli $n+1$:
+
+	Zatem $p\left( m+ in \right) = n + i$, czyli $pm + i\left( pn \right) = n + i$, zatem $pn = 1$ co jest sprzeczne, bo w liczbach całkowitych, jednymi elementami odwracalnymi są $\pm 1$.
+
+	\noindent Przypadek $p$ dzieli $n-i$:
+
+	Zatem $p\left( m+ in \right) = n - i$, czyli $pm + i\left( pn \right) = n - i$, zatem $pn = -1$ co jest sprzeczne, bo w liczbach całkowitych, jednymi elementami odwracalnymi są $\pm 1$.
+\end{solution} 
+\begin{problem}[9]
+	Wywnioskować, że pośród liczby pierwszych jest nieskończenie wiele:
+	\begin{enumerate}[label=(\alph*)]
+		\item elementów nierozkładalnych $\mathbb{Z}\left[i\right]$.
+		\item elementów rozkładalnych $\mathbb{Z}\left[i\right]$
+	\end{enumerate}
+\end{problem} 
+\begin{solution}
+	Najpierw pokażemy, że pośród liczb pierwszych jest nieskończenie wiele elementów nierozkładalnych $\mathbb{Z}\left[ i \right]$.
+
+	Udowodnimy lematy pomocnicze
+	\begin{lemma}[1]
+		Niech $p$ będzie nieparzystą liczbą pierwszą. Wtedy równanie $ x^2 \equiv -1 \pmod{p}$ ma rozwiązanie wtedy i tylko wtedy, gdy $p$ jest postaci $4k+1$.
+	\end{lemma} 
+	\begin{proof}
+		\noindent $\bm{ \left( \impliedby \right)  } $
+		
+		Ta implikacja została już pokazana w zadaniu 8, przy implikacji $\left( c \right) \implies \left( a \right) $.
+
+		\noindent $\bm{ \left( \implies \right)  } $
+
+		Załóżmy, że $x$ jest rozwiązaniem równania $x^2 \equiv -1 \pmod{p}$, gdzie $p$ jest nieparzystą liczbą pierwszą. Pokażemy, że $p$ jest postaci $4k + 1$.
+
+		Rozważmy grupę multiplikatywną $\mathbb{Z}_{p}^{\ast}$. Jest ona rzędu $p-1$. Niech  $r$ oznacza rząd elementu $x \in \mathbb{Z}_{p}^{\ast}$. 
+
+		Zauważmy, że $\left( x^2 \right)^2 \equiv \left( -1 \right)^2 \pmod{p}$, czyli $x^{4} \equiv 1 \pmod{p}$, zatem $r \mid 4$, czyli $r\in \{1,2,4\}$.
+
+		Rozważmy teraz przypadki:
+		\begin{itemize}
+			\item $r = 1:$ wtedy  $x \equiv 1 \pmod{p} \implies x^2 \equiv 1 \pmod{p}$, zatem $1 \equiv -1 \pmod{p}$, czyli $p \mid 2$, co jest niemożliwe, bo $p$ jest nieparzyste.
+			\item $r = 2: $ wtedy  $x^2 \equiv 1 \pmod{p} $, zatem $1 \equiv -1 \pmod{p} $, czyli $p\mid 2$, co jest niemożliwe.
+		\end{itemize}
+
+		Zatem rząd $r$ elementu $x$ wynosi $4$. Z wniosku z twierdzenia Lagrange'a, wynika, że $4$ dzieli rząd grupy $\mathbb{Z}_{p}^{\ast}$, czyli $4 \mid p-1$. Zatem  $p-1 = 4k$, czyli  $p = 4k + 1$ dla pewnego $k \in \mathbb{Z}$.
+	\end{proof} 
+	\begin{lemma}[2]
+		Wśród liczb pierwszych jest nieskończenie wiele liczb postaci $4k + 1$.
+	\end{lemma} 
+	\begin{proof}
+		Załóżmy nie wprost, że jest tylko skończenie wiele liczb pierwszych postaci $4k + 1$, mianowicie niech  $\{p_1,\ldots,p_{n}\}$ będą liczbami pierwszymi tej postaci,
+
+		Rozważmy liczbę
+		\[
+		N = \left( 2\cdot p_1\cdot \ldots\cdot p_{n} \right)^2 + 1
+		.\] 
+		Jeśli $N$ jest liczbą pierwszą, to otrzymaliśmy nową liczbę pierwszą postaci $4k + 1$. Zatem sprzeczność.
+ 
+		Jeśli $N$ nie jest liczbą pierwszą, to istnieje liczba pierwsza $q$ która dzieli $N$. Zauważmy, że
+		\begin{itemize}
+			\item $N$ jest nieparzysta, więc $q$ również musi być nieparzyste ($\neq 2$).
+			\item Dla każdego $p_{i}$, $q\neq p_{i}$, bo $p_{i}$ przy dzieleniu przez $N$ daje resztę $1$, czyli $p_{i}$ nie dzieli $N$. 
+			\item Skoro $q\mid N$, więc $N \equiv 0 \pmod{q}$, zatem
+				\[
+				\left( 2\cdot p_1\cdot \ldots\cdot p_{n} \right)^2 + 1 \equiv 0 \pmod{q} 
+				,\] 
+				czyli
+				\[	
+				\left( 2\cdot p_1\cdot \ldots\cdot p_{n} \right)^2 \equiv -1 \pmod{q} 
+				.\] 
+		\end{itemize}
+		Z lematu $1$, wynika, że kongruencja $x^2 \equiv -1 \pmod{q} $ ma rozwiązanie wtw, gdy $q \equiv 1 \pmod{4}$, zatem liczba $q$ jest liczbą pierwszą postaci $4k + 1$, która nie należy do wyjściowego zbioru. Zatem sprzeczność.
+
+		Wniosek:
+
+		Liczb pierwszych postaci $4k + 1$ jest nieskończenie wiele.
+	\end{proof} 
+
+	Z lematu 2, wiemy, że liczb pierwszych postaci $4k + 1$, z zadania 8 wiemy, że każda taka liczba wyznacza nam element rozkładalny w $\mathbb{Z}\left[ i \right] $. Zatem pośród liczb pierwszych, jest nieskończenie wiele elementów rozkładalnych $\mathbb{Z}\left[ i \right] $.
+
+
+\noindent Teraz część druga: pośród liczb pierwszych jest nieskończenie wiele elementów nierozkładalnych w $\mathbb{Z}\left[ i \right]$.
+
+Z zadania 8: 
+\[
+p \equiv 1 \pmod{4} \iff p \text{ jest rozkładalny w } \mathbb{Z}\left[ i \right] 
+.\] 
+Zatem
+\[
+	\neg\left( p \equiv 1 \pmod{4}\right) \iff p \text{ nie jest rozkładalny w } \mathbb{Z}\left[ i \right] 
+.\] 
+
+$\neg\left(p \equiv 1 \pmod{4}\right)$ oznacza, że reszta z dzielenia $p$ przez $4$ wynosi 0,2 lub 3.
+Rozważmy przypadki (zakładamy $p > 2$:
+\begin{itemize}
+	\item Przypadki $p \equiv 0 \pmod{4}$ oraz $p \equiv 2 \pmod{4}$ oznaczają, że $p$ jest parzysta, co wykluczyliśmy.
+	\item Jedyny przypadek to $p \equiv 3 \pmod{4}$.
+\end{itemize}
+\begin{lemma}[3]
+Zbiór liczb pierwszych $\mathbb{P}$ można przedstawić jako sumę rozłączną:
+\[
+\mathbb{P} = \{2\} \cup \{p \in \mathbb{P} : p \equiv 1 \pmod{4}\} \cup \{p \in \mathbb{P} : p \equiv 3 \pmod{4}\}.
+\]
+Ponadto iloczyn dowolnej liczby czynników postaci $4k+1$ jest również postaci $4k+1$. Istotnie:
+\[
+(4a + 1)(4b + 1) = 16ab + 4a + 4b + 1 = 4(4ab + a + b) + 1.
+\]
+\textbf{Wniosek:} Jeśli liczba nieparzysta $N$ jest postaci $4k+3$, to musi ona posiadać przynajmniej jeden dzielnik pierwszy postaci $4k+3$. W przeciwnym razie, gdyby wszystkie jej dzielniki pierwsze były postaci $4k+1$, ich iloczyn (czyli liczba $N$) również byłby postaci $4k+1$, co prowadzi do sprzeczności.
+\end{lemma} 
+
+Chcemy pokazać, że liczb pierwszych postaci $4k + 3$ jest nieskończenie wiele. 
+
+Załóżmy nie wprost, że istnieje skończenie wiele liczb pierwszych postaci $4k+3$. Niech tworzą one zbiór:
+\[
+S = \{p_1, p_2, \dots, p_n\}.
+\]
+Rozważmy liczbę $N$ zdefiniowaną następująco:
+\[
+N = 4p_1 p_2 \dots p_n - 1.
+\]
+Zauważmy, że $N$ można zapisać jako $4(p_1 p_2 \dots p_n - 1) + 3$, zatem $N \equiv 3 \pmod{4}$. 
+
+\noindent \textbf{Rozważmy przypadki}: 
+
+\noindent\textbf{I:}  Jeśli $N$ jest liczbą pierwszą, to otrzymaliśmy liczbę pierwszą postaci $4k+3$, która nie należy do zbioru $\{p_1,\ldots,p_{n} \} $.
+
+\noindent\textbf{II:}  Jeśli $N$ nie jest liczbą pierwszą, to istnieje liczba pierwsza $q$, taka że $q \mid N$. Następnie zauważmy, że:
+
+\begin{itemize}
+	\item $q \neq 2$, bo $N$ jest liczbą nieparzystą.
+	\item Z lematu 3, liczba $N$ musi posiadać co najmniej jeden dzielnik postaci $4k + 3$. 
+\end{itemize}
+
+Jeśli $q \in S$, to $q$ dzieli iloczyn $p_1 p_2 \dots p_n$. Skoro jednocześnie $q$ dzieli $N$, to musi ono dzielić różnicę:
+\[
+4(p_1 p_2 \dots p_n) - N = 4(p_1 p_2 \dots p_n) - (4p_1 p_2 \dots p_n - 1) = 1.
+\]
+Otrzymujemy stąd, że $q \mid 1$, co jest sprzecznością, gdyż $q$ jako liczba pierwsza musi spełniać warunek $q > 1$.
+
+Otrzymana sprzeczność dowodzi, że zbiór liczb pierwszych postaci $4k+3$ nie może być skończony.
+
+\end{solution} 
+

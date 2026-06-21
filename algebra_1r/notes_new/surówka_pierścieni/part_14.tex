@@ -1,0 +1,579 @@
+\chapter{Kontynuacja notatek chaotycznych}.
+\begin{remark}
+	Można też lokalizować pierścienie które nie są dziedzinami..
+	Niech $S\subseteq R$ będzie pierścieniem przemiennym (niekoniecznie dziedzina).
+
+	Wtedy relacja $\left( r,s \right) E \left( r',s' \right) \iff rs' = r's$ nie musi być relacją równoważności.
+
+	Mamy
+	\[
+		\left( r,s \right) \sim \left( r',s' \right) \iff \left(\exists s''\in S \right)\left( s''(rs'-r's) = \mathbf{0} \right)   
+	.\] 
+	jest relacją równoważności i $R_{S}$ jest pierścieniem.
+
+
+$\varphi : R \to R_{S} $ jest homomorfizmem ale niekończenie $,,1-1''$. $\varphi \left( r \right) = \frac{r}{\mathbf{1}} $ Twierdzenie(nazwa???) wciąż zachodzi.
+\end{remark} 
+\noindent \textbf{Przykład}
+
+$C\left( \mathbb{R}  \right) = f: \mathbb{R} \to \mathbb{R} : f \text{ jest ciągła}$
+
+Jest to pierścień przemienny z $\mathbf{1}$ ale nie dziedziną, bo:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{"funkcje.png"}
+	\caption{}
+	\label{fig:}
+\end{figure}
+
+Niech $\mathcal{I}_{\mathbf{0}} := \{f \in C\left( \mathbb{R}  \right): f\left( \mathbf{0} \right) = 0\} $. Wtedy 
+\[
+\mfaktor{C\left( \mathbb{R}  \right) }{\mathcal{I}_{0}} \cong \underbrace{\mathbb{R} }_{\text{ciało}} \implies \mathcal{I}_{0} \text{ jest pierwszy}
+.\] 
+
+Zatem $C\left( \mathbb{R}  \right)_{\mathbb{R} , \mathbf{0}} := C\left( \mathbb{R}  \right)_{\mathcal{I}_{0}}$ jest lokalizacją.
+
+$C\left( \mathbb{R}  \right) _{\mathbb{R} , 0}$ jest to pierścień \textbf{kiełków} ciągłych funkcji rzeczywistych w 0.
+
+Rozważmy \begin{align*}
+	\varphi  : C\left( \mathbb{R}  \right)  &\longrightarrow C\left( \mathbb{R}  \right) _{\mathbb{R} , 0} \\
+	f &\longmapsto \varphi  (f) = \frac{f}{\mathbf{1}}
+.\end{align*}
+
+Tutaj (bardzo nietypowe) $\varphi  $ jest epimorfizmem bo dla $\frac{f}{g}\in C_{\mathbb{R} ,0}$, $g(c) \neq \mathbf{0}$ istnieje $\mathcal{U} \ni \mathbf{0}$ i istnieje $h\in C\left( \mathbb{R}  \right) $, takie że 
+\[
+	h \restriction_{\mathcal{U}} = \frac{f}{g}\restriction_{\mathcal{U}}
+.\] 
+\begin{remark}
+	TUTAJ POTRZEBNY RYSUNEK/GRAFIKA JAK TO WYGLĄDA
+\end{remark} 
+
+Biorąc $t\in C\left( \mathbb{R}  \right) \setminus \mathcal{I}_{0}$, takie że $t\restriction_{\scriptscriptstyle \mathbb{R} \setminus \mathcal{U}} = \mathbf{0} $(TUTAJ nie wiem czy dobrze przepisane)
+
+ Mamy $t\left( gh-f \right) = \mathbf{0}$, a więc $\frac{f}{g}= \frac{h}{\mathbf{1}}= \varphi \left( h \right)  $
+
+ Podobnie $\left(\forall h_1,h_2 \in C\left( \mathbb{R}  \right)  \right) \left( \frac{h_1}{\mathbf{1}} = \frac{h_2}{\mathbf{1}} \iff \left(\exists \mathcal{U} \ni \mathbf{0} \right) \left( h_1\restriction_{\mathcal{U}} = h_2\restriction_{\mathcal{U}}  \right)  \right)  $ 
+
+ Stąd $\varphi  $ \textbf{nie} jest $,,1-1''$.
+
+ Elementy w  $C_{\mathbb{R} ,0}$ są równe $\iff $ są ,,lokalnie równe wokół zera''
+ \begin{remark}
+ 	TUTAJ GRAFIKA ILUSTRUJĄCA
+ \end{remark} 
+
+ \textbf{Stąd nazwy:}  
+ \begin{enumerate}[label=\arabic*)]
+ 	\item \textbf{kiełki} , bo istotnie jest zachowanie wokół zera, czyli to co kiełkuje,
+	\item \textbf{lokalizacja}, bo istotne jest tylko lokalne zachowanie funkcji.
+ \end{enumerate}
+
+ \section{Rozkład w pierścieniu wielomianów.}
+
+ Niech $R$ będzie UFD oraz $K=R_{0}$.
+
+ \textbf{Cel:} $R\left[ X \right] $ jest UFD.
+
+ Wiemy, że $K\left[ X \right] $ jest UFD ale:
+ \begin{enumerate}[label=\arabic*)]
+ 	\item Podpierścień pierścienia UFD nie musi być UFD, na przykład 
+		\[
+		\mathbb{Z} \left[ \sqrt{-5}  \right] \underset{\scriptscriptstyle\text{podp}}{\subseteq} \mathbb{C} \text{ jest UFD}
+		,\] 
+		ale \[
+		\mathbb{Z} \left[ \sqrt{-5}  \right] \text{ nie jest UFD}
+		.\] 
+	\item Dla $R = \mathbb{Z} , K=\mathbb{Q} $ rozważmy $2X \in \mathbb{Z} \left[ X \right] $.
+
+		Wtedy 
+		\begin{enumerate}[label=\roman*)]
+			\item $2X$ jest rozkładalny w $\mathbb{Z} \left[ X \right] $ 
+			\item  $2X$ jest nierozkładalny w $\mathbb{Q} \left[ X \right] $
+		\end{enumerate}
+		Czyli nie możemy użyć rozkładów z $\mathbb{Q} \left[ X \right] $ dla $\mathbb{Z} \left( X \right) $ 
+
+		Ale mamy $2X \underbrace{\sim  }_{\text{w } \mathbb{Q} \left[ X \right] }X$ <- nierozkładalny w $\mathbb{Z}\left[ X \right] $ 
+ \end{enumerate}
+
+ \noindent \textbf{Obserwacja:} $2X$ ,,zawiera'' 2 która ,,przeszkadza'' 
+
+ \noindent \textbf{Idea:} Z każdego $f\in R\left[ X \right] $ wyciągamy jego ,,przeszkadzającą zawartość'' i rozkładamy w $K\left[ X \right] $
+
+Niech $P$ będzie (jakimś) zbiorem reprezentantów elementów nierozkładalnych w $R$ względem relacji $\sim  $, tzn
+ \[
+\left(\forall \underbrace{r}_{\text{nierozkładalny}} \in R\right) \left(\exists ! p \in P \right) \left( r\sim p  \right) 
+.\] 
+\begin{eg}
+	\[
+	\left(\forall m\in \mathbb{Z} \setminus 0, \pm 1 \right)\left(\exists ! p_1,\ldots,p_{n}\in P \right)  
+	,\] 
+	takie że
+	\[
+	\left(\exists ! v_1,\ldots,v_{n} \in \N_{>0} \right)\left( m=\pm p_1^{v_1}\cdot \ldots \cdot p_{n}^{v_{n}} \right)  
+	.\] 
+\end{eg} 
+
+Można teraz zapisać (dopuszczając nieskończenie wiele $\mathbf{1}$ (czyli $p_{i}^{0}$ )
+\[
+\mathbb{Z} \setminus \{0\} \ni m = \pm \Pi_{p \in P} p ^{v_{p}} \text{ dla jedynek $v_{p}\in \N$}
+.\] 
+$v_{p}$ jest to \textbf{ewaluacja $p$-adyczna}  
+
+Ogólniej:
+\[
+\left(\forall a\in R\setminus \{0\}  \right)\left(\exists ! \varepsilon \in R^{\ast}  \right)\left(\exists ! \underbrace{\left( v_{p} \right)_{p\in P} }_{\in \N} \right)\left( a = \varepsilon \Pi_{p\in P} p^{v_{p}}\right)\] 
+ciąg dalszy
+\[\left(\forall a \in K\setminus \{0\}  \right)\left(\exists ! \varepsilon \in R^{\ast}  \right)  \left(\exists ! \left( \underbrace{v_{p}}_{\mathbb{Z} } \right)_{p\in P} \right)\left( a = \varepsilon \Pi _{p\in P} p^{V_{p}} \right)     
+.\] 
+
+\begin{eg}
+	$\frac{-7}{24} = \left( -1 \right) 2^{-3}3^{-1}7^{1}$, $v_{2} = -3, v_3 = -1, v_7 = 1, v_{p} = 0$ dla $p\neq 2,3,7$
+\end{eg} 
+
+\noindent \textbf{Oznaczenie:} $a = \varepsilon \Pi_{p \in P}^{v_{p}(a)}$. Wtedy $v_{p}: K\setminus \{0\} \to \mathbb{Z} $, nazywamy to ewaluacją $p$-adyczną.
+
+\begin{lemma}[Wprost z definicji UFD.]
+	Niech $a,b \in K\setminus \{\mathbf{0}\} $.
+	\begin{enumerate}[label=\arabic*)]
+		\item $a\in R \iff \left(\forall p \in P \right)\left( v_{p}(a) \ge 0 \right)  $ 
+		\item $\left(\forall p \in P \right)\left( v_{p}\left( ab \right) = v_{p}(a) + v_{p}(b) \right)  $
+	\end{enumerate}
+\end{lemma} 
+\begin{definition}
+	Dla $f = a_0 + a_1X + a_2X^2 + \ldots + a_{n} X^{n} \in K\left[ X \right] \setminus \{\mathbf{0}\} $ oraz $p \in P$:
+	\begin{enumerate}[label=\arabic*)]
+		\item $v_{p}\left( f \right) := \min \{v_{p}\left( a_0 \right) , \ldots, v_{p}\left( a_{n}  \right) \} $,
+		\item $\cont\left( f \right) := \Pi_{p\in P} p^{v_{p}(f)} \in K\setminus \{\mathbf{0}\}  $
+	\end{enumerate}
+	$\cont$ to tłumaczymy na ,,zawartość''. Jest to funkcja:
+	\[
+	\cont: K\left[ X \right] \setminus \{\mathbf{0}\} \to K\setminus \{\mathbf{0}\} 
+	.\] 
+\end{definition} 
+\begin{remark}
+	Ważne:
+	\begin{enumerate}[label=\roman*)]
+		\item $f\in \mathbb{Z} \left[ X \right] \setminus \{\mathbf{0}\} \implies \cont\left( f \right) = \text{NWD}\left( a_0,\ldots,a_{n}  \right) .$
+		\item $\cont\left( f \right) \in R^{\ast} \iff \cont\left( f \right) = 1$
+		\item $\left(\forall a \in K\left[ X \right] \setminus \{\mathbf{0}\}  \right)\left(\exists \varepsilon \in R^{\ast}  \right)\left( a = \varepsilon \cont \left( a \right)  \right)   $.
+		\item $\left(\forall a \in K\left[ X \right] \setminus \{\mathbf{0}\}  \right)\left( \cont \left( \cont \left( a \right)  \right) = \cont \left( a \right)  \right)  $
+		\item $\left(\forall a,b \in K\setminus \{\mathbf{0}\}  \right)\left( \cont \left( ab \right) = \cont \left( a \right) \cont \left( b \right)  \right)  $.
+	\end{enumerate}
+\end{remark} 
+\begin{eg}
+	Niech $R = \mathbb{Z} $.
+	\begin{itemize}
+		\item $v_2\left( 8X = \frac{2}{3} \right) = \min \{v_2\left( 8 \right) , v_2\left( \frac{2}{3} \right) \} = \min \{3,1\} = 1$
+		\item $v_2\left( 8X + \frac{2}{3} \right) = \min \{v_3\left( 8 \right) , v_3\left( \frac{2}{3} \right) \} = \min \{0, -1\} = -1$
+	\end{itemize}
+	Stąd $\cont \left( 8X + \frac{2}{3} \right) = 2^{1}\cdot 3^{-1} = \frac{2}{3}$ 
+	
+	Zauważmy: 
+	\[
+		\frac{8X + \frac{2}{3}}{\cont \left( 8X + \frac{2}{3} \right) } = 12X + 1 
+	,\]
+	a $\cont \left( 12X + 1 \right) = 1$
+\end{eg} 
+\begin{lemma}
+	Niech $f\in K\left[ X \right] \setminus \{\mathbf{0}\}, a \in K\setminus \{\mathbf{0}\}  $
+	\begin{enumerate}[label=\arabic*)]
+		\item $f \in R\left[ X \right] \iff \cont \left( f \right) \in R$,
+		\item $\cont \left( af \right) = \cont \left( a \right) \cont \left( f \right) $
+		\item \[
+		\cont \left( \frac{f}{\cont \left( f \right) } \right) = 1
+		.\] 
+	\end{enumerate}
+\end{lemma} 
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{lemma}[Guassa?]
+	\[
+	\left(\forall f,g \in K\left[ X \right] \setminus \{\mathbf{0}\}  \right)\left( \cont \left( fg \right) = \cont \left( f \right) \cont \left( g \right)  \right)  
+	.\] 
+\end{lemma} 
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{remark}
+	Dla $f = a_0 + a_1X + \ldots + a_{n} X^{n} \in R\left[ X \right] $ mamy
+	\[
+	\cont \left( f \right) = 1 \iff \left(\forall p\in P \right)\left( \neg \left( p\mid a_0 \land\ldots\land p\mid a_{n}  \right)  \right)  
+	.\] 
+\end{remark} 
+\begin{corollary}
+      Niech $f\in R\left[ X \right] \setminus R$. Wtedy następujące warunki są równoważne:
+      \begin{enumerate}[label=\arabic*)]
+      	\item $f$ jest nierozkładalny w $R\left[ X \right] $.
+	\item $f$ jest nierozkładalny w $K\left[ X \right] $ i $\cont \left( f \right) = 1$
+      \end{enumerate}
+\end{corollary}
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{theorem}[Gaussa]
+	$R$ jest UFD $\implies R\left[ X \right] $ jest UFD
+\end{theorem} 
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{corollary}
+\begin{enumerate}[label=\arabic*)]
+	\item $\mathbb{Z} \left[ X_1,\ldots,X_{n}  \right] $ jest UFD (co dalej?)
+	\item $K\left[ X_1,\ldots,X_{n}  \right] $ jest UFD ($K$ jest ciałem)
+	\item $R\left[ X_1,\ldots,X_{n}  \right] $ jest UFD ($R$ jest UFD)
+	\item Pierścień $\mathbb{Z} \left[ X_1,\ldots \right] $ jest UFD, ale nie jest noetherowski
+\end{enumerate}	
+\end{corollary}
+\section{Kryterium Eisensteina (w notatkach była Einsteina, to  chyba pomyłka)}
+Niech $R$ będzie UFD, $K = R_0$, $f = a_0 + a_1X + \ldots + a_{n}X^{n}\in R\left[ X \right] $. Ponadto niech $p$ będzie elementem nierozkładalnym w $R$. Załóżmy, że 
+\[p\mid a_0,\ldots, p\mid a_{n-1}, p\nmid a_{n} , p^2\nmid a_{n} .\]
+Wtedy $f$ jest nierozkładalny w  $K\left[ X \right] $.
+
+\begin{remark}
+	\[
+	p\nmid a_{n} \implies a_{n} \neq \mathbf{0} \text{deg}(f) = n
+	.\] 
+	oraz
+	\[
+	p\nmid a_{n} \text{ i } p\mid a_0 \implies n>0
+	.\] 
+\end{remark} 
+\begin{remark}
+	$f$ może być nierozkładalny w $R\left[ X \right] $, bo nie mamy kontroli nad $\cont \left( f \right) $.
+
+	($f$ nierozkładalny w $R\left[ X \right] \implies \cont \left( f \right) = 1$ )
+\end{remark} 
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{eg}
+	Niech $n \in \N_{>0}$ oraz $p\in \mathbb{P}$
+	\begin{enumerate}[label=\arabic*)]
+		\item $X^{n}-p$ jest nierozkładalny w $\mathbb{Q} \left[ X \right] $ i w $\mathbb{Z} \left[ X \right] $
+		\item $X^{p-1} + \ldots + X + \mathbf{1}$ jest nierozkładalny w $\mathbb{Q} \left[ X \right] $ i w $\mathbb{Z} \left[ X \right] $
+	\end{enumerate}
+\end{eg} 
+\section{Kryterium związane z pierwiastkami.}
+Niech $f\in K\left[ X \right] $, $\text{deg}\left( f \right) \in \{1,2,3\} $. Wtedy 
+\[
+f \text{ jest nierozkładalne } \iff f  \text{ nie ma pierwiastków w } K
+.\] 
+
+\begin{definition}[NWD oraz NWW]
+	Niech $R$ będzie dziedziną oraz $a,b \in R$.
+	\begin{enumerate}[label=\arabic*)]
+		\item NWD: $c\in R$ jest \textbf{największym wspólnym dzielnikiem } (w $R$ ) $a$ i $b$, gdy
+			\begin{enumerate}[label=\roman*)]
+				\item $c\mid a$ oraz $c\mid b$,
+				\item $\left(\forall d\in R \right)\left( d\mid a \land d\mid b \implies d\mid c \right)  $
+			\end{enumerate}
+		\item NWW: $c\in R$ jest \textbf{najmniejszą wspólną wielokrotnością} (w $R$ ) $a$ i $b$, gdy
+			\begin{enumerate}[label=\roman*)]
+				\item $a\mid c$ oraz $b\mid c$,
+				\item $\left(\forall d\in R \right)\left( a\mid d \land b\mid d \implies c\mid d \right)  $
+			\end{enumerate}
+	\end{enumerate}
+\end{definition} 
+
+\begin{remark}
+	\begin{enumerate}[label=\arabic*)]
+		\item Jeśli $c$ i $c'$ są $\text{NWD}\left( a,b \right) $, $c\sim c' $. Analogicznie dla $\text{NWW}\left( a,b \right) $
+		\item Jeśli $c$ jest $\text{NWD}\left( a,b \right) $ oraz $c\sim c' $ to $c'$ jest też $\text{NWD}\left( a,b \right) $. Podobnie dla $\text{NWW}\left( a,b \right) $
+		\item Z 1) i 2)  $\implies$ NWD oraz NWW są wyznaczone z dosadnością do relacji $\sim  $ (jeśli w ogóle istnieją).
+
+			NWW i NWD odnoszą się do relacji podzielności $\mid $ (????)
+		\item Jeżeli $R = \mathbb{Z} $ oraz wybieramy NWD dodatni to jest on wyznaczony jednoznacznie. Podobnie NWW.
+	\end{enumerate}
+\end{remark} 
+\begin{fact}
+
+	Dla $c\in R$ mamy:  $c$ jest $\text{NWD}\left( a,b \right)  \iff \left( c \right) = (a)\cap (b)$
+\end{fact}
+\begin{proof}
+	 TODO
+\end{proof} 
+\begin{fact}
+
+	\[
+		(c) = (a,b) \implies c \text{ jest } \text{NWD}\left( a,b \right)  
+	.\] 
+\end{fact}
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{fact}
+
+	Jeśli $R$ jest PID, to $c$ jest $\text{NWD}\left( a,b \right) \iff \left( c \right) = \left( a,b \right) $
+\end{fact}
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{fact}
+Mamy:
+
+\begin{itemize}
+	\item 	$R \text{ jest UFD } \implies \left(\exists c \right)\left(c \text{ jest } \text{NWD}\left( a,b \right)\right)$
+	\item $R \text{ jest UFD } \implies \left(\exists c' \right)\left( c' \text{ jest }\text{NWW}\left( a,b \right)  \right)  $
+	\item $cc' \sim ab $
+\end{itemize}
+\end{fact}
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{remark}
+	\begin{enumerate}[label=\arabic*)]
+		\item $R:=\mathbb{R} \left[ X,Y \right] $. Wtedy $\mathbf{1}$ jest $\text{NWD}\left( X,Y \right) $, ale $\left( \mathbf{1} \right) \neq \left( X,Y \right) $ fakt (któryś tam??) nie uogólnia się na UFD
+		\item Istnieją pierścienie $R$ i $a,b \in R$ bez $\text{NWD}\left( a,b \right) $ i bez $\text{NWW}\left( a,b \right) $ 
+	\end{enumerate}
+\end{remark} 
+\begin{proof}
+	TODO
+\end{proof} 
+\section{Algorytm Euklidesa}
+
+Poznamy inny sposób niż w fakcie (4?) na znajdowanie NWW i NWD w pierścieniach euklidesowych.
+
+\noindent \textbf{Algorytm Euklidesa} 
+
+Niech $v: R\setminus \{\mathbf{0}\} \to \N$ będzie normą euklidesową oraz $a,b\in R$ i $b\neq 0$. Szukamy $\text{NWD}\left( a,b \right) $. Przy okazji otrzymamy też $\text{NWW}\left( a,b \right) $.
+
+\noindent \textbf{Krok 1.}: dzielimy $a$ przez $b$ z resztą.
+
+\[
+\left(\exists q_1,r_1 \right)\left( a=bq_1+r_1 \text{ oraz } \left( v\left( r_1 \right) < v\left( r_2 \right) \lor r_1 = 0 \right) \right)  
+.\] 
+Mamy:
+\[
+a = bq_1+r_1 \implies \left( a,b \right) = \left( b,r_1 \right) \overset{\text{fakt 3?}}{=} \left(\forall c\in R \right)\left( c \text{ jest }\text{NWD}\left( a,b \right) \iff c \text{ jest } \text{NWD}\left( b,r_1 \right)  \right)  
+.\] 
+
+$\text{NWD}\left( a,b \right) = \text{NWD}\left( b,r_1 \right) $-start
+\begin{itemize}
+	\item Jeśli $r_1 = 0 $ to $b\mid a$ i mamy $b$ jest $\text{NWD}\left( a,b \right) $.
+	\item Jeśli $r_1\neq 0$ to \textbf{Krok 2.} 
+\end{itemize}
+
+\noindent \textbf{Krok 2.:} dzielimy $b$ przez $r_1$ z resztą.
+
+\[
+\left(\exists q_2,r_2 \right) \left( b = r_1q_2 + r_2  \text{ oraz } \left( v\left( r_2 \right) < v\left( r_1\right)  \lor r_2 = 0 \right) \right) 
+.\] 
+Jak w \textbf{Kroku 1.:} $\text{NWD}\left( b,r_1 \right) = \text{NWD}\left( r_1,r_2 \right) $ 
+\begin{itemize}
+	\item Jeśli $r_2 = 0$ to $r_1$ jest $\text{NWD}\left( r_1,r_2 \right) $.
+	\item Jeśli $r_2\neq 0$ to \textbf{Krok 3.} 
+\end{itemize}
+
+\noindent \textbf{Krok 3.:} $r_1$ dzielimy przez $r_2$ z resztą, i tak dalej\ldots
+Dostajemy ciąg: $r_1: = a$, $r_0 = ??$, $r_1,r_2,\ldots,r_{n} = 0$ 
+\[
+v\left( r_0 \right) > v\left( r_1 \right) > v\left( r_2 \right) > \ldots \text{ (liczby naturalne) }
+.\] 
+Jeśli $r_{n-1}\neq 0$ i $r_{n} = 0$, to $r_{n-1}$ jest $\text{NWD}\left( a,b \right) $
+
+\noindent \textbf{Przykłady:}
+\begin{enumerate}[label=\arabic*)]
+	\item $R = \mathbb{Z} $, $v = \left| \cdot  \right| $, $a = 154, b = 42$ 
+		\begin{itemize}
+			\item $ \underbrace{154}_{a} = 3\cdot \underbrace{42}_{b} + \underbrace{28}_{r_1}$
+			\item $\underbrace{42}_{b} = 1\cdot \underbrace{28}_{r_1}+ \underbrace{14}_{r_2}$ 
+			\item $\underbrace{28}_{r_1} = 2\cdot \underbrace{14}_{r_2} + \underbrace{0}_{r_3}$
+		\end{itemize}
+		Zatem $14$ jest $\text{NWD}\left( a,b \right) $ 
+	\item $R = \mathbb{Q} \left[ X \right] $, $v = \text{deg}$, $a = X^3-3X^2 + 3X -1$, $b= X^2-1$ 
+		\begin{itemize}
+			\item $a = \left( X-3 \right) \left( X^2-1 \right) + 4X - 4$
+			\item $X^2 - 1 = \frac{1}{4}\left( X + 1 \right) \left( 4X - 4 \right) + 0$
+		\end{itemize}
+		Zatem $4X-4$ jest $\text{NWD}\left( a,b \right) $.
+	\item $R = \mathbb{Z} \left[ i \right] $, $v = \left| \cdot  \right| ^2$, $a = 3-5i$, $b = 1-3i$. 
+		\begin{itemize}
+			\item $3-5i = 2\left( 1-3i \right) + \left( 1+i \right) $
+			\item $1-3i = -\left( 1+2i \right)\left( 1+i \right) + 0  $ 
+			\item (nie wiem po co ten krok): $2 = \left| 1+i \right| ^2 < \left| 1+3i \right|^2 = 10 $
+		\end{itemize}
+		Zatem $1+i$ jest $\text{NWD}\left( a,b \right) $
+\end{enumerate}
+\section{Chińskie twierdzenie o resztach.}
+Niech $R$ będzie pierścieniem przemiennym z $\mathbf{1}$, $a,b \in R$, $\mathcal{I},\mathcal{J},\mathcal{J}' \unlhd R$.
+
+Mamy 'odpowiedniości':
+\begin{itemize}
+	\item $\mathcal{I}\cap \mathcal{J}$ oraz NWW
+	\item $\mathcal{I}+ \mathcal{J}$ oraz NWD
+	\item $\left( \{cd: c\in \mathcal{I} \text{ oraz } d\in \mathcal{J}\}  \right) =: \mathcal{I}\mathcal{J}$ oraz $\cdot $ (??)
+\end{itemize}
+\begin{definition}
+	\begin{enumerate}[label=\arabic*)]
+		\item $\mathcal{I},\mathcal{J}$ są względnie pierwsze, gdy $\mathcal{I}+\mathcal{J} = R$
+		\item $a,b$ są względnie pierwsze, gdy $\left( a,b \right) = R$
+	\end{enumerate}
+\end{definition} 
+\begin{remark}
+	\begin{enumerate}[label=\arabic*)]
+		\item Jeśli $a,b$ są względnie pierwsze, to $\mathbf{1}$ jest $\text{NWD}\left( a,b \right) $.
+		\item $R$ jest PID $\implies \left( a,b \text{ są względnie pierwsze} \iff \mathbf{1} \text{ jest } \text{NWD}\left( a,b \right)  \right)$ 
+		\item $\mathbf{1}$ jest $\text{NWD}\left( X,Y \right) $ w $\mathbb{R} \left[ X,Y \right] $, ale $X$ i $Y$ nie są względnie pierwsze w $\mathbb{R} \left[ X,Y \right] $
+	\end{enumerate}
+\end{remark} 
+\begin{lemma}
+	\begin{enumerate}[label=\arabic*)]
+		\item $\mathcal{I}\mathcal{J} \subseteq \mathcal{I} \cap \mathcal{J} \subseteq \mathcal{I}$,  $\mathcal{J}\subseteq \mathcal{I}+\mathcal{J}$ 
+		\item $\mathcal{I}\cdot \left( \mathcal{J}+ \mathcal{J}' \right) = \mathcal{I}\mathcal{J}+ \mathcal{I}\mathcal{J}'$
+		\item $\left( \mathcal{I}\mathcal{J} \right) \mathcal{J}' = \mathcal{I}\left( \mathcal{J}\mathcal{J}' \right) $
+	\end{enumerate}
+\end{lemma} 
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{definition}[Chińskie twierdzenie o resztach]
+	Niech $\mathcal{I}_{1}, \mathcal{I}_{2},\ldots, \mathcal{I}_{S}\unlhd R$, takie że $\left(\forall i\neq j \right)\left( \mathcal{I}_{i}+ \mathcal{I}_{j} =R \right)  $ (ideały są parami względnie pierwsze)
+
+	Wtedy:
+	\begin{enumerate}[label=\arabic*)]
+		\item $\mathcal{I}_{1} \cap \mathcal{I}_{2} \cap \ldots \cap \mathcal{I}_{S} = \mathcal{I}_{1}\cdot \mathcal{I}_{2} \cdot \ldots\cdot * \mathcal{I}_{S}$
+		\item Homomorfizm $\varphi : \mfaktor{R}{\mathcal{I}_{1}} \times \mfaktor{R}{\mathcal{I}_{2}} \times \ldots \times \mfaktor{R}{\mathcal{I}_{S}}  $ zadany wzorem
+			\[
+			\varphi \left( r \right) = \left( r + \mathcal{I}_{1},\ldots, r+\mathcal{I}_{S} \right) 
+			,\] 
+			jest ,,na'' oraz $\ker(\varphi  ) = \mathcal{I}_{1} \cap \ldots \cap \mathcal{I}_{S}$. Stąd
+
+			\[
+			\mfaktor{R}{\mathcal{I}_{1}\cap \ldots \cap \mathcal{I}_{S}} \cong \mfaktor{R}{\mathcal{I}_{1}} \times \ldots\times \mfaktor{R}{\mathcal{I}_{S}} 
+			.\] 
+	\end{enumerate}
+\end{definition} 
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{corollary}[Klasyczne CTR]
+	Weźmy $n_1,n_2,\ldots,n_{\scriptscriptstyle S} \in \N_{>0}$ parami względnie pierwsze.
+
+	Wtedy $\left(\forall a_1,\ldots,a_{\scriptscriptstyle S}\in \N \right)\left(\exists ! x_0\in \{0,1,\ldots,n_1\cdot \ldots\cdot n_{S-1}\}  \right)  $, takie że
+	\[
+		\left( \ast  \right) = \begin{cases}
+			x_0 \equiv &a_1 \pmod{n_1} \\
+			x_0 \equiv &a_2 \pmod{n_2} \\
+			     &\vdots \\
+			x_0 \equiv &a_{\scriptscriptstyle S} \pmod{n_{\scriptscriptstyle S}} 
+		\end{cases}
+	.\] 
+	Ponadto zbiór wszystkich rozwiązań $\left( \ast  \right) $ to
+	\[
+	\{x\in \mathbb{Z} : x \equiv x_0 \pmod{n_1\cdot n_2\cdot \ldots\cdot n_{\scriptscriptstyle S}} \} = \{k\cdot n_1\cdot \ldots n_{\scriptscriptstyle S} + x_0: k\in \mathbb{Z} \} 
+	.\] 
+\end{corollary}
+\begin{proof}
+	TODO
+\end{proof} 
+\noindent \textbf{Przykłady:} 
+\begin{enumerate}[label=\arabic*)]
+	\item $n\in \N$ oraz $n=p_1^{\alpha_1}\cdot \ldots \cdot p_{s}^{\alpha_{s}}$ CTR $\implies$
+		\[
+		\mathbb{Z} _{n} \cong \mfaktor{\mathbb{Z} }{(n)} \overset{\cong }{\text{CTR}} \mfaktor{\mathbb{Z} }{\underbrace{p_1^{\alpha_1}}_{\mathcal{I}_{1}}} \times \ldots \times \mfaktor{\mathbb{Z} }{\underbrace{p_{s}^{\alpha_{s}}}_{\mathcal{I}_{s}}} \cong \mathbb{Z} p_1^{\alpha_1} \times \ldots \times \mathbb{Z}_{p_{s}^{\alpha _{s}}}  
+		.\] 
+	\item Ogólniej: Niech $R$ będzie PID   oraz $a = p_1^{\alpha_1}\cdot \ldots \cdot p_{k}^{\alpha_{k}}$ -rozkład na czynniki nierozkładalne
+		\[
+		\mfaktor{R}{(a)} \overset{\cong }{\text{CTR}} \mfaktor{R}{\left( p_1^{\alpha_1} \right) } \times \ldots \times \mfaktor{R}{\left( p_{k}^{\alpha_{k}} \right) } 
+		.\] 
+	\item Dla $R$ będącego UFD, 2) nie może zachodzić, np
+		\[
+		\mfaktor{\underbrace{\overbrace{\mathbb{R} }^{K}\left[ X,Y \right] }_{\text{UFD}}}{(XY)} \not\cong \mfaktor{\overbrace{\mathbb{R} }^{K}\left[ X,Y \right] }{(X)} \times \mfaktor{\overbrace{\mathbb{R} }^{K}\left[ X,Y \right] }{(Y)} \cong \overbrace{\mathbb{R} }^{K}\left[ Y \right] \times \overbrace{\mathbb{R} }^{K}\left[ X \right] 
+		.\] 
+		\begin{proof}
+			Jako zadanie.
+			Informacja: $X^3+X = X\left( X^2+1 \right) $
+		\end{proof} 
+	\item $\mfaktor{\mathbb{R} \left[ X \right] }{\left( X^3+X \right) } \cong \mfaktor{\mathbb{R} \left[ X \right] }{\left( X \right) } \times \mfaktor{\mathbb{R} \left[ X \right] }{\left( X^2+1 \right) } \cong \mathbb{R} \times \mathbb{C} $
+	\item 
+		\[\left( X \right) + \left( X+1 \right) = \mathbb{Z} \left[ X \right]\] 
+		a to implikuje
+		\[
+		\implies \mfaktor{\mathbb{Z} \left[ X \right] }{\left( X^2+X \right) } \cong \mfaktor{\mathbb{Z} \left[ X \right] }{\left( X \right) } \times \mfaktor{\mathbb{Z} \left[ X \right] }{\left( X \right) } \times \mfaktor{\mathbb{Z} \left[ X \right] }{\left( X+1 \right) } \cong \mathbb{Z} \times \mathbb{Z} .\]
+
+		bo $X^2+X= X\left( X+1 \right) $
+\end{enumerate}
+\section{Charakterystyka i pierścienie skończone.}
+Niech $R$ będzie pierścieniem przemiennym z $\mathbf{1}$.
+
+\begin{definition}[Charakterystyka.]
+	$\text{char}\left( R \right) = \begin{cases}
+		0, \text{ gdy }& \text{rząd}\left( \mathbf{1} \right) \text{ w } \left( R, + \right) \text{ to } \infty \\
+                n, \text{ gdy }& \text{rząd}\left( \mathbf{1} \right) \text{ w } \left( R, + \right) \text{ to } n\in \N
+	\end{cases}$
+\end{definition} 
+\noindent \textbf{Przykłady:}
+\begin{enumerate}[label=\arabic*)]
+	\item $\text{char}\left(\mathbb{Z} \right) = 0$.
+	\item $\text{char}\left(\mathbb{Z} _{n} \right) = n$.
+	\item $\text{char}\left(\mathbb{Z} _{n} \left[ X \right] \right) = n.$
+	bo: $n = k\cdot l$, $k,l > 1 \implies k,l <n$. Zatem $0 = n\cdot 1 = \underbrace{ \left( k\cdot 1 \right) }_{\neq 0} \underbrace{\left( l\cdot 1 \right) }_{\neq 0}$
+\end{enumerate}
+\begin{fact}
+
+	Niech $n\in \N$. Wtedy
+	\[
+	\text{char}\left(R\right) = n \iff \text{ istnieje monomorfizm }\varphi :\mathbb{Z} _{n} \to R \text{ zachowujący $\mathbf{1}$}  
+	.\] 
+	$(\mathbb{Z}_{0} = \mathbb{Z} )$
+\end{fact}
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{corollary}
+
+	$R$ jest dziedziną $\implies \text{char}\left(R\right) = 0$ lub $\text{char}\left(R\right) = p \in \mathbb{P} $
+\end{corollary}
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{fact}
+
+	Niech $\text{char}\left(R\right) = p\in \mathbb{P} $ oraz $a,b \in R$. Wtedy
+	\[
+		\left( a+b \right) ^{p} = a^{p} + b^{p}
+	.\] 
+\end{fact}
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{corollary}
+
+	Załóżmy, że $\text{char}\left(R\right) = p \in \mathbb{P} $. Definiujemy $F_{r}: R \to R$, $F_{r}\left( r \right) := r^{p}$.
+
+	Wtedy $F_{r}$ jest homomorfizmem zwanym \textbf{funkcją Frobieniusa.} 
+\end{corollary}
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{theorem}
+	$K$ jest ciałem skończonym $\implies \left| K \right| $ jest potęgą liczby pierwszej.
+\end{theorem} 
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{theorem}
+	\begin{enumerate}[label=\arabic*)]
+		\item $\left(\forall p \in \mathbb{P}  \right)\left(\forall n \in \N_{>0} \right)\left( \text{istnieje ciało mocy } p^{n} \right)   $ 
+		\item $K_1, K_2$ jest ciałem skończonym, wtedy $\left| K_1 \right| = \left| K_2 \right| \iff K_1\cong K_2$
+	\end{enumerate}
+	$\mathbb{F} _{p^{n}}$ jest ciałem skończonym o mocy $p^{n}$ (jedyne z dokładnością do izomorfizmu)
+\end{theorem} 
+\begin{remark}
+	$\mathbb{F} _{p} \cong \mathbb{Z} _{p}$, ale dla $n>1$ mamy $\mathbb{F}_{p^{n}} \not\cong \mathbb{Z} _{p^{n}} $
+\end{remark} 
+\begin{eg}
+	Niech $f\in \mathbb{Z} _{p}\left[ X \right] $ - wielomiany nierozkładalne stopnia $n$. Wtedy
+	\[
+	\mathbb{F} _{p^{n}} \cong  \mfaktor{\mathbb{Z} _{p}\left[ X \right] }{\left( f \right) } 
+	.\] 
+\end{eg} 
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{theorem}
+	Niech $K$ będzie ciałem, $A\le K^{\ast} $, $A$ jest skończona $\implies$ $A$ jest cykliczna.
+\end{theorem} 
+\begin{proof}
+	TODO
+\end{proof} 

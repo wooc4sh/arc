@@ -1,0 +1,194 @@
+\chapter{Zadania do rozdziału pierwszego.}
+
+\section{Rodziny zbiorów.}
+
+\begin{lemma}[Grupa abelowa $(A, \Delta)$.]
+Niech $X$ będzie rodziną zbiorów oraz $\Delta $ oznacza różnicę symetryczną dwóch zbiorów. Wtedy
+\[
+	\left( X , \Delta  \right) 
+,\] 
+jest grupą abelową, z działaniem $\Delta $.
+\end{lemma} 
+\begin{proof}
+	\noindent Zauważmy, że zachodzi tożsamość
+	\[
+	\chi_{A \Delta B} = \chi_{A} +_{\scriptscriptstyle \mathbb{Z}_2} \chi_{B}
+	,\] 
+	gdzie
+	\begin{itemize}
+		\item $\chi_{A \Delta B}$ jest funkcją charakterystyczną zbioru $A \Delta B$,
+		\item $+_{\scriptscriptstyle \mathbb{Z} _{2}}$ jest dodawaniem grupie $\mathbb{Z}_{2}$.
+	\end{itemize}
+	\noindent \textbf{Uzasadnienie:}
+
+	Różnica $A \Delta B$ zawiera dokładnie te elementy, które należą dokładnie do jednego ze zbiorów i.e. 
+	\begin{itemize}
+		\item jeśli $x\in A \cap B$, to $\chi_{A \Delta B} = 0 = 0 +_{\scriptscriptstyle \mathbb{Z} _{2}} 0 \chi_{A} +_{\scriptscriptstyle \mathbb{Z} _{2}} \chi_{B}$,
+		\item jeśli $x\in A \setminus  B$, to $\chi_{A \Delta B} = 1 = 1 +_{\scriptscriptstyle \mathbb{Z} _{2}} 0 \chi_{A} +_{\scriptscriptstyle \mathbb{Z} _{2}} \chi_{B}$,
+		\item jeśli $x\in B \setminus  A$, to $\chi_{A \Delta B} = 1 = 0 +_{\scriptscriptstyle \mathbb{Z} _{2}} 1 =  \chi_{A} +_{\scriptscriptstyle \mathbb{Z} _{2}} \chi_{B}$
+		\item jeśli $x\not\in A\cup B$, to $\chi_{A \Delta B} = 0 = 0 +_{\scriptscriptstyle \mathbb{Z} _{2}} 1 =  \chi_{A} +_{\scriptscriptstyle \mathbb{Z} _{2}} \chi_{B}$
+	\end{itemize}
+
+	\noindent Niech $\text{Fun}\left( X, \mathbb{Z} _{2} \right) $ oznacza zbiór wszystkich funkcji $f: x \to \mathbb{Z} _{2}$. Zdefiniujmy funkcję $\varphi : \mathcal{P}(X) \to \text{Fun}(X, \mathbb{Z} _{2}) $ wzorem \[
+	\varphi \left( A \right) = \chi_{A}
+	.\] Funkcja $\varphi  $ jest bijekcją.
+
+	\textbf{Uzasadnienie:}
+	\begin{itemize}
+		\item ,,1-1'': Ustalmy dowolne $A,B \in \mathcal{P}(X) $, takie że $A\neq B$. Wtedy $\chi_{A} \neq \chi_{B}$, czyli $\varphi \left( A \right) \neq \varphi \left( B \right)   $
+		\item $,,\text{na}''$ : Ustalmy dowolną funkcję $f: X \to \mathbb{Z} _{2}$. Rozważmy zbiór $B = \{x \in X: f\left( x \right)  = 1\} $, wtedy $\varphi (B) = \chi_{B} = f$.
+
+			\textbf{Dlaczego?} Dziedziną funkcji $f$ jest $X$. Zbiór $B$ to zbiór argumentów z $X$ dla których $f(x) = 1$. Ponieważ przeciwdziedziną funkcji  $f$ jest $\mathbb{Z} _{2}$, więc dla argumentów spoza $B$ $f$ przyjmuje wartość 0. Zatem $\chi_{B}$ jednoznacznie odtwarza nam zachowanie funkcji $f$.
+	\end{itemize}
+
+	Ponieważ $\varphi  $ jest bijekcją oraz zachowuje strukturę działania- $\varphi \left( A\Delta B \right) = \varphi \left( A \right) +_{\scriptscriptstyle \mathbb{Z} _{2}}\varphi \left( B \right)$- więc $\varphi  $ jest \textbf{izomorfizmem} między strukturą $\left( P\left( X \right) , \Delta  \right) $ oraz $\text{Fun}\left( X, \mathbb{Z} _{2} \right) $. Zatem działanie $\Delta $ w $\mathcal{P}(X) $ zachowuje się tak jak $+_{\scriptscriptstyle \mathbb{Z} _{2}}$- jest łączne i przemienne. Struktura $\left( \mathcal{P}(X), \Delta \right) $ jest zatem grupą abelową. 
+\end{proof} 
+\begin{problem}[1.10.1]
+	Niech $\mathcal{R}$ będzie pierścieniem zbiorów.
+	\begin{enumerate}[label=\arabic*)]
+		\item Zauważyć, że jeśli $A,B \in \mathcal{R}$ to $A\Delta B \in \mathcal{R}$ oraz $A\cap B\in \mathcal{R}$.
+		\item Sprawdzić, że $\left( \mathcal{R},\Delta, \bigcap  \right) $, jest pierścieniem (w sensie Algebry), w szczególności, że działanie:
+			\begin{itemize}
+				\item $\Delta $ jest łączne,
+				\item $\bigcap $ jest rozdzielne względem działania $\bigcap $.
+			\end{itemize}
+	\end{enumerate}
+\end{problem} 
+\begin{solution}
+
+	Ustalmy pierścień zbiorów $\mathcal{R}$ i dowolne $A,B \in \mathcal{R}$. Z definicji $\Delta $ :
+	\[
+	A\Delta B = A\setminus B \cup B\setminus A.
+	.\] 
+	
+	Z definicji pierścienia wiemy iż jest on zamknięty na różnicę oraz sumy zbiorów. Więc, $A\Delta B\in \mathcal{R}$.
+
+	Pierścień algebraiczny, jest to zbiór $R$, wyposażony w dwa działania:
+	\begin{itemize}
+		\item Addytywny (dodawanie) oznaczane $+$
+		\item  Multiplikatywne (mnożenie) oznaczane $\cdot $.
+	\end{itemize}
+	który spełnia poniższe warunki:
+	\begin{enumerate}[label=A\arabic*.]
+		\item $(R, +) $ jest grupą abelową.
+		\item Działanie  $\cdot $ jest łączne.
+		\item  Działanie $\cdot $ jest rozdzielne względem działania $+$.
+	\end{enumerate}
+
+Sprawdźmy zatem te warunki.
+
+\begin{enumerate}[label=A\arabic*.]
+	\item $\left( \mathcal{R}, \Delta  \right) $ jest grupą abelową, co pokazaliśmy powyższym lematem.
+	\item $\cap $ jest łączne, jest to fakt oczywisty.
+	\item Rozdzielność $\cap $ względem $\Delta $.
+
+		\noindent \textbf{I sposób:
+		} 
+		Rozpisując obie strony, mamy z lewej
+       \begin{align*}
+	       L &= A\cap \left( B\Delta C \right) \\
+		 &= A \cap \left[ \left(B\setminus C\right) \cup \left(C\setminus B\right) \right] \\ 
+		 &= \left[ A\cap \left(B\setminus C\right) \right] \cup \left[ A\cap \left(C\setminus B\right) \right] \\
+		 &= \left[ \left(A \cap B\right)\setminus C \right] \cup \left[ \left( A\cap C \right)\setminus B  \right] \\
+		 &= \left(A \cap B \cap C^{c} \right) \cup \left(A \cap C \cap B^{c}\right) \\
+		 &= A \cap \left[ \left(B\cap C ^{c}\right) \cup \left(C\cap B^{c}\right) \right]
+       ,\end{align*}
+       natomiast z prawej 
+       \begin{align*}
+	       P &= \left( A\cap B \right) \Delta \left( A\cap C \right) \\ 
+		 &= \left[ \left(A\cap B\right) \setminus \left(A\cap C\right) \right] \cup \left[ \left(A\cap C\right) \setminus \left(A\cap B\right)  \right] \\
+		 &=\left[ A\cap B \cap \left(A\cap C\right)^{c} \right] \cup \left[ A\cap C \cap \left(A\cap B\right)^{c} \right] \\
+		 &= A\cap \left[ (B\cap (A\cap C)^{c}) \cup  (C \cap (A\cap B)^{c}) \right] \\ 
+		 &= \left[A \cap \left( (B \cap A^{c}) \cup (B \cap C ^{c}) \right) \right] \cup \left(A \cap \left( (C \cap A^{c}) \cup (C \cap B^{c}) \right) \right) \\
+		 &=\left(\underbrace{A \cap (B \cap A^{c})}_{\emptyset } \cup A \cap (B \cap C ^{c}) \right) \cup \left(\underbrace{A \cap (C \cap A^{c})}_{\emptyset } \cup A \cap (C \cap B^{c}) \right) \\
+		 &= A \cap (B \cap C ^{c}) \cup A \cap (C \cap B^{c}) = A \cap \left( (B \cap C ^{c})\cup (B^{c} \cap C)   \right)
+       .\end{align*}
+\end{enumerate}
+
+\noindent \textbf{II sposób}
+
+\begin{remark}
+	Tutaj zrobimy to w sposób taki, że rozszerzmy nasze rozumowanie na pierścień Boolowski- TODO, jak ogarniemy algebrę.
+\end{remark} 
+\end{solution} 
+\begin{problem}[10.1.2]
+	Niech $\mathcal{F}$ będzie taką rodziną podzbiorów $X$, że $X\in \mathcal{F}$ oraz $A\setminus B\in \mathcal{F}$, dla $A,B \in \mathcal{F}$. Sprawdzić, że $\mathcal{F}$ jest ciałem.
+\end{problem} 
+ \begin{solution}
+	Przy założeniach z treści zadania, zauważmy, że
+	\begin{itemize}
+                \item $X\in \mathcal{F}$.	
+		\item $\emptyset = X\setminus X$, dla $A \in \mathcal{F}$.
+		\item Dla dowolnych $A,B \in \mathcal{F}$, mamy $ A\cup B = X \setminus  \left( (X\setminus A) \setminus B  \right)   = A\cup B$
+	\end{itemize}
+\end{solution} 
+\begin{problem}[10.1.3]
+	Zauważyć, że ciała i pierścienie są zamknięte na przekroje.
+\end{problem} 
+\begin{solution}
+	TU INDUKCJA + de Morgan
+\end{solution} 
+\begin{problem}[10.1.4]
+	Zauważyć, że \textbf{operacje generowania zachowują monotoniczność}. 
+
+	Dokładniej, to zauważyć, że jeśli $\mathcal{F}\subseteq \mathcal{G}\subseteq \mathcal{P}(X) $ to zachodzą odpowiadające zawierania:
+	\begin{enumerate}[label=\arabic*)]
+		\item $r\left( \mathcal{F} \right) \subseteq r\left( \mathcal{G} \right) $,
+		\item $s\left( \mathcal{F} \right) \subseteq s\left( \mathcal{G} \right) $,
+		\item $a\left( \mathcal{F} \right) \subseteq a\left( \mathcal{G} \right) $,
+		\item $\sigma \left( \mathcal{F} \right) \subseteq \sigma \left( \mathcal{G} \right) $.
+	\end{enumerate}
+\end{problem} 
+\begin{solution}
+	Załóżmy, że $\mathcal{F} \subseteq \mathcal{G} \subseteq \mathcal{P}(X) $. Chcemy pokazać zawieranie odpowiednich generatorów. 
+	
+	Dla uproszczenia zapisu, przyjmijmy, że nasz celo to  
+	 \[
+	\alpha \left( \mathcal{F} \right) \subseteq \alpha \left( G \right) 
+	,\] 
+	gdzie $\alpha \in \{r,s,a,\sigma \} $
+	
+	Rozważmy odpowiednie przypadki:
+	\begin{enumerate}[label=\arabic*)]
+		\item $\alpha = r$:
+
+		Od początku.
+
+		Mamy rodziny zbiorów $\mathcal{F}$ oraz $\mathcal{G}$. Wiemy, że $\mathcal{F}\subseteq \mathcal{G}$. 
+
+		Z definicji $r\left( \mathcal{F} \right) $, jest to najmniejszy pierścień zawierający $\mathcal{F}$.
+
+		Zdefiniujmy zbiór $S = \{ H: H  \text{ jest pierścieniem oraz }  \mathcal{G} \subseteq H \}.$
+
+		Zauważmy, że w zbiorze $S$ są tylko pierścienie, które zawierają $\mathcal{G}$. Ponieważ $\mathcal{F} \subseteq \mathcal{G}$, więc te pierścienie zawierają w szczególności $\mathcal{F}. $
+
+		Kluczowe tu jest pytanie, czy $\mathcal{F} \subseteq r\left( \mathcal{G} \right) $? Oczywiście, bowiem $r\left( \mathcal{G} \right) $ jest to najmniejsze pierścień zawierający $\mathcal{G}$. Skoro zawiera on $\mathcal{G}$, to zawiera też podzbiór $\mathcal{F}$
+	\end{enumerate}
+\end{solution} 
+\begin{problem}[10.1.6]
+	Niech $\mathcal{A} \subseteq \mathcal{P}(X) $ będzie ciałem zbiorów i niech $Z \subseteq X$. Wykazać, że
+	\[
+	a\left( \mathcal{A} \cup \{ Z\}  \right) = \{\left( A \cap Z \right) \cup \left( B \cap Z^{c} \right): A,B \in \mathcal{A} \} 
+	.\] 
+\end{problem} 
+\begin{solution}
+	TODO
+\end{solution} 
+\begin{problem}[10.1.7]
+	Zauważyć, że jeżeli $\mathcal{C}$ jest taką rodziną podzbiorów $X$, że $X = \bigcup_{n=1} ^{\infty}C_{n}$, dla pewnych $C_{n} \in \mathcal{C}$ to $s(\mathcal{C}) = \sigma \left( \mathcal{C} \right) $
+\end{problem} 
+\begin{problem}[10.1.8]
+	Sprawdzić, że jeżeli $\mathcal{A}$ jest ciałem zbiorów i rodzina $\mathcal{A}$ jest zamknięta na przeliczalne sumy, to $\mathcal{A}$ jest $\sigma$-ciałem.
+\end{problem} 
+\begin{problem}[10.1.9]
+	Niech $\mathcal{A}$ będzie skończonym ciałem zbiorów. Udowodnić, że $\left| \mathcal{A} \right| = 2^{n}$ dla pewnego $n\in \N$.
+\end{problem} 
+\begin{problem}[10.1.10]
+	Niech $\mathcal{F}$ będzie przeliczalną rodziną zbiorów. Udowodnić, że ciało $a\left( \mathcal{F} \right) $ jest przeliczalne.
+\end{problem} 
+\begin{problem}[10.1.11]
+	Udowodnić, że jeśli $\mathcal{F}$ jest nieskończonym $\sigma $-ciałem, to $\mathcal{A}$ ma co najmniej $\mathfrak{c}$ elementów.
+\end{problem} 
+\begin{solution}
+	
+\end{solution} 

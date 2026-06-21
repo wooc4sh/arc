@@ -1,0 +1,1386 @@
+\chapter{Wykład V}
+
+\section{Produkty półproste. Rozkłady na pro}
+\begin{context}
+
+Chcemy zbadać jak wygląda konstrukcja TODO	
+\end{context}
+\begin{fact}
+
+Niech $A-$ grupa Abelowa. $A_1, A_2 \le A$. 
+
+Rozważmy $\varphi : A_1\times A_2 \rightarrow A$ daną przez $\varphi((a_1,a_2)) := a_1 + a_2$. Wtedy:
+	\begin{enumerate}[label=\roman*)]
+		\item $\varphi$ jest homomorfizmem,
+		\item $\im(\varphi) = A_1 + A_2 = \{a_1+a_2: a_1 \in A_1, a_2\in A_2\} \le A$,
+		\item $A_1 \cap A_2 = \{\mathbf{0}\} \iff \varphi \text{ jest monomorfizmem.}$
+	\end{enumerate}
+
+W dalszej części będziemy używać oznaczenia $\varphi(a_1,a_2) := \varphi((a_1,a_2))$
+\end{fact}
+\begin{proof}
+
+	Zakładamy, że $A$ jest grupą Abelową oraz $A_1,A_2\le A$.
+	\begin{enumerate}[label=\roman*)]
+		\item Dla $e \in A$, $e_{A_1\times A_2} = \left( e,e \right)$. Wtedy $\varphi \left( e_{A_1\times A_2} \right) = \varphi\left( e,e \right) = e + e = e$
+
+			Następnie, niech $\left( a_1,a_2 \right), \left( a_1', a_2' \right) \in A_1\times A_2$.
+
+		$\varphi\left( \left( a_1,a_2 \right) +\left( a_1',a_2' \right)  \right) = \varphi\left( a_1+a_1', a_2+a_2' \right) = a_1+a_2+a_1'+a_2' \overset{\text{A jest Abelowa}}{=} \left( a_1+a_2 \right) + \left( a_1'+a_2' \right) =\varphi  \left( a_1+a_2 \right) + \varphi \left( a_1'+a_2' \right)$
+		\qed
+	\item $A_1 + A_2 = \{a_1+a_2: a_1\in A_1, a_2 \in A_2\} = \im(\varphi)$- wynika to wprost z definicji funkcji $\varphi. \qed$
+	\item Zauważmy, że $\varphi$ jest monomorfizmem, wtedy i tylko wtedy, gdy $\ker(\varphi) \{\left( \mathbf{0}, \mathbf{0} \right) \}$.
+
+		$\ker(\varphi) = \{\left( a_1,a_2 \right) \in A_1\times A_2: a_1 + a_2 = \mathbf{0}\}$ 
+
+		$\left(\implies \right)$ 
+
+		 Załóżmy, że $A_1\cap A_2 = \{\mathbf{0}\}$.
+
+		 Ustalmy dowolny $\left( a_1,a_2 \right), a_1\in A_1, a_2 \in A_2$. 
+		 \begin{align*}
+			 \left( a_1,a_2 \right) \in \ker(\varphi) \iff \varphi\left( a_1,a_2 \right) = \mathbf{0} \iff a_1 + a_2 = \mathbf{0} \iff a_1 = -a_2 &\iff \\
+			 a_1 \in A_2 \text{ oraz }a_2 \in A_1 \iff a_1,a_2 \in A_1\cap A_2 \iff \left( a_1,a_2 \right) = \mathbf{0} \iff \left( a_1,a_2 \right) \in \{\mathbf{0}\} 
+		 .\end{align*} 
+		 Zatem $\ker(\varphi) = \{\mathbf{0}\} $
+
+		 $\left( \impliedby \right) $ 
+
+		 Załóżmy, że $\ker(\varphi) = \{\mathbf{0}\} $ 
+
+		 Załóżmy nie wprost, że $A_1\cap A_2 \neq \{\mathbf{0}\} $, zatem istnieje $a\in A_1\cap A_2 \neq  \mathbf{0}$, co za tym idzie $-a \in A_1\cap A_2$. Ale $\varphi\left( a,-a \right) =a + \left( -a \right) = \mathbf{0}$, czyli $\{a,-a\} \in \ker(\varphi)$, ale $\left( a,-a \right) \neq \mathbf{0}$, czyli sprzeczność. 
+	\end{enumerate}
+\end{proof}
+
+\begin{corollary}
+
+	Niech $A$ będzie grupa \textbf{Abelowa} oraz $A_1,A_2 \le A$.
+
+	Wtedy \textbf{zewnętrzny} produkt prosty $A_1\times A_2$ jest \textbf{izomorficzny} z \textbf{wewnętrzną} sumą kompleksową $A_1 + A_2$
+	\[
+		A_1\cap A_2 = \{\mathbf{0}\} \implies \underbrace{A_1\times A_2}_{\text{Produkt prosty grup, zewnętrzny obiekt}} \cong \overbrace{A_1+A_2}^{\text{Suma grup wewnątrz A, wewnętrzny obiekt}}
+	.\] 
+\end{corollary}
+
+\begin{goall} Sklasyfikujemy teraz grupy do rzędu 4.
+
+	\begin{fact}
+	Jeśli A jest niecykliczną grupą rzędu 4 to $\forall_{a\in A\setminus \{\mathbf{0}\} }\left( \text{rząd}(a)=2 \right)  $.
+	\end{fact}
+	\begin{proof}
+	Z  Twierdzenia Lagrange' a, rząd każdego elementu musi dzielić 4. Możliwe rzędy to 1,2 i 4.
+	\begin{itemize}
+		\item \textbf{Rząd 1: } Ma go tylko $e$.
+	\item \textbf{Rząd 4: }Jeśli $A$ posiadałoby element a rzędu 4, to $\langle a \rangle $ byłoby podgrupą $A$ rzędu 4. Zatem $A = \langle a \rangle$, co oznaczałoby, że A jest cykliczna.
+	\item \textbf{Wniosek: } Ponieważ z założenia A jest \textbf{niecykliczna, nie może} mieć elementu rzędu 4. 
+	\end{itemize}
+	\end{proof}
+
+	\begin{remark}
+		Jeśli w grupie $A$ każdy element jet rzędu 2, to grupa $A$ jest \textbf{Abelowa}. 
+	\end{remark}
+
+	\noindent Niech $A$ będzie niecykliczną grupą rzędu 4. 
+	\begin{itemize}
+		\item  	Weźmy $a \in A\setminus \{\mathbf{0}\} $ oraz $ A_1 := \langle a \rangle = \{\mathbf{0}, a\} $ 
+			
+			Zatem $A_1$ jest \textbf{rzędu 2}.
+		\item  Następnie weźmy element $b \in A\setminus A_1$. Element taki istnieje, bo \textbf{rząd A wynosi 4} a \textbf{rząd $A_1$ wynosi 2}. Niech $A_2 := \langle b \rangle = \{\mathbf{0},b\} $
+
+			Zatem $A_2$ jest \textbf{rzędu 2.}
+		\item Wtedy $A_1\cap A_2 = \{\mathbf{0}\}$. Ponieważ $A_1, A_2 \le  A$, więc na mocy \textbf{wniosku 1.}
+			\[
+			 A_1+A_2 \cong \underbrace{A_1\times A_2}_{\text{4 elementy}}
+			.\] 
+		\item 	Ponieważ $A_1+A_2\le A$ oraz ich rzędy są te same, więc
+	\[
+	A = A_1+A_2 \cong A_1\times A_2 \cong \mathbb{Z}_2 \times \mathbb{Z}_2
+	.\] 
+	\end{itemize}
+\end{goall}
+\begin{corollary}[Klasyfikacja grup rzędu 4]
+	Niech $G$ będzie dowolną grupą \textbf{rzędu 4}.
+	\begin{enumerate}[label=\textbf{Przypadek \arabic*:}, wide]
+		\item G jest \textbf{cykliczna}. Z definicji jest generowana przez jeden element rzędu 4. Zatem jest izomorficzna z $\mathbb{Z}_4$.
+		\item G \textbf{nie jest cykliczna}. Jak udowodniliśmy powyżej, taka grupa musi być izomorficzna z $\mathbb{Z}_2\times \mathbb{Z}_2$.
+	\end{enumerate}
+\end{corollary}
+
+\begin{question}
+Co gdy zamiast takiej grupy A, która jest Abelowa, weźmiemy dowolną grupę G, niekoniecznie Abelowa?
+\end{question}
+
+\begin{eg}[Bez abelowości to nie zadziała.]
+	Pokażemy, dlaczego założenie \textbf{Abelowa} jest kluczowe.
+	\begin{itemize}
+		\item \textbf{Grupa: } $G = S_3$ (nieabelowa), $\left| G \right| = 6$.
+		\item \textbf{Podgrupy: } $H_1 = \langle \left( 1,2 \right)  \rangle = \{e, \left( 1,2 \right) \} $, oraz $H_2 = \langle \left( 2,3 \right)  \rangle = \{e, \left( 2,3 \right) \}$.
+
+			Obie grupy są podgrupami $S_3$.
+		\item \textbf{Test: } Sprawdzimy czy iloczyn $H_1H_2 = h_1h_2: h_1\in H_1, h_2 \in H_2$. Jest to odpowiednik sumy kompleksowej w notacji addytywnej; w notacji addytywnej zapisalibyśmy $H_1+H_2$. 
+		\item \textbf{Obliczanie iloczynu(złożenia): }
+			\begin{itemize}
+				\item $\id \circ \id = \id$.
+				\item $\id \circ \left( 2,3\right) = \left( 2,3 \right) $.
+				\item $\left( 1,2 \right) \circ \id = \left( 1,2 \right) $.
+				\item $\left( 1,2 \right) \circ \left( 2,3 \right) = \left( 1,2,3 \right) $.
+			\end{itemize}
+		\item \textbf{Rezultat: } $H_1H_2 = \{\id, \left( 2,3 \right), \left( 1,2 \right), \left( 1,2,3 \right) \} $.
+		\item \textbf{Wniosek 1(brak domkniętości): } Ten zbiór nie jest \textbf{podgrupą}, bo $\left( 1,2,3 \right) \in H_1H_2$ $\left( 1,2,3 \right) \circ \left( 1,2,3 \right) = \left( 1,3,2 \right) \not\in H_1H_2$.
+		\item \textbf{Wniosek 2(z Twierdzenia Lagrange'a): } $H_1H_2$ ma 4 elementy. Gdyby były podgrupą $S_3$ to jego rząd(4) musiałby dzielić rząd $S_3$(6) .
+	\end{itemize}
+\end{eg}
+
+To pokazuje, że iloczyn dwóch podgrup na ogół nie jest podgrupą. Okazuje się jednak, że jeśli dodatkowo założymy, że $N$ jest podgrupą normalną  $G$, tzn.  $N\unlhd G$ to już w pełni zadziała.
+
+\begin{intuition}[Dlaczego normalność pomaga?]
+	Problem w przykładzie z $S_3$ polegał na tym, że przy mnożeniu dwóch elementów $n_1h_1\cdot n_2h_2$, gdzie $n_1h_1, n_2h_2 \in NH$, otrzymujemy $n_1h_1n_2h_2$. Aby ten element należał do $NH$ musimy go zapisać w postaci  $\left( \text{coś z N} \right) \cdot \left( \text{coś z H} \right) $.
+
+	Problem tkwi w środku: $\ldots h_1n_2 \ldots$. Musimy znaleźć sposób aby "zamienić miejscami" $h_1$ i $n_2$.
+	\begin{itemize}
+		\item W grupie abelowej (tak jak we Wniosku) to proste bo $h_1n_2 = n_2h_1$.
+		\item W grupie nieabelowej na ogół $h_1n_2 \neq n_2h_1$.
+	\end{itemize}
+
+	Założenie, że N jest normalna ($N\unlhd G$), daje nam dokładnie to czego potrzebujemy. Z definicji normalności wiemy, że $h_1n_2h_1^{-1} \in N$. Nazwijmy ten element $n_3\in N$.
+	\begin{align*}
+		h_1n_2h_1^{-1} &= n_3\quad\text{(domnażamy z prawej strony przez $h_1$)} \\
+		h_1n_2 &= n_3h_1\quad\text{("przesunęliśmy" $h_1$ na odpowiednie miejsce)}
+	.\end{align*}
+	Oznacza to, że \textbf{normalność pozwala nam "przesunąć"} $h_1$ \textbf{za} $n_2$ \textbf{"płacąc" za to zmianą } $n_2$  \textbf{na inny element } $N$ (tutaj jest to  $n_3$ ). To jest kluczowa reguła "kontrolowanej przemienności", która gwarantuje domkniętość.   
+\end{intuition}
+	
+\begin{theorem}[Warunek wystarczający na iloczyn podgrup.]
+
+	Załóżmy, że $H\le G$ i $N \unlhd G$. 
+
+	Wtedy
+	\begin{enumerate}
+		\item Iloczyn $NH$ \textbf{jest podgrupą} $G$, tzn. 
+			\[
+			NH\le G
+			.\] 
+		\item Jeżeli \textbf{obie} podgrupy $N$ i $H$ \textbf{są normalne}, to ich iloczyn $NH$ również \textbf{jest normalny}, tzn.
+			\[
+			H\unlhd G \implies NH \unlhd G
+			.\] 
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+Załóżmy, że $H\le G$ i $N\unlhd G$.
+	\begin{enumerate}
+		\item 
+			\begin{itemize}
+				\item\textbf{Element neutralny NH:} $e = e\cdot e \in NH$
+				\item\textbf{Domkniętość działania w NH:} Weźmy $n_1,n_2\in N, h_1,h_2 \in H.$ Wtedy:
+					\[
+						\underbrace{n_1h_1}_{\in NH} \cdot \underbrace{n_2h_2}_{\in NH}
+					.\]
+Tak jak wcześniej zauważyliśmy, kłopotliwym jest iloczyn $h_1n_2$:
+\[
+	\underbrace{n_1}_{\in N}\overbrace{h_1n_2}^{\text{kłopot}}\underbrace{h_2}_{\in H}
+.\] 
+Wspomożemy się standardowym trikiem, mianowicie między $n_2$ a $h_2$ "wstrzykniemy" element neutralny $e = h_1h_1^{-1}$(oczywiście oba wyrażenia są równoważne):
+	
+\[ n_1\rlap{$\underbrace{\phantom{h_1n_2h_1^{-1}}}_{\in N\unlhd G}$}h_1n_2\overbrace{h_1^{-1}h_1}^{= e}h_2 
+.\] 
+Otrzymaliśmy interesującą nas interpretację wyjściowego wyrażenia, bowiem można dostrzec, że powyższy iloczyn już jest w $NH$:
+\[\overbrace{n_1h_1n_2h_1^{-1}}^{\text{coś z N}}\underbrace{h_1h_2}_{\text{coś z H}} \in NH
+				.\] 
+	Dlaczego $n_1h_1n_2h_1^{-1} \in N$? Wiemy, że $N\unlhd G$. Zatem $h_1n_2h_1^{-1} \in N$, bo $n_2\in N, h_1\in G$. W szczególności N jako podgrupa G jest zamknięte na działanie, zatem
+	\[
+		n_1h_1n_2h_1^{-1} = n_1\left( h_1n_2h_1^{-1}\right) \overset{N\unlhd G}{=} n_1\underbrace{\bm{\left( n_2h_1h_1^{-1}\right)}}_{\text{coś z N}=: n_3}= n_1\bm{n_3} \in N
+	.\] 
+\item\textbf{Element odwrotny dla każdego $nh\in NH$:}  
+
+	Dla $n\in N, h \in H$ mamy:
+	\[
+		\left( nh \right)^{-1} =  h^{-1}n^{-1} = h^{-1}n^{-1}\bm{e} = h^{-1}n^{-1}\bm{hh^{-1}} = \underbrace{h^{-1}n^{-1}h}_{\in N\text{, bo }N\unlhd G}\overbrace{h^{-1}}^{\in H} \in NH
+	.\] 
+			\end{itemize}
+		\item Zakładamy teraz, że obie podgrupy $N$ i $H$ są normalne. Chcemy pokazać, że ich iloczyn $NH$ jest normalny. Dokładniej, to musimy sprawdzić czy $g\left( nh \right) g^{-1}\in NH$ dla dowolnych $g\in G, nh \in NH$. 
+
+			Ustalmy zatem dowolne $g\in G$ oraz $nh \in NH$. 
+
+			Wtedy
+			\begin{align*}
+				g\left( nh \right) g^{-1} &= \\
+				gn\left( \bm{e} \right) hg^{-1} &= gn\left( \bm{g^{-1}g} \right) hg^{-1} \\
+										&= \underbrace{\left( gng^{-1} \right)}_{\in N} \underbrace{\left( ghg^{-1} \right)}_{\in H} 
+			.\end{align*}
+			\begin{itemize}
+				\item Ponieważ $N\unlhd G$ więc $gng^{-1}\in N$.
+				\item Ponieważ $H\unlhd H$ więc $ghg^{-1}\in H$.
+				\item Zatem ich iloczyn należy do $NH$.
+			\end{itemize}
+			To dowodzi, że $NH$ jest normalna.
+	\end{enumerate}
+\end{proof}
+\begin{remark}[Słabszy warunek na to aby $NH$ było podgrupą G]
+	Zauważmy, że w dowodzie \textbf{Twierdzenia 1}(stwierdzającego, że $N\unlhd G$ i $H\le G \implies NH\le G$) nie wykorzystaliśmy pełnej mocy założenia o normalności $N$. Aby to precyzyjnie pokazać, przeanalizujmy kluczowy fragment dowodu- domkniętość na mnożenie.
+
+	\noindent\textbf{Cel: } Chcemy pokazać, że dla $n_1,n_2 \le N, h_1,h_2\le H$, iloczyn $\left( n_1,h_1 \right)\left( n_2,h_2 \right) $ należy do $NH$.
+
+	\noindent\textbf{Krok dowodu: } \[n_1\left( h_1n_2 \right)h_2 .\]
+
+	Aby zapisać to wyrażenie w pożądanej formie $\left( \text{coś z N} \right)\left( \text{coś z H} \right), $ musimy "przesunąć" element $h_1$obok $h_2$. Robimy to wstawiając $e = h_1^{-1}h_1$ w strategicznym miejscu:
+	\[
+		n_1\left( h_1n_2 \right) h_2 = n_1\left( h_1n_2\bm{e} \right) h_2 = n_1\left( h_1n_2\bm{h_1^{-1}h_1} \right)h_2
+	.\] 
+	Korzystając z łączności w G, grupujemy to inaczej:
+	\[
+		\underbrace{\left( n_1\left( h_1n_2h_1^{-1} \right)  \right)}_{\text{coś z N?}}\underbrace{\left(h_1h_2\right)}_{\text{coś z H}}
+	.\] 
+	Element $\left( h_1h_2 \right) $ z pewnością należy do H, ponieważ H jest podgrupą. Cały iloczyn będzie należał do $NH$ \textbf{wtedy i tylko wtedy}, gdy pierwszy duży nawias również należy do N. Ponieważ $n_1 \in N$ jest to równoważne warunkowi
+	\[
+	h_1n_2h_1^{-1}\in N
+	.\] 
+
+	\noindent\textbf{Analiza warunku: } Zauważmy, że ten warunek musiał być spełniony dla dowolnego $h_1\in H$ i dla dowolnego $n_2\in N$. Pełne założenie $N\unlhd G$ oznacza, że $gng^{-1} \in N$ dla \textbf{wszystkich} $g\in G$.
+
+	My jednak potrzebowaliśmy tej własności dla tylko dla $g$ pochodzących ze zbioru $H$. 
+
+	Wystarczającym warunkiem jest więc warunek słabszy:
+	\[
+	\forall\left(h\in H\right)\forall\left(n\in N\right)\left( hnh^{-1}\in N \right)   
+	\]
+	co można zapisać krócej jako $\forall\left(h\in H\right)\left( hNh^{-1}\subseteq N \right).$
+
+	\noindent\textbf{Powiązanie z Normalizatorem: } Zbiór wszystkich elementów $g\in G$, które ,,normalizują'' N(tzn. spełniają $gNg^{-1} = N$) nazywamy \textbf{normalizatorem} N w G i oznaczamy $N_{G}\left( N \right) $. Jest to podgrupa G.
+
+
+	Nasz "słabszy warunek" $hNh^{-1}\subseteq N$ dla wszystkich $h\in H$ jest równoważny stwierdzeniu, że H jest \textbf{podzbiorem} normalizatora $N_{G}\left( N \right) $, czyli $H\subseteq N_{G}\left( N \right) $.
+
+	Ponieważ H(z założenia) i $N_{G}\left( N \right) $ (z definicji) są podzbiorami $G$, warunek $H \subseteq N_{G}\left( N \right) $ jest równoważny stwierdzeniu, że H jest \textbf{podgrupą} $N_{G}\left( N \right) \left( H \le N_{G}\left( N \right)  \right) $.
+
+	\noindent\textbf{Wniosek: } Założenie $N\unlhd G$ jest wygodne ale nadmiarowe. Aby iloczyn $NH$ był podgrupą, \textbf{wystarczy} założyć, że N i H są podgrupami oraz że H normalizuje N, czyli $H\subseteq N_{G}\left( N \right) $.  
+\end{remark}
+
+To prowadzi do definicji normalizatora.
+
+\begin{definition}[Normalizator N w G]
+
+	Niech $N\le G$.
+	\[
+	N_{G}(N):= \{g\in G: gN = Ng\} = \{g\in G: gNg^{-1}=N\} 
+	.\] 
+	Powyższy zbiór nazywamy normalizatorem $N$ w $G$.
+\end{definition}
+
+Z uwagi i definicji: w twierdzeniu 1. wystarczy założyć, że $H\subseteq N_{G}(N)$ zamiast $H\le G$ i $N\unlhd G$
+
+\begin{fact}
+
+	Niech G będzie grupą, wtedy:
+	\begin{enumerate}[label=\alph*)]
+		\item $N\le G \implies N\le N_{G}(N)\le G$ (Normalizator N w G jest podgrupą \textbf{pomiędzy} N i G ),
+		\item $N\unlhd G \implies N_{G}(N) = G$ (Normalność N w G implikuje to, że  normalizator N w G jest \textbf{równy całej} grupie G)
+	\end{enumerate}
+\end{fact}
+\begin{proof}
+
+	Dowód na liście zadań.
+\end{proof}
+
+\begin{goall}
+	Naszym celem jest zrozumienie, jak działanie jednej grupy na drugą pozwala ,,scalać'' je w nową większą strukturę, oraz jak ta nowa struktura ma się do podgrup, które znajdujemy wewnątrz już istniejących grup.
+
+\begin{enumerate}[label=\arabic*.]
+	\item \textbf{Sytuacja Wewnętrzna(Analiza podgrupy NH w G)} 
+
+		Zaczynamy od analizy grupy G, która posiada już pewne podgrupy.
+
+		\noindent\textbf{Kontekst:} Mamy grupę G oraz jej podgrupy N i H,które spełniają warunki: $H\le G$ oraz $N\unlhd G$ (wystarczyłoby słabsze założenie, mianowicie $H\subseteq N_{G}\left( G \right) $).
+
+W tej konkretnej sytuacji (gdy N i H ,,żyją'' wspólnie w G) możemy \textbf{zdefiniować} jedno szczególne działanie H na N, wykorzystując strukturę G.
+
+
+	\noindent\textbf{Definicja: } Definiujemy działanie $"\cdot "$(kropka) grupy H na grupie N jako \textbf{sprzężenie}(koniugację) wewnątrz G:
+	\[
+	h\cdot n := hnh^{-1}\quad \left( \text{dla }h\in H, n\in N \right) 
+	.\] 
+	(\textit{Poprawność: Działanie to jest dobrze zdefiniowane, bowiem z założenia, że H normalizuje N, iloczyn $hnh^{-1}$ zawsze ląduje w z powrotem w N})
+
+	\noindent\textbf{Analiza mnożenia w NH: }Teraz zbadajmy jak wygląda mnożenie w podgrupie NH(która jest podgrupą G na mocy Twierdzenia 1). Weźmy dwa dowolne $n_1h_1, n_2h_2 \in NH$:
+	\[
+		\left( n_1h_1 \right) \left( n_2h_2 \right) = n_1\left( h_1n_2 \right)h_2
+	.\] 
+	Kluczowa manipulacja $\left( e = h_1^{-1}h_1 \right) $ pozwala nam przegrupować ten iloczyn:
+	\[
+		\left( n_1h_1 \right) \left( n_2h_2 \right) = n_1\left[ h_1n_2\bm{\left( e \right) } \right]h_2  = n_1\left[h_1n_2\bm{\left( h_1^{-1}h_1}\right)\right]\left[ h_1h_2 \right] 
+	.\] 
+	Teraz rozpoznajemy w tym wzorze nasze zdefiniowane działanie $h_1\cdot n_1 = h_1n_1h_1^{-1}$:
+	\begin{figure}[H]
+	\centering
+	\begin{equation*}
+        	\left( n_1h_1 \right) (n_2h_2) = \left( n_1h_1n_2h_1^{-1} \right) \left( h_1h_2 \right) = \left[n_1\tikzmark{V}\left( h_1 \tikzmark{Vp}\cdot n_2 \right)  \right]\tikzmark{Vt}\left[h_1\tikzmark{fu}h_2 \right]
+	\end{equation*}
+	\begin{tikzpicture}[overlay,remember picture]
+    		\node (Ve) [below left of = V, node distance = 3.5 em, anchor=center]{\footnotesize \textsf{Działanie w N}};
+    		\draw[<-, in=90, out=-90] ([xshift=-1pt]V.south)++(.25em,-.5ex) to (Ve.north);
+
+    		\node (Vpe) [below left of = Vp, node distance = 5 em, anchor=center] {\footnotesize \textsf{Działanie H na N}};
+    		\draw[<-, in=0, out=-90] ([xshift=1pt]Vp.center)++(.25em,-.5ex) to (Vpe.east);
+
+     		\node (Vte) [below of = fu, node distance = 3.5 em, anchor=west] {\footnotesize \textsf{Działanie w G}};
+     		\draw[<-, in=180, out=-90] ([xshift=-2pt]Vt.south)++(.25em,-.5ex) to (Vte.west);
+
+    		\node (fue) [below right of = fu, node distance = 3.5 em] {\footnotesize \textsf{Działanie w H}};
+    		\draw[<-, in =90, out=-90] ([xshift=-2.6pt]fu.south)++(.25em,-.5ex) to (fue.north);
+	\end{tikzpicture}
+	\end{figure}
+
+\vspace{3.5em}
+
+\noindent\textbf{Wniosek(intuicja): } Ten rachunek pokazuje, że mnożenie w NH jest całkowicie zdeterminowane przez trzy operacje:
+	\begin{enumerate}[label=\alph*)]
+		\item Działanie w N(mnożenie $n_1 \text{ przez } \left( h_1\cdot n_2 \right) $,
+		\item Działanie w H(mnożenie $h_1\text{ przez } h_2$),
+		\item Działanie H na N(obliczenie $h_1\cdot n_2$ ).
+	\end{enumerate}
+\item \textbf{Sytuacja Zewnętrzna(Konstrukcja $N\rtimes H$ )}
+
+	Teraz uogólnimy powyższą obserwację. Zaczynamy od zera, nie mając grupy G.
+
+	\noindent\textbf{Składniki: } Niech N i H będą \textbf{dowolnymi grupami.}
+
+	\noindent\textbf{Definicja Działania przez Automorfizmy: } Załóżmy, że mamy homomorfizm $\varphi: H \rightarrow \aut\left(N\right) $.
+	Taki homomorfizm nazywamy \textbf{działaniem H na N przez automorfizmy.} Dla $h \in H, \varphi\left( h \right) $ jest automorfizmem N. Będziemy pisać $\varphi\left( h \right) \left( n \right) $ jako $h\cdot n$. Z definicji homomorfizmy $\varphi$ oraz faktu, że $\varphi\left( h \right) $ jest automorfizmem N wynikają następujące  \textbf{aksjomaty:}
+	\begin{enumerate}[label=\alph*)]
+		\item $e_{H} \cdot n = n$(bo $\varphi\left( e_{H} \right) = e_{N}n = \id_{N}$ ),
+		\item $h\cdot \left( h' \cdot n \right) = \left( hh' \right) \cdot n$(bo $\varphi\left( h \right) \circ \varphi\left( h' \right) = \varphi\left( hh' \right) $ ),
+		\item $h\cdot \left( nn' \right) = \left( h\cdot n \right) \left( h\cdot n' \right)$ (bo $\varphi\left( h \right)$ jest automorfizmem $N\rightarrow N$.
+	\end{enumerate}
+\textbf{Wniosek c'):} $h\cdot e_{N} = e_{N}$ (bo każdy homomorfizm zachowuje element neutralny). 
+
+\noindent\textbf{Definicja (Zewnętrzny Produkt Półprosty): } Na zbiorze iloczynu kartezjańskiego $N\times H$ definiujemy działanie $*$ za pomocą $\varphi$(czyli $"\cdot "$- kropka): 
+
+\begin{figure}[H]
+\centering
+\begin{equation*}
+	\centering
+	\left( n,h \right) * \left( n',h' \right) := \left( n\tikzmark{N}\left( h\tikzmark{HN}\cdot n' \right), h\tikzmark{H}h' \right)   
+\end{equation*}
+\begin{tikzpicture}[overlay,remember picture, baseline = (current bounding box.north)]
+    \node (Ne) [below left of = N, node distance = 3.5 em, anchor=center]{\footnotesize \textsf{Działanie w N}};
+    \draw[<-, in=90, out=-90] ([xshift=-1pt]N.south)++(.25em,-.5ex) to (Ne.north);
+
+    \node (HNe) [below of = HN, node distance = 4 em, anchor=center]{\footnotesize \textsf{Działanie H na N}};
+    \draw[<-, in=90, out=-90] ([xshift=1pt]HN.south)++(.25em,-.5ex) to (HNe.north);
+
+    \node (He) [below right of = H, node distance = 3.5 em, anchor=center]{\footnotesize \textsf{Działanie w H}};
+    \draw[<-, in=90, out=-90] ([xshift=-1pt]H.south)++(.25em,-.5ex) to (He.north);
+\end{tikzpicture}
+\end{figure}
+
+\vspace{2em}
+
+Tak zdefiniowana struktura $\left( N\times H, * \right) $ \textbf{jest grupą} i nazywamy ją \textbf{produktem półprostym(zewnętrznym)} N i H (względem $\varphi)$. Oznaczamy ją $N\rtimes_{\varphi}H$. 
+
+\end{enumerate}
+\end{goall}
+\begin{context}
+W poprzednim punkcie widzieliśmy, że wewnątrz grupy $G$ iloczyn podgrup $NH$ zachowuje się w specyficzny sposób. Teraz odwrócimy sytuację: mając dwie oddzielne grupy, spróbujemy zbudować z nich nową grupę $G$.
+\end{context}
+
+\begin{definition}[Konstrukcja Zewnętrzna]
+Niech $N$ i $H$ będą dowolnymi grupami, a $\varphi: H \to \text{Aut}(N)$ homomorfizmem. 
+Zbiór $N \times H$ wyposażony w działanie:
+\[ (n_1, h_1) * (n_2, h_2) := (n_1 \cdot \varphi(h_1)(n_2), h_1 h_2) \]
+jest grupą, którą nazywamy \textbf{zewnętrznym produktem półprostym} i oznaczamy $G = N \rtimes_\varphi H$.
+\end{definition}
+\begin{proof}[$\left( N\times H, * \right) $ jest grupą]
+	Niech $H,N$- grupy. Pokażemy, że $\left( N\times H,* \right)$ jest grupą.
+	\begin{itemize}
+		\item Łączność $*$:
+		
+			Weźmy $h_1,h_2,h_3 \in H$ oraz $n_1,n_2,n_3\in N$, wtedy:
+			 \begin{align*}
+				 L =& \left[ \left( n_1,h_1 \right) *\left( n_2,h_2 \right)  \right] * \left( n_3,h_3 \right) = \left( n_1\left( h_1\cdot n_2 \right) , h_1h_2 \right) * \left( n_3,h_3 \right) \\
+				 =& \left( n_1\left( h_1\cdot n_2 \right)\left( h_1h_2 \right) \cdot n_3, h_1h_2h_3  \right) \\ 
+				 P =& \left( n_1,h_1 \right) *\left[ \left( n_2,h_2 \right) * \left( n_3,h_3 \right)  \right] = \left( n_1,h_1 \right) * \left( n_2\left( h_2\cdot n_3 \right), h_2h_3 \right) = \\
+			 =& \left( \bm{n_1\left( h_1 \cdot \left(  n_2\left( h_2\cdot n_3 \right)  \right)\right)}, h_1h_2h_3 \right) \overset{\text{Fakt 3c)}}{=} \left( \bm{n_1\left( h_1\cdot n_2 \right) \left( h_1\cdot \left( h_2\cdot n_3 \right)  \right)}, h_1h_2h_3  \right) \\
+		 =&  \left(n_1\left( h_1\cdot n_2 \right) \bm{\left( h_1\cdot \left( h_2\cdot n_3 \right)  \right)}, h_1h_2h_3  \right) \overset{\text{Fakt 3b)}}{=} \left( n_1\left( h_1\cdot n_2 \right) \bm{\left( h_1h_2 \right) \cdot n_3}, h_1h_2h_3 \right) 
+			.\end{align*}
+Zatem L = P.
+\item Element neutralny $*$ :
+
+	Postulujemy, że $e:= \left( e_{N}, e_{H} \right)$.
+
+	Weźmy $n\in N, h\in H$.
+	\begin{align*}
+		\left( n,h \right) * \left( e_{N},e_{H} \right) =& \left(n\left( \bm{h\cdot e_{N}} \right), he_{H} \right) \overset{\text{Fakt 3c')}}{=} \left( n\bm{h}, h \right) \\
+		\left( e_{N},e_{H} \right) * (n,h) =& \left( e_{N}\left( e_{H}* n \right) ,  e_{H}h\right) = \left( e_{N}\left( \bm{e_{H}\cdot n} \right), h  \right) \overset{\text{Fakt 3a)}}{=} \left( e_{N}\bm{n}, h  \right) = \left( n,h \right)
+	.\end{align*}
+
+\item Element odwrotny:
+
+	Weźmy $n\in N, h\in H$.
+Postulujemy, że \[\left( n,h \right) ^{-1} = \left( h^{-1}\cdot n^{-1}, h^{-1} \right) .\]
+Dowód na liście zadań.
+	\end{itemize}
+\end{proof}
+\begin{question}
+W jaki sposób ta abstrakcyjna para $(n,h)$ ma się do naszych wyjściowych grup $N$ i $H$? Czy $N$ jest "w środku" $G$?
+\end{question}
+Aby na to odpowiedzieć, wprowadzimy potrzebne definicje.
+\begin{definition}[Zanurzenie (ang. embedding) grupy A w grupę B.]
+		
+			Mówimy, że funkcja $\psi: A \rightarrow B$ jest \textbf{zanurzeniem} grupy A w grupę B, jeśli $\psi$ jest \textbf{monomorfizmem}, czyli spełnia dwa warunki			:
+			\begin{enumerate}[label=\alph*)]
+				\item \textbf{Jest homomorfizmem:} Zachowuje strukturę operacji. Dla dowolnych $a_1,a_2\in A$ zachodzi:
+					\[
+					\psi\left( a_1\cdot _{A}a_2 \right) = \psi\left( a_1 \right) \cdot _{B} \psi\left( a_2 \right) 
+					.\] 
+				\item \textbf{Jest injekcją}: $\psi$ jest różnowartościowa.
+			\end{enumerate}
+\end{definition}
+\begin{intuition}
+
+	Celem zanurzenia jest stworzenie wewnątrz "dużej" grupy B \textbf{wiernej kopii} "małej" grupy A.
+	\begin{itemize}
+		\item Warunek \textbf{homomorfizmu} gwarantuje nam, że kopia ta zachowuje się dokładnie jak oryginał.
+		\item Warunek \textbf{injekcji} gwarantuje nam, że jest to kopia \textit{wierna}- nie tracimy żadnych informacji, a kopia ma tyle samo elementów co oryginał.
+	\end{itemize}
+
+	Obrazem zanurzenia, $\im(\psi) = \psi \left[ A \right]$, jest podgrupa grupy B, która jest  \textbf{izomorficzna} z A.
+\end{intuition}
+\begin{remark}
+Mamy naturalne monomorfizmy $\i_{N}$ oraz $i_{H}$:
+
+\begin{figure}[H] % [h!] to sugestia, by umieścić "tutaj"
+    \begin{minipage}{0.48\textwidth}
+        \centering
+	\adjustbox{scale = 1.3}{
+	\begin{tikzpicture}[node distance = 0.7cm and 1.4cm]
+  % Tell it where the nodes are
+  \node (A) [label={[xshift=4pt]left:$i_{N}:$}] {$N$};
+  \node (B) [below=of A] {$n$};
+  \node (C) [right=of A] {$N\rtimes H$};
+  \node (D) [right=of B] {$\left( n, e_{H} \right) $};
+  % Tell it what arrows to draw
+  \draw[draw=none] (A)-- node[midway] {\small $\rotatein$} (B);
+  \draw[|->] (B)--(D);
+  \draw[-stealth] (A)--(C);
+  \draw[draw=none] (C)-- node [midway] {\small $\rotatein$} (D);
+	\end{tikzpicture}
+}
+    \end{minipage}
+\begin{minipage}{0.48\textwidth}
+        \centering
+	\adjustbox{scale = 1.3}{
+	\begin{tikzpicture}[node distance = 0.7cm and 1.4cm]
+  % Tell it where the nodes are
+  \node (A) [label={[xshift=4pt]left:$i_{H}:$}] {$H$};
+  \node (B) [below=of A] {$h$};
+  \node (C) [right=of A] {$N\rtimes H$};
+  \node (D) [right=of B] {$\left( e_{N}, h \right) $};
+  % Tell it what arrows to draw
+  \draw[draw=none] (A)-- node[midway] {\small $\rotatein$} (B);
+  \draw[|->] (B)--(D);
+  \draw[-stealth] (A)--(C);
+  \draw[draw=none] (C)-- node [midway] {\small $\rotatein$} (D);
+	\end{tikzpicture}
+}
+    \end{minipage}
+\end{figure}
+\end{remark}
+\begin{proposition}[Mechanizm Utożsamienia - Krok po Kroku]
+Formalnie $N$ i $H$ są "na zewnątrz". Aby zobaczyć je w środku, budujemy precyzyjny most (zanurzenie).
+
+\textbf{Krok 1: Zanurzenia (Tworzenie wiernych kopii)}
+Definiujemy dwa odwzorowania injektywne (monomorfizmy):
+\begin{align*}
+    i_N &: N \to G, \quad i_N(n) = (n, e_H) \\
+    i_H &: H \to G, \quad i_H(h) = (e_N, h)
+\end{align*}
+Obrazy tych funkcji wewnątrz $G$ oznaczmy jako $\tilde{N}$ i $\tilde{H}$:
+\[ \tilde{N} = \{(n, e_H) : n \in N\}, \quad \tilde{H} = \{(e_N, h) : h \in H\} \]
+
+\textbf{Krok 2: Analiza wewnątrz G}
+Teraz badamy te kopie wewnątrz naszej nowej grupy $G$:
+\begin{enumerate}
+    \item $\tilde{N} \cap \tilde{H} = \{(e_N, e_H)\} = \{e_G\}$ (Rozłączne trywialnie).
+    \item $G = \tilde{N}\tilde{H}$. Każdy element $(n,h)$ można zapisać jako:
+    \[ (n,h) = (n, e_H) * (e_N, h) = i_N(n) * i_H(h). \]
+    \item $\tilde{N} \unlhd G$. To jest kluczowy moment! Sprawdźmy sprzężenie elementu z $\tilde{N}$ przez element z $\tilde{H}$:
+    \begin{align*}
+        (e_N, h) * (n, e_H) * (e_N, h)^{-1} &= (e_N, h) * (n, e_H) * (e_N, h^{-1}) \\
+        &= (\underbrace{e_N \cdot \varphi(h)(n)}_{=\varphi(h)(n)}, h) * (e_N, h^{-1}) \\
+        &= (\varphi(h)(n), h) * (e_N, h^{-1}) \\
+        &= (\varphi(h)(n) \cdot \underbrace{\varphi(h)(e_N)}_{=e_N}, \underbrace{h h^{-1}}_{=e_H}) \\
+        &= (\varphi(h)(n), e_H) \in \tilde{N}
+    \end{align*}
+\end{enumerate}
+
+\textbf{Krok 3: Wielkie Utożsamienie}
+Skoro $\tilde{N}$ jest izomorficzne z $N$, a $\tilde{H}$ z $H$, i zachowują się one w $G$ "poprawnie" (normalność $N$), przyjmujemy konwencję upraszczającą zapis (nadużycie notacji):
+\[ n \equiv (n, e_H) \quad \text{oraz} \quad h \equiv (e_N, h) \]
+Dzięki temu skomplikowany rachunek z punktu 3 sprowadza się do pięknej i czytelnej własności:
+\[ h n h^{-1} = \varphi(h)(n) \]
+\textbf{Wniosek:} Abstrakcyjne działanie $\varphi$ użyte w konstrukcji zewnętrznej realizuje się wewnątrz nowej grupy jako geometryczne sprzęganie podgrupy normalnej.
+\end{proposition}
+
+\begin{context}
+W poprzedniej sekcji pokazaliśmy, że każdy \textit{zewnętrzny} produkt półprosty $N \rtimes_\varphi H$ jest w istocie \textit{wewnętrznym} produktem swoich podgrup $\tilde{N}$ i $\tilde{H}$.
+Teraz zadajemy pytanie odwrotne: \textbf{Kiedy istniejąca grupa $G$ jest izomorficzna z jakimś zewnętrznym produktem półprostym?}
+Okazuje się, że warunki, które odkryliśmy przy "utożsamianiu" (normalność $N$, trywialne przecięcie, generowanie całości), są warunkami wystarczającymi.
+\end{context}
+
+\begin{theorem}[O Rozpoznawaniu Produktu Półprostego]
+Niech $G$ będzie grupą posiadającą podgrupy $N$ i $H$ takie, że:
+\begin{enumerate}
+    \item $N \unlhd G$ (podgrupa normalna),
+    \item $H \le G$ (podgrupa),
+    \item $N \cap H = \{e_G\}$,
+    \item $G = NH$ (każdy element $G$ to iloczyn $nh$).
+\end{enumerate}
+Wtedy $G \cong N \rtimes_\varphi H$, gdzie $\varphi: H \to \text{Aut}(N)$ jest działaniem przez sprzężenie w $G$, tzn. $\varphi(h)(n) = hnh^{-1}$.
+\end{theorem}
+
+\begin{proof}[Dowód analityczny (Krok po kroku)]
+
+Naszym celem jest pokazanie, że odwzorowanie $\Phi: N \rtimes_\varphi H \to G$ zdefiniowane wzorem $\Phi((n,h)) = nh$ jest izomorfizmem.
+
+\textbf{Krok 1: Czy $\Phi$ jest bijekcją?}
+\begin{itemize}
+    \item \textbf{Surjekcja ("na"):} Z założenia $G = NH$. Oznacza to, że każdy element $g \in G$ można zapisać jako iloczyn $nh$. Zatem dla każdego $g$ istnieje para $(n,h)$, która na niego trafia.
+    \item \textbf{Injekcja ("1-1"):} Z założenia $N \cap H = \{e\}$. Jeśli $\Phi((n_1, h_1)) = \Phi((n_2, h_2))$, to $n_1 h_1 = n_2 h_2$. Przekształcając, otrzymujemy $n_2^{-1} n_1 = h_2 h_1^{-1}$. Lewa strona należy do $N$, prawa do $H$. Skoro przekrój jest trywialny, to obie strony muszą być równe $e$, co implikuje $n_1=n_2$ i $h_1=h_2$.
+\end{itemize}
+Zatem $\Phi$ jest bijekcją.
+
+\textbf{Krok 2: Czy $\Phi$ zachowuje działanie (homomorfizm)?}
+To jest kluczowy moment. Musimy sprawdzić, czy mnożenie "zewnętrzne" (par) daje ten sam wynik, co mnożenie "wewnętrzne" (elementów w $G$).
+
+Weźmy dwie pary: $x = (n_1, h_1)$ oraz $y = (n_2, h_2)$.
+
+\noindent\textbf{A. Mnożenie w świecie zewnętrznym ($N \rtimes_\varphi H$):}
+Z definicji produktu półprostego:
+\[ x * y = (n_1, h_1) * (n_2, h_2) = (n_1 \cdot \underbrace{\varphi(h_1)(n_2)}_{\text{działanie } H \text{ na } N}, \quad h_1 h_2) \]
+Teraz aplikujemy $\Phi$ do wyniku:
+\[ \Phi(x * y) = n_1 \cdot \varphi(h_1)(n_2) \cdot h_1 h_2 \]
+
+\noindent\textbf{B. Mnożenie w świecie wewnętrznym ($G$):}
+Najpierw mapujemy elementy, potem mnożymy w $G$:
+\[ \Phi(x) \cdot \Phi(y) = (n_1 h_1) \cdot (n_2 h_2) \]
+W grupie $G$ mnożenie jest łączne, ale nieprzemienne. Aby "skleić" to do postaci $N \cdot H$, musimy wstawić $e = h_1^{-1} h_1$ między $n_2$ a $h_2$:
+\[ = n_1 h_1 n_2 (h_1^{-1} h_1) h_2 = n_1 \underbrace{(h_1 n_2 h_1^{-1})}_{\text{sprzężenie w } G} h_1 h_2 \]
+
+\noindent\textbf{C. Porównanie (Moment Prawdy):}
+Porównajmy wyniki z punktu A i B:
+\[ \text{Wynik A: } n_1 \cdot \bm{\varphi(h_1)(n_2)} \cdot h_1 h_2 \]
+\[ \text{Wynik B: } n_1 \cdot \bm{(h_1 n_2 h_1^{-1})} \cdot h_1 h_2 \]
+Te wyrażenia są identyczne wtedy i tylko wtedy, gdy:
+\[ \varphi(h_1)(n_2) = h_1 n_2 h_1^{-1} \]
+A to jest dokładnie założenie naszego twierdzenia! $\varphi$ jest zdefiniowane jako sprzężenie wewnętrzne.
+
+\textbf{Wniosek:} $\Phi$ jest izomorfizmem, co kończy dowód.
+\end{proof}
+
+\begin{remark}
+Powyższe twierdzenie formalizuje intuicję: \textit{Jeżeli w grupie $G$ potrafisz jednoznacznie rozłożyć każdy element na część z $N$ i część z $H$, a $H$ przesuwa elementy $N$ przez sprzęganie, to $G$ jest produktem półprostym.}
+\end{remark}
+
+\begin{eg}
+Szczególne przypadki
+
+\begin{enumerate}[label=\arabic*)]
+	\item Gdy $\cdot $ czyli $\varphi$ jest trywialne(tzn. $h\cdot n=n$ ), to $N\rtimes_{\varphi}H = N\times H$.
+	\item Gdy G jest abelowa i $N,H \le G$, to wtedy $N\unlhd G$ i działanie $\cdot$(określone przez $\varphi$) przez sprzężenie jest trywialne, a więc $N\rtimes_{\varphi}H = N\times H$, a więc jeśli $N \cap H = \{\mathbf{0}\} $, to $NH \cong N\rtimes_{\varphi}H = N\times H$(co już wcześniej było pokazane).
+\end{enumerate}
+
+\end{eg}
+\begin{eg}		
+	Zbadamy grupę $S_3$
+	\begin{goal}
+		Chcemy pokazać, że $G = S_3$ jest  \textbf{wewnętrznym produktem półprostym} swoich podgrup 
+		\begin{itemize}
+			\item $N= A_3$,
+			\item $H = \langle \left( 1,2 \right)  \rangle$.
+		\end{itemize}
+	
+	\end{goal}
+		Aby to udowodnić, musimy pokazać \textbf{cztery warunki:}
+	\begin{enumerate}[label=\textbf{\arabic*.}]
+		\item $N\unlhd G$,
+		\item $H\le G$,
+		\item $N \cap H = \{ \id\} $,
+		\item $G = NH$.
+	\end{enumerate}
+
+	\textbf{Weryfikacja warunków:} 
+\begin{enumerate}[label=\textbf{Warunek \arabic*.}, wide]
+		\item $S_3$ ma rząd 6, $A_3$ ma rząd 3. $\left[ G:N \right] = \frac{\left| G \right| }{\left| A_{3} \right| } = 2$. Ponieważ każda podgrupa o indeksie 2 jest normalna, więc  $N\unlhd G$.
+		\item $H\le G$. Wynika to z założenia.
+		\item Obliczymy przekrój zbiorów: \[
+				N \cap H = {\id, \left( 1,2,3 \right), \left( 1,3,2 \right) } \cap \{\id, \left( 1,2 \right) \} = \{ \id\}.
+		.\] 
+		\item Pokażemy, że $NH = G$.
+			\begin{itemize}[leftmargin=3.5em]
+				\item Powyższe kroki są spełnione, więc \[
+				NH \cong N\rtimes H
+				.\] 
+			\item Z definicji produktu półprostego zewnętrznego jako zbioru par mamy
+				\[
+				\left| N\rtimes H \right| = \left| N \right| \cdot \left| H \right| 
+				.\] 
+			\item Stąd $\left| NH \right| = \left| N \right| \cdot \left| H \right| = 2 \cdot 3 = 6$.
+			\item Ponieważ $NH \le G=S_3$ oraz $\left| NH \right| = \left| S_3 \right| = 6$, więc $NH = S_3$.
+			\end{itemize}
+	\end{enumerate}
+	
+	Zatem $S_3 = NH \cong N\rtimes_{\varphi}H$, gdzie $\varphi$ jest działaniem $H$ na $N$ przez sprzężenie.
+\end{eg}
+\begin{remark}
+	Mając na uwadze powyższy wynik, zauważmy, że $N\cong \mathbb{Z}_3$ oraz $H \cong\mathbb{Z}_2$. 
+\end{remark}
+\begin{question}
+	Co z tego wynika?
+\end{question}
+
+Spójrzmy na poniższy diagram:
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    % Definicja stylów
+    node distance = 3cm and 3.5cm, % Odstęp: 3cm w pionie, 5cm w poziomie
+    okrag/.style = {draw, circle, minimum size=2cm}, % Styl dla dużych okręgów
+    punkt/.style = {circle, fill, inner sep=1pt} % Styl dla punktów wewnątrz
+]
+
+% --- PIERWSZA KOLUMNA ---
+
+% 1. Definiujemy duże okręgi
+\node[okrag, label={left:$\langle \left( 1,2 \right)  \rangle $}] (H1) {};
+\node[okrag, label={left:$\mathbb{Z}_2$}, below=of H1] (H2) {};
+
+% 2. Definiujemy PUNKTY jako węzły i dodajemy TEKST jako etykietę (label)
+\node[punkt, label={}] (h1) at ([shift={(-0.4, 0.3)}]H1.center) {};
+\node[punkt, label={below right:$h_2$}] (h2) at ([shift={(-0.4, -0.3)}]H2.center) {};
+\node[label={above: $h_1= f^{-1}(h_2)$}] (temp) at ([shift={(-1.4, 1.3)}]H1.center) {};
+
+
+% 3. Rysujemy strzałki dla pierwszej kolumny
+%    NOWA SKŁADNIA: Etykiety po obu stronach
+\draw[->, thick] (H1) -- (H2) 
+    node[midway, right] {$\cong f$};
+    
+% Strzałka wewnętrzna z etykietą
+\draw[<-, thick, bend right = 5] (h1) to
+    node[midway, left] {$f^{-1}$} (h2);
+
+% --- DRUGA KOLUMNA ---
+
+% 1. Definiujemy duże okręgi
+\node[okrag, label={left:$A_3= \langle \left( 1,2,3 \right)  \rangle $}, right=of H1] (N1) {};
+\node[okrag, label={left:$\mathbb{Z}_3$}, below=of N1] (N2) {}; % Poprawiona nazwa
+\node[label={right: $\varphi_1\left( h_1 \right) \left( n_1 \right) :=h_1\cdot _{1} n_{1}$}] (h1n1) at ([shift={(2.4, -1.3)}]N1.center) {};
+\node[label={[align=center]right: $\varphi_2\left( h_2 \right) \left( n_2 \right) = h_2\cdot _{2} n_{2} :=$\\ $g\left( f^{-1}\left( h_2 \right) \cdot _{1} g^{-1}\left( n_2 \right)  \right) $}] (h2n2) at ([shift={(2.4, 1.3)}]N2.center) {};
+
+\node[label={above: $n_1= g^{-1}(n_2)$}] (temp2) at ([shift={(1.4, 1.3)}]N1.center) {};
+% 2. Definiujemy PUNKTY i dodajemy TEKST jako etykietę
+\node[punkt, label={above right:$$}] (n1) at ([shift={(-0.4, 0.5)}]N1.center) {};
+\node[punkt, label={below right:$n_2$}] (n2) at ([shift={(-0.4, -0.3)}]N2.center) {};
+\node[punkt, label={}] (x) at ([shift={(0.4, -0.3)}]N1.center) {};
+\node[punkt, label={}] (y) at ([shift={(0.4, 0.3)}]N2.center) {};
+
+% 3. Rysujemy strzałki dla drugiej kolumny
+%    NOWA SKŁADNIA: Etykiety po obu stronach
+\draw[->, thick] (N1) -- (N2) 
+    node[midway, right] {$\cong g$};
+    
+\draw[->, thin, dashed] (temp) -- (h1);
+\draw[->, thin, dashed] (temp2) -- (n1);
+\draw[->, thin, dashed] (h1n1) -- (x);
+\draw[->, thin, dashed] (h2n2) -- (y);
+% Strzałka wewnętrzna z etykietą
+\draw[<-, thick, bend right=5] (n1) to node[midway, left] {$g^{-1}$} (n2);
+\draw[->, thick, bend left=30] (x) to node[midway, right] [xshift=2pt]{$g$}(y);
+\draw[->, thick] (H1) to[out=45, in=135] 
+    node[above, midway, font=\small] {$\phi_1:  \langle \left( 1,2 \right)  \rangle  \to \text{Aut}(A_3)$} (N1);
+\draw[->, thick] (H2) to[out=-45, in=-135] 
+    node[below, midway, font=\small] {$\phi_2: \mathbb{Z}_2 \to \aut\left(\mathbb{Z}_3\right) $} (N2);
+\end{tikzpicture}
+\end{figure}
+
+\vspace{3em}
+
+\begin{goall}
+	Chcemy poznać abstrakcyjne działanie $\varphi_2: \mathbb{Z}_2 \rightarrow \aut\left(\mathbb{Z}_3\right) $. Wykorzystamy do tego pokazany na diagramie \textbf{transport struktury}.  
+
+
+	\textbf{Diagram i Oznaczenia:} Zgodnie z diagramem mamy:
+	\begin{itemize}
+		\item $H_1 = \langle \left( 1,2 \right)  \rangle $ oraz $N_1 = A_3 = \langle \left( 1,2,3 \right)  \rangle $.
+		\item $H_2 = \mathbb{Z}_2$ oraz $N_2 =\mathbb{Z}_3$.
+		\item $f: H_1\rightarrow H_2$ oraz $g: N_1 \rightarrow N_2$ to izomorfizmy.
+		\item $\varphi_1: H_1 \rightarrow \aut\left(N_1\right) $ to \textbf{znane} działanie przez sprzężenie.
+		\item $\varphi_2: H_2 \rightarrow \aut\left(N_2\right) $ to \textbf{nieznane} działanie, które badamy.
+	\end{itemize}
+
+	Działanie $\varphi_2$ jest \textbf{indukowane} przez działanie $\varphi_1$ za pomocą formuły "transportującej":
+	\[
+	\varphi_2\left( h_2 \right)\left( n_2 \right) = h_2\cdot _{2}n_2 := g\left( f^{-1}\left( h_2 \right) \cdot _{1} g^{-1}\left( n_2 \right)  \right) 
+	.\] 
+gdzie $\cdot _{1}$ to \textbf{znane} działanie \textbf{działanie przez sprzężenie}.
+\begin{enumerate}[label=\textbf{Krok \arabic*.}, wide]
+	\item \textbf{Analiza Znanego Działania $\varphi_1$ (w $S_3$)} 
+	Musimy najpierw precyzyjnie określić czym jest działanie $\varphi_1$. Wystarczy sprawdzić jak \textbf{generator $H_1$} działa na \textbf{generator $N_1$}. 
+	\begin{itemize}
+		\item Niech $h_1 = \left( 1,2 \right) \in H_1.$
+		\item $n_1 = \left( 1,2,3 \right) \in N_1$.
+		\item Obliczmy działanie $h_1 \cdot_1 n_1$(czyli sprzężenie).
+			\[
+			h_1\cdot _{n_1} = \left( 1,2 \right) \left( 1,2,3 \right) \left( 1,2 \right) ^{-1} = \left( 1,3,2 \right) 
+			.\] 
+		\item Zauważmy, że w $N_1$ element $\left( 1,3,2 \right) $ jest elementem odwrotnym do $n_1$: 
+			\[
+			\left( 1,3,2 \right) = \left( 1,2,3 \right) ^{-1} = n_1^{-1} 
+			.\] 
+
+		\item \textbf{Wniosek:} Działanie $\varphi_1$(inaczej $\cdot_{1}$) generatora $H_1$ na $N_1$ polega na  \textbf{inwersji}(odwracaniu elementów).  
+	\end{itemize}
+\item \textbf{Ustalenie izomorfizmów $f$ i $g$} 
+
+	Aby użyć formuły, musimy zdefiniować izomorfizmy. Używamy najbardziej naturalnego mapowania "generator na generator".
+	\begin{itemize}
+		\item $f: \langle \left( 1,2 \right)  \rangle \rightarrow \mathbb{Z}_2:$ Niech $f\left( \left( 1,2 \right)  \right) = 1_{\scriptscriptstyle\mathbb{Z}_2}$, wtedy $f^{-1}\left(1_{\scriptscriptstyle \mathbb{Z}_2} \right) = \left( 1,2 \right) $
+		\item $g: \langle \left( 1,2,3 \right)  \rangle \rightarrow \mathbb{Z}_3:$ Niech $g\left( \left( 1,2,3 \right)  \right) = 1_{\scriptscriptstyle \mathbb{Z}_3}$,
+			wtedy $g^{-1}\left( 1_{\mathbb{Z}_3} \right) = \left( 1,2,3 \right) $.
+
+			Musimy też znać $g^{-1}\left( 2_{\scriptscriptstyle\mathbb{Z}_3} \right) $, czyli
+			\[
+			g^{-1}\left( 2_{\scriptscriptstyle\mathbb{Z}_3} \right) = g^{-1}\left( 1_{\scriptscriptstyle\mathbb{Z}_2} +_{\scriptscriptstyle\mathbb{Z}_2} 1_{\scriptscriptstyle\mathbb{Z}_2} \right) = g^{-1}\left( 1_{\scriptscriptstyle\mathbb{Z}_2} \right) \circ g^{-1}\left( 1_{\scriptscriptstyle\mathbb{Z}_2} \right) = \left( 1,2,3 \right) \circ \left( 1,2,3 \right) = \left( 1,3,2 \right)  
+			.\] 
+			\end{itemize}
+	\item \textbf{Obliczenie działania $\varphi_2$ (Badanie)}
+
+			Teraz jesteśmy gotowi zbadać działanie $\varphi_2$. Wystarczy sprawdzić jak generator $h_2\in \mathbb{Z}_2$ działa na generator $n_2\in \mathbb{Z}_3$, czyli poznać homomorfizm $\varphi_2\left( h_2 \right) \left( n_2 \right) $. Skorzystamy z naszej formuły "transportującej":
+			\begin{align*}
+				\varphi_2\left( h_2 \right) \left( n_2 \right) &= \\
+									       &=\varphi_2\left( 1_{\scriptscriptstyle\mathbb{Z}_2} \right)\left( 1_{\scriptscriptstyle\mathbb{Z}_3} \right)\tag{Podstawienie $f^{-1}$ i $g^{-1}$}\\ &= g\left( f^{-1}\left( 1_{\scriptscriptstyle\mathbb{Z}_2} \right) \cdot_{1} g^{-1}\left( 1_{\scriptscriptstyle\mathbb{Z}_3} \right)  \right)\tag{Zastosowanie formuły}  \\ 									  &= g\left( \left( 1,2 \right) \cdot_{1} \left( 1,2,3 \right)  \right)\tag{Wyliczenie $f^{-1}$ i $g^{-1}$} \\
+											  &= g\left( \left( 1,2 \right) \left( 1,2,3 \right) \left( 1,2 \right)^{-1} \right)\tag{$\cdot_{1}$ to działanie przez sprzężenie} \\
+											  &= g\left( \left( 1,3,2 \right)  \right)  \\
+											  &= 2_{\mathbb{Z}_3}\tag{Z definicji $g^{-1}\left( 2 \right) = \left( 1,3,2 \right) $} 
+			.\end{align*}
+
+\textbf{Rezultat:} Odkryliśmy, że $\varphi_2\left( 1_{\scriptscriptstyle\mathbb{Z}_2} \right)\left( 1_{\scriptscriptstyle\mathbb{Z}_3} \right) = \bm{2_{\scriptscriptstyle\mathbb{Z}_3} = -1_{\scriptscriptstyle\mathbb{Z}_3} } $ 
+\end{enumerate}
+
+\textbf{Wniosek:}
+\begin{itemize}
+	\item Działanie generatora grupy $\mathbb{Z}_2$ na generatorze grupy $\mathbb{Z}_3$ daje w wyniku element $2 \in \mathbb{Z}_3$.
+	\item W grupie $\mathbb{Z}_3$ element 2 jest elementem przeciwnym do 1:  $2 \equiv -1 \pmod{3} $.
+	\item Oznacza to, że działanie $\varphi_2$ to \textbf{automorfizm inwersji:} $\varphi_2\left( h \right) \left( n \right) = -n$ (dla nietrywialnego $h \in \mathbb{Z}_2$ i dowolnego $n\in \mathbb{Z}_3$), czyli
+		\[
+		\forall\left(a \in \mathbb{Z}_3\right)\left( 1_{\scriptscriptstyle\mathbb{Z}_2}\cdot a = -a \text{ oraz } 0_{\scriptscriptstyle\mathbb{Z}_2}\cdot a = a \right)  
+		-1_{\scriptscriptstyle\mathbb{Z}_3}.\] 
+\end{itemize}
+\end{goall} 
+
+\begin{summary}
+
+	W naszym przykładzie z $S_3$, posiłkując się diagramem dla czytelności, przenieśliśmy konkretne działanie przez sprzężenie(inwersję) z $\bm{ S_3 } $ do \textbf{świata abstrakcyjnego}, odkrywając, że jedyne nietrywialne działanie $\mathbb{Z}_2$ na $\mathbb{Z}_3$ to również \textbf{inwersja}. 
+
+\textbf{W ogólnym przypadku}, przy poniższych założeniach:
+\begin{itemize}
+	\item Grupa $H_1$ działa na grupę $N_1$ przez automorfizmy:
+		\[
+		\varphi_1: H_1\rightarrow\text{Aut}\left( N_1 \right) \quad \left( \varphi_1\left( h_1 \right) \left( n_1 \right) := h_1\cdot _{1} n_1 \right) 
+		.\]
+	\end{itemize}
+
+	a ponadto mając dla \textbf{pewnych} grup $H_2$ oraz $N_2$ izomorfizmy $f$ i $g$
+	\begin{itemize}
+		\item $f: H_1 \overset{\cong}{\rightarrow} H_2$,
+		\item $g: N_1 \overset{\cong}{\rightarrow} N_2$.
+	\end{itemize}
+
+wtedy używając f i g możemy zdefiniować działanie $\varphi_2$ grupy $H_2$ na grupie $N_2$, które jest indukowane przez działanie $\varphi_1$ grupy $H_1$ na grupie $N_1$ w następujący sposób:
+\[
+\varphi_2\left( h_2 \right) \left( n_2 \right) = h_2\cdot _{2}n_2 := g\left( f^{-1}(h_2)\cdot _{1}g^{-1}\left( n_2 \right) \right) 
+.\] 
+tak jak na poniższym diagramie jest to widoczne.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    % Definicja stylów
+    node distance = 3cm and 3.5cm, % Odstęp: 3cm w pionie, 5cm w poziomie
+    okrag/.style = {draw, circle, minimum size=2cm}, % Styl dla dużych okręgów
+    punkt/.style = {circle, fill, inner sep=1pt} % Styl dla punktów wewnątrz
+]
+
+% --- PIERWSZA KOLUMNA ---
+
+% 1. Definiujemy duże okręgi
+\node[okrag, label={left:$H_1$}] (H1) {};
+\node[okrag, label={left:$H_2$}, below=of H1] (H2) {};
+
+% 2. Definiujemy PUNKTY jako węzły i dodajemy TEKST jako etykietę (label)
+\node[punkt, label={}] (h1) at ([shift={(-0.4, 0.3)}]H1.center) {};
+\node[punkt, label={below right:$h_2$}] (h2) at ([shift={(-0.4, -0.3)}]H2.center) {};
+\node[label={above: $h_1= f^{-1}(h_2)$}] (temp) at ([shift={(-1.4, 1.3)}]H1.center) {};
+
+
+% 3. Rysujemy strzałki dla pierwszej kolumny
+%    NOWA SKŁADNIA: Etykiety po obu stronach
+\draw[->, thick] (H1) -- (H2) 
+    node[midway, right] {$\cong f$};
+    
+% Strzałka wewnętrzna z etykietą
+\draw[<-, thick, bend right = 5] (h1) to
+    node[midway, left] {$f^{-1}$} (h2);
+
+% --- DRUGA KOLUMNA ---
+
+% 1. Definiujemy duże okręgi
+\node[okrag, label={left:$N_1$}, right=of H1] (N1) {};
+\node[okrag, label={left:$N_2$}, below=of N1] (N2) {}; % Poprawiona nazwa
+\node[label={right: $\varphi_1\left( h_1 \right) \left( n_1 \right) :=h_1\cdot _{1} n_{1}$}] (h1n1) at ([shift={(2.4, -1.3)}]N1.center) {};
+\node[label={[align=center]right: $\varphi_2\left( h_2 \right) \left( n_2 \right) = h_2\cdot _{2} n_{2} :=$\\ $g\left( f^{-1}\left( h_2 \right) \cdot _{1} g^{-1}\left( n_2 \right)  \right) $}] (h2n2) at ([shift={(2.4, 1.3)}]N2.center) {};
+
+\node[label={above: $n_1= g^{-1}(n_2)$}] (temp2) at ([shift={(1.4, 1.3)}]N1.center) {};
+% 2. Definiujemy PUNKTY i dodajemy TEKST jako etykietę
+\node[punkt, label={above right:$$}] (n1) at ([shift={(-0.4, 0.5)}]N1.center) {};
+\node[punkt, label={below right:$n_2$}] (n2) at ([shift={(-0.4, -0.3)}]N2.center) {};
+\node[punkt, label={}] (x) at ([shift={(0.4, -0.3)}]N1.center) {};
+\node[punkt, label={}] (y) at ([shift={(0.4, 0.3)}]N2.center) {};
+
+% 3. Rysujemy strzałki dla drugiej kolumny
+%    NOWA SKŁADNIA: Etykiety po obu stronach
+\draw[->, thick] (N1) -- (N2) 
+    node[midway, right] {$\cong g$};
+    
+\draw[->, thin, dashed] (temp) -- (h1);
+\draw[->, thin, dashed] (temp2) -- (n1);
+\draw[->, thin, dashed] (h1n1) -- (x);
+\draw[->, thin, dashed] (h2n2) -- (y);
+% Strzałka wewnętrzna z etykietą
+\draw[<-, thick, bend right=5] (n1) to node[midway, left] {$g^{-1}$} (n2);
+\draw[->, thick, bend left=30] (x) to node[midway, right] [xshift=2pt]{$g$}(y);
+\draw[->, thick] (H1) to[out=45, in=135] 
+    node[above, midway, font=\small] {$\phi_1: H_1 \to \text{Aut}(N_1)$} (N1);
+\draw[->, thick] (H2) to[out=-45, in=-135] 
+    node[below, midway, font=\small] {$\phi_2: H_2 \to \text{Aut}(N_2)$} (N2);
+\end{tikzpicture}
+\end{figure}
+\end{summary}
+
+\vspace{3em}
+
+\begin{fact}
+	
+		 Homomorfizm $\varphi$ z powyższych rozważań jes działaniem $H_2$ na $N_2$ przez 
+			automorfizmy(utożsamiamy działanie $\cdot _{2}$ z homomorfizmem).
+\end{fact}
+\begin{fact}
+		 Funkcja $h: N_2\rtimes_{\varphi_1}H_1 \rightarrow N_2\rtimes_{\varphi_2}H_2$ jest izomorfizmem, to znaczy \[
+		 N_1\rtimes_{\varphi_1}H_1 \cong N_2\rtimes_{\varphi_2}H_2
+		.\] 
+\end{fact}
+\begin{question}
+
+	Jak wygląda działanie $\varphi$ grupy $\mathbb{Z}_2$ na $\mathbb{Z}_3$?
+\end{question}
+W powyższych dysputach otrzymaliśmy, że $S_{3} = \langle \left( 1,2 \right)\rangle = \cong_{\varphi} \mathbb{Z}_3 \rtimes \mathbb{Z}_2$. Opiszemy teraz to działanie $\varphi$.
+
+Najpierw przypomnimy nasze grupy, na których pracujemy.
+\begin{itemize}
+	\item $S_{3} = \{\id, (1,2), (1,3), (2,3), (1,2,3), (1,3,2)\} $ 
+	\item $A_3 = \{\id, (1,2,3), (1,3,2)\} $
+	\item $\langle (1,2) \rangle = \{\id, (1,2)\} $
+	\item $\mathbb{Z}_3 = \{0,1,2\} $ 
+	\item $\mathbb{Z}_2 = \{0,1\} $
+\end{itemize}
+TODO
+\begin{proof}
+
+	Dowody obu faktów są na liście zadań.
+\end{proof}
+\begin{theorem}
+
+	Jeśli $\varphi$ jest działaniem $\mathbb{Z}_2$ na $\mathbb{Z}_{n}$ zadanym przez $\varphi\left( 1 \right) \left( a \right) = -a$, to \[
+	\mathbb{Z}_{n}\rtimes_{\varphi} \mathbb{Z}_2 \cong D_{n} \quad D_{n}-\text{grupa dihedralna}
+	.\] 	
+\end{theorem}
+
+\begin{context}
+	Przepis na Produkt Półprosty. Intuicyjnie to chcemy przedstawić jakąś grupę jako produkt półprosty(rozłożyć na prostsze grupy),
+\end{context}
+\begin{remark}[Algorytm(Przepis) Rozpoznawania Produktu Półprostego]
+Aby wykazać, że badana grupa $G$ jest produktem półprostym (tzn. $G \cong N \rtimes H$), wykonaj następujące kroki wewnątrz grupy $G$:
+
+\begin{enumerate}[label=\textbf{Krok \arabic*.}, leftmargin=*, labelsep=1em]
+    \item \textbf{Znajdź kandydatów:} Wskaż w grupie $G$ dwie podgrupy $N$ i $H$.
+    \item \textbf{Sprawdź normalność:} Upewnij się, że $N \unlhd G$ (to najważniejszy warunek!). Podgrupa $H$ nie musi być normalna.
+    \item \textbf{Sprawdź rozłączność:} Pokaż, że $N \cap H = \{e_G\}$.
+    \item \textbf{Sprawdź generowanie (lub rzędy):}
+    \begin{itemize}
+        \item Ogólnie: Pokaż, że każdy element $g \in G$ da się zapisać jako $nh$.
+        \item Dla grup skończonych: Wystarczy sprawdzić, czy $|G| = |N| \cdot |H|$.
+    \end{itemize}
+    \item \textbf{Zidentyfikuj działanie:} Jeśli powyższe warunki są spełnione, to $G \cong N \rtimes_\varphi H$. Aby wiedzieć, \textit{jaki} to konkretnie produkt, znajdź homomorfizm $\varphi: H \to \text{Aut}(N)$ zadany wzorem:
+    \[ \varphi(h)(n) = hnh^{-1} \quad (\text{sprzężenie w } G). \]
+\end{enumerate}
+
+\vspace{1em}
+\noindent\textbf{Podsumowanie strukturalne:}
+Jeśli znajdziemy takie podgrupy, możemy utożsamić strukturę wewnętrzną $G$ z konstrukcją zewnętrzną.
+
+\begin{figure}[H]
+    \centering
+    \begin{equation*}
+        \underbrace{G = NH}_{\text{Struktura wewn.}} \cong \underbrace{N \tikzmark{CG}\rtimes_{\varphi}H}_{\text{Produkt par } (n,h)} \cong \underbrace{G_1 \tikzmark{IG}\rtimes_{\psi} G_2}_{\text{Abstrakcyjne grupy}} 
+    \end{equation*}
+    \begin{tikzpicture}[overlay,remember picture]
+            \node (Vcg) [above left of = CG, node distance = 4.5em, anchor=center]{\footnotesize \textsf{Działanie przez sprzężenie w G}};
+            \draw[<-, in=-90, out=90] ([xshift=0.7em, yshift=1em]CG.north)++(.25em,-.5ex) to (Vcg.south);
+
+            \node (Vig) [above right of = IG, node distance = 5.5 em, anchor=center] {\footnotesize \textsf{Działanie indukowane przez izomorfizmy}};
+            \draw[<-, in=-90, out=90] ([xshift=0.7em,yshift=1em]IG.north)++(.25em,-.5ex) to (Vig.south);
+    \end{tikzpicture}
+\end{figure}
+
+\begin{remark}
+Formalnie jest to warunek konieczny i wystarczający. Stwierdzenie, że $G \cong G_1 \rtimes G_2$, jest równoważne istnieniu w $G$ podgrup $N \cong G_1$ i $H \cong G_2$ spełniających powyższy "przepis". To pozwala uniknąć żmudnego konstruowania bijekcji ręcznie.
+\end{remark}
+\end{remark}
+
+\begin{eg}[Dekompozycja grupy symetrycznej $S_n$]
+Niech $n \ge 2$. Pokażemy, że $S_n \cong A_n \rtimes \mathbb{Z}_2$. Zastosujmy naszą \textbf{Strategię}:
+
+\begin{enumerate}[label=\textbf{\arabic*.}]
+    \item \textbf{Kandydaci:} 
+    \begin{itemize}
+        \item $N = A_n$ (grupa permutacji parzystych).
+        \item $H = \langle (1,2) \rangle = \{\text{id}, (1,2)\}$. Wiemy, że $H \cong \mathbb{Z}_2$.
+    \end{itemize}
+    
+    \item \textbf{Normalność $N$:} 
+    Wiemy, że $|S_n| = n!$ oraz $|A_n| = \frac{n!}{2}$. Zatem indeks $[S_n : A_n] = 2$.
+    Z twierdzenia o podgrupach indeksu 2 wynika, że $A_n \unlhd S_n$. (Warunek spełniony).
+    
+    \item \textbf{Rozłączność:} 
+    $A_n$ zawiera tylko permutacje parzyste. Transpozycja $(1,2)$ jest nieparzysta.
+    Zatem $A_n \cap H = \{\text{id}\}$. (Warunek spełniony).
+    
+    \item \textbf{Rzędy:} 
+    \[ |A_n| \cdot |H| = \frac{n!}{2} \cdot 2 = n! = |S_n|. \]
+    (Warunek spełniony).
+\end{enumerate}
+
+\textbf{Wniosek:} Na mocy Twierdzenia o Rozpoznawaniu, $S_n \cong A_n \rtimes_\varphi \mathbb{Z}_2$.
+
+\textbf{Jakie to działanie?}
+Działanie $\varphi: \mathbb{Z}_2 \to \text{Aut}(A_n)$ jest realizowane przez sprzęganie elementami z $H$. Niech $h = (1,2)$ będzie generatorem $\mathbb{Z}_2$. Wtedy dla dowolnego $\sigma \in A_n$:
+\[ \varphi(h)(\sigma) = (1,2) \cdot \sigma \cdot (1,2)^{-1}. \]
+Jest to automorfizm wewnętrzny grupy $S_n$ (zamiana $1 \leftrightarrow 2$ w zapisie cyklowym $\sigma$) ograniczony do $A_n$.
+\end{eg}
+\begin{remark}
+
+Jeśli mamy prawe działanie $\cdot $ H na N przez automorfizmy, to definiujemy \[
+	\left( h_1,n_1 \right) * \left( h_2,n_2 \right) := \left( h_1h_2, \left( n_1\cdot h_1 \right)n_2 \right) 
+.\] 
+Wtedy $\left( H\times N,* \right) $ jest grupą i zachodzą analogony pozostałych rezultatów.
+
+\end{remark} 
+
+\begin{question}Skąd brać działania danej grupt H na grupie N?
+\end{question}
+
+\begin{remark}[Praktyczny przewodnik]
+
+Aby znaleźć działania H na N, trzeba wykonać dwa kroki:
+\begin{enumerate}[label=\arabic*)]
+	\item \textbf{Zrozumieć} Aut(N).
+		Zanim zaczniemy myśleć o H, trzeba najpierw dobrze zrozumieć cel. Aut(N) jest to grupa wszystkich automorfizmów N. Trzeba sobie odpowiedzieć na pytania:
+		\begin{itemize}
+			\item Jakie są elementy Aut(N)?
+			\item Jaka jest struktura tej grupy?(Czy jest cykliczna? Abelowa? Jaki ma rząd?)
+		\end{itemize}
+	\item \textbf{Szukać homomorfizmów } $H\rightarrow \text{Aut}(N)$.
+	Gdy już znamy dobrze Aut(N) szukamy wszystkich możliwych homomorfizmów $\varphi$ z H do Aut(N). Obraz danego elementu $h \in H$, czyli $\varphi(h)$, to jest \textbf{konkretny} automorfizm grupy N, który mówi nam, jak h ma działać na elementy N.
+\end{enumerate}
+
+W praktyce działania biorą się najczęściej z trzech źródeł:
+\begin{enumerate}[label=\arabic*)]
+	\item \textbf{Działanie trywialne.}
+		\begin{itemize}
+		\item \textbf{Skąd się bierze?} Zawsze istnieje \textbf{homomorfizm trywialny} $\varphi: H \rightarrow \text{Aut}\left( N \right) $, który każdemu $h\in H$ przypisuje automorfizm identycznościowy- $\id_{N}$.
+		\item \textbf{Jak wygląda?} $\varphi\left( h \right) \left( n \right) = n$ dla wszystkich $h\in H, n\in N$.
+		\item \textbf{Konekwencja:} Użycie tego działania w produkcie półprostym $N\rtimes_{\varphi}H$ daje w wyniku \textbf{produkt prosty } $N\times H$.
+		\end{itemize}
+	\item \textbf{Działanie przez sprzężenie(kontekst wewnętrzny).} 	       \begin{itemize}
+			\item \textbf{Skąd się bierze? } Gdy N i H są już podgrupami jakiejś większej grupy G, przy czym N jest normalna($N\unlhd G$). 
+			\item \textbf{Jak wygląda? } Działanie  H na N jest zdefiniowane jako  \textbf{sprzężenie} wewnątrz G: $\varphi\left( h \right) \left( n \right) = hnh^{-1}$. Ponieważ, N jest normalna, więc  $hnh^{-1}$ na pewno należy do N, więc jest to działanie H na N. Jest to też automorfizm N.  
+		\end{itemize}
+	\item \textbf{Działanie konstrukcyjne (kontekst zewnętrzny)} 
+		\begin{itemize}
+			\item \textbf{Skąd się bierze? } Z jawnej analizy Aut(N) i szukaniu nietrywialnych homomorfizmów $\varphi: H\rightarrow \text{Aut}\left( N \right) $. To jest metoda, której używamy do \textbf{budowania nowych} grup.
+			\item \textbf{Przykład konstrukcji: } Chcemy zbudować grupę rzędu 21.
+				\begin{enumerate}[label=\roman*)]
+					\item (Ponieważ jesteśmy przed twierdzeniami Sylowa, więc można założyć, że grupy N i H są izomorficzne z $\mathbb{Z}_7$ i $\mathbb{Z}_3$ odpowiednio)Z twierdzeń Sylowa, wiemy, że taka grupa musi być produktem półprostym $N\rtimes H$, gdzie $N \cong \mathbb{Z}_7$ a $H \cong \mathbb{Z}_3$.
+					\item Musimy znaleźć działanie $\varphi: \mathbb{Z}_3 \rightarrow \text{Aut}\left( \mathbb{Z}_7 \right)$.
+					\item \textbf{Krok 1: } Znajdujemy  $\text{Aut}\left( \mathbb{Z}_7 \right) \cong \mathbb{Z}^{*}_7$, co jest grupą cykliczną, rzędu 6: $\mathbb{Z}_7^{*} \cong \mathbb{Z}_6$
+					\item \textbf{Krok 2: } Szukamy homomorfizmów  $\varphi: \mathbb{Z}_3 \rightarrow \mathbb{Z}_6$
+						\begin{itemize}
+							\item Homomorfizm jest wyznaczony przez obraz generatora $1\in \mathbb{Z}_3$. Rząd $\varphi\left( 1 \right)$ musi dzielić rząd(1) = 3.
+							\item W grupie $\mathbb{Z}_6$ (z generatorem a) elementy rzędu dzielącego 3 to: $e$ (rząd 1), $a^2 $ (rząd 3), $a^{4}$ (rząd 3).
+							\item \textbf{Opcja A(trywialna): } $\varphi\left( 1 \right) = e$. To działanie trywialne i produkt prosty $\mathbb{Z}_7 \times \mathbb{Z}_3 \cong \mathbb{Z}_{21}$.
+							\item \textbf{Opcja B(nietrywialna): } $\varphi\left( 1 \right) = a^2$. To daje nietrywialne działanie (np.generator $\mathbb{Z}_3$ działa na $\mathbb{Z}_7$ jako automorfizm "do kwadratu") i w rezultacie nietrywialną, nieprzemienna grupę rzędu 21. 
+						\end{itemize}
+				\end{enumerate}
+	
+		\end{itemize}
+\end{enumerate}
+\end{remark}
+
+\begin{fact}
+
+	$\text{Aut}\left( \mathbb{Z}_2\times \mathbb{Z}_2 \right) \cong S_3$.
+	Zauważyć, że
+	\begin{equation*}
+		\mathbb{Z}_3 \cong A_3 \xRightarrow[\le ]{\id} S_3 \cong \text{Aut}\left( \mathbb{Z}_2\times \mathbb{Z}_2 \right) 
+	\end{equation*}
+
+	$\varphi: \mathbb{Z}_3 \rightarrow \text{Aut}\left( \mathbb{Z}_2\times \mathbb{Z}_2 \right) $ jest monomorfizmem?
+\end{fact}
+\begin{fact}
+
+	$A_4 \cong \left( \mathbb{Z}_2\times \mathbb{Z}_2 \right) \rtimes_{\varphi} \mathbb{Z}_3$
+\end{fact}
+\begin{fact}
+
+	Grupa $"ax+b"$,  $a\in \mathbb{R}\setminus \{0\} , b\in \mathbb{R}$, formalnie 
+	\[
+		\left( \{ax+b:a\in \mathbb{R}^{*},b\in \mathbb{R}\}, \circ  \right) \cong \left( \mathbb{R}, + \right) \rtimes \left( \mathbb{R}^{*}, \cdot  \right)  
+	.\] 
+	$\circ$ oznacza składanie.
+\end{fact}
+\begin{proof}
+
+	Dowód każdego faktu jest na liście zadań.
+\end{proof}
+
+\section{Klasyfikacja grup rzędu $\le $ 8.}
+
+\begin{context}
+Zmierzamy do klasyfikacji grup rzędu $\le 8$ używając $\rtimes$.
+\end{context}
+
+Najpierw poznamy nieomówioną do tej pory grupę rzędu 8, mianowicie \textbf{grupę kwaternionów}. Jest to konkretna grupa żyjąca nad macierzami $M\in M_{2x_2}\left( \C \right) $. Mianowicie niech
+\[
+	\mathbf{i} =\begin{bmatrix} i & 0 \\0&-i \end{bmatrix}, \mathbf{j} = \begin{bmatrix} 0&1 \\ -1& 0 \end{bmatrix}, \mathbf{k} = \begin{bmatrix} 0 & i \\ i & 0 \end{bmatrix}, \mathcal{I} = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}  \in GL_2\left( \C \right) 
+.\] 
+
+Niech \[
+Q_{8} = \{\mathcal{I}, -\mathcal{I}, \mathbf{i} , -\mathbf{i}, \mathbf{j}, -\mathbf{j} , \mathbf{k}, -\mathbf{k}  \} 
+.\] 
+Łatwo sprawdzić że
+\begin{itemize}
+	\item $\mathbf{i} \mathbf{j} = \mathbf{k}, \mathbf{j} \mathbf{k} = \mathbf{i}, \mathbf{k} \mathbf{i} = \mathbf{j} $,
+	\item $\mathbf{j} \mathbf{i} = -\mathbf{k}, \mathbf{k} \mathbf{j} = -\mathbf{i}, \mathbf{i} \mathbf{k} = -\mathbf{j} $,
+	\item  $\mathbf{i} ^{2} = \mathbf{j} ^{2} = \mathbf{k} ^2 = -\mathcal{I}$,
+	\item $\forall\left(A\in Q_8\right) \left( \left( -\mathcal{I} \right) A = A\left( -\mathcal{I} \right) = -A \right) $
+	\item $\forall\left(A,B \in Q_8\right)\left( \left( -A \right) B = A\left( -B \right) = -AB \right)  $
+\end{itemize}
+
+Zatem $Q_8 \le GL_{2}\left( \C \right) $
+
+Przechodzimy teraz do klasyfikacji grup rzędu $\le 8$ z dokładnością do $\cong$.
+
+Zauważmy, że dla danej grupy $G$ i $p = \left| G \right|$, jeśli $p$ jest liczbą pierwszą, to $G\cong\mathbb{Z}_{p}$.
+
+Zatem, gdy $\left| G \right| \in \{1,2,3,5,7\} $, to $G\cong\mathbb{Z}_{\left| G \right| }$.
+
+Ponadto wcześniej już pokazaliśmy, że jeśli $\left| G \right| = 4$ to $G\cong\mathbb{Z}_{4}$ lub $G\cong \mathbb{Z}_2\times \mathbb{Z}_2$.
+
+Pozostały przypadki 6 i 8.
+
+\textbf{Przypadek} $\bm{ \left| G \right| = 6 } $ : Pokażemy, że $G\cong\mathbb{Z}_6$ lub $G\cong S_{3}$.
+\begin{fact}
+Istnieje $g\in G\setminus \{e\} $ taki że rząd($g$ ) $\neq 2$
+\end{fact}
+\begin{proof}
+	Jeśli nie to grupa by była abelowa i to doprowadzi do sprzeczności TOD. 
+\end{proof} 
+Rozważmy przypadki
+\begin{enumerate}[label=\arabic*.]
+	\item rząd($g$ ) = 6 wtedy $\langle g \rangle \cong Z_{6}$ 
+	\item rząd($g$ ) $\neq 6$ wtedy rząd(g) = 3 (Z twierdzenia Lagrange'a)
+	
+		Niech $N= \langle g \rangle \le G$ wtedy $[G:N] = \frac{6}{3}=2$ zatem $N\unlhd G.$ Weźmy $h\in G\setminus N$ i niech $H := \langle h \rangle $. Jeśli $\text{rząd}\left( H \right) = 6$ to $G\cong\mathbb{Z}_6$. Natomiast jeśli $\text{rząd}\left(  \right) \neq 6$ to $\text{rząd}\left( H \right) =3$, to ponieważ $H\cap N \overset{\le }{\text{właściwa}}$ więc $H\cap N= \{e\} \implies \left| NH \right| =9 > 6 <-$ sprzeczność.
+
+		Jeśli $\text{rząd}\left( H \right) = 2$ to $\left| H \right| = 2 \implies G\cong \mathbb{Z}_3\rtimes\mathbb{Z}_2$.
+
+		Czym jest $\varphi$? \[
+		\varphi : \mathbb{Z}_2 \to \aut\left(\mathbb{Z}_3\right) \cong \mathbb{Z}_3^{*} \cong \mathbb{Z}_2
+		\] 
+                ale są tylko 2 homomorfizmy $\mathbb{Z}_2\to \mathbb{Z}_2$, czyli mamy dwa przypadki:
+		\begin{itemize}
+			\item $\varphi $ jest trywialny: wtedy $G\cong \mathbb{Z}_3\rtimes\mathbb{Z}_2 \cong\mathbb{Z}_6$
+			\item $\varphi\left( a \right) \left( x \right) := \begin{cases}
+					x, &\text{ gdy } a= 0,\\
+					-x, &\text{ gdy } a=1
+			\end{cases}$ 
+
+			Wtedy $G\cong \mathbb{Z}_3\rtimes\mathbb{Z}_2 \cong S_{3} \cong D_{3}$
+		\end{itemize}
+\end{enumerate}
+
+\textbf{Przypadek gdy} $\left| G \right| = 8$
+\begin{enumerate}[label=\arabic*.]
+	\item Nie istnieje element $g$ takie ze $\text{rząd}\left( g \right) =4$ 
+		\begin{fact}
+		Wtedy nie istnieje el $g'$, taki ze $\text{rząd}\left( g' \right) = 8$
+		\end{fact}
+		\begin{proof}
+			too
+		\end{proof} 
+
+		Zatem $\forall\left(g\in G\right)\left( \text{rząd}\left( g \right) \le 2 \right)  $ czyli $G$ jest abelowa.
+
+		Weźmy $g_1\in G\setminus \{e\} $, $g_2\in G\setminus \langle g_1 \rangle $ 
+		Wtedy $\langle g_1,g_2 \rangle \cong \Z_2\times \Z_2$.
+		Weźmy $g_3\in G\setminus \langle g_1,g_2 \rangle $. Wtedy $\langle g_1,g_2,g_3 \rangle \cong \langle \Z_2,\Z_2,\Z_2 \rangle $
+	\item Istnieje element $g$ taki ze $\text{rząd}\left(  g\right) = 8$. Wtedy $G\cong\Z_8$
+	\item Istnieje $g\in G$ taki że $\text{rząd}\left( g \right) = 4$ oraz $\forall\left(h\in G\right) \left( \text{rząd}\left( h \right) \le 4 \right). $ 
+
+		Ten podpunkt to dokładnie zaprzeczenie sytuacji 1 oraz 2. 
+
+		Niech $N:= \langle g \rangle \cong\Z_4 \implies [G:N] = 2 \implies N\unlhd G$
+		\begin{enumerate}[label=\theenumi\arabic*., ref=\theenumi.\arabic*]
+			\item Jest $x\in G\setminus N$ taki że $\text{rząd}\left( x \right) 2$
+				niech $H = \langle x \rangle $. Wtedy $H\cap N = \{e\} $.
+
+				Wtedy $G\cong\Z_4 \rtimes Z_2$ gdzie 
+				\[
+				\varphi : \Z_2 \to \aut\left(\Z_4\right) \cong \Z_3^{*}= \{ \{1,3\} , \cdot _{\scriptscriptstyle \Z_4}\} \cong\Z_2
+				.\] 
+
+				Są tylko dwa homomorfizmy $\Z_2\to \Z_2$
+				\begin{itemize}
+					\item $ \varphi$ jest trywialny $\implies G \cong \Z_4 \times \Z_2$
+					\item $\varphi$ jest nietrywialny
+						\[
+						\varphi\left( a \right) \left( x \right) = \begin{cases}
+							x, &\text{ gdy } a = 0, \\
+							-x, & \text{ gdy } a = 1.
+						\end{cases} \implies G\cong \Z_4 \rtimes \Z_2 \cong D_{4}
+						.\] 
+				\end{itemize}
+			\item Negacja 3.1 czyli
+				\[
+				\forall\left(x\in G\setminus N\right)\left( \text{rząd}\left( x \right) = 4 \right)  
+				.\] 
+				Wtedy mamy 6 elementów rzędu 4: $\left( G\setminus N \right) \cup \{g,g^{-1}\} $.
+				
+				Jeden element rzędu 1: oznaczamy przez $\mathbf{1}$
+
+				Jeden element rzędu 2: mianowicie $g^2$ ale oznaczamy go przez $-\mathbf{1}$
+
+				\begin{problem}[TODO]
+					To implikuje, że $-\mathbf{1}\in Z(G)$
+				\end{problem} 
+
+				Oznaczamy $i:=g$. Wezmy dowolne $j\in G\setminus N$ oraz niech $k:= ij$. Zauważmy, że $k\neq i,j, \mathbf{1}, -\mathbf{1}$. Ponadto $j\neq i, \mathbf{1}, -\mathbf{1}$. Oczywiście $i\neq \mathbf{1}, -\mathbf{1}$
+
+				Wtedy $k\not\in N\implies \text{rząd}\left( j \right) = 4 = \text{rząd}\left( k \right) $.
+
+				Mamy 
+				\begin{itemize}
+					\item $i^2= j^2 = k^2 = -\mathbf{1}$
+					\item $i^{-1} = \underbrace{(-\mathbf{1})i }_{=: -i}, j^{-1}=\underbrace{(-\mathbf{1})j}_{=:-j}, k^{-1}= \underbrace{(-\mathbf{1})k}_{=:-k} $
+				\end{itemize}
+				bo $(-\mathbf{1})i\cdot i = (-\mathbf{1})i^2 = (-\mathbf{1})^2 = \mathbf{1}$
+
+				Następnie sprawdzamy, że 
+				\begin{itemize}
+					\item 	\[
+				\mathbf{1}, -\mathbf{1},i,j,k, -i, -j. -k
+				.\] 
+				są parami różne.
+				\item tabelka działania na $\{+- \mathbf{1}, +-i, +-j, +-k\} $ ,,pokrywa się'' z tabelką w $Q_8$, a więc $G\cong Q_8$
+				\item Jest naturalna bijekcja pomiędzy
+					\[
+					+-\mathcal{I}, +-\mathbf{i}, +-\mathbf{j}, +-\mathbf{k} 
+					.\] 
+					oraz
+					\[
+					+-\mathbf{1}, +-i, +-j, +- k
+					.\] 
+
+				\end{itemize}
+			\end{enumerate}
+\end{enumerate}
+Konkluzja: z dokładnością do izomorifzmu możemy sporządzic następującą tabelkę klasyfikacyjną z grupami rzędu $\le 8$.
+
+\textbf{Tabelka przedstawiająca klasyfikację grup rzędu do 8 włącznie.}
+\begin{table}[H] 
+\centering 
+\begin{tabularx}{\textwidth}{lXX} 
+\toprule 
+rząd & grupy \\
+\midrule
+1 & $\mathbb{Z}_1$ \\
+\addlinespace
+2 & $\mathbb{Z}_2$ \\
+\addlinespace
+3 &  $\mathbb{Z}_3$ \\
+\addlinespace
+4 & $\mathbb{Z}_4,\quad \mathbb{Z}_2\times \mathbb{Z}_2$ \\
+\addlinespace
+5 & $\mathbb{Z}_5$ \\
+\addlinespace
+6 & $\mathbb{Z}_6,\quad S_3$ \\
+\addlinespace
+7 & $\mathbb{Z}_7$ \\
+\addlinespace
+8 & $\mathbb{Z}_8, \quad \mathbb{Z}_4\times \mathbb{Z}_2, \quad \mathbb{Z}_2\times\mathbb{Z}_2\times \mathbb{Z}_2, \quad D_4, \quad Q_8$ \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+\section{Podsumowania}
+
+\subsection{Równoważność działania i pewnego homomorfizmu $\varphi$}
+W algebrze istnieją dwa równoważne definicje działania grupy G na zbiorze X.
+\begin{enumerate}[label=\arabic*.]
+	\item \textbf{Definicja klasyczna(Działanie jako funkcja)} 
+		
+		Działanie to funkcja(kropka) $\cdot : G\times X\rightarrow X$, która każdemu elementowi $\left( g,x \right) $ przypisuje element $g\cdot x$, oraz spełnia dwa aksjomaty:
+		\begin{enumerate}[label=\Roman*.]
+			\item \textbf{Aksjomat Tożsamości:} $e_{G} \cdot x = x$ dla każdego $x\in X$,
+			\item \textbf{Aksjomat Łączności:} $\left( g_1g_2 \right) \cdot x = g_1\cdot \left( g_2\cdot x \right)$, dla każdego $g_1,g_2\in G, x\in X$.
+		\end{enumerate}
+	\item \textbf{Definicja homomorficzna(Działanie jako homomorfizm)}
+
+		Działanie to  \textbf{homomorfizm grup} $\varphi$ z grupy G w grupę symetryczną $S_{X}$(grupę wszystkich permutacji zbioru X):
+		\[
+		\varphi: G \rightarrow S_{X}
+		.\] 
+\end{enumerate}
+
+\noindent\textbf{Równoważność definicji.} Te dwie definicje opisują dokładnie to samo zjawisko.
+\begin{enumerate}[label=\arabic*.]
+	\item \textbf{Działanie} $\implies$ \textbf{homomorfizm:}
+
+		Mając działanie(kropka) $\cdot $ (definicja klasyczna) definiujemy homomorfizm(definicja homommorficzna).
+		\begin{itemize}
+			\item Dla każdego $g\in G$ tworzymy funkcję $\varphi\left( g \right): X\rightarrow X$ wzorem $\varphi\left( g \right) \left( x \right) = g\cdot x$.
+			\item Aksjomat I i II dowodzą, że  $\varphi\left( g \right) $ jest bijekcją(permutacją) należącą do $S_{X}$ oraz że $\varphi\left( g_1g_2 \right) = \varphi\left( g_1 \right) \circ \varphi\left( g_2 \right) $.
+			\item Zatem $\varphi : g \mapsto \varphi\left( g \right) $ jest homomorfizmem $G\rightarrow S_{X}$.
+		\end{itemize}
+	\item \textbf{Homomorfizm} $\implies$ \textbf{działanie:}
+		
+		Mając homomorfizm $G\rightarrow S_{X}$ (definicja homomorficzna), definiujemy działanie(kropka) $\cdot $ (definicja klasyczna).
+		\begin{itemize}
+			\item Definiujemy $g\cdot x := \left( \varphi\left( g \right)  \right)\left( x \right)$ (wynik działania g na x, to wynik zastosowania permutacji $\varphi\left( g \right) $ do x.
+			\item Ponieważ $\varphi\left( \id_{e_{G}} \right) = \id_{X}$, co dowodzi Aksjomatu I: $e_{G}\cdot x = \id_{X}\left( x \right) = x$.
+			\item Ponieważ $\varphi\left( g_1g_2 \right) = \varphi\left( g_1 \right) \circ \varphi\left( g_2 \right) $, dowodzi to Aksjomatu II: $\left( g_1g_2 \right) \cdot x = \varphi\left( g_1 \right) \left( \varphi\left( g_2 \right)  \right) \left( x \right) = g_1\cdot \left( g_2\cdot x \right) $.
+		\end{itemize}
+\end{enumerate}
+\begin{intuition}[Dlaczego utożsamienie jest takie ważne?]
+	Perspektywa homomorficzna $\varphi: G\rightarrow S_{X}$ jest świetnym narzędziem analitycznym, ponieważ pozwala nam używać fundamentalnych pojęć z teorii grup:
+	\begin{enumerate}[label=\Roman*.]
+		\item \textbf{Jądro działania($\ker(\varphi) $)}:
+			\begin{itemize}
+				\item $\ker(\varphi) = \{g \in G: \varphi\left( g \right) = \id_{X}\} $.
+				\item \textbf{Intuicja:} Jest to zbiór elementów z G, które działają \textbf{trywialnie} na każdym elemencie X.
+				\item \textbf{Konsekwencja:} $\ker(\varphi) $ jest zawsze  \textbf{podgrupą normalną} G. Działanie jest \textbf{wierne} jesli $\ker(\varphi) = \{e\} $.
+			\end{itemize}
+		\item \textbf{Obraz działania($\im(\varphi)$):}
+			\begin{itemize}
+				\item $\im(\varphi) = \{\varphi\left( g \right) : g\in G\} $.
+				\item \textbf{Intuicja: } Jest to "efektywna" grupa permutacji na X, która została faktycznie użyta. Jest to podgrupa $S_{X}$.
+			\end{itemize}
+		\item \textbf{Zasadnicze Twierdzenie o Homomorfizmie: }
+			\begin{itemize}
+				\item Mówi nam, że $G/\ker(\varphi) \cong \im(\varphi)  $.
+				\item \textbf{Intuicja: } Pozwala to zrozumieć strukturę grupy ilorazowej $G / \ker(\varphi) $ (abstrakcyjną) poprzez analizę konkretnej grupy permutacji $\im(\varphi) $ (namacalną). To jest most łączący wewnętrzną strukturę G z jej zewnętrznym działaniem.
+			\end{itemize}
+	\end{enumerate}
+\end{intuition}
+
+\subsection{Produkty Proste i Półproste (Zewnętrzne i Wewnętrzne)} 
+\begin{remark}
+
+	Pojęcia te opisują sposoby "składania" grup z mniejszych podgrup lub "rozkładania" grup na mniejsze komponenty. Różnica między podejściem wewnętrznym a zewnętrznym polega na perspektywie.
+
+\end{remark}
+	\begin{itemize}
+		\item \textbf{Zewnętrzny:} jest to \textbf{konstrukcja} nowej grupy z podanych, oddzielnych grup(np. N i H). Elementami nowej grupy są pary.
+		\item \textbf{Wewnętrzny:} jest to \textbf{opis struktury} już istniejącej grupy G poprzez analizę jej podgrup(N i H).
+	\end{itemize}
+	Te dwie perspektywy są matematycznie równoważne.
+
+	\begin{enumerate}[label=\arabic*)]
+		\item \textbf{Produkt prosty.}
+
+			Produkt prosty to konstrukcja, w której składowe grupy są "niezależne" i ich elementy ze sobą komutują.
+			
+			\textbf{Produkt Prosty Zewnętrzny(konstrukcja)}
+			\begin{itemize}
+				\item \textbf{Składniki:} Dwie dowolne grupy $N$ i $H$.
+				\item \textbf{Konstrukcja:} Tworzymy nową grupę $G = N\times H$, której elementami są pary $\left( n,h \right)$ gdzie $n\in N, h\in H$.
+				\item \textbf{Działanie:} Działanie w $G$ jest zdefiniowane "po współrzędnych":
+					\[
+						\left( n_1,h_1 \right) \cdot \left( n_2, h_2 \right) = \left( n_1n_2, h_1h_2 \right) 
+					.\] 
+			\end{itemize}
+			
+			\textbf{Produkt Prosty Wewnętrzny(opis struktury)}
+			\begin{itemize}
+				\item \textbf{Składniki:} Grupa $G$ oraz jej podgrupy $N$ i $H$.
+				\item \textbf{Warunki:} Mówimy, że $G$ jest wewnętrznym produktem prostym $N$ i $H$, jeśli:
+					\begin{enumerate}[label=\roman*)]
+						\item $N\unlhd G$ (N jest podgrupa normalną G).
+						\item $H\unlhd G$ (H jest podgrupą normalną G).
+						\item $N \cap H = \{e\} $ (Przekrój N i H jest trywialny).
+						\item $G = NH$(Podgrupy H i N generują całą grupę G)
+					\end{enumerate}
+				\item \textbf{Równoważnośc:} Grupa G jest wewnętrznym produktem prostym N i H wtedy i tylko wtedy, kiedy jest izomorficzna z zewnętrznym produktem prostym $N\times H$. 
+			\end{itemize}
+		\item \textbf{Produkt Półprosty}
+		
+			Produkt półprosty to uogólnienie produktu prostego. Jedna z grup(H) może w nietrywialny sposób działać na drugą(N) co psuje symetrię i komutację.
+
+			\textbf{Produkt Półprosty Zewnętrzny(konstrukcja)}
+			\begin{itemize}
+				\item \textbf{Składniki:} Dwie grupy $N$ i $H$ oraz homomorfizm $\varphi: H\rightarrow \text{Aut}\left( H \right) $. Homomorfizm ten definiuje \textbf{działanie} $H$ na $N$(zapisywane $h\cdot n$ zamiast $\varphi(h)(n)$).
+				\item \textbf{Konstrukcja:} Tworzymy nową grupę $G = N\rtimes_{\varphi}H$.
+					\begin{enumerate}[label=\alph*)]
+						\item \textbf{Elementy:} Zbiór par uporządkowanych $(n,h)$ gdzie  $n\in N, h\in H$.
+						\item \textbf{Działanie:} Działanie jest "skręcone" przez $\varphi$ :
+							\[
+								\left( n_1,h_1 \right) * \left( n_2,h_2 \right) = \left( n_1\left( h_1\cdot n_2 \right) , h_1h_2 \right) 
+							.\] 
+					\end{enumerate}
+			\end{itemize}
+			
+			\textbf{Produkt Półprosty Wewnętrzny(opis struktury)} 
+
+			\begin{itemize}
+				\item \textbf{Składniki:} Grupa G i jej dwie podgrupy N i H.
+				\item \textbf{Warunki:} Mówimy, że G jest wewnętrznym produktem półprostym N i H, jeśli:
+					\begin{enumerate}[label=\roman*)]
+						\item $N\unlhd G$(N jest podgrupą normalną G)
+						\item $H\le G$ (H jest podgrupą G, ale nie musi być \textbf{normalną})
+						\item $N \cap H = \{ e\} $ (Przekrój N i H jest trywialny)
+						\item $G=NH$ (Podgrupy N i H generują całą grupę G)
+					\end{enumerate}
+				\item \textbf{Równoważność:} Grupa G jest wewnętrznym produktem półprostym N i H wtedy i tylko wtedy, gdy jest izomorficzna z zewnętrznym produktem półprostym $N\rtimes_{\varphi}H$. Działanie $\varphi$ jest w tym przypadku zdefiniowane jako \textbf{sprzężenie}  w G:
+					\[
+					\varphi\left( h \right) \left( n \right) = hnh^{-1}
+					.\] 
+
+\end{itemize}
+\end{enumerate}
+
+
+
+
+
+

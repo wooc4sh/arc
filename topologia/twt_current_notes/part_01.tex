@@ -1,0 +1,53 @@
+\chapter{Przestrzenie topologiczne.}
+
+\section{Topologia.}
+
+\begin{definition}
+	Niech $X$ będzie nie pustym zbiorem. Mówimy, że podzbiór $\mathcal{T}\subseteq X $ jest \textbf{topologią na $X$} jeśli:
+    \begin{enumerate}[label=\arabic*)]
+        \item Zbiór $X$ oraz zbiór pusty $\emptyset$, należą do $\mathcal{T}$.
+        \item Zbiór $\mathcal{T}$ jest zamknięty na branie sumy (skończona lub nieskończone).
+        \item Zbiór $\mathcal{T}$, jest zamknięty na branie przekroju.    
+       \end{enumerate}
+
+  Parę $\left( X, \mathcal{T} \right)  $ nazywamy \textbf{przestrzenią topologiczną.}   
+\end{definition} 
+
+\begin{definition}
+    Niech $X$ będzie niepustym zbiorem oraz niech $\mathcal{T}$ będzie rodziną wszystkich podzbiorów $X$. Wtedy $\mathcal{T}$ jest topologią, którą nazywamy \textbf{topologią dyskretną}. 
+
+Przestrzeń topologiczna $\left( X, \mathcal{T} \right)$ nazywa się wtedy \textbf{przestrzenią dyskretna}.         
+\end{definition} 
+\begin{proof}
+    Dowód, że tak zdefiniowane $\mathcal{T}$ jest topologią. 
+\noindent$\bullet$ $\emptyset \subseteq X $ oraz $X \subseteq X $, więc $\emptyset, X \in \mathcal{T}$.
+\noindent$\bullet$ Rozważmy dowolną rodzinę zbiorów $\{X_{i} \}_{i \in I} \in \mathcal{T}$. Ponieważ dla dowolnego $i$, $X_{i} \subseteq X$, więc $\bigcup_{i \in I} X_{i}  \subseteq X $, a co za tym idzie $\bigcup_{i \in I} X_{i} \in \mathcal{T}$.
+\noindent$\bullet$ Rozważmy dwa dowolne zbiory $A, B \in \mathcal{T}$. Wtedy $A\cap B \subseteq X $, a co za tym idzie $A\cap B \in \mathcal{T}.$  
+\end{proof}
+
+\begin{definition}
+    Niech $X$ będzie niepustym zbiorem oraz niech $\mathcal{T} = \{\emptyset, X\}$. Wtedy $\mathcal{T}$ nazywamy \textbf{topologią niedyskretną} oraz parę $\left( X, \mathcal{T} \right)  $ \textbf{przestrzenią niedyskretną}.      
+\end{definition}  
+\begin{proof}
+    Oczywiście $\emptyset$ oraz $X$ należą do $\mathcal{T}$. Dowolna suma jak i dowolny przekrój może dać w wyniku tylko $\emptyset$ lub $X$, które z definicji są w $\mathcal{T}$. Zatem $\mathcal{T}$ jest topologią.        
+\end{proof} 
+
+\begin{theorem}
+    Jeśli $\left( X, \mathcal{T} \right)  $ jest przestrzenią topologiczną, taką że dla dowolnego $x \in X$, singleton $\{x\} \in \mathcal{T} $, to $\mathcal{T}$ jest topologią dyskretną. 
+\end{theorem} 
+\begin{proof}
+    Jeśli $S$ jest dowolnym podzbiorem $X$, to możemy zapisać $S$ jako sumę
+   \[
+       S = \bigcup_{x \in S} \{x\}    
+   .\]
+    Zatem w $\mathcal{T}$ jest zawarty dowolny podzbiór $X$, czyli $\mathcal{T}$ jest topologią dyskretną. 
+\end{proof} 
+\subsubsection*{Ćwiczenia.}
+\begin{problem}[5]
+    Udowodnij, że każda z poniższych rodzin podzbiorów $\mathbb{R}$ jest topologią.
+\end{problem} 
+\subsection{Zbiory otwarte, domknięte i clopen.}
+
+\[
+    \begin{tikzcd} \mathbb{F}_X \arrow[r, "\overline{f}"] \arrow[d, "\pi"'] & H \\ G = \mathbb{F}_X/N \arrow[ru, "\varphi"'] \end{tikzcd}
+\]

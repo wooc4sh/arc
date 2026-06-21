@@ -1,0 +1,196 @@
+\chapter{Notatka o homomorfizmach.}
+
+\section{Grupy.}
+
+\subsection{Pierwsze (Zasadnicze) twierdzenie o homomorfizmach grup.}
+
+Niech $\varphi: G \to H $ będzie homomorfizmem grup z jądrem $K = \ker(\varphi ) $. Wówczas $K$ jest podgrupą normalną w $G$ oraz $\mfaktor{G}{K} \cong \im(\varphi ) $.
+
+Na odwrót, jeśli $K\unlhd G$, to istnieje grupa $H$ (mianowicie $\mfaktor{G}{K} $ ) i epimorfizm $\pi: G \to H$ o jądrze $K$. ( $\pi$ nazywamy często homomorfizmem lub odwzorowaniem \textbf{kanonicznym}  lub \textbf{naturalnym}). 
+
+\[
+		\begin{tikzcd}[row sep= 30pt, column sep=30pt]
+			G  \arrow[dr, "\pi"' ] \arrow[rr, "\varphi"] & & \im(\varphi )    \\
+			& \mfaktor{G}{K }  \arrow[ur, dashrightarrow, "\cong", "\psi"'] &  
+		\end{tikzcd} 
+.\] 
+\noindent \textbf{Dowód:}
+
+Wiemy już, że $\ker(\varphi )  = K \unlhd G$. Definiujemy teraz odwzorowanie $\overline{\varphi }: \mfaktor{G}{H} \to H$ wzorem
+\[
+\overline{\varphi }\left( gK \right) = \varphi\left( g \right)  
+.\] 
+
+TODO
+
+\subsection{Drugie twierdzenie o izomorfizmach grup.}
+Niech $G$ będzie grupą, a $H$ i $K$ -- jej podgrupami, przy czym $K\unlhd G$. Wówczas $HK = KH$ jest podgrupą w $G$ zawierającą $K$ (automatycznie więc $K\unlhd HK$ ). Ponadto iloczyn $H\cap K$ jest podgrupą normalną w $H$, a odwzorowanie
+\[
+\varphi: hK \mapsto h\left( H\cap K \right)  
+.\] 
+jest izomorfizmem grup:
+\[
+\mfaktor{HK}{K} \cong \mfaktor{H}{H\cap K} 
+.\] 
+
+\noindent \textbf{TODO} W poniższym diagramie, $\psi$ oznacza zanurzenie.
+\[
+\begin{tikzcd}
+    H \arrow[r, hook, "\psi"] \arrow[d, "\pi'"'] & HK \arrow[d, "\pi"] \\
+    H / (H \cap K) & HK / K \arrow[l, dashed, "\cong", "\varphi"']
+\end{tikzcd}
+.\] 
+ 
+\[
+		\begin{tikzcd}[row sep= 30pt, column sep=30pt]
+			HK  \arrow[dr, "\pi"' ] \arrow[rr, "\pi_{0}"] & & \mfaktor{HK}{K}    \\
+			& \mfaktor{HK}{H\cap K}  \arrow[ur, dashrightarrow, "\cong", "\varphi := \overline{\pi}_{0}^{-1}"'] &  
+		\end{tikzcd} 
+.\] 
+
+\subsection{Trzecie twierdzenie o izomorfizmach grup- twierdzenie o odpowiedniości podgrup.}
+
+Niech $G$ będzie grupą, a $H$ i $K$ -- jej podgrupami, przy czym $K\unlhd G$ i $K\subseteq H$. Wówczas $\overline{H} := \mfaktor{H}{K} $ jest podgrupą w $\overline{G} := \mfaktor{G}{K} $ i odwzorowanie $\pi^{\ast} : H \to \overline{H}$ jest bijekcją zbioru $\Omega\left( G, K \right) $ podgrup grupy $G$ zawierających $K$ na zbiór $\Omega\left( \overline{G} \right) $ wszystkich podgrup grupy $\overline{G}$. Jeśli $H \in \Omega\left( G,K \right)  $, to $H \unlhd G \iff \overline{H}\unlhd \overline{G}$, przy czym
+\[
+\mfaktor{G}{H} \cong \mfaktor{\overline{G}}{\overline{H}} = \left( \mfaktor{G}{K}  \right) / \left( \mfaktor{H}{K}  \right) 
+.\] 
+
+\noindent \textbf{Dowód:} TODO 
+
+\section{Pierścienie.}
+\subsection{Pierwsze (Zasadnicze) twierdzenie o homomorfizmach pierścieni.}
+Dla dowolnego ideału $\mathcal{I}$ w pierścieniu $P$ wzory
+\begin{enumerate}[label=\arabic*)]
+	\item $\left( a + \mathcal{I} \right) \oplus \left( b + \mathcal{I} \right) := \left( a + b \right) + \mathcal{I}$.
+	\item $\ominus \left( a + \mathcal{I} \right) := -a + \mathcal{I}$.
+	\item  $\left( a + \mathcal{I} \right) \odot \left( b + \mathcal{I} \right) := ab + \mathcal{I}$.
+\end{enumerate}
+określają w zbiorze ilorazowym $\mfaktor{P}{\mathcal{I}} $ strukturę pierścienia, przy czym $\mfaktor{P}{\mathcal{I}}$ jest obrazem homomorficznym pierścienia $P$ z jądrem $\mathcal{I}$. Na odwrót, każdy obraz homomorficzny $P' = f\left[ P \right] $ pierścienia $P$ jest izomorficzny z pierścieniem ilorazowym $\mfaktor{P}{\ker(f) } $.
+
+\noindent \textbf{Dowód:} TODO 
+
+\subsection{Drugie twierdzenie o izomorfizmie dla pierścieni.}
+Niech $P$ będzie pierścieniem, $L$ -- jego podpierścieniem, a $\mathcal{I}$ -- ideałem w $P$. Wówczas $L + \mathcal{I} = \{x+y : x \in L, y \in \mathcal{I}\} $ jest podpierścieniem w $P$ zawierającym $\mathcal{I}$ jako ideał. Ponadto $L\cap \mathcal{I}$ jest ideałem w $L$ i odwzorowanie
+\[
+\varphi: x+ \mathcal{I} \mapsto x + \left( L \cap \mathcal{I} \right), \quad x \in L 
+\] 
+wyznacza izomorfizm pierścieni
+\[
+\mfaktor{(L+\mathcal{I})}{\mathcal{I}} \cong \mfaktor{L}{(L\cap \mathcal{I})}  
+.\] 
+
+\noindent \textbf{Dowód:} TODO
+
+\subsection*{Rozdzielenie powyższego twierdzenia}
+
+Powyższa notatka zawiera w sobie tak naprawdę dwa twierdzenia: twierdzenie o strukturze (diamentowe) oraz klasyczne drugie twierdzenie o izomorfizmie pierścieni.
+
+\noindent \textbf{Założenia:} Niech $P$ będzie pierścieniem, $L$ jego podpierścieniem, a $\mathcal{I}$ ideałem w $P$. 
+
+\noindent \textbf{Twierdzenie (własności) o strukturze diamentu} 
+\begin{enumerate}[label=\arabic*)]
+	\item Zbiór $L + \mathcal{I} = \{x + y : x \in L \text{ oraz } y \in \mathcal{I}\} $ jest podpierścieniem w $P$.
+	\item $\mathcal{I}$ jest ideałem w sumie $L + \mathcal{I}$.
+	\item Przekrój $L\cap \mathcal{I}$ jest ideałem w $L$.
+\end{enumerate}
+\[
+\begin{tikzcd}[column sep=tiny]
+    & L + \mathcal{I} \arrow[dl, dash] \arrow[dr, dash, "\text{ideał}"] & \\
+    L \arrow[dr, dash, "\text{ideał}"'] & & \mathcal{I} \arrow[dl, dash] \\
+    & L \cap \mathcal{I} &
+\end{tikzcd}
+\] 
+Powyższy diagram ilustruje kratę podgrup/podpierścieni. Podpisane krawędzie ,,ideał'' oznaczają relację bycia ideałem i odpowiadają ilorazom, które są izomorficzne.
+
+\noindent \textbf{Klasyczne drugie twierdzenie o izomorfizmie pierścieni.} 
+
+\noindent Odwzorowanie $\varphi $, przyporządkowujące warstwie z ,,dużego'' ilorazu warstwę z ,,małego'' ilorazu
+\[
+\varphi: x + \mathcal{I} \to x + \left( L \cap \mathcal{I} \right), \quad \text{ dla } x \in L 
+,\] 
+jest dobrze określonym izomorfizmem pierścieni:
+\[
+\mfaktor{\left( L + \mathcal{I} \right) }{\mathcal{I}} \cong \mfaktor{L}{\left( L \cap \mathcal{I} \right) } 
+.\] 
+
+
+\[
+\begin{tikzcd}
+    L \arrow[r, hook] \arrow[d, "\pi'"'] & L+\mathcal{I} \arrow[d, "\pi"] \\
+    L / (L \cap \mathcal{I}) & (L+\mathcal{I}) / \mathcal{I} \arrow[l, dashed, "\cong", "\varphi"']
+\end{tikzcd}
+.\] 
+
+\subsection{Trzecie twierdzenie o izomorfizmie dla pierścieni -- twierdzenie o odpowiedniości.}
+Niech $P$ będzie pierścieniem, a $\mathcal{I}$ i $L$ -- jego podpierścieniami, przy czym $\mathcal{I}$ jest ideałem w $P$ oraz $\mathcal{I} \subseteq L$. Wówczas $\overline{L} := \mfaktor{L}{\mathcal{I}} $ jest podpierścieniem w $\overline{P} := \mfaktor{P}{\mathcal{I}} $ i odwzorowanie $\pi^{\ast} : L \to \overline{L}$ jest bijekcją zbioru $\Omega\left( P, \mathcal{I} \right) $ podpierścieni w $P$ zawierających $\mathcal{I}$ na zbiór wszystkich podpierścieni w $\overline{P}$. Jeśli $L \in \Omega\left( P, \mathcal{I} \right) $, to $L$ jest ideałem w $P$ wtedy i tylko wtedy, gdy $\overline{L}$ jest ideałem w $\overline{P}$, przy czym
+\[
+\mfaktor{P}{L} \cong \mfaktor{\overline{P}}{\overline{L}} = \mfaktor{\left( P / \mathcal{I} \right) }{\left( L / \mathcal{I} \right) } 
+.\] 
+
+\noindent \textbf{Dowód:} TODO
+
+\subsection*{Rozdzielenie powyższego twierdzenia.}
+
+Powyższa notatka, zawiera w sobie tak naprawdę dwa twierdzenia: twierdzenie o odpowiedniości (correspondence theorem) oraz klasycznie nazywane trzecie twierdzenie o izomorfizmach pierścieni.
+
+\noindent \textbf{Założenia:} Niech $P$ będzie pierścieniem, a $\mathcal{I}$ ideałem w $P$. Niech $\overline{P} := \mfaktor{P}{\mathcal{I}} $ oznacza pierścień ilorazowy.
+
+\noindent \textbf{Twierdzenie o odpowiedniości}
+
+Niech $\Omega\left( P, \mathcal{I} \right) $ oznacza zbiór wszystkich podpierścieni $P$, które zawierają ideał $\mathcal{I}$.\\
+Odwzorowanie
+\begin{align*}
+	\pi^{\ast} : \Omega\left( P, \mathcal{I} \right)  &\longrightarrow \mfaktor{\Omega\left( P, \mathcal{I} \right) }{\mathcal{I}}  \\
+	L &\longmapsto \pi^{\ast} (L) = \mfaktor{L}{\mathcal{I}} 
+\end{align*}
+jest bijekcją pomiędzy
+\begin{enumerate}[label=\arabic*)]
+	\item Zbiorem $\Omega\left( P, \mathcal{I} \right) $ (podpierścienie ,,na górze'' zawierające $\mathcal{I}$ ) a
+	\item Zbiorem wszystkich podpierścieni $\overline{P}$ (podpierścienie ,,na dole'')
+\end{enumerate}
+\noindent \textbf{Własność zachowania struktury:} Podpierścień $L \in \Omega\left( P, \mathcal{I} \right) $ jest ideałem w $P$ wtedy i tylko wtedy, gdy jego obraz $\overline{L} = \mfaktor{L}{\mathcal{I}} $ jest ideałem w $\overline{P}$.
+Struktura:
+
+\[
+\begin{tikzcd}
+    P \arrow[d, dash, "L"'] \arrow[r, "\pi", two heads] & \overline{P} = P/\mathcal{I} \arrow[d, dash, "\overline{L}"] \\
+    L \arrow[d, dash, "\mathcal{I}"'] \arrow[r, "\pi|_L", two heads] & \overline{L} = L/\mathcal{I} \arrow[d, dash, "\{0\}"] \\
+    \mathcal{I} \arrow[r, "0"] & \{0\}
+\end{tikzcd}
+.\] 
+\noindent \textbf{Gdzie:}
+\begin{itemize}
+	\item Lewa kolumna: Krata podpierścieni w $P$. $L$ znajduje się ,,między'' $P$ a $\mathcal{I}$.
+	\item Prawa kolumna: Krata podpierścieni w $\overline{P}$. $\overline{L}$ jest obrazem $L$.
+	\item Strzałki poziome ($\pi$ ): Rzutowanie kanoniczne spłaszczające $\mathcal{I}$ do zera.
+\end{itemize}
+
+\noindent \textbf{Trzecie twierdzenie o izomorfizmie} 
+
+Jeśli $L$ jest ideałem w $P$ (oraz $\mathcal{I} \subseteq L)$, to zachodzi izomorfizm pierścieni:
+\[
+\mfaktor{P}{L} \cong \mfaktor{(P / \mathcal{I})}{(L / \mathcal{I})} 
+.\] 
+\[
+\begin{tikzcd}
+    P \arrow[r, "\pi"] \arrow[d, "\psi"'] & P/\mathcal{I} \arrow[d, "\rho"] \\
+    P/L & (P/\mathcal{I}) / (L/\mathcal{I}) \arrow[l, dashed, "\cong", "\theta"']
+\end{tikzcd}
+.\] 
+\noindent \textbf{Gdzie:}
+\begin{itemize}
+	\item $\pi:$ rzutowanie $x \mapsto x + \mathcal{I}$ (na pierwszy iloraz)
+	\item $\rho:$ rzutowanie warstwy $\left( x + \mathcal{I} \right) $ na warstwę warstwy $\left( \left( x + \mathcal{I} \right) + \mfaktor{L}{\mathcal{I}}  \right) $ 
+	\item $\psi:$ bezpośrednie rzutowanie $x \mapsto x + L$ (bo $L$ jest ideałem w $P$ )
+	\item $\theta:$ wynikowy izomorfizm. Diagram jest przemienny, więc przejście ,,góra i w prawo'' jest równoważne przejściu ,,w dół''.
+\end{itemize}
+
+
+Analogicznie można go zapisać w tej postaci:
+
+\[
+\begin{tikzcd}
+    \overline{P} \arrow[r, "\rho"] \arrow[d, "\cong" description, sloped, dashed] & \overline{P}/\overline{L} \\
+    P/L \arrow[ur, dashed, "\cong"', "\theta"] &
+\end{tikzcd}
+.\] 

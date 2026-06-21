@@ -1,0 +1,16 @@
+\babel@toc {polish}{}\relax 
+\contentsline {chapter}{\numberline {0}Wiadomości wstępne.}{3}{}%
+\contentsline {section}{\numberline {0.1}Ciągi, szeregi, granice- nie tylko liczb.}{3}{}%
+\contentsline {subsection}{\numberline {0.1.1}Czym są $\DOTSB \sum@ \slimits@ _{n=1}^{\infty }$ oraz $\DOTSB \prod@ \slimits@ _{n=1}^{\infty }$?}{3}{}%
+\contentsline {chapter}{\numberline {1}Rodziny zbiorów i miary.}{7}{}%
+\contentsline {section}{\numberline {1.1}Pierścień i ciało(algebra) oraz $\sigma -$ pierścień i $\sigma -$ algebra}{9}{}%
+\contentsline {subsection}{\numberline {1.1.1}Wielki kompromis: $\bor \left (\ensuremath {\PazoBB {R}}\right ) $ jako Arena Mierzalności}{18}{}%
+\contentsline {section}{\numberline {1.2}Addytywne funkcje zbioru}{21}{}%
+\contentsline {section}{\numberline {1.3}Miara Lebesgue'a I}{34}{}%
+\contentsline {section}{\numberline {1.4}Twierdzenie o konstrukcji miary.}{40}{}%
+\contentsline {section}{\numberline {1.5}Przestrzenie miarowe.}{45}{}%
+\contentsline {subsection}{\numberline {1.5.1}Dygresja}{47}{}%
+\contentsline {section}{\numberline {1.6}Temporary.}{48}{}%
+\contentsline {section}{\numberline {1.7}Miara Lebesgue'a II}{49}{}%
+\contentsline {chapter}{\numberline {2}Zadania do rozdziału pierwszego.}{52}{}%
+\contentsline {section}{\numberline {2.1}Rodziny zbiorów.}{52}{}%

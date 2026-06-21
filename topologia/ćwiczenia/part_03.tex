@@ -1,0 +1,122 @@
+\chapter{Lista 3}
+\begin{problem}[1]
+	Pokazać, że strzałka jest przestrzenią Hausdorffa.
+\end{problem} 
+Najpierw przypomnienie definicji.
+\begin{definition}[Strzałka.]
+	Definiujemy zbiór 
+	 \[
+	\mathcal{B} = \{[a,b) : a,b \in \mathbb{R}\} 
+	.\] 
+	Definiujemy topologię strzałki $T$ następująco: zbiór $U\subseteq \mathbb{R}$ jest otwarty w topologii strzałki $T$ wtedy i tylko wtedy, gdy jest sumą dowolnej rodziny przedziałów z  $\mathcal{B}$.
+\end{definition} 
+\begin{definition}[Przestrzeń Hausdorffa.]
+	Mówimy, że przestrzeń topologiczna $\left( X,T \right) $ jest przestrzenią Hausdorffa, jeśli dla dowolnych dwóch różnych punktów $x_1, x_2 \in X$ istnieją takie zbiory otwarte $U_1, U_2 \in T$, że $x_1 \in U_1$, $x_2 \in U_2$ oraz $U_1 \cap U_2 = \emptyset$.
+\end{definition} 
+\begin{solution}
+	Niech $T$ będzie topologią strzałki na $\mathbb{R}$. Ustalmy dowolne różne $x_1, x_2 \in \mathbb{R}$. Bez straty ogólności, załóżmy że $x_1 < x_2$. Niech $t = \tfrac{x_1+x_2}{2}$ oraz  $U_1 = [x_1,t)$ i $U_2 = [t, x_2+1)$. Wtedy $x_1 < t < x_2$, $x_1 \in U_1$ oraz $x_2 \in U_2$. Ponadto $U_1\cap U_2 = \emptyset$. Zatem $T$ jest przestrzenią Hausdorffa. 
+\end{solution} 
+\begin{problem}[2]
+	Pokazać, że  zbiory postaci $[a,b)$ są domknięte w topologii strzałki. Pokazać, że zbiory postaci $\left( a,b \right) $ są otwarte w topologii strzałki, ale nie są domknięte.
+\end{problem} 
+\begin{definition}[Zbiór domkniety]
+	Niech $\left( X,T \right) $ będzie przestrzenią topologiczną. Zbiór $U$ jest domknięty jeśli jego dopełnienie $X\setminus U$ jest otwarte w topologii $T$.
+\end{definition} 
+\begin{solution}
+\noindent Niech $\left( \mathbb{R},T \right) $ będzie strzałką.
+
+\noindent  \textbf{Zbiory postaci $[a,b)$ są domknięte:} Rozważmy dopełnienie $U = \mathbb{R}\setminus [a,b)$. Wtedy $U = (-\infty,a) \cup [b, \infty)$. Ustalmy dowolny $x \in \left( -\infty, a \right) $. Ponieważ $x<a$ więc $x < \tfrac{a+x}{2} \in \left( -\infty,a \right) $. Zatem zbiór $\mathcal{B} \ni [x, \tfrac{a+x}{2} \subseteq \left( -\infty, a \right) $ jest otwarty w strzałce. Analogicznie dla zbioru $[b, \infty)$ mamy dla dowolnego $x \in [b,\infty)$, $x\in [b, b+x) \in \mathcal{B}$ jest zbiorem otwartym. Ponieważ suma zbiorów otwartych jest otwartym zbiorem, więc $U = \mathbb{R}\setminus [a,b)$ jest zbiorem domkniętym.
+
+\noindent \textbf{Zbiory postaci $\left( a,b \right) $ są otwarte:} dla dowolnego $x \in \left( a,b \right) $ mamy $a < \tfrac{a+x}{2} < x < \tfrac{x+b}{2} < b$. Zatem $x \in [\frac{a+x}{2}, b) \subseteq \left( a,b \right) $. Zatem $\left( a,b \right) $ jest otwarty.
+
+\noindent \textbf{Zbiory postaci $(a,b)$ nie są domknięte:}  Załóżmy nie wprost, że są domknięte. Wtedy w szczególności zbiór $\left( -\infty, a] \right) $ jest otwarty. Zatem istnieje $[x,y) \in \mathcal{B}$, taki że $a \in [x,y) \subseteq \left( -\infty,a \right) $. Zatem mamy sprzeczność, bowiem $a \not\in \left( -\infty, a \right) $.
+\end{solution} 
+\begin{problem}[3]
+	Pokazać, że w przestrzeni Hausdorffa singletony są domknięte, a ciągi zbieżne mają tylko jedną granicę.
+\end{problem} 
+\begin{solution}
+	Niech $\left( X,T \right) $ będzie przestrzenią Hausdorffa. Ustalmy dowolny $x \in T$. Pokażemy, że $X \setminus \{x\} \in T $, czyli że $\{x\} $ jest domknięty. Weźmy dowolny $y \in X\setminus \{x\} $, wtedy $y \neq x$. Ponieważ $\left( X,T \right) $ jest przestrzenią Hausdorffa, zatem istnieją zbiory otwarte  $U_{x} \ni x$ oraz $U_{y} \ni y$, takie że $U_{x} \cap U_{y} = \emptyset$. Biorąc sumę po wszystkich elementach $y \in X\setminus \{x\} $, otrzymujemy że $X\setminus \{x\} $ jako suma $U_{y}$ zbiorów otwartych, jest zbiorem otwartym:
+	\[
+	X\setminus \{x\} = \bigcup_{y \in X\setminus \{x\} } U_{y}
+	.\] 
+Zatem $\{x\} $ jest domknięty.
+
+Aby pokazać, że w przestrzeni Hausdorffa ciągi zbieżna mają tylko jedną granicę, ustalmy dowolny ciąg zbieżny $\left( x_{n} \right)_{n=1}^{\infty}$. Załóżmy, że ma on dwie różne granice $x_{n} \longrightarrow a$ i $x_{n} \longrightarrow b$ oraz $a\neq b$. Oznacza to, że jest otoczenie punktu $a$, nazwijmy je $U_{a}$, takie że od pewnego $N_{a} \in \mathbb{N}$ wszystkie wyraz tego ciągu leżą w tym otoczeniu. Analogicznie mamy otoczenie punktu  $b$, nazwijmy je $U_{b}$ takie, że od pewnego $N_{b} \in \mathbb{N}$ wszystkie wyraz tego ciągu leżą w tym otoczeniu. Niech $N_{c} = \max \{N_{a}, N_{b}\} $. Wtedy wszystkie wyrazy ciągu $x_{n}$, począwszy od  $x_{N_{c}}$ leżą zarówno w $U_{a}$ jak i $U_{b}$ co daje nam sprzeczność, bowiem z tego że przestrzeń jest Hausdorffa wynika, że $U_{a}\cap U_{b} = \emptyset$.
+
+Zatem w przestrzeni Hausdorffa ciąg zbieżny ma tylko jedną granicę.
+\end{solution} 
+\begin{problem}[4]
+	Pokazać, że podprzestrzenie przestrzeni Hausdorffa jest przestrzenią Hausdorffa.
+\end{problem} 
+\begin{solution}
+	Niech $\left( X,T_{X} \right) $ będzie przestrzenią Hausdorffa. Niech $\left( Y, T_{Y} \right) $, gdzie $Y\subseteq X$, będzie podprzestrzenią przestrzeni $\left( X,T_{X} \right) $. Topologia $T_{Y}$ jest postaci:
+	\[
+	T_{Y} =  \{U \cap Y: U \in T_{X}\} 
+	.\] 
+Weźmy dwa dowolny punkty $y_1, y_2 \in Y$. Ponieważ $Y\subseteq X$, więc istnieją otwarte otoczenia $U_1,U_2 \in T_{X}$, takie że $y_1 \in U_1, y_2 \in U_2$ oraz $U_1 \cap U_2 = \emptyset$ oraz co za tym idzie zbiory $Y \cap U_1$ oraz $Y\cap U_2$ są rozłącznymi elementami topologii(zbiorami otwartymi) $T_{Y}$ zawierającymi kolejno $y_1$ oraz $y_2$. Zatem $\left( Y,T_{Y} \right) $ jest przestrzenią Hausdorffa.
+\end{solution} 
+\begin{problem}[5]
+	Pokazać, że przestrzeń $\mathbb{R}\cup \{\infty\} $ z wykładu nie jest metryzowalna. 
+\end{problem} 
+Przypomnijmy jak została(?) zdefiniowana przestrzeń $X = \mathbb{R}\cup \{\infty\} $.\\
+Niech na zbiorze $\mathbb{R}$ będzie zadana topologia dyskretna $T_{d}$ (czyli każdy podzbiór $\mathbb{R}$ jest otwarty). Przestrzeń $X$ definiujemy jako:
+\begin{enumerate}[label=\arabic*)]
+	\item \textbf{Zbiór punktów:} $X = \mathbb{R}\cup \{\infty\} $, gdzie $\infty \not\in \mathbb{R}$.
+	\item \textbf{Topologia $T$ :} Zbiór $U\subseteq X$ jest otwarty, jeśli
+		\begin{itemize}
+			\item $\infty \not\in U$ i $U$ jest dowolnym podzbiorem $\mathbb{R}$,
+			\item $\infty \in U$ i zbiór $X\setminus U$ jest \textbf{skończonym} podzbiorem $\mathbb{R}$.
+		\end{itemize}
+\end{enumerate}
+\noindent Zatem mamy naszą przestrzeń topologiczną $\left( X,T \right) $, gdzie $X = \mathbb{R}\cup \{ \infty\} $. Czy rzeczywiście tak zdefiniowana topologia $T$ jest topologią? Sprawdzimy.\\
+\begin{itemize}
+	\item $\emptyset$ jak i również $X$ należą do $T$.
+	\item Weźmy dowolne $U_1, U_2 \in T$. Sprawdzimy, że ich przekrój również należy do $T$. Jakie są możliwości? Jeśli $\infty \not\in  U_1$ to wtedy  $U_1$ jest podzbiorem $\mathbb{R}$. Wtedy dla $U_2$ :
+		\begin{itemize}
+			\item Jeśli $\infty \not\in  U_2$, to pociąg to za sobą, że $U_2$ jest podzbiorem $\mathbb{R}$, a co za tym idzie $U_1\cap U_2$ jako przekrój podzbiorów $\mathbb{R}$ jest podzbiorem $\mathbb{R}$. Zatem $U_1\cap U_2 \subseteq \mathbb{R}$, więc $U_1\cap U_2 \in T$.
+			\item Jeśli $\infty \in U_2$, to $X\setminus U_2$ jest skończonym podzbiorem $\mathbb{R}$. Przekrój $U_1\cap U_2$ jest podzbiorem $\mathbb{R}$, takim że $\infty\not\in U_1\cap U_2 \subseteq \mathbb{R}$, czyli $U_1\cap U_2 \in T$.
+		\end{itemize}
+	Przypadek $\infty\in U_2$ jest analogiczny. Zatem $U_1\cap U_2 \in T$.
+	\item Weźmy dowolną rodzinę $\{U_{i}\}_{i \in I} \subseteq T$. Możemy ją podzielić na dwie części: 
+		\begin{itemize}
+			\item $U_{i}$ takie że $\infty \in U_{i}$,
+			\item $U_{i}$ takie że $\infty \not\in U_{i}$.
+		\end{itemize}
+\end{itemize}
+\begin{solution}
+Załóżmy, że nasza przestrzeń jest metryzowalna. Czyli istnieje pewna metryka $d$, że $T = T\left( d \right) $.	
+\end{solution} 
+\begin{problem}[6]
+	Scharakteryzować ciągi w przestrzeni $\mathbb{R}\cup \{\infty\} $, które są zbieżne do $\infty$.
+\end{problem} 
+\begin{solution}
+	DODO
+\end{solution} 
+\begin{problem}[7]
+	Ustalmy $X$ i topologię $T$ na $X$. Pokazać, że $\mathcal{B}\subseteq T$ jest bazą topologii $T$ wtedy i tylko wtedy, gdy dla każdego $x\in X$ i dla każdego zbioru otwartego $U \ni x$ istnieje $B \in \mathcal{B}$, taki że $x \in B \subseteq U$.
+\end{problem} 
+Najpierw przypomnimy definicję bazy z wykładu:
+\begin{definition}[Baza topologii.]
+	Niech $\left( X,T \right) $ będzie przestrzenią topologiczną. Rodzinę $\mathcal{B} \subseteq T$ nazywamy bazą topologii $T$, jeśli każdy zbiór otwarty $U \in T$ można zapisać jako sumę pewnej podrodziny zbiorów z $\mathcal{B}$. Formalnie
+	\[
+	\left(\forall U \in T \right)\left(\exists \mathcal{B}' \subseteq \mathcal{B} \right)\left( U = \bigcup \mathcal{B}'  \right)   
+	.\] 
+\end{definition} 
+\begin{problem}[8]
+	Rozważmy zbiór $X$ oraz rodzinę $\mathcal{A} \mathcal{P}(\left( X \right) )$, która zawiera (jako elementy) $\emptyset$ i $X$ oraz jest zamknięta na skończone przekroje. Pokaż, że rodzina wszystkich sum elementów $\mathcal{A}$ jest topologią. Wywnioskuj, że każda rodzina (zawierająca jako elementy $\emptyset$ i $X$ ) jest podbazą pewnej topologii.
+\end{problem} 
+\begin{solution}
+	TODO
+\end{solution} 
+\begin{problem}[9]
+	Pokaż, że przestrzeń $C_{p}\left( \left[ 0,1 \right] \right) $ nie jest metryzowalna.
+\end{problem} 
+\begin{solution}
+	TODO
+\end{solution} 
+\begin{problem}[10]
+	Pokaż, że zbiory postaci $x\in \{0,1\}^{\mathbb{N}} : x\left( n \right) = i $, gdzie $n \in \mathbb{N}$ oraz $i \in \{0,1\} $, stanowią podbazę kostki Cantora $\{0,1\}^{\mathbb{N}}$. Wywnioskuj, że kostka Cantora jest podprzestrzenią kostki Hilberta.
+\end{problem} 
+\begin{solution}
+	TODO
+\end{solution} 

@@ -1,0 +1,93 @@
+\chapter{Wykład I.}
+
+\section{Wprowadzenie do równań różniczkowych.}
+
+\subsection{Procent składany}
+Rozważmy model procentu składanego. Oznaczenia
+\begin{itemize}
+	\item $u\left( 0 \right) $ -- stan rachunku w chwili początkowej,
+	\item $r$-- oprocentowanie (np. w skali roku $r = 0.01$),
+	\item $u\left( 1 \right) $ -- stan konta po jednym roku,
+	\item $u\left( 1 \right) = u\left( 0 \right) + ru\left( 0 \right) $.
+\end{itemize}
+Mamy zatem mamy następujący model
+\[
+\begin{cases}
+	u\left( 0 \right) &- \text{dane}\\
+	u\left( n+1 \right) &= u\left( n \right) + ru\left( n \right)  
+\end{cases}
+.\] 
+Rozwiązanie: $u\left( n \right) = u\left( 0 \right) \left( 1 + n \right)^{n}$.
+
+\subsubsection*{Przejście do modelu ciągłego.}
+
+Jeśli kapitalizacja następuje częściej (np. co pół roku, co chwilę), mamy
+\begin{itemize}
+	\item $u\left( 0 \right) $ -- dane,
+	\item $u\left( \tfrac{1}{2} \right) = u\left( 0 \right) + \tfrac{1}{2}ru\left( 0 \right) $,
+	\item $u\left( 1 \right) = u\left( \tfrac{1}{2} \right) + \tfrac{1}{2}u\left( \tfrac{1}{2} \right)$,
+	\item itd
+\end{itemize}
+
+W modelu ciągłym wybieramy $h>0$ małe?, wtedy
+\[
+\begin{cases}
+	h\left( 0 \right) &- \text{ dane,}  \\
+	u\left( t+h \right) &= u\left( t \right) + hru\left( t \right)  
+\end{cases}
+.\] 
+Równoważnie 
+\[
+\frac{u\left( t+h \right) - u\left( t \right) }{h} = ru\left( t \right) 
+.\] 
+W modelu ciągłym zakładamy, że $h \longrightarrow  0$, wtedy dostajemy \textbf{Prawo Malthusa}:
+\[
+\frac{du\left( t \right) }{dt} = ru\left( t \right) 
+.\] 
+To samo zjawisko jest w biologii
+\begin{itemize}
+	\item $r$ -- przyrost naturalny
+	\item $u\left( t+h \right) = u\left( t \right) hrh\left( t \right) $
+\end{itemize}
+
+Matematycznie szukamy funkcji
+\[
+u = u\left( t \right) 
+,\] 
+która spełnia
+\[
+\begin{cases}
+	\frac{du}{dt} &= rh \\
+	u\left( 0 \right) &= u_{0} - \text{ dane } \\
+\end{cases}
+.\] 
+Łatwo zgadnąć rozwiązanie: $u\left( t \right) = u_0e^{rt}$.
+\subsection{Inne modele.}
+
+\textbf{Model logistyczny:}
+
+\[
+\frac{du}{dt} = r\left( 1 - \frac{u}{L} \right)u
+.\] 
+$r>0$ oznacza przyrost, $r\in \mathbb{R}$. $L > 0$ oznacza optymalna pojemność populacji. Mamy
+\begin{itemize}
+	\item $r\left( 1 - \frac{u}{L} \right) > 0$, gdy $u < L$ 
+	\item $r\left( 1 - \frac{u}{L} \right) > 0$, gdy $u > L$ 
+\end{itemize}
+
+\textbf{Model Gompertza}-- model rozprzestrzeniania się plotki
+\[
+frac{du}{dt} = ke ^{-lt}u
+,\] 
+gdzie $k>0$, $l>0$ -- stałe z doświadczenia.
+
+\textbf{Prawo Newtona Stygnięcia}
+
+$S\left( t \right) $ temperatura w danej chwili $t$.
+\[
+\frac{d}{dt}S = k\left( S_0 - S \right) 
+,\]
+gdzie $S_0$ jest to temperatura otoczenia.
+
+
+

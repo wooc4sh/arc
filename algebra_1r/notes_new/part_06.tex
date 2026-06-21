@@ -1,0 +1,188 @@
+\chapter{Wykład VI}
+\section{Skończenie generowane grupy abelowe. Torsja.}
+
+\begin{lemma}
+	Niech $\left( A, +\right) $, będzie skończenie generowaną grupą abelową. Niech 
+	\begin{align*}
+		f: \mathbb{Z}^{n} &\longrightarrow A \\
+		(k_1,k_2,\ldots,k_{n}) &\longmapsto f((k_1,k_2,\ldots,k_{n})) = k_1a_1+k_2a_2+\ldots+k_{n}a_{n}
+	.\end{align*} 
+	
+	\begin{enumerate}[label=\arabic*.]
+		\item $f$ jest homomorfizmem.
+		\item $\im(f) = \langle a_1,a_2,\ldots,a_{n} \rangle \le A$
+	\end{enumerate}
+\end{lemma} 
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{theorem}
+	$\exists\left( n\in \N_{>0} \right)\exists\left( H\le \mathbb{Z} ^{n} \right)\left( A\cong \\mathbb{Z}^{n}/H \right)   $
+\end{theorem} 
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{lemma}
+	Niech $B$ jest skonczona i abelowa, $\psi : B \to \mathbb{Z} ^{n}$ jest epimorfizmem.
+
+	Wtedy $B\cong \ker(\psi) \rtimes\mathbb{Z}^{n} $
+\end{lemma} 
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{theorem}
+	$\forall\left( H\le \mathbb{Z} ^{n} \right) \exists\left( 0\le m\le n \right)\left( H\cong\mathbb{Z}^{m} \right)  $
+\end{theorem} 
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{theorem}
+	$H_1\unlhd G_1, H_2\unlhd G_2 \implies H_1\times H_2 \unlhd  G_1 \times G_2 $
+	oraz
+	 \[
+		 \mfaktor{G_1\times G_2}{H_1\times H_2} \cong \mfaktor{G_1}{H_1} \times \mfaktor{G_2}{H_2}
+	.\] 	
+\end{theorem} 
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{eg}
+	
+	Niech 
+	\begin{itemize}
+		\item $n=3$, 
+		\item $h_1 = \left( 2,0,0 \right) $,
+		\item $h_2 = \left( 0,-3,0 \right) $,
+		\item $h_3 = \left( 0,0,0 \right) $
+	\end{itemize}
+	Wtedy $H= 2\mathbb{Z} \times 3\mathbb{Z} \times \{0\} $
+Wtedy na mocy twierdzenia
+\[
+	\mfaktor{\mathbb{Z} ^3}{H} \cong \mfaktor{\mathbb{Z}}{2\mathbb{Z}} \cong \mfaktor{\mathbb{Z} }{\{0\} }
+.\] 
+Otrzymaliśmy produkt grup cyklicznych.
+\end{eg} 
+
+Dla danej macierzy $M\in M_{n\times n}\left( \mathbb{Z}  \right) $ definiujemy \[
+\mfaktor{\mathbb{Z} ^{n}}{M} := \mfaktor{\mathbb{Z} ^{n}}{N}, \text{ gdzie }N:= \text{ podgrupa } \mathbb{Z} ^{n}\text{ generowana przez wiersze macierzy M}
+.\] 
+
+\begin{lemma}
+	Jeśli $M\in M_{n\times n}\left( \mathbb{Z}  \right) $ jest diagonalna to
+	\[
+	\mfaktor{\mathbb{Z} ^{n}}{M} 
+	.\] 
+	jest produktem grup cyklicznych.
+\end{lemma} 
+\begin{proof}
+	TODO
+\end{proof} 
+
+Szukamy procedury ktora przerabia dowolna macierz M w macierz diagonalna $D$ tak że \[
+\mfaktor{\mathbb{Z} ^{n}}{M} \cong \mfaktor{\mathbb{Z} ^{n}}{D} 
+.\] 
+
+Jeśli to nam się uda to na mocy lematu(?) dostajemy główną tezę twierdzenia(?)
+
+\begin{lemma}
+	Niech $\varphi : G_1 \to G_2 $będzie izomorfizmem grup, $N_1\unlhd G_1$.
+	Wtedy $\varphi [N_1] \unlhd G_2$ oraz $\mfaktor{G_1}{N_1} \cong \mfaktor{G_2}{\varphi \left[ N_1 \right]  } $
+\end{lemma} 
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{lemma}
+
+Weźmy $\varphi \in \aut\left(\mathbb{Z} ^{n}\right)  $. Dla $\begin{bmatrix} m_1 \\ \hdots \\ m_{n} \end{bmatrix} \in M_{n\times n}\left( \mathbb{Z}  \right) $.
+Niech $\varphi \left( M \right) := \begin{bmatrix} \varphi (m_1) \\ \vdots \\ \varphi \left( m_{n} \right)    \end{bmatrix} \in M_{n\times n}\left( \mathbb{Z}  \right)  $
+
+Teza:
+\[
+\mfaktor{\mathbb{Z} ^{n}}{M} \cong \mfaktor{\mathbb{Z} ^{n}}{\varphi \left( M \right)  }.
+.\] 
+\end{lemma} 
+\begin{proof}
+	TODO
+\end{proof} 	
+
+\begin{lemma}
+	Niech  $M\in M_{n\times n}\left( \mathbb{Z}  \right) $ i załóżmy, że $M'$ powstaje z $M$ przez zastosowanie jednej z poniższych operacji:
+	\begin{enumerate}[label=\roman*)]
+		\item zamiana dwóch wierszy miejscami,
+		\item zamiana dwóch kolumn miejscami,
+		\item dodanie do wiersza innego wiersza pomnożonego przez liczbę całkowitą,
+		\item dodanie do kolumny innej kolumny pomnożonej przez liczbę całkowitą.
+	\end{enumerate}
+	Wtedy 
+	\[
+	\mfaktor{\mathbb{Z}^{n}}{M} \cong \mfaktor{\mathbb{Z} ^{n}}{M'} 
+	.\] 
+\end{lemma} 
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{lemma}
+	$\forall\left( M\in M_{n\times n}\left( \mathbb{Z}  \right)  \right) \left( \exists\left( D\in M_{n\times n} \left( \mathbb{Z}  \right) \right)  \right) $
+\end{lemma} 
+\begin{proof}
+	TODO (D pozyskujemy przez ciąg operacji z L6)
+\end{proof} 
+
+Załóżmy ze $A \cong \mathbb{Z} ^{n}\times \mathbb{Z}_{n_1}\times \mathbb{Z} _{n_2}\times \ldots \times \mathbb{Z}_{n_{k}}$ 
+
+Czy to jest rozkład jednoznaczny?
+
+Nie, bo $\mathbb{Z}_{6} \cong \mathbb{Z}_{2}\times x\mathbb{Z}_{3}$, czyli nie a jednoznaczności.
+
+\begin{theorem}[Bylo jako zadanie]
+	NWD( $k$, $l$ )$\iff \mathbb{Z} _{kl}\cong \mathbb{Z}_{k}\times \mathbb{Z}_{l}$
+\end{theorem} 
+Stąd
+\[
+	A\cong  \mathbb{Z}^{n}\times \mathbb{Z}_{p_1}^{a_{11}} \times \mathbb{Z}_{p_{1}^{2}}^{a_{12}} \times \ldots \times \text{pogubilem sie w indeksach}
+.\] 
+gdzie $p_i$ jest liczba pierwszą, $a_{ij}\in \N$
+
+
+Chcemy pokazać, że istnieje i jest jednoznaczny taki rozkład, z dokładnośćią do kolejnosci czynników.
+\begin{theorem}
+	Niech $p_1,p_2,\ldots, P_{k}$ będzie ciągiem parami różnch liczb pierwszych. $a_{ij},b_{ij}\in \N$ 
+	\[
+	\underbrace{\mathbb{Z} _{p_1}^{a_{11}}\times \ldots \times \mathbb{Z} _{p_{1}^{n}}^{a_{1n}}}_{A_1} \times \ldots \times \underbrace{\mathbb{Z} _{p_{k}}^{a_{k_1}}\times \ldots\times \mathbb{Z} _{p_{k}^{n}}^{a_{kn}} }_{A_k} =: A
+	,\] 
+	oraz
+	\[	
+		\underbrace{\mathbb{Z} _{p_1}^{b_{11}}\times \ldots \times \mathbb{Z} _{p_{1}^{n}}^{b_{1n}}}_{B_1} \times \ldots \times \underbrace{\mathbb{Z} _{p_{k}}^{b_{k_1}}\times \ldots\times \mathbb{Z} _{p_{k}^{n}}^{b_{kn}} }_{B_{k}} =: B
+	.\] 
+\end{theorem} 
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{definition}[Torsja]
+	Niech $A$ będzie grupą abelową
+	\[
+	\tor(A) := \{a\in A: \text{rząd}\left( a \right) < \aleph_0\} 
+	.\] 
+\end{definition} 
+\begin{remark}
+	\begin{enumerate}[label=\arabic*)]
+		\item $\tor(A) \le A$
+		\item $A$ będąca grupą skończoną $\implies \tor(A) = A$ oraz $\tor\left( \mathbb{Z} ^{n}\times A \right) = \{0\}\times A $
+	\end{enumerate}
+
+	Zatem \[
+	\mfaktor{\mathbb{Z} ^{n}\times A}{\tor\left( \mathbb{Z} ^{n}\times A \right) } = \mfaktor{\mathbb{Z}^{n}\times A}{\{0\} \times A}\cong \mathbb{Z} ^{n} 
+	.\] 
+\end{remark} 
+\begin{theorem}
+	Niech $A,B$ będą grupami skońcoznymi i abelowymi oraz $n,m \in \N$.
+
+	Jeżeli $\mathbb{Z}^{n}\times A \cong \mathbb{Z}^{m} \times B \implies n = m \land A\cong B $
+\end{theorem} 
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{eg}
+	Czy grupy $\mathbb{Z}_{6}\times \mathbb{Z}_{18} \cong \mathbb{Z} _{12}\times \mathbb{Z}_{9}$?
+	(Brak notatki)
+\end{eg} 

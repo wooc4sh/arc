@@ -1,0 +1,199 @@
+\chapter{Wykład VIII}
+
+\section{Ciąg kompozycyjny. Nilpotentna. Prosta.}
+
+
+
+\begin{definition}[Ciąg subnormalny]
+	Skończony ciąg podgrup $G= G= \unrhd G_1\unrhd \ldots\unrhd G_{n}= \{e\} $ 
+
+	nazywamy ciągiem subnormalnym $G$. I każdy $\mfaktor{G_{i}}{G_{i+1}} $ faktorami (tego ciągu)
+
+	Gdy wszystki $G_{i}$ są normalne w G, to ciąg nazywamy normalnym.
+\end{definition} 
+\begin{remark}
+	\begin{enumerate}[label=\arabic*)]
+		\item Może się zdarzyć, że $G\unrhd G_1\unrhd $, ale $G \unrhd G_2$, np, $A_4\unrhd A'_{4} \unrhd \{ \id, (1,2)(3,4) \} $
+		\item $G$ jest rozwiązalna $\iff $ ciąg komutantów jest $\left[ sub \right] $-normalny
+		\item $\mfaktor{G^{(i)}}{G^{(i+1)}} = \left( G^{(i)} \right) ^{ab}$
+	\end{enumerate}
+\end{remark} 
+\begin{theorem}
+	Następujące warunki są równoważne
+	\begin{enumerate}[label=\arabic*)]
+		\item $G$ jest rozwiązalna
+		\item Istnieje ciąg normalny w $G$- faktorów abelowych
+		\item Istnieje ciąg sub normalny w $G$ o faktorach abelowych
+	\end{enumerate}
+\end{theorem} 
+\begin{proof}
+	TODO
+\end{proof} 
+
+\begin{lemma}
+	\begin{enumerate}[label=\alph*)]
+		\item Podgrupa grup rozwiązalnych jest rozwiązalna
+		\item Obraz grupy rozwiązalnej przez homomorfizm jest grupą rozwiązalną
+	\end{enumerate}
+\end{lemma} 
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{theorem}
+	Załóżmy, że $N\unlhd G$
+	
+	Wtedy $G$ jest rozwiązalna $\iff$ $N$ i $\mfaktor{G}{N} $ jest rozwiązalna
+\end{theorem} 
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{theorem}
+	Każda $p$-grupa jest rozwiązalna
+\end{theorem} 
+\begin{proof}
+	TODO
+\end{proof} 
+
+\textbf{Definicja i Twierdzenie w jednym}
+\begin{enumerate}[label=\arabic*.]
+	\item Niech $G_{(0) := G}$, $G_{(n+1)} := \left[ G, G_{(n)} \right] $. Jest to dolny ciąg centralny.
+Mówimy że $G$ jest \textbf{nilpotentna} gdy $\exists\left( n\in \N \right) \left( G_{(b)} = \{e\}  \right) $ 
+
+Ponieważ $\forall\left( n \right) \left( G^{(n)} \subseteq G_{(n)} \right) $ czyli 
+
+$G\text{ abelowa}\implies G\text{ nilpotentna}\implies G\text{ rozwiązalna}$ 
+
+Do pkazania:
+
+\begin{enumerate}[label=\roman*)]
+	\item Każda $p$-grupa jest nilpotentna
+	\item Przykładowo $S_{3}$ jest rozwiązalna ale nie jest nilpotentna (dowód)
+\end{enumerate}
+
+ 	\item Definiujemy $Z_0 := \{e\}, Z_1:= Z(G), Z_{n+1} :=  \prod_{n=1} \left[ Z( \mfaktor{G}{Z_{n}}  \right], \prod_{n=1}: \overset{\text{iloraz}}{\to} \mfaktor{G}{Z_{n}}   $
+	Wtedy $\{e\} \unlhd Z_0\unlhd Z_1\unlhd \ldots$ jest to \textbf{główny ciąg centralny} 
+\end{enumerate}
+
+Do pokazania:
+$G$ jest nilpotentna $\iff \exists\left( n \right)\left( Z_{n}= G \right)  $ 
+
+\textbf{Przykłądy}
+
+\begin{enumerate}[label=\arabic*)]
+	\item $\left| G \right| p\cdot q$, p i q są pierwsze to $G$ jest rozwiązalna
+	\item $\left| G \right| = 110 \implies G$ rozwiązalna.
+\end{enumerate}
+TUTaj dowody tych przykładów.
+
+\subsection{Grupa prosta}
+
+\begin{definition}
+	Mówimy że $G$ jest grupą prostą, gdy $G$ jest nietrywialna oraz
+	\[
+	\forall\left( N\unlhd G \right)\left( N = \{e\} \text{ lub } N=G \right)  
+	.\] 
+	$N$ jest podgrupą niewłaściwą(czyli?)
+	
+\end{definition} 
+\textbf{Przykłady} 
+\begin{enumerate}[label=\arabic*)]
+	\item $\mathbb{Z} _{p}$ p jest liczbą pierwzą
+	\item $A_{n}$ 
+	\item $PSL_{n}(\mathbb{R} ):= \mfaktor{SL_{n}(\mathbb{R} )}{Z(SL_{n}(\mathbb{R} )} $ 
+	\item $PSL_{n}(\mathbb{Z} _{p})$
+\end{enumerate}
+
+Zmierzamy do odpowiedzi na pytanie na ile dowolną grupę skończoną można opisać przez grupy proste.
+
+\begin{definition}
+	Niech
+	\[
+	G = H_0 \unrhd H_1 \unrhd \ldots\unrhd H_{n} = \{e\} 
+	.\] 
+	oraz
+	\[
+	G = N_0 \unrhd N_1 \unrhd \ldots \unrhd N_{k} = \{e\} 
+.\] 
+będą ciągami subnormalnymi grupy G.
+
+\begin{enumerate}[label=\arabic*.]
+	\item Ciąg $\left( H_{i} \right)_{i}$ nazywamy zagęszczeniem ciągu $\left( N_{i} \right)_{i}$ jeśli
+		\[
+		\forall\left( j \right) \exists\left( i \right)\left( N_{j}= H_{i} \right)  
+		.\] 
+	\item Ciąg $\left( H_{i} \right)_{i}, \left( W_{j} \right)_{j} $ są równoważne, gdy $n=k$ oraz
+		$\exists\left( \sigma \in S_{k} \right)\left( \forall\left( i \in \{1,\ldots,k\}  \right)  \right)  \left( \mfaktor{H_{i}}{H_{i+1}} \cong \mfaktor{N_{\sigma (i)}}{N_{\sigma (i+1)}}  \right) $
+		czyli faktory są iizomorficzne po ich permutacji
+\end{enumerate}
+\end{definition} 
+
+\begin{theorem}[Scheier]
+	Każde dwa ciągi subnormalne $G$ mają równoważne (subnormalne) zagęszczenie.
+\end{theorem} 
+\begin{proof}
+	todo
+\end{proof} 
+\begin{theorem}
+	$A\unlhd B\unlhd 6$ oraz $H\unlhd G$. Wtedy 
+	\[
+	\mfaktor{BH}{AH} \cong \mfaktor{B}{A(H\cap B)} 
+	.\] 
+	w szczegolnosci
+	$\mfaktor{BH}{H} \cong \mfaktor{B}{H\cap B} $
+\end{theorem} 
+
+\begin{definition}
+       Ciąg kompozycyjny $G$ to ciąg subnormalny $G$ o faktorach, które są grupami prostymi	
+\end{definition} 
+
+\textbf{Przykłądy} 
+\begin{enumerate}[label=\arabic*.]
+	\item $\{0\} \unlhd \{0,2\} \unlhd \mathbb{Z}_{4}$ 
+	\item $\{\id\} \unlhd \{\id, (1,2)(3,4)\}  \unlhd A'_{4} \unlhd A_{4} \unlhd S_4$ 
+	\item $\left( Q, + \right) $ nie ma ciągu kompozycyjnego
+	\item $\forall\left( n\ge  5 \right) \left( \{\id \} \unlhd A_{n} \unlhd S_{n} \right) $ ciąg kompozycyjny $S_{n}$
+\end{enumerate}
+\begin{lemma}
+	Ciągu kompozycyjnego nie można istotnie zagęscić
+\end{lemma} 
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{theorem}[Jordana-Koldera]
+	Dowolne dwa ciągi kompozycyjne grupy G są równoważne.
+\end{theorem} 
+\begin{remark}
+	Rozważając ciąg kompozycyjny $\mathbb{Z}_{n}$ widać, że tw J-K implikuje jednoznaczność rozkładu n na czynniki pierwsze.
+\end{remark} 
+\begin{theorem}
+	Jeśli $G$ jest skończona to $G$ ma ciąg kompozycyjny.
+\end{theorem} 
+\begin{remark}
+	Ostatnie twierdzenia(które) dają:
+
+	$G$ skonczona implikuje skonczone(proste) faktory ciągu kompozycyjnego G. Są one yznaczone z dokladnoscia do permutajcji jednoznacznie. Czyli mamy rodzaj rozkładu skonczone grupy na grupy proste które dla $G$ skonczonej są sklasyfikowane. Na ile ten fakt klasyfikuje grupy skonczone?
+	Nie do konca bo stety i niestety przyporządkowanie 
+	\[
+	G \mapsto \{G_1,G_2,\ldots, G_{i}\} \text{faktory ciągu kompozycyjnego}
+	.\] 
+	lub 
+	 \[
+	G \mapsto \left( G_1,\ldots,G_{i} \right) \text{ ciągu faktorów}
+	.\] 
+	Nie są 1-1.
+
+\end{remark} 
+
+\textbf{Przykłąd} 
+\begin{enumerate}[label=\arabic*)]
+	\item $S_3 \unrhd A_3 \unrhd \{\id \} $ ciąg kompozycyjny o faktorach: $\mathbb{Z}_{2}, \mathbb{Z}_{3}$ oraz $\mathbb{Z}_{6} \unrhd \{0,2,4\} \unrhd \{0\}$ ciąg kompozycyjny o faktorach $\mathbb{Z} _{6}$ 
+
+		Ale $S_3\cong \mathbb{Z}_{6}$ 
+
+		W tym przypadku mamy akurat $\mathbb{Z} _{6}\cong \mathbb{Z} _{3}\times \mathbb{Z} _{2}$ oraz $S_3 \cong \mathbb{Z} _{3}\times \mathbb{Z} _{2}$ czyli mamy tzw rozkład półprosty na faktory
+	\item $\mathbb{Z} _{4} \unrhd \{0,2\} \unrhd \{0\} $ ciąg kompzycyjne $\mathbb{Z}_{4}$ o faktorach $\mathbb{Z}_{2}, \mathbb{Z} _{2}$.
+
+		$\mathbb{Z} _{2}\times \mathbb{Z} _{2}\unrhd \mathbb{Z} _{2} \times \{0\} \unrhd \left[ (0,0) \right]  $
+		 ciąg kompozycyjny $\mathbb{Z}_{2}\times \mathbb{Z} _{2}$ o faktorach $\mathbb{Z} _{2},\mathbb{Z} _{4}$ 
+		 ake $\mathbb{Z}_{4}$ nie musi byc produktem półprostym $\mathbb{Z}_{2} $ i $\mathbb{Z} _{2}$
+\end{enumerate}

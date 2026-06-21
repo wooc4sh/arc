@@ -1,0 +1,34 @@
+\documentclass[a4paper=12p]{report}
+\input{./preamble}
+
+\title{Rozwiązania list zadań z algebry 1R.}
+\author{Łukasz Kopyto}
+% ---MAKRO---
+\newif\ifcalosc
+\calosctrue  % Odkomentuj tę linię (usuń %), aby skompilować wszystko
+%\caloscfalse % Zostaw tak, aby kompilować tylko wybrany fragment
+
+\ifcalosc
+\else
+  \includeonly{lista_14}
+\fi
+% ---------------------------------
+\begin{document}
+    \maketitle
+    \tableofcontents
+    % start lectures
+    \include{prolog}
+    \include{lista_01}
+    \include{lista_02}
+    \include{lista_03}
+    \include{lista_04}
+    \include{lista_05}
+    \include{lista_09}
+    \include{lista_10}
+    \include{lista_11}
+    \include{lista_12}
+    \include{lista_13}
+    \include{lista_14}
+    %\include{epilog}
+    % end lectures
+\end{document}

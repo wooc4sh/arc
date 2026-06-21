@@ -1,0 +1,13 @@
+\babel@toc {polish}{}\relax 
+\contentsline {chapter}{\numberline {1}Prolog}{2}{}%
+\contentsline {section}{\numberline {1.1}Wise man once said.}{2}{}%
+\contentsline {chapter}{\numberline {2}Point zero.}{3}{}%
+\contentsline {section}{\numberline {2.1}Fundamenty.}{3}{}%
+\contentsline {subsection}{\numberline {2.1.1}Pochodna i różniczka.}{3}{}%
+\contentsline {paragraph}{Część I: Funkcje jednej zmiennej rzeczywistej($f:\ensuremath {\PazoBB {R}}\to \ensuremath {\PazoBB {R}}$).}{3}{}%
+\contentsline {paragraph}{Część II: Funkcja wielu zmiennych: $f: \ensuremath {\PazoBB {R}}^{n}\to \ensuremath {\PazoBB {R}}^{m}$}{5}{}%
+\contentsline {paragraph}{Fundamenty Analizy Wielowymiarowej: Od cząstki do całości.}{6}{}%
+\contentsline {paragraph}{Twierdzenie fundamentalne (Most między światami).}{7}{}%
+\contentsline {paragraph}{Hierarchia gładkości.}{7}{}%
+\contentsline {subsection}{\numberline {2.1.2}Da się przedstawić jako\ldots }{8}{}%
+\contentsline {chapter}{\numberline {3}TEMP Funkcje wielu zmiennych}{9}{}%

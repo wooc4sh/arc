@@ -1,0 +1,319 @@
+\section{Lista zadań numer 4.}
+
+\begin{problem}[1]
+
+	Udowodnić, że jeśli rząd grupy jest liczbą pierwszą, to G jest cykliczna.
+\end{problem}
+\begin{solution}
+	
+	Ustalmy grupę G i załóżmy, że jej rząd n jest liczbą pierwszą. To znaczy \[
+	\text{rząd}\left( G \right) = n\text{ oraz } n \text{ jest liczbą pierwszą} \ge 2
+	.\] 
+
+	Ustalmy dowolny element $g \in G$, różny od $e$. Takie g istnieje, bowiem rząd G $\ge 2$. Niech k jest rzędem elementu g. k jest skończone i $\le n$, bo jeśli by było inaczej, to mielibyśmy sprzeczność z tym, że rząd G to n.
+	
+	Wniosek z twierdzenia Lagrangea mówi nam. że k jest dzielnikiem n. Ponieważ n jest liczbą pierwszą więc jej dzielnikami są 1 i n. Jedynym elementem w grupie G, który ma rząd 1 jest element neutralny e, ale k jest różne od e, zatem k jako dzielnik n jest równe n. Przeto $\langle g \rangle $ jest podgrupą cykliczną grupy G o rzędzie n, czyli $\langle g \rangle = G$, a co za tym idzie, G jest cykliczna.
+\hfill\qed
+\end{solution}
+
+\begin{problem}[2]
+	Niech N będzie podgrupą grupy G. Udowodnić, że następujące warunki są równoważne.
+
+	\begin{enumerate}[label=\alph*)]
+		\item $N\unlhd G$ czyli dla każdego $g\in G, g^{-1}Ng \subseteq N$.
+		\item Dla każdego $g \in G$, $gNg^{-1}\subseteq N$.
+		\item  Dla każdego $g \in G$, $gNg^{-1}= N$.
+		\item Dla każdego $g \in G$, $g^{-1}Ng = N$. 
+		\item  Dla każdego $g \in G$, $gN = Ng$.  
+	\end{enumerate}
+\end{problem}
+\begin{solution}
+
+	Pokażę ciąg wynikań, mianowicie
+	\[
+	a)\implies b) \implies c) \implies d) \implies e) \implies a)
+	.\] 
+	
+
+	\begin{itemize}
+		\item $a) \implies b)$ 
+
+			Załóżmy a) $N\unlhd G$ czyli dla każdego $g'\in G, g'^{-1}Ng' \subseteq N$.
+
+			Ustalmy dowolne $g\in G$. Korzystając z a), weźmy $g' = g^{-1}$. Wtedy $N \supseteq g'^{-1}Ng' = \left( g^{-1} \right)^{-1}Ng^{-1} = gNg^{-1} = gNg^{-1}$
+
+		\item $b) \implies c)$ 
+
+			Załóżmy b), że dla każdego $g' \in G$, $g'Ng'^{-1}\subseteq N$
+	
+			Ustalmy dowolne $g\in G$ oraz $n\in N$.
+			Z założenia b), dla $g' = g^{-1}$ $g^{-1}ng \in N$. Zatem $n = \left( e \right) n \left( e \right) = g\left( g^{-1} n g \right)g^{-1} \in gNg^{-1} $
+                        
+			Mamy podwójne zawieranie, więc $gNg^{-1}=N.$
+		\item $c) \implies d)$
+
+			Załóżmy c), że dla każdego $g' \in G$, $g'Ng'^{-1}= N$. 
+			Ustalmy dowolne $g\in G$. Niech $g' = g^{-1}$
+
+			
+			Wtedy z c) mamy $g^{-1}Ng = g^{-1}N\left( g^{-1} \right)^{-1} = g'Ng'^{-1} = N $
+		\item $d) \implies e)$
+
+			Załóżmy d), że dla każdego $g'\in G$, $g'Ng'^{-1} = N$. 
+			Ustalmy dowolne $g\in G$.
+			Mamy następujące równoważności:
+
+			\begin{align*}
+				h \in gN & \iff \left(\text{z d) } N = g^{-1}Ng\text{, dla } g' = g^{-1}\right) \\
+				h \in g\left( g^{-1}Ng \right) & \iff \\
+				h \in \left( gg^{-1} \right) N g & \iff\\
+				h \in Ng
+			\end{align*}
+
+			Zatem $gN = Ng$
+		\item $e) \implies a)$.
+
+			Załóżmy e), że dla każdego  $g' \in G$ $gN = Ng$
+
+			Ustalmy dowolne $g\in G$ oraz $h\in g^{-1}Ng$.
+
+			Z założenia e) mamy
+			\[
+			N = \left( g^{-1}g \right)N = g^{-1}\left( gN \right) = g^{-1}\left( Ng \right) = g^{-1}Ng \subseteq N
+			.\] 
+			Zatem $h \in N.$
+	\end{itemize}
+
+\end{solution}
+
+\begin{problem}[3]
+
+	Niech $f: G \rightarrow H$ będzie homomorfizmem grup. Udowodnić, że $\ker(f) \le G$ oraz $\im(f) \le H$.
+\end{problem}
+\begin{solution}
+
+	Załóżmy, że $f:G\rightarrow H$ jest homomorfizmem grup.
+	\begin{itemize}
+		\item $\ker(f) \le  G$ 
+			
+			Z definicji 
+			\[
+			\ker(f) = \{g \in G: fg = e_{H}\} 
+			.\] 
+			Zauważmy, że
+			\begin{enumerate}
+				\item $\ker(f) $ jest zamknięty na działanie:
+
+					Weźmy dowolne dwa elementy $g,h \in \ker(f)$. Pokażę, że $gh\in \ker(f)$. Zauważmy, że
+					\[
+						g,h \in \ker(f) \iff fg = e_H \text{ oraz } fh = e_H 
+					.\] 					Zatem
+					\[
+					e_H = \left( e_H \right) \left( e_H \right) = \left( fg \right) \left( fh \right) = f\left( gh \right)  					.\] 
+					Czyli $f\left( gh \right) = e_H$, a co za tym idzie $gh \in \ker(f) $
+		\item $e_{G} \in \ker(f) $
+
+			Niech $h = fe_G \in H$.
+			Wtedy
+			 \[
+			h = fe_G = f\left( e_Ge_G \right) = f\left( e_G \right) f\left( e_G \right) = hh  
+			.\]
+			Zatem
+			\[
+			e_H = h^{-1}h = h^{-1}\left( hh \right) = \left( h^{-1}h \right) h = e_Hh = h
+			.\]  czyli $e_H = h = fe_G$.
+
+			Zatem  $e_G\in \ker(f) $.
+			\end{enumerate}
+		\item $\im(f) \le H$
+
+			Z definicji
+			\[
+			\im(f)  = \{h \in H: \exists_{g\in G} \left( fg = h \right)  \} 
+			.\] 
+
+			Zauważmy, że
+			\begin{enumerate}
+				\item $\im(f)$ jest zamknięte na działanie.
+
+					Weźmy dowolne $h_1,h_1 \in \im(f) $.
+					Wtedy istnieją $g_1,g_2$, takie że $fg_1 = h_1, fg_2 = h_2$
+					
+					Zatem
+
+					\[
+					h_1g_2 = \left( fg_1 \right) \left( fg_2 \right) = f\left( g_1g_2 \right) \in \im(f) 
+					.\] 
+					Czyli $h_1h_2 \in \im(f) $
+				\item $e_H \in \im(f)$ 
+					
+					Niech $h = fe_G$. Wtedy
+					 \[
+					h = fe_G = f\left( e_Ge_G \right) = \left( fe_G \right) \left( fe_G \right) = hh
+					.\] 
+					Zatem 
+					\[
+					e_H = h^{-1}h = h^{-1}\left( hh \right) = \left( h^{-1}h \right) h = e_Hh = h = fe_G \in \im(f)  
+					.\] 
+			\end{enumerate}
+	\end{itemize}
+\end{solution}
+\begin{problem}[4]
+
+	Udowodnić, że jeśli $H\le G$ oraz $[G:H] = 2$, to $H\unlhd G$. 
+\end{problem}
+\begin{solution}
+
+	Zauważmy, że warstwy H dzielą grupę G na rozłączne podzbiory- tworzą partycję zbioru G. Indeks H w G wynosi 2, a więc G jest podzielone na dwie rozłączne części. 
+
+	Ponieważ $H\le G$, więc jedną z warstw jest samo $H = eH = He$.
+        Drugą warstwą zatem musi być dopełnienie H w G oznaczmy je $H^{c}$. 
+
+	$H\unlhd G$ jest równoważne temu, że dla dowolnego $g \in G$, $gH = Hg$. Ustalmy więc dowolne  $g\in G$ i rozważmy dwa przypadki:
+	\begin{enumerate}
+		\item $g\in H$
+
+			Ponieważ $H\le G$ więc H jest zamknięte na działanie, czyli $gH = H = Hg$. Zatem  $H\unlhd G$.
+		\item $g \not\in H$ 
+
+			Ponieważ $H\le G$ więc $gH$ nie może być równe  $H$. Analogicznie $Hg \neq H$. Ponieważ, jedynym zbiorem został $H^{c}$, więc $gH = H^{c} = Hg$
+	\end{enumerate}
+
+
+\begin{proof}
+
+	Aby udowodnić, że $H$ jest podgrupą normalną w $G$, musimy pokazać, że dla każdego elementu $g\in G$ zachodzi równość warstwy lewostronnej i prawostronnej: $gH = Hg$
+
+Z założenia $[G:H] = 2$ wiemy, że istnieją dokładnie dwie różne lewostronne warstwy podgrupy H w G. Z lematu o warstwach wiemy, że warstwy te tworzą partycję zbioru G.
+
+Jedną z tych warstw jest zawsze sama podgrupa $H$ (gdyż $H = eH$ dla $e \in H$). Ponieważ warstwy są rozłączne i pokrywają całą grupę, druga warstwa musi być zbiorem wszystkich pozostałych elementów, czyli dopełnieniem $G \setminus H$. Zatem zbiór lewych warstw to $\{H, G \setminus H\}$.
+
+Analogiczne rozumowanie stosuje się do warstw prawostronnych. Istnieją dokładnie dwie prawe warstwy, którymi muszą być $H$ oraz $G \setminus H$.
+
+Rozważmy teraz dwa możliwe przypadki dla dowolnego $g \in G$:
+
+\begin{enumerate}
+    \item \textbf{Przypadek 1: $g \in H$}
+    
+        Wtedy, z własności podgrupy (zamkniętość na działanie), warstwa lewostronna $gH$ jest równa $H$. Podobnie, warstwa prawostronna $Hg$ jest równa $H$.
+        Zatem w tym przypadku zachodzi równość:
+        \[
+            gH = H = Hg.
+        \]
+
+    \item \textbf{Przypadek 2: $g \notin H$}
+    
+        Ponieważ $g$ nie należy do podgrupy $H$, warstwa lewostronna $gH$ nie może być równa $H$ (gdyby $gH=H$, to $g = ge \in gH = H$, co jest sprzeczne z naszym założeniem). Skoro istnieją tylko dwie lewe warstwy, to $gH$ musi być tą drugą, czyli:
+        \[
+            gH = G \setminus H.
+        \]
+        Analogicznie, warstwa prawostronna $Hg$ nie może być równa $H$. Zatem musi być równa $G \setminus H$:
+        \[
+            Hg = G \setminus H.
+        \]
+        Porównując oba wyniki, otrzymujemy równość:
+        \[
+            gH = G \setminus H = Hg.
+        \]
+\end{enumerate}
+
+Ponieważ równość $gH = Hg$ zachodzi dla każdego elementu $g \in G$ (zarówno dla $g \in H$, jak i $g \notin H$), podgrupa $H$ spełnia definicję podgrupy normalnej.
+\end{proof}
+
+\end{solution}
+\begin{problem}[5]
+
+	Udowodnić, że $T_{n}\left( \R \right) $ nie jest dzielnikiem normalnym w $GL_{n}\left( \R \right) $.
+\end{problem}
+
+	Najpierw oznaczenia:
+	\begin{itemize}
+		\item $T_{n}\left( \R \right)$ jest to grupa macierzy dolnotrójkątnych o wyrazach rzeczywistych i rozmiarze $n\times n$. $T$ pochodzi od angielskiego \textbf{Triangular} 
+
+			Analogicznie mamy $UT_{n}\left( \R \right)$ gdzie $UT$ pochodzi od angielskiego \textbf{Upper Triangular} 
+		\item $GL_{n}\left( \R \right) $ jest to grupa macierzy odwracalnych o wyrazach rzeczywistych i rozmiarze $n\times n$. $GL$ pochodzi z angielskiego  \textbf{General Linear} 
+	\end{itemize} 
+
+\begin{solution}
+	
+	Aby pokazać, że $T_{n}\left( \R \right) \text{ nie jest dzielnikiem } GL_{n}\left( \R \right)$ musimy dla ustalonego $n$ wskazać takie $g\in GL_{n}\left( \R \right)$, że $gT_{n}\left( \R \right)g^{-1} \neq T_{n}\left( \R \right) $
+
+	Zatem niech $n = 2$ oraz 
+	
+	\[t = \begin{pmatrix} 1 & 1\\0 & 1\end{pmatrix} \in T_{2}	\left( \R \right), g = \begin{pmatrix} 1 & 0\\ 1 & 0 \end{pmatrix},g^{-1} = \begin{pmatrix} 1 & -1 \\ 0 & 1 \end{pmatrix} \in GL_{n}\left( \R \right) \] 
+
+	Wtedy $gtg^{-1} \in gT_{2}\left( \R \right)g^{-1}$ ale
+
+		\[gt = \begin{pmatrix} 1 & 1 \\ 1 & 2 \end{pmatrix} 
+		\text{ oraz } 
+		\left( gt \right)g^{-1} = \begin{pmatrix} 0 & 1 \\ -1 & 2 \end{pmatrix}.\]
+
+		Zatem \[gtg^{-1} \not\in T_{2}\left( \R \right)\] 
+		czyli 
+		\[gT_{2}\left( \R \right) g^{-1} \neq T_{2}\left( \R \right) .\]
+
+
+\end{solution}
+
+\begin{problem}[6]
+	
+	Korzystając z zasadniczego twierdzenia o homomorfizmie grup, udowodnić, że
+	\begin{enumerate}[label=\alph*)]
+		\item $\left( \R*, \cdot  \right)/\left( \{-1,1\}  \right) \cong \left( \R_{>0}, \cdot  \right)$,
+		\item $\left( \C, + \right) /\Z \cong \left( \C*, \cdot  \right)$,
+		\item $\left( \C, + \right) /\langle \exp^{\frac{2\pi i}{n}} \rangle  \cong \left( \C*, \cdot  \right)$,
+	\end{enumerate}
+	
+\end{problem}
+\begin{solution}
+
+	\begin{enumerate}[label=\alph*)]
+		\item Niech  $\varphi \left( x \right) = |x|$, czyli wartość bezwzględna.
+			\begin{center}
+		\begin{tikzcd}[row sep= 30pt, column sep=30pt]
+			\left( \R^{*},\cdot  \right)  \arrow[dr, "\pi"] \arrow[rr, "\varphi"] & & \left( \R_{>0},\cdot  \right)   \\					     & \mfaktor{\left( \R^{*},\cdot  \right)}{\{-1,1\}}  \arrow[ur, "\psi", dashrightarrow] &  
+		\end{tikzcd}
+	\end{center}
+	\item Niech $\varphi\left( z \right) = e^{2\pi i z}$
+			\begin{center}
+		\begin{tikzcd}[row sep= 30pt, column sep=30pt]
+			\left( \C,+ \right)  \arrow[dr, "\pi"] \arrow[rr, "\varphi"] & & \left( \C^{*},\cdot  \right)   \\					     & \mfaktor{\left( \C, +  \right)}{\Z}  \arrow[ur, "\psi", dashrightarrow] &  
+		\end{tikzcd}
+	\end{center}
+	\item Mamy taki diagram
+			\begin{center}
+		\begin{tikzcd}[row sep= 30pt, column sep=30pt]
+			\left( \C^{*},\cdot  \right)  \arrow[dr, "\pi"] \arrow[rr, "\varphi"] & & \left( \C^{*},\cdot  \right)   \\					     & \mfaktor{\left( \C^{*},\cdot  \right)}{\langle \exp^{\frac{2\pi i}{n}} \rangle }  \arrow[ur, "\psi", dashrightarrow] &  
+		\end{tikzcd}
+	\end{center}
+
+
+
+	\end{enumerate}
+\end{solution}
+\begin{problem}[7]
+	
+	cosniecos
+\end{problem} 
+\begin{solution}
+
+Mamy $\Z_{6}$.
+Szukamy jej wszystkich podgrup normalnych i podgrupy.
+$Z_{6}$ jest abelowa więc wszystkie są normalne.
+
+ \begin{itemize}
+	\item $P_{1} = \{0\} \text{ rząd } = 1$ 
+	\item $P_2 = \{0, 2, 4\} \text{ rząd }= 3$ 
+	\item $P_{3} = \{0, 3\} \text{ rząd }= 2$ 
+	\item $P_5 = \{0, 1, 5\} \text{ rząd }= 6$
+\end{itemize}
+
+
+	
+
+\end{solution}
+
+
+
+
+

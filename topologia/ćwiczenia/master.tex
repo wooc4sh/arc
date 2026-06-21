@@ -1,0 +1,23 @@
+\documentclass[a4paper=12p]{report}
+\input{./preamble}
+
+\title{Rozwiązania list zadań z Topologii.}
+\author{Łukasz Kopyto}
+% ---MAKRO---
+\newif\ifcalosc
+\calosctrue  % Odkomentuj tę linię (usuń %), aby skompilować wszystko
+%\caloscfalse % Zostaw tak, aby kompilować tylko wybrany fragment
+
+\ifcalosc
+\else
+  \includeonly{\ldots}
+\fi
+% ---------------------------------
+\begin{document}
+    \maketitle
+    \tableofcontents
+    % start lectures
+    \include{prolog}
+    \include{part_03}
+    % end lectures
+\end{document}

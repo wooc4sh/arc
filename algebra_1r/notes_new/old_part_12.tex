@@ -1,0 +1,298 @@
+\chapter{Wykład XII}
+
+\section{Ideał.}
+
+\begin{context}
+
+	Od teraz rozważając pierścień, rozważamy pierścień przemienny z $\mathbf{1}$.
+\end{context}
+Niech $R,S$ będą pierścieniami.
+\begin{definition}[Jądro.]
+	Niech $f: R \to S$ będzie homomorfizmem pierścieni. Definiujemy 
+	\[
+	\ker(f) := f^{-1}\left( \mathbf{0} \right) \text{ (jądro $f$ )}
+	.\] 
+\end{definition} 
+\begin{fact}
+	Mamy:
+	\begin{itemize}
+		\item $\ker(f) \le \left( R,+ \right) $.
+		\item $\left(\forall r\in R \right)\left(\forall a \in \ker(f)  \right)\left( ra \in \ker(f)  \right)   $
+	\end{itemize}
+\end{fact}
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{definition}[Ideał.]
+	Niech $R$ jest pierścieniem oraz $\mathcal{I} \subseteq R$.
+
+	$\mathcal{I}$ jest \textbf{ideałem} (oznaczamy $\mathcal{I} \unlhd R$ ), gdy:
+	\begin{itemize}
+		\item $\mathcal{I} \le \left( R,+ \right) $ (podgrupa grupy addytywnej $R$ ),
+		\item $\left(\forall r\in R \right)\left(\forall a \in \mathcal{I} \right)\left( ra \in \mathcal{I} \right)   $
+	\end{itemize}
+\end{definition} 
+\begin{remark}
+	Ideały w $R$ to dokładnie $R$- podmoduły $R$.
+\end{remark} 
+\begin{eg}
+	Niech $n\in \N$ wtedy $n\mathbb{Z} \unlhd \mathbb{Z} $ oraz $n\mathbb{Z} = \ker(r_{n}) $.
+
+	Oczywiście $\ker(f) \unlhd R$ dla $f: R\to S$ będącego homomorfizmem pierścieni.
+\end{eg} 
+\begin{definition}[Warstwy.]
+	Niech $\mathcal{I}\unlhd R$, wtedy przez $\mfaktor{R}{\mathcal{I}} $ określamy zbiór warstw addytywnych, dokładnie
+	\[
+	\mfaktor{R}{\mathcal{I}} := \{a+\mathcal{I}: a\in R\} 
+	.\] 
+\end{definition} 
+\begin{theorem}[Warstwy pierścienia]
+$\mfaktor{R}{\mathcal{I}} $ z działaniami 
+\[
+\left( a+ \mathcal{I} \right) + \left( b+\mathcal{I} \right) := \left( a+b \right) + \mathcal{I}
+,\] 
+oraz 
+\[
+	\left( a + \mathcal{I} \right) \cdot \left( b+\mathcal{I} \right) := \left( ab \right) + \mathcal{I}
+,\] 
+jest pierścieniem.
+
+Natomiast 
+ \begin{align*}
+ 	\Pi: R &\longrightarrow \mfaktor{R}{\mathcal{I}}  \\
+ 	r &\longmapsto r + \mathcal{I}
+ .\end{align*}
+jest homomorfizmem, oraz $\ker(\Pi) = \mathcal{I}$
+\end{theorem} 
+\begin{proof}
+	TODO
+\end{proof} 	
+Niech $\mathcal{I} \unlhd R$ oraz $a,b \in R$.
+
+Oznaczamy $a \equiv b \pmod{\mathcal{I}} $, gdy $a-b \in \mathcal{I} (\text{ czyli }a+\mathcal{I} = b+\mathcal{I})$.
+
+Mówimy wtedy, że \textbf{$a$ przystaje do $b$ modulo $\mathcal{I}$}.
+
+\begin{eg}
+	$\mathcal{I} = n\mathbb{Z} \unlhd \mathbb{Z} $, $a,b \le \mathbb{Z} $.
+
+	Wtedy
+	\[
+	\underbrace{a \equiv b \pmod{\mathcal{I}}}_{=n\mathbb{Z} } \iff \underbrace{a-b\in \mathcal{I}}_{=n\mathbb{Z} } \iff n\mid \left( a-b \right) \iff a \equiv b \pmod{n} 
+.\] 
+\end{eg} 
+\section{Zasadnicze twierdzenie o homomorfiźmie pierścieni.}
+\begin{definition}[Zasadnicze twierdzenie o homomorfiźmie pierścieni.]
+	Niech $\varphi : R \to S $ będzie homomorfizmem pierścieni. Wtedy $\varphi \left[ R \right] \underset{\scriptscriptstyle\text{podp}}{\subseteq} S $ oraz istnieje dokładnie jeden izomorfizm pierścieni
+	\[
+	\psi : \mfaktor{R}{\ker(\varphi  ) \to \psi \left[ R \right] } 
+	,\] 
+	taki że następujący diagram komutuje (jest przemienny):
+
+	\begin{center}
+		\begin{tikzcd}[row sep= 30pt, column sep=30pt]
+			R  \arrow[dr, "\Pi"] \arrow[rr, "\varphi"] & & \varphi \left[ R \right]     \\
+		& \mfaktor{R}{\ker(\varphi) }  \arrow[ur, "\psi (\cong)", dashrightarrow] &  
+		\end{tikzcd}
+	\end{center}
+\end{definition} 
+
+\textbf{Przykłady}
+\begin{enumerate}[label=\arabic*)]
+	\item $r _{n} : \mathbb{Z} \to \mathbb{Z} _{n}, r _{n} \left[ \mathbb{Z}  \right] = \mathbb{Z} _{n} , \ker(r _{n} ) = n\mathbb{Z} $.
+
+		Stąd $\mfaktor{\mathbb{Z} }{n\mathbb{Z} } \cong \mathbb{Z} _{n} $ 
+	\item $R\left[ X \right] \overset{\text{ev}_{r}}{\longrightarrow} R, r\in R$.
+
+		Mamy $\ker(\text{ev}_{r}) := \{f\in R\left[ X \right] : f\left( r \right) = \mathbf{0}\} $.
+
+		Stąd $\mfaktor{R\left[ X \right] }{\{f\in R\left[ X \right] : f\left( r \right) = \mathbf{0}\} } \cong R$
+\end{enumerate}
+
+\begin{fact}
+
+	Przekrój dowolnej rodziny ideałów w $R$ jest ideałem.
+\end{fact}
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{definition}
+	Niech $R$ będzie pierścieniem, $A\subseteq R$ oraz $r_1,r_2,\ldots, r _{n} \in R$.
+	\begin{enumerate}[label=\arabic*)]
+		\item $\left( A \right) := \bigcap \{\mathcal{I}\unlhd R: A\subseteq \mathcal{I}\} $- najmniejszy ideał $R$ zawierający $A$.
+
+			Inaczej ideał generowany przez  $A$ (sprawdź z rodziną Moore'a)
+		\item $\left( r_1,r_2,\ldots,r _{n}  \right) := \left( \{r_1,r_2,\ldots,r_{n}\}  \right) $.
+		\item $r_1R + r_2R + \ldots + r_{n}R := \{r_1a_1 + r_2a_2 + \ldots + r_{n}a_{n} : a_1,a_2,\ldots,a_{n} \in R\} $.
+
+			$R$ jest to liniowa kombinacja elementów  $r_1,r_2,\ldots,r_{n}$.
+
+			Jako zadanie pokazać, że 
+			\[
+				\left( r_1,r_2,\ldots, r_{n} \right) = r_1R + r_2R + \ldots + r_{n}R \text{ (ideał główny)} 
+			.\] 
+		\item Niech $\mathcal{I}\unlhd R$, jeśli istnieje $a\in \mathcal{I}$, takie że $\mathcal{I}=\left( a \right) $, to $\mathcal{I}$ nazywamy \textbf{ideałem głównym} .
+		\item $\{\mathbf{0}\} $ oraz $R\unlhd R$ są \textbf{ideałami niewłaściwymi}, pozostałe ideały to \textbf{ideały właściwe}. 
+	\end{enumerate}
+\end{definition} 
+\begin{fact}
+	Dla $\mathcal{I} \unlhd R$ następujące warunki są równoważne:
+	\begin{enumerate}[label=\roman*)]
+		\item $\mathcal{I} = R$.
+		\item $\mathbf{1} \in \mathcal{I}$.
+		\item $\mathcal{I}\land R^{\ast} \neq \emptyset $
+	\end{enumerate}
+\end{fact}
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{fact}
+
+	$R$ jest ciałem $\iff R\neq \{\mathbf{0}\} $ i wszystkie ideały $R$ są niewłaściwe.
+\end{fact}
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{remark}
+	Elementy $R \longrightarrow $ ideały $R$
+
+	 $a \mapsto \left( a \right) $
+\end{remark} 
+\begin{fact}[Podzielność inkluzji ideałów]
+
+	Niech $a,b \in R$. Wtedy
+	\begin{enumerate}[label=\arabic*)]
+		\item $a\mid b \iff \left( a \right) \supseteq \left( b \right) $.
+		\item $a\sim b \left(\iff a\mid b \land b\mid a \right) \iff \left( a \right) = \left( b \right) $
+	\end{enumerate}
+\end{fact}
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{definition}[PID]
+	Pierścień $R$ nazywamy:
+	\begin{enumerate}[label=\arabic*)]
+		\item \textbf{Pierścieniem ideałów głównych}, gdy każdy ideał w $R$ jest główny.
+		\item \textbf{Dziedziną ideałów głównych}(PID -Principal Ideal Domain?), gdy spełnia warunek $1)$ oraz jest dziedziną. 
+	\end{enumerate}
+\end{definition} 
+\begin{eg}
+	Mamy:
+	\begin{enumerate}[label=\arabic*)]
+		\item $K\text{ jest ciałem} \implies K \text{ jest PID}$, bo $\left(\forall \mathcal{I}\unlhd K \right)\left( \mathcal{I}= \underbrace{\{\mathbf{0}\} }_{= ( \mathbf{0} )} \text{ lub } \mathcal{I}= \underbrace{R}_{= (\mathbf{1})} \right)  $.
+		\item $\mathbb{Z} \text{ jest PID}$.
+	\end{enumerate}
+\end{eg} 
+\begin{proof}
+	$\mathcal{I}\unlhd \mathbb{Z} $, załóżmy, że $\mathcal{I}\neq \{\mathbf{0}\} $. Weźmy $n\in \mathcal{I}$, takie że \[
+	\left| n \right| = \min \{\left| x \right| : x\in \mathcal{I}\setminus \{\mathbf{0}\} \} 
+	.\] 
+
+	Wtedy 
+	$\left(\forall b\in \mathcal{I} \right)\left(\exists q \in \mathbb{Z}  \right)\left( b = qn + r_{\left| n \right| }(b) \right)   .$ 
+
+	Mamy $r_{\left| n \right| }(b) \in \{0,1,\ldots,\left| n \right| - 1\} $.
+
+	Oraz $b, q_{n}\in \mathcal{I} \implies r_{\left| n \right| }(b) \in \mathcal{I}\implies r_{\left| n \right| }\left( b \right) = \mathbf{0}$.
+
+	Zatem $b=qn$ i mamy $\mathcal{I} = \left( n \right) $
+\end{proof} 
+
+Powyższy dowód est istotny, bo użyjemy go do sformalizowania oewnego pojęcia.
+
+W dowodzie mamy: $\{e\} \neq \mathcal{I} \unlhd \mathbb{Z} \implies \mathcal{I}= \left( n \right) $ dla pewnego $n\in \mathcal{I}$,takiego że $\left| n \right| = \min \{\left| x \right| : x\in \mathcal{I}\setminus \{\mathbf{0}\} \} .$ Istotne jest to, że w $\mathbb{Z}$ możemy dzielić z resztą względem $\left| \cdot  \right| $.
+
+\begin{definition}
+	Niech $R$ będzie pierścieniem.
+	\begin{enumerate}[label=\arabic*)]
+		\item Funkcja $v: R\setminus \{\mathbf{0}\} \to \N $ jest  \textbf{normą euklidesową} (funkcją euklidesową), gdy
+			\[
+			\left(\forall \underbrace{a}_{\neq \mathbf{0}},b\in R \right)\left(\exists \underbrace{q}_{\text{iloraz}}, \underbrace{r}_{\text{reszta}}\in R \right)\left( b = qa +r \land \left( v\left( r \right) < v\left( a \right) \lor r = 0 \right) \right)   
+			.\] 
+		\item $R$ jest \textbf{pierścieniem euklidesowym}, gdy istnieje norma euklidesowa na $R$.
+	\end{enumerate}
+\end{definition} 
+\begin{eg}
+	$\left| \cdot  \right| : \mathbb{Z} \setminus \{\mathbf{0}\} \to \N$ norma euklidesowa na $\mathbb{Z} $ bo
+	\[
+	\left(\forall \underbrace{a}_{\neq \mathbf{0}},b\in R \right)\left(\exists q,r = r_{\scriptscriptstyle \left| a \right| }\left( b \right)  \right)\left( b = qa+r \land \left( \left| r \right| = r < \left| a \right| \lor r = \mathbf{0} \right)  \right)   
+	.\] 
+\end{eg} 
+\begin{theorem}
+	Niech $v$ będzie normą euklidesową na $R$.
+
+	Wtedy $\{\mathbf{0}\} \neq \mathcal{I}\unlhd R$ oraz $a\in \mathcal{I}\setminus \{\mathbf{0}\} $, taki że
+	\[
+	v\left( a \right) = \min \{v\left( b \right) : b \in \mathcal{I}\setminus \{\mathbf{0}\} \} 
+	.\] 
+	Wtedy $\mathcal{I} = \left( a \right) $.
+\end{theorem} 
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{corollary}
+
+	$R$ jest euklidesowy $\implies$ $R$ jest pierścieniem ideałów głównych.
+\end{corollary}
+\begin{theorem}
+	Niech $ K$ będzie ciałem. Wtedy
+	\begin{enumerate}[label=\arabic*)]
+		\item $K\left[ X \right] $ jest euklidesowy.
+		\item $K\left[ X \right] $ jest PID.
+	\end{enumerate}
+\end{theorem} 
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{remark}
+	Analizując dowód, widzimy, że jeśli $a \in R\left[ X \right] $ jest taki, że wiodący współczynnik $a$ jest odwracalny, to możemy dzielić przez $a$ z resztą w sensie deg. Stąd mamy
+\end{remark} 
+\begin{theorem}[Bezout]
+	Niech $R$ będzie pierścieniem, $\alpha \in R$, $g\in R\left[ X \right] $. Wtedy 
+	 \[
+	g\left( \alpha  \right) = \mathbf{0} \iff \left( X - \alpha  \right) \mid g \text{ w } R\left[ X \right] 
+	.\] 
+\end{theorem} 
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{theorem}
+	\begin{align*}
+		\left| \cdot  \right| ^2: \mathbb{Z} \left[ i \right]  &\longrightarrow \N \\
+		a+bi &\longmapsto a^2+b^2
+	\end{align*}
+	jest normą euklidesową na $\mathbb{Z} \left[ i \right] $.
+\end{theorem} 
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{corollary}
+
+	$\mathbb{Z} \left[ i \right] $ jest PID.
+\end{corollary}
+\begin{remark}
+	Rozważmy $\underbrace{d}_{\neq \mathbf{1}}\in \mathbb{Z} $ bezkwadratowa(???) oraz  \begin{align*}
+		v: \mathbb{Q} \left( \sqrt{d}  \right)  &\longrightarrow \N \\
+		n+m\sqrt{d}  &\longmapsto \left| n^2-m^2d \right|  
+	.\end{align*}
+	\begin{enumerate}[label=\arabic*)]
+		\item Dla $d=-\mathbf{1}$, $v$ pokrywa się z $\left| \cdot  \right| ^2$ i jest normą euklidesową na $\mathbb{Z} \left[ \sqrt{d}  \right] = \mathbb{Z} \left( \mathbf{1} \right) $.
+		\item $v$ jest normą euklidesową na pierścianiach
+			\[
+			\delta_{d}:= \begin{cases}
+				\mathbb{Z} \left[ \frac{1+\sqrt{d} }{2} \right], &d \equiv 1 \pmod{4} \\
+				\mathbb{Z} \left[ \sqrt{d}  \right], &d \not\equiv 1 \pmod{4} 
+			\end{cases}
+			.\] 
+			Dla dokładnie 21 (bezkwadratowych) wartości \[d\in \mathbb{Z} : d\in \{-11,-7,-3,-1,2,3,5,6,\ldots,73\} .\]
+		\item $v$ nie jest normą euklidesową na $\mathbb{Z} \left[ \sqrt{14}  \right] $, ale $\mathbb{Z} \left[ \sqrt{14}  \right] $ jest wciąż pierścieniem euklidesowym (względem innej normy).
+		\item $\mathbb{Z} \left[ 19 \right] $ jest PID ale nie jest euklidesowa.
+		\item $\mathbb{Z} \left[ \sqrt{-5}  \right] $ nie jest PID (udowodnimy później).
+		\item To czy dany pierścień $\delta_{d}$ jest PID czy nie, jest istotne dla GFT (Great Fermat Theorem, LFO Last Fermat Theorem?
+	\end{enumerate}
+	Wiemy, że 
+	\[
+	K \text{ jest ciałem } \implies K\left[ X \right] \text{ euklidesowy } \implies K\left[ X \right] \text{ jest PID}
+	.\] 
+	Ale $\mathbb{Z} \left[ X \right] $ nie jest nawet PID (zadanie)
+\end{remark} 

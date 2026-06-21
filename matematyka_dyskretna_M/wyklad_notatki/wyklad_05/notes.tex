@@ -1,0 +1,104 @@
+\documentclass{article}
+
+\usepackage{import}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{amsmath}
+\usepackage{upgreek}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage[margin=0.25in]{geometry}
+\usepackage{listings}
+
+%Commands definitions
+\newcommand{\setbackgroundcolour}{\pagecolor[rgb]{0.19, 0.19, 0.19}}
+\newcommand{\settextcolour}{\color[rgb]{0.87, 0.87, 0.87}}
+\newcommand{\invertbackgroundtext}{\setbackgroundcolour\settextcolour}
+
+%Command execution
+%If this line is commented, then the appearance remaind as usual.
+\invertbackgroundtext
+
+\lstset{
+    language=C,
+    basicstyle=\ttfamily,
+    keywordstyle=\color{cyan},
+    commentstyle=\color{green!70!black},
+    stringstyle=\color{red},
+    showstringspaces=false,
+    tabsize=4,
+    breaklines=true,
+    breakatwhitespace=false,
+}
+
+
+
+\author{Lukasz Kopyto}
+\title{Wyklad 5.}
+
+\begin{document}
+\maketitle
+
+
+\section*{Rownanie rekurencyjne liniowe.}
+
+$$x_{n} + p_{k-1}x_{n-1} + \dots + p_{1}x_{n-k+1} + p_{0}x_{n-k} = f(n)$$
+
+Przyklady:
+
+$x_{n} = 2x_{n-1} \iff x_{n} - 2x_{n-1} = 0$
+
+$x_{n} = x_{n-1} + x_{n-2} \iff x_{n} - x_{n-1} - x_{n-2} = 0$
+
+$x_{n} = x_{n-1} + n^{2} \iff x_{n} - x_{n-1} = n^{2}$
+
+Rownanie rekurencyjne liniowe jednorodne- wtedy $f(n) = 0$
+
+Pokazemy najpierw jak rozwiazac rownanie jednorodne, a potem jak z tego wyciagnac rozwiazanie dla pewnych rownan niejednorodnych.
+
+Mozemy wypisac k szczegolnych rozwiazan rownania jednorodnego,
+
+$x_{n} + p_{k-1}x_{n-1} + \dots + p_{1}x_{n-k+1} + p_{0}x_{n-k} = 0$
+
+Rownanie to wymaga k warunkow poczatkowych: $x_{0}, x_{1}, \dots, x_{k-1}$.
+Jezeli je znamy to na podstawie rownania rekurencyjnego mozemy obliczyc $x_{k}, x_{k+1}, \dots$
+
+Niech nasze szczegolne rozwiazanie ma warunki poczatkowe:
+
+$a_{n}^{0} = (1,0,0,\dots,0)$
+
+$a_{n}^{1} = (0,1,0,\dots,0)$
+
+$a_{n}^{2} = (0,0,1,\dots,0)$
+
+i tak dalej.
+
+Wtedy rozwiazanie z warunkami poczatkowymi $x_{0}, x_{1}, \dots, x_{k-1}$ ma postac
+$$x_{n} = x_{0}a_{n}^{0} + x_{1}a_{n}^{1} + \dots + x_{k-1}a_{n}^{k-1}$$
+Innymi slowy ciagi $a_{n}^{0}, a_{n}^{1}, \dots, a_{n}^{k-1}$ stanowia baze przestrzeni liniowej wszystkich ciagow spelniajacych rekurencje
+
+$x_{n} + p_{k-1}x_{n-1} + \dots + p_{1}x_{n-k+1} + p_{0}x_{n-k} = f(n)$
+
+Wymiar tej przestrzeni to k.
+
+Chcemy znalezc lepsza baze. Aby to zrobic, przedstawimy zaleznosc rekurencyjna za pomoca operatora przesuniecia E:
+$$(x_{0}, x_{1}, x_{2}, x_{3}, \dots) \overset{E}{\longrightarrow} (x_{1}, x_{2}, x_{3}, \dots)$$
+
+Piszemy: $E\langle x_{n}\rangle = \langle x_{n+1}\rangle$, czyli np.
+
+$x_{n+k} + x_{n+k-1}p_{k-1} + \dots + x_{n}p_{0} = 0$
+
+jest rowne
+
+$E^{k}x_{n} + E^{k-1}x_{n}p_{k-1} + \dots + x_{n}p_{0} = 0$
+
+czyli
+
+$(E^{k} + E^{k-1} + \dots + E^{2} + E)<x_{n}> = <0>$
+
+\subsection*{Dodatek, dokladniej o anihilatorach}
+
+
+
+\end{document}

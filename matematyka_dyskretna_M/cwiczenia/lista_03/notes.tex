@@ -1,0 +1,350 @@
+\documentclass[12]{article}
+
+\usepackage{import}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{amsmath}
+\usepackage{upgreek}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage[margin=0.25in]{geometry}
+\usepackage{listings}
+\usepackage[T1]{fontenc}
+%\geometry{letterpaper}
+%Commands definitions
+\newcommand{\setbackgroundcolour}{\pagecolor[rgb]{0.19, 0.19, 0.19}}
+\newcommand{\settextcolour}{\color[rgb]{0.87, 0.87, 0.87}}
+\newcommand{\invertbackgroundtext}{\setbackgroundcolour\settextcolour}
+
+%Command execution
+%If this line is commented, then the appearance remaind as usual.
+\invertbackgroundtext
+
+\lstset{
+    language=C,
+    basicstyle=\ttfamily,
+    keywordstyle=\color{cyan},
+    commentstyle=\color{green!70!black},
+    stringstyle=\color{red},
+    showstringspaces=false,
+    tabsize=4,
+    breaklines=true,
+    breakatwhitespace=false,
+}
+
+% Ponizsze linijki sa templatka do zadan i problemow                                                                                                           
+% Wziete gdzies z internetu
+% Assignment class for homework and exams.                                                                                                                  
+%
+% Gabriel Antonius
+%
+%
+\NeedsTeXFormat{LaTeX2e}
+\RequirePackage{placeins}
+\RequirePackage{environ}
+\RequirePackage{xifthen}
+
+
+% \solutiontrue and \solutionfalse control whether solutions are shown
+\newif\ifsolution
+\solutiontrue
+%\solutionfalse
+
+
+% Redefine these if you want to change the language
+\newcommand{\problemlabel}{Zadanie}
+\newcommand{\solutionlabel}{Rozwi\k{a}zanie}
+
+
+% Set up counters for problems and subproblems
+\newcounter{ProblemNum}
+\newcounter{SubProblemNum}[ProblemNum]
+\renewcommand{\theProblemNum}{\arabic{ProblemNum}}
+\renewcommand{\theSubProblemNum}{\alph{SubProblemNum}}
+
+
+% The problem environment is the base unit of content for this class.
+\newcommand{\subsectiontitle}{}
+\newenvironment{problem}[1]%
+  {
+  \stepcounter{ProblemNum}
+  \renewcommand{\subsectiontitle}{\problemlabel \ \theProblemNum \ifthenelse{\isempty{#1}}{}{: #1}}
+  \medskip \subsection*{\subsectiontitle}  % new line after title
+  {\large Tre\'{s}\'{c}: } 
+  \FloatBarrier
+  }
+  {
+  \FloatBarrier
+  }
+
+
+% The subproblem command divides a problem into parts a), b), c), ...
+\newcommand*{\subproblem}{%
+  \vspace*{3pt}
+  \stepcounter{SubProblemNum}%
+  {\bf \theSubProblemNum)\hspace{2pt}}
+  }
+
+
+% The solution environment should be used within the problem environment
+\NewEnviron{solution}{
+  \setcounter{SubProblemNum}{0}
+  \ifsolution
+    \FloatBarrier
+    \subsubsection*{\solutionlabel}
+    \BODY
+  \fi}
+
+
+%\documentclass[12pt]{myassignment}
+%\usepackage{amsmath}                                                                                                                                        
+\setlength{\parindent}{0pt}
+
+\solutiontrue  % <---- Toggle showing solutions or not
+%\solutionfalse
+
+%koniec templatki do zadan i problemow
+
+
+
+
+%\author{Lukasz Kopyto}
+%\title{tytul}
+
+\begin{document}
+%\maketitle
+\noindent \L ukasz Kopyto \hfill 05.12.2024 \\
+
+\begin{center}
+
+    {\large Tresc i rozwiazania listy numer 3 z Matematyki Dyskretnej(M)}
+\end{center}
+
+\begin{problem}{Hyperbolic functions}
+
+    Niech $f(n) = \sum_{k=1}^{n} \lceil log_{2}k \rceil$
+
+    \subproblem Wykaz, ze $$f(n) = n-1 +f(\lceil\tfrac{n}{2}\rceil) + f(\left\lfloor\tfrac{n}{2}\right\rfloor)$$
+dla wszystkich $n \geq 1$
+
+
+    \subproblem Wykaz, ze jesli w powyzszej zaleznosci wymagamy, aby $f(0) = f(1)$, to f jest jedyna funkcja spelniajaca te zaleznosc.
+
+    {\small (Wskazowka: rozbij sume na n parzyste i nieparzyste)}
+
+    \begin{solution}
+\end{solution}
+\end{problem}
+
+
+
+\begin{problem}{Zwarta postac}
+    
+    Wyznacz zwarta postac funkcji $f(n)$ z poprzedniego zadania. Zwarta czyli bez symboli $\sum$, \dots, etc
+    \begin{solution}
+        blebleleb
+        
+    \end{solution}
+\end{problem}
+
+\begin{problem}{Reprezentacja Zeckendorfa}
+    Przedstawieniem liczby naturalnej n w ukladzie liczb Fibonacciego, nazywamy taki ciag wspolczynnikow $a_{2}, a_{3}, \dots, a_{k}$ rownych 0 lub 1, ze $a_{2}F_{2} + \dots a_{k}F_{k} = n$ oraz $a_{i} + a_{i+1} \leq 1$ dla wszystkich i.
+
+    Pokaz, ze kazda liczba naturalna ma jednoznaczne przedstawienie w ukladzie liczb Fibonacciego.
+
+    \begin{solution}
+        bl
+    \end{solution}
+    
+\end{problem}
+
+\begin{problem}{Potegowanie modularne}
+
+    Niech $x, k, n$ beda liczbami calkowitymi. 
+   
+    \subproblem Skonstruuj algorytm obliczajacy $x^{k}$modulo n. Algorytm powinien korzystac ze wzorow: $x^{2l} = x^{l}\cdot x^{l}$ oraz $x^{2l+1} = x\cdot x^{2l}$
+    
+    \subproblem Okresl liczbe mnozen wykonywnaych przez ten algorytm.
+
+    \begin{solution}
+        afs
+    \end{solution}
+\end{problem}
+
+\begin{problem}{Potegowanie macierzy i zwiazane z tym liczby Fibonacciego.}
+    
+    \subproblem Znajdz wzor na $n$-ta potege macierzy 
+    $\begin{bmatrix}
+        1 & 1 \\
+        1 & 0
+    \end{bmatrix}$
+
+    \subproblem Napisz szybki algorytm wyliczajacy z tego wzory $n$-ta liczbe Fibonacciego.
+
+    \subproblem Oszacuj zlozonosc tego algorytmu, jesli uzywa on procedury mnozacej dwie liczby k-cyfrowe w czasie $M(k)$. 
+
+    Zaloz, ze $M(k) \geq 2M(\tfrac{k}{2})$ 
+
+    \begin{solution}
+        
+    \end{solution}
+        
+\end{problem}
+
+\begin{problem}{Szybkie potegowanie macierzy oraz uogolnienie wyliczania zaleznosci rekurencyjnej za pomoca macierzy}
+
+    \subproblem Pokaz, ze
+    $
+    {\begin{bmatrix}
+        1 & 1 \\
+        1 & 0
+    \end{bmatrix}}^{n}
+    \begin{bmatrix}
+        F_{2} \\
+        F_{1}
+    \end{bmatrix} = 
+    \begin{bmatrix}
+        F_{n+2} \\
+        F_{n+1}
+    \end{bmatrix}
+    $
+    
+    \subproblem Skonstruuj algorytm, ktory dla danych $p_{1},\dots,p_{k},a_{1},\dots,a_{k} \in \mathbb{R}$ wylicza szybko $a_{n}$ zadane zaleznoscia rekurencyjna: $a_{n} = p_{1}a_{n-1} + \dots + p_{k}a_{n-k}$
+  
+    \begin{solution}
+        
+    \end{solution}
+
+\end{problem}
+
+
+\begin{problem}{Mnozenie liczb, algorytm Toom-3?}
+    
+    \subproblem Skontruuj algorytm mnozacy dwie $n$-cyfrowe liczby calkowite a i b przez rozbicie kazdej z nich na trzy rowne czesci: $a_{1}, a_{2}, a_{3}, b_{1}, b_{2}, b_{3}$. Powinien sie on zadowalac piecioma wywolaniami rekurencyjnymi samego siebie obliczajacymi: 
+
+    $m_{1} = a_{1}\cdot b_{1},$ 
+
+    $m_{2} a_{3} \cdot b_{3}, $
+
+    $m_{3} = (a_{1}+ a_{2}+a_{3})\cdot (b_{1}+b_{2}+b_{3}),$ 
+
+    $m_{4}  = (a_{1}-a_{2}+a_{3})\cdot (b_{1}-b_{2}+b_{3}), $
+
+    $m_{5} = (a_{1} -2a_{2}+4a_{3})\cdot (b_{1}-2b_{2}+4b_{3})$
+
+    \subproblem Oszacuj jego zlozonosc obliczeniowa
+
+    \begin{solution}
+        
+    \end{solution}
+
+\end{problem}
+
+\begin{problem}{Zlozonosc obliczeniowa $T(n) = a \cdot T(\tfrac{n}{b}) + c\cdot n^{d}$.}
+    
+    Dany jest algorytm typu "dziel i zwyciezaj" wywolujacy sam siebie rekurencyjnie,$a$ razy dla podproblemow rozmiaru $\frac{n}{b}$ i wykonujacy przy tym  $c\cdots n^{d}$ operacji. Czas $T(n)$ dzialania tego algorytmu spelnia zaleznosc rekurencyjna: $T(n) = a \cdot T(\tfrac{n}{b}) + c\cdot n^{d}$. Korzystajac z tej zaleznosci oszacuj$T(n)$ jako $O(\cdot)$ w zaleznosci od $a,b,d$. Mozesz zalozyc, ze $n = b^{k}$
+
+{\small (Wskazowka: rozwaz trzy przypadki, $a>b^{d}, a = b^{d}, a<b^{d})$}
+
+\begin{solution}
+    
+\end{solution}
+
+\end{problem}
+
+\begin{problem}{Zlozonosc obliczeniowa  $T(n) \leq T(\lceil \tfrac{n}{5} \rceil + 2) + T(\lceil \tfrac{7n}{10}+ 2\rceil)+ cn.$}
+    Niech $T(n) \leq T(\lceil \tfrac{n}{5} \rceil + 2) + T(\lceil \tfrac{7n}{10}+ 2\rceil)+ cn.$
+
+    Pokaz uzywajac indukcji, ze $T(n) \leq c^{\prime}n$ dla pewnej stalej $c^{\prime}$.
+
+
+    \begin{solution}
+        
+    \end{solution}
+\end{problem}
+
+
+\begin{problem}{Zaleznosc gcd no.1}
+    
+    \subproblem Udowonij, ze jesli $a,b \in \mathbb{N}$ oraz x i y sa niezerowymi liczbami calkowitymi spelniajacymi rownanie diofantyczne $ax + by = 1$, to:
+    $$gcd(a,b) = gcd(a,y) = gcd(x,b) = gcd(x,y)$$
+
+    \subproblem Wykaz, ze przynajmniej jedna z liczb x i y z powyzszego podpunktu musi byc ujemna.
+    
+    \begin{solution}
+        
+    \end{solution}
+
+\end{problem}
+
+
+\begin{problem}{Ciag dalszy gcd}
+
+    \subproblem Przedstaw $gcd(448,721)$ w postaci $721x + 448y$, dla pewnych $x,y \in \mathbb{Z}$
+
+    \subproblem Oblicz takie calkowite x i y, ze $333x + 1234y = 1$.
+
+    \subproblem Ile sie rowna $333^{-1}$ w pierscieniu $\mathbb{Z}_{1234}$?
+
+    \subproblem Oblicz $-69^{-1}$mod$1313$.
+    
+    \begin{solution}
+        
+    \end{solution}
+
+\end{problem}
+
+
+\begin{problem}{Zaleznosc gcd z liczbami Fibonacciego}
+    
+    \subproblem Pokaz, ze $gcd(F_{n-1}, F_{n}) = 1$.
+
+    \subproblem Udowodnij indukcyjnie, ze $gcd(F_{m}, F_{n}) = F_{gcd(m,n)}$
+    
+    
+    \begin{solution}
+        
+    \end{solution}
+
+\end{problem}
+
+
+\begin{problem}{Liczby wzglednie pierwsze i gcd}
+
+    Udowodnij, ze jesli $a\perp b$ i $a>b$ to $gcd(a^{m}-b^{m}, a^{n}-b^{n})= a^{gcd(m,n)} - b^{gcd(m,n)}, 0 \leq m <n$.
+   
+    \begin{solution}
+        
+    \end{solution}
+
+\end{problem}
+
+\begin{problem}{Potega 2 z 1 na czele.}
+
+    Pokaz, ze dla kazdego n istnieje dokladnie jedna potega 2, ktora w ukladzie dziesietnym ma n cyfr z najbardziej znaczaca cyfra 1.
+    
+    \begin{solution}
+        
+    \end{solution}
+
+
+\end{problem}
+
+\begin{problem}{Rownanie chyba diofantyczne}
+        
+    Niech $ax_{0} + by_{0} = c$ dla pewnych $a,b,c,x_{0}, y_{0} \in \mathbb{Z}$. Okresl zbior wszystkich rozwiazan $(x,y)$ rownania $$ax + by = c$$.
+
+
+    \begin{solution}
+        
+    \end{solution}
+
+\end{problem}
+
+
+
+
+
+
+\end{document}

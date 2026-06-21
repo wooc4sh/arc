@@ -1,0 +1,845 @@
+\chapter{Wykład XIII. Dalszy ciąg Ideałów. Pierścienie noetherowski. UFD}
+
+\section{Pierścienie noetherowskie – kiedy każdy ideał jest „skończony”?}
+
+\begin{intuition}
+Pierścień noetherowski to taki, w którym każdy ideał można „opisać” skończoną liczbą generatorów. To niezwykle ważna własność, ponieważ zapewnia, że pewne procesy (jak algorytm dzielenia w teorii baz Gröbner) muszą się zakończyć. W pierścieniu noetherowskim nie możemy mieć nieskończonego, właściwego wstępującego łańcucha ideałów – każdy taki łańcuch musi się stabilizować.
+\end{intuition}
+
+\begin{definition}[Pierścień noetherowski]
+Pierścień $R$ jest \textbf{noetherowski}, gdy każdy ideał $I \trianglelefteq R$ jest \textbf{skończenie generowany}, czyli istnieją elementy $a_1, a_2, \dots, a_n \in I$ takie, że $I = (a_1, a_2, \dots, a_n)$.
+\end{definition}
+
+\begin{theorem}[Charakteryzacje pierścieni noetherowskich]
+Następujące warunki są równoważne:
+\begin{enumerate}[label=\arabic*)]
+    \item $R$ jest pierścieniem noetherowskim.
+    \item Każdy wstępujący łańcuch ideałów w $R$ stabilizuje się:\\ dla dowolnego ciągu $I_1 \subseteq I_2 \subseteq I_3 \subseteq \cdots$ istnieje $n$ takie, że $I_n = I_{n+1} = \cdots$.
+    \item Każda niepusta rodzina ideałów w $R$ ma element maksymalny (w sensie inkluzji).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\noindent
+\textbf{(1) $\Rightarrow$ (2):} Niech $I_1 \subseteq I_2 \subseteq \cdots$ będzie wstępującym łańcuchem ideałów. Rozważmy $I = \bigcup_{k=1}^\infty I_k$. Łatwo sprawdzić, że $I$ jest ideałem. Z noetherowskości $R$, $I$ jest skończenie generowany: $I = (a_1, \dots, a_m)$. Każdy $a_i$ należy do pewnego $I_{k_i}$. Niech $n = \max\{k_1, \dots, k_m\}$. Wtedy wszystkie $a_i$ należą do $I_n$, więc $I \subseteq I_n$. Z definicji $I_n \subseteq I$, zatem $I_n = I$ i łańcuch stabilizuje się od $n$.
+
+\textbf{(2) $\Rightarrow$ (3):} Niech $\mathcal{F}$ będzie niepustą rodziną ideałów. Gdyby nie miała elementu maksymalnego, moglibyśmy skonstruować nieskończony, ściśle wstępujący łańcuch ideałów – sprzeczność z (2).
+
+\textbf{(3) $\Rightarrow$ (1):} Niech $I \trianglelefteq R$. Rozważmy rodzinę $\mathcal{F}$ wszystkich ideałów skończenie generowanych zawartych w $I$. Jest niepusta (zawiera $(0)$). Niech $J$ będzie elementem maksymalnym w $\mathcal{F}$. Gdyby $J \neq I$, to istnieje $a \in I \setminus J$. Wtedy $(J, a)$ jest skończenie generowanym ideałem zawartym w $I$ i właściwie większym od $J$ – sprzeczność z maksymalnością $J$. Zatem $J = I$, więc $I$ jest skończenie generowany.
+\end{proof}
+
+\begin{eg}[PID są noetherowskie]
+Jeśli $R$ jest dziedziną ideałów głównych (PID), to każdy ideał jest generowany przez jeden element, więc w szczególności jest skończenie generowany. Zatem każdy PID jest pierścieniem noetherowskim.
+\end{eg}
+
+\begin{eg}[Pierścień wielomianów w nieskończenie wielu zmiennych]
+Rozważmy pierścień $R[X_1, X_2, X_3, \dots]$ – wielomianów w nieskończenie wielu zmiennych. Możemy go traktować jako sumę mnogościową:
+\[
+R[X_1, X_2, \dots] = \bigcup_{i=1}^\infty R[X_1, \dots, X_i].
+\]
+Ten pierścień \textbf{nie jest} noetherowski, ponieważ ciąg ideałów
+\[
+(X_1) \subsetneq (X_1, X_2) \subsetneq (X_1, X_2, X_3) \subsetneq \cdots
+\]
+jest ściśle wstępujący i nigdy się nie stabilizuje.
+\end{eg}
+
+\begin{theorem}[Hilberta o bazie]
+Jeśli pierścień $R$ jest noetherowski, to pierścień wielomianów $R[X]$ też jest noetherowski.
+\end{theorem}
+
+\begin{proof}[Szkic dowodu]
+Kluczowa idea: Niech $I \trianglelefteq R[X]$. Rozważmy zbiór współczynników wiodących wielomianów z $I$. Tworzy on ideał w $R$, który jest skończenie generowany (bo $R$ noetherowski). Wybierając odpowiednie wielomiany z $I$ o tych współczynnikach wiodących i pokazując, że generują one $I$.
+\end{proof}
+
+\begin{corollary}
+\begin{enumerate}[label=\arabic*)]
+    \item Jeśli $R$ jest noetherowski, to $R[X_1, \dots, X_n]$ jest noetherowski.
+    \item Jeśli $K$ jest ciałem, to $K[X_1, \dots, X_n]$ jest noetherowski (bo ciało jest noetherowskie).
+\end{enumerate}
+\end{corollary}
+
+\subsection*{Rozszerzenia noetherowskie}
+
+\begin{definition}[Rozszerzenie pierścieni przez elementy]
+Niech $R \subseteq S$ będą pierścieniami oraz $a_1, \dots, a_n \in S$. Wtedy:
+\[
+R[a_1, \dots, a_n] = \text{ najmniejszy podpierścień } S \text{ zawierający } R \cup \{a_1, \dots, a_n\}.
+\]
+\end{definition}
+
+\begin{remark}
+\[
+R[a_1, \dots, a_n] = \{f(a_1, \dots, a_n) : f \in R[X_1, \dots, X_n]\}.
+\]
+Jest to obraz homomorfizmu ewaluacji $\text{ev}_{(a_1,\dots,a_n)}: R[X_1,\dots,X_n] \to S$.
+\end{remark}
+
+\begin{theorem}[Zachowywanie noetherowskości]
+\begin{enumerate}[label=\arabic*)]
+    \item Jeśli $\varphi: R \to S$ jest epimorfizmem pierścieni i $R$ jest noetherowski, to $S$ też jest noetherowski.
+    \item Jeśli $R$ jest noetherowski i $S = R[a_1, \dots, a_n]$, to $S$ też jest noetherowski.
+\end{enumerate}
+\end{theorem}
+
+\begin{corollary}
+Dla dowolnych $\alpha_1, \dots, \alpha_n \in \mathbb{C}$, pierścień $\mathbb{Z}[\alpha_1, \dots, \alpha_n]$ jest noetherowski.
+\end{corollary}
+
+\subsection*{Teoria rozkładu w ciałach}
+
+W przypadku ciał (np. $\mathbb{Q}, \mathbb{R}, \mathbb{C}$), pojęcie rozkładu na czynniki staje się trywialne:
+
+\begin{remark}
+W ciele $K$ każdy niezerowy element jest jednostką ($K \setminus \{0\} = K^*$). Wynikają z tego dwa fakty:
+\begin{enumerate}
+    \item W ciele \textbf{nie istnieją} elementy nierozkładalne ani pierwsze (zbiór tych elementów jest pusty).
+    \item Teoria podzielności w ciele jest „płynna” – każdy niezerowy element dzieli każdy inny. Przykładowo w $\mathbb{Q}$: $\frac{2}{3} = 5 \cdot \frac{2}{15}$. Brak „barier” w postaci nie-jednostek sprawia, że w ciałach nie szukamy „atomów” arytmetycznych.
+\end{enumerate}
+\end{remark}
+
+\begin{corollary}
+Badanie rozkładalności ma sens matematyczny tylko w pierścieniach, które posiadają elementy nieodwracalne (niebędące zerem), czyli w strukturach „pomiędzy” pierścieniem zerowym a ciałem.
+\end{corollary}
+\section{Ideały oraz twierdzenia o homomorfiźmie.}
+\subsection*{Ideały pierwsze – algebraiczne uogólnienie liczb pierwszych}
+
+\begin{intuition}
+W $\mathbb{Z}$, liczba pierwsza $p$ ma tę własność, że jeśli $p$ dzieli iloczyn $ab$, to dzieli przynajmniej jeden z czynników. Ideał pierwszy to uogólnienie tej własności: jeśli iloczyn dwóch elementów należy do ideału pierwszego, to przynajmniej jeden z tych elementów musi do niego należeć.
+\end{intuition}
+
+\begin{definition}[Ideał pierwszy]
+Niech $R$ będzie pierścieniem, $\mathcal{I} \trianglelefteq R$. Mówimy, że $\mathcal{I}$ jest \textbf{ideałem pierwszym}, jeśli:
+\begin{enumerate}[label=\arabic*)]
+    \item $I \neq R$ (ideał właściwy).
+    \item $\left(\forall a,b \in R \right)\left( ab \in \mathcal{I} \implies a\in \mathcal{I} \text{ lub } b \in \mathcal{I} \right)  $
+\end{enumerate}
+\end{definition}
+
+\begin{eg}
+	Rozważmy pierścień $\mathbb{Z}$ oraz ideał $\mathcal{I} = \left( 6 \right) $. Ideał $\mathcal{I}$ nie jest pierwszy, bo $2\cdot 3 = 6 \in \mathcal{I}$, ale $2 \not\in \mathcal{I}$ oraz $3\not\in \mathcal{I}$.
+\end{eg} 
+\begin{eg}
+	Rozważmy pierścień $\mathbb{Z}\left[ X \right] $ oraz ideał $\mathcal{I} = \left( 5X \right) $. Ideał $\mathcal{I}$ nie jest pierwszy, bo $5\cdot X = 5X \in \mathcal{I}$, ale $5 \not\in \mathcal{I}$ oraz $X \not\in \mathcal{I}$.
+
+	Istotnie, jeśli $\mathcal{I}$ byłby ideałem pierwszym, oznaczałoby to, że $5 \in \mathcal{I}$ lub $X \in \mathcal{I}$ \\
+	\noindent Przypadek $5 \in \mathcal{I}$, oznacza, że $5 = 5XQ\left( X \right) $, gdzie $Q\left( X \right) \in \mathbb{Z}\left[ X \right] $.Stopnie wielomianów się nie zgadzają, więc sytuacja jest niemożliwa.
+
+	\noindent Przypadek $X \in \mathcal{I}$, oznacza, że $X = 5XQ\left( X \right) $, gdzie $Q\left( X \right) \in \mathbb{Z}\left[ X \right] $. Aby to zachodziło, $Q\left( X \right) $ musiałby być wielomianem stopnia zerowego, o współczynniku będącym odwrotnością liczby $5$. Ponieważ $\frac{1}{5}\not\in \mathbb{Z}$ sytuacja ta jest również niemożliwa.
+\end{eg} 
+\begin{theorem}[Charakteryzacja przez pierścień ilorazowy]
+$\mathcal{I}$ jest ideałem pierwszym w $R$ wtedy i tylko wtedy, gdy $\mfaktor{R}{\mathcal{I}} $ jest dziedziną całkowitości.
+\end{theorem}
+
+\begin{proof}
+\noindent $\left( \implies \right) $
+
+Załóżmy, że $\mathcal{I}$ będzie ideałem pierwszym w $R$. Weźmy dwie dowolne warstwy $\mfaktor{R}{\mathcal{I}}:  a + \mathcal{I} \text{ oraz } b+\mathcal{I}$ i załóżmy, że $\left( ab \right) + \mathcal{I} = \left( a+I \right) \left( b + \mathcal{I} \right) = 0 +\mathcal{I}$.  
+
+Oznacza to, że $ab - 0 \in \mathcal{I}$, czyli $ab \in \mathcal{I}$. Z pierwszości ideału $\mathcal{I}$ wnioskujemy, że $a \in \mathcal{I}$ lub $b \in \mathcal{I}$. 
+\begin{itemize}
+	\item Jeśli $a \in \mathcal{I}$, to $a - 0 \in \mathcal{I}$, a co za tym idzie $a + \mathcal{I} = 0 + \mathcal{I}$.
+	\item Jeśli $b \in \mathcal{I}$, to $b - 0 \in \mathcal{I}$, a co za tym idzie $b + \mathcal{I} = 0 + \mathcal{I}$.
+\end{itemize}
+Zatem z definicji dziedziny, $\mfaktor{R}{\mathcal{I}} $ jest dziedziną całkowitości.
+
+\noindent $\left( \impliedby \right) $ 
+
+Załóżmy, że $\mfaktor{R}{\mathcal{I}} $ jest dziedziną. Pokażemy, że $\mathcal{I}$ jest ideałem pierwszym. Jeśli $\mathcal{I} = R$, zatem $\mathcal{I}$ jest ideałem właściwym, to $\mfaktor{R}{\mathcal{I}} = \mfaktor{R}{\mathcal{I}} $. Zbiór warstw $\mfaktor{R}{\mathcal{I}} = \{a + \mathcal{I}: a \in R\} = \{a + R: a \in R\}$. Dwie warstwy $a + \mathcal{I}, b + \mathcal{I}$ są równe, jeśli  $a-b \in \mathcal{I} = R$. Ponieważ $R$ jest pierścieniem, warunek $a-b \in \mathcal{I} = R$ jest spełniony dla dowolnych $a,b \in \mathcal{I} = R$. Oznacza to, że wszystkie warstwy są sobie równe, w szczególności jedynka w ilorazie jest równa zeru w ilorazie, tzn $1 + \mathcal{I} = 0 + \mathcal{I}$. Ponieważ $\mfaktor{R}{\mathcal{I}}$ jest dziedziną, więc ta sytuacja jest niemożliwa.
+
+Ustalmy zatem dowolny iloczyn $ab \in \mathcal{I}$. Z tego, że $ab = ab - 0 \in \mathcal{I}$, wnioskujemy, że $ab + \mathcal{I} = \left( a + \mathcal{I} \right)\left( b + \mathcal{I} \right) = 0 + \mathcal{I}$. Z założenia $\mfaktor{R}{\mathcal{I}} $ jest dziedziną zatem $a + \mathcal{I} = 0 + \mathcal{I}$ albo $b + \mathcal{I} = 0 +\mathcal{I}$.
+\begin{itemize}
+	\item Jeśli $a + \mathcal{I} = 0 + \mathcal{I}$ to $a = a-0 \in \mathcal{I}$.
+	\item Jeśli $b + \mathcal{I} = 0 + \mathcal{I}$ to $b = b-0 \in \mathcal{I}$.
+\end{itemize}
+
+Zatem dla dowolnego $ab \in \mathcal{I}$, $a \in \mathcal{I}$ lub $b \in \mathcal{I}$, czyli ideał $\mathcal{I}$ jest pierwszy.
+\end{proof}
+
+\begin{corollary}
+$R$ jest dziedziną całkowitości wtedy i tylko wtedy, gdy $\{0\}$ jest ideałem pierwszym w $R$.
+\end{corollary}
+\begin{proof}
+	Zauważmy, że $\mfaktor{R}{\{0\} } $ jest izomorficzne z $R$, przez izomorfizm pierścieni
+	\[
+	\varphi : R \to \mfaktor{R}{\{0\} } \text{, dany wzorem } \varphi\left( r \right) = r + \{0\}   
+	.\] 
+	Istotnie, zbiór $r + \{0\} $ jest dokładnie równy $\{r\} $.
+
+	Korzystając z powyższego twierdzenia o charakteryzacji ideału pierwszego przez pierścień ilorazowy, wnioskujemy, że ideał $\{0\}$ jest pierwszy wtedy i tylko wtedy, kiedy $\mfaktor{R}{\{0\} } $ jest dziedziną całkowitości.
+
+	Ponieważ $\mfaktor{R}{\{0\} } $ jest izomorficzne z $R$, oznacza to, że $R$ jest dziedziną  wtedy i tylko wtedy, kiedy $\mfaktor{R}{\{0\} } $ jest dziedziną. 
+
+	Podsumowując pierścień $R$ jest dziedziną wtedy i tylko wtedy, gdy ideał $\{0\} $ jest pierwszy.
+\end{proof} 
+\subsection*{Ideały maksymalne – kiedy iloraz jest ciałem}
+
+\begin{definition}[Ideał maksymalny]
+Ideał $\mathcal{I} \trianglelefteqslant R$ nazywamy \textbf{maksymalnym}, jeśli:
+\begin{enumerate}[label=\arabic*)]
+    \item $\mathcal{I} \neq R$.
+    \item Dla każdego ideału $\mathcal{J}$ takiego, że $\mathcal{I} \subsetneq \mathcal{J} \trianglelefteqslant R$, mamy $\mathcal{J} = R$.
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Charakteryzacja przez pierścień ilorazowy]
+$I$ jest ideałem maksymalnym w $R$ wtedy i tylko wtedy, gdy $\mfaktor{R}{\mathcal{I}} $ jest ciałem.
+\end{theorem}
+
+\begin{proof}
+\noindent $\left( \implies \right) $ 
+
+Załóżmy, że ideał $\mathcal{I}$ jest maksymalny. Chcemy pokazać, że $\mfaktor{R}{\mathcal{I}} $ jest ciałem, czyli że każdy niezerowy element jest odwracalny. Weźmy zatem niezerowy element $a + \mathcal{I} \in \mfaktor{R}{\mathcal{I}}$. Rozważmy $\left( a \right) + \mathcal{I}$.
+
+ \noindent \textbf{Claim:} Suma teoriomnogościowa ideałów jest ideałem.
+ 
+ \noindent \textbf{Proof:} Weźmy dwa ideały $\mathcal{I}, \mathcal{J} \trianglelefteqslant R$. Wtedy $\mathcal{I} + \mathcal{J} = \{i + j: i \in \mathcal{I} \text{ oraz } j \in \mathcal{J}\}$. Rozważmy dowolny element $r \in R$ oraz $i + j \in \mathcal{I} + \mathcal{J}$. Wtedy $r\left( i+j \right) = ri + rj$. Ponieważ $\mathcal{I},\mathcal{J} \trianglelefteqslant R$, więc $ri \in \mathcal{I}$ oraz $rj \in \mathcal{J}$, zatem $r\left( i+j \right) = ri + rj \in \mathcal{I} + \mathcal{J}$. $\diamond $
+
+ \noindent Zatem $\left( a \right) + \mathcal{I}$ jest ideałem. Zauważmy, że $a \not\in \mathcal{I}$, a co za tym idzie $\mathcal{I} \subsetneq \left( a \right) + \mathcal{I}$. Ponieważ $\mathcal{I}$ jest ideałem maksymalnym, więc $\left( a \right) + \mathcal{I} = R$. Zatem istnieją takie $r \in R$ oraz $i \in  \mathcal{I}$, że $ra + i = 1$. Przekształcając tę równość, otrzymujemy $ra - 1 = i \in \mathcal{I}$. Ponieważ $ra - 1 \in \mathcal{I}$, więc $ra + \mathcal{I} = 1 + \mathcal{I}$, a co za tym idzie $\left( r + \mathcal{I} \right) \left( a + \mathcal{I} \right) = 1 + \mathcal{I}$. Zatem element ilorazu  $a + \mathcal{I} \in \mfaktor{R}{\mathcal{I}}$ jest odwracalny, zatem $\mfaktor{R}{\mathcal{I}}$ jest ciałem. $\diamond$
+
+ \noindent $\left( \impliedby \right) $
+
+ Załóżmy, że $\mfaktor{R}{\mathcal{I}}$ jest ciałem. Pokażemy, że ideał $\mathcal{I}$ jest maksymalny w $R$.
+
+ Ponieważ $\mfaktor{R}{\mathcal{I}}$ jest ciałem, więc $0 \neq 1$ w $\mfaktor{R}{\mathcal{I}}$, co pociąga za sobą $I \neq R$. Ustalmy zatem dowolny ideał $\mathcal{J}$ taki, że $\mathcal{I} \subsetneq \mathcal{J}$. Skoro $\mathcal{I} \subsetneq \mathcal{J}$, więc istnieje niezerowe $a \in \mathcal{J}\setminus \mathcal{I}$. Rozważmy warstwę $a + \mathcal{I}$. Ponieważ $\mfaktor{R}{\mathcal{I}} $ jest ciałem, więc $a + \mathcal{I}$ jest odwracalne, zatem istnieje warstwa $b + \mathcal{I}$, taka że $\left( a + \mathcal{I} \right)\left( b + \mathcal{I} \right) = \left( ab + \mathcal{I} \right) = 1 + \mathcal{I}$. Równość warstw implikuje nam, że $ab - 1 \in \mathcal{I}$. Ponieważ  $\mathcal{I} \subsetneq \mathcal{J}$ oraz $a \in \mathcal{J}$, więc $ab \in \mathcal{J}$ oraz $ab - 1 \in \mathcal{J}$. Zatem $1 = ab - \left( ab - 1 \right) \in \mathcal{J}$. Ponieważ $1 \in \mathcal{J}$ więc $\mathcal{J} = R$, czyli $\mathcal{I}$ jest ideałem maksymalnym. $\diamond $
+
+\end{proof}
+
+\begin{corollary}
+Każdy ideał maksymalny jest pierwszy.
+\end{corollary}
+\begin{proof}
+Załóżmy, że ideał $\mathcal{I}$ jest maksymalny. Wtedy z powyższego twierdzenia o charakteryzacji ideału maksymalnego za pomocą pierścienia ilorazowego wynika, że $\mfaktor{R}{\mathcal{I}}$ jest ciałem. Ponieważ jest ciałem, więc w szczególności pierścień $\mfaktor{R}{\mathcal{I}}$ jest dziedziną, co na mocy twierdzenia o charakteryzacji ideału pierwszego za pomocą pierścienia ilorazowego oznacza, że $\mathcal{I} $ jest ideałem pierwszym.
+\end{proof}
+
+\subsection*{Przykłady i zastosowania}
+
+Pokażemy teraz, że $\mfaktor{\mathbb{Z}\left[X\right]}{(X)}\cong \mathbb{Z}$. Użyjemy do tego zasadniczego twierdzenia o homomorfiźmie pierścieni.
+
+
+\begin{eg}[Ideały pierwsze w $\mathbb{Z}$]
+Dla $n \in \mathbb{Z}$, ideał $(n)$ jest:
+\begin{itemize}
+\item pierwszy $\iff$ $n=0$ lub $n$ jest liczbą pierwszą (lub jej przeciwnością),
+\item maksymalny $\iff$ $n$ jest liczbą pierwszą (lub jej przeciwnością).
+\end{itemize}
+Zauważmy, że $(0)$ jest pierwszy, ale nie maksymalny.
+\end{eg}
+
+\begin{eg}[Ideały w pierścieniach wielomianów]
+W pierścieniu $R[X]$, ideał $(X)$ jest pierwszy wtedy i tylko wtedy, gdy $R$ jest dziedziną. Jeśli $R$ jest ciałem, to $(X)$ jest maksymalny.
+\end{eg}
+
+\begin{theorem}[Rozszerzanie do ideałów maksymalnych]
+Każdy właściwy ideał w pierścieniu z jedynką można rozszerzyć do ideału maksymalnego.
+\end{theorem}
+
+\begin{proof}
+	TODO
+\end{proof}
+
+\begin{theorem}[W PID ideały pierwsze są maksymalne]
+Niech $R$ będzie dziedziną ideałów głównych (PID) i niech $\mathcal{I} \trianglelefteqslant R$, $\mathcal{I} \neq \{0\}$. Wtedy:
+\[
+\mathcal{I} \text{ jest pierwszy } \iff \mathcal{I} \text{ jest maksymalny}.\]
+\end{theorem}
+
+\begin{proof}
+\noindent
+\noindent $\left(\impliedby \right) $ 
+
+Załóżmy, że $\mathcal{I}$ jest maksymalny. Z wniosku 17 wiemy, że każdy ideał maksymalny jest pierwszy. Zatem $\mathcal{I}$ jest pierwszy.$\diamond $
+
+\noindent $\left( \implies \right) $
+
+Załóżmy, że ideał $\mathcal{I}$ jest pierwszy. Pokażemy, że $\mathcal{I}$ jest maksymalny. 
+($\Rightarrow$) Niech $I = (a)$ pierwszy, $I \neq \{0\}$. Załóżmy, że istnieje ideał $J$ taki, że $I \subsetneq J \trianglelefteq R$. Ponieważ $R$ jest PID, $J = (b)$ dla pewnego $b$. Z inkluzji $(a) \subsetneq (b)$ wynika, że $b \mid a$, ale $a \not\mid b$ (bo inaczej $(a) = (b)$). Zapiszmy $a = bc$. Wtedy $bc \in (a)$, ale $b \notin (a)$, więc z pierwszości $(a)$ mamy $c \in (a)$. Zatem $c = ad$ dla pewnego $d$, czyli $a = bc = bad$, więc $a(1 - bd) = 0$. Ponieważ $R$ jest dziedziną i $a \neq 0$, to $1 - bd = 0$, czyli $bd = 1$. Zatem $b$ jest odwracalny, więc $J = (b) = R$. Więc $I$ jest maksymalny.
+\end{proof}
+\section{Rozkład na czynniki w dziedzinach całkowitości}
+
+\begin{context}
+Zakładamy w całej tej sekcji, że $R$ jest \textbf{dziedziną całkowitości} (pierścieniem przemiennym z jedynką, bez nietrywialnych dzielników zera). Oznacza to, że jeśli $ab = 0$, to $a=0$ lub $b=0$.
+\end{context}
+
+\subsection*{Elementy pierwsze i nierozkładalne}
+
+\begin{intuition}
+W liczbach całkowitych dobrze znamy pojęcie liczby pierwszej: liczba całkowita $p$ jest pierwsza, jeśli z faktu, że $p$ dzieli iloczyn $ab$, wynika, że $p$ dzieli $a$ lub $p$ dzieli $b$. To jest własność \emph{podzielnościowa}. Z drugiej strony, liczba pierwsza nie daje się rozłożyć na iloczyn dwóch mniejszych (niejednostkowych) czynników – to jest własność \emph{mnożeniowa}. W ogólnych dziedzinach te dwa pojęcia rozdzielają się! Będziemy je nazywać odpowiednio \emph{elementem pierwszym} i \emph{elementem nierozkładalnym}.
+\end{intuition}
+
+\begin{definition}[Element pierwszy i nierozkładalny]
+Niech $a \in R$, $a \neq 0$ oraz $a \notin R^*$ (nie jest jednostką).
+\begin{enumerate}[label=\arabic*)]
+    \item $a$ jest \textbf{pierwszy} (lub \emph{prime}), jeżeli
+    \[
+    \left(\forall b,c \in R \right)\left( a \mid bc \implies \left( a \mid b \text{ lub } a \mid c \right)  \right)  
+    \]
+    \item $a$ jest \textbf{nierozkładalny} (lub \emph{irreducible}), jeżeli
+    \[
+    \left(\forall b,c \in R \right)\left( a = bc \implies \left( b \in R^{\ast} \text{ lub } c \in R^{\ast}  \right)  \right)  
+    \]
+    Inaczej mówiąc, każdy rozkład $a$ na iloczyn dwóch elementów jest \textbf{trywialny}: jeden z czynników jest jednostką, a drugi jest stowarzyszony z $a$ (tzn. różni się o jednostkę).
+    \item $a$ jest \textbf{rozkładalny}, jeżeli nie jest nierozkładalny, tj. istnieje rozkład $a = bc$, gdzie $b, c \notin R^*$.
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Charakteryzacje]
+Niech $a \in R \setminus \{0\}$.
+\begin{enumerate}[label=\arabic*)]
+    \item $a$ jest pierwszy $\iff$ ideał główny $(a)$ jest ideałem pierwszym.
+    \item Jeśli $a \notin R^*$, to następujące warunki są równoważne:
+    \begin{enumerate}[label=\roman*)]
+        \item $a$ jest nierozkładalny,
+        \item $a$ nie jest iloczynem dwóch elementów nierozkładalnych (w sensie nietrywialnym),
+	\item $\left(\forall b \in R \right)\left( b \mid a \iff \left( a \sim b \text{ lub } b \in R^{\ast}\right)\right)$,
+          gdzie $a \sim b$ oznacza stowarzyszenie (tzn. $a \mid b$ i $b \mid a$).
+    \end{enumerate}
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\noindent
+1. Załóżmy, że $a$ jest pierwszy. Chcemy pokazać, że $(a)$ jest ideałem pierwszym. Niech $bc \in (a)$, czyli $a \mid bc$. Z pierwszości $a$ mamy $a \mid b$ lub $a \mid c$, czyli $b \in (a)$ lub $c \in (a)$. Zatem $(a)$ jest pierwszy. Odwrotnie, jeśli $(a)$ jest pierwszy i $a \mid bc$, to $bc \in (a)$, więc $b \in (a)$ lub $c \in (a)$, czyli $a \mid b$ lub $a \mid c$.
+
+2. (i) $\Rightarrow$ (ii): Gdyby $a$ było iloczynem dwóch nierozkładalnych, to istniałby nietrywialny rozkład, sprzeczność z nierozkładalnością. \\
+(ii) $\Rightarrow$ (iii): Weźmy $b \mid a$, czyli $a = bc$. Jeśli $b$ nie jest jednostką, to z nierozkładalności $a$ wynika, że $c$ jest jednostką, więc $a \sim b$. Jeśli $b$ jest jednostką, to oczywiście $b \in R^*$. Odwrotnie, jeśli $a \sim b$ lub $b \in R^*$, to $b \mid a$ jest trywialne. \\
+(iii) $\Rightarrow$ (i): Załóżmy, że $a = bc$. Wtedy $b \mid a$, więc z (iii) mamy $b \in R^*$ lub $a \sim b$. Jeśli $a \sim b$, to $a = bu$ z $u \in R^*$, więc $bc = bu$, czyli $c = u$ (bo $R$ jest dziedziną), więc $c \in R^*$. Zatem rozkład $a = bc$ jest trywialny.
+\end{proof}
+
+\subsection*{Związek między pierwszością a nierozkładalnością}
+
+\begin{theorem}
+Niech $a \in R$, $a \neq 0$ oraz $a \notin R^*$.
+\begin{enumerate}[label=\arabic*)]
+    \item Jeżeli $a$ jest pierwszy, to $a$ jest nierozkładalny.
+    \item Jeżeli $R$ jest dziedziną ideałów głównych (PID), to
+	    \[
+	    a \text{ jest nierozkładalny } \iff a \text{ jest pierwszy}
+	    .\] 
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\noindent
+1. Załóżmy, że $a$ jest pierwszy i niech $a = bc$. Wtedy oczywiście $a \mid bc$, więc z pierwszości $a$ mamy $a \mid b$ lub $a \mid c$. Bez straty ogólności niech $a \mid b$, czyli $b = ad$ dla pewnego $d \in R$. Podstawiając: $a = adc$, czyli $a(1 - dc) = 0$. Ponieważ $a \neq 0$ i $R$ jest dziedziną, to $1 - dc = 0$, więc $dc = 1$, czyli $c$ jest jednostką. Zatem $a$ jest nierozkładalny.
+
+2. Wiemy już, że w dowolnej dziedzinie pierwszość implikuje nierozkładalność. Pokażemy odwrotną implikację w PID. Niech $a$ będzie nierozkładalny i załóżmy, że $a \mid bc$. Rozważmy ideał $(a,b)$ – ponieważ $R$ jest PID, istnieje $d \in R$ takie, że $(a,b) = (d)$. Wtedy $d \mid a$ i $d \mid b$. Z nierozkładalności $a$ mamy: albo $d$ jest stowarzyszony z $a$ (tj. $a \mid d$), albo $d$ jest jednostką. Jeśli $d$ jest jednostką, to $(a,b) = R$, więc istnieją $x,y \in R$ takie, że $ax + by = 1$. Mnożąc przez $c$: $acx + bcy = c$. Ponieważ $a \mid acx$ i $a \mid bcy$ (bo $a \mid bc$), to $a \mid c$. Jeśli zaś $d \sim a$, to ponieważ $d \mid b$, mamy $a \mid b$. Zatem w każdym przypadku $a \mid b$ lub $a \mid c$, więc $a$ jest pierwszy.
+\end{proof}
+
+
+\begin{eg}[Liczby całkowite]
+
+W $\mathbb{Z}$ mamy: $ \mathbb{Z}^* = \{-1, 1\}$. Dla $n \neq 0, \pm 1$:
+\[
+n \text{ jest pierwszy } \iff n \text{ jest nierozkładalny } \iff n = \pm p \text{, gdzie } p \text{ jest liczbą pierwszą w } \mathbb{N}.
+\]
+W $\mathbb{Z}$ pojęcia te się pokrywają, ponieważ $\mathbb{Z}$ jest PID.
+\end{eg}
+
+\begin{eg}[Wielomiany nad ciałem]
+
+Niech $K$ będzie ciałem, $R = K[X]$ (pierścień wielomianów). Wtedy $R^* = K^* = K \setminus \{0\}$. Dla $f \in R \setminus K$:
+\[
+f \text{ jest nierozkładalny } \iff f \text{ jest wielomianem nierozkładalnym w zwykłym sensie}.
+\]
+Ponieważ $K[X]$ jest PID (nawet euklidesowy), mamy również:
+\[
+f \text{ jest nierozkładalny } \iff f \text{ jest pierwszy } \iff (f) \text{ jest ideałem pierwszym } \iff (f) \text{ jest ideałem maksymalnym } \iff K[X]/(f) \text{ jest ciałem}.
+\]
+To pozwala konstruować nowe ciała! Na przykład, biorąc $K = \mathbb{Z}_2$ i $f(X) = X^2 + X + 1$ (który jest nierozkładalny nad $\mathbb{Z}_2$), otrzymujemy ciało
+\[
+\mathbb{F}_4 \cong \mathbb{Z}_2[X]/(X^2+X+1)
+\]
+złożone z 4 elementów.
+\end{eg}
+
+
+\begin{intuition}
+Pierścień $\mathbb{Z}[\sqrt{-5}] = \{a + b\sqrt{-5} : a,b \in \mathbb{Z}\}$ jest klasycznym przykładem dziedziny, która nie jest PID ani UFD. Pokazuje on, że w ogólności pojęcia elementu pierwszego i nierozkładalnego mogą się różnić. Wprowadzamy normę $N(a+b\sqrt{-5}) = a^2 + 5b^2 \in \mathbb{N}$, która ma własność multiplikatywną: $N(\alpha\beta) = N(\alpha)N(\beta)$.
+\end{intuition}
+
+\begin{fact}
+W $\mathbb{Z}[\sqrt{-5}]$:
+\begin{enumerate}[label=\arabic*)]
+    \item Element $2$ jest nierozkładalny, ale nie jest pierwszy.
+    \item Istnieją dwa istotnie różne rozkłady liczby $6$ na czynniki nierozkładalne:
+    \[
+    2 \cdot 3 = 6 = (1+\sqrt{-5})(1-\sqrt{-5}).
+    \]
+\end{enumerate}
+\end{fact}
+
+\begin{proof}
+\noindent
+1. \textbf{Nierozkładalność 2:} Załóżmy, że $2 = \alpha \beta$ dla pewnych $\alpha, \beta \in \mathbb{Z}[\sqrt{-5}]$. Wtedy $N(\alpha)N(\beta) = N(2) = 4$. Możliwe wartości normy to 1, 2, 4. Ale nie ma elementów o normie 2: gdyby $N(a+b\sqrt{-5}) = a^2+5b^2 = 2$, to $b=0$ (bo $5b^2 \geq 5$ dla $b \neq 0$) i $a^2=2$, co jest niemożliwe w $\mathbb{Z}$. Zatem jedna z norm musi być 1, czyli odpowiadający element jest jednostką (bo $N(\gamma)=1 \iff \gamma \in \mathbb{Z}[\sqrt{-5}]^*$). Stąd rozkład jest trywialny.
+
+\noindent
+2. \textbf{2 nie jest pierwszy:} Zauważmy, że $2 \mid 6 = (1+\sqrt{-5})(1-\sqrt{-5})$. Gdyby 2 był pierwszy, to dzieliłby jeden z czynników. Ale $N(1\pm\sqrt{-5}) = 6$, a $N(2)=4$. Gdyby $2 \mid (1\pm\sqrt{-5})$, to istniałby $\gamma$ taki, że $1\pm\sqrt{-5} = 2\gamma$, wtedy $6 = N(1\pm\sqrt{-5}) = N(2)N(\gamma) = 4N(\gamma)$, co wymuszałoby $N(\gamma) = 6/4 = 3/2 \notin \mathbb{Z}$. Sprzeczność.
+
+\noindent
+3. \textbf{Różne rozkłady:} Można pokazać, że elementy $2, 3, 1\pm\sqrt{-5}$ są nierozkładalne w $\mathbb{Z}[\sqrt{-5}]$ i żaden nie jest stowarzyszony z innym (jednostkami są tylko $\pm 1$). Zatem $6$ ma dwa różne rozkłady na czynniki nierozkładalne.
+\end{proof}
+
+\begin{remark}
+Konsekwencje
+\begin{enumerate}[label=\arabic*)]
+    \item $\mathbb{Z}[\sqrt{-5}]$ nie jest PID (bo w PID element nierozkładalny jest pierwszy, a tu 2 jest kontrprzykładem).
+    \item Liczba pierwsza $p \in \mathbb{Z}$ może przestać być nierozkładalna w większym pierścieniu, np. $3 = (1+\sqrt{-2})(1-\sqrt{-2})$ w $\mathbb{Z}[\sqrt{-2}]$, ale tam $1\pm\sqrt{-2}$ nie są jednostkami.
+    \item To zjawisko leży u podstaw algebraicznej teorii liczb – rozkład liczb całkowitych w rozszerzeniach ciała liczb wymiernych.
+\end{enumerate}
+\end{remark}
+
+\section{Dziedziny z jednoznacznym rozkładem (UFD)}
+
+\begin{definition}[UFD – Unique Factorization Domain]
+Dziedzina całkowitości $R$ jest \textbf{dziedziną z jednoznacznym rozkładem} (ang. UFD), jeżeli spełnia następujące warunki:
+\begin{enumerate}[label=\arabic*)]
+    \item (\textbf{Istnienie rozkładu}) Każdy niezerowy element $a \in R \setminus R^*$ można przedstawić jako iloczyn skończenie wielu elementów nierozkładalnych:
+    \[
+    a = p_1 p_2 \cdots p_n, \quad p_i \text{ – nierozkładalne}.
+    \]
+    \item (\textbf{Jednoznaczność}) Jeżeli $a = p_1 \cdots p_n = q_1 \cdots q_m$, gdzie wszystkie $p_i, q_j$ są nierozkładalne, to $n = m$ oraz istnieje permutacja $\sigma \in S_n$ taka, że $p_i \sim q_{\sigma(i)}$ (tzn. $p_i$ i $q_{\sigma(i)}$ są stowarzyszone) dla każdego $i=1,\dots,n$.
+\end{enumerate}
+\end{definition}
+
+\begin{intuition}
+UFD to dziedzina, w której działa analogia do podstawowego twierdzenia arytmetyki: każdy element (oprócz zera i jednostek) rozkłada się na iloczyn „pierwiastków pierwszych” (elementów nierozkładalnych) w sposób jednoznaczny z dokładnością do kolejności i stowarzyszenia.
+\end{intuition}
+
+\begin{remark}[Kanoniczne reprezentanty w ważnych UFD]
+W praktyce, gdy mówimy o rozkładzie na czynniki w konkretnych UFD, często wybieramy pewne kanoniczne reprezentanty klas stowarzyszenia:
+\begin{itemize}
+    \item W $\mathbb{Z}$: używamy liczb naturalnych (dodatnich) jako reprezentantów. Zatem rozkład $6 = (-2)(-3)$ redukujemy do $6 = 2 \cdot 3$.
+    \item W $K[X]$ ($K$ - ciało): używamy \textbf{wielomianów unormowanych (monicznych)} jako reprezentantów. Wielomian unormowany to taki, którego współczynnik przy najwyższej potędze jest równy 1.
+\end{itemize}
+W ogólnych UFD taki naturalny wybór może nie istnieć, więc musimy pamiętać o relacji stowarzyszenia.
+\end{remark}
+
+\begin{eg}
+Zauważmy:
+\begin{itemize}
+    \item $\mathbb{Z}$ jest UFD – to właśnie podstawowe twierdzenie arytmetyki.
+    \item Jeśli $K$ jest ciałem, to $K[X]$ jest UFD (bo jest PID, a każdy PID jest UFD – patrz poniżej).
+    \item $\mathbb{Z}[\sqrt{-5}]$ \textbf{nie} jest UFD, ponieważ $6$ ma dwa różne rozkłady na elementy nierozkładalne (jak wyżej), które nie są równoważne poprzez stowarzyszenie.
+\end{itemize}
+
+\end{eg}
+
+\begin{theorem}[Warunek konieczny i wystarczający]
+Niech $R$ będzie dziedziną całkowitości. Wtedy $R$ jest UFD wtedy i tylko wtedy, gdy:
+\begin{enumerate}[label=(\roman*)]
+    \item Każdy niezerowy element $a \in R \setminus R^*$ ma rozkład na elementy nierozkładalne (istnienie rozkładu),
+    \item Każdy element nierozkładalny w $R$ jest pierwszy.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+($\Rightarrow$) Zakładamy, że $R$ jest UFD. Warunek (i) jest bezpośrednio z definicji. Pokażemy (ii): Niech $p$ będzie nierozkładalny i załóżmy, że $p \mid ab$. Wtedy istnieje $c \in R$ takie, że $pc = ab$. Rozłóżmy $a, b, c$ na czynniki nierozkładalne (istnieją z (i)): $a = \prod a_i$, $b = \prod b_j$, $c = \prod c_k$. Wtedy $p \cdot \prod c_k = \prod a_i \cdot \prod b_j$ są dwoma rozkładami na czynniki nierozkładalne elementu $ab$. Z jednoznaczności rozkładu (warunek 2 definicji UFD) czynnik $p$ musi być stowarzyszony z którymś z $a_i$ lub $b_j$. Zatem $p \mid a$ lub $p \mid b$, czyli $p$ jest pierwszy.
+
+($\Leftarrow$) Zakładamy (i) i (ii). Musimy pokazać jednoznaczność rozkładu. Niech $a = p_1 \cdots p_n = q_1 \cdots q_m$ będą dwoma rozkładami na czynniki nierozkładalne. Dowód przeprowadzimy indukcyjnie względem $n$. Dla $n=1$: $a = p_1$ jest nierozkładalny, więc jeśli $a = q_1 \cdots q_m$, to z nierozkładalności $p_1$ wynika, że $m=1$ i $p_1 = q_1$ (bo w przeciwnym razie rozkład byłby nietrywialny). Załóżmy, że twierdzenie zachodzi dla wszystkich elementów dających się zapisać jako iloczyn mniej niż $n$ czynników nierozkładalnych. Rozważmy $a = p_1 \cdots p_n = q_1 \cdots q_m$. Ponieważ $p_n$ jest nierozkładalny i z (ii) jest pierwszy, oraz $p_n \mid q_1 \cdots q_m$, to $p_n$ dzieli jeden z czynników $q_j$. Po ewentualnym przestawieniu możemy założyć, że $p_n \mid q_m$. Ale $q_m$ jest nierozkładalny, więc $p_n$ musi być stowarzyszony z $q_m$: $q_m = u p_n$ dla pewnej jednostki $u$. Wstawiając to do równania i skracając $p_n$ (pamiętajmy, że $R$ jest dziedziną), otrzymujemy $p_1 \cdots p_{n-1} = (u q_1) q_2 \cdots q_{m-1}$. Po prawej stronie mamy iloczyn $m-1$ czynników nierozkładalnych (bo $u q_1$ jest stowarzyszony z $q_1$, więc też nierozkładalny). Z założenia indukcyjnego $n-1 = m-1$, czyli $n = m$, oraz po odpowiednim uporządkowaniu $p_i \sim q_{\sigma(i)}$ dla $i=1,\dots,n-1$, a dla $i=n$ już wiemy, że $p_n \sim q_m$. To kończy dowód.
+\end{proof}
+
+\begin{theorem}[Noetherowskie dziedziny a rozkład]
+Jeśli $R$ jest dziedziną noetherowską, to każdy niezerowy element $a \in R \setminus R^*$ ma rozkład na czynniki nierozkładalne (tj. warunek (i) powyższego twierdzenia jest spełniony).
+\end{theorem}
+
+\begin{lemma}
+Niech $a \in R \setminus \{0\}$. Jeśli $a = bc$ i $c \notin R^*$, to $(a) \subsetneq (b)$.
+\end{lemma}
+
+\begin{proof}
+Z założenia $b \mid a$, więc $(a) \subseteq (b)$. Gdyby $(a) = (b)$, to $b \in (a)$, czyli $b = ad$ dla pewnego $d \in R$. Wtedy $a = bc = adc$, więc $a(1-dc)=0$. Ponieważ $a \neq 0$ i $R$ jest dziedziną, mamy $dc = 1$, czyli $c$ jest jednostką – sprzeczność. Zatem $(a) \subsetneq (b)$.
+\end{proof}
+
+\begin{proof}[Dowód twierdzenia]
+Przypuśćmy przeciwnie, że istnieje niezerowy element $a \in R \setminus R^*$, który nie ma rozkładu na czynniki nierozkładalne. W szczególności $a$ nie jest nierozkładalny, więc $a = a_1 b_1$, gdzie $a_1, b_1 \notin R^*$. Co najmniej jeden z tych czynników też nie ma rozkładu (gdyby oba miały, to $a$ też by miał). Bez straty ogólności załóżmy, że $a_1$ nie ma rozkładu. Wtedy z lematu mamy $(a) \subsetneq (a_1)$. Powtarzamy rozumowanie dla $a_1$: $a_1 = a_2 b_2$, gdzie $a_2$ nie ma rozkładu, więc $(a_1) \subsetneq (a_2)$. Kontynuując, otrzymujemy nieskończony, ściśle wstępujący łańcuch ideałów:
+\[
+(a) \subsetneq (a_1) \subsetneq (a_2) \subsetneq \cdots
+\]
+co jest sprzeczne z założeniem noetherowskości $R$ (w pierścieniu noetherowskim każdy wstępujący łańcuch ideałów stabilizuje się). Zatem każdy taki $a$ musi mieć rozkład.
+\end{proof}
+
+\begin{corollary}
+Mamy następujące:
+	
+\begin{enumerate}[label=\arabic*)]
+	\item Jeśli $R$ jest dziedziną noetherowską i każdy element nierozkładalny w $R$ jest pierwszy, to $R$ jest UFD
+	\item Każda dziedzina ideałów głównych (PID) jest UFD.
+	\item PID jest noetherowski (każdy ideał jest główny, więc skończenie generowany). Ponadto w PID element nierozkładalny jest pierwszy. Zatem na mocy poprzedniego wniosku PID jest UFD.
+	\item W szczególności:
+		\begin{itemize}
+    			\item Jeśli $K$ jest ciałem, to $K[X]$ jest UFD.
+    			\item $\mathbb{Z}[i]$ (pierścień liczb całkowitych Gaussa) jest UFD (bo jest euklidesowy, więc PID).
+		\end{itemize}
+\end{enumerate}
+\end{corollary}
+\begin{theorem}[Twierdzenie Gaussa]
+Jeśli $R$ jest UFD, to pierścień wielomianów $R[X]$ też jest UFD.
+\end{theorem}
+
+\begin{proof}[Szkic dowodu]
+Dowód jest dość techniczny i opiera się na:
+\begin{enumerate}[label=\arabic*)]
+    \item Pojęciu \emph{pierwotnego} wielomianu (wielomian, którego współczynniki mają największy wspólny dzielnik równy 1).
+    \item Lemacie Gaussa: Jeśli $R$ jest UFD, to iloczyn wielomianów pierwotnych jest pierwotny.
+    \item Zredukowaniu problemu do przypadku, gdy $R$ jest ciałem (dla ciał wiemy, że $K[X]$ jest UFD, bo jest PID).
+\end{enumerate}
+Pełny dowód pomijamy na tym etapie.
+\end{proof}
+\section*{Pierścienie UFD a Wielkie Twierdzenie Fermata}
+
+\begin{intuition}
+Wielkie Twierdzenie Fermata (WTF) mówi, że dla liczby naturalnej $n \geq 3$ równanie $a^n + b^n = c^n$ nie ma rozwiązań w niezerowych liczbach całkowitych. Przez wieki matematycy usiłowali je udowodnić. W XIX wieku zauważono, że można je sprowadzić do problemu rozkładu na czynniki w pewnych pierścieniach liczb całkowitych rozszerzonych o pierwiastki z jedynki. Okazało się, że kluczowe jest, czy pierścień $\mathbb{Z}[\varepsilon_p]$ (gdzie $\varepsilon_p$ jest pierwiastkiem pierwotnym $p$-tego stopnia z 1) jest dziedziną z jednoznacznym rozkładem (UFD). Niestety, nie zawsze tak jest, co zmusiło matematyków do rozwinięcia głębszej teorii – algebraicznej teorii liczb.
+\end{intuition}
+
+\begin{context}
+Rozważamy równanie Fermata: $a^n + b^n = c^n$ dla $a,b,c \in \mathbb{Z}$, $n \in \mathbb{N}_{\geq 3}$. Zakładamy, że $abc \neq 0$ (szukamy nietrywialnych rozwiązań). Łatwo zauważyć, że wystarczy rozważać wykładniki będące liczbami pierwszymi $p \geq 3$ (dlaczego?). Niech więc $p$ będzie nieparzystą liczbą pierwszą.
+\end{context}
+
+Niech $\varepsilon_p = e^{2\pi i / p} \in \mathbb{C}$ będzie pierwotnym $p$-tym pierwiastkiem z jedynki. Rozważamy pierścień $\mathbb{Z}[\varepsilon_p] \subseteq \mathbb{C}$.
+
+Zauważmy, że wielomian $X^p + b^p$ rozkłada się w $\mathbb{C}[X]$ na czynniki liniowe:
+\[
+X^p + b^p = (X + b)(X + b\varepsilon_p)(X + b\varepsilon_p^2) \cdots (X + b\varepsilon_p^{p-1}).
+\]
+Traktując to równanie w pierścieniu $\mathbb{Z}[\varepsilon_p][X]$ i stosując homomorfizm ewaluacji w punkcie $a$, otrzymujemy:
+\[
+c^p = a^p + b^p = (a + b)(a + b\varepsilon_p)(a + b\varepsilon_p^2) \cdots (a + b\varepsilon_p^{p-1}).
+\]
+Jeśli założymy, że pierścień $\mathbb{Z}[\varepsilon_p]$ jest UFD, to można przeprowadzić rozumowanie (używając własności rozkładu na czynniki nierozkładalne) prowadzące do sprzeczności przy założeniu istnienia nietrywialnego rozwiązania równania Fermata dla wykładnika $p$. W ten sposób dowodzi się WTF dla tych liczb pierwszych $p$, dla których $\mathbb{Z}[\varepsilon_p]$ jest UFD.
+
+Niestety, nie zawsze tak jest. Okazuje się, że dla $p=23$ pierścień $\mathbb{Z}[\varepsilon_{23}]$ \textbf{nie jest} UFD. Co więcej:
+
+\begin{fact}
+Dla wszystkich liczb pierwszych $p \geq 23$, pierścień $\mathbb{Z}[\varepsilon_p]$ nie jest UFD.
+\end{fact}
+
+Historycznie, matematycy w XIX wieku (m.in. Kummer) początkowo zakładali, że wszystkie takie pierścienie są UFD. Gdy odkryto kontrprzykłady, Kummer wprowadził pojęcie \emph{liczb pierwszych regularnych}, które pozwoliło obejść ten problem.
+
+\begin{definition}[Liczba pierwsza regularna]
+Liczba pierwsza $p$ nazywa się \textbf{regularna}, jeśli spełnia następujący warunek: dla każdego ideału $I \trianglelefteq \mathbb{Z}[\varepsilon_p]$, jeśli $I^p$ jest ideałem głównym, to $I$ też jest ideałem głównym.
+
+Tutaj $I^p$ oznacza iloczyn ideałów: $I^p = I \cdot I \cdots I$ ($p$ razy), gdzie iloczyn ideałów definiujemy jako ideał generowany przez wszystkie iloczyny elementów z tych ideałów.
+\end{definition}
+
+Kummer udowodnił, że jeśli $p$ jest regularna, to równanie Fermata dla wykładnika $p$ nie ma nietrywialnych rozwiązań. Dzięki temu udało się udowodnić WTF dla wielu wykładników, mimo że pierścień $\mathbb{Z}[\varepsilon_p]$ nie jest UFD.
+
+\section{Pierścień ułamków (lokalizacja)}
+
+\begin{context}
+W tej sekcji zakładamy, że $R$ jest \textbf{dziedziną całkowitości}. Chcemy skonstruować ciało ułamków dla $R$, czyli najmniejsze ciało zawierające $R$. Jest to uogólnienie konstrukcji liczb wymiernych z liczb całkowitych.
+\end{context}
+
+\begin{definition}[Podzbiór multiplikatywny]
+Podzbiór $S \subseteq R$ nazywamy \textbf{podzbiorem multiplikatywnym}, jeśli:
+\begin{enumerate}[label=\arabic*)]
+    \item $0 \notin S$,
+    \item $1 \in S$,
+    \item dla dowolnych $a, b \in S$ mamy $ab \in S$.
+\end{enumerate}
+\end{definition}
+
+\begin{eg}
+\begin{enumerate}[label=\arabic*)]
+    \item Niech $a \in R \setminus \{0\}$. Definiujemy $a^{N} := \{a^{n}: n \in \N\}$. Jest to podzbiór multiplikatywny $R$.(co z 1?)
+    \item Grupa jednostek $R^*$ jest podzbiorem multiplikatywnym.
+    \item W $\mathbb{Z}$ zbiór $\mathbb{N}_{>0}$ jest multiplikatywny.
+    \item Jeśli $P$ jest ideałem pierwszym w $R$, to $R \setminus P$ jest podzbiorem multiplikatywnym (bo $0 \in P$, $1 \notin P$, a warunek na iloczyn wynika z definicji ideału pierwszego).
+\end{enumerate}
+\end{eg}
+
+\subsubsection*{Konstrukcja pierścienia ułamków}
+
+Niech $S \subseteq R$ będzie podzbiorem multiplikatywnym. Rozważmy zbiór par $R \times S$ i określmy na nim relację $E$:
+\[
+(r_1, s_1) E (r_2, s_2) \iff r_1 s_2 = r_2 s_1.
+\]
+
+\begin{fact}
+Relacja $E$ jest relacją równoważności.
+\end{fact}
+
+\begin{remark}
+Warunek $0 \notin S$ jest istotny. Gdyby $0 \in S$, to dla dowolnych $(r_1, s_1), (r_2, s_2)$ mielibyśmy $r_1 \cdot 0 = 0$ i $r_2 \cdot 0 = 0$, więc $r_1 \cdot 0 = r_2 \cdot 0$, ale to nie pociąga $r_1 s_2 = r_2 s_1$ (chyba że $s_1 = s_2 = 0$, ale wtedy para $(0,0)$ nie jest dopuszczalna, bo $0 \notin S$). Brak tego warunku prowadzi do problemów z przechodniością.
+\end{remark}
+
+\begin{definition}[Ułamek i lokalizacja]
+Klasę równoważności pary $(r,s)$ oznaczamy przez $\frac{r}{s}$ i nazywamy \textbf{ułamkiem} o liczniku $r$ i mianowniku $s$. Zbiór wszystkich klas oznaczamy $R_{0} := R_S := \mfaktor{R \times S}{\sim}$ i nazywamy \textbf{lokalizacją $R$ względem $S$}. 
+
+\noindent Definiujemy działania:
+\[
+\frac{r_1}{s_1} + \frac{r_2}{s_2} = \frac{r_1 s_2 + r_2 s_1}{s_1 s_2}, \quad \frac{r_1}{s_1} \cdot \frac{r_2}{s_2} = \frac{r_1 r_2}{s_1 s_2}.
+\]
+\end{definition} 
+
+\begin{theorem}
+\begin{enumerate}[label=\arabic*)]
+    \item Działania są dobrze określone (nie zależą od wyboru reprezentantów).
+    \item $(R_S, +, \cdot, \frac{0}{1}, \frac{1}{1})$ jest dziedziną całkowitości.
+    \item Odwzorowanie $\varphi: R \to R_S$ dane wzorem $\varphi(r) = \frac{r}{1}$ jest monomorfizmem pierścieni.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}[Szkic]
+1. Sprawdzenie, że wyniki nie zależą od reprezentantów, wykorzystuje warunek $r_1 s_2 = r_2 s_1$. 2. Sprawdzenie aksjomatów pierścienia jest żmudne, ale proste. 3. $\varphi$ jest homomorfizmem, a jądro $\ker \varphi = \{ r \in R : \frac{r}{1} = \frac{0}{1} \} = \{ r \in R : r \cdot 1 = 0 \cdot 1 \} = \{0\}$, więc jest iniektywny.
+\end{proof}
+
+\subsubsection*{Przykłady i własności}
+\noindent \textbf{Przykład 1)} $R\setminus \{0\}$ jest podzbiorem multiplikatywnym.
+
+\noindent \textbf{Przykład (definicja) 2)} $R_{R\setminus \{0\} }$ -- jest to ciało zwane  \textbf{ciałem ułamków $R$} i oznaczane przez $R_0$. Ciało, bo dla $\frac{a}{b}\neq \frac{0}{1} \implies a\neq 0$, więc $\frac{b}{a} \in R_0$, oraz $\frac{a}{b}\cdot \frac{b}{a} = \frac{1}{1} \implies \frac{a}{b}\in R_{0}^{^{\ast} }$. 
+
+Rozważmy $R' := \left( R\right) $ najmniejsze ciało generowane przez  $R$. Wtedy $R \underset{\scriptscriptstyle\text{podp}}{\subseteq} R'$. Co więcej elementy ciała $R'$ są postaci $a\cdot b^{-1} =: $, gdzie $a \in R$ oraz $b \in R\setminus \{0\} $.
+
+Gdzie 
+ \[
+\frac{a}{b} = \mfaktor{\left( a,b \right) }{E} = \mfaktor{\left( a,1 \right) }{E} \cdot \left( \mfaktor{\left( b,1 \right) }{E}  \right)^{-1}
+,\] 
+zatem $R_0$ utożsamiamy z $R'$.
+
+\begin{center}
+\begin{tikzpicture}[
+    set/.style={ellipse, draw, minimum width=1.5cm, minimum height=2.6cm},
+    subset/.style={circle, draw, minimum width=0.8cm},
+    arrow/.style={-Stealth, thick}
+]
+
+% Zbiór A
+\node[set] (A) at (0,0) {};
+\node[subset] (Ainner) at (0,0) {};
+\node at (0,1.52) {$R'$};
+\node at (0,0.65) {$R$};
+% Zbiór B
+\node[set] (B) at (4,0) {};
+\node[subset] (Binner) at (4,0) {};
+\node at (4,1.52) {$R_0$};
+\node at (4,0.65) {$\varphi\left[ R \right]  $};
+% Strzałka między dużymi zbiorami NA DOLE
+\draw[arrow] (A.south east) -- node[below] {$\overline{\varphi }$} (B.south west);
+
+% Strzałka między małymi zbiorami
+\draw[arrow] (Ainner.east) -- node[above] {$\varphi $} (Binner.west);
+
+\end{tikzpicture}
+
+\end{center}
+\noindent  \textbf{Przykład 3)} $\mathbb{Q} := \mathbb{Z}_{\mathbb{Z}\setminus \{0\} } = \mathbb{Z}_{0}$
+
+\noindent  \textbf{Przykład 4)} Niech $S \subseteq R$ będzie podzbiorem multiplikatywnym. Wtedy $\mfaktor{\left( r,s \right) }{E} \mapsto \frac{r}{s}\in R'$.\\
+Łatwo sprawdzić, że $R_{S}$ jest izomorficzne z podpierścieniem $R'$ złożonym z elementów postaci $\frac{a}{b} = ab^{-1}$, dla $a \in R$ i $b \in S$. Po takim utożsamieniu $R_{S}$ z podpierścieniem  $R'$, możemy przyjąć, że dla $S_1 \subseteq S_2$ mamy $R_{S_1} \underset{\scriptscriptstyle\text{podp}}{\subseteq} R_{S_2}$.
+
+Na przykład dla $S = 2^{\N} := \{2^{n} : n\in \N\}\subseteq \mathbb{Z} $, mamy 
+\[
+\mathbb{Z}_{S} := \{\frac{a}{2^{n}}: a \in \mathbb{Z}, n\in \N\} = \mathbb{Z}\left[ \tfrac{1}{2} \right]  
+.\] 
+$\mathbb{Z}_{S}$ jest to ciało znane pod nazwą \textbf{ciało diadyczne}. 
+
+\subsubsection*{Lokalizacja względem ideału pierwszego}
+
+\begin{fact}
+Jeśli $P$ jest ideałem pierwszym w $R$, to $S = R \setminus P$ jest podzbiorem multiplikatywnym.
+\end{fact}
+\begin{proof}
+	Aby wykazać, że $S$ jest zbiorem multiplikatywnym musimy sprawdzić dwa warunki:
+	\begin{enumerate}[label=\arabic*)]
+		\item $1\in S$
+		\item $\left(\forall x,y \in S \right)\left( xy \in S \right)  $
+	\end{enumerate}
+
+\noindent \textbf{Ad 1 (element neutralny)} \\
+Z definicji ideału pierwszego, $P$ jest ideałem właściwym ($P\subsetneq R$ ). Zatem $1 \in P$ (gdyby $1 \in P$ to $P$ byłoby równe całemu pierścieniowi $R$ ). Skoro $1 \not\in P$, to $1 \in R\setminus P= S$.
+
+\noindent \textbf{Ad 2 (zamkniętość na mnożenie)} \\
+Ustalmy dowolne $x, y \in S$. Oznacza to, że $x \not\in P$ oraz $y \not\in P$. Musimy pokazać, że $xy \in S$, czyli że $xy \not\in P$. Załóżmy nie wprost, że $xy \in P$. Ponieważ $P$ jest ideałem pierwszym, zatem  $x\in P$ lub $y \in P$, co stoi w sprzeczności z założeniem, że $x,y \in S$.
+\end{proof} 
+\begin{definition}[Lokalizacja względem ideału pierwszego]
+Niech $P$ będzie ideałem pierwszym w $R$. Wtedy $R_{P} := R_{R\setminus P}$ jest \textbf{lokalizacją} $R$ względem $R\setminus P$.
+\end{definition}
+\begin{eg}
+	$\mathbb{Z}_{\left( 2 \right) = \mathbb{Z}_{\mathbb{Z}\setminus \left( 2 \right) }} = \{\frac{n}{m}\in \mathbb{Q}: n,m \in \mathbb{Z} \text{ i } 2 \nmid m\} $.\\
+	Czyli są to liczby wymierne o mianowniku nieparzystym.
+\end{eg} 
+\begin{remark}
+	$\mathbb{Z}_{\left( 2 \right) \neq \mathbb{Z}_{2^{\N}}}$.
+\end{remark} 
+\begin{eg}
+Niech $R = \mathbb{Z}$, $P = (2)$ (ideał liczb parzystych). Wtedy
+\[
+\mathbb{Z}_{(2)} = \left\{ \frac{a}{b} \in \mathbb{Q} : a,b \in \mathbb{Z}, 2 \nmid b \right\}.
+\]
+Jest to pierścień wszystkich ułamków, których mianownik (w postaci skróconej) jest nieparzysty. Zauważmy, że $\mathbb{Z}_{(2)} \neq \mathbb{Z}_{2^{\N}}$ (to drugie zawiera ułamki o mianownikach będących potęgami dwójki).
+\end{eg}
+
+\begin{theorem}
+	Niech $P$ będzie ideałem pierwszym w $R$. wtedy
+	\[
+		\left( R_{P}\right)^{\ast} = \{\frac{a}{b}\in R_{P}: a \in R\setminus P\} 
+	.\]
+	Tutaj $\left( R_{P} \right)^{\ast}$ oznacza oczywiście podzbiór multiplikatywny.
+\end{theorem} 
+\noindent \textbf{Komentarz:} Lokalizacja względem ideału pierwszego $P$, czyli $R_{P}$ to w uproszczeniu proces ,,zmuszania'' elementów spoza $P$ do bycia odwracalnymi. Twierdzenie to mówi, że tylko te elementy (i ich iloczyny) stają się jednostkami. 
+\begin{proof}
+	Przypomnijmy, że elementy $R_{P}$ to ułamki $\frac{x}{y}$, gdzie $x\in R$ oraz $y \in R\setminus P$. Pokażemy równość obu zbiorów.
+
+\noindent $\left( \supseteq  \right) $ \\
+Weźmy dowolny element $\frac{a}{b}$, taki że $a \in R\setminus P$. Ponieważ $b \in R\setminus P$, więc możemy stworzyć ułamek $\frac{b}{a}\in R_{P}$. Zauważmy, że \[
+\frac{a}{b} \cdot \frac{b}{a} = \frac{1}{1} = 1_{R_{P}}
+.\] 
+Zatem $\frac{a}{b}\in \left( R_{P} \right) ^{\ast} $.
+
+\noindent $\left( \subseteq  \right) $ \\
+Weźmy dowolny element $\frac{a}{b}\in \left( R_{P} \right)^{\ast} $. Oznacza to że istnieje element $\frac{c}{d} \in R_{P}$, $c \in R$ oraz $d \in R\setminus P$ taki że
+\[
+\frac{a}{b}\cdot \frac{c}{d} = \frac{ac}{bd} = \frac{1}{1}
+.\] 
+Zauważmy, że:
+\begin{itemize}
+	\item Skoro $b,d \not\in P$ to $bd \not\in P$, bo $P$ jest pierwszy.
+	\item Skoro $bd \not\in P$ oraz $ac = bd$ to  $ac \not\in P$.
+	\item Skoro iloczyn $ac \not\in P$, to $a \not\in P$ oraz $c \not\in P$.
+	\item Wniosek: $a \not\in P$, czyli $a \in R\setminus P$.
+\end{itemize}
+\end{proof} 
+
+\noindent \textbf{Przykład 1)}\\
+$\mathbb{Z}_{0} = \mathbb{Q}$ 
+
+\noindent \textbf{Przykład 2)}\\
+$K\left[ X_1,\ldots,X_{n} \right]_{0}$ oznaczamy przez $K\left( X_1,\ldots,X_{n}  \right) $ i nazywamy \textbf{ciałem funkcji wymiernych} ($n$ zmiennych o współczynnikach z $K$ )
+
+\noindent \textbf{Przykład 3)}\\
+$K\left[ \left[ X_1,\ldots,X_{n}  \right]  \right]_{0}$ oznaczamy przez $K\left( \left( X_1,\ldots,X_{n}  \right)  \right) $ i nazywamy \textbf{ciałem szeregów Laurenta} ($n$ zmiennych o współczynnikach z $K$ ) 
+
+\begin{fact}
+	\[
+	\left(\forall W \in K\left( \left( X \right)  \right)  \right)\left(\exists n \in \N \right)\left(\exists F \in K\left[ \left[ X \right]  \right]  \right)\left( W = \frac{F}{X^{n}} \right)    
+	.\] 
+\end{fact}
+
+\begin{proof}
+	Niech $W = \frac{F_1}{F_2}$,gdzie $F_1,F_2 \in K\left[ \left[  \right]  \right] $ i  $F_2\neq 0$.
+
+	Mamy $F_2 \neq 0 \implies F_2 = a_{n} X^{n} + a_{n} X^{n+1} + \ldots$ dla pewnego $n \in \N$ i $a_{n} \in K\setminus \{0\} = K^{\ast} $.
+
+	Oznaczmy $F_2 = X^{n}\left( a_{n} + a_{n+1}X + \ldots \right) = X^{n}\cdot H$.
+
+	Wiemy z zadania 7 z listy 12, że 
+	\[
+	a_{n} \neq 0 \implies H \in K\left[ \left[ X \right]  \right]^{\ast} \implies \left(\exists H^{-1} \in K\left[ \left[ X \right]  \right] \right) 
+	.\] 
+	Ponieważ
+	\[
+	\frac{F_1}{F_2} = \frac{F_1H^{-1}}{X^{n}} \iff F_1X^{n} = F_1H^{-1}F_2
+	.\]
+	Zatem $W = \frac{F_1H^{-1}}{X^{n}}$
+\end{proof} 
+\begin{corollary}
+
+	Szeregi Laurenta jednej zmiennej można przedstawić w postaci $\sum_{i= -n}^{\infty} a_{i}X^{i}$ dla pewnego $n\in \N$ i $a_{i} \in K$
+\end{corollary}
+
+\begin{remark}
+	Dla dwóch zmiennych robi się ciekawiej, mianowicie
+	$K\left( \left( X,Y \right)  \right) $ to nie to samo co $K\left( \left( X \right)  \right) \left( \left( Y \right)  \right)$.
+
+	Zadanie: pokazać zawieranie właściwe, czyli $\subsetneq $
+\end{remark} 
+
+\begin{context}
+Ciągle $R$ jest pierścieniem przemiennym z jedynką, ale już niekoniecznie dziedziną.
+\end{context}
+\begin{definition}[Pierścien lokalny.]
+	Pierścień $R$ jest \textbf{pierścieniem lokalnym}, gdy ma jedyny ideał maksymalny. 
+\end{definition} 
+\begin{theorem}	
+	Następujące warunki są równoważne:
+	\begin{enumerate}[label=\arabic*)]
+		\item $R$ jest lokalny.
+		\item $\left(\forall a,b \in R\setminus R^{\ast}  \right)\left( a + b \in R\setminus R^{\ast}  \right)  $.
+		\item $R\setminus R^{\ast} \trianglelefteqslant R$.
+	\end{enumerate}
+\end{theorem} 
+\begin{proof}
+	Udowodnimy kółko: $1) \implies 3) \implies 2) \implies 1)$
+
+	\noindent $1) \implies 3)$ 
+
+	Niech $\mathfrak{m}$ będzie jedynym ideałem maksymalnym w $R$. Wystarczy pokazać, że  $\mathfrak{m} = R\setminus R^{\ast} $. Pokażemy obustronne zawieranie
+	$\left( \subseteq  \right) $ \\
+	$\mathfrak{m} \neq R \implies \mathfrak{m} \cap R^{\ast}  = \emptyset \implies \mathfrak{m} \subseteq R\setminus R^{\ast}$. \\
+	Co tu się dzieje? Każdy element ideału maksymalnego musi być nieodwracalny.
+	\begin{enumerate}[label=\arabic*)]
+		\item Ideały maksymalne z definicji są właściwe, tzn $\mathfrak{m} \neq R$.
+		\item Gdyby w ideale $\mathfrak{m}$ znalazł by się jakikolwiek element odwracalny (jednostka $u \in R^{\ast} $), to ideał ten ,,eksplodowałby'' do całego pierścienia $R$ ( bo  $u\cdot u^{-1} = 1 \in \mathfrak{m}$, a ideał z jedynką to cały pierścień).
+		\item Zatem w $\mathfrak{m}$ nie ma prawa być żadnych jednostek.
+		\item Wniosek: wszystkie elementy $\mathfrak{m}$ muszą leżeć w zbiorze elementów nieodwracalnych  $R\setminus R^{\ast} $.
+	\end{enumerate}
+
+	$\left( \supseteq  \right) $ \\
+	$\left(\forall a\in R\setminus R^{\ast}  \right) \left( a \right) \neq R \implies $ istnieje ideał maksymalny $N$ taki że $\left( a \right) \subseteq N$\\
+	Co tu się dzieje? Każdy element nieodwracalny wpada do naszego ideału maksymalnego.
+	\begin{enumerate}[label=\arabic*)]
+		\item Bierzemy dowolny element nieodwracalny $a$.
+		\item Tworzymy ideał główny generowany przez ten element: $\left( a \right) = aR$.
+		\item Ponieważ $a$ nie jest odwracalne, to $1 \not\in \left( a \right) $, więc ideał ten jest \textbf{właściwy}: $\left( a \right) \neq  R$.
+		\item Teraz korzystamy z Twierdzenia Krulla (jest to wniosek z Lematu Kuratowskiego-Zorna): Każdy ideał właściwy zawiera się w jakimś ideale maksymalnym. Nazwijmy ten ideał maksymalny $N$.
+		\item Mamy więc sytuację: $a \in \left( a \right) \subseteq N$.
+		\item Kluczowy moment -- lokalność. Z założenia wiemy, że w pierścieniu $R$ istnieje \textbf{tylko jeden} ideał maksymalny $\mathfrak{m}$.
+		\item Zatem ten znaleziony ideał $N$ musi być tożsamy z $\mathfrak{m}$--  $N= \mathfrak{m}$.
+		\item Wniosek: Skoro $a \in N$ i $N = \mathfrak{m}$, to  $a \in \mathfrak{m}$.
+	\end{enumerate}
+	\noindent $3) \implies 2) $\\
+	Załóżmy, że $R\setminus R^{\ast} \trianglelefteqslant R$, czyli zbiór elementów nieodwracalnych jest ideałem w $R$. Ustalmy dowolne  $a,b \in R\setminus R^{\ast} $, wtedy z definicji ideału $a + b \in R\setminus R^{\ast} $.
+
+	\noindent $2) \implies 1)$\\
+	Załóżmy punkt $2)$, czyli że suma dwóch dowolnych elementów nieodwracalnych jest nieodwracalna. Pokażemy, że $R$ jest lokalny, czyli zawiera dokładnie jeden ideał maksymalny. 
+
+	Skonstruujmy kandydata na ten ideał. Niech $\mathfrak{m} = R\setminus R^{\ast} $. Pokażemy najpierw, że $\mathfrak{m} $ jest ideałem. Z założenia $2)$, wnioskujmy, że $\mathfrak{m} $ jest podgrupą. Następnie ustalmy dowolny $r \in R$ oraz $a \in \mathfrak{m} $. Pokażemy, że $ra \in \mathfrak{m}$. Nie wprost: gdyby $ra \not\in \mathfrak{m} $, to $ra$ byłoby odwracalne, czyli istniałoby takie $u \in R$, że $u(ra) = 1$, co oznaczałoby że $\left( ur \right) a = 1$, czyli że $a$ jest odwracalne. Zatem sprzeczność z tym, że $a\in \mathfrak{m} $, czyli $ra \in \mathfrak{m} $.//
+	Następnie musimy pokazać, że jest to jedyny ideał maksymalny. Niech $\mathcal{I}$ będzie dowolnym ideałem właściwym w $R$. Ideały właściwe nie mogą zwierać elementów odwracalnych (bo gdyby miały choć jeden, to były by równe $R$ ). Zatem $\mathcal{I}\subseteq R\setminus R^{\ast} = \mathfrak{m} $. Ponieważ każdy ideał właściwy  $\mathcal{I}$ zawiera się w $\mathfrak{m} $, to $\mathfrak{m} $ jest jedynym ideałem maksymalnym.
+\end{proof} 
+\noindent \textbf{Komentarz:} Zwróćmy uwagę, że implikacja $2) \implies 1)$ daje nam mocne narzędzie do sprawdzania czy dany pierścień, jest pierścieniem lokalnym. Mówi ona, że wystarczy sprawdzić prostą własność arytmetyczną: czy suma ,,złych'' elementów jest ,,zła'' aby sprawdzić, czy dany pierścień jest lokalny. Na przykład w pierścieniu  $\mathbb{Z}$ liczby 2 i -3 są nieodwracalne, ale ich suma $2 + \left( -3 \right) = -1$ już jest, zatem pierścień $\mathbb{Z}$ nie jest lokalny.
+
+\begin{corollary}
+
+	Jeśli pierścień $R$ jest pierścieniem lokalnym, to $R\setminus R^{\ast} $ jest jedynym ideałem maksymalnym.
+\end{corollary}
+\noindent \textbf{Przykład 1)}\\
+Niech $K$ będzie ciałem. Wtedy $K$ jest lokalny, bo $K\setminus K^{\ast} = \{0\} \trianglelefteqslant K$ ($\left( 0 \right) = \{0\} $ jest ideałem zerowym)
+
+\noindent \textbf{Przykład 2)} \\
+Niech $K$ będzie ciałem, wtedy 
+\[
+K\left[ \left[ X \right]  \right]^{\ast} = \{\sum_{n=0}^{\infty} a_{n} X^{n}\in K\left[ \left[ X \right]  \right] : a_0 \neq 0\} \implies K\left[ \left[ X \right]  \right] \setminus K\left[ \left[ X \right]  \right]^{\ast} = \{\sum_{n=0}^{\infty} a_{n} X^{n}\in K\left[ \left[ X \right]  \right]: a_0=0\} = \underbrace{ \left( X \right)  }_{\text{ideał}}
+.\] 
+Zatem $K\left[ \left[ X \right]  \right] $ jest pierścieniem lokalnym.
+
+\begin{theorem}
+	Niech $R$ będzie dziedziną, a $P$ ideałem pierwszym w $R$. Wtedy $R_{P}(=R_{R\setminus P})$ jest pierścieniem lokalnym.
+\end{theorem} 
+\begin{proof}
+	Mamy
+	\[
+	R_{P}\setminus \left( R_{P} \right)^{\ast} = \{\frac{a}{b}\in R_{P}: a \in P, b \in R\setminus P\} = P \cdot R_{P} 
+	,\] 
+	gdzie:
+	\begin{enumerate}[label=\arabic*)]
+		\item $ \{\frac{a}{b}\in R_{P}: a \in P, b \in R\mid P\} $ jest ideałem.
+		\item $P\cdot R_{P}$ jest ideałem w $R_{P}$ generowanym przez $P$.
+	\end{enumerate}
+	Zatem z wcześniej udowodnionego twierdzenia, $R_{P}$ jest pierścieniem lokalnym.
+\end{proof} 
+
+
+
+\noindent \textbf{Wnioski:} \\
+	Pierścień $R$ jest lokalny wtedy i tylko wtedy, gdy $R\setminus R^{\ast} $ jest ideałem (wtedy jest to jedyny ideał maksymalny).
+
+	Jeśli $P$ jest ideałem pierwszym w $R$, wtedy pierścień $R_{P}$ jest lokalny, tzn. ma dokładnie jeden ideał maksymalny. Co więcej ideałem maksymalnym jest
+	\[
+		\mathfrak{m}_{P} = \{ \frac{a}{b} \in R_{P}: a \in P \},
+        ,\]
+	a grupą jednostek (elementów odwracalnych jest 
+	 \[
+	R_{P}^{\ast} = \{\frac{a}{b} \in R_{P} : a \not\in P\} 
+	.\] 
+

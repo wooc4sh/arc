@@ -1,0 +1,487 @@
+\chapter{Wykład XII. Wprowadzenie do ideałów.}
+
+\section{Definicja Ideału}
+
+\begin{intuition}
+Ideał to w teorii pierścieni odpowiednik \textbf{podgrupy normalnej} w teorii grup. Jest to struktura, która „pochłania” mnożenie przez dowolne elementy pierścienia. Wyobraź sobie ideał jako „czarną dziurę” – cokolwiek z zewnątrz pierścienia pomnożysz przez element ideału, wynik wpada z powrotem do ideału.
+\end{intuition}
+
+\begin{definition}[Ideał]
+Podzbiór $\mathcal{I} \subseteq R$ nazywamy \textbf{ideałem} (ozn. $\mathcal{I} \trianglelefteqslant  R$), gdy:
+\begin{enumerate}[label=\arabic*.]
+\item $(\mathcal{I}, +) \leq (R, +)$ (jest podgrupą addytywną),
+\item $\left(\forall r \in R \right)\left(\forall a \in \mathcal{I} \right) \left( r\cdot a \in \mathcal{I} \right)  $
+\end{enumerate}
+\end{definition}
+
+\begin{remark}[Spojrzenie modułowe]
+Ideały to dokładnie $R$-podmoduły pierścienia $R$ traktowanego jako moduł nad samym sobą.
+\end{remark}
+\begin{proof}
+    TODO
+\end{proof} 
+
+Zauważmy, że jeśli ideał $\mathcal{I}$ zawiera jedynkę ($1_R \in \mathcal{I}$), to z definicji pochłaniania wynika wtedy, że dla każdego $r \in R$ mamy $r = r \cdot 1_R \in \mathcal{I}$, czyli $\mathcal{I} = R$. Stąd
+\begin{corollary}
+Jeśli $\mathcal{I} \trianglelefteqslant R$ i $1_R \in \mathcal{I}$, to $\mathcal{I} = R$.
+\end{corollary}
+
+\subsection*{Jądro homomorfizmu- struktura ideału.}
+
+\begin{definition}[Jądro homomorfizmu]
+Niech $\phi: R \to S$ będzie homomorfizmem pierścieni. Definiujemy \textbf{jądro} $\phi$ jako:
+\[
+\ker(\phi) = \{ r \in R : \phi(r) = 0_S \}.
+\]
+\end{definition}
+
+\begin{fact}
+Jądro homomorfizmu posiada dwie kluczowe własności strukturalne:
+\begin{enumerate}[label=\arabic*)]
+	\item $\ker(\phi) \leq (R, +)$ (jest podgrupą addytywną).
+	\item $\left(\forall r \in R \right)\left(\forall a \in \ker(\varphi  ) \left( r\cdot a \in \ker(\varphi  )  \right)  \right)  $
+\end{enumerate}
+\end{fact}
+
+\begin{proof}
+Niech $\varphi : R \to S $ będzie homomorfizmem pierścieni. Rozważmy $\ker(\varphi) $.
+\begin{enumerate}[label=\arabic*)]
+	\item Zauważmy, że $\varphi \left( 0_{R} \right) = 0_{S}$. Więc $0_{R} \in \ker(\varphi)$. Ponadto dla dwóch dowolnych elementów $a,b \in \ker(\varphi)$ mamy $\varphi \left( a-b \right) = \varphi\left( a \right) - \varphi\left( b \right) = 0_{S} - 0_{S} = 0_{S}$. Zatem $a-b \in \ker(\varphi)$, więc $\ker(\varphi) $ jest podgrupą $R$. 
+	\item Weźmy dowolne $r\in R$ oraz $a \in \ker(\varphi)$. Wtedy $\varphi\left( ra \right) = \varphi\left( r \right) \varphi\left( a \right) = \varphi\left( r \right) 0_{S} = 0_{S}$. Zatem $\ker(\varphi ) $ jest zamknięte na mnożenie przez elementy z $R$.
+\end{enumerate}
+Podsumowując, jądro homomorfizmu pierścieni $\varphi$, jest ideałem w $R$.
+\end{proof}
+
+\section{Konstrukcja i struktura pierścienia ilorazowego.}
+
+\begin{definition}[Warstwy] 
+Niech $\mathcal{I} \trianglelefteq R$ (ideał w pierścieniu $R$). Przez $\mfaktor{R}{\mathcal{I}} $ oznaczamy zbiór \textbf{warstw addytywnych}:
+\[
+\mfaktor{R}{\mathcal{I}}  := \{ a + \mathcal{I} : a \in R \}.
+\]
+Element $a+\mathcal{I}$ nazywamy \emph{warstwą} (lub \emph{klasą reszt}) elementu $a$ modulo $\mathcal{I}$.
+\end{definition}
+
+\begin{theorem}[Struktura pierścienia ilorazowego] 
+Zbiór $\mfaktor{R}{\mathcal{I}} $ z działaniami:
+\[
+(a + \mathcal{I}) + (b + \mathcal{I}) := (a + b) + \mathcal{I}, \quad (a + \mathcal{I}) \cdot (b + \mathcal{I}) := (ab) + \mathcal{I}
+\]
+jest pierścieniem (zwanym \textbf{pierścieniem ilorazowym}).
+
+Odwzorowanie kanoniczne (rzutowanie)
+\begin{figure}[H] % [h!] to sugestia, by umieścić "tutaj"
+        \centering
+	\adjustbox{scale = 1.0}{
+	\begin{tikzpicture}[node distance = 0.4cm and 0.7cm]
+  % Tell it where the nodes are
+  \node (A) [label={[xshift=4pt]left:$ \pi:$}] {$ R $};
+  \node (C) [right=of A] {$ \mfaktor{R}{\mathcal{I}}  $};
+  \node (B) [below=of A] {$ r $};
+  \node (D) at (B -| C) {$ r + \mathcal{I}$};
+  % Składnia (B -| C) oznacza: weź współrzędną Y z punktu B i współrzędną X z punktu C
+  % Tell it what arrows to draw
+  \draw[draw=none] (A)-- node[midway] {\small $\rotatein$} (B);
+  \draw[|->] (B)--(D);
+  \draw[-stealth] (A)--(C);
+  \draw[draw=none] (C)-- node [midway] {\small $\rotatein$} (D);
+\end{tikzpicture}}
+\end{figure}
+
+jest \textbf{surjektywnym} homomorfizmem pierścieni, przy czym $\ker(\pi) = \mathcal{I}$.
+\end{theorem}
+
+\begin{proof}
+Kluczowym punktem jest \textbf{poprawność definicji} działań: musimy pokazać, że wynik nie zależy od wyboru reprezentantów warstw. Niech $a' \in a+\mathcal{I}$ i $b' \in b+\mathcal{I}$, czyli $a' = a + i_1$, $b' = b + i_2$ dla pewnych $i_1, i_2 \in \mathcal{I}$. Wtedy:
+\begin{itemize}
+\item Dla dodawania: $(a' + b') - (a + b) = i_1 + i_2 \in \mathcal{I}$, więc $(a' + b') + \mathcal{I} = (a + b) + \mathcal{I}$.
+\item Dla mnożenia: $a'b' = (a + i_1)(b + i_2) = ab + a i_2 + i_1 b + i_1 i_2$. Ponieważ $\mathcal{I}$ jest ideałem, wyrazy $a i_2$, $i_1 b$, $i_1 i_2$ należą do $\mathcal{I}$, zatem $a'b' - ab \in \mathcal{I}$, czyli $a'b' + \mathcal{I} = ab + \mathcal{I}$.
+\end{itemize}
+Sprawdzenie aksjomatów pierścienia dla $\mfaktor{R}{\mathcal{I}} $ wynika bezpośrednio z ich prawdziwości w $R$. Surjektywność $\pi$ jest oczywista, a równość $\ker(\pi)=\mathcal{I}$ zachodzi, bo $\pi(r)=0+\mathcal{I} \iff r \in \mathcal{I}$.
+\end{proof}
+
+\subsubsection*{Przystawanie modulo ideał - algebra kongruencji}
+
+\begin{definition}[Przystawanie modulo ideał]
+Niech $\mathcal{I} \trianglelefteqslant R$ oraz $a, b \in R$. Mówimy, że \textbf{$a$ przystaje do $b$ modulo $\mathcal{I}$}, ozn. $a \equiv b \pmod{\mathcal{I}}$, gdy $a - b \in \mathcal{I}$ (równoważnie: $a+\mathcal{I} = b+\mathcal{I}$).
+\end{definition}
+
+\begin{intuition}
+Relacja przystawania modulo ideał uogólnia znaną Ci arytmetykę modularną z liczb całkowitych. Ideał $\mathcal{I}$ pełni rolę \emph{modułu}, czyli zbioru elementów, które traktujemy jako zero. Dwa elementy są przystające, jeśli ich różnica jest „zerowa” w tym nowym, ilorazowym sensie.
+\end{intuition}
+
+\begin{eg}[Arytmetyka modularna jako szczególny przypadek]
+Niech $R = \mathbb{Z}$, $\mathcal{I} = n\mathbb{Z}$ (ideał wszystkich wielokrotności liczby $n$). Wtedy:
+\[
+a \equiv b \pmod{n\mathbb{Z}} \iff a-b \in n\mathbb{Z} \iff n \mid (a-b) \iff a \equiv b \pmod{n}.
+\]
+Zatem klasyczna arytmetyka modulo $n$ to dokładnie teoria pierścienia ilorazowego $\mathbb{Z}/n\mathbb{Z}$. To pierwszy i najważniejszy przykład, który zawsze warto mieć w pamięci.
+\end{eg}
+
+\subsubsection*{Zasadnicze Twierdzenie o Homomorfizmie}
+
+\begin{theorem}[Zasadnicze Twierdzenie o Homomorfizmie pierścieni]
+Niech $\varphi: R \to S$ będzie homomorfizmem pierścieni. Wtedy:
+\begin{enumerate}[label=(\roman*)]
+\item $\varphi[R]$ jest podpierścieniem $S$.
+\item Istnieje \emph{dokładnie jeden} izomorfizm pierścieni $\psi: R/\ker(\varphi) \xrightarrow{\cong} \varphi[R]$ taki, że diagram
+\[
+\begin{tikzcd}[row sep=30pt, column sep=30pt]
+R \arrow[dr, "\pi"'] \arrow[rr, "\varphi"] & & \varphi[R] \subseteq S \\
+& \mfaktor{R}{\ker(\varphi  ) } \arrow[ur, "\psi"', dashed, hook] &
+\end{tikzcd}
+\]
+jest przemienny, tzn. $\varphi = \psi \circ \pi$, gdzie $\pi: R \to \mfaktor{R}{\ker(\varphi  ) } $ jest rzutowaniem kanonicznym.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{eg}[Homomorfizm reszty]
+Niech $r_n: \mathbb{Z} \to \mathbb{Z}_n$, $r_n(k) = k \bmod n$. Wtedy $\ker(r_n) = n\mathbb{Z}$ i $\varphi[\mathbb{Z}] = \mathbb{Z}_n$. Twierdzenie daje nam naturalny izomorfizm:
+\[
+\mathbb{Z}/n\mathbb{Z} \cong \mathbb{Z}_n.
+\]
+To uzasadnia, dlaczego pierścień klas reszt modulo $n$ można utożsamiać z $\mathbb{Z}_n$.
+\end{eg}
+
+\section{Generowanie ideałów}
+
+\begin{fact}
+Przekrój dowolnej (niepustej) rodziny ideałów pierścienia $R$ jest ideałem w $R$.
+\end{fact}
+
+\begin{proof}
+Niech $\{\mathcal{I}_\alpha\}_{\alpha \in A}$ będzie rodziną ideałów, $\mathcal{I} = \bigcap_{\alpha \in A} \mathcal{I}_\alpha$. Ponieważ każdy $\mathcal{I}_\alpha$ jest podgrupą addytywną, to $\mathcal{I}$ też nią jest. Dla $x \in \mathcal{I}$, $r \in R$ i dowolnego $\alpha$ mamy $x \in \mathcal{I}_\alpha$, więc $rx \in \mathcal{I}_\alpha$ (bo $\mathcal{I}_\alpha$ jest ideałem). Stąd $rx \in \mathcal{I}$, co kończy dowód.
+\end{proof}
+
+\begin{definition}[Ideał generowany przez zbiór]
+Niech $R$ będzie pierścieniem, $A \subseteq R$ oraz $r_1, \dots, r_n \in R$.
+\begin{enumerate}[label=\arabic*)]
+\item \textbf{Ideał generowany przez $A$} to najmniejszy (w sensie inkluzji) ideał zawierający $A$. Oznaczamy go $(A)$ i definiujemy jako:
+\[
+(A) := \bigcap \{ \mathcal{I} \trianglelefteq R : A \subseteq \mathcal{I} \}.
+\]
+\item \textbf{Ideał skończenie generowany}: $(r_1, \dots, r_n) := (\{r_1, \dots, r_n\})$.
+\item \textbf{Kombinacje liniowe}: $r_1R + \dots + r_nR := \{ r_1a_1 + \dots + r_na_n : a_i \in R \}$.
+\item \textbf{Ideał główny}: ideał generowany przez jeden element, czyli $\mathcal{I} = (a)$ dla pewnego $a \in R$.
+\item \textbf{Ideały niewłaściwe}: $\{0\}$ i $R$; wszystkie pozostałe to ideały \textbf{właściwe}.
+\end{enumerate}
+\end{definition}
+
+\begin{remark}[Dwie perspektywy generowania]
+Definicja (1) jest \emph{ekstensywna}: określa $(A)$ jako przecięcie wszystkich ideałów zawierających $A$ (podejście „z góry”).\\
+Definicja (3) jest \emph{konstruktywna}: podaje explicite postać elementów ideału generowanego przez skończony zbiór (podejście „z dołu”). Kluczowe jest, że te definicje są równoważne dla skończonych zbiorów generatorów: $(r_1,\dots,r_n) = r_1R + \dots + r_nR$. Dowód tej równości stanowi dobre ćwiczenie na zrozumienie obu perspektyw.
+\end{remark}
+
+\begin{eg} W pierścieniu wielomianów $\mathbb{R}[X, Y]$, ideał $(X, Y) = \{ X \cdot f + Y \cdot g : f, g \in \mathbb{R}[X, Y] \}$ (wszystkie wielomiany bez wyrazu wolnego) \textbf{nie jest} główny. Nie da się go wygenerować jednym wielomianem.
+\end{eg}
+
+\begin{eg}[Ideały główne w $\mathbb{Z}$]
+W $\mathbb{Z}$ każdy ideał jest główny: $\mathcal{I} = n\mathbb{Z} = (n)$ dla pewnego $n \ge 0$. Na przykład $(2,3) = \mathbb{Z} = (1)$, bo największym wspólnym dzielnikiem 2 i 3 jest 1. Zauważ, że $(2,3)$ jest wprawdzie skończenie generowany, ale także główny – w $\mathbb{Z}$ te pojęcia się pokrywają.
+\end{eg}
+
+\begin{eg}[Ideał niegłówny]
+W pierścieniu $\mathbb{Z}[X]$ ideał $(2, X)$ (generowany przez stałą 2 i zmienną $X$) \emph{nie jest} główny. Gdyby istniał wielomian $f$ taki, że $(2,X) = (f)$, to $f$ musiałby dzielić zarówno 2, jak i $X$, co w $\mathbb{Z}[X]$ jest niemożliwe (dlaczego?). To pokazuje, że w ogólnych pierścieniach nie każdy ideał skończenie generowany jest główny.
+\end{eg}
+\subsection*{Kiedy ideał jest całym pierścieniem? Charakteryzacja ideałów niewłaściwych}
+
+\begin{intuition}
+Poniższe trzy równoważności mówią nam, kiedy ideał jest „całym światem” – czyli kiedy nie da się już niczego więcej dodać. Jeśli ideał zawiera jedynkę, to automatycznie zawiera wszystko, bo każdy element można uzyskać przez mnożenie przez jedynkę. Jeśli zawiera jakikolwiek element odwracalny, to też musi zawierać jedynkę (bo ideał jest zamknięty na mnożenie przez odwrotności).
+\end{intuition}
+
+\begin{fact}
+Dla $\mathcal{I} \trianglelefteqslant R$ następujące warunki są równoważne:
+\begin{enumerate}[label=\roman*)]
+    \item $\mathcal{I} = R$.
+    \item $1 \in \mathcal{I}$.
+    \item $\mathcal{I} \cap R^* \neq \emptyset$ (ideał zawiera element odwracalny).
+\end{enumerate}
+\end{fact}
+
+\begin{proof}
+\noindent
+\noindent (i) $\Rightarrow$ (ii): 
+
+Jeśli $\mathcal{I} = R$, to oczywiście $1 \in \mathcal{I}$. \\
+\noindent (ii) $\Rightarrow$ (iii):
+
+$1$ jest elementem odwracalnym, więc należy do przecięcia. \\
+\noindent (iii) $\Rightarrow$ (i):
+
+Niech $u \in \mathcal{I} \cap R^{\ast}$ (element odwracalny w $\mathcal{I}$). Wtedy $1 = u \cdot u^{-1} \in \mathcal{I}$ (bo $u \in \mathcal{I}$ i $u^{-1} \in R$). Dla dowolnego $r \in R$ mamy $r = r \cdot 1 \in \mathcal{I}$, więc $\mathcal{I} = R$.
+\end{proof}
+
+\subsection*{Ciała przez pryzmat ideałów}
+
+\begin{intuition}
+Ciała to pierścienie o maksymalnie prostej strukturze ideałów: nie mają żadnych „ciekawych” ideałów właściwych. Każdy niezerowy ideał musi zawierać element odwracalny (bo w ciele każdy niezerowy element jest odwracalny), a więc musi być całym ciałem. To algebraiczną wersją stwierdzenia, że w ciele „wszystko, co niezerowe, jest duże”.
+\end{intuition}
+
+\begin{fact}
+$R$ jest ciałem $\iff$ $R \neq \{0\}$ i wszystkie ideały $R$ są niewłaściwe (tj. tylko $\{0\}$ i $R$).
+\end{fact}
+
+\begin{proof}
+\noindent
+($\Rightarrow$) Niech $R$ będzie ciałem, $I \trianglelefteq R$, $I \neq \{0\}$. Istnieje $a \in \mathcal{I} \setminus \{0\}$. W ciele $a$ jest odwracalny, więc $1 = a \cdot a^{-1} \in \mathcal{I}$, zatem $\mathcal{I} = R$. \\
+($\Leftarrow$) Niech $a \in R \setminus \{0\}$. Rozważmy ideał główny $(a)$. Ponieważ $(a) \neq \{0\}$ (zawiera $a$), to z założenia $(a) = R$. Zatem $1 \in (a)$, więc istnieje $b \in R$ takie, że $1 = ab$, czyli $a$ jest odwracalne. Więc każdy niezerowy element jest odwracalny, czyli $R$ jest ciałem.
+\end{proof}
+
+\section{Algebra ideałów a relacje podzielności}
+
+\begin{remark}
+Istnieje naturalne odwzorowanie $R \longrightarrow \{\text{ideały } R\}$ dane przez $a \mapsto (a)$. Odwzorowanie to nie jest ani iniektywne (różne elementy mogą generować ten sam ideał), ani surjektywne (nie każdy ideał jest główny). Badanie jego własności prowadzi do pojęć podzielności i stowarzyszenia.
+\end{remark}
+
+\begin{fact}[Podzielność a inkluzja ideałów]
+Niech $a,b \in R$. Wtedy:
+\begin{enumerate}[label=\arabic*)]
+    \item $a \mid b \iff (a) \supseteq (b)$.
+    \item $a \sim b \iff (a) = (b)$.
+\end{enumerate}
+\end{fact}
+
+\begin{proof}
+\noindent
+\noindent $\left( \implies \right) $
+
+Załóżmy, że $a\mid b$. Pokażemy, że $\left( a \right) \supseteq \left( b \right) $. Jeśli $a\mid b$ to $b = ac$, dla pewnego  $c \in R$. Ustalmy dowolny element $p \in \left( b \right)$. Wtedy $p = br$, dla pewnego  $r\in R$. Ponieważ, $b = ac$, więc  $p = br = acr$.  $cr \in R$, więc $p \in \left( a \right) $. Zatem $\left( b \right) \subseteq \left( a \right) $.
+
+\noindent $\left( \impliedby \right) $ 
+
+Załóżmy, że $\left( a \right) \supseteq \left( b \right) $. Pokażemy, że $a\mid b$. Ponieważ $b\in \left( a \right) $, więc $b = ac$ dla pewnego $c\in R$, zatem $a\mid b$.
+
+2. Wynika bezpośrednio z punktu 1: $a \mid b$ daje $(a) \supseteq (b)$, a $b \mid a$ daje $(a) \subseteq (b)$, więc łącznie $(a) = (b)$. Odwrotnie, jeśli $(a) = (b)$, to mamy obie inkluzje, a zatem obie podzielności.
+\end{proof}
+
+\begin{intuition}
+Ten fakt jest kluczowy: pokazuje, że relacje podzielności między elementami można badać poprzez relacje inkluzji między generowanymi przez nie ideałami. To pierwszy krok w kierunku \emph{algebryzacji} arytmetyki – przejścia od rozważania elementów do rozważania ideałów.
+\end{intuition}
+
+\subsection*{Dziedziny ideałów głównych (PID) – pierścienie o prostej strukturze ideałów}
+
+\begin{definition}[PID – Principal Ideal Domain]
+Pierścień $R$ nazywamy:
+\begin{enumerate}[label=\arabic*)]
+    \item \textbf{pierścieniem ideałów głównych}, jeśli każdy ideał w $R$ jest główny (tj. generowany przez jeden element).
+    \item \textbf{dziedziną ideałów głównych} (PID – Principal Ideal Domain), jeśli jest pierścieniem ideałów głównych oraz jest dziedziną całkowitości (brak nietrywialnych dzielników zera).
+\end{enumerate}
+\end{definition}
+
+\begin{intuition}
+PID to pierścienie, w których teoria ideałów jest maksymalnie uproszczona: każdy ideał jest generowany przez pojedynczy element. To silne założenie ma daleko idące konsekwencje – w takich pierścieniach mamy do dyspozycji narzędzia podobne do tych, które znamy z $\mathbb{Z}$: istnieje największy wspólny dzielnik, zachodzi faktoryzacja na elementy nierozkładalne itp.
+\end{intuition}
+
+\subsection*{Przykłady i pierwsze obserwacje}
+
+\begin{eg}[Ciała są PID]
+Jeśli $K$ jest ciałem, to $K$ jest PID, bo:
+\[
+\left(\forall \mathcal{I} \trianglelefteqslant K \right)\left( \mathcal{I} = \{0\} = (0) \text{ lub } \mathcal{I} = K = (1) \right)  
+\]
+W ciele ideały są maksymalnie proste -- tylko trywialne.
+\end{eg}
+\begin{proof}
+	Niech $K$ będzie ciałem. Weźmy dowolny ideał $\mathcal{I} \trianglelefteqslant K$. 
+	\begin{itemize}
+		\item Przypadek $\mathcal{I} = \{0\} $ 
+
+			Ponieważ, $\{0\} = \left( 0 \right) $, więc $\mathcal{I}$ jest ideałem głównym.
+		\item Przypadek $\mathcal{I} \neq \{0\} $
+
+			Weźmy dowolny element $a \in \mathcal{I}$. Ponieważ $K$ jest ciałem, więc $a$ jest odwracalne. Ponieważ $a \in \mathcal{I}$ oraz $a^{-1} \in K$, więc ich iloczyn należy do $\mathcal{I}$. Zatem $1 = aa^{-1} \in \mathcal{I}$. Skoro $1 \in \mathcal{I}$, więc $\mathcal{I} = K$ oraz $\left( 1 \right) = \mathcal{I}$.
+	\end{itemize}
+\end{proof} 
+
+\begin{eg}[$\mathbb{Z}$ jest PID]
+
+	Niech $\mathcal{I} \trianglelefteqslant \mathbb{Z}$ oraz $\mathcal{I} \neq \{0\} $. Niech $n \in \mathcal{I}\setminus \{0\} $, będzie elementem o najmniejszej wartości bezwzględnej. Pokażemy, że $\left( n \right) = \mathcal{I}$.
+
+	Weźmy dowolny element $b \in \mathcal{I}\setminus \{0\} $. Dzieląc z resztą $b$ przez $n$ otrzymujemy
+	\[
+	b = qn + r\text{, gdzie } 0 \le r < \left| n \right| 
+	.\] 
+
+	Ponieważ $b \in \mathcal{I}$ oraz $qn \in \mathcal{I}$ więc ich różnica $r = b - qn$ również należy do $\mathcal{I}$. Minimalność $\left| n \right| $ implikuje nam, że $r = 0$. Zatem  $b = qn \in \left( n \right) $, więc $\mathcal{I} \subseteq \left( n \right) $. Na odwrót, ponieważ $n \in \mathcal{I}$, więc $\left( n \right) \subseteq \mathcal{I}$. Zatem $\left( n \right) = \mathcal{I}$.
+\end{eg}
+
+\begin{remark}
+Istotą powyższego dowodu jest możliwość \emph{dzielenia z resztą} względem funkcji $|\cdot|$. Ta obserwacja prowadzi nas do pojęcia \emph{normy euklidesowej} i \emph{pierścieni euklidesowych}.
+\end{remark}
+
+\subsection*{Pierścienie euklidesowe – algebraiczne uogólnienie algorytmu dzielenia}
+
+\begin{definition}[Norma euklidesowa i pierścień euklidesowy]
+Niech $R$ będzie pierścieniem.
+\begin{enumerate}[label=\arabic*)]
+    \item Funkcja $v: R \setminus \{0\} \to \mathbb{N}$ jest \textbf{normą euklidesową}, jeśli spełnia warunek:
+	    \[
+	    \left(\forall a\neq 0, b \in R \right)\left(\exists q,r \in R \right)\left(\left( b = qa + r \right)\text{ oraz } \left( v\left( r \right) < v\left( a \right) \text{ lub } r = 0 \right)    \right)
+	    .\] 
+    \item $R$ jest \textbf{pierścieniem euklidesowym}, jeśli istnieje norma euklidesowa na $R$.
+\end{enumerate}
+\end{definition}
+
+\begin{intuition}
+Norma euklidesowa to narzędzie, które pozwala mierzyć „wielkość” elementów w taki sposób, że zawsze możemy podzielić z resztą mniejszą (w sensie normy) od dzielnika. To dokładnie ta własność, która umożliwia zastosowanie algorytmu Euklidesa znajdowania NWD.
+\end{intuition}
+
+\begin{eg}[$\mathbb{Z}$ z wartością bezwzględną]
+Funkcja $|\cdot|: \mathbb{Z} \setminus \{0\} \to \mathbb{N}$ jest normą euklidesową – to klasyczne dzielenie z resztą.
+\end{eg}
+
+\begin{theorem}[Pierścienie euklidesowe są pierścieniami ideałów głównych.]
+Niech $v$ będzie normą euklidesową na $R$. Wówczas dla każdego niezerowego ideału $\mathcal{I} \trianglelefteqslant R$ istnieje $a \in \mathcal{I} \setminus \{0\}$ z minimalną normą i zachodzi $\mathcal{I} = (a)$.
+\end{theorem}
+\begin{proof}
+Niech $\mathcal{I} \neq \{0\}$. Wybierzmy $a \in \mathcal{I} \setminus \{0\}$ o minimalnej wartości $v(a)$ (taki istnieje, bo $v$ przyjmuje wartości w $\mathbb{N}$). Pokażemy, że $\mathcal{I} = (a)$.
+
+\noindent $\left( \subseteq \right) $
+
+Ponieważ $a \in \mathcal{I}$, więc dowolny elementy postaci $ra, ar$ dla  $r \in R$, są zawarte w $\mathcal{I}$, czyli $\left( a \right) \subseteq \mathcal{I}$
+
+\noindent $\left( \supseteq  \right) $ 
+
+Wybierzmy dowolne $b \in \mathcal{I}$. $R$ jest euklidesowy, zatem możemy przestawić $b$ w postaci $b = aq + r$, gdzie  $v\left( r \right) < v\left( a \right) $ lub $r = 0$. Ponieważ  $r = b - aq$ oraz  $b \in \mathcal{I}$ i $aq \in \mathcal{I}$, więc $r \in \mathcal{I}$. Ponadto z minimalność $v\left( a \right) $ wnioskujemy $r = 0$. Zatem $b = aq$, czyli  $b \in \left( a \right)  $, a co za tym idzie $\left( \mathcal{I} \right) \subseteq \left( a \right) $
+\end{proof}
+
+\begin{corollary}
+Każdy pierścień euklidesowy $R$ jest pierścieniem ideałów głównych. Ponadto jeśli $R$ jest dziedziną, to $R$ jest PID.
+\end{corollary}
+
+\section{Pierścienie wielomianów nad ciałem}
+
+\begin{theorem}[Pierścienie wielomianów nad ciałem są euklidesowe]
+Niech $K$ będzie ciałem. Wtedy:
+\begin{enumerate}[label=\arabic*)]
+    \item $K[X]$ jest euklidesowy względem stopnia wielomianu: $v(f) = \deg f$ (dla $f \neq 0$).
+    \item $K[X]$ jest PID.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+	Pokażemy, że funkcja stopnia wielomianu
+	\[
+	\text{deg} : K\left[ X \right]\setminus \{0\}  \to \N
+	,\] 
+	jest normą euklidesową w $K\left[ X \right] $.
+
+	Czyli, że dla dowolnych wielomianów $f,g \in K\left[ X \right] $, gdzie $g\neq 0$ istnieją wielomiany $q,r \in K\left[ X \right] $, takie że
+	\[
+	r = 0 \text{ lub } \text{deg}\left(r\right) < \text{deg}\left(g\right) 
+	.\] 
+
+	Przeprowadzimy dowód przez indukcję względem stopnia wielomianu.
+
+\noindent \textbf{Teza:} Dla ustalonego, niezerowego wielomianu $g \in K\left[ X \right] $ o stopniu $\text{deg}\left(g\right) = m$, chcemy dowieść że:
+\[
+\left(\forall f \in K\left[ X \right]  \right)\left(\exists q,r \in K\left[ X \right]  \right)\left( f = gq + r \land \left( r = 0 \text{ lub } \text{deg}\left(r\right) < m \right) \right)   
+.\] 
+
+Definiujemy własność $P\left( n \right)$ jako: ,,Twierdzenie zachodzi dla każdego wielomianu $f$ takiego, że $\text{deg}\left(f\right) \le n$''.
+
+\noindent \textbf{Baza indukcji:}  
+
+
+\end{proof} 
+
+\begin{proof}
+Dla dowodu (1): Dla danych $a \neq 0, b \in K[X]$ wykonujemy algorytm dzielenia wielomianów. Reszta ma stopień mniejszy niż $\deg a$ lub jest zerem.
+(2) wynika z (1) i ogólnego faktu, że pierścienie euklidesowe są PID.
+\end{proof}
+
+\begin{remark}
+W dowodzie dzielenia wielomianów kluczowe jest to, że wiodący współczynnik dzielnika $a$ jest odwracalny. W ciele jest to zawsze prawdą dla niezerowego wielomianu. To tłumaczy, dlaczego twierdzenie zachodzi dla $K[X]$, ale niekoniecznie dla $R[X]$, gdy $R$ nie jest ciałem.
+\end{remark}
+
+\subsection*{Twierdzenie Bézout'a – związek pierwiastków z podzielnością}
+
+\noindent Najpierw notatka na tematy podzielności wielomianów.
+
+Zauważmy, że w pierścieniu wielomianów $R\left[ X \right] $ (gdzie $R$ jest dowolnym pierścieniem przemiennym z jedynką) możemy wykonać dzielenie z resztą wielomianu $f$ przez $g$, jeśli współczynnik przy najwyższej potędze wielomianu $g$ jest \textbf{elementem odwracalnym} w pierścieniu $R$.
+
+Ponieważ w wielomianie monicznym (unormowanym) współczynnik ten wynosi $1$, a $1$ jest zawsze odwracalne, dzielenie przez wielomian moniczny (unormowany) jest zawsze wykonalne.
+
+\begin{theorem}[Algorytm dzielenia w pierścieniach ogólnych]
+	Niech $R$ będzie pierścieniem przemiennym z jedynką. Niech $f,g \in R\left[ X \right] $, przy czym $g\neq 0$ oraz niech współczynnik wiodący wielomianu $g$ będzie elementem odwracalnym w $R$ (należy do $R^{\ast} $ ). Wówczas istnieją jednoznacznie wyznaczone wielomiany $q,r \in R\left[ X \right] $ takie że
+	\[
+	f\left( X \right) = g\left( X \right) q\left( X \right) + r\left( X \right) 
+	.\] 
+	oraz
+	\[
+	\text{deg}\left(r\right) < \text{deg}\left(g\right) \text{ lub } r = 0
+	.\] 
+\end{theorem} 
+\begin{proof}
+	TODO PRZEANALIZOWAĆ TO BARDZIEJ W KONTEKŚCIE NOTATEK 
+\end{proof} 
+\begin{eg}
+	Jeśli $R$ jest ciałem, to każdy niezerowy element jest nieodwracalny. W tej sytuacji możemy każdy wielomian podzielić przez każdy niezerowy wielomian.
+
+	Inaczej wygląda sytuacja gdy $R$ nie jest ciałem. Rozważmy na przykład pierścień wielomianów $\mathbb{Z}\left[ X \right] $. Oczywiście $\mathbb{Z}$ nie jest ciałem, w szczególności $\mathbb{Z}\left[ X \right] $ nie jest pierścieniem euklidesowym -- nie możemy podzielić wielomianu $X^2$ przez wielomian $2X$ z resztą wewnątrz tego tego pierścienia (bo trzeba by wykonać dzielenie $1 : 2$).
+
+	Jednakże jest to wykonalne lokalnie dla specyficznej klasy dzielników -- tych z odwracalnym współczynnikiem wiodącym (w szczególności dla wielomianów monicznych). Przykładowo możemy podzielić w  $\mathbb{Z}\left[ X \right] $ wielomian $X^2$ przez wielomian $X+1$:
+	 \[
+	X^2 = \left( X+1 \right) \left( X-1 \right) + 1
+	.\] 
+\end{eg} 
+\begin{theorem}[Bézout]
+Niech $R$ będzie pierścieniem, $\alpha \in R$, $g \in R[X]$. Wtedy:
+\[
+g(\alpha) = 0 \iff (X - \alpha) \mid g \text{ w } R[X].
+\]
+\end{theorem}
+
+\begin{proof}
+($\Leftarrow$) Jeśli $g(X) = (X - \alpha)h(X)$, to $g(\alpha) = (\alpha - \alpha)h(\alpha) = 0$. \\
+($\Rightarrow$) Dzielimy $g$ przez $X - \alpha$ z resztą. Ponieważ dzielnik jest stopnia 1, reszta jest stała: $g(X) = (X - \alpha)q(X) + r$, $r \in R$. Podstawiając $X = \alpha$: $0 = g(\alpha) = 0 + r$, więc $r = 0$. Zatem $(X - \alpha) \mid g$.
+\end{proof}
+
+\subsection*{Pierścienie całkowite liczb całkowitych Gaussa}
+
+\begin{theorem}[{$\mathbb{Z}[i]$ jest euklidesowy}]
+Funkcja $N: \mathbb{Z}[i] \to \mathbb{N}$ dana wzorem $N(a+bi) = a^2 + b^2$ (norma) jest normą euklidesową na $\mathbb{Z}[i]$.
+\end{theorem}
+
+\begin{proof}
+Kluczowy pomysł: dla danych $\alpha, \beta \in \mathbb{Z}[i]$, $\beta \neq 0$, rozważamy iloraz $\alpha/\beta$ w ciele $\mathbb{Q}(i)$. Znajdujemy element $\gamma \in \mathbb{Z}[i]$ bliski temu ilorazowi i piszemy $\alpha = \beta\gamma + \rho$ z małą normą reszty.
+\end{proof}
+
+\begin{corollary}
+$\mathbb{Z}[i]$ jest PID.
+\end{corollary}
+\begin{proof}
+	Wystarczy pokazać, że $\mathbb{Z}\left[ i \right] $ jest dziedziną, ale $Z\left[ i \right] \underset{\scriptscriptstyle\text{podc}}{\subseteq} \mathbb{C}$, a $\mathbb{C}$ jest ciałem więc w szczególności dziedziną. Jeśli by istniał jakikolwiek dzielnik zera w $\mathbb{Z}\left[ i \right] $, to w szczególności istniałby w $\mathbb{C}$, co jest niemożliwe.
+\end{proof} 
+
+\subsection*{Bogactwo pierścieni całkowitych w ciałach liczbowych}
+
+\begin{remark}
+Rozważmy $d \in \mathbb{Z}$ bezkwadratowe (tzn niepodzielne przez kwadrat liczby pierwszej) i normę $N: \mathbb{Q}(\sqrt{d}) \to \mathbb{N}$ daną wzorem $N(n+m\sqrt{d}) = |n^2 - m^2d|$. Wyróżniamy pierścień całkowity $\mathcal{O}_d$:
+\[
+\mathcal{O}_d = \begin{cases}
+\mathbb{Z}\left[\frac{1+\sqrt{d}}{2}\right], & d \equiv 1 \pmod{4}, \\
+\mathbb{Z}[\sqrt{d}], & d \not\equiv 1 \pmod{4}.
+\end{cases}
+\]
+Oto kilka ciekawych faktów:
+\begin{enumerate}[label=\arabic*)]
+    \item Dla $d = -1$ norma pokrywa się z $N$ na $\mathbb{Z}[i]$ i jest euklidesowa.
+    \item Istnieje dokładnie 21 bezkwadratowych $d$ (zarówno ujemnych, jak i dodatnich), dla których $\mathcal{O}_d$ jest euklidesowy względem $N$.
+    \item Są pierścienie euklidesowe względem innych norm: $\mathbb{Z}[\sqrt{14}]$ jest euklidesowy, ale nie względem standardowej normy.
+    \item Są PID, które nie są euklidesowe: $\mathbb{Z}[\sqrt{-19}]$ (dowód trudny).
+    \item Są dziedziny, które nie są PID: $\mathbb{Z}[\sqrt{-5}]$ (udowodnimy później).
+    \item Problem klasyfikacji PID wśród $\mathcal{O}_d$ ma głębokie powiązania z teorią liczb, w tym z Wielkim Twierdzeniem Fermata (ostatnie twierdzenie Fermata).
+\end{enumerate}
+\end{remark}
+
+\begin{remark}
+Mamy łańcuch implikacji:
+\[
+K \text{ jest ciałem } \Rightarrow K[X] \text{ jest euklidesowy } \Rightarrow K[X] \text{ jest PID}.
+\]
+Ale uwaga: $\mathbb{Z}[X]$ nie jest nawet PID (zadanie do przemyślenia). To pokazuje, że własność bycia PID nie zawsze dziedziczy się w rozszerzeniach.
+\end{remark}
+

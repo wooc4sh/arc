@@ -1,0 +1,216 @@
+\chapter{Wykład VIII'}
+
+\section{Ciągi kompozycyjne i grupy rozwiązalne}
+
+\begin{context}
+	W tym rozdziale zajmiemy się ,,rozbieraniem'' grup na czynniki pierwsze. Zdefiniujemy ciągi podgrup, które pozwalają analizować strukturę grupy warstwa po warstwie. Dowiemy się, z jakich ,,cegieł'' (grup prostych) zbudowane są grupy skończone.
+\end{context}
+
+\subsection{Ciągi normalne i subnormalne}
+
+\begin{definition}[Ciąg subnormalny]
+	Skończony ciąg podgrup grupy $G$:
+	\[ G = G_0 \unrhd G_1 \unrhd G_2 \unrhd \ldots \unrhd G_n = \{e\} \]
+	nazywamy \textbf{ciągiem subnormalnym}.
+	
+	Grupy ilorazowe $\mfaktor{G_{i}}{G_{i+1}}$ nazywamy \textbf{faktorami} tego ciągu.
+	
+	Jeżeli dodatkowo każda podgrupa $G_i$ jest normalna w całej grupie $G$ (a nie tylko w poprzedniej $G_{i-1}$), to ciąg nazywamy \textbf{ciągiem normalnym}.
+\end{definition} 
+
+\begin{remark}
+	\begin{enumerate}[label=\arabic*)]
+		\item Różnica między ciągiem normalnym a subnormalnym jest istotna, ponieważ bycie podgrupą normalną nie jest przechodnie ($A \unlhd B \unlhd C \nRightarrow A \unlhd C$).
+		\item Przykład: $A_4 \unrhd V_4 \unrhd \{ \id, (1,2)(3,4) \} \unrhd \{\id\}$.
+		To jest ciąg subnormalny. Podgrupa $\{ \id, (1,2)(3,4) \}$ nie jest normalna w $A_4$, więc ciąg nie jest normalny.
+		\item Związek z szeregiem pochodnym:
+		\[ \mfaktor{G^{(i)}}{G^{(i+1)}} = \left( G^{(i)} \right)^{ab}. \]
+		Faktory szeregu pochodnego są zawsze abelowe.
+	\end{enumerate}
+\end{remark} 
+
+\begin{theorem}[Charakteryzacja rozwiązalności]
+	Następujące warunki są równoważne dla grupy $G$:
+	\begin{enumerate}[label=\arabic*)]
+		\item $G$ jest rozwiązalna (szereg pochodny zbiega do $\{e\}$).
+		\item Istnieje ciąg normalny w $G$ o faktorach abelowych.
+		\item Istnieje ciąg subnormalny w $G$ o faktorach abelowych.
+	\end{enumerate}
+\end{theorem} 
+\begin{proof}
+	\textbf{(1 $\implies$ 2):} Szereg pochodny $G \unrhd G' \unrhd G'' \dots$ jest ciągiem normalnym, a jego faktory są abelowe (z definicji komutanta).
+	\textbf{(2 $\implies$ 3):} Oczywiste (każdy ciąg normalny jest subnormalny).
+	\textbf{(3 $\implies$ 1):} Niech $G = G_0 \unrhd \dots \unrhd G_n = \{e\}$ będzie ciągiem o faktorach abelowych. Skoro $G_0/G_1$ abelowa, to $G' \subseteq G_1$. Indukcyjnie można pokazać, że $G^{(k)} \subseteq G_k$. Zatem $G^{(n)} \subseteq G_n = \{e\}$, więc grupa jest rozwiązalna.
+\end{proof} 
+
+\subsection{Własności grup rozwiązalnych}
+
+\begin{lemma}[Dziedziczenie rozwiązalności]
+	\begin{enumerate}[label=\alph*)]
+		\item Podgrupa grupy rozwiązalnej jest rozwiązalna.
+		\item Obraz homomorficzny grupy rozwiązalnej (w tym grupa ilorazowa) jest grupą rozwiązalną.
+	\end{enumerate}
+\end{lemma} 
+\begin{proof}
+	TODO (Wystarczy zauważyć, że $H^{(k)} \subseteq G^{(k)}$ oraz $\varphi(G)^{(k)} = \varphi(G^{(k)})$).
+\end{proof} 
+
+\begin{theorem}[O rozszerzeniach]
+	Niech $N \unlhd G$. Wtedy:
+	\[ G \text{ jest rozwiązalna} \iff N \text{ jest rozwiązalna oraz } \mfaktor{G}{N} \text{ jest rozwiązalna}. \]
+\end{theorem} 
+\begin{proof}
+	TODO (Dowód łączy szeregi pochodne $N$ i $G/N$ w jeden szereg dla $G$).
+\end{proof} 
+
+\begin{theorem}
+	Każda skończona $p$-grupa jest rozwiązalna.
+\end{theorem} 
+\begin{proof}
+	Dowód przez indukcję względem rzędu grupy.
+	Każda $p$-grupa ma nietrywialne centrum $Z(G) \neq \{e\}$ (Twierdzenie o klasach).
+	$Z(G)$ jest abelowa (więc rozwiązalna).
+	Iloraz $G/Z(G)$ jest mniejszą $p$-grupą, więc z założenia indukcyjnego jest rozwiązalna.
+	Z twierdzenia o rozszerzeniach, $G$ też jest rozwiązalna.
+\end{proof} 
+
+\section{Grupy Nilpotentne}
+
+Grupy nilpotentne to "bardzo grzeczne" grupy rozwiązalne. Są one "prawie" abelowe.
+
+\begin{definition}[Ciągi centralne i Nilpotencja]
+	\begin{enumerate}[label=\arabic*.]
+		\item \textbf{Dolny ciąg centralny:}
+		Definiujemy $G_{(0)} := G$ oraz $G_{(n+1)} := [G, G_{(n)}]$.
+		Mamy ciąg: $G = G_{(0)} \unrhd G_{(1)} \unrhd \dots$.
+		
+		\item \textbf{Górny ciąg centralny:}
+		Definiujemy $Z_0 := \{e\}$, $Z_1 := Z(G)$.
+		Ogólnie $Z_{n+1}$ definiujemy jako przeciwobraz centrum ilorazu:
+		\[ \mfaktor{Z_{n+1}}{Z_n} = Z\left( \mfaktor{G}{Z_n} \right). \]
+		
+		\item \textbf{Definicja:} Grupę $G$ nazywamy \textbf{nilpotentną}, gdy dolny ciąg centralny zbiega do $\{e\}$ (lub równoważnie: górny ciąg centralny dochodzi do $G$).
+	\end{enumerate}
+\end{definition}
+
+\begin{intuition}
+	Hierarchia bycia "porządną" grupą:
+	\[ \text{Cykliczna} \implies \text{Abelowa} \implies \text{Nilpotentna} \implies \text{Rozwiązalna} \]
+\end{intuition}
+
+\begin{fact}
+	\begin{enumerate}[label=\roman*)]
+		\item Każda skończona $p$-grupa jest nilpotentna.
+		\item Przykład: $S_3$ jest rozwiązalna, ale \textbf{nie jest} nilpotentna.
+		(Centrum $S_3$ jest trywialne, więc górny ciąg centralny stoi w miejscu: $Z_0 = \{e\}, Z_1 = \{e\}, \dots$).
+	\end{enumerate}
+\end{fact}
+
+\begin{eg}[Przykłady orzekania o rozwiązalności]
+	Korzystając z Twierdzeń Sylowa i Burnside'a:
+	\begin{enumerate}[label=\arabic*)]
+		\item Jeśli $|G| = p \cdot q$ ($p,q$ pierwsze), to $G$ jest rozwiązalna (niekoniecznie nilpotentna).
+		\item Jeśli $|G| = p^a q^b$ (Twierdzenie Burnside'a), to $G$ jest rozwiązalna.
+		\item Jeśli $|G| = 110 = 2 \cdot 5 \cdot 11$, to $G$ jest rozwiązalna.
+	\end{enumerate}
+\end{eg}
+
+
+\section{Grupy Proste i Twierdzenie Jordana-Höldera}
+
+\subsection{Grupa prosta}
+
+\begin{definition}[Grupa prosta]
+	Grupę $G \neq \{e\}$ nazywamy \textbf{prostą}, gdy nie posiada ona żadnych właściwych podgrup normalnych (różnych od $\{e\}$ i $G$).
+	\[ \forall \left( N \unlhd G \right) \left( N = \{e\} \lor N = G \right). \]
+\end{definition} 
+
+\begin{intuition}
+	Grupy proste to ,,atomy'' w teorii grup. Nie da się ich rozłożyć na mniejsze kawałki przy pomocy operacji ilorazu.
+\end{intuition}
+
+\textbf{Przykłady grup prostych:}
+\begin{enumerate}[label=\arabic*)]
+	\item $\mathbb{Z}_p$ dla $p$ pierwszego (jedyne abelowe grupy proste).
+	\item $A_n$ dla $n \ge 5$ (najmniejsza nieabelowa grupa prosta to $A_5$, rząd 60).
+	\item $PSL_{n}(\mathbb{K}) := SL_{n}(\mathbb{K}) / Z(SL_{n}(\mathbb{K}))$ (projekcyjne specjalne grupy liniowe - nieskończone serie grup prostych).
+\end{enumerate}
+
+\subsection{Ciąg kompozycyjny}
+
+Zmierzamy do odpowiedzi na pytanie: Na ile dowolną grupę skończoną można opisać przez grupy proste?
+
+\begin{definition}[Zagęszczenie i Równoważność]
+	Niech $\Sigma_1: G = H_0 \unrhd \dots \unrhd H_n = \{e\}$ oraz $\Sigma_2: G = N_0 \unrhd \dots \unrhd N_k = \{e\}$ będą ciągami subnormalnymi.
+	\begin{enumerate}[label=\arabic*.]
+		\item Ciąg $\Sigma_1$ nazywamy \textbf{zagęszczeniem} ciągu $\Sigma_2$, jeśli każdy wyraz $N_j$ występuje w ciągu $\Sigma_1$.
+		\item Ciągi są \textbf{równoważne}, gdy mają tę samą długość ($n=k$) oraz te same faktory (z dokładnością do permutacji i izomorfizmu):
+		\[ \exists \sigma \in S_n : \mfaktor{H_{i}}{H_{i+1}} \cong \mfaktor{N_{\sigma(i)}}{N_{\sigma(i)+1}}. \]
+	\end{enumerate}
+\end{definition} 
+
+\begin{theorem}[Lemat Zassenhausa / Lemat o Motylu]
+	Niech $A \unlhd B \le G$ oraz $C \unlhd D \le G$. Wtedy:
+	\[ \mfaktor{A(B \cap D)}{A(B \cap C)} \cong \mfaktor{C(D \cap B)}{C(D \cap A)}. \]
+	(To techniczny lemat potrzebny do dowodu twierdzenia Schreiera).
+\end{theorem}
+
+\begin{theorem}[Twierdzenie Schreiera]
+	Każde dwa ciągi subnormalne grupy $G$ mają równoważne zagęszczenia (subnormalne).
+\end{theorem} 
+
+\begin{definition}[Ciąg kompozycyjny]
+	Ciągiem \textbf{kompozycyjnym} grupy $G$ nazywamy taki ciąg subnormalny, którego faktory są \textbf{grupami prostymi}.
+	Oznacza to, że ciągu tego nie da się już zagęścić (nie da się wcisnąć żadnej podgrupy normalnej pomiędzy $G_i$ a $G_{i+1}$).
+\end{definition} 
+
+\textbf{Przykłady ciągów kompozycyjnych:}
+\begin{enumerate}[label=\arabic*.]
+	\item $\mathbb{Z}_4 \unrhd \{0,2\} \unrhd \{0\}$. Faktory: $\mathbb{Z}_2, \mathbb{Z}_2$.
+	\item $S_4 \unrhd A_4 \unrhd V_4 \unrhd \{ \id, (1,2)(3,4) \} \unrhd \{\id\}$. Faktory: $\mathbb{Z}_2, \mathbb{Z}_3, \mathbb{Z}_2, \mathbb{Z}_2$ (wszystkie proste).
+	\item $(\mathbb{Z}, +)$ nie ma ciągu kompozycyjnego (bo zawsze można zagęścić, np. $2\mathbb{Z} \unrhd 4\mathbb{Z} \dots$).
+\end{enumerate}
+
+\subsection{Twierdzenie Jordana-Höldera}
+
+\begin{theorem}[Twierdzenie Jordana-Höldera]
+	Niech $G$ będzie grupą skończoną. Wtedy:
+	\begin{enumerate}
+		\item $G$ posiada co najmniej jeden ciąg kompozycyjny.
+		\item Dowolne dwa ciągi kompozycyjne grupy $G$ są \textbf{równoważne}.
+	\end{enumerate}
+\end{theorem} 
+
+\begin{remark}[O klasyfikacji grup]
+	Twierdzenie to jest odpowiednikiem Jednoznaczności Rozkładu na Czynniki Pierwsze w arytmetyce.
+	\begin{itemize}
+		\item \textbf{Faktory proste} = Liczby pierwsze (atomy).
+		\item \textbf{Grupa} = Liczba złożona.
+	\end{itemize}
+	Dla każdej grupy skończonej zbiór faktorów prostych jest wyznaczony jednoznacznie (multi-zbiór).
+\end{remark}
+
+\begin{question}[Problem rozszerzeń]
+	Czy znajomość faktorów prostych jednoznacznie wyznacza grupę?
+	\textbf{NIE!} Złożenie tych samych "cegieł" może dać różne budowle.
+\end{question}
+
+\begin{eg}[Kontrprzykład dla problemu rozszerzeń]
+	Rozważmy dwie grupy rzędu 6: $G_1 = \mathbb{Z}_6$ oraz $G_2 = S_3$.
+	\begin{itemize}
+		\item Ciąg dla $\mathbb{Z}_6$: $\mathbb{Z}_6 \unrhd \{0, 2, 4\} \unrhd \{0\}$.
+		Faktory: $\mfaktor{\mathbb{Z}_6}{\mathbb{Z}_3} \cong \mathbb{Z}_2$ oraz $\mfaktor{\mathbb{Z}_3}{\{0\}} \cong \mathbb{Z}_3$.
+		
+		\item Ciąg dla $S_3$: $S_3 \unrhd A_3 \unrhd \{\id\}$.
+		Faktory: $\mfaktor{S_3}{A_3} \cong \mathbb{Z}_2$ oraz $\mfaktor{A_3}{\{\id\}} \cong \mathbb{Z}_3$.
+	\end{itemize}
+	Obie grupy mają \textbf{identyczne} faktory proste ($\mathbb{Z}_2, \mathbb{Z}_3$), ale nie są izomorficzne!
+	\begin{itemize}
+		\item $\mathbb{Z}_6$ jest abelowa (produkt prosty $\mathbb{Z}_2 \times \mathbb{Z}_3$).
+		\item $S_3$ jest nieabelowa (produkt półprosty $\mathbb{Z}_3 \rtimes \mathbb{Z}_2$).
+	\end{itemize}
+\end{eg}
+
+\begin{summary}
+	Twierdzenie Jordana-Höldera mówi nam, z czego składa się grupa, ale nie mówi dokładnie, jak te elementy są posklejane. To zadanie (Problem Rozszerzeń) jest znacznie trudniejsze.
+\end{summary}

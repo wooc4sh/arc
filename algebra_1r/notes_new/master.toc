@@ -1,0 +1,70 @@
+\babel@toc {polish}{}\relax 
+\contentsline {chapter}{\numberline {1}Wykład I}{4}{}%
+\contentsline {section}{\numberline {1.1}Działanie w zbiorze: łączność, przemienność, element neutralny. }{4}{}%
+\contentsline {section}{\numberline {1.2}Definicja grupy i przykłady: grupy dihedralne, grupy permutacji i grupy macierzy.}{4}{}%
+\contentsline {section}{\numberline {1.3}Przykłady działań.}{4}{}%
+\contentsline {chapter}{\numberline {2}Wykład II}{5}{}%
+\contentsline {section}{\numberline {2.1}Pojęcie podgrupy i przykłady. }{5}{}%
+\contentsline {section}{\numberline {2.2}Rząd elementu grupy.}{5}{}%
+\contentsline {section}{\numberline {2.3}Generatory grupy, grupy skończenie generowane.}{5}{}%
+\contentsline {section}{\numberline {2.4}Grupa dihedralna $D_{n}$}{5}{}%
+\contentsline {chapter}{\numberline {3}Wykład III.}{6}{}%
+\contentsline {section}{\numberline {3.1}Działania grup na zbiorach.}{6}{}%
+\contentsline {chapter}{\numberline {4}Wykład IV}{7}{}%
+\contentsline {section}{\numberline {4.1}Produkty półproste. Rozkłady na produkty półproste.}{7}{}%
+\contentsline {section}{\numberline {4.2}Klasyfikacja grup rzędu $\le $ 8.}{25}{}%
+\contentsline {chapter}{\numberline {5}Wykład V}{30}{}%
+\contentsline {section}{\numberline {5.1}Przypomnienie warstw i lagrnage}{30}{}%
+\contentsline {section}{\numberline {5.2}Motywacja: Odwracanie Twierdzenia Lagrange'a}{30}{}%
+\contentsline {section}{\numberline {5.3}p-grupy i ich działanie na zbiorach}{30}{}%
+\contentsline {section}{\numberline {5.4}Własności p-grup}{32}{}%
+\contentsline {section}{\numberline {5.5}Twierdzenia Sylowa}{33}{}%
+\contentsline {chapter}{\numberline {6}Wykład VI}{37}{}%
+\contentsline {section}{\numberline {6.1}Skończenie generowane grupy abelowe. Torsja.}{37}{}%
+\contentsline {chapter}{\numberline {7}Wykład VII}{41}{}%
+\contentsline {section}{\numberline {7.1}Grupy rozwiązalne. Komutator i Komutant}{41}{}%
+\contentsline {chapter}{\numberline {8}Wykład VIII}{43}{}%
+\contentsline {section}{\numberline {8.1}Ciąg kompozycyjny. Nilpotentna. Prosta.}{43}{}%
+\contentsline {subsection}{\numberline {8.1.1}Grupa prosta}{44}{}%
+\contentsline {chapter}{\numberline {9}Wykład IX: Grupy wolne i prezentacje}{47}{}%
+\contentsline {section}{\numberline {9.1}Motywacja: Czym jest grupa wolna?}{47}{}%
+\contentsline {section}{\numberline {9.2}Konstrukcja formalna grupy wolnej}{47}{}%
+\contentsline {chapter}{\numberline {10}Wykład X. Wstęp do Teorii Pierścieni.}{53}{}%
+\contentsline {section}{\numberline {10.1}Definicja Pierścienia}{53}{}%
+\contentsline {section}{\numberline {10.2}Elementy odwracalne ($R^*$)}{57}{}%
+\contentsline {section}{\numberline {10.3}Wstęp do teorii podzielności.}{59}{}%
+\contentsline {section}{\numberline {10.4}Wprowadzenie ciał.}{62}{}%
+\contentsline {chapter}{\numberline {11}Wykład XI: Wielomiany i Szeregi Formalne}{65}{}%
+\contentsline {section}{\numberline {11.1}Pierścień Szeregów Formalnych $R[[X]]$}{65}{}%
+\contentsline {section}{\numberline {11.2}Szeregi formalne i wielomiany wielu zmiennych}{67}{}%
+\contentsline {section}{\numberline {11.3}Homomorfizmy pierścieni}{70}{}%
+\contentsline {section}{\numberline {11.4}$R$-moduły — uogólnienie przestrzeni liniowych}{74}{}%
+\contentsline {chapter}{\numberline {12}Wykład XII. Wprowadzenie do ideałów.}{77}{}%
+\contentsline {section}{\numberline {12.1}Definicja Ideału}{77}{}%
+\contentsline {section}{\numberline {12.2}Konstrukcja i struktura pierścienia ilorazowego.}{78}{}%
+\contentsline {section}{\numberline {12.3}Generowanie ideałów}{79}{}%
+\contentsline {section}{\numberline {12.4}Algebra ideałów a relacje podzielności}{81}{}%
+\contentsline {section}{\numberline {12.5}Pierścienie wielomianów nad ciałem}{84}{}%
+\contentsline {chapter}{\numberline {13}Wykład XIII. Dalszy ciąg Ideałów. Pierścienie noetherowski. UFD}{87}{}%
+\contentsline {section}{\numberline {13.1}Pierścienie noetherowskie – kiedy każdy ideał jest „skończony”?}{87}{}%
+\contentsline {section}{\numberline {13.2}Ideały oraz twierdzenia o homomorfiźmie.}{89}{}%
+\contentsline {section}{\numberline {13.3}Rozkład na czynniki w dziedzinach całkowitości}{92}{}%
+\contentsline {section}{\numberline {13.4}Dziedziny z jednoznacznym rozkładem (UFD)}{95}{}%
+\contentsline {section}{\numberline {13.5}Pierścień ułamków (lokalizacja)}{98}{}%
+\contentsline {chapter}{\numberline {14}Wykład 14}{105}{}%
+\contentsline {section}{\numberline {14.1}Rozkład w pierścieniu wielomianów.}{108}{}%
+\contentsline {section}{\numberline {14.2}Kryterium Eisensteina}{113}{}%
+\contentsline {section}{\numberline {14.3}NWD i NWW}{114}{}%
+\contentsline {section}{\numberline {14.4}Algorytm Euklidesa}{115}{}%
+\contentsline {section}{\numberline {14.5}Chińskie twierdzenie o resztach.}{116}{}%
+\contentsline {section}{\numberline {14.6}Charakterystyka i pierścienie skończone.}{118}{}%
+\contentsline {section}{\numberline {14.7}Co to jest DVR (Discrete Valuation Ring)?}{119}{}%
+\contentsline {chapter}{\numberline {15}Notatka o homomorfizmach.}{122}{}%
+\contentsline {section}{\numberline {15.1}Grupy.}{122}{}%
+\contentsline {subsection}{\numberline {15.1.1}Pierwsze (Zasadnicze) twierdzenie o homomorfizmach grup.}{122}{}%
+\contentsline {subsection}{\numberline {15.1.2}Drugie twierdzenie o izomorfizmach grup.}{122}{}%
+\contentsline {subsection}{\numberline {15.1.3}Trzecie twierdzenie o izomorfizmach grup- twierdzenie o odpowiedniości podgrup.}{123}{}%
+\contentsline {section}{\numberline {15.2}Pierścienie.}{123}{}%
+\contentsline {subsection}{\numberline {15.2.1}Pierwsze (Zasadnicze) twierdzenie o homomorfizmach pierścieni.}{123}{}%
+\contentsline {subsection}{\numberline {15.2.2}Drugie twierdzenie o izomorfizmie dla pierścieni.}{123}{}%
+\contentsline {subsection}{\numberline {15.2.3}Trzecie twierdzenie o izomorfizmie dla pierścieni -- twierdzenie o odpowiedniości.}{124}{}%

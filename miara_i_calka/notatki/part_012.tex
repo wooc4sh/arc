@@ -1,0 +1,592 @@
+\section{Addytywne funkcje zbioru}
+
+\begin{definition}[Funkcja zbioru]
+	Dla ustalonej rodziny $\mathcal{R}$, funkcję $f: \mathcal{R}\rightarrow \R$ nazywamy \textbf{funkcją zbioru}(chcemy tu wyraźnie zaznaczyć, że argumenty tej funkcji mają inną naturę niż zmienne rzeczywiste).
+
+	Naturalne jest zakładać, że funkcja zbioru może także przyjmować wartość $\infty$, czyli rozważać funkcje
+	\[
+		\mathcal{R}\rightarrow \R_{+}^{\ast} = \R_{+} \cup \{\infty\} = [0,\infty)
+	.\] 
+	O symbolu $\infty$ zakładamy póki co tylko tyle, że dla każdego $x\in \R, x<\infty, x+\infty = \infty$ oraz $\infty + \infty = \infty$
+\end{definition} 
+
+\begin{definition}[Addytywna funkcja zbioru.]
+	Niech $\mathcal{R}\subseteq \mathcal{P}(X) $ będzie \textbf{pierścieniem zbiorów}. Funkcję $\mu : \mathcal{R}\rightarrow [0,\infty)$ nazywamy \textbf{addytywną funkcją zbioru(miarą skończenie addytywną)} jeżeli
+	\begin{enumerate}[label=\arabic*)]
+		\item $\mu \left( \O \right) = 0$.
+		\item Jeżeli $ A,B \in \mathcal{R}$ i $A\cap B= \O$ to $\mu \left(A\cup B  \right) = \mu \left( A \right) + \mu \left( B \right) $
+	\end{enumerate}
+\end{definition} 
+\begin{remark}[Dlaczego wymagamy, by $\mu(\emptyset) = 0$?]
+    Warunek ten jest konieczny, aby wykluczyć przypadek, w którym funkcja miary jest tożsamościowo równa nieskończoności. Rozważmy sam warunek addytywności:
+    \[
+        \mu(\emptyset) = \mu(\emptyset \cup \emptyset) = \mu(\emptyset) + \mu(\emptyset).
+    \]
+    W zbiorze wartości $[0, \infty]$ równanie $x = x + x$ posiada tylko dwa rozwiązania: $x=0$ lub $x=\infty$.
+    
+    Gdybyśmy dopuścili możliwość $\mu(\emptyset) = \infty$, to dla \textbf{dowolnego} zbioru $A \in \mathcal{R}$ otrzymalibyśmy:
+    \[
+        \mu(A) = \mu(A \cup \emptyset) = \mu(A) + \infty = \infty.
+    \]
+    Zatem, jeśli istnieje choć jeden zbiór o mierze skończonej, musi zachodzić $\mu(\emptyset) = 0$. Warunek ten pełni rolę ,,bezpiecznika'', który odrzuca trywialny przypadek miary stale równej $\infty$.
+\end{remark}
+
+\begin{lemma}
+	Niech $\mu $ będzie \textbf{addytywną funkcją } na pierścieniu $\mathcal{R}$ i niech $A,B, A_{n} \in  \mathcal{R}$ 
+	Wtedy
+	\begin{enumerate}[label=\alph*)]
+		\item Jeżeli $A\subseteq B$ to $\mu \left( A \right) \le \mu\left( B \right) $.
+		\item Jeżeli $A\subseteq B$ oraz $\mu \left( A \right) < \infty$, to $\mu \left( B\setminus A \right) = \mu\left( B \right) - \mu \left( A \right) $ 
+
+			(Założenie o skończoności $\mu\left( A \right) $, tzn $\mu\left( A \right) < \infty$, jest nam potrzebne, aby uniknąć m.in. Sytuacji $\infty - \infty$.)
+		\item Jeżeli zbiory $A_1,\ldots, A_{n}$ są \textbf{parami rozłączne,} to
+			\[
+			\mu \left(\bigcup_{i=1} ^{n} A_{i} \right)= \sum_{i=1}^{n} \mu \left( A_{i} \right)  
+			.\] 
+	\end{enumerate}
+\end{lemma} 
+\begin{proof}
+	Kolejno:
+	\begin{enumerate}[label=\alph*)]
+
+		\item Ponieważ $B = B\setminus A \cup A$, więc \[
+		\mu\left( B \right) = \mu\left( B\setminus A \right) + \mu\left( A \right) 
+		.\]  
+		$\mu\left( B\setminus A \right) \ge 0$, zatem $\mu\left( B \right) \ge  \mu\left( A \right) $ 
+		\item Tym samym rachunkiem jak w podpunkcie a) wnioskujemy, że $\mu\left( B\setminus A \right) = \mu\left( B \right) - \mu\left( A \right) $.
+		\item Ustalmy dowolne, parami rozłączne zbiory $A_1,\ldots, A_{n}$. Przeprowadzimy dowód przez indukcję względem liczby zbiorów $A_{n}$.
+
+			\textbf{Baza (n=2):} $\mu\left(\bigcap_{i=1} ^{2} A_{i}\right) = \mu\left(A_{1} \cup A_{2} \right) = \mu\left( A_1 \right) + \mu\left( A_2 \right) = \sum_{i=1}^{2} \mu\left( A_{i} \right) $ 
+
+			\textbf{Założenie:} Załóżmy, że dla dowolnego $n$
+			\[
+			\mu\left( \bigcup_{i=1} ^{n} \right) = \sum_{i=1}^{n} \mu\left( A_{i} \right) 
+			.\] 
+
+			\textbf{Krok indukcyjny:} 
+	                \begin{align*}
+				\mu\left( \bigcup_{i=1} ^{n+1} A_{i}\right) &= \mu\left( \left( \bigcup_{i=1} ^{n}A_{i} \right) \cup A_{n+1} \right)\\
+			&= \mu\left( \left( \bigcup_{i=1} ^{n}A_{i} \right) \cup A_{n+1} \right) \\  
+			&= \mu\left( \bigcup_{i=1} ^{n} \right) + \mu\left( A_{n+1} \right) \\
+			&= \sum_{i=1}^{n} \mu\left( A_{i} \right) + \mu\left( A_{n+1} \right) \tag{Założenie indukcyjne}\\
+			&= \sum_{i=1}^{n+1} \mu\left( A_{i} \right) 
+	                .\end{align*}	
+			
+			Zatem krok zachodzi. Na mocy zasady indukcji, dla dowolnego $n\in \N$, $\mu$ jest zamknięta na skończone i rozłączne sumy.
+	\end{enumerate}
+\end{proof} 
+\begin{definition}[Przeliczalnie addytywna funkcja zbioru.]
+	Jeżeli $\mu $ jest \textbf{addytywną funkcją} na pierścieniu $\mathcal{R}$ to mówimy, że $\mu $ jest \textbf{przeliczalnie addytywną funkcją zbioru zbioru} jeżeli dla dowolnych $R \in \mathcal{R}$ i \textbf{parami rozłącznych} $A_{n}\in \mathcal{R}$, takich że $R = \bigcup_{n=1} ^{\infty}A_{n}$ zachodzi wzór
+	\[
+	\mu \left( \bigcup_{n_1}^{\infty} A_{n}\right) = \sum_{n=1}^{\infty}\mu \left( A_{n} \right) 
+	.\] 
+\end{definition} 
+\begin{remark}
+	Powyższa równość zachodzi w sensie arytmetyki na zbiorze wartości $[0,\infty]$. Oznacza to, że możliwe są dwa przypadki: 
+\begin{itemize} 
+	\item Obie strony równania są skończone (wtedy szereg jest zbieżny do wartości $\mu\left( R \right) $). 
+	\item Obie strony są równe $\infty$ (wtedy szereg jest rozbieżny do $\infty$, a $\mu\left( R \right) $ nieskończona.). 
+\end{itemize}
+
+Wykluczona jest sytuacja, w której jedna strona jest skończona, a druga nieskończona.
+
+Dodatkowo zauważmy, że w powyższej definicji musieliśmy założyć, że nieskończona suma zbiorów jest elementem $\mathcal{R}$, jako że rodzina $\mathcal{R}$ jest założenia jedynie pierścieniem. 
+
+	Podsumowując powyższa definicja przeliczalnej addytywności jest dostosowana do potrzeb twierdzenia o przedłużaniu miary(jej motywację wyjaśnimy przy analizie tego twierdzenia). Naszym docelowym obiektem będzie miara, czyli przeliczalnie addytywna funkcja zbioru określona na $\sigma$-ciele. 
+\end{remark} 
+\begin{remark}[Warunkowy charakter $\sigma$-addytywności na pierścieniu]
+    Definicja \textbf{nie wymaga}, aby pierścień $\mathcal{R}$ był zamknięty na przeliczalne sumy (czyli nie musi być $\sigma$-pierścieniem). Warunek równości:
+    \[
+    \mu \left( \bigcup_{n=1}^{\infty} A_{n}\right) = \sum_{n=1}^{\infty}\mu \left( A_{n} \right)
+    \]
+    jest sformułowany jako implikacja, która uaktywnia się \textbf{tylko wtedy}, gdy nieskończona suma $\bigcup_{n=1}^{\infty} A_{n}$ przypadkiem (lub z konstrukcji) należy do $\mathcal{R}$.
+
+    \textbf{Przykład:}
+    Rozważmy pierścień $\mathcal{R}$ generowany przez przedziały $[a, b)$.
+    \begin{itemize}
+        \item Dla ciągu $A_n = [0, 1 - \frac{1}{n})$ suma wynosi $[0, 1)$. Ponieważ $[0, 1) \in \mathcal{R}$, definicja \textbf{wymaga}, aby $\mu([0, 1)) = \lim \sum \mu(A_n)$.
+        \item Dla ciągu $B_n = [\frac{1}{n}, 2)$ suma wynosi $(0, 2)$. Zbiór $(0, 2) \notin \mathcal{R}$. W tym przypadku definicja $\sigma$-addytywności nie stawia funkcji $\mu$ żadnych wymagań, ponieważ wynik wypadł poza dziedzinę funkcji.
+    \end{itemize}
+    Dzięki temu możemy badać własności miary na prostych strukturach (pierścieniach) zanim rozszerzymy je na całe $\sigma$-ciała.
+\end{remark}
+
+\begin{remark}[Logiczna struktura $\sigma$-addytywności na pierścieniu]
+    Niech $\mu$ będzie funkcją addytywną na pierścieniu $\mathcal{R}$. Mówimy, że $\mu$ jest \textbf{przeliczalnie addytywna}, jeśli dla każdego ciągu parami rozłącznych zbiorów $(A_n)_{n=1}^\infty \subseteq \mathcal{R}$ zachodzi następująca implikacja:
+    
+        \textbf{Warunek (Poprzednik implikacji):} \\
+        Jeżeli ich suma należy do pierścienia, tzn.
+        \[ \bigcup_{n=1}^{\infty} A_n \in \mathcal{R} \]
+        
+        \textbf{Wymóg (Następnik implikacji):} \\
+        To wtedy funkcja musi "umieć to policzyć":
+        \[ \mu \left( \bigcup_{n=1}^{\infty} A_n \right) = \sum_{n=1}^{\infty} \mu(A_n) \]
+    
+    \noindent\textbf{Komentarz:} Jeśli warunek nie jest spełniony (suma wypada poza pierścień), definicja nie stawia funkcji żadnych wymagań (implikacja jest prawdziwa, bo poprzednik jest fałszywy).
+\end{remark}
+
+\begin{lemma}[$\sigma$-podaddytwność]
+	Jeśli $\mu $ jest \textbf{przeliczalnie addytywną funkcją} na pierścieniu $R$ to dla $R\in \mathcal{R}$ i \textbf{dowolnego ciągu (niekoniecznie rozłącznego)}  $A_{n}\in \mathcal{R}$, takich że $\bigcup_{n=1} ^{\infty}A_{n} = R$ zachodzi nierówność:
+	\[
+	\mu\left( R \right) = \mu \left( \bigcup_{n=1} ^{\infty}A_{n} \right) \le \sum_{n=1}^{\infty} \mu \left( A_{n} \right) 
+	.\] 
+	Mówimy wtedy, że funkcja $\mu$ jest  $\sigma$\textbf{-podaddytywna} 
+\end{lemma} 
+\begin{proof}
+	Definiujemy układ zbiorów rozłącznych $B_{n}$, których suma nieskończona jest równa $R$:
+	 \begin{itemize}
+		 \item $B_1 = A_1$.
+		 \item $B_2 = A_2\setminus A_1$.
+		 \item $B_{3} = A_{3} \setminus \left( A_2\cup A_1 \right) $.
+		 \item $\vdots$
+		 \item  $B_{n} = A_{n}\setminus \left(\bigcup_{i=1} ^{n-1}A_{i}\right)$
+	\end{itemize}
+	Istotnie układ $B_{n}$ jest rozłączny parami oraz $\bigcup_{n=1} ^{\infty}B_{n} = R$.(Podobny dowód został już wcześniej przeprowadzony).
+
+	Następnie zauważmy:
+	\[
+	\mu\left( R \right) = \mu\left( \bigcup_{n=1} ^{\infty}B_{n} \right) \overset{\sigma\text{-add}}{=} \sum_{n=1}^{\infty} \mu\left( B_{n} \right) 
+	.\] 
+	Ponadto zauważmy, że dla dowolnego $n\in \N$, jest $B_{n}\subseteq A_{n}$, a co za tym idzie $\mu\left( B_{n} \right) \le  \mu\left( A_{n} \right) $. Indukcyjnie otrzymujemy, że $\sum_{n = 1}^{\infty} \mu\left( B_{n} \right) \le  \sum_{n = 1}^{\infty} \mu\left( A_{n} \right) $.
+
+	Zatem 
+	\[
+	\mu\left( R \right) \le \sum_{n = 1}^{\infty} \mu\left( A_{n} \right) 
+	.\] 
+\end{proof} 
+\begin{corollary}
+	\textbf{$\sigma-$ addytywność} (mocne żądanie równości dla zbiorów rozłącznych) pociąga za sobą \textbf{$\sigma-$ podaddytywność} (nierówność dla zbiorów dowolnych).
+\end{corollary}
+
+\begin{theorem}[$\sigma$-nadaddyywność]
+	\textbf{Założenia:}
+	\begin{itemize}
+		\item $\mu$ jest funkcją zbioru na pewnym pierścieniu/ciele $\mathcal{R}$ która jest addytywna (skończenie).
+		\item $R $ jest sumą parami rozłącznego ciągu zbiorów $A_{n}\in \mathcal{R}$ i należy o $\mathcal{R}$ :
+			 \[
+			R = \bigcup_{n=1} ^{\infty}A_{n} \text{ oraz } R \in \mathcal{R}
+			.\] 
+	\end{itemize}
+
+	\textbf{Teza ($\sigma$-nadaddytywność):} 
+
+	Dla dowolnego ciągu \textbf{rozłącznych} zbiorów $\left( A_{n} \right)_{n=1}^{\infty}$, zachodzi
+	\[
+	\mu\left( \bigcup_{n=1} ^{\infty}A_{n} \right) \ge \sum_{n = 1}^{\infty} \mu\left( A_{n} \right) 
+	.\] 
+\end{theorem} 
+\begin{proof}
+	Ustalmy dowolną funkcę $\mu$ i ciąg zbiorów $\left( A_{n} \right)_{n=1}^{\infty} $ spełniające założenie twierdzenia.
+
+	W celu klarowności, podzielimy rozumowanie na kroki.
+	\begin{enumerate}[label=\arabic*.]
+		\item \textbf{Skończona addytywność:}
+
+			Ustalmy dowolną liczbę naturalną $N\in \N$. Z założenia o skończonej addytywności dla zbiorów rozłącznych mamy:
+			\[
+			\mu\left( \bigcup_{n=1} ^{N}A_{n} \right) = \sum_{n = 1}^{N} \mu\left( A_{n} \right) 
+			.\] 
+		\item \textbf{Inkluzja i monotoniczność:} 
+
+			Zauważmy relację zawierania się zbiorów(suma skończona zawiera się w sumie skończonej:
+			\[
+			\bigcup_{n=1} ^{N}A_{n}\subseteq R
+			.\] 
+
+			Ponieważ $\mu$ jest funkcją skończenie addytywną, więc jest monotoniczna ($A\subseteq B \implies \mu\left( A \right) \le \mu\left( B \right) $ ). Stosująć monotoniczność do powyższej (2.) inkluzji otrzymujemy:
+			\[
+			\mu\left( \bigcup_{n=1} ^{N} A_{n}\right) \le \mu\left( R \right) 
+			.\] 
+		\item \textbf{Połączenie wyników:}
+
+			Łącząc wyniki z 1. i 2. otrzymujemy nierówność dla dowolnie ustalonego $N$:
+			 \[
+			\sum_{n = 1}^{N} \mu\left( A_{n} \right) \le \mu\left( R \right) 
+			.\] 
+		\item \textbf{Przejście graniczne:}
+
+			Powyższa nierówność (4.) jest prawdziwa dla każdego $N\in \N$. Po lewej mamy $S_{N}$- sumę częściową, a po prawej konkretną liczbę $M=\mu\left( R \right) $, która jest stałą- nie zależy od wyboru $N$.
+
+			Z własności granic ciągów liczbowych: Jeśli ciąg sum częściowych ($S_{N}$ ) jest ograniczony z góry przez stałą $M$ (czyli $S_{N}\le M$ dla każdego $N$), to granica tego ciągu (czyli suma szeregu) jest również ograniczona przez M.
+
+			Przechodząc z $N \to \infty$:
+			\[
+			\lim_{N \to \infty} \sum_{n=1}^{N} \mu\left( A_{n} \right) \le \mu\left( \bigcup_{n=1} ^{\infty} A_{n}\right) 
+			.\] 
+			Z definicji sumy szeregu:
+			\[
+			\sum_{n = 1}^{\infty} \mu\left( A_{n} \right) \le \mu\left( \bigcup_{n=1} ^{\infty}A_{n} \right) 
+			.\] 
+
+			Finalnie
+			\[
+			\mu\left( R \right) \ge \sum_{n = 1}^{\infty} \mu\left( A_{n} \right) 
+			.\] 
+	\end{enumerate}
+\end{proof} 
+\begin{remark}
+	Podczas powyższych rozważań, uwagę przykuło to, czy możemy rozważać $\mu\left( \bigcup_{n=1} ^{\infty} A_{n}\right) $ jeśli funkcja $\mu$ jest ,tylko' skończenie addytywna? Dokładniej mamy na myśli to, że argumentem $\mu$ jest przeliczalna suma.
+
+Aby temu sprostać dodajemy założenie, że $\bigcup_{n=1} ^{\infty}A_{n} \in \mathcal{R}$. Wtedy z tego, że $\mu$ jest określona $\mathcal{R}$, zapis $\mu\left( \bigcup_{n=1}^{\infty}A_{n} \right) $ ma sens, bo faktycznie $\mu$ jest określona dla $\bigcup_{n=1} ^{\infty}A_{n}$.
+	
+Należy poczynić tu jeszcze uwagę, że od  $\mu$ wymagamy jedynie aby była skończenie addytywna na pierścieniu $\mathcal{R}$. Wtedy, jeśli mamy rozłączny ciąg zbiorów $\left( A_{n} \right)_{n=1}^{\infty} \in \mathcal{R}$, taki, że jego suma $\bigcup_{n=1}^{\infty}\in \mathcal{R}$, skończona addytywność $\mu$ pociąga za sobą $\sigma$-nad addytywność, czyli
+ \[
+\mu\left( \bigcup_{n=1}^{\infty}A_{n} \right) \ge \sum_{n = 1}^{\infty} \mu\left( A_{n} \right) 
+.\] 
+\end{remark} 
+\begin{question}
+	Dlaczego \textbf{$\sigma$-addytywność} to mocny warunek? Mocniejszy od $\sigma$-nad addytywności.
+\end{question}
+
+	$\sigma$-addytywność nie jest darmowa. Nie wynika z skończonej addytywności.
+	\begin{eg}
+		 Niech $X = \N$ oraz $\mathcal{R} = \mathcal{P}(\N) $.
+	\begin{itemize}
+		\item \textbf{Definicja miary:} 
+			\begin{itemize}
+				\item $\mu\left( A \right) = 0$, jeśli $A$ jest skończony.
+				\item $\mu\left( A \right) = \infty$, jeśli $A$ jest nieskończony.
+			\end{itemize}
+		\item \textbf{Sprawdzenie:} Ta miara jest \textbf{skończenie addytywna}:
+			\begin{itemize}
+				\item $\mu\left( \O \right) = 0$.
+				\item Weźmy dwa dowolne zbiory $A, B \in \mathcal{P}(\N) $ i załóżmy, że $A\cap B = \O$, wtedy mamy przypadki:
+					\begin{itemize}
+						\item Jeśli $A,B$ są zbiorami skończonymi to ich suma $A\cup B$ również, czyli
+							 \[
+							\mu\left( A\cup B \right) = 0 = 0 + 0 = \mu\left( A \right) + \mu\left( B \right) 
+							.\] 
+						\item Jeśli $A$ jest zbiorem skończonym, a $B$ jest zbiorem skończonym, to ich suma $A\cup B$ jest nieskończona, czyli
+					 		\[
+							\mu\left( A\cup B \right) = \infty = 0 + \infty = \mu\left( A \right) + \mu\left( B \right) 							   .\]
+						\item W ostatnim przypadku, gdy $A$ i $B$ są zbiorami nieskończonymi wtedy ich suma $A\cup B$ również jest nieskończona, czyli
+							\[
+							\mu\left( A\cup B \right) = \infty = \infty + \infty = \mu\left( A \right) + \mu\left( B \right) 
+							.\] 
+					\end{itemize}
+			\end{itemize}
+		\item \textbf{Czy jest $\sigma$-addytywna?}
+
+			Otóż nie. Spójrzmy
+			\begin{itemize}
+				\item Weźmy zbiory(singletony) $A_{n} = \{n\} $.
+				\item Suma $R = \bigcup_{n=1} ^{\infty}A_{n} = \N$
+				\item \textbf{Lewa strona(z definicji):} $\mu\left( R \right) = \mu\left( \N \right) = \infty$.
+				\item \textbf{Prawa strona(z definicji):} $\sum_{n=1}^{\infty} \mu\left( A_{n} \right) = \sum_{n=1}^{\infty} \mu\left( \{n\}  \right) = \sum_{n=1}^{\infty} 0= 0$ 
+				\item Mamy $\infty \neq  0$
+			\end{itemize}
+	\end{itemize}
+	Ta miara "nie widzi", że przeliczalna suma zbiorów o mierze zero może dać zbiór o mierze nieskończonej.
+	\end{eg} 
+
+\begin{definition}[Ciągłość z góry i ciągłość z dołu. Ciągłość na zbiorze.]
+	Niech
+	\begin{itemize}
+		\item $\mathcal{R}$ będzie pierścieniem zbiorów.
+		\item $\mu$ addytywną funkcją zbioru określoną na pierścieniu $\mathcal{R}$.
+		\item $\left( A_{n} \right)_{n=1}^{\infty}$ ciągiem zbiorów $A_{n}$, takim że $\left( A_{n} \right)_{n=1}^{\infty}\in \mathcal{R}$.
+	\end{itemize}
+	Przy tych założeniach definiujemy następujące pojęcia:
+        \begin{enumerate}[label=\arabic*.]
+		\item \textbf{Ciągłość z dołu}
+
+			Jeżeli $A_{n}\uparrow A$ oraz $A\in \mathcal{R}$ to mówimy, że funkcja $\mu$ jest \textbf{ciągła z dołu} jeśli
+			\[
+			\lim_{n \to \infty}\mu\left( A_{n} \right) = \mu\left( A \right) 
+			.\] 
+		\item \textbf{Ciągłość z góry} 
+
+			Jeżeli $A_{n}\downarrow A$ oraz $A\in \mathcal{R}$ to mówimy, że funkcja $\mu$ jest \textbf{ciągła z góry} jeśli
+			\[
+			\lim_{n \to \infty}\mu\left( A_{n} \right) = \mu\left( A \right) 
+			.\] 
+		\item \textbf{Ciągłość z dołu na zbiorze B} 
+
+			Jeżeli $A_{n}\uparrow B$ oraz $B\in \mathcal{R}$ to mówimy, że funkcja $\mu$ jest \textbf{ciągła z dołu na zbiorze B} jeśli
+			\[
+			\lim_{n \to \infty}\mu\left( A_{n} \right) = \mu\left( B \right) 
+			.\] 
+		\item \textbf{Ciągłość z góry na zbiorze B} 
+
+			Jeżeli $A_{n}\downarrow B$ oraz $B\in \mathcal{R}$ to mówimy, że funkcja $\mu$ jest \textbf{ciągła z góry na zbiorze B} jeśli
+			\[
+			\lim_{n \to \infty}\mu\left( A_{n} \right) = \mu\left( B \right) 
+			.\] 
+        \end{enumerate}
+
+\end{definition} 
+\begin{theorem}[Inny sposób wyrażania przeliczalnej addytywnosci.]
+	Addytywna funkcja zbioru $\mu $ na pierścieniu $\mathcal{R}$ jest przeliczalnie addytywna wtedy i tylko wtedy kiedy jest ciągła z dołu,
+\end{theorem} 
+\begin{proof}
+Niech $\mathcal{R}$ będzie pierścieniem oraz $\mu$ funkcją skończenie addytywną określoną na $\mathcal{R}$. 
+$(\bm{ \implies } )$
+
+Załóżmy, że $\mu$ jest $\sigma$-addytywna. Ustalmy dowolny ciąg $\left( A_{n} \right)_{n=1}^{\infty} \in \mathcal{R}$, taki że $A_{n}\uparrow A$ oraz $A\in \mathcal{R}$. Rozdzielmy ciąg $A_n$ definiując \[
+B_{n} = A_{n}\setminus \bigcup_{k<n} A_{n}
+.\] 
+Mając $A = \bigcup_{n=1} ^{\infty}A_{n} = \bigcup_{n=1}^{\infty}B_{n}$ zauważmy
+\begin{align*}
+	\mu\left( A \right) &= \mu\left( \bigcup_{n=1} ^{\infty} B_{n}\right)\tag{własność $B_{n}$} \\
+	\mu\left( \bigcup_{n=1} ^{\infty} B_{n}\right)  &= \sum_{n = 1}^{\infty} \mu\left( B_{n} \right) \tag{$\sigma$-addytwność $\mu$} \\
+	\sum_{n = 1}^{\infty} \mu\left( B_{n} \right) &= \lim_{N \to \infty} \sum_{n = 1}^{N} \mu\left( B_{n} \right)\tag{definicja nieskończonego szeregu} \\
+	      \lim_{N \to \infty} \sum_{n = 1}^{N} \mu\left( B_{n} \right) &= \lim_{N \to \infty}  \mu\left( \bigcup_{n=1}^{N}B_{n} \right) \tag{addytywność $\mu$}\\
+	      \lim_{N \to \infty}  \mu\left( \bigcup_{n=1}^{N}B_{n} \right)  &= \lim_{N \to \infty} \mu\left( \bigcup_{n=1} ^{N}A_{n} \right)\tag{własność $B_{n}$} \\
+	       \lim_{N \to \infty} \mu\left( \bigcup_{n=1} ^{N}A_{n} \right)&= \lim_{N \to \infty} \mu\left( A_{N} \right) \tag{$A_{n}$ jest rodziną wstępującą}
+.\end{align*}	
+
+$\bm{ (\impliedby) } $
+
+Załóżmy, że $\mu$ jest ciągła z dołu. Ustalmy dowolny \textbf{rozłączny} ciąg $\left( A_{n} \right)_{n=1}^{\infty} \in \mathcal{R}$, taki że $A_{n}\uparrow A$ oraz $A\in \mathcal{R}$. 
+
+Rozważmy ciąg sum częściowych $S_{N} = \bigcup_{n=1} ^{N}A_{n}$. Ciąg ten jest wstępujący oraz jego granica to $A = \bigcup_{n=1} ^{\infty}A_{n}$. Czyli $S_{N}\uparrow A$.
+
+Zauważmy, że
+\begin{align*}
+	\mu\left( A \right) &= \lim_{N \to \infty} \mu\left( S_{N} \right) \tag{ciągłość z dołu} \\
+	\lim_{N \to \infty} \mu\left( S_{N} \right) &= \lim_{N \to \infty} \mu\left( \bigcup_{n=1} ^{N}A_{n} \right) \tag{definicja} \\  
+	\lim_{N \to \infty} \mu\left( \bigcup_{n=1} ^{N}A_{n} \right) &= \lim_{N \to \infty} \sum_{n=1}^{N} \mu\left( A_{n} \right) \tag{addytywność $\mu$ oraz rozłączność $A_{n}$} \\
+	\lim_{N \to \infty} \sum_{n=1}^{N} \mu\left( A_{n} \right) &= \sum_{n=1}^{\infty} \mu\left( A_{n} \right) \tag{definicja $\sum_{n = 1}^{\infty}$} 
+.\end{align*}
+\end{proof} 
+\begin{theorem}[Równoważne warunki $\sigma$-addytywności dla funkcji addytywnej]
+	Dla addytywnej funkcji zbioru $\mu $ na pierścieniu $\mathcal{R}$, przyjmującej tylko wartości skończone następujące warunki są równoważne(gdzie zawsze $A_{n}, A \in \mathcal{R}$ )
+	\begin{enumerate}[label=\alph*)]
+		\item $\mu $ jest przeliczalnie addytywna.
+		\item $\mu $ jest ciągła z góry, to znaczy $\lim_{n}\mu\left( A_{n} \right) = \mu\left( A \right)$ jeżeli $A_{n}\downarrow A$.
+		\item $\mu $ jest ciągła z góry na zbiorze $\O$, czyli $\lim_{n}\mu\left( A_{n} \right) = 0 $ jeżeli $A_{n}\downarrow \O$
+	\end{enumerate}
+\end{theorem} 
+\begin{proof}
+	Udowodnimy ciąg implikacji: $a) \implies b) \implies c) \implies a)$.
+
+\noindent 	Niech $\mathcal{R}$ będzie pierścieniem, a $\mu$ funkcją addytywną określoną na tym pierścieniu. 
+
+\noindent \textbf{$\bm{ a) \implies b) } $} 
+
+	\textbf{Założenie:}$\mu$ jest $\sigma$-addytywna. 
+
+	\textbf{Cel:} $\mu$ jest ciągła z góry.
+
+	Ustalmy dowolny ciąg zstępujący $\left( A_{n} \right)_{n=1}^{\infty}\in \mathcal{R}$, taki że $A_{n}\downarrow A$, czyli że $\bigcap_{n=1} ^{\infty} = A$. 
+
+	Rozdzielimy teraz ciąg $A_{n}$ definiując ciąg $B_{n}$ w sposób następujący:
+	\[
+	B_{n} := A_{n} \setminus A_{n+1}
+	.\] 
+	Elementy ciągu $B_{n}$ są oczywiście parami rozłączne. Co więcej 
+	 \[
+	\bigcup_{n=1} ^{\infty} B_{n} = A_{1} \setminus A = A_{1} \setminus \bigcap_{n=1}^{\infty}A_{n}
+	.\] 
+\noindent \textbf{Dowód:}
+
+Pokażemy obustronne zawieranie.
+
+\noindent $ \bm{\bigcup_{n=1} ^{\infty} B_{n} \subseteq    A_{1} \setminus A}$
+
+	Ustalmy dowolny $x\in \bigcup_{n=1}^{\infty}B_{n}$. Z definicji sumy nieskończonej istnieje $N\in \N $, takie że $x\in B_{N} = A_{N}\setminus A_{N+1}$. Ponieważ $A_{n}$ jest zstępującą rodziną zbiorów, więc skoro $x\in A_{N}$ to $x\in A_1$. Ponieważ $x\not\in  A_{N+1}$, więc $x\not\in \bigcap_{n=1}^{\infty}= A $. Zatem $x \in A_{1}\setminus \bigcap_{n=1} ^{\infty}$.
+
+	\noindent $ \bm{\bigcup_{n=1} ^{\infty} B_{n}  \supseteq    A_{1} \setminus A}$
+
+	Ustalmy dowolnego $x\in A_{1}\setminus A$. Zatem $x\in A_1$ oraz $x\not\in A$. Ponieważ $x\not\in A$ oraz $A_{n}$ jest zstępującą rodziną zbiorów, więc istnieje najmniejsze takie $N\in \N$, które spełnia $x\in A_{N}$ oraz $x\not\in A_{N+1}$. Czyli z definicji ciągu $B_{n}$, $x\in A_{N}\setminus A_{N+1} = B_{N}$. Zatem $x\in \bigcup_{n=1} ^{\infty}B_{n}$
+
+	\noindent Zatem $\bigcup_{n=1}^{\infty} B_{n} = A_1\setminus A$. Ponieważ rodzina zbiorów $B_{n}$ jest parami rozłączna oraz korzystając z założenia o $\sigma $-addytywności $\mu$ mamy
+	\[
+	\mu\left( A_1\setminus A \right) = \mu\left(\bigcup_{n=1}^{\infty}B_{n}  \right) = \sum_{n = 1}^{\infty} \mu\left( B_{n} \right) 
+	.\] 
+	Z definicji nieskończonego szeregu mamy
+	\[
+         \sum_{n = 1}^{\infty} \mu\left( B_{n} \right) = \lim_{N \to \infty} \sum_{n = 1}^{N} \mu\left( B_{n} \right) 
+	.\] 
+	Rozpisując szereg po prawej stronie powyższej równości mamy:
+	\[
+        \lim_{N \to \infty} \sum_{n = 1}^{N} \mu\left( B_{n} \right) = \lim_{N \to \infty} \sum_{n = 1}^{N} \mu\left( A_{n}\setminus A_{n+1} \right) 
+	.\] 
+        Korzystając z $\sigma $-addytywności $\mu$ oraz rozłączności rodziny zbiorów $B_{n}$, otrzymujemy sumę teleskopową:
+	\begin{align*}
+		\lim_{N \to \infty} \sum_{n = 1}^{N} \mu\left( A_{n}\setminus A_{n+1} \right) &= \lim_{N \to \infty} \sum_{n = 1}^{N} \mu\left( A_{n}\right) - \mu\left(A_{n+1} \right) \\ 
+											      &= \lim_{N \to \infty} \left(  \mu\left( A_1 \right) - \mu\left( A_2 \right) \right) + \left( \mu\left( A_2 \right) - \mu\left( A_3 \right)  \right) + \ldots + \left( \mu\left( A_{N} \right) - \mu\left( A_{N+1} \right)  \right)   
+	.\end{align*}
+	Po redukcji elementów w powyższej sumie otrzymujemy
+	\[
+	 \lim_{N \to \infty} \sum_{n = 1}^{N} \mu\left( A_{n}\setminus A_{n+1} \right) = \lim_{N \to \infty} \mu\left( A_1 \right) - \mu\left( A_{N+1} \right) 
+	.\] 
+	Z powyższych równości wynika
+	\[
+	\mu\left( A_1 \setminus A\right) = \lim_{N \to \infty} \left( \mu\left( A_1 \right)  - \mu\left( A_{N+1} \right) \right) 
+	.\] 
+	Zauważmy, że rodzina zbiorów $A_{n}$ jest zstępująca, zetem $A_1 \supseteq A = \bigcap_{n=1}^{\infty}A_{n}$, czyli $\mu$ jako $\sigma $-addytywna funkcja zbioru, gwarantuje nam to, że $\mu\left( A_1\setminus A \right)= \mu\left( A_1 \right) - \mu\left( A \right)  $.
+
+	Zatem
+	\[
+	\mu\left( A_1 \right) - \mu\left( A \right)  = \mu\left( A_1\setminus A \right) = \lim_{N \to \infty} \left( \mu\left( A_1 \right) - \mu\left( A_{N+1}\right)\right)
+	.\] 
+
+	Z własności granic wnioskujemy:
+	\[
+	\lim_{N \to \infty} \left( \mu\left( A_1 \right) - \mu\left( A_{N+1} \right)  \right) = \mu\left( A_1 \right) - \lim_{N \to \infty} \mu\left(A_{N+1} \right)  = \mu\left( A_1 \right) - \lim_{N \to \infty} \mu\left( A_{N}  \right) 
+	.\] 
+
+	Czyli
+	\[	
+	\mu\left( A_1 \right) - \mu\left( A \right)  = 	\mu\left( A_1\setminus A \right) = \lim_{N \to \infty} \left( \mu\left( A_1 \right) - \mu\left( A_{N+1}\right)\right) = \mu\left( A_1 \right) - \lim_{N \to \infty}\mu\left(A_{N} \right) 
+.\] 
+	Odejmując stronami $\mu\left( A_1 \right) $, następnie domnażając obie strony przez $(-1)$, otrzymujemy
+	 \[
+	\mu\left( A \right) = \lim_{n \to \infty} \mu\left( A_{n} \right) 
+	.\] 
+\end{proof} 
+\begin{proof}
+	\noindent $\bm{ b) \implies c) } $ 
+
+	\noindent \textbf{Założenie:} $\mu$ jest ciągła z góry.
+
+	\noindent \textbf{Cel:} $\mu$ jest ciągła z góry na zbiorze $\emptyset $, czyli dla rodziny zstępującej $A_{n}$, takież że $A_{n}\downarrow \emptyset $, zachodzi $\lim_{n \to \infty} \mu\left( A_{n} \right) = \mu\left( \emptyset  \right)$. 
+
+	Ustalmy dowolną rodziną zstępującą  $A_{n}$, taką że $A_{n}\downarrow \emptyset $. Z założenia, że  $\mu$ jest ciągła z góry, otrzymujemy, że $\lim_{n \to \infty} \mu\left( A_{n} \right) = \mu\left( \emptyset  \right) $
+\end{proof} 
+\begin{proof}
+	\noindent $\bm{ c) \implies a) } $ 
+
+	\noindent \textbf{Założenie:} $\mu$ jest (skończenie addytywną funkcją zbioru) ciągła z góry na zbiorze $\emptyset $.
+
+	\noindent \textbf{Cel:} $\mu$ jest $\sigma $-addytywna funkcją zbioru.
+
+	Wystarczy pokazać, że dla dowolnej rozłącznej rodziny zbiorów $\{A_{n}\}_{n=1}^{\infty} \in \mathcal{R}$, takiej że $\bigcup_{n=1}^{\infty}A_{n} = A \in \mathcal{R}$, zachodzi $\mu\left( A \right) = \sum_{n = 1}^{\infty} \mu\left( A_{n} \right) $.
+	\begin{itemize}
+		\item $B_1 = A$,
+		\item $B_2 = A \setminus A_{1}$,
+		\item $B_3 = A\setminus \left( A_2 \cup A_1 \right) $
+		\item $B_4 = A\setminus \left(A_3 \cup A_2 \cup A_1\right)$
+		\item $\vdots$
+		\item  $B_{n} = A \setminus \bigcup_{i=1}^{n-1}A_{i}$
+		\item $\vdots$
+	\end{itemize} 
+
+	Zauważmy, że $B_{n}$ jest zstępującą rodziną zbiorów oraz $B_{n}\downarrow \emptyset $. Zatem 
+	\[
+	\lim_{n \to \infty} \mu\left( B_{n} \right) = \mu\left( \emptyset  \right) = 0
+	.\] 
+	Korzystając z definicji zbioru $B_{n}$, mamy
+	\[
+	\lim_{n \to \infty} \mu\left( B_{n} \right) = \lim_{n \to \infty}\mu\left( A\setminus \bigcup_{i=1} ^{n-1}A_{i} \right) 
+	.\] 
+	Zauważmy, że $A\in \mathcal{R}$ oraz $\mu$ jest określona na $\mathcal{R}$, czyli $\mu\left( \mathcal{R} \right)$ jest dobrze zdefiniowana. Ponieważ $\bigcup_{i=1} ^{n-1}A_{i}\subseteq A$ oraz $\mu$ jest funkcją addytywną(skończenie) funkcją zbioru, więc
+	\[
+	\mu\left( A\setminus \bigcup_{i=1} ^{n-1}A_{i}  \right) = \mu\left( A \right) - \mu\left( \bigcup_{i=1}^{n-1} \right) 
+	.\] 
+	Zatem
+	\[
+	\lim_{n \to \infty} \mu\left( B_{n} \right) = \lim_{n \to \infty} \mu\left( A\setminus \bigcup_{i=1} ^{n-1}A_{i} \right) 
+	.\] 
+	Podsumowując
+	\begin{align*}	
+		\lim_{n \to \infty} \mu\left( B_{n} \right) &= \mu\left( \emptyset  \right) \iff \\
+		\lim_{n \to \infty} \mu\left( B_{n} \right) &= 0 \iff \\
+		\lim_{n \to \infty} \mu\left( A\setminus \bigcup_{i=1} ^{n-1}A_{i} \right) &= 0 \iff \\
+		\lim_{n \to \infty} \left(  \mu\left( A\right) - \mu\left(\bigcup_{i=1} ^{n-1}A_{i} \right)\right) &= 0 \iff \\
+		\lim_{n \to \infty} \mu\left( A \right) - \lim_{n \to \infty} \mu\left( \bigcup_{i=1} ^{n-1}A_{i} \right) &= 0 \iff \\
+		\lim_{n \to \infty} \mu\left( A \right) &= \lim_{n \to \infty} \mu\left( \bigcup_{i=1} ^{n-1}A_{i} \right) \iff \\
+		\mu\left( A \right) &= \lim_{n \to \infty} \mu\left( \bigcup_{i=1} ^{n-1}A_{i} \right) 
+	.\end{align*} 
+
+	Korzystając z skończonej addytywności $\mu$ 
+	 \[
+	\lim_{n \to \infty} \mu\left( \bigcup_{i=1}^{n-1} \right) = \lim_{n \to \infty} \sum_{i=1}^{n-1} \mu\left( A_{i} \right) 
+	.\] 
+	Następnie z własności granicy oraz definicji nieskończonej sumy
+	\[
+	\lim_{n \to \infty} \sum_{i=1}^{n-1} \mu\left( A_{i} \right) = \lim_{n \to \infty} \sum_{i=1}^{n} \mu\left( A_{i} \right) = \sum_{i=1}^{\infty} \mu\left( A_{i} \right) 
+	.\] 
+	Zatem
+	\[
+	\mu\left( A \right) = \sum_{n = 1}^{\infty} \mu\left( A_{i} \right) 
+	.\] 
+\end{proof} 
+\begin{eg}
+	Niech $\mathcal{A}$ będzie ciałem generowanym przez wszystkie skończone podzbiory $X$ gdzie $X$ jest nieskończony. Wtedy $A\in \mathcal{A}$ wtedy i tylko wtedy kiedy $A$ jest skończony lub $X\setminus A$ jest skończony.
+\end{eg} 
+\begin{proof}
+\noindent \textbf{Założenia:}Niech $X$ będzie zbiorem nieskończonym oraz $\mathcal{F}$ rodzina podzbiorów skończonych $X$:
+ \[
+ \mathcal{F} = \{A\subseteq X: \left| A \right| < \infty\} 
+ .\] 
+
+ Definiujemy zbiór $\mathcal{A}$ jako rodzinę podzbiorów skończonych i koskończonych $X$: i
+ \[
+ \mathcal{A} = \{A \subseteq X: \left| A \right| <\infty \text{ lub } \left| A^{c} \right| < \infty\} 
+ .\] 
+
+\noindent \textbf{Cel:} $a\left( \mathcal{F} \right) = \mathcal{A}$.
+
+Dowód przeprowadzimy, pokazując dwie inkluzje. 
+
+\noindent \textbf{Krok 1: Inkluzja $a(\mathcal{F}) \subseteq \mathcal{A}$} 
+
+Z definicji, $a(\mathcal{F})$ jest najmniejszym ciałem zawierającym $\mathcal{F}$ (przekrojem wszystkich takich ciał). Aby pokazać, że $a(\mathcal{F}) \subseteq \mathcal{A}$, wystarczy wykazać, że: 
+\begin{enumerate} 
+	\item $\mathcal{F} \subseteq \mathcal{A}$ (oczywiste, bo zbiory skończone należą do $\mathcal{A}$). 
+	\item $\mathcal{A}$ jest ciałem.
+\end{enumerate} 
+Sprawdźmy warunki na bycie ciałem dla $\mathcal{A}$: 
+\begin{itemize} 
+	\item $\emptyset \in \mathcal{A}$ (jako zbiór skończony).
+	\item Jeśli $A \in \mathcal{A}$, to $A^c \in \mathcal{A}$ (jeśli $A$ skończony, to $A^c$ koskończony; jeśli $A$ koskończony, to $A^c$ skończony). 
+	\item Jeśli $A, B \in \mathcal{A}$, to $A \cup B \in \mathcal{A}$. Mamy tu przypadki: 
+		\begin{itemize} 
+			\item $A, B$ skończone $\implies A \cup B$ skończony. 
+			\item Co najmniej jeden zbiór koskończony, WLOG $A$ jest koskończony $\implies (A \cup B)^c = A^c \cap B^c$. Ponieważ $A^c$ jest skończony, to przekrój też jest skończony. Zatem $A \cup B$ jest koskończony. 
+		\end{itemize} 
+\end{itemize} 
+Skoro $\mathcal{A}$ jest ciałem zawierającym $\mathcal{F}$, a $a(\mathcal{F})$ jest najmniejszym takim ciałem, to wnioskujemy, że $\bm{a(\mathcal{F}) \subseteq \mathcal{A}}$. 
+
+\noindent \textbf{Krok 2: Inkluzja $\mathcal{A} \subseteq a(\mathcal{F})$} Weźmy dowolny $A \in \mathcal{A}$. 
+\begin{itemize} 
+	\item Jeśli $A$ jest skończony, to $A \in \mathcal{F}$. Ponieważ $\mathcal{F} \subseteq a(\mathcal{F})$, to $A \in a(\mathcal{F})$. 
+	\item Jeśli $A$ jest koskończony, to $A^c$ jest skończony. Zatem $A^c \in \mathcal{F} \subseteq a(\mathcal{F})$. Skoro $a(\mathcal{F})$ jest ciałem, to jest zamknięte na dopełnienia, więc $(A^c)^c = A \in a(\mathcal{F})$. 
+\end{itemize} 
+
+W obu przypadkach $A \in a(\mathcal{F})$, co dowodzi, że $\bm{\mathcal{A} \subseteq a(\mathcal{F})}$. 
+
+\noindent \textbf{Wniosek:} Z obu inkluzji wynika, że $a(\mathcal{F}) = \mathcal{A}$. 
+\end{proof}
+\begin{remark}[Czemu to ważny przykład?]
+    Ciało z przykładu powyżej jest jednym z najprostszych przykładów struktury, która pozwala nam operować na ,,końcach'' nieskończoności, ale nie pozwala na dzielenie jej na dwie nieskończone części.
+    
+    Mamy tu podział na zbiory ,,małe'' (skończone) i ,,duże'' (koskończone). \textbf{Brakuje w nim wszystkiego ,,pomiędzy''. Jeśli $X=\mathbb{N}$, to zbiór liczb parzystych nie należy do tego ciała – jest zbyt duży, by być skończonym, i zbyt mały, by być koskończonym.}
+    
+    To ciało jest istotne z dwóch powodów:
+    \begin{enumerate}
+        \item \textbf{Probabilistyka:} Jest to model dla prawa ,,Wszystko albo Nic'' (prawo 0-1). Jeśli miara znika na zbiorach skończonych (np. p-stwo wylosowania konkretnej liczby wynosi 0), to na tym ciele każde zdarzenie ma p-stwo 0 albo 1.
+        \item \textbf{Teoria Miary:} Jest to standardowy przykład \textbf{ciała, które nie jest $\sigma$-ciałem} (dla nieskończonego $X$). Przeliczalna suma zbiorów z tego ciała (np singletonów $\{2n\}$) może dać zbiór, który do niego nie należy (zbiór liczb parzystych).
+    \end{enumerate}
+\end{remark}
+
+\begin{remark}[Brak $\sigma$-addytywności]	
+ Na ciele $\mathcal{A}$ definiujemy funkcję zbioru $\mu$:
+    \[
+        \mu(A) = \begin{cases} 
+            0 & \text{gdy } A \text{ jest skończony}, \\
+            1 & \text{gdy } A^c \text{ jest skończony}.
+        \end{cases}
+\]
+    Załóżmy, że $X$ jest przeliczalny (np. $X = \mathbb{N}$).
+    Weźmy ciąg singletonów $A_n = \{n\}$.
+    \begin{itemize}
+        \item Są to zbiory skończone, więc $\mu(A_n) = 0$ dla każdego $n$.
+        \item Są parami rozłączne i należą do $\mathcal{A}$.
+        \item Ich suma to $\bigcup A_n = X$. Zbiór $X$ należy do $\mathcal{A}$ (bo $X^c = \emptyset$ jest skończony) i z definicji $\mu(X) = 1$.
+    \end{itemize}
+    Sprawdzamy warunek $\sigma$-addytywności:
+    \[
+        \mu\left( \bigcup_{n=1}^\infty A_n \right) = \mu(X) = 1 \neq 0 = \sum_{n=1}^\infty 0 = \sum_{n=1}^\infty \mu(A_n).
+   \]
+    Zatem $\mu$ \textbf{nie jest} przeliczalnie addytywna na ciele $\mathcal{A}$.
+
+    \textbf{Wariant $\sigma$-addytywny (Rozszerzenie):} \\
+    Jeśli zamiast "skończone" rozważymy "przeliczalne", otrzymamy $\sigma$-ciało:
+    \[
+        \Sigma = \{ A \subseteq X : A \text{ przeliczalny} \lor A^c \text{ przeliczalny} \}.
+    \]
+    Jeśli $X$ jest nieprzeliczalny, to funkcja $\mu(A)=0$ (dla $A$ przeliczalnych) i $\mu(A)=1$ (dla $A$ ,,koprzeliczalnego'') jest pełnoprawną \textbf{miarą} ($\sigma$-addytywną).
+\end{remark} 
+

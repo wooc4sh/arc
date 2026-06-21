@@ -1,0 +1,262 @@
+\section{Lista zadań numer 2.}
+\begin{problem}[1]
+
+	Niech G będzie grupą. Udowodnić, że dla dowolnego $g\in G$, $m,n \in \Z$ zachodzą wzory $g^{n+m} = g^{m}g^{n}$ i $\left( g^{m} \right)^{n} = g^{nm}$
+\end{problem}
+\begin{solution}
+	TODO
+	Niech G będzie grupą. Ustalmy dowolne $g\in G$.
+\begin{itemize}
+	\item $g^{n+m} = g^{m}g^{n}$ 
+
+		Rozpatrzymy najpierw przypadek dla liczb naturalnych.
+
+		Ustalmy dowolne $m \in N$.
+		Dla $n=0$ mamy
+		 \[
+			 L = g^{n+m} = g^{0+m} = g^{0}g^{m} = eg^{m} = g^{m}e= g^{m}g^{0} = g^{m}g^{n} = P
+		.\] 
+		Zatem baza indukcji zachodzi.
+	\item  $\left( g^{m} \right)^{n} = g^{nm}$
+		Ustalmy teraz dowolne $n>0$ i załóżmy, że $g^{n+m} = g^{m}r^{n}$.
+                Wtedy
+		\begin{align*}
+			L =& g^{(n+1) + m} = g^{(n+m) + 1} = g^{n+m}g^{1}  \overset{\text{z.ind.}}{=} \\ =& g^{n}g^{m}g^{1} = g^{n}g^{m+1} =g^{n}g^{1+m} = g^{n}g^{1}g^{m} = g^{n+1}g^{m} = P 
+		.\end{align*}
+		Krok indukcyjny zachodzi. Zatem  teza jest prawdziwa dla wszystkich liczb naturalnych.
+
+		Ustalmy teraz $n,m\in \Z$. 
+		Mamy cztery możliwości:
+		\begin{enumerate}
+			\item $n \ge 0$ i $m\ge 0$: to już pokazaliśmy,
+			\item $n \ge 0$ i $m<0$:
+
+				Niech $-m' = m$, czyli  $m' \in N^{+}$. Pokażemy przez indukcję względem $m'$, że  $g^{n-m'} = g^{n}g^{-m'}$.
+
+				Dla $m' = 1$ mamy
+				 \begin{align*}
+					 L & = g^{n-m'} = g^{n-1} = g^{0-1} = g^{-1} = eg^{-1} = g^{0}g^{-1} = P \text{ (dla n = 0)} \\
+					 L & = g^{n-m'} = g^{n-1} = \text{z definicji jest to n-1 krotne mnozenie n} = g^{n}g^{-1} = P 
+				 .\end{align*}
+				 Załóżmy, że dla dowolnego $m' > 0$ zachodzi, wtedy
+				 \[
+				 L = g^{n-(m'+1)} = g^{(n-m') - 1} = g^{n-m'}g^{-1}= g^{n}g^{-m'}g^{-1} = g^{n}g^{-(m+1)} = P
+				 .\] 
+
+				Czyli krok zachodzi.
+		        \item $n<0$ i  $m\ge 0$ analogicznie to przypadku powyższego.,
+			\item $n<0$ i  $m<0$ 
+				Mamy $n = -p$ oraz $m = -q$
+				czyli \[
+				g ^{n+m} = g^{-p-q} = g^{-1(p+q)} = g^{-1}g^{p+q}
+				.\] 
+		\end{enumerate}
+
+\end{itemize}
+\end{solution}
+
+\begin{problem}[2]
+
+	Niech $\left(A, +  \right)$ będzie grupą przemienną i $m\in \Z$. Udowodnić, że funkcja
+	\[
+	f: A \rightarrow A,\quad f(a) := ma
+	.\] 
+	jest homomorfizmem.
+\end{problem}
+\begin{solution}
+
+	Weźmy dowolne elementy $a_1,a_2 \in A$. Wtedy \[
+		f(a_1+a_2) = m(a_1+a_2) = ma_1 + ma_2 = f(a_1) + f(a_2)
+	.\] 	
+	Zatem f jest homomorfizmem.
+\end{solution}
+\begin{problem}[3]
+
+	Znaleźć izomorfizm pomiędzy $D_3 i S_3$.
+\end{problem}
+\begin{solution}
+
+	TODO
+\end{solution}
+\begin{problem}[4]
+
+	Udowodnić, że $S^{1} \cong SO_2(\R)$.
+\end{problem}
+\begin{solution}
+	
+	TODO
+\end{solution}
+\begin{problem}[5]
+
+	Udowodnić, że:
+	\begin{enumerate}[label=\alph*)]
+		\item złożenie homomorfizmów jest homomorfizmem,
+		\item złożenie izomorfizmów jest izomorfizmem,
+		\item funkcja odwrotna do izomorfizmu jest izomorfizmem,
+		\item jeśli $G\cong H$ oraz $H \cong N$ to $G \cong N$.
+	\end{enumerate}
+\end{problem}
+\begin{solution}
+
+	Niech  $f: G \rightarrow H$ oraz $g: Q \rightarrow P$ będą dowolnymi homomorfizmami.
+	\begin{enumerate}[label=\alph*)]
+		\item TODO
+		\item TODO
+		\item TODO
+		\item Ustalmy dowolne grupy $G,H,N$ i załóżmy, że  $G\cong H$ oraz $H \cong N$.
+				\begin{center}
+					\begin{tikzcd}[row sep= 30pt, column sep=30pt]
+						G \arrow[dr, "\Pi"] \arrow[rr, "\Phi", dashrightarrow] & & N \\					     
+						& \arrow[ur, "\Psi", rightarrow]H &  
+					\end{tikzcd}
+				\end{center}
+				Złożenie izomorfizmów jest izomorfizmem, zatem między $G$ i $N$ istnieje izomorfizm $\Pi \circ \Psi : G \rightarrow N$
+	\end{enumerate}
+\end{solution}
+\begin{problem}[6]
+	
+	Pokazać, że grupa $\left( \Q, + \right)$ nie jest skończenie generowana.
+\end{problem}
+\begin{solution}
+
+	Dana grupa $G$ jest skończenie generowana jeśli spełnia poniższy warunek:
+	\[
+		\exists_{g_1,g_2,\ldots,g_{n} \in G} \langle g_1,g_2,\ldots,g_{n} \rangle = G   
+	.\] 
+
+	\begin{remark}
+	
+		W grupie Abelowej jaką jest $\left( \Q, + \right) $, $k$-krotne dodawanie zapisujemy jako
+		 \[
+			 \underbrace{q + q + q + \ldots + q}_{\text{k razy}} = k \cdot n
+		.\] 
+	\end{remark}	
+
+	Załóżmy, że $\left( \Q, + \right) $ jest skończenie generowana, więc istnieje skończony n-elementowy układ generatorów- są to jakieś liczby wymierne. Jest on postaci \[
+	\langle \frac{w_1}{q_1}, \frac{w_2}{q_2},\ldots, \frac{w_{n}}{q_{n}} \rangle 
+	.\] 
+	Dowolna liczba wymierna, będzie postaci \[
+	\frac{q}{\sum_{i=1}^{n} q_{i}}
+	.\] 
+	gdzie $q$ jest jakąś liczbą całkowita. Niech $p$ będzie największą liczbą pierwszą która dzieli  $\sum_{i=1}^{n} q_i$, wtedy dla liczby wymiernej, która ma w mianowniku liczbę p'- kolejną liczbę pierwszą po p, nie jest możliwe znalezienie takiej kombinacji generatorów, która w mianowniku będzie miała p'.
+\end{solution}
+\begin{problem}[7]
+
+	Niech G będzie grupą i $g\in G$. Przypomnijmy, że rząd(g)$ := |\langle g \rangle| $, przy czym $\aleph$ jest utożsamione z  $\infty$. Udowodnić, że rząd(g) = min$\{n \in \N_{>0} : g^{n} = e\}$ (przyjmujemy, że min$\left( \O \right) = \infty$). 
+\end{problem}
+\begin{solution}
+
+	TODO		
+\end{solution}
+\begin{problem}[8]	
+
+	Niech G będzie grupą, g jej elementem, a n liczbą całkowitą różną od 0.
+	\begin{enumerate}[label=\alph*)]
+		\item Udowodnić, że rząd $\left( g \right) = \text{rząd}\left( g^{-1} \right)$.
+		\item Udowodnić, że $g^{n} = e$ wtedy i tylko wtedy, gdy rząd elementu g jest dzielnikiem n.
+	\end{enumerate}
+\end{problem}
+\begin{solution}
+
+	
+\end{solution}
+\begin{problem}[9]
+
+	Udowodnić, że podgrupa grupy cyklicznej jest cykliczna.
+\end{problem}
+\begin{problem}[10]
+
+	Niech H i G będą grupami.
+
+
+	\begin{enumerate}[label=\alph*)]
+		\item Udowodnić, że jeśli $f:G\rightarrow H$ jest homomorfizmem grup i $g\in G$ jest elementem skończonego rzędu, to rząd elementu $f(g)$ też jest skończony i dzieli rząd $g$. Pokazać, że jeśli $f$ jest monomorfizmem to rzędy te są równe. 
+		\item Niech G będzie grupą cykliczną generowaną przez element g, a h dowolnym elementem H, który w przypadku gdy rząd(g)$<\infty$ spełnia warunek rząd(h)|rząd(g). Udowodnić że istnieje dokładnie jeden homomorfizm $f:G\rightarrow H$, taki że $f(g) = h$.
+	\end{enumerate}
+\end{problem}
+\begin{solution}
+	Ustalmy dowolne grupy $G$ i $H$, oraz element  $g\in G$.
+	\begin{enumerate}[label=\alph*)]
+		\item Niech $g^{n} = e_G$. Wiemy, że homomorfizm mapuje element neutralny na element neutralny odpowiednich grup. f jest homomorfizmem więc
+			\[
+				f(g^{n}) = \underbrace{f(g)f(g)\ldots f(g)}_{\text{n razy}}= e_H
+			.\] 
+			Zatem, rząd $f(g)$ jest skończony i wynosi conajwyżej n. 
+			Niech rząd $f(g)$ wynosi $d$. Wtedy $\left( f(g) \right) ^{d} = e_H$. Liczbę $n$ możemy przedstawić jako  $n = k\cdot d + r$, gdzie $r \in [0, d-1]$. Wtedy \[
+	f(g)^{n} = f(g)^{k\cdot d +r} =f(g)^{k\cdot d}f(g)^{r} = \left( f(g)^{d} \right)^{k}f(g)^{r} = e_H^{k}f(g)^{r} = f(g)^{r}
+			.\] 
+			Zatem $f(g)^{r} = e_H$. Ponieważ $d$ jest najmniejszą liczbą naturalną, taką że $f(g)^{d}=e_H$ więc $r = 0$, a co za tym idzie $d|n$.  
+
+			Jeżeli ponadto f jest mnonomorfizmem, to każdy z elementów
+			\[
+			e_H, f(g), f(g)^{2}, f(g)^{3},\ldots, f(g)^{n-1}
+			.\] 
+			jest różny, zatem $n = d$. 
+		\item Załóżmy, że  $\langle g \rangle = G$. 
+	\end{enumerate}
+
+	
+\end{solution}
+\begin{problem}[11]
+
+	Czy istnieje homomorfizm grup $f:G\rightarrow H$, gdzie:
+
+	\begin{enumerate}[label=\alph*)]
+		\item $G= \left( \Z,+ \right), H=\left( \Q,+ \right),f(1) = 7$,
+		\item 
+	\end{enumerate}
+\end{problem}
+\begin{solution}
+
+	TODO	
+\end{solution}
+\begin{problem}[12]
+
+	Znaleźć wszystkie homomorfizmy $f:G\rightarrow H$, gdzie:
+
+	\begin{enumerate}[label=\alph*)]
+		\item $G = \left( \Z, + \right), H = \left( \Q, + \right),$
+		\item $G = \left( \Z_{15}, +_{15} \right), H = \left( \Z_{4}, +_{4} \right)$
+		\item $G = \left( Z_{6} \right), H= \left( \Z_{4}, +_{4} \right),$ 
+		\item $G = \Z_{2}\times \Z_{2}, H= \left( \Z_{4}, +_{4} \right) .$
+	\end{enumerate}
+\end{problem}
+\begin{solution}
+
+	TODO	
+\end{solution}
+\begin{problem}[13]
+	Niech G będzie grupą skończoną i niech H będzie niepustym podzbiorem G. $H\le G$ wtedy i tylko wtedy, gdy dla każdych $h_1,h_2\in H$ zachozi $h_1h_2\in H.$
+\end{problem}
+\begin{solution}
+
+	TODO
+\end{solution}
+\begin{problem}[14]
+
+	Czy podzbiór H grupy G jest podgrupą G, gdzie:
+	\begin{enumerate}[label=\alph*)]
+		\item $G = \left( \Z\times\Z\times\Z, +\right), H=\{\left( 2x,5x,3x \right):x \in \Z\}.$
+		\item $G = \left(\Z_{8}^{*}, *_{8}\right), H=\{1,3\},$
+		\item $G = \left( \Z_{4}, +_{4} \right), H= \{0,3\} $,
+		\item $G = \left( \Z_{6}, +_{6} \right), H= \{0,3\},$
+		\item G jest grupą izometrii kwadratu, a H składa się ze wszystkich czterech obrotów,
+		\item G jest grupą izometrii kwadratu, a H składa się ze wszystkich czterech odbić i identyczności.
+	\end{enumerate}
+\end{problem}
+\begin{solution}
+
+	TODO
+\end{solution}
+\begin{problem}[15]
+
+	Niech $H_1, H_2$ będą podgrupami grupy G.
+	\begin{enumerate}[label=\alph*)]
+		\item Pokazać, że $H_1\cup H_2$ nie musi być podgrupą G.
+		\item Pokazać, że jeśli $H_1\cup H_2$ jest podgrupą G, to $H_1 \subseteq H_2$ lub $H_2 \subseteq  H_1.$
+	\end{enumerate}
+\end{problem}
+\begin{solution}
+
+	TODO
+\end{solution}

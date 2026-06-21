@@ -1,0 +1,278 @@
+\chapter{Wykład VI}
+\section{Skończenie generowane grupy abelowe}
+
+\begin{context}
+    W tym dziale przyjmujemy \textbf{notację addytywną}, typową dla grup abelowych.
+    \begin{itemize}
+        \item Działanie oznaczamy $+$, element neutralny $0$.
+        \item Zamiast $a^n$ piszemy $na$ (wielokrotność).
+        \item Produkt kartezjański grup $A \times B$ nazywamy \textbf{sumą prostą} i oznaczamy $A \oplus B$.
+    \end{itemize}
+    Dzięki temu teoria ta przypomina algebrę liniową (przestrzenie wektorowe).
+\end{context}
+
+\subsection{Prezentacja grupy: Generatory i Relacje}
+
+\begin{lemma}[O epimorfizmie z grupy wolnej]
+    Niech $A$ będzie skończenie generowaną grupą abelową, generowaną przez układ $n$ elementów $\{a_1, a_2, \ldots, a_n\}$.
+    Zdefiniujmy odwzorowanie $f: \mathbb{Z}^n \to A$ wzorem:
+    \[
+        f(k_1, k_2, \ldots, k_n) = k_1 a_1 + k_2 a_2 + \ldots + k_n a_n.
+    \]
+    Wtedy:
+    \begin{enumerate}[label=\arabic*.]
+        \item $f$ jest homomorfizmem grup.
+        \item $f$ jest epimorfizmem (jest ,,na''), czyli $\im(f) = A$.
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    TODO (Wynika wprost z definicji generatorów i addytywności działania).
+\end{proof}
+
+Każdą skończenie generowaną grupę możemy sobie wyobrazić jako "cień" siatki liczb całkowitych $\mathbb{Z}^n$.
+
+\begin{eg}[Wizualizacja ,,cienia'']
+    \begin{enumerate}[label=\alph*)]
+        \item \textbf{Przypadek 1D: Spirala i Okrąg.}
+        Wyobraź sobie grupę $\mathbb{Z}$ jako nieskończoną klatkę schodową (spiralę) biegnącą w górę i w dół.
+        Grupa docelowa to $A = \mathbb{Z}_4$ (cykl 4 punktów).
+        
+        Epimorfizm $f: \mathbb{Z} \to \mathbb{Z}_4$ działa jak rzutowanie tej spirali na podłogę.
+        \begin{itemize}
+            \item Schody nr $0, 4, 8, \ldots$ rzucają cień w tym samym punkcie (oznaczmy go $0$).
+            \item Schody nr $1, 5, 9, \ldots$ trafiają w punkt $1$.
+        \end{itemize}
+        Nieskończona, prosta struktura ($\mathbb{Z}$) zostaje ,,zwinięta'' do skończonego cienia ($\mathbb{Z}_4$) poprzez utożsamienie punktów odległych o wielokrotność 4.
+        
+        \item \textbf{Przypadek 2D: Siatka i Torus.}
+        Niech $A = \mathbb{Z}_3 \oplus \mathbb{Z}_3$. Wyobraźmy sobie $\mathbb{Z}^2$ jako nieskończoną szachownicę.
+        Dzielimy tę szachownicę na kwadraty $3 \times 3$.
+	
+	\textbf{Intuicja geometryczna:} Torus i Pac-Man
+    	Rozważmy grupę $A = \mathbb{Z}_3 \oplus \mathbb{Z}_3$ jako obraz epimorfizmu z $\mathbb{Z}^2$.
+    		Odwzorowanie to działa jak ,,zawijanie'' nieskończonej płaszczyzny na torus (obwarzanek).
+    
+    		Można to wizualizować jako \textbf{Efekt Pac-Mana}:
+    		Dla grupy $A$ planszą jest kwadrat $3 \times 3$. Jego krawędzie są ,,sklejone'' – wyjście poza planszę w prawą stronę powoduje natychmiastowy powrót z lewej (modulo 3).
+        Każdy punkt na nieskończonej szachownicy ma swój odpowiednik w małym kwadracie "bazowym" (resztę z dzielenia współrzędnych przez 3).
+    		W ten sposób nieskończona, wolna siatka $\mathbb{Z}^n$ zostaje zredukowana do skończonego cienia o strukturze torusa.
+        W ten sposób nieskończona siatka $\mathbb{Z}^2$ rzuca "cień" będący małą grupą 9-elementową.
+	
+    \end{enumerate}
+\end{eg}
+
+\begin{context}
+    W tej sekcji pokażemy algorytm, który pozwala obliczyć strukturę dowolnej skończenie generowanej grupy abelowej. Przejdziemy od abstrakcyjnych definicji do operacji na macierzach liczb całkowitych.
+\end{context}
+Skoro $f$ jest epimorfizmem, to z I Twierdzenia o Izomorfizmie wiemy, że $A$ wygląda jak dziedzina podzielona przez jądro.
+
+\begin{intuition}
+    To twierdzenie mówi, że każdą grupę abelową można opisać macierzą liczb całkowitych (baza podgrupy $H$ w bazie $\mathbb{Z}^n$). Klasyfikacja grup sprowadza się więc do diagonalizacji tej macierzy (Postać Normalna Smitha).
+\end{intuition}
+
+Teraz pokażemy, że z takiej grupy zawsze można wydzielić "czystą" część $\mathbb{Z}^r$.
+
+\begin{theorem}[O prezentacji grupy abelowej]
+    Dla każdej skończenie generowanej grupy abelowej $A$ istnieje liczba naturalna $n$ oraz podgrupa $H \le \mathbb{Z}^n$ (zwana podgrupą relacji),tzn
+     \[
+     \exists\left( n\in \N_{>0} \right)\exists\left( H\le \mathbb{Z} ^{n} \right)\left( A\cong \mathbb{Z}^{n}/H \right).
+     ,\] 
+        taka że:
+    \[ A \cong \mathbb{Z}^n / H. \]
+\end{theorem}
+\begin{proof}
+    TODO (Wynika z Lematu o epimorfizmie z sekcji wyżej).
+\end{proof}
+
+\begin{lemma}[O rozszczepianiu - Splitting Lemma]
+    Niech $B$ będzie grupą abelową (niekoniecznie skończoną), a $\psi: B \to \mathbb{Z}^r$ epimorfizmem na wolną grupę abelową.
+    Wtedy $B$ rozkłada się na sumę prostą(dla grup abelowych produkt półprosty to suma prosta):
+    \[ B \cong \ker(\psi) \oplus \mathbb{Z}^r. \]
+\end{lemma}
+\begin{proof}
+    TODO (Należy zdefiniować homomorfizm "powrotny" $s: \mathbb{Z}^r \to B$, posyłając bazę na przeciwobrazy, i pokazać, że $B$ jest sumą prostą jądra i obrazu $s$).
+
+    TODO (Definiujemy cięcie na generatorach).
+\end{proof}
+
+\begin{theorem}[O podgrupach grupy wolnej]
+    Podgrupa wolnej grupy abelowej jest wolna:
+    \[
+    \forall\left( H\le \mathbb{Z} ^{n} \right) \exists\left( 0\le m\le n \right)\left( H\cong\mathbb{Z}^{m} \right).
+    \]
+\end{theorem}
+\begin{proof}
+    TODO (Dowód indukcyjny lub przez bazy).
+\end{proof}
+
+\begin{theorem}[O ilorazie sumy prostej]
+    Niech $H_1\unlhd G_1$ oraz $H_2\unlhd G_2$. Wtedy $H_1 \oplus H_2 \unlhd G_1 \oplus G_2$ oraz:
+    \[
+        \mfaktor{G_1 \oplus G_2}{H_1 \oplus H_2} \cong \mfaktor{G_1}{H_1} \oplus \mfaktor{G_2}{H_2}.
+    \]
+\end{theorem}
+\begin{proof}
+    TODO (Naturalny izomorfizm posyłający pary na pary warstw).
+\end{proof}
+
+\begin{eg}[Przykład obliczeniowy]
+    Niech $n=3$ (czyli jesteśmy w $\mathbb{Z}^3$).
+    Rozważmy podgrupę relacji $H$ generowaną przez trzy wektory:
+    \begin{itemize}
+        \item $h_1 = (2,0,0)$
+        \item $h_2 = (0,-3,0)$
+        \item $h_3 = (0,0,0)$
+    \end{itemize}
+    Wtedy $H = 2\mathbb{Z} \oplus 3\mathbb{Z} \oplus \{0\}$.
+    Zastosujmy twierdzenie o ilorazie sumy:
+    \[
+    \mfaktor{\mathbb{Z} ^3}{H} \cong \mfaktor{\mathbb{Z}}{2\mathbb{Z}} \oplus \mfaktor{\mathbb{Z}}{-3\mathbb{Z}} \oplus \mfaktor{\mathbb{Z}}{\{0\}}.
+    \]
+    Pamiętając, że $\mathbb{Z}/-3\mathbb{Z} \cong \mathbb{Z}_3$ (znak nie ma znaczenia dla grupy) oraz $\mathbb{Z}/\{0\} \cong \mathbb{Z}$, otrzymujemy:
+    \[
+    A \cong \mathbb{Z}_2 \oplus \mathbb{Z}_3 \oplus \mathbb{Z}.
+    \]
+\end{eg}
+
+\begin{intuition}
+    Zauważmy, że w powyższym przykładzie obliczenia były proste, ponieważ generatory $h_i$ były "odseparowane" (każdy miał niezerową wartość tylko na jednej pozycji).
+    Gdybyśmy ułożyli te wektory w macierz, otrzymalibyśmy macierz diagonalną:
+    \[
+    \begin{bmatrix} 2 & 0 & 0 \\ 0 & -3 & 0 \\ 0 & 0 & 0 \end{bmatrix}.
+    \]
+    To sugeruje, że kluczem do klasyfikacji jest sprowadzenie generatorów relacji do takiej właśnie prostej postaci.
+\end{intuition}
+
+\subsection{Macierz relacji i diagonalizacja}
+
+Sformalizujmy to spostrzeżenie. Skoro $H$ jest podgrupą w $\mathbb{Z}^n$, to jest generowana przez pewne wektory. Możemy ułożyć je w wiersze macierzy.
+
+\begin{definition}[Grupa zadana macierzą]
+    Dla danej macierzy $M\in M_{n\times n}\left( \mathbb{Z} \right)$ definiujemy grupę ilorazową:
+    \[
+    \mfaktor{\mathbb{Z} ^{n}}{M} := \mfaktor{\mathbb{Z} ^{n}}{N},
+    \]
+    gdzie $N$ jest podgrupą $\mathbb{Z}^{n}$ generowaną przez \textbf{wiersze} macierzy $M$.
+\end{definition}
+
+\begin{lemma}[Klucz do klasyfikacji]
+    Jeśli macierz $M\in M_{n\times n}\left( \mathbb{Z} \right)$ jest \textbf{diagonalna} ($M = \text{diag}(d_1, \dots, d_n)$), to grupa rozpada się na produkt:
+    \[
+    \mfaktor{\mathbb{Z} ^{n}}{M} \cong \mathbb{Z}_{d_1} \oplus \mathbb{Z}_{d_2} \oplus \ldots \oplus \mathbb{Z}_{d_n}.
+    \]
+    (Przyjmujemy konwencję $\mathbb{Z}_0 \cong \mathbb{Z}$ oraz $\mathbb{Z}_1 \cong \{0\}$).
+\end{lemma}
+\begin{proof}
+    TODO (Wynika wprost z przykładu wyżej i twierdzenia o ilorazie sumy prostych).
+\end{proof}
+
+\begin{goal}
+    Nasz plan działania jest teraz jasny: Szukamy procedury, która przerabia \textit{dowolną} macierz $M$ w macierz diagonalną $D$, nie zmieniając typu izomorficznego grupy, tzn. tak aby:
+    \[
+    \mfaktor{\mathbb{Z} ^{n}}{M} \cong \mfaktor{\mathbb{Z} ^{n}}{D}.
+    \]
+    Jeśli to nam się uda, to na mocy powyższego lematu potrafimy obliczyć strukturę każdej grupy.
+\end{goal}
+
+Musimy ustalić, jakie operacje na macierzy są dozwolone.
+
+\begin{lemma}[Zmiana bazy relacji i generatorów]
+    Niech $\varphi : \mathbb{Z}^n \to \mathbb{Z}^n$ będzie automorfizmem (zmianą bazy).
+    Dla macierzy $M$, której wiersze to $m_1, \ldots, m_n$, niech $\varphi(M)$ będzie macierzą z wierszami $\varphi(m_i)$.
+    Wtedy:
+    \[
+    \mfaktor{\mathbb{Z} ^{n}}{M} \cong \mfaktor{\mathbb{Z} ^{n}}{\varphi \left( M \right)}.
+    \]
+\end{lemma}
+\begin{proof}
+    TODO (Skorzystać z faktu, że $\varphi$ indukuje izomorfizm na ilorazach).
+\end{proof}
+
+\begin{lemma}[Operacje elementarne]
+    Niech $M \in M_{n\times n}(\mathbb{Z})$. Załóżmy, że $M'$ powstaje z $M$ przez jedną z operacji:
+    \begin{enumerate}[label=\roman*)]
+        \item Zamiana dwóch wierszy miejscami (zmiana kolejności generatorów relacji).
+        \item Zamiana dwóch kolumn miejscami (zmiana kolejności generatorów grupy $\mathbb{Z}^n$).
+        \item Dodanie do wiersza innego wiersza pomnożonego przez $k \in \mathbb{Z}$.
+        \item Dodanie do kolumny innej kolumny pomnożonej przez $k \in \mathbb{Z}$.
+    \end{enumerate}
+    Wtedy grupy są izomorficzne:
+    \[
+    \mfaktor{\mathbb{Z}^{n}}{M} \cong \mfaktor{\mathbb{Z} ^{n}}{M'}.
+    \]
+\end{lemma}
+\begin{proof}
+    TODO (Operacje te odpowiadają mnożeniu przez odwracalne macierze całkowitoliczbowe $GL_n(\mathbb{Z})$ z lewej lub prawej strony).
+\end{proof}
+
+\begin{theorem}[Postać Normalna Smitha]
+    Dla każdej macierzy $M \in M_{n\times n}(\mathbb{Z})$ istnieje macierz diagonalna $D$, uzyskana przez ciąg operacji elementarnych, taka że $d_1 | d_2 | \ldots | d_k$.
+\end{theorem}
+\begin{proof}
+    TODO (Algorytm Euklidesa stosowany iteracyjnie do wyrazów macierzy).
+\end{proof}
+
+\subsection{Jednoznaczność rozkładu}
+
+Załóżmy, że uzyskaliśmy rozkład:
+\[ A \cong \mathbb{Z}^r \oplus \mathbb{Z}_{n_1} \oplus \mathbb{Z}_{n_2} \oplus \ldots \oplus \mathbb{Z}_{n_k}. \]
+
+\begin{question}
+    Czy to jest rozkład jednoznaczny?
+\end{question}
+
+\textbf{Odpowiedź:} Nie, w ogólności nie jest.
+\begin{eg}
+    Mamy izomorfizm (z Chińskiego Twierdzenia o Resztach):
+    \[ \mathbb{Z}_{6} \cong \mathbb{Z}_{2} \oplus \mathbb{Z}_{3}. \]
+    Zatem ta sama grupa ma dwa różne rozkłady.
+\end{eg}
+
+Aby uzyskać jednoznaczność, musimy narzucić dodatkowy warunek na liczby $n_i$. Są dwie standardowe konwencje:
+1.  \textbf{Dzielniki elementarne:} Wymagamy, aby każde $n_i$ było potęgą liczby pierwszej (np. $2, 3$).
+2.  \textbf{Czynniki niezmiennicze:} Wymagamy, aby $n_1 | n_2 | \ldots | n_k$ (np. $6$).
+
+
+\begin{theorem}[Zasadnicze Twierdzenie o Klasyfikacji]
+    Każda skończenie generowana grupa abelowa $A$ jest izomorficzna z sumą prostą grupy wolnej oraz grup cyklicznych o rzędach będących potęgami liczb pierwszych.
+    
+    Istnieją jednoznacznie wyznaczone liczby:
+    \begin{itemize}
+        \item $r \ge 0$ (ranga grupy),
+        \item liczby pierwsze $p_1, \ldots, p_k$ oraz wykładniki $e_1, \ldots, e_k \ge 1$,
+    \end{itemize}
+    takie że:
+    \[
+        A \cong \underbrace{\mathbb{Z}^r}_{\text{część wolna}} \oplus \underbrace{\mathbb{Z}_{p_1^{e_1}} \oplus \mathbb{Z}_{p_2^{e_2}} \oplus \ldots \oplus \mathbb{Z}_{p_k^{e_k}}}_{\text{część skończona (torsyjna)}}.
+    \]
+\end{theorem}
+\begin{proof}
+    TODO (Dowód przez sprowadzenie macierzy relacji do postaci diagonalnej algorytmem Euklidesa).
+\end{proof}
+
+\begin{eg}[Przykładowy rozkład]
+    Niech $A = \mathbb{Z} \oplus \mathbb{Z}_{12}$.
+    Liczba 12 nie jest potęgą liczby pierwszej ($12 = 2^2 \cdot 3$). Z Chińskiego Twierdzenia o Resztach $\mathbb{Z}_{12} \cong \mathbb{Z}_4 \oplus \mathbb{Z}_3$.
+    Zatem pełny rozkład to:
+    \[ A \cong \mathbb{Z} \oplus \mathbb{Z}_{2^2} \oplus \mathbb{Z}_{3^1}. \]
+    Tutaj $r=1$, a dzielniki elementarne to $4, 3$.
+\end{eg}
+
+\subsection{Torsja (Podsumowanie)}
+
+Patrząc na powyższe twierdzenie, widzimy, że grupa rozpada się na część nieskończoną ($\mathbb{Z}^r$) i część skończoną. Tę drugą nazywamy fachowo torsją.
+
+\begin{definition}[Torsja]
+    Niech $A$ będzie grupą abelową.
+    \textbf{Podgrupą torsyjną} (lub po prostu torsją) nazywamy zbiór wszystkich elementów rzędu skończonego:
+    \[
+        \tor(A) := \{ a \in A \mid \exists_{n \in \mathbb{N}_{>0}} \; na = 0 \}.
+    \]
+\end{definition}
+
+\begin{remark}
+    W kontekście Twierdzenia Klasyfikacyjnego:
+    \[ \tor(A) \cong \mathbb{Z}_{p_1^{e_1}} \oplus \ldots \oplus \mathbb{Z}_{p_k^{e_k}}. \]
+    Dla grupy $A$ z przykładu wyżej: $\tor(A) \cong \mathbb{Z}_4 \oplus \mathbb{Z}_3 \cong \mathbb{Z}_{12}$.
+    Grupa ilorazowa $A/\tor(A)$ jest zawsze izomorficzna z częścią wolną $\mathbb{Z}^r$ (jest beztorsyjna).
+\end{remark}

@@ -1,0 +1,137 @@
+\section{Zadania uzupełniające}
+
+\begin{problem}[1.1]
+	Niech $d_{k} : \mathbb{R}^2 \times \mathbb{R}^2 \to \mathbb{R} $ będzie określoną następującą formułą, gdzie $\mathbf{0} = \left( 0,0 \right) $, a $d_{e}$ oznacza metrykę euklidesową w $\mathbb{R}^2$:
+	\[
+	d_{k}\left( a,b \right) = 
+	\begin{cases}
+		d_{e}\left( a,b \right) , &\text{ jeśli } a,b,\mathbf{0}\text{ leżą na jednej prostej,} \\
+		d_{e}\left(a, \mathbf{0} \right) + d_{e}\left( b, \mathbf{0} \right), &\text{w przeciwnym razie.}
+	\end{cases}
+	\] 
+	\begin{enumerate}[label=\alph*)]
+		\item Sprawdzić, że $d_{k}$ jest metryką.
+		\item Pokazać, że zbiór $U$ jest otwarty w przestrzeni $\left( \mathbb{R}^2, d_{k} \right) $ wtedy i tylko wtedy, gdy przekrój $U$ z każdą prostą przechodzącą przez $\mathbf{0}$ jest otwarte w topologii euklidesowej tej prostej i jeśli $\mathbf{0} \in U$ to $U$ zawiera pewną kulę euklidesową o środku w $\mathbf{0}$.
+	\end{enumerate}
+\end{problem} 
+\begin{solution}
+	TODO
+\end{solution} 
+\begin{problem}[1.2]
+	Niech dla $\left( x,y \right) \in \mathbb{R}^2, p\left( x,y \right) = \left( x,0 \right) $ i niech $d_{r}: \mathbb{R}^2 \times \mathbb{R}^2\to \mathbb{R}$ będzie określone formułą, gdzie $d_{e}$ jest metryką euklidesową
+	\[
+	d_{r}\left( a,b \right) =
+	\begin{cases}
+		d_{e}\left( a,b \right), &\text{ jeśli } p\left( a \right) = p\left( b \right), \\
+		d_{e}\left( a, p\left( a \right)  \right) + d_{e}\left( p\left( a \right) , p\left( b \right)  \right) + d_{e}\left( p\left( b \right) , b \right), &\text{ jeśli } p\left( a \right) \neq p\left( b \right) 
+	\end{cases}
+	.\] 
+	\begin{enumerate}[label=\arabic*)]
+		\item Sprawdzić, że $d_{r}$ jest metryką.
+		\item Pokazać, że zbiór $U$ jest otwarty w przestrzeni $\left( \mathbb{R}^2, d_{r} \right) $ wtedy i tylko wtedy, gdy przecięcie $U$ z każdą prostą pionową jest otwarte w topologii euklidesowej tej prostej oraz jeśli $a = \left( t,0 \right) \in U$, to $U$ zawiera pewną kulę euklidesową o środku w $a$.
+	\end{enumerate}
+\end{problem} 
+\begin{solution}
+	TODO
+\end{solution} 
+\begin{problem}[1.6]
+	Niech $\left( C\left[ 0,1 \right], d_{sup} \right) $ będzie przestrzenią funkcji ciągłych z $[0,1]$ w $\mathbb{R}$ z metryką supremum:
+	\[
+		d_{sup}\left( f,g \right) = \sup \{\left| f\left( t \right) - g\left( t \right)  \right| : t \in [0,1]\} 
+	.\] 
+	Które z następujących zbiorów są otwarte w tej przestrzeni:
+	\begin{enumerate}[label=\alph*)]
+		\item $A = \{f \in C\left[ 0,1 \right] : f\left( t \right) > 0 \text{ dla } t \in \left[ 0,1 \right] \} $,
+		\item $B = \{f \in C\left[ 0,1 \right] : f \text{ przyjmuje wartość zero}\} $,
+		\item $C = \{f \in C\left[ 0,1 \right] : \int_{0}^{1}\left| f\left( t \right)  \right| dt < 1\} $,
+		\item $D = \{f \in C\left[ 0,1 \right] : f \text{ jest ściśle rosnąca}\} $.
+	\end{enumerate}
+\end{problem} 
+\begin{solution}
+	TODO
+\end{solution} 	
+\begin{problem}[1.11]
+Punkt $a$ w przestrzeni topologicznej $\left( X,T \right) $ jest \textbf{izolowany}, jeśli $\{a\} $ jest zbiorem otwartym. Przestrzeń topologiczna jest \textbf{dyskretna} jeśli wszystkie jej punkty są izolowane. Niech $T_{k}, T_{r}$ będą topologiami generowanymi przez metryki $d_{k}, d_{r}$ z zadań 1.1 i 1.2
+\begin{enumerate}[label=\alph*)]
+	\item Określić zbiór nieprzeliczalny $Y \in \mathbb{R}^2$, taki że podprzestrzeń $\left( Y, \left( T_{k} \right)_{Y} \right) $ jest dyskretna, ale podprzestrzeń $\left( Y, \left( T_{r} \right)_{Y} \right) $ nie ma punktów izolowanych.
+	\item Określić zbiór nieprzeliczalny $Y \in \mathbb{R}^2$, taki że obie przestrzenie $\left( Y, \left( T_{k} \right) _{Y} \right) $ i $\left( Y, \left( T_{r} \right) _{Y} \right) $ mają dokładnie jeden punkt izolowany.
+\end{enumerate}
+\end{problem} 	
+\begin{solution}
+	TODO
+\end{solution} 
+\begin{problem}[1.15]
+	Pokazać, że na prostej euklidesowej $\mathbb{R}$ :
+	\begin{enumerate}[label=\alph*)]
+		\item $\overline{\mathbb{P} } = \overline{\mathbb{Q}} = \mathbb{R}$, gdzie $\mathbb{Q}$ oznacza liczby wymierne i $\mathbb{P} = \mathbb{R}\setminus \mathbb{Q}.$
+		\item Niech $A = \{a_1,a_2,\ldots\} \subseteq \mathbb{R}$ niech $b_1, b_2,\ldots$ będzie zbieżnym ciągiem liczb rzeczywistych i niech $B = \{ a_{i} + b_{i}: i = 1,2,\ldots\} $. Pokazać, że jeśli $\overline{A} = \mathbb{R}$, to także $\overline{B} = \mathbb{R}$. Czy założenie zbieżności ciągu $\left( b_{i} \right) $ jest istotne?
+	\end{enumerate}
+\end{problem} 
+\begin{solution}
+	TODO
+\end{solution} 
+\begin{problem}[1.16]
+	Dla $a,b \in \mathbb{R}^2$, niech $I\left( a,b \right) $ będzie odcinkiem łączącym $a$ i $b$ wraz z końcami. Niech 
+	\begin{align*}
+		A &= \bigcup \{I\left( \mathbf{0},b \right) : b = \left( 1,t \right), t \in \{0\} \cup \bigcup_{n=1}^{\infty}\left( \tfrac{1}{2n+1}, \tfrac{1}{2n} \right)  \},   \\
+                B &= \bigcup \{I\left( \mathbf{0},b \right) : b = \left( t,1 \right), t \in \{0\} \cup \bigcup_{n=1}^{\infty}\left( \tfrac{1}{2n+1}, \tfrac{1}{2n} \right)  \},   \\
+		C &= \bigcup \{I\left( \mathbf{0},b \right) : b = \left( 1,q \right), q \in \mathbb{Q} \cap \left( 0,1 \right) \}
+	.\end{align*}
+	Znaleźć domknięcia i wnętrza zbiorów A, B, C w następujących przestrzeniach topologicznych:
+	\begin{enumerate}[label=\alph*)]
+		\item $\mathbb{R}^2$ z topologią euklidesowa,
+		\item $\mathbb{R}^2$ z topologią generowaną przez metrykę $d_{k}$ z zadania $1.1$,
+		\item $\mathbb{R}^2$ z topologią generowaną przez metrykę $d_{r}$ z zadania $1.2$.
+	\end{enumerate}
+\end{problem} 
+\begin{solution}
+	TODO
+\end{solution} 
+\begin{problem}[1.18]
+	Niech $\left( C[0,1], d_{sup} \right) $ będzie przestrzenią opisaną w zadaniu 1.6. Znaleźć domknięcie i wnętrze każdego ze zbiorów A, B, C, D opisanych w tym zadaniu, w topologii generowanej przez metrykę supremum.
+\end{problem} 
+\begin{solution}
+	TODO
+\end{solution} 
+\begin{problem}[1.20]
+	Niech $\left( X, T \right) $ będzie przestrzenią z przykładu 1.2.12 (Topologia Zariskiego). Udowodnić, że domknięcie każdego zbioru nieskończonego w $X$ jest całą przestrzenią.
+\end{problem} 
+\begin{solution}
+	TODO
+\end{solution} 
+\begin{problem}[1.21]
+	Niech $\left( X,T \right) $ będzie przestrzenią topologiczną. Pokazać, że dla $A,B \subseteq X$ zachodzi $\overline{A\cup B} = \overline{A} \cup \overline{B}$.
+\end{problem} 
+\begin{solution}
+	TODO
+\end{solution} 
+\begin{problem}[1.22]
+	Niech $Y \subseteq X$ będzie podzbiorem przestrzeni topologicznej $\left( X,T \right) $. Dla $A \subseteq Y$ w podprzestrzeni $\left( Y, T_{Y} \right) $ (w przestrzeni $\left( X,T \right) $ ) oznaczamy przez $\overline{A}^{Y}$($\overline{A}^{X}$).
+	\begin{enumerate}[label=\alph*)]
+		\item Wykazać, że $\overline{A}^{Y} = \overline{A}^{X}\cap Y$.
+		\item Wykazać, że jeśli $\overline{A}^{Y} = Y$, to $\overline{A}^{X} = \overline{Y}^{X}$
+	\end{enumerate}
+\end{problem} 
+\begin{solution}
+	TODO
+\end{solution} 
+\begin{problem}[1.23]
+	Niech $A$ i $B$ będą zbiorami rozłącznymi w przestrzeni topologicznej $\left( X,T \right) $. Wykazać, że jeśli zbiór $A$ jest otwarty w $X$, to $\overline{A}\cap \text{Int}\overline{B} = \emptyset$.
+\end{problem} 
+\begin{solution}
+	TODO
+\end{solution} 
+\begin{problem}[1.24]
+	Punkt  $a$ w przestrzeni topologicznej $\left( X,T \right) $ jest punktem skupienia zbioru $A \subseteq X$, jeśli każde otoczenie $a$ zawiera element zbioru $A$ różny od $a$. Zbiór punktów skupienia zbioru $A$ oznaczamy symbolem $A^{d}$ i niech 
+	\[
+	A^{\left( n \right) } := \left( \ldots \left( A^{d} \right) ^{d}\ldots \right)^{d}
+	.\] 
+będzie zbiorem otrzymanym z $A$ przez $n$-krotne powtórzenie operacji przejścia do zbioru punktów skupienia.
+\begin{enumerate}[label=\alph*)]
+	\item Określić dla każdej liczby naturalnej $n$ zbiór $A \subseteq \left[ 0,1 \right] $, taki że w metryce euklidesowej na odcinku, $A^{\left( n \right) \neq \emptyset}$, ale $A^{\left( n+1 \right) } = \emptyset$.
+	\item Niech $F$ będzie zbiorem domkniętym na prostej euklidesowej $\mathbb{R}$. Wykazać, że $\text{Int}F = \emptyset$ wtedy i tylko wtedy, gdy istnieje zbiór $A \subseteq \mathbb{R}\setminus F$, taki że $F = A^{d}$. Udowodnić analogiczny fakt dla przestrzeni euklidesowej $\left( \mathbb{R}^{n}, d_{e} \right) $.
+\end{enumerate}
+\end{problem} 
+\begin{solution}
+	TODO
+\end{solution} 

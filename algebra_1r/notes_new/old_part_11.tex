@@ -1,0 +1,285 @@
+\chapter{Wykład XI.}
+
+\section{Pierścień szeregów formalnych i wielomiany.}
+\begin{definition}[Pierścień szeregów formalnych.]
+	Niech $R$ będzie pierścieniem przemiennym z $\mathbf{1}$. 
+	
+	\begin{enumerate}[label=\arabic*)]
+		\item 
+	Definiujemy $R\left[ \left| X \right|  \right] $jest \textbf{pierścieniem szeregów formalnych } (o współczynnikach z $R$ ) jako zbiór $R^{\N}$, tzn
+	\[
+	R\left[ \left| X \right|  \right] := R^{\N}
+	.\] 
+
+	\noindent \textbf{Dodawanie} jest zdefiniowane jak w $\text{Fun}\left( \N,R \right) $, czyli
+	\[
+		\left( a_{n} \right)_{n=1}^{\infty} +  \left( b_{n}  \right) _{n=1}^{\infty} := \left( a_{n} +b_{n}  \right) _{n=1}^{\infty}
+	.\] 
+
+	\noindent  Mnożenie jest inne, tzw splot:
+	\[              
+		\left( a_{n} \right)_{n=1}^{\infty} \cdot   \left( b_{n}  \right) _{n=1}^{\infty} := \left( c_{n}  \right) _{n=1}^{\infty}
+	,\] 
+	gdzie
+	\[
+		c_{n} = a_0b_{n} + a_1b_{n-1} + \ldots + a_{n}b_{0} = \sum_{i+j = n}^{\infty} a_{i}b_{j},
+	.\] 
+	\textbf{Oznaczamy:} $\left( a_{n} \right)_{n\in \N}$ oznaczamy przez
+	\[
+	\sum_{n = 1}^{\infty} a_{n}x^{n}\text{ lub } a_{0}X^{0} + a_{1}X^{1} + \ldots
+	.\] 
+	To tylko oznaczenie, np. 
+	\[
+	X = 1\cdot X = \left( 0,1,0,0,\ldots \right) 
+	.\] 
+	Zadanie:
+	\begin{itemize}
+		\item $\left( R\left[ \left| X \right|  \right] , +, \cdot  \right) $- pierścień przemienny $\mathbf{1}$,
+		\item $R$- dziedzina $\implies R\left[ \left| X \right|  \right] $ też.
+	\end{itemize}
+	Dowód jako zadanie.
+		\item 
+			\[
+			R\left[ X \right] := \{\sum_{n=0}^{\infty} a_{n} X^{n}\in R\left[ \left| X \right|  \right]: \left(\exists N \right)\left(\forall n \ge N \right) \left( a_{n} = \mathbf{0} \right)  \} 
+			.\] 
+			(prawie wszystkie zerowe)
+
+			Zadanie: $R\left[ X \right] \underset{\scriptscriptstyle\text{podp}}{\subseteq} R\left[ \left| X \right|  \right].$
+			
+			Niech $f\in R\left[ X \right] $, 
+			\[
+			f = \sum_{n=0}^{N} a_{n} X^{n} = a_0 + a_1X + a_2X^2 + \ldots + a_{N}X^{N} + 0\cdot X^{N+1} + 0\cdot X^{N+2} + \ldots
+			.\] 
+			Każdy wielomian f jak wyżej wyznacza \textbf{funkcję wielomianową}:
+			\[
+			\overline{f}: R\to R \text{ zadaną przez } \overline{f}\left( r \right) := a_0 + a_1r + a_2r + \ldots + a_{N}r^{N}
+			.\] 
+	\end{enumerate}
+\end{definition} 
+\begin{remark}
+	.
+
+	\begin{enumerate}[label=\arabic*)]
+		\item Różne wielomiany mogą dawać te same funkcje wielomianowe. Na przykład
+			\[
+			\text{dla } R = \mathbb{Z} _{2}: \overline{X}= \overline{X^2} = \overline{X^3} = \id_{\scriptscriptstyle \mathbb{Z}_{2}}
+			.\] 
+			bo
+			\[
+			\begin{cases}
+				0 &= 0^2 = 0^3 \\
+				1 &= 1^2 = 1^3
+			\end{cases}
+			.\] 
+			Zatem \textbf{nie należy} utożsamiać i mylić wielomianów z funkcjami wielomianowymi
+		\item Szereg formalny zwykle nie wyznacza żadnej funkcji, chyba że w $R$ mamy pojęcie zbieżności, na przykład w $R\left[ \left| X \right|  \right] $ jest \textbf{podpierścieniem} szeregów zbieżnych (wszędzie), na przykład 
+			\[
+			\exp = \sum_{n=0}^{\infty} \frac{1}{n!}x^{n}
+			.\] 
+	\end{enumerate}
+\end{remark} 
+\begin{definition}
+	Niech $f = \sum_{n=0}^{N} a_{n} X^{n}\in R\left[ X \right] \setminus \{\mathbf{0}\} $.
+	\begin{enumerate}[label=\arabic*)]
+		\item $\text{deg}\left( f \right):= \max \{n: a_{n} \neq \mathbf{0}\}.$ Wielomian zerowy nie ma stopnia,
+		\item $a_0$- \textbf{wyraz wolny} $f$,
+		\item $a_{n}$- \textbf{współczynnik wiodący}, gdzie $n = \text{deg}\left( f \right) $
+	\end{enumerate}
+\end{definition} 
+\begin{definition}
+	.
+	\begin{enumerate}[label=\arabic*)]
+		\item $R\left[ \left| X,Y \right|  \right] := R\left[ \left| X \right|  \right] R\left[ \left| Y \right|  \right] $: pierścień szeregów formalnych dwu zmiennych.
+		\item $R\left[ \left| X_1,X_2,\ldots, X_{n-1},X_{n}  \right|  \right] := R\left[ \left| X_1,\ldots,X_{n-1} \right|  \right] \left[ \left| X_{n}  \right|  \right] $: pierścień szeregów formalnych $n$ zmiennych.
+
+			$\rotatein$
+
+			 $\sum_{(i_1,\ldots,i_{n})\in \N^{n}} a_{i_1 \ldots i_{n}}X_1^{i_1}\ldots X_{n}^{i_{n}}$: funkcja $f$ z $\N^{n}$ w $R: f\left( i_1,\ldots,i_{n} \right) = a_{i_1\ldots i_{n}}$
+		 \item Podobnie $R\left[ X_1,\ldots,X_{n}  \right] = R\left[  X_1,\ldots,X_{n} \right]\left[ X_{n} \right]  $ : pierścień wielomianów $n$-zmiennych.
+	\end{enumerate}
+\end{definition} 
+
+\section{Pierścienie i ciała liczbowe.}
+\begin{definition}[Pierścień Gaussa.]
+	\begin{enumerate}[label=\arabic*)]
+		\item $\mathbb{Z} \left[ i \right] := \{a + bi: a,b \in \mathbb{Z} \} \subseteq \mathbb{C} $ : \textbf{pierścień Gaussa} 
+		\item Niech $\alpha \in \mathbb{C} \setminus \mathbb{Q} $ oraz $\alpha ^2 \in \mathbb{Q} $, definiujemy
+			\[
+			\mathbb{Q} \left(\alpha  \right) := \{a + b\alpha \in \mathbb{C} : a,b \in \mathbb{Q} \} \underset{\scriptscriptstyle\text{podc}}{\subseteq} \mathbb{C} 
+			.\] 
+	\end{enumerate}
+\end{definition} 
+\begin{remark}
+	Ogólniej:
+
+	Niech $\alpha \in \mathbb{C} \setminus \mathbb{Z} $, takie że $\alpha ^2 \in \mathbb{Z} $, wtedy
+	\[
+	\mathbb{Z} \left[ \alpha  \right] := \{a + b\alpha :a,b \in \mathbb{Z} \} \underset{\scriptscriptstyle\text{podc}}{\subseteq} \mathbb{C} \in \mathbb{Z} 
+	,\]
+	bo:
+	\begin{itemize}
+		\item podciało (trywialne?)
+		\item $\left( a + b\alpha  \right)\left( c + d \alpha  \right) = \left(\underbrace{ac + bd\alpha ^2}_{\in \mathbb{Z} }\right) + \left( \underbrace{ad + bc}_{\in \mathbb{Z} } \right) \alpha \in \mathbb{Z} \left[ \alpha  \right] $
+	\end{itemize}
+\end{remark} 
+\begin{definition}[Homomorfizm pierścieni.]
+	Niech $R,S$ będą pierścieniami. Funkcja $f:R \to S$ jest \textbf{homomorfizmem (pierścieni)}, gdy
+	\[
+	\left(\forall x,y \in R \right)\left( \begin{cases}
+			f\left( x +_{\scriptscriptstyle R} y \right) &= f\left( x \right) +_{\scriptscriptstyle S} f\left( y \right) \\
+			f\left( x \cdot_{\scriptscriptstyle R} y \right) &= f\left( x \right) \cdot_{\scriptscriptstyle S} f\left( y \right) 
+	\end{cases} \right)  
+	.\] 
+
+	$f$ jest epimorfizmem, monomorfizmem, izomorfizmem, endomorfizmem, automorfizmem- jak dla grup $R\cong S$, gdy intuicyjnie $f: R \overset{\text{izo}}{\to} S$
+\end{definition} 
+\begin{remark}
+	Przypomnijmy:
+	\begin{itemize}
+		\item Złożenie homomorfizmów jest homomorfizmem.
+		\item Funkcja odwrotna do izomorfizmu jest izomorfizmem.
+	\end{itemize}
+\end{remark} 
+\begin{remark}
+	Załóżmy, że $f: R\to S $ jest homomorfizmem pierścieni. Wtedy
+	\begin{enumerate}[label=\arabic*)]
+		\item $f: \left( R, +_{\scriptscriptstyle R} \right) \to \left( S, +_{\scriptscriptstyle S} \right) $ jest \textbf{homomorfizmem grup addytywnych}. W szczególności  
+			\[
+			f\left( \mathbf{0}_{\scriptscriptstyle R} = \mathbf{0}_{\scriptscriptstyle S} \right) \text{ oraz } f\left( -r \right) = -f\left( r \right) 
+			.\] 
+		\item Jeśli  $R$ i $S$ mają $\mathbf{1}$, to niekoniecznie $f\left( \mathbf{1}_{\scriptscriptstyle R} \right) = \mathbf{1}_{\scriptscriptstyle S}$. Na przykład może być $f$ zerowy, tzn $\left(\forall r \in R \right)\left( f\left( r \right) = 0 \right)  $
+	\end{enumerate}
+\end{remark} 
+\textbf{Jako zadanie pokazać:}
+
+Niech $f: R \to S$ będzie homomorfizmem, $R,S$ będą pierścieniami przemiennymi z $\mathbf{1}$ a $S$ będzie dziedziną. Wtedy
+\[
+f \text{ nie jest zerowy } \implies f\left( \mathbf{1}_{R} \right) = \mathbf{1}_{\scriptscriptstyle S}
+.\] 
+
+\textbf{Przykłady} 
+
+Niech $P$ będzie pierścieniem przemiennym oraz $n\in \N_{>0}$.
+\begin{enumerate}[label=\arabic*)]
+	\item $r_{n}: \mathbb{Z} \to \mathbb{Z} _{n} $ jest epimorfizmem pierścieni.
+	\item $\varphi : R \to R\left[ X \right],$ $\varphi \left( r \right) := rX^{0} $ jest monomorfizmem pierścieni.
+	
+		Utożsamiamy $R$ z $\varphi \left[ R \right] =\{rX^{0}: r\in R\}  $. Wtedy $R \underset{\scriptscriptstyle\text{podp}}{\subseteq} R\left[ R \right] $.
+
+		\begin{remark}[To wymaga wyjaśnienia]
+			Mamy
+			\[
+			a_0X^{0}+ a_1X^{1}+\ldots + a_{n} X^{n} = \underbrace{a_0X^{X^{0}}}_{=a_0}\cdot X^{0}+ \underbrace{a_1X^{0}}_{=a_1}\cdot X^{1}+ \ldots + \ldots + \underbrace{a_{n} X^{0}}_{=a_{n} }\cdot X^{n}
+			.\] 
+			Z dokładnością do izomorfizmu nad $R$, $R\left[ X \right] $ to pierścień zawierający $R$ oraz $X\in R$ złożony dokładnie z elementów \[
+			a_0 + a_1X^{1} + \ldots + a_{n}X^{n}, n\in \N, a_0,a_1,\ldots,a_{n} \in R
+			,\] 
+			i o tej własności, że
+			\[
+			a_0 + a_1X^{1} + \ldots + a_{n} X^{n} = b_0 + b_1X^{1} + \ldots + a_{n} X^{n} \iff \left(\forall i\le n \right)\left( a_{i}= b_{i} \right)  
+			.\] 
+		\end{remark}
+	\item \[
+	 	\psi : R\left[ X \right] \to \text{Fun}\left( R,R \right), \psi \left( f \right) := \overline{f}
+	.\] 
+	$\psi $ jest homomorfizmem, nie musi być ,,1-1'' ani ,,na''.
+	Na przykład dla $R = \mathbb{Q} $ mamy 
+	\[
+	\left| \mathbb{Q} \left[ X \right]  \right| = \aleph_{0}, \left| \text{Fun}\left( \mathbb{Q} ,\mathbb{Q}  \right)  \right|= 2^{\aleph_{0}}> \aleph_{0}
+	.\] 
+\item Niech $Y$ będzie zbiorem oraz $y \in Y$. Definiujemy \textbf{funkcję ewaluacji} 
+	\[
+	\text{ev}_{y}: \text{Fun}\left( Y, R \right) \to R
+	.\] 
+	Wtedy $\text{ev}_{y} := f\left( y \right) $ jest epimorfizmem.
+\item Mamy tutaj nadużycie notacji/przeciążenie? (Wymaga wyjaśnienia, wykładowca mówił, że w matematyce tak się przyjęło):
+	\[
+	R\left[ X \right] \overset{\psi }{\longrightarrow} \text{Fun}\left( R,R \right) \overset{\text{ev}_{r}}{\leftarrow }R
+	,\] 
+	oraz
+	\[
+		R\left[ X \right] \underset{\text{ev}_{r}}{\leftarrow } R
+	.\] 
+	Wtedy $f\left( r \right) := \overline{f}\left( r \right) = \text{ev}_{r}\left( f \right) $ jest epimorfizmem. 
+\item Mamy:
+
+\begin{figure}[H] % [h!] to sugestia, by umieścić "tutaj"
+        \centering
+	\adjustbox{scale = 1.3}{
+	\begin{tikzpicture}[node distance = 0.7cm and 1.4cm]
+  % Tell it where the nodes are
+  \node (A) [label={[xshift=4pt]left:$\alpha :$}] {$R$};
+  \node (B) [below=of A] {$r$};
+  \node (C) [right=of A] {$\text{End}(( R,+ )) $};
+  %\node (D) [below=of C] {$\lambda_{r} $};
+   \node (D) at (B -| C) {$\lambda_{r}$};
+   % Składnia (B -| C) oznacza: weź współrzędną Y z punktu B i współrzędną X z punktu C
+  % Tell it what arrows to draw
+  \draw[draw=none] (A)-- node[midway] {\small $\rotatein$} (B);
+  \draw[|->] (B)--(D);
+  \draw[-stealth] (A)--(C);
+  \draw[draw=none] (C)-- node [midway] {\small $\rotatein$} (D);
+\end{tikzpicture}}
+\end{figure}
+
+Gdzie:
+\begin{itemize}
+	\item $\alpha $ jest homomorfizmem,
+	\item $\lambda_{r}\left( x \right) := rx$,
+	\item $\alpha \left( r \right) := \lambda_{r}$.
+\end{itemize}
+Wtedy
+\begin{align*}
+	\alpha \left( r_1r_2 \right) \left( x \right) &= \lambda_{r_1r_2}\left( x \right) = r_1r_2x = \lambda_{r_1}\left( r_2x \right) = \lambda_{r_1}\left( \lambda_{r_2}\left( x \right)  \right) = \\
+		       &= \left( \lambda_{r_1}\circ \lambda_{r_2} \right) \left( x \right) = \left( \alpha \left( r_1 \right) \circ \alpha \left( r_2 \right)  \right) \left( x \right)  
+.\end{align*}
+Na przykład dla $R = \mathbb{Z} _{n}$ lub $\mathbb{Z} $, $\alpha $ jest izomorfizmem.
+\end{enumerate}
+\section{R-moduł.}
+
+\begin{definition}[R-moduł.]
+	Niech $R$ będzie pierścieniem przemiennym z $\mathbf{1}$. $M$ jest \textbf{R-modułem} gdy
+	\begin{enumerate}[label=\arabic*)]
+		\item $\left(M, +  \right) $ jest grupą przemienną.
+		\item Mamy funkcję \begin{align*}
+			f: R\times M &\longrightarrow M \\
+			\left( r,m \right)  &\longmapsto f(\left( r,m \right) ) = r\cdot m		
+		.\end{align*}
+		(jest to mnożenie przez skalary z $R$), która spełnia $\left(\forall r,r' \in R\right)\left(\forall m,m'\in M \right) $:
+		\begin{enumerate}[label=\roman*)]
+			\item $r\left( m+m' \right) = r\cdot m + r\cdot m'$,
+			\item $\left( rr' \right) \cdot m = r\cdot \left( r'\cdot m \right) $,
+			\item $\left( r+r' \right) \cdot m = r\cdot m + r'\cdot m$,
+			\item $\mathbf{1}\cdot m = m$.
+		\end{enumerate}
+	\end{enumerate}
+\end{definition} 
+
+Wtedy mamy homomorfizm 
+\[
+\varphi :R \to \text{End}\left( \left( M,+ \right)  \right), \text{ dany wzorem } \varphi \left( r \right) \left( m \right) \text{, taki że } \varphi \left( \mathbf{1} \right) = \id_{M}   
+.\] 
+
+Taki homomorfizm jest równoważny pojęciu modułu (podobnie jak dla działań grupy).
+
+\begin{remark}[Przestrzeń liniowa.]
+	Jeśli $R=K$ jest ciałem, to $K$-moduły nazywamy przestrzeniami liniowymi. 
+
+	Tak samo jak dla przestrzeni liniowej definiuje się liniową $R$ niezależność w dowolnym $R$-module $M$ i pojęcie bazy. Nie każdy $R$-moduł ma bazę, jeśli $R$-moduł $M$ ma bazę, to $M$ nazywamy $R$-modułem wolnym. Na przykład $R$ jest $R$-modułem wolnym o bazie $\{\mathbf{1}\} $. 
+
+	Każdy $R$-moduł wolny jest izomorficzny z $R^{\oplus \kappa}$, $\kappa$ jest mocą bazy. 
+
+	\noindent Jeśli $R\underset{\scriptscriptstyle\text{podp}}{\subseteq} S$, to $S$ staje się $R$-modułem.
+
+	Na przykład $\mathbb{R} ,\mathbb{Q} $ to przestrzenie liniowe nad $\mathbb{Q} $ oraz $\mathbb{R} \cong \mathbb{Q} ^{\oplus \mathfrak{c}}$ i $\mathbb{C} \cong  \mathbb{Q} ^{\oplus \mathfrak{c}}$ jako przestrzeń liniowa czyli też jako grupa. 
+
+	Każda grupa przemienna $\left( A,+ \right) $ jest $\mathbb{Z} $-modułem, bo
+	\[
+	\left(\forall n\in \mathbb{Z}  \right) \left(\forall a \in A \right)\left( n\cdot a := \underbrace{a+a+\ldots+a}_{n\text{ krotne dodawanie}} \text{ spełnia definicję modułu}\right)  
+	.\] 
+
+	Wolne $\mathbb{Z} $-moduły to dokładnie wolne grupy abelowe.
+\end{remark} 
+
+
+

@@ -1,0 +1,76 @@
+\babel@toc {polish}{}\relax 
+\contentsline {chapter}{\numberline {1}Wykład I}{4}{}%
+\contentsline {section}{\numberline {1.1}Działanie w zbiorze: łączność, przemienność, element neutralny. }{4}{}%
+\contentsline {section}{\numberline {1.2}Definicja grupy i przykłady: grupy dihedralne, grupy permutacji i grupy macierzy.}{4}{}%
+\contentsline {section}{\numberline {1.3}Przykłady działań.}{4}{}%
+\contentsline {chapter}{\numberline {2}Wykład II}{5}{}%
+\contentsline {section}{\numberline {2.1}Pojęcie podgrupy i przykłady. }{5}{}%
+\contentsline {section}{\numberline {2.2}Rząd elementu grupy.}{5}{}%
+\contentsline {section}{\numberline {2.3}Generatory grupy, grupy skończenie generowane.}{5}{}%
+\contentsline {section}{\numberline {2.4}Grupa dihedralna $D_{n}$}{5}{}%
+\contentsline {chapter}{\numberline {3}Wykład III}{6}{}%
+\contentsline {section}{\numberline {3.1}Podgrupy normalne i Grupy ilorazowe}{6}{}%
+\contentsline {section}{\numberline {3.2}Homomorfizmy i Zasadnicze Twierdzenie}{7}{}%
+\contentsline {section}{\numberline {3.3}Permutacje: Własności i Zastosowania}{8}{}%
+\contentsline {section}{\numberline {3.4}Warstwy i Twierdzenie Lagrange'a}{10}{}%
+\contentsline {section}{\numberline {3.5}Działanie Grupy na Zbiorze}{10}{}%
+\contentsline {section}{\numberline {3.6}Twierdzenie o Orbicie i Stabilizatorze}{11}{}%
+\contentsline {section}{\numberline {3.7}Działanie przez Automorfizmy i Sprzężenia}{11}{}%
+\contentsline {subsection}{\numberline {3.7.1}Analiza przypadków i przykłady}{13}{}%
+\contentsline {chapter}{\numberline {4}Wykład IV}{15}{}%
+\contentsline {section}{\numberline {4.1}Produkty półproste. Rozkłady na produkty półproste.}{15}{}%
+\contentsline {section}{\numberline {4.2}Klasyfikacja grup rzędu $\le $ 8.}{33}{}%
+\contentsline {section}{\numberline {4.3}Podsumowania}{35}{}%
+\contentsline {subsection}{\numberline {4.3.1}Równoważność działania i pewnego homomorfizmu $\varphi $}{35}{}%
+\contentsline {subsection}{\numberline {4.3.2}Produkty Proste i Półproste (Zewnętrzne i Wewnętrzne)}{37}{}%
+\contentsline {chapter}{\numberline {5}Wykład V}{39}{}%
+\contentsline {section}{\numberline {5.1}p-grupy Sylowa}{39}{}%
+\contentsline {chapter}{\numberline {6}Wykład VI}{44}{}%
+\contentsline {section}{\numberline {6.1}Skończenie generowane grupy abelowe. Torsja.}{44}{}%
+\contentsline {chapter}{\numberline {7}Wykład VII}{48}{}%
+\contentsline {section}{\numberline {7.1}Grupy rozwiązalne. Komutator i Komutant}{48}{}%
+\contentsline {chapter}{\numberline {8}Wykład VIII}{50}{}%
+\contentsline {section}{\numberline {8.1}Ciąg kompozycyjny. Nilpotentna. Prosta.}{50}{}%
+\contentsline {subsection}{\numberline {8.1.1}Grupa prosta}{51}{}%
+\contentsline {chapter}{\numberline {9}Grupy wolne}{54}{}%
+\contentsline {section}{\numberline {9.1}Słowa}{54}{}%
+\contentsline {chapter}{\numberline {10}Teoria pierścieni}{55}{}%
+\contentsline {section}{\numberline {10.1}Podstawowe informacje}{55}{}%
+\contentsline {section}{\numberline {10.2}Teoria podzielności.}{59}{}%
+\contentsline {chapter}{\numberline {11}Szeregi formalne i wielomiany.}{62}{}%
+\contentsline {section}{\numberline {11.1}Pierścień szeregów formalnych.}{62}{}%
+\contentsline {section}{\numberline {11.2}Pierścienie i ciała liczbowe.}{64}{}%
+\contentsline {chapter}{\numberline {12}Rozwiązania list zadań.}{67}{}%
+\contentsline {section}{\numberline {12.1}Lista zadań numer 2.}{67}{}%
+\contentsline {section}{\numberline {12.2}Lista zadań numer 3.}{71}{}%
+\contentsline {section}{\numberline {12.3}Lista zadań numer 4.}{72}{}%
+\contentsline {section}{\numberline {12.4}Lista zadań numer 5.}{76}{}%
+\contentsline {chapter}{\numberline {13}Epilog.}{80}{}%
+\contentsline {section}{\numberline {13.1}Twierdzenie o Podgrupie o Najmniejszym Indeksie Pierwszym}{80}{}%
+\contentsline {subsection}{\numberline {13.1.1}Wykładnik grupy (Exponent)}{81}{}%
+\contentsline {section}{\numberline {13.2}Klasyfikacja grup rzędu 8}{81}{}%
+\contentsline {subsection}{\numberline {13.2.1}Przypadek A: Grupy Abelowe}{82}{}%
+\contentsline {subsection}{\numberline {13.2.2}Przypadek B: Grupy Nieabelowe (Analiza szczegółowa)}{82}{}%
+\contentsline {section}{\numberline {13.3}Klasyfikacja w duchu Produktu Półprostego (Podejście Konstrukcyjne)}{83}{}%
+\contentsline {section}{\numberline {13.4}Grupa Kwaternionów $Q_8$}{84}{}%
+\contentsline {section}{\numberline {13.5}Klasyfikacja grup rzędu $\le 8$}{84}{}%
+\contentsline {subsection}{\numberline {13.5.1}Przypadki trywialne i rzędy pierwsze}{85}{}%
+\contentsline {subsection}{\numberline {13.5.2}Rząd 4 (Kwadrat liczby pierwszej)}{85}{}%
+\contentsline {subsection}{\numberline {13.5.3}Rząd 6 (Produkt liczb pierwszych)}{85}{}%
+\contentsline {subsection}{\numberline {13.5.4}Rząd 8 (Analiza przypadków)}{85}{}%
+\contentsline {subsubsection}{Przypadek A: Grupy Abelowe}{85}{}%
+\contentsline {subsubsection}{Przypadek B: Grupy Nieabelowe}{86}{}%
+\contentsline {paragraph}{1. Przypadek rozszczepialny ($D_4$):}{86}{}%
+\contentsline {paragraph}{2. Przypadek nierozszczepialny ($Q_8$):}{86}{}%
+\contentsline {section}{\numberline {13.6}Brudnopis}{86}{}%
+\contentsline {section}{\numberline {13.7}Konwencja Notacyjna Produktu Półprostego}{87}{}%
+\contentsline {subsection}{\numberline {13.7.1}Grupa Diedralna $D_n$ – Analiza Kompletna}{88}{}%
+\contentsline {subsubsection}{Definicja i Prezentacja}{88}{}%
+\contentsline {subsubsection}{Struktura Elementów}{89}{}%
+\contentsline {subsection}{\numberline {13.7.2}Własności Algebraiczne}{89}{}%
+\contentsline {subsubsection}{Reprezentacja Macierzowa}{90}{}%
+\contentsline {subsubsection}{Struktura Produktu Półprostego}{90}{}%
+\contentsline {section}{\numberline {13.8}Szukanie homomorfizmów.}{90}{}%
+\contentsline {section}{\numberline {13.9}Określanie Homomorfizmów na Generatorach}{90}{}%
+\contentsline {subsection}{\numberline {13.9.1}Przykład klasyczny: Grupy Cykliczne}{91}{}%
+\contentsline {subsection}{\numberline {13.9.2}Przykład dla twardzieli: $S_3 \to \PazoBB {Z}_6$}{92}{}%

@@ -1,0 +1,518 @@
+\chapter{Lista 10.}
+
+Zakładamy, że $R$ oraz $S$ są pierścieniami przemiennym z $\mathbf{1}$.
+
+\begin{problem}[1]
+	Załóżmy, że $R$ jest pierścieniem Boole'a, czyli dla każdego $r\in R$ zachodzi $r = r^2$.
+	\begin{enumerate}[label=\alph*)]
+		\item Udowodnić, że dla każdego $r\in R$ zachodzi $r+r = 0.$
+		\item Dla dowolnego zbioru  $A$ znaleźć strukturę pierścienia Boole'a na zbiorze wszystkich podzbiorów  $A$ (czyli $\mathcal{P}(A) $).
+	\end{enumerate}
+\end{problem} 
+\begin{solution}
+	\begin{enumerate}[label=\alph*)]
+		\item Ustalmy dowolny element $r \in R$. Pokażemy, że $r + r = 0$. Korzystając z założenia wnioskujemy, że
+		\begin{align*}
+			r + r &= \left( r + r \right) ^2 \\
+			&= \left( r + r \right) \left( r + r \right)  \\
+			&=  \left( r + r \right) r + \left( r + r \right) r \\
+			&= (r^2 + r^2) + (r^2 + r^2) \\
+			&= (r + r) + (r + r) \\
+		.\end{align*} 
+
+		Zatem \[
+		r + r = \left(  r+ r \right) + \left( r + r \right)  
+		.\] 
+	
+		Ponieważ $\left( R, + \right)$ jest grupą, więc do powyższej równości możemy obustronnie z prawej strony dodać element $- \left( r + r \right)$:
+		\begin{align*}
+			r + r &= \left( r + r \right) + \left( r + r \right)  \\
+			\left( r + r \right) + \bm{ \left(- \left( r + r \right) \right) } &= \left( r + r \right) + \left( r + r \right) + \bm{  \left( - \left( r + r \right)  \right) }   \\ 
+			\bm{ \left( r + r \right) + \left( - \left( r + r \right)  \right)  } &= \left( r + r \right) + \bm{ \left( \left( r + r \right) + \left( - \left( r + r \right)  \right)  \right)  }  \\
+			 \mathbf{0}  &= \left( r + r \right) + \mathbf{0}  \\
+			 \mathbf{0} &= \left( r + r \right) 
+		.\end{align*}
+		\item Dla osobistej wygody zamiast $A$, będziemy rozważać  $X$. Na $\mathcal{P}(X) $ określamy:
+			\begin{itemize}
+				\item \textbf{Mnożenie} dwóch zbiorów jako branie ich przekroju $\cap $. Elementem neutralnym, czyli jedynką $\mathbf{1}$ jest zbiór $X$.
+				\item \textbf{Dodawanie} dwóch zbiorów jako branie ich różnicy symetrycznej $\Delta $. Elementem neutralnym jest zbiór pusty $\emptyset $.
+			\end{itemize}
+
+			\noindent Rozważmy odwzorowanie 
+
+			 \begin{figure}[H] % [h!] to sugestia, by umieścić "tutaj"
+			        \centering
+				\adjustbox{scale = 1.0}{
+				\begin{tikzpicture}[node distance = 0.4cm and 0.8cm]
+			  % Tell it where the nodes are
+			  \node (A) [label={[xshift=4pt]left:$ \varphi  :$}] {$ \mathcal{P}(X)  $};
+			  \node (C) [right=of A] {$ \text{Fun}\left( X, \mathbb{Z}_{2} \right)  $};
+			  \node (B) [below=of A] {$ A $};
+			  \node (D) at (B -| C) {$ \chi_{ A} $};
+			  % Składnia (B -| C) oznacza: weź współrzędną Y z punktu B i współrzędną X z punktu C
+			  % Tell it what arrows to draw
+			  \draw[draw=none] (A)-- node[midway] {\small $\rotatein$} (B);
+			  \draw[|->] (B)--(D);
+			  \draw[-stealth] (A)--(C);
+			  \draw[draw=none] (C)-- node [midway] {\small $\rotatein$} (D);
+			\end{tikzpicture}}
+			\end{figure} 
+
+			gdzie $\chi_{A}$ jest funkcją charakterystyczną zbioru $A \subseteq \mathcal{P}(X) $, tj
+			\[
+			\chi_{A}\left( x \right) = \begin{cases}
+				1, &\text{ gdy } x \in A,\\
+				0, &\text{ gdy } x \not\in A.
+			\end{cases}
+			\] 
+			\begin{note}
+			
+				Zbiór $\text{Fun}\left( X, \mathbb{Z} _{2} \right) $ gdzie $X$ jest dowolnym zbiorem a $\mathbb{Z}_{2}$ jest pierścieniem. Dowód TODO PÓZNIEJ.
+			\end{note}
+
+			Pokażemy, że $\varphi$ jest izomorfizmem pomiędzy strukturą pierścienia przemiennego z jedynką $\text{Fun}\left( X, \mathbb{Z}_{2} \right) $ (gdzie $\mathbb{Z}_{2}$ jest pierścieniem  przemiennym z jedynką) oraz strukturą $\left( \mathcal{P}(X) , \Delta , \cap  \right) $.
+			\begin{enumerate}[label=\arabic*)]
+			\item \textbf{Homomorfizm} 
+			
+				\noindent Sprawdzimy, jak $\varphi$ zachowuje działania. Ustalmy dowolne $A, B \in \mathcal{P}(X) $. Chcemy pokazać, że
+				\begin{enumerate}[label=\alph*)]
+					\item $\varphi \left( A \Delta B \right) = \varphi\left( A \right) + \varphi \left( B \right)   $
+					\item $\varphi \left( A \cap B \right) =  \varphi \left( A \right) \cdot \varphi \left( B \right)   $
+				\end{enumerate}		
+				gdzie $+$ oraz  $\cdot $ są działaniami z pierścienia $\mathbb{Z}_{2}$.
+				
+				\noindent \textbf{Dowód} (rozwleczony na przypadkologię, a można skrócić)
+
+				Ustalmy dowolny $x \in X$. Rozważmy przypadki:
+				\begin{enumerate}[label=\alph*)]
+					\item $x \in A \land x \in B$. Wtedy
+
+						Dla różnicy symetrycznej:
+						\[
+							L = \varphi \left( A \Delta B \right) \left( x \right) = \chi_{A \Delta B}\left( x \right) = 0 = 1 + 1 = \chi_{A}\left( x \right)  + \chi_{B}\left( x \right) = \varphi\left( A \right) \left( x \right) + \varphi \left( B \right) \left( x \right) = P 
+						.\]
+
+						Dla przekroju:
+						\[
+						L = \varphi \left( A \cap B \right) \left( x \right) = \chi_{A \cap B} = 1 = 1 \cdot 1 = \chi_{A}\left( x \right) \cdot \chi_{B}\left( x \right) = \varphi\left( A \right) \left( x \right) \cdot \varphi \left( B \right) \left( x \right) = P  
+						.\] 
+					\item $x \in A \land x \not\in  B$. Wtedy
+
+						Dla różnicy symetrycznej:
+						\[
+							L = \varphi \left( A \Delta B \right) \left( x \right) = \chi_{A \Delta B}\left( x \right) = 1 = 1 +  0 = \chi_{A}\left( x \right)  + \chi_{B}\left( x \right) = \varphi\left( A \right) \left( x \right) + \varphi \left( B \right) \left( x \right) = P 
+						.\]
+						Dla przekroju:
+						\[
+						L = \varphi \left( A \cap B \right) \left( x \right) = \chi_{A \cap B} = 0 = 1 \cdot 0 = \chi_{A}\left( x \right) \cdot \chi_{B}\left( x \right) = \varphi\left( A \right) \left( x \right) \cdot \varphi \left( B \right) \left( x \right) = P  
+						.\] 
+					\item $x \not\in  A \land x \in B$. Wtedy
+
+						Dla różnicy symetrycznej:
+						\[
+							L = \varphi \left( A \Delta B \right) \left( x \right) = \chi_{A \Delta B}\left( x \right) = 1 = 0 + 1 = \chi_{A}\left( x \right)  + \chi_{B}\left( x \right) = \varphi\left( A \right) \left( x \right) + \varphi \left( B \right) \left( x \right) = P 
+						.\]
+
+						Dla przekroju:
+						\[
+						L = \varphi \left( A \cap B \right) \left( x \right) = \chi_{A \cap B} = 0 = 0 \cdot 1 = \chi_{A}\left( x \right) \cdot \chi_{B}\left( x \right) = \varphi\left( A \right) \left( x \right) \cdot \varphi \left( B \right) \left( x \right) = P  
+						.\] 
+
+					\item $x \not\in  A \land x \not\in  B$. Wtedy
+
+						Dla różnicy symetrycznej:
+						\[
+							L = \varphi \left( A \Delta B \right) \left( x \right) = \chi_{A \Delta B}\left( x \right) = 0 = 0 + 0 = \chi_{A}\left( x \right)  + \chi_{B}\left( x \right) = \varphi\left( A \right) \left( x \right) + \varphi \left( B \right) \left( x \right) = P 
+						.\]
+
+						Dla przekroju:
+						\[
+						L = \varphi \left( A \cap B \right) \left( x \right) = \chi_{A \cap B} = 0 = 0 \cdot 0 = \chi_{A}\left( x \right) \cdot \chi_{B}\left( x \right) = \varphi\left( A \right) \left( x \right) \cdot \varphi \left( B \right) \left( x \right) = P  
+						.\] 
+
+				\end{enumerate}
+			\item \textbf{Różnowartościowość}  
+
+				Spójrzmy na jądro $\varphi  $, czyli
+				\[
+				\ker(\varphi) = \{A \in \mathcal{P}(X) : \varphi\left( A \right) = f_{0} \}  
+				,\] 
+				gdzie $f_{0}$ w definicji jądra, jest ,,zerem'' pierścienia $\text{Fun}\left( X, \mathbb{Z} _{2} \right) $, czyli funkcją tożsamościowo równą $0_{\scriptscriptstyle \mathbb{Z}_{2}}$. 
+
+				Ustalmy dowolny element $A \in \ker(\varphi  ) $. Wtedy  $\varphi \left( A \right) \left( x \right)  $ jest funkcją $X\to \mathbb{Z}_{2}$, taką że \[
+				\varphi \left( A \right) \left( x \right) = 0 \text{ dla każdego } x \in X 
+				.\] 
+
+				Z definicji $\varphi\left( A \right)  = \chi_{A}$. Zatem $\chi_{A} = 0$ dla każdego  $x \in X$, więc $A = \emptyset $. 
+
+				Podsumowując $\ker(\varphi  ) = \{\emptyset \} $, zatem $\varphi  $ jest ,,1-1''.
+			\item \textbf{Surjektywność} 
+
+				Ustalmy dowolny element $f \in \text{Fun}\left( X, \mathbb{Z}_{2} \right) $. Wtedy $f$ jest funkcją $X \to \mathbb{Z}_{2}$. Rozważmy zbiór $A = f^{-1}\left[ \{1\}  \right]$, czyli $A$ to przeciwobraz $\{1\} $ przez funkcję $f$.
+
+				Pokażemy, że $\varphi \left( A \right) = f $. 	Ustalmy dowolny $x \in X$. 
+
+				\begin{itemize}
+					\item Jeśli $x \in A$, to
+						\begin{itemize}
+							 \item $\varphi \left( A \right) \left( x \right) = \chi_{A}(x) = 1 $
+							\item $f\left( x \right) = 1$ 
+						\end{itemize}
+					\item Jeśli $x \not\in A$, to
+						\begin{itemize}
+							\item $\varphi \left( A \right) \left( x \right) = \chi_{A}\left( x \right) = 0 $
+							\item $f\left( x \right) \neq 1$, co oznacza, że $f\left( x \right) = 0$, bo zdefiniowaliśmy $A$ jako przeciwdziedzinę zbioru ${1}$ przez  $f$, więc dla $x \not\in A $,  $f\left( x \right)$ musi być różne od 1, czyli równe 0.
+						\end{itemize}
+				\end{itemize}
+				Zatem dla każdego $x \in X$, $\varphi \left( A \right) \left( x \right) = f\left( x \right)  $, czyli $\varphi$ jest ,,na''.
+
+			\end{enumerate}
+			
+	\noindent \textbf{Podsumowanie}
+
+	Struktura $\left( \mathcal{P}(X) , \Delta , \cap  \right) $ jest zatem izomorficzna z strukturą $\text{Fun}\left( X, \mathbb{Z}_{2} \right) $, która jest pierścieniem przemiennym z jedynką. Spełnia ona zatem wszystkie aksjomaty pierścienia przemiennego z jedynką, ponieważ izomorfizm zachowuje każdą relację algebraiczną pomiędzy elementami. W szczególności:
+	\begin{itemize}
+		\item Rolę zera pierścienia pełni zbiór pusty $\emptyset $,
+		\item Rolę jedynki pierścienia pełni zbiór $X$,
+		\item Własności takie jak łączność działań czy rozdzielność przekroju względem różnicy symetrycznej są bezpośrednim przeniesieniem analogicznych własności z pierścienia $\text{Fun}\left( X, \mathbb{Z}_{2} \right) $.
+	\end{itemize}
+
+	Tym samym pokazaliśmy, że zbiór potęgowy z powyższymi działaniami jest tzw. \textbf{pierścieniem Boole'a}. 
+	\end{enumerate}
+\end{solution} 
+\begin{problem}[2]
+	Udowodnić, że $R\left[ \left[ X \right]  \right] $ z działaniami podanymi na wykładzie jest pierścieniem przemiennym z jedynką oraz $R\left[ X \right] $ jest podpierścieniem $R\left[ \left[ X \right]  \right] $.
+\end{problem} 
+\begin{solution}
+
+	Zakładamy, że $R$ jest pierścieniem przemiennym z jedynką. Definiujemy dodawanie jak dodawanie po współrzędnych oraz mnożenie jako splot Cauchy'ego. Wtedy 
+	\begin{itemize}
+		\item Zerem jest ciąg $\left( \mathbf{0}_{\scriptscriptstyle R}, \mathbf{0}_{\scriptscriptstyle R}, \mathbf{0}_{\scriptscriptstyle R}, \ldots \right) $
+		\item Jedynką jest ciąg $\left( \mathbf{1}_{\scriptscriptstyle R}, \mathbf{0}_{\scriptscriptstyle R}, \mathbf{0}_{\scriptscriptstyle R}, \ldots \right) $
+	\end{itemize}
+
+
+	\begin{proof}
+		 $R\left[ \left[ X \right]  \right] $ jest pierścieniem przemiennym z jedynką.
+		 
+		 TODO
+	\end{proof} 
+
+
+	Pokazanie, że $R\left[ \left[ X \right]  \right] $ jest grupą przemienną, sprowadza się do analizy poszczególnych współrzędnych, z $R$. Ponieważ, $R$ jest grupą przemienną więc zachodzi.
+
+	\begin{proof}
+		 $R\left[ X \right] $ jest podpierścieniem $R\left[ \left[ X \right]  \right] $.
+		 
+		 TODO
+	\end{proof} 
+
+\end{solution} 
+
+\begin{problem}[3]
+	Wskazać wzajemnie jednoznaczną odpowiedniość pomiędzy zbiorem szeregów formalnych $n$ zmiennych zdefiniowanych rekurencyjnie przez \[
+	R\left[ \left[ X_1,X_2,\ldots,X_{n}  \right]  \right] := \left( R\left[\left[ X_1,X_2,\ldots,X_{n-1} \right]\right]  \right)\left[ \left[ X_{n}  \right]  \right] 
+	,\] 
+	oraz zbiorem wszystkich funkcji z $\N^{n}$ w $R$:  $\text{Fun}\left( \N^{n}, R \right) $.
+
+	Wywnioskować, że elementy pierścienia $R\left[ \left[ X_1,\ldots,X_{n} \right]  \right] $ można przedstawiać jako zapisy
+	\[
+	\sum_{\left( i_1,i_2,\ldots,\i_{n}  \right) \in \N^{n}} a_{i_1,i_2,\ldots,\i_{n} }X_{1}^{i_1}\ldots X_{n}^{i_{n}}
+	,\] 
+
+	gdzie $a_{i_1,i_2,\ldots,\i_{n} }\in R$. Podać wzory na $+$ oraz $\cdot $ w $R\left[ \left[ X_1,\ldots,X_{n}  \right]  \right] $ używając powyższej notacji.
+\end{problem} 
+\begin{intuition}
+	\noindent Chcemy pokazać, że $R\left[ \left[ X \right]  \right] \cong \text{Fun}\left( \N^{n}, R \right) $.
+
+	Spójrzmy jak sytuacja wygląda dla początkowych $n$ (chwilowo zakładamy, że teza jest prawdziwa).
+	\begin{enumerate}[label=\arabic*)]
+		\item $\bm{ n=1: } $ W definicji $R\left[ \left[ X \right]  \right] $ przyjmujemy, że jest to zbiór wszystkich ciągów o elementach z $R$. Zatem ciąg  $q = \left( q_{n} \right)_{n}^{\infty} \in R\left[ \left[ X \right]  \right] $ jest funkcją z $\N$ w $R$, czyli $q \cong f \in \text{Fun}\left( \N, R \right) $, taką że $q_i = f\left( i \right) $ dla każdego  $i \in \N$.
+		\item $\bm{ n=2 :} $ Z definicji $R\left[ \left[ X_1,X_2 \right]  \right] := \left( R\left[ \left[ X_1 \right]  \right]  \right) \left[ \left[ X_2 \right]  \right] $. Dla $q \in R\left[ \left[ X_1, X_2 \right]  \right] $, $q$ jest postaci
+			\[
+			 \sum_{j=0}^{\infty} b_{j}X_{2}^{j} = \sum_{j=0}^{\infty} \left( \sum_{i=0}^{\infty} a_{i,j}X_{1}^{i} \right) X_{2}^{j}
+			.\] 
+		$q$ jest izomorficzne z pewną funkcją $f\in \text{Fun}\left( N^2 ,R\right) $, taką że $f\left( \left( i,j \right)  \right) = a_{i,j}$ dla każdej pary $\left( i,j \right) \in \N^2$.
+		\item $\bm{ n=3: } $ Z definicji $R\left[ \left[X_1, X_2, X_3 \right]  \right] := \left( R\left[ \left[ X_1, X_2 \right]  \right]  \right) \left[ \left[ X_3 \right]  \right] $. Dla $q \in R\left[ \left[ X_1,X_2,X_3 \right]  \right] $ jest postaci
+			\[
+			\sum_{k=1}^{\infty} c_{j}X_{3}^{k} = \sum_{k=0}^{\infty} \left( \sum_{j=0}^{\infty} b_{j,k}X_{2}^{j} \right) X_{3}^{k} =  \sum_{k=0}^{\infty} \left( \sum_{j=0}^{\infty} \left( \sum_{i=0}^{\infty} a_{i,j,k}X_{1}^{i} \right) X_{2}^{j}  \right) X_{3}^{k} 
+			.\] 
+	\end{enumerate}
+
+	Zauważmy, że pojawia się tu dużo znaków sum i indeksów. Wprowadza to nie małe zamieszanie. Zastanówmy się, jak można to jakoś czytelniej przeformułować w sposób równoważny. 
+
+\noindent Przeanalizujmy konkretny przykład dla trzech zmiennych:
+Z definicji $R\left[ \left[X_1, X_2, X_3 \right]  \right] := \left( R\left[ \left[ X_1, X_2 \right]  \right]  \right) \left[ \left[ X_3 \right]  \right] $. Dowolny element $c$ należący do $R\left[ \left[ X_1,X_2,X_3 \right]  \right] $ jest postaci
+			\[
+			c = \left( c_{k} \right)_{k=0}^{\infty} = \sum_{k=1}^{\infty} c_{k}X_{3}^{k}
+		,\]
+		gdzie $c_{j} \in R\left[ \left[ X_1, X_2 \right]  \right] $.
+			 
+\begin{remark}
+	Jeśli utożsamimy $r \in R$  z $rX^{0}$ (jest to zanurzenie $R$ w $R\left[ \left[ X \right]  \right] $ ) to operacja ,,pomnóż szereg przez $r$ '' staje się zwykłym mnożeniem elementów z pierścienia (splot Cauchy'ego). Zobaczmy
+	\begin{itemize}
+		\item Niech $r\in R$ będzie utożsamiane z szeregiem $P = \left( r,0,0,\ldots \right) $.
+		\item Niech $f = \sum a_{i}X^{i}$ będzie szeregiem $A = \left( a_0,a_1,a_2,\ldots \right) $
+	\end{itemize}
+
+	Splot Cauchy'ego $c_{n} = \sum_{k=0}^{n} P_{k}A_{n-k}$ daje
+	\begin{itemize}
+		\item Dla $k=0: P_0 \cdot A_n = r\cdot a_{n}$.
+		\item Dla $k>0: P_{k}\cdot A_{n-k} = 0\cdot A_{n-k} = 0 $. Zatem $c_{n} = r\cdot a_{n}$. 
+	\end{itemize}
+
+	\noindent Przy takim utożsamieniu, mnożenie przez skalar, możemy interpretować jako iloczyn przez ciąg ,,stały'' (i.e. stała na zerowej pozycji).
+
+	\noindent \textbf{Wniosek:} Nie potrzebujemy osobnej definicji mnożenia przez skalar. Odpowiada za to interpretacja $r$ jako $rX^{0}$, wtedy $rX^{0}$ jest ciągiem stałym, mnożąc splotem otrzymujemy wynik taki sam jak gdybyśmy pomnożyli ciąg przez stałą. 
+\end{remark} 
+
+\noindent Spójrzmy na $ \sum_{k=0}^{\infty} \left( \sum_{j=0}^{\infty} b_{j,k}X_{2}^{j} \right) X_{3}^{k} $. A dokładniej na iloczyn $\left(\sum_{j=0}^{\infty} b_{j,k}X_{2}^{j} \right) X_{3}^{k}$. Zarówno  $\sum_{j=0}^{\infty} b_{j,k}X_{2}^{j} $ jak i $X_{3}^{k}$ są ciągami, należą do pierścienia szeregów formalnych, na mocy praw działań w pierścieniu (rozłączność mnożenia względem dodawania) możemy ,,wejść pod sumę'' z $X_{3}^{k}$. Oznacza to, że
+\[
+\sum_{k=0}^{\infty} \left( \sum_{j=0}^{\infty} b_{j,k}X_{2}^{j} \right) X_{3}^{k} = \sum_{j=0}^{\infty} \left( b_{j,k}X_{2}^{j}X_{3}^{k} \right)
+.\] 
+Mamy:
+\begin{align*}
+	\sum_{k=1}^{\infty} c_{j}X_{3}^{k} &= \sum_{k=0}^{\infty} \left( \sum_{j=0}^{\infty} b_{j,k}X_{2}^{j} \right) X_{3}^{k} \\ 
+	               &=\sum_{k=0}^{\infty}\left(\sum_{j=0}^{\infty}\bm{ \left( } \sum_{i=0}^{\infty}a_{i,j,k}X_{1}^{i}\bm{ \right) } X_{2}^{j}\right)X_{3}^{k} \\
+		       &=\sum_{k=0}^{\infty}\sum_{j=0}^{\infty}\left(\bm{ \left( } \sum_{i=0}^{\infty}a_{i,j,k}X_{1}^{i}\bm{ \right) } X_{2}^{j}X_{3}^{k}\right)	
+.\end{align*}
+Korzystając ponownie z prawa rozdzielności mnożenia względem dodawania (tym razem dla $\sum_{i=0}^{\infty} a_{i,j,k}X_{1}^{i}$ oraz $X_{2}^{j}X_{3}^{k}$) mamy
+
+\begin{align*}
+		\sum_{k=1}^{\infty} c_{j}X_{3}^{k} &= \sum_{k=0}^{\infty}\sum_{j=0}^{\infty}\left( \left(\sum_{i=0}^{\infty}a_{i,j,k}X_{1}^{i} \right)X_{2}^{j}X_{3}^{k}\right) \\	
+		       &=\sum_{k=0}^{\infty}\sum_{j=0}^{\infty} \sum_{i=0}^{\infty}\left(a_{i,j,k}X_{1}^{i} X_{2}^{j}X_{3}^{k}\right)
+.\end{align*}
+
+\noindent \textbf{Finalne zapadnięcie do multi indeksu.} 
+
+Zauważmy, że w finalnym zapisie każdy współczynnik $a_{i,j,k}$ jest jednoznacznie z monomem $X^{i}X^{j}X^{k}$.
+\begin{itemize}
+	\item Zbiór wszystkich trójek $\left( i,j,k \right) $ to po prostu $\N^3$.
+	\item Zamiast pisać trzy sumy, możemy po prostu napisać jedną sumę po całym zbiorze $\N^3$.
+	\item Wprowadzamy wektor $\alpha = \left( i_1,i_2,i_3 \right) := \left( i,j,k \right) $ oraz monom $X^{\alpha } := X_{1}^{i_1}X_{2}^{i_2}X_{3}^{i_3}$.
+\end{itemize}
+	Otrzymując postać globalną 
+	\[
+	f = \sum_{\alpha \in \N^3} a_{\alpha }X^{\alpha }
+	.\] 
+\end{intuition} 
+\begin{solution}
+Pokażemy to przez indukcję względem liczby zmiennych w $R\left[ \left[ X_1,\ldots, X_{n} \right]  \right] $, czyli względem $n$.
+
+TODO
+\end{solution} 
+\begin{problem}[4]
+	Udowodnić, że jeśli $R$ jest dziedziną to $R\left[ \left[ X \right]  \right] $ jest dziedziną.
+\end{problem} 
+\begin{solution}
+	\begin{note}
+		Dziedzina całkowitości, czyli nietrywialny pierścień przemienny z jedynką bez dzielników zera.
+	\end{note}
+
+	Załóżmy, że $R$ jest dziedziną. Pokażemy, że $R\left[ \left[ X \right]  \right] $jest dziedziną, czyli, że jest
+	\begin{enumerate}[label=\arabic*)]
+		\item Nietrywialny.
+		\item Przemienny z jedynką.
+		\item Nie ma dzielników zera.
+	\end{enumerate}
+
+Z zadania 3. wiemy, że $R\left[ \left[ X \right]  \right] $ jest przemienny z jedynką. Ponieważ $R$ jest dziedziną, więc w szczególności  $R$ jest nietrywialny, czyli $\mathbf{0}_{R}\neq \mathbf{1}_{R}$. Zatem zero i jedynka w $R\left[ \left[ X \right]  \right] $ również są różne. Dowód, że $R\left[ \left[ X \right]  \right]$ jest dziedziną sprowadza się do wykazania, że $R\left[ \left[ X \right]  \right] $ nie posiada dzielników zera.
+
+\begin{proof}
+Ustalmy dowolne elementy $a,b \in R\left[ \left[ X \right]  \right]\setminus \{\mathbf{0}\}  $. Ponieważ $a,b \neq \mathbf{0}$ więc istnieją najmniejsze indeksy $j$ oraz $k$, takie że $a_{j} \neq \mathbf{0}_{R}$ oraz $b_{k} \neq \mathbf{0}_{R}$.
+
+Rozważmy splot $ab =: c$. Konkretnie element $c_{j+k}$. Z definicji splotu 
+\[
+c_{j+k} = \sum_{i=0}^{j+k} a_{i}b_{j+k - i}
+.\] 
+Mamy
+\begin{itemize}
+	\item $i<j \implies a_{i} = 0 \implies a_{i}b_{j+k-1} = 0$.
+	\item $i > j \implies j + k - 1 < k \implies b_{j+k-1} = 0 \implies a_{i}b_{j+k-1} = 0$.
+	\item $i = j \implies a_{i}b_{j+k-i} = a_{j}b_{k}$.	
+\end{itemize}
+
+Zatem $c_{j+k} = a_{j}b_{k}$, a ponieważ $R$ jest dziedziną oraz $a_{j} \neq \mathbf{0}_{R}$ i $b_{k} \neq \mathbf{0}_{R}$, więc $c_{j+k} \neq 0_{R}$. Zatem $c \neq \mathbf{0}$.
+\end{proof} 
+Zatem $R\left[ \left[ X \right]  \right] $ jest dziedziną.
+\end{solution} 
+\begin{problem}[5]
+
+	Niech $F = \sum a_{i}X^{i} \in R\left[ \left[ X \right]  \right] $. Udowodnić, że $F \in R\left[ \left[ X \right]  \right] ^{\ast} $ wtedy i tylko wtedy gdy $a_0 \in R^{\ast} $.
+\end{problem} 
+\begin{solution}
+	$R\left[ \left[ X \right]  \right] ^{\ast} $ jest to zbiór elementów odwracalnych $R\left[ \left[ X \right]  \right] $, czyli
+	\[
+	a \in R\left[ \left[ X \right]  \right]^{\ast}  \iff \left(\exists b \in R\left[ \left[ X \right]  \right]  \right)\left( ab = ba = \mathbf{1} \right)  
+	.\] 
+	W ogólnej w definicji elementów odwracalnych $P^{\ast} $ wymagamy, aby $P$ był pierścieniem przemiennym z jedynką.
+
+	\begin{proof}
+		$\bm{ \left( \implies \right)  } $ 
+
+		Załóżmy, że $F = \sum a_{i}X^{i} \in R\left[ \left[ X \right]  \right] ^{\ast} $. Pokażemy, że $a_0\in R^{\ast} $.
+
+                Ponieważ $F \in R\left[ \left[ X \right]  \right] ^{\ast} $, więc istnieje $G = \sum g_{i}X^{i} \in R\left[ \left[ X \right]  \right] $, takie że splot $FG =: C$ jest równy $\mathbf{1}$, czyli $C = \mathbf{1} = \mathbf{1}_{R}X^{0}$. Element $C_{0}$ tego splotu jest równy $a_{0}g_{0} = \mathbf{1}_{R}$. Ponieważ $R$ jest pierścieniem przemiennym z jedynką, zatem
+		\[
+		a_0g_0 = g_0a_0 = \mathbf{1}_{R}
+		.\] 
+		Zatem $a_{0}$ jest odwracalny, czyli $a_0\in R^{\ast} $.
+	\end{proof} 
+	\begin{proof}
+		$\bm{ \left( \impliedby \right) } $ 
+
+		Załóżmy, że $a_0 \in R^{\ast} $. Pokażemy, że $F = \sum a_{i}X^{i} \in R\left[ \left[ X \right]  \right] ^{\ast} $, czyli że istniej $G\in R\left[ \left[ X \right]  \right] $, takie że $FG = GF = \mathbf{1}$.
+
+		Przypomnienie, że $R\left[ \left[ X \right]  \right] $ jest pierścieniem przemiennym z jedynką. Zatem wystarczy wskazać takie $G \in R\left[ \left[ X \right]  \right] $, że $FG = \mathbf{1}$.
+
+		Niech $G = \sum g_{i}X^{i}$. Przeanalizujmy jak ,,muszą'' wyglądać elementy ciągu $G$ w splocie $FG$:
+		 \begin{itemize}
+			\item $(FG)_0: a_0g_0 = \mathbf{1}_{R} \implies g_0 = a_0^{-1}$
+			\item $(FG)_1: a_0g_1 + a_1g_0 = \mathbf{0}_{R} \implies a_0g_1 = -a_1g_0 \implies g_1 = a_0^{-1} \left( -a_1g_0 \right) $
+			\item $(FG)_2: a_0g_2 + a_1g_1 + a_2g_0 = \mathbf{0}_{R} \implies a_0g_2 = -\left( a_1g_1+a_2g_0 \right) \implies g_2 = a_0^{-1}\left( -\left( a_1g_1 + a_2g_0 \right)  \right) $
+			\item $(FG)_3: a_0g_3 + a_1g_2 + a_2g_1 + a_3g_0 = \mathbf{0}_{R} \implies a_0g_3 = - \sum_{i=1}^{3} a_{i}g_{3-i} \implies g_3 = a_0^{-1}\left( - \sum_{i=1}^{3} a_{i}g_{3-i} \right) $ 
+			\item $\vdots$
+			 \item $(FG)_{n} : g_{n} = a_0^{-1}\left( - \sum_{i=1}^{n} a_{i}g_{n-i} \right) $
+		\end{itemize}
+		Ponieważ $a_0$ jest odwracalny, więc tak zdefiniowany rekurencyjnie ciąg $G$ jest dobrze określony.
+
+		Zatem dla ciągu $G = \sum g_{i}X^{i}$, zdefiniowanego rekurencyjnie jako
+		\[
+		g_{n} = \begin{cases}
+			a_0^{-1} &\text{ dla } n = 0, \\
+			a_0^{-1}\left( - \sum_{i=1}^{n} a_{i}g_{n-i} \right) &\text{ dla } n > 0
+		\end{cases}
+		,\] 
+		splot $FG$ jest równy  $\mathbf{1}$.
+	\end{proof} 
+\end{solution} 
+\begin{problem}[6]
+	Niech $R$ będzie dziedziną i $P = \sum_{i=0}^{n} a_{i}X^{i} \in R\left[ X \right] $. Udowodnić, że $P\in R\left[ X \right]^{\ast} $ wtedy i tylko wtedy, gdy $a_1 = a_2 = \ldots = a_{n} = 0$ i $a_0 \in R^{\ast} $.
+\end{problem} 
+\begin{solution}
+	Z zadania 4 wiemy, że jak $R$ jest dziedziną to $R\left[ \left[ X \right]  \right] $ również jest dziedziną. Ponieważ $R\left[ X \right] \underset{\scriptscriptstyle\text{podp}}{\subseteq} R\left[ \left[ X \right]  \right] $, a własność bycia dziedziną ,,ogranicza'', więc $R\left[ X \right] $ również jest dziedziną.
+
+	\begin{proof}
+		$\bm{ \left( \implies \right)  } $ 
+
+		Załóżmy, że wielomian $P = \sum_{i=0}^{n} a_{i}X^{i}$ jest odwracalny, czyli $P \in R\left[ X \right] ^{\ast} $.  Pokażemy, że $a_1 = \ldots = a_{n} = 0$ oraz $a_0 \in R^{\ast}$. 
+
+		Wielomian $P$ jest odwracalny, więc istnieje wielomian $G = \sum_{i=0}^{k} g_{i}X^{i} \in R\left[ X \right] $, taki że $PG = \mathbf{1}$. 
+
+		\begin{remark}
+		
+		Jeśli $R$ jest dziedziną, to dla dwóch wielomianów $P = \sum_{i=0}^{n} p_{i}X^{i} \in R\left[ X \right] $ oraz $Q = \sum_{i=0}^{m} q_{i}X^{i}$ takich że $\text{deg}\left( P \right) = n$ oraz $\text{deg}\left( Q \right) = m$, stopień ich splotu jest równy $n + m$. 
+
+		Dlaczego?
+
+		W ogólności wiemy, że stopień iloczynu dwóch wielomianów jest mniejszy bądź równy sumie stopni wielomianów wchodzących w skład tego iloczynu, czyli $\text{deg}\left( PQ \right) \le \text{deg}\left( P \right) + \text{deg}\left( Q \right) $. Zatem największy możliwy stopień splotu $PQ$ to $n + m$.
+
+		Jak wygląda współczynnik o indeksie  $n + m$ w splocie $PQ$?
+
+		Z definicji jest to $\sum_{i=0}^{n+m} p_{i}q_{n+m-i}$. 
+		\begin{itemize}
+			\item Jeśli $i > n$ to $p_{i} = 0 \implies p_{i}q_{n+m-i} = 0$.
+			\item Jeśli $i < n$ to  $n+m-i > m \implies b_{n+m-i} = 0 \implies p_{i}q_{n+m-i} = 0$.
+			\item Jeśli $i = n$ to  $p_{i}q_{n+m-i} = p_{n}q_{m}$
+		\end{itemize}
+
+		Ponieważ $R$ jest dziedziną, oraz  $p_{n}\neq 0$ i $q_{m} \neq 0$ więc $p_{n}q_{m} \neq 0$. Zatem współczynnik stojący przy $n+m$-tej pobędzie w splocie $PQ$ jest niezerowy. Czyli $\text{deg}\left(PQ\right) = n + m$.
+		\end{remark}
+		
+		Wracając do dowodu, mamy splot $PG = \mathbf{1}$, ponieważ $R$ jest dziedziną więc $\text{deg}\left(P\right) + \text{deg}\left(G\right) = \text{deg}\left(PG\right) = \text{deg}\left(\mathbf{1}\right) $. 
+
+		Wielomian $\mathbf{1}$ jest stały, czyli $\text{deg}\left(\mathbf{1}\right) = 0$. Ponadto z definicji, stopień wielomianu jest liczbą nieujemną. Zatem $\text{deg}\left(P\right) = n \ge 0$ oraz $\text{deg}\left(G\right) = k \ge 0$.
+		
+		Jedynymi liczbami nieujemnymi całkowitymi spełniającymi równość $n + k = 0$ jest $n = k = 0$.
+
+		Zatem wielomiany  $P$ oraz  $G$ są wielomianami stałymi. 
+
+		Ponadto, z tego że są to wielomiany stałe to $P = a_{0}$ oraz $G = g_{0}$. Splot $PG = a_{0}g_{0} = \mathbf{1}$. Czyli $a_{0}g_{0} = 1_{R}$. Zatem $a_{0} = g_{0}^{-1}$, czyli $a_{0}\in R^{\ast} $.
+	\end{proof} 
+
+	\begin{proof}
+		$\bm{ \left( \impliedby \right)  } $ 
+
+		Załóżmy, że $a_{1} = \ldots = a_{n} = 0$ oraz $a_{0} \in R^{\ast} $. Pokażę, że $P\in R\left[ X \right] ^{\ast} $.
+		
+		Ponieważ, $a_1 = \ldots = a_{n} = 0$ więc wielomian $P$ jest wielomianem o stopniu zerowym, czyli wielomianem stałym i.e. $P = a_0$. Ponadto, z tego, że $a_0 \in R^{\ast} $, wnioskujemy, że wielomian $Q = a_0^{-1}$ jest wielomianem odwrotnym do $P$, tzn  $PQ = \mathbf{1}$. Zatem $P \in R\left[ X \right] ^{\ast} $.
+	\end{proof} 
+\end{solution} 
+\begin{problem}[7]
+	Znaleźć $R$ oraz $a\in R\setminus \{0_{R}\} $, takie że $1_{R} + aX \in R\left[ X \right] ^{\ast} $.
+\end{problem} 
+\begin{solution}
+	Zauważmy, że $R$ nie może być dziedziną, bowiem jeśli by był, to pociągało by równość  $a=0$.
+
+	Szukamy, zatem takiego pierścienia $R$, który nie jest dziedziną oraz takiego $a \in R\setminus \{0_{R}\} $wielomianu $1_{R} + aX$, który jest odwracalny.  
+
+	Rozważmy pierścień $\mathbb{Z}_{9}$, nie jest on dziedziną, ponieważ $3 \neq 0$ oraz $3\cdot 3 = 9 = 0$. Rozważmy $a = 3$.
+	Wielomian  $1 + 3X$ w pierścieniu  $\mathbb{Z}_{9}$ jest odwracalny bo
+	\[
+		\left( 1 + 3X \right) \left( 1 - 3X \right) = 1 - 3X + 3X - 9X^2 = 1 
+	.\] 
+\end{solution} 
+\begin{problem}[8]
+	Dla każdej liczby pierwszej $p$ znaleźć pierścień $R$ mocy $p$ oraz wielomian $f \in R\left[ X \right] $ stopnia $p$, taki że związana z nim funkcja wielomianowa $\overline{f}: R \to R$ jest tożsamościowo równa $0_{R}$.
+\end{problem} 
+\begin{solution}
+	Rozważmy pierścień $R = \mathbb{Z}_{p}$. Rozważmy wielomian
+	\[
+	f\left( X \right) = X^{p} - X
+	.\] 
+	
+	Wielomian jest stopnia $p$. Związana z nim funkcja wielomianowa jest postaci 
+	\[
+	 \overline{f}\left( a \right) = a^{p} - a
+	.\] 
+
+	Z małego twierdzenia fermata wiemy, że 
+	\[
+	a^{p} \equiv a \pmod{p} 
+	,\] 
+
+	co w pierścieniu $\mathbb{Z}_{p}$ oznacza, że $a^{p}-a = 0$ dla każdego $a \in \mathbb{Z}_{p}$. 
+	
+	Zatem  $mod\overline{f} \equiv 0$, co kończy dowód.
+\end{solution} 
+\begin{remark}
+	Zadanie 8 pokazuje kluczową różnicę pomiędzy \textbf{wielomianem} (formalnym elementem $R\left[ X \right] $ ) a \textbf{funkcją wielomianową}.  
+
+	\begin{itemize}
+		\item W pierścieniach nieskończonych, np $\mathbb{R} \left[ X \right] $, jeśli funkcja wielomianowa jest zerem to wielomian musi być zerowy (wszystkie współczynniki zerowe)
+		\item W pierścieniach skończonych (jak wyżej) \textbf{niezerowy wielomian może wyznaczać zerową funkcję wielomianową} 
+	\end{itemize}
+
+	Wspomniany wielomian $f\left( X \right) = X^{p}-X$ można zapisać jak iloczyn wszystkich dwumianów:
+	\[
+	X^{p} - X = \prod_{a \in \mathbb{Z}_{p}}\left( X - a \right) 
+	,\] 
+	co jasno pokazuje, że każdy element $\mathbb{Z} _{p}$ jest pierwiastkiem tego wielomianu.
+\end{remark} 
+\begin{problem}[9]
+	Udowodnić, że jeśli $R$ jest skończony to $R$ jest ciałem wtedy i tylko wtedy kiedy $R$ jest dziedziną.
+\end{problem} 
+\begin{solution}
+	\begin{note}
+		
+		Niech $R$ będzie pierścieniem z jedynką. $R$ jest \textbf{pierścieniem z dzieleniem} gdy każdy jego niezerowy element jest odwracalny, czyli \[
+		R\setminus \{0\} = R^{\ast} 
+		.\]  	
+
+		Taki  $R$ jest \textbf{ciałem}, jeśli jest \textbf{przemiennym} pierścieniem z dzieleniem.  
+	\end{note}
+
+	Załóżmy, zatem, że $R$ jest skończonym pierścieniem. Implikacja w prawo, jest trywialna, ponieważ każde ciało z definicji spełnia warunki na bycie dziedziną. 
+
+\noindent Zatem dowód całości sprowadza się do pokazania, że dla $R$ będącego skończoną dziedziną, $R$ jest ciałem. 
+
+	Ponieważ  $R$ jako dziedzina, jest w szczególności pierścieniem przemiennym z jedynką, zatem wystarczy pokazać, że każdy niezerowy element $R$ jest odwracalny. 
+
+	$R$ jest skończony, zatem $R\setminus \{\mathbf{0}\} = \{x_1,x_2,\ldots,x_{n}\} $. Ustalmy dowolny $a \in R\setminus \{\mathbf{0}\} $. Rozważmy funkcję $f_{a}: R\setminus \{\mathbf{0}\} \to R\setminus \{\mathbf{0}\} $ daną wzorem $f_{a}\left( x \right) := ax$. Pokażemy, że $f_{a}$ jest bijekcją.
+
+	Funkcja  $f_{a}$ jest dobrze określona bowiem, przyjmuje argumenty $\neq 0$ oraz samo $a \neq 0$. Ponieważ $R$ jest dziedziną więc $f_{a}\left( x \right) = ax \neq 0$.
+
+	Ustalmy dowolne dwa elementy $x_1, x_2 \in R\setminus \{\mathbf{0}\} $ i załóżmy, że $f_{a}\left( x_1 \right) = f_{a}\left( x_2 \right) $, czyli $ax_1 = ax_2$, co jest równoważne $ax_1 - ax_2 = 0$, czyli $a\left( x_1-x_2 \right) = 0$. Zauważmy, że $a\neq 0$. Ponadto, $R$ jest dziedziną(nie ma w $R$ dzielników zera) więc zachodzi $x_1-x_2 = 0$, co jest równoważne $x_1=x_2$. 
+
+	Zatem $f_{a}$ jest różnowartościową funkcją, o tej samej dziedzinie oraz przeciwdziedzinie, określoną na zbiorze skończonym, czyli jest bijekcją. Ponieważ jest bijekcją oraz $\mathbf{1} \in R\setminus \{\mathbf{0}\} $ więc istnieje taki $x \in R\setminus \{\mathbf{0}\} $, że $ax = f_{a}\left( x \right) = \mathbf{1}$. Zatem $ax = \mathbf{1}$, czyli $R$ jest pierścieniem z dzieleniem (przemiennym), zatem $R$ jest ciałem. 
+\end{solution} 

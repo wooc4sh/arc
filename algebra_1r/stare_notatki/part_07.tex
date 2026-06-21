@@ -1,0 +1,76 @@
+\chapter{Wykład VII}
+
+\section{Grupy rozwiązalne. Komutator i Komutant} 
+
+Niech $G$ będzie $p$-grupą.
+\begin{definition}[Komutator.]
+	Dla $x,y \in G$ definiujemy
+	\[
+		\left[ x,y \right] := xyx^{-1}y^{-1}.
+	.\] 
+	Nazywa się to komutator elementów $x$ i $y$.
+\end{definition} 
+\textbf{Wniosek:}
+\begin{itemize}
+	\item $xy=yx \iff \left[ x,y \right] = e$ 
+	\item $\text{$G$ abelowa} \iff \forall\left( x,y \in G \right) \left( \left[ x,y \right] = e \right) $
+	\item Homomorfizm $\varphi : G \to H \implies \varphi \left( \left[ x,y \right]  \right) = \left[ \varphi (x), \varphi \left( y \right)    \right]  $
+\end{itemize}
+\begin{definition}
+	$H,T \le  G$, $\left[ H,T \right] := \langle \{\left[ x,y \right]: x\in H, y\in T \}  \rangle $.
+\end{definition} 
+\begin{fact}
+	$H\unlhd G$, $T\unlhd G \implies \left[ H,T \right] \unlhd G $
+\end{fact}
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{definition}
+	\begin{itemize}
+		\item $G^{\left( 0 \right) }:= G$,
+		\item $G^{\left( 1 \right) }= G' := \left[ G,G \right] $,
+		\item $G^{n+1} := \left[ G^{\left( n \right) }, G^{\left( n \right) } \right] $
+	\end{itemize}
+	Przyjmujemy jako $G'$ komutant  $G$ oraz  $G^{\left( n \right) }$ jako $n$-ty komutant G.
+\end{definition} 
+
+\begin{definition}[Abelianizacja]
+	$G^{ab} := \mfaktor{G}{G'} $ 
+	Nazywamy to abelianizacja G.
+\end{definition} 
+\begin{theorem}
+	Niech $N\unlhd G $. Wtedy $\mfaktor{G}{N} $ abelowy $\iff G' \subseteq N$
+\end{theorem} 
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{corollary}
+$G^{ab}$ jest abelowa.
+\end{corollary}
+
+\textbf{Przykłady} 
+\begin{enumerate}[label=\arabic*)]
+	\item $S'_{3} = A_3$ bo 
+	\item $A'_{4} = \{\id, (1,2)(3,4), (1,3)(2,4), (1,4)(2,3)\} $ 
+	\item $\mathcal{Q}'_{8} = \{\mathcal{I}, -\mathcal{I}\} $
+	 \item $\forall\left( n \right)\left( S'_{n} = A_{n} \right)  $
+	 \item $\forall\left( n \ge 5 \right) \left( A'_{n} = A_{n} \right) $(związane z niestnieniem ogólnym rozwiazań równań stopnia 5.
+\end{enumerate}
+\begin{definition}[Rozwiązalność.]
+	$G$ jest rozwiązalna, gdy istnieje $n\in N$, talkie że $G^{(n)} = \{e\} $.
+
+	Najmniejsze takie $n$ nazywamy stopniem rozwiązalności.
+\end{definition} 
+\begin{remark}
+	$G$ jest abelowa $\iff $ $G$ jest rozwiązalna stopnia 1(nietrywialna)
+\end{remark} 
+\textbf{Przykłady}
+(zastosować w odróżnieniu od poprzedniego wyliczenia tych przykładów- definicję rozwiązalności)
+\begin{enumerate}[label=\arabic*)]
+	\item $S'_{3} = A_3$  
+	\item $A'_{4} = \{\id, (1,2)(3,4), (1,3)(2,4), (1,4)(2,3)\} $ 
+	\item $\mathcal{Q}'_{8} = \{\mathcal{I}, -\mathcal{I}\} $
+	 \item $\forall\left( n \right)\left( S'_{n} = A_{n} \right)  $
+	 \item $\forall\left( n \ge 5 \right) \left( A'_{n} = A_{n} \right)$
+\end{enumerate}
+

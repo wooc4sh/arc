@@ -1,0 +1,1326 @@
+FUNCTION  vimtex#cmd#parser_separator_check()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/cmd.vim:313
+Called 89 times
+Total time:   0.001038
+ Self time:   0.001038
+
+count  total (s)   self (s)
+   89              0.000942   return a:separator_string =~# '\v^%(\n\s*)?$'
+
+FUNCTION  <SNR>85_get_corr_delimiter()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/delim.vim:1054
+Called 764 times
+Total time:   0.079217
+ Self time:   0.079217
+
+count  total (s)   self (s)
+  764              0.004478   let l:type = a:0 > 0 ? a:1 : 'delim_all'
+                            
+ 6405              0.013306   for l:pair in g:vimtex#delim#lists[l:type].name
+ 6405              0.016879     if a:delim ==# l:pair[0]
+  213              0.000486       return l:pair[1]
+ 6192              0.013290     elseif a:delim ==# l:pair[1]
+  551              0.001032       return l:pair[0]
+ 5641              0.003839     endif
+ 5641              0.004801   endfor
+
+FUNCTION  VimtexIndent()
+    Defined: ~/.local/share/nvim/plugged/vimtex/indent/tex.vim:42
+Called 59 times
+Total time:   0.455897
+ Self time:   0.017572
+
+count  total (s)   self (s)
+   59              0.001078   let s:sw = shiftwidth()
+                            
+   59   0.248888   0.002080   let [l:prev_lnum, l:prev_line] = s:get_prev_lnum(prevnonblank(a:lnum - 1))
+   59              0.000640   if l:prev_lnum == 0 | return indent(a:lnum) | endif
+   59              0.000444   let l:line = getline(a:lnum)
+                            
+                              " Check for verbatim modes
+   59   0.076526   0.001120   if s:in_verbatim(a:lnum)
+                                return empty(l:line) ? indent(l:prev_lnum) : indent(a:lnum)
+   59              0.000127   endif
+                            
+                              " Remove comments before subsequent checks
+   59   0.002177   0.001174   let l:line = s:clean_line(l:line)
+                            
+                              " Align on ampersands
+   59   0.009818   0.001384   let l:ind = s:indent_amps.check(a:lnum, l:line, l:prev_lnum, l:prev_line)
+   59              0.000606   if s:indent_amps.finished | return l:ind | endif
+   59              0.000266   let l:prev_lnum = s:indent_amps.prev_lnum
+   59              0.000226   let l:prev_line = s:indent_amps.prev_line
+                            
+                              " Indent environments, delimiters, and conditionals
+   59   0.005007   0.001194   let l:ind += s:indent_envs(l:line, l:prev_line)
+   59   0.006168   0.001269   let l:ind += s:indent_items(l:line, a:lnum, l:prev_line, l:prev_lnum)
+   59   0.057382   0.001187   let l:ind += s:indent_delims(l:line, a:lnum, l:prev_line, l:prev_lnum)
+   59   0.006748   0.001514   let l:ind += s:indent_conditionals(l:line, a:lnum, l:prev_line, l:prev_lnum)
+                            
+                              " Indent tikz commands
+   59              0.000202   if g:vimtex_indent_tikz_commands
+   59   0.037716   0.001184     let l:ind += s:indent_tikz(l:prev_lnum, l:prev_line)
+   59              0.000105   endif
+                            
+   59              0.000231   return l:ind < 0 ? 0 : l:ind
+
+FUNCTION  vimtex#syntax#in_mathzone()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/syntax.vim:28
+Called 136 times
+Total time:   0.320408
+ Self time:   0.009634
+
+count  total (s)   self (s)
+  136   0.314737   0.003963   let l:groups = reverse(call('vimtex#syntax#stack', a:000))
+  136              0.004005   let l:group = matchstr(l:groups, s:__mathzone_regex)
+  136              0.001230   return l:group =~# '^texMathZone'
+
+FUNCTION  vimtex#syntax#in_comment()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/syntax.vim:23
+Called 3242 times
+Total time:   8.476612
+ Self time:   0.064246
+
+count  total (s)   self (s)
+ 3242   8.472608   0.060242   return call('vimtex#syntax#in', ['texComment'] + a:000)
+
+FUNCTION  provider#python3#Call()
+    Defined: /usr/share/nvim/runtime/autoload/provider/python3.vim:5
+Called 8114 times
+Total time: 421.306324
+ Self time: 421.306324
+
+count  total (s)   self (s)
+ 8114            421.284111   return v:lua.vim.provider.python.call(a:method, a:args)
+
+FUNCTION  UltiSnips#ExpandSnippetOrJump()
+    Defined: ~/.local/share/nvim/plugged/ultisnips/autoload/UltiSnips.vim:87
+Called 148 times
+Total time:  33.585634
+ Self time:  33.557435
+
+count  total (s)   self (s)
+  148   0.011277   0.006788     call s:compensate_for_pum()
+  148  33.572657  33.548947     py3 UltiSnips_Manager.expand_or_jump()
+  145              0.000749     return ""
+
+FUNCTION  <SNR>125_indent_conditionals()
+    Defined: ~/.local/share/nvim/plugged/vimtex/indent/tex.vim:270
+Called 59 times
+Total time:   0.005234
+ Self time:   0.005234
+
+count  total (s)   self (s)
+   59              0.000662   if empty(s:conditionals) | return 0 | endif
+                            
+   59              0.002397   let l:ind = s:sw*(    (a:prev_line =~# s:conditionals.open     || a:prev_line =~# s:conditionals.else) && a:prev_line !~# s:conditionals.close)
+   59              0.001730   let l:ind -= s:sw*(    a:line !~# s:conditionals.open && (a:line =~# s:conditionals.close     || a:line =~# s:conditionals.else))
+                            
+   59              0.000198   return l:ind
+
+FUNCTION  <SNR>85_get_re_for_delim()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/delim.vim:1035
+Called 1528 times
+Total time:   0.175566
+ Self time:   0.150905
+
+count  total (s)   self (s)
+ 1528              0.007777   let l:type = a:0 > 0 ? a:1 : 'delim_all'
+                            
+                              " First check for unmatched math delimiter
+ 1528              0.004008   if a:delim ==# '.'
+                                return g:vimtex#delim#re.delim_math[a:side ? 'open' : 'close']
+ 1528              0.001542   endif
+                            
+                              " Next check normal delimiters
+ 1528   0.139021   0.114359   let l:index = index(map(   copy(g:vimtex#delim#lists[l:type].name),   {_, x -> x[a:side]}), a:delim)
+ 1528              0.011486   return l:index >= 0 ? g:vimtex#delim#lists[l:type].re[l:index][a:side] : ''
+
+FUNCTION  <SNR>129_compensate_for_pum()
+    Defined: ~/.local/share/nvim/plugged/ultisnips/autoload/UltiSnips.vim:13
+Called 148 times
+Total time:   0.004489
+ Self time:   0.004489
+
+count  total (s)   self (s)
+                                """ The CursorMovedI event is not triggered while the popup-menu is visible,
+                                """ and it's by this event that UltiSnips updates its vim-state. The fix is
+                                """ to explicitly check for the presence of the popup menu, and update
+                                """ the vim-state accordingly.
+  148              0.001846     if pumvisible()
+                                    py3 UltiSnips_Manager._cursor_moved()
+  148              0.000439     endif
+
+FUNCTION  <SNR>125_indent_tikz()
+    Defined: ~/.local/share/nvim/plugged/vimtex/indent/tex.vim:288
+Called 59 times
+Total time:   0.036532
+ Self time:   0.003011
+
+count  total (s)   self (s)
+   59              0.000818   if !has_key(b:vimtex.packages, 'tikz') | return 0 | endif
+                            
+   59   0.034574   0.001053   let l:synstack = vimtex#syntax#stack(a:lnum, 1)
+   59              0.000939   if match(l:synstack, '^texTikzZone') < 0 | return 0 | endif
+                            
+                              let l:env_lnum = search('\\begin\s*{tikzpicture\*\?}', 'bn')
+                              if l:env_lnum > 0 && l:env_lnum < a:lnum
+                                let l:prev_starts = a:prev =~# s:tikz_commands
+                                let l:prev_stops  = a:prev =~# ';\s*$'
+                            
+                                " Increase indent on tikz command start
+                                if l:prev_starts && ! l:prev_stops
+                                  return s:sw
+                                endif
+                            
+                                " Decrease indent on tikz command end, i.e. on semicolon
+                                if ! l:prev_starts && l:prev_stops
+                                  let l:context = join(getline(l:env_lnum, a:lnum-1), '')
+                                  return -s:sw*(l:context =~# s:tikz_commands)
+                                endif
+                              endif
+                            
+                              return 0
+
+FUNCTION  vimtex#delim#get_next()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/delim.vim:365
+Called 127 times
+Total time:   0.152960
+ Self time:   0.004175
+
+count  total (s)   self (s)
+  127   0.152838   0.004052   return s:get_delim(extend({ 'direction' : 'next', 'type' : a:type, 'side' : a:side,}, get(a:, '1', {})))
+
+FUNCTION  vimtex#delim#get_matching()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/delim.vim:410
+Called 1430 times
+Total time:   3.205805
+ Self time:   0.185755
+
+count  total (s)   self (s)
+ 1430              0.014036   if empty(a:delim) || !has_key(a:delim, 'lnum') | return {} | endif
+                            
+                              " Get the matching position
+ 1430   0.021931   0.014928   let l:save_pos = vimtex#pos#get_cursor()
+ 1430   0.079491   0.016184   call vimtex#pos#set_cursor(a:delim)
+ 1430   2.745307   0.017166   let [l:match, l:lnum, l:cnum] = a:delim.get_matching()
+ 1430   0.096590   0.021058   call vimtex#pos#set_cursor(l:save_pos)
+                            
+                              " Create the match result
+ 1430              0.016746   let l:matching = deepcopy(a:delim)
+ 1430              0.004928   let l:matching.lnum = l:lnum
+ 1430              0.003393   let l:matching.cnum = l:cnum
+ 1430              0.003505   let l:matching.match = l:match
+ 1430              0.003989   let l:matching.corr  = a:delim.match
+ 1430              0.004812   let l:matching.side = a:delim.is_open ? 'close' : 'open'
+ 1430              0.004474   let l:matching.is_open = !a:delim.is_open
+ 1430              0.004495   let l:matching.re.corr = a:delim.re.this
+ 1430              0.003848   let l:matching.re.this = a:delim.re.corr
+                            
+ 1430              0.003801   if l:matching.type ==# 'delim'
+  669              0.001881     let l:matching.corr_delim = a:delim.delim
+  669              0.001649     let l:matching.corr_mod = a:delim.mod
+  669              0.001823     let l:matching.delim = a:delim.corr_delim
+  669              0.001610     let l:matching.mod = a:delim.corr_mod
+  761              0.003917   elseif l:matching.type ==# 'env' && has_key(l:matching, 'name')
+   38              0.000122     if l:matching.is_open
+   17              0.040752       let l:matching.env_cmd = vimtex#cmd#get_at(l:lnum, l:cnum)
+   21              0.000019     else
+   21              0.000245       unlet l:matching.env_cmd
+   38              0.000035     endif
+   38              0.000538     let l:matching.name = matchstr(l:match, '{\zs\k*\ze\*\?}')
+ 1430              0.001413   endif
+                            
+ 1430              0.002678   return l:matching
+
+FUNCTION  vimtex#pos#set_cursor()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/pos.vim:7
+Called 6597 times
+Total time:   0.377121
+ Self time:   0.116797
+
+count  total (s)   self (s)
+ 6597   0.369033   0.108710   call cursor(s:parse_args(a:000))
+
+FUNCTION  vimtex#syntax#stack()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/syntax.vim:7
+Called 4999 times
+Total time:  12.246566
+ Self time:  12.246566
+
+count  total (s)   self (s)
+ 4999              0.051158   let l:pos = a:0 > 0 ? [a:1, a:2] : [line('.'), col('.')]
+ 4999              0.020126   if mode() ==# 'i'
+ 4419              0.021437     let l:pos[1] -= 1
+ 4999              0.006833   endif
+ 4999              0.068033   call map(l:pos, 'max([v:val, 1])')
+                            
+ 4999             12.062277   return map(synstack(l:pos[0], l:pos[1]), "synIDattr(v:val, 'name')")
+
+FUNCTION  UltiSnips#CursorMoved()
+    Defined: ~/.local/share/nvim/plugged/ultisnips/autoload/UltiSnips.vim:171
+Called 3171 times
+Total time: 338.618016
+ Self time: 338.617995
+
+count  total (s)   self (s)
+ 3171 338.611806 338.611785     py3 UltiSnips_Manager._cursor_moved()
+
+FUNCTION  <SNR>85_get_timeout()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/delim.vim:1028
+Called 707 times
+Total time:   0.006943
+ Self time:   0.006943
+
+count  total (s)   self (s)
+  707              0.006020   return (empty(v:insertmode) ? mode() : v:insertmode) ==# 'i' ? g:vimtex_delim_insert_timeout : g:vimtex_delim_timeout
+
+FUNCTION  <SNR>125_clean_line()
+    Defined: ~/.local/share/nvim/plugged/vimtex/indent/tex.vim:95
+Called 118 times
+Total time:   0.004491
+ Self time:   0.004491
+
+count  total (s)   self (s)
+  118              0.004260   return substitute(a:line, '\s*\\\@<!%.*', '', '')
+
+FUNCTION  vimtex#syntax#in()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/syntax.vim:18
+Called 4686 times
+Total time:  11.737305
+ Self time:   0.139659
+
+count  total (s)   self (s)
+ 4686  11.732189   0.134542   return match(call('vimtex#syntax#stack', a:000), '^' . a:name) >= 0
+
+FUNCTION  vimtex#util#count_close()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/util.vim:48
+Called 59 times
+Total time:   0.005240
+ Self time:   0.005240
+
+count  total (s)   self (s)
+                              " Counts the number of unopened closing patterns in the given line.
+   59              0.002873   let l:i = match(a:line, a:re_close)
+   59              0.000379   if l:i < 0 | return 0 | endif
+                            
+    2              0.000008   let l:sum = 0
+    5              0.000032   while l:i >= 0
+    3              0.000019     let l:sum += 1
+    3              0.000018     let l:imax_first = l:i
+    3              0.000233     let l:i += len(matchstr(a:line, a:re_close, l:i))
+    3              0.000350     let l:i = match(a:line, a:re_close, l:i)
+    5              0.000029   endwhile
+                            
+    2              0.000251   let l:i = match(a:line, a:re_open)
+    5              0.000045   while l:i >= 0 && l:i < l:imax_first
+    3              0.000019     let l:sum -= 1
+    3              0.000224     let l:i += len(matchstr(a:line, a:re_open, l:i))
+    3              0.000450     let l:i = match(a:line, a:re_open, l:i)
+    5              0.000024   endwhile
+                            
+    2              0.000018   return max([l:sum, 0])
+
+FUNCTION  <SNR>20_Highlight_Matching_Pair()
+    Defined: /usr/share/nvim/runtime/plugin/matchparen.vim:45
+Called 5950 times
+Total time:   8.076897
+ Self time:   7.826727
+
+count  total (s)   self (s)
+ 5950              0.073934   if !exists("w:matchparen_ids")
+                                let w:matchparen_ids = []
+ 5950              0.014083   endif
+                              " Remove any previous match.
+ 5950   0.242670   0.074829   call s:Remove_Matches()
+                            
+                              " Avoid that we remove the popup menu.
+                              " Return when there are no colors (looks like the cursor jumps).
+ 5950              0.049166   if pumvisible() || (&t_Co < 8 && !has("gui_running"))
+                                return
+ 5950              0.004705   endif
+                            
+                              " Get the character under the cursor and check if it's in 'matchpairs'.
+ 5950              0.036707   let c_lnum = line('.')
+ 5950              0.028400   let c_col = col('.')
+ 5950              0.012934   let before = 0
+                            
+ 5950              0.032327   let text = getline(c_lnum)
+ 5950              0.061265   let c_before = text->strpart(0, c_col - 1)->slice(-1)
+ 5950              0.037585   let c = text->strpart(c_col - 1)->slice(0, 1)
+ 5950              0.149315   let plist = split(&matchpairs, '.\zs[:,]')
+ 5950              0.036067   let i = index(plist, c)
+ 5950              0.013057   if i < 0
+                                " not found, in Insert mode try character before the cursor
+ 5146              0.028245     if c_col > 1 && (mode() == 'i' || mode() == 'R')
+ 4486              0.022594       let before = strlen(c_before)
+ 4486              0.010858       let c = c_before
+ 4486              0.017884       let i = index(plist, c)
+ 5146              0.006338     endif
+ 5146              0.008713     if i < 0
+                                  " not found, nothing to do
+ 4917              0.008807       return
+  229              0.000186     endif
+ 1033              0.000770   endif
+                            
+                              " Figure out the arguments for searchpairpos().
+ 1033              0.001856   if i % 2 == 0
+  223              0.000457     let s_flags = 'nW'
+  223              0.000896     let c2 = plist[i + 1]
+  810              0.002026   else
+  810              0.001730     let s_flags = 'nbW'
+  810              0.001910     let c2 = c
+  810              0.003486     let c = plist[i - 1]
+ 1033              0.001092   endif
+ 1033              0.002463   if c == '['
+   12              0.000020     let c = '\['
+   12              0.000017     let c2 = '\]'
+ 1033              0.000709   endif
+                            
+                              " Find the match.  When it was just before the cursor move it there for a
+                              " moment.
+ 1033              0.001723   if before > 0
+  229              0.001363     let save_cursor = getcurpos()
+  229              0.001555     call cursor(c_lnum, c_col - before)
+  229              0.001154     defer setpos('.', save_cursor)
+ 1033              0.000783   endif
+                            
+ 1033              0.013931   if !has("syntax") || !exists("g:syntax_on")
+                                let s_skip = "0"
+ 1033              0.005583   elseif exists("b:ts_highlight") && &syntax != 'on'
+                                let s_skip = "match(v:lua.vim.treesitter.get_captures_at_cursor(), '" .. 'string\|character\|singlequote\|escape\|symbol\|comment' .. "') != -1"
+ 1033              0.000786   else
+                                " do not attempt to match when the syntax item where the cursor is
+                                " indicates there does not exist a matching parenthesis, e.g. for shells
+                                " case statement: "case $var in foobar)"
+                                "
+                                " add the check behind a filetype check, so it only needs to be
+                                " evaluated for certain filetypes
+ 1033              0.013037     if ['sh']->index(&filetype) >= 0 && synstack(".", col("."))->indexof({_, id -> synIDattr(id, "name") =~? "shSnglCase"}) >= 0
+                                  return
+ 1033              0.000912     endif
+                                " Build an expression that detects whether the current cursor position is
+                                " in certain syntax types (string, comment, etc.), for use as
+                                " searchpairpos()'s skip argument.
+                                " We match "escape" for special items, such as lispEscapeSpecial, and
+                                " match "symbol" for lispBarSymbol.
+ 1033              0.007166     let s_skip = 'synstack(".", col("."))' . '->indexof({_, id -> synIDattr(id, "name") =~? ' . '"string\\|character\\|singlequote\\|escape\\|symbol\\|comment"}) >= 0'
+                                " If executing the expression determines that the cursor is currently in
+                                " one of the syntax types, then we want searchpairpos() to find the pair
+                                " within those syntax types (i.e., not skip).  Otherwise, the cursor is
+                                " outside of the syntax types and s_skip should keep its value so we skip
+                                " any matching pair inside the syntax types.
+                                " Catch if this throws E363: pattern uses more memory than 'maxmempattern'.
+ 1033              0.002098     try
+ 1033   2.760421   2.722898       execute 'if ' . s_skip . ' | let s_skip = "0" | endif'
+                                catch /^Vim\%((\a\+)\)\=:E363/
+                                  " We won't find anything, so skip searching, should keep Vim responsive.
+                                  return
+ 1033              0.001834     endtry
+ 1033              0.001100   endif
+                            
+                              " Limit the search to lines visible in the window.
+ 1033              0.005717   let stoplinebottom = line('w$')
+ 1033              0.004168   let stoplinetop = line('w0')
+ 1033              0.002385   if i % 2 == 0
+  223              0.000693     let stopline = stoplinebottom
+  810              0.000691   else
+  810              0.002386     let stopline = stoplinetop
+ 1033              0.000890   endif
+                            
+                              " Limit the search time to 300 msec to avoid a hang on very long lines.
+                              " This fails when a timeout is not supported.
+ 1033              0.004206   if mode() == 'i' || mode() == 'R'
+  818              0.007117     let timeout = exists("b:matchparen_insert_timeout") ? b:matchparen_insert_timeout : g:matchparen_insert_timeout
+  215              0.000184   else
+  215              0.001702     let timeout = exists("b:matchparen_timeout") ? b:matchparen_timeout : g:matchparen_timeout
+ 1033              0.000927   endif
+ 1033              0.001063   try
+ 1033   4.043830   3.999025     let [m_lnum, m_col] = searchpairpos(c, '', c2, s_flags, s_skip, stopline, timeout)
+                              catch /E118/
+                                " Can't use the timeout, restrict the stopline a bit more to avoid taking
+                                " a long time on closed folds and long lines.
+                                " The "viewable" variables give a range in which we can scroll while
+                                " keeping the cursor at the same position.
+                                " adjustedScrolloff accounts for very large numbers of scrolloff.
+                                let adjustedScrolloff = min([&scrolloff, (line('w$') - line('w0')) / 2])
+                                let bottom_viewable = min([line('$'), c_lnum + &lines - adjustedScrolloff - 2])
+                                let top_viewable = max([1, c_lnum-&lines+adjustedScrolloff + 2])
+                                " one of these stoplines will be adjusted below, but the current values are
+                                " minimal boundaries within the current window
+                                if i % 2 == 0
+                                  if has("byte_offset") && has("syntax_items") && &smc > 0
+                            	let stopbyte = min([line2byte("$"), line2byte(".") + col(".") + &smc * 2])
+                            	let stopline = min([bottom_viewable, byte2line(stopbyte)])
+                                  else
+                            	let stopline = min([bottom_viewable, c_lnum + 100])
+                                  endif
+                                  let stoplinebottom = stopline
+                                else
+                                  if has("byte_offset") && has("syntax_items") && &smc > 0
+                            	let stopbyte = max([1, line2byte(".") + col(".") - &smc * 2])
+                            	let stopline = max([top_viewable, byte2line(stopbyte)])
+                                  else
+                            	let stopline = max([top_viewable, c_lnum - 100])
+                                  endif
+                                  let stoplinetop = stopline
+                                endif
+                                let [m_lnum, m_col] = searchpairpos(c, '', c2, s_flags, s_skip, stopline)
+ 1033              0.001798   endtry
+                            
+                              " If a match is found setup match highlighting.
+ 1033              0.004179   if m_lnum > 0 && m_lnum >= stoplinetop && m_lnum <= stoplinebottom
+  962              0.002795     if !g:matchparen_disable_cursor_hl
+  962              0.015880       call add(w:matchparen_ids, matchaddpos('MatchParen', [[c_lnum, c_col - before], [m_lnum, m_col]], 10))
+                                else
+                                  call add(w:matchparen_ids, matchaddpos('MatchParen', [[m_lnum, m_col]], 10))
+  962              0.000935     endif
+  962              0.002420     let w:paren_hl_on = 1
+ 1033              0.000997   endif
+
+FUNCTION  UltiSnips#TrackChange()
+    Defined: ~/.local/share/nvim/plugged/ultisnips/autoload/UltiSnips.vim:190
+Called 4417 times
+Total time:  49.004686
+ Self time:  48.707938
+
+count  total (s)   self (s)
+ 4417  48.996676  48.699929     py3 UltiSnips_Manager._track_change()
+
+FUNCTION  vimtex#pos#val()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/pos.vim:24
+Called 76 times
+Total time:   0.004759
+ Self time:   0.001911
+
+count  total (s)   self (s)
+   76   0.004157   0.001309   let [l:lnum, l:cnum; l:rest] = s:parse_args(a:000)
+                            
+   76              0.000479   return 100000*l:lnum + min([l:cnum, 90000])
+
+FUNCTION  vimtex#util#count_open()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/util.vim:24
+Called 59 times
+Total time:   0.047200
+ Self time:   0.047200
+
+count  total (s)   self (s)
+                              " Counts the number of unclosed opening patterns in the given line.
+   59              0.006871   let l:i = match(a:line, a:re_open)
+   59              0.000418   if l:i < 0 | return 0 | endif
+                            
+   46              0.000144   let l:sum = 0
+   46              0.000190   let l:imin_last = l:i
+  190              0.000649   while l:i >= 0
+  144              0.000398     let l:sum += 1
+  144              0.004815     let l:i += len(matchstr(a:line, a:re_open, l:i))
+  144              0.011116     let l:i = match(a:line, a:re_open, l:i)
+  190              0.000939   endwhile
+                            
+   46              0.003123   let l:i = match(a:line, a:re_close, l:imin_last)
+  190              0.000667   while l:i >= 0
+  144              0.000411     let l:sum -= 1
+  144              0.004700     let l:i += len(matchstr(a:line, a:re_close, l:i))
+  144              0.009783     let l:i = match(a:line, a:re_close, l:i)
+  190              0.000551   endwhile
+                            
+   46              0.000299   return max([l:sum, 0])
+
+FUNCTION  <SNR>82_get_cmd_part_delim()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/cmd.vim:744
+Called 127 times
+Total time:   0.236565
+ Self time:   0.015164
+
+count  total (s)   self (s)
+  127   0.002976   0.001779   let l:save_pos = vimtex#pos#get_cursor()
+  127   0.007902   0.001684   call vimtex#pos#set_cursor(a:start_pos)
+  127   0.154883   0.001923   let l:open = vimtex#delim#get_next('delim_tex', 'open')
+  127   0.009900   0.002253   call vimtex#pos#set_cursor(l:save_pos)
+                            
+                              " Ensure that the next delimiter is found and is of the right type
+  127              0.001174   if empty(l:open) || l:open.match !=# a:open_delim | return {} | endif
+                            
+                              " Ensure that the delimiter is the next non-whitespace character according to
+                              " a configurable rule
+   89   0.008504   0.002880   if ! call(g:vimtex_parser_cmd_separator_check, [ s:text_between(a:start_pos, l:open)])
+   38              0.000086     return {}
+   51              0.000059   endif
+                            
+   51   0.045881   0.000680   let l:close = vimtex#delim#get_matching(l:open)
+   51              0.000187   if empty(l:close)
+                                return {}
+   51              0.000545   endif
+                            
+   51   0.003596   0.001041   return { 'open' : l:open, 'close' : l:close, 'text' : s:text_between(l:open, l:close),}
+
+FUNCTION  <SNR>82_get_cmd_part_simple()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/cmd.vim:774
+Called 76 times
+Total time:   0.003313
+ Self time:   0.003313
+
+count  total (s)   self (s)
+   76              0.000407   let l:lnum = a:start_pos.lnum
+   76              0.000244   let l:cnum = a:start_pos.cnum
+   76              0.000561   let l:regex = '^\s*' . a:delims[0] . '[^' . a:delims[1] . ']*' . a:delims[1]
+                            
+   76              0.001045   let l:match = matchstr(getline(l:lnum), l:regex, l:cnum)
+                            
+   76              0.000837   return empty(l:match) ? {} : {    'open' : {'lnum' : l:lnum, 'cnum' : l:cnum + 1},    'close' : {'lnum' : l:lnum, 'cnum' : l:cnum + strlen(l:match)},    'text' : trim(l:match)   }
+
+FUNCTION  201()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/delim.vim:687
+Called 3369 times
+Total time:   0.037540
+ Self time:   0.037540
+
+count  total (s)   self (s)
+ 3369              0.032819   return a:match =~# '^\\\%(begin\|end\)\>'
+
+FUNCTION  202()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/delim.vim:692
+Called 38 times
+Total time:   0.137790
+ Self time:   0.005962
+
+count  total (s)   self (s)
+   38              0.000935   let result = extend(deepcopy(self), a:ctx, 'keep')
+   38              0.000185   unlet result.detect
+   38              0.000085   unlet result.parse
+                            
+   38              0.000729   let result.name = matchstr(a:ctx.match, '{\zs[^}*]*\ze\*\?}')
+   38              0.000475   let result.starred = match(a:ctx.match, '\*}$') > 0
+   38              0.000439   let result.side = a:ctx.match =~# '\\begin' ? 'open' : 'close'
+   38              0.000181   let result.is_open = result.side ==# 'open'
+                            
+   38              0.000171   let result.gms_flags = result.is_open ? 'nW' : 'bnW'
+   38              0.000471   let result.gms_stopline = result.is_open ? line('.') + g:vimtex_delim_stopline : max([1, line('.') - g:vimtex_delim_stopline])
+                            
+   38              0.000105   if result.is_open
+   21   0.132172   0.000344     let result.env_cmd = vimtex#cmd#get_at(a:ctx.lnum, a:ctx.cnum)
+   38              0.000057   endif
+                            
+   38              0.000780   let result.corr = result.is_open ? substitute(a:ctx.match, 'begin', 'end', '') : substitute(a:ctx.match, 'end', 'begin', '')
+                            
+   38              0.000254   let result.re.this = result.is_open ? result.re.open  : result.re.close
+   38              0.000219   let result.re.corr = result.is_open ? result.re.close : result.re.open
+                            
+   38              0.000092   return result
+
+FUNCTION  203()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/delim.vim:722
+Called 38 times
+Total time:   0.004103
+ Self time:   0.003641
+
+count  total (s)   self (s)
+   38              0.000082   try
+   38   0.002417   0.001955     let [lnum, cnum] = searchpairpos(self.re.open, '', self.re.close, self.gms_flags, '', 0, s:get_timeout())
+                              catch /E118/
+                                let [lnum, cnum] = searchpairpos(self.re.open, '', self.re.close, self.gms_flags, '', self.gms_stopline)
+   38              0.000071   endtry
+                            
+   38              0.000831   let match = matchstr(getline(lnum), '^' . self.re.corr, cnum-1)
+   38              0.000185   return [match, lnum, cnum]
+
+FUNCTION  204()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/delim.vim:740
+Called 3331 times
+Total time:   1.725889
+ Self time:   0.038290
+
+count  total (s)   self (s)
+ 3331   1.722600   0.035001   return a:x =~# '^\$\$\?' && !vimtex#syntax#in('texComment')
+
+FUNCTION  205()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/delim.vim:745
+Called 722 times
+Total time:   1.732341
+ Self time:   0.095000
+
+count  total (s)   self (s)
+                              "
+                              " TeX shorthand are these
+                              "
+                              "   $ ... $   (inline math)
+                              "   $$ ... $$ (displayed equations)
+                              "
+                              " The notation does not provide the delimiter side directly, which provides
+                              " a slight problem. However, we can utilize the syntax information to parse
+                              " the side.
+                              "
+  722              0.014681   let result = extend(deepcopy(self), a:ctx, 'keep')
+  722              0.002928   unlet result.detect
+  722              0.001223   unlet result.parse
+                            
+  722              0.002925   let result.corr = a:ctx.match
+  722              0.012768   let result.re = { 'this'  : '\m' . escape(a:ctx.match, '$'), 'corr'  : '\m' . escape(a:ctx.match, '$'), 'open'  : '\m' . escape(a:ctx.match, '$'), 'close' : '\m' . escape(a:ctx.match, '$'),}
+  722   1.650512   0.013171   let result.side = vimtex#syntax#in(   (a:ctx.match ==# '$' ? 'texMathZoneTI' : 'texMathZoneTD'),   a:ctx.lnum, a:ctx.cnum+1) ? 'open' : 'close'
+  722              0.004331   let result.is_open = result.side ==# 'open'
+  722              0.002624   let result.gms_flags = result.is_open ? 'nW' : 'bnW'
+  722              0.007257   let result.gms_stopline = result.is_open ? line('.') + g:vimtex_delim_stopline : max([1, line('.') - g:vimtex_delim_stopline])
+                            
+  722              0.003451   if (a:opts.side !=# 'both') && (a:opts.side !=# result.side)
+                                "
+                                " The current match ($ or $$) is not the correct side, so we must
+                                " continue the search recursively. We do this by changing the cursor
+                                " position, since the function searchpos relies on the current cursor
+                                " position.
+                                "
+                                let l:save_pos = vimtex#pos#get_cursor()
+                            
+                                " Move the cursor
+                                call vimtex#pos#set_cursor(a:opts.direction ==# 'next' ? vimtex#pos#next(a:ctx.lnum, a:ctx.cnum) : vimtex#pos#prev(a:ctx.lnum, a:ctx.cnum))
+                            
+                                " Get new result
+                                let result = s:get_delim(a:opts)
+                            
+                                " Restore the cursor
+                                call vimtex#pos#set_cursor(l:save_pos)
+  722              0.000916   endif
+                            
+  722              0.001452   return result
+
+FUNCTION  206()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/delim.vim:802
+Called 722 times
+Total time:   0.026140
+ Self time:   0.026140
+
+count  total (s)   self (s)
+  722              0.011972   let [lnum, cnum] = searchpos(self.re.corr, self.gms_flags, self.gms_stopline)
+                            
+  722              0.010010   let match = matchstr(getline(lnum), '^' . self.re.corr, cnum-1)
+  722              0.002782   return [match, lnum, cnum]
+
+FUNCTION  207()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/delim.vim:814
+Called 2609 times
+Total time:   0.020948
+ Self time:   0.020948
+
+count  total (s)   self (s)
+ 2609              0.018684   return a:match =~# '^\\\%((\|)\|\[\|\]\)'
+
+FUNCTION  208()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/delim.vim:819
+Called 1 time
+Total time:   0.000316
+ Self time:   0.000316
+
+count  total (s)   self (s)
+    1              0.000048   let result = extend(deepcopy(self), a:ctx, 'keep')
+    1              0.000009   unlet result.detect
+    1              0.000005   unlet result.parse
+                            
+    1              0.000027   let result.side = a:ctx.match =~# '\\(\|\\\[' ? 'open' : 'close'
+    1              0.000011   let result.is_open = result.side ==# 'open'
+    1              0.000009   let result.gms_flags = result.is_open ? 'nW' : 'bnW'
+    1              0.000024   let result.gms_stopline = result.is_open ? line('.') + g:vimtex_delim_stopline : max([1, line('.') - g:vimtex_delim_stopline])
+                            
+    1              0.000050   let result.corr = result.is_open ? substitute(substitute(a:ctx.match, '\[', ']', ''), '(', ')', '') : substitute(substitute(a:ctx.match, '\]', '[', ''), ')', '(', '')
+                            
+    1              0.000080   let result.re = { 'open'  : g:vimtex#re#not_bslash   . (a:ctx.match =~# '\\(\|\\)' ? '\m\\(' : '\m\\\['), 'close' : g:vimtex#re#not_bslash   . (a:ctx.match =~# '\\(\|\\)' ? '\m\\)' : '\m\\\]'),}
+                            
+    1              0.000017   let result.re.this = result.is_open ? result.re.open  : result.re.close
+    1              0.000012   let result.re.corr = result.is_open ? result.re.close : result.re.open
+                            
+    1              0.000007   return result
+
+FUNCTION  209()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/delim.vim:849
+Called 1 time
+Total time:   0.000145
+ Self time:   0.000145
+
+count  total (s)   self (s)
+    1              0.000080   let [lnum, cnum] = searchpos(self.re.corr, self.gms_flags, self.gms_stopline)
+                            
+    1              0.000049   let match = matchstr(getline(lnum), '^' . self.re.corr, cnum-1)
+    1              0.000011   return [match, lnum, cnum]
+
+FUNCTION  210()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/delim.vim:861
+Called 2608 times
+Total time:   0.024071
+ Self time:   0.024071
+
+count  total (s)   self (s)
+ 2608              0.021777   return a:match =~# '^\\\%(left\|right\)\s*\.'
+
+FUNCTION  213()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/delim.vim:950
+Called 2608 times
+Total time:   0.146976
+ Self time:   0.146976
+
+count  total (s)   self (s)
+ 2608              0.144630   return a:match =~# '^' . g:vimtex#delim#re.delim_all.both
+
+FUNCTION  214()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/delim.vim:955
+Called 745 times
+Total time:   0.427680
+ Self time:   0.172897
+
+count  total (s)   self (s)
+  745              0.012202   let result = extend(deepcopy(self), a:ctx, 'keep')
+  745              0.002805   unlet result.detect
+  745              0.001260   unlet result.parse
+                            
+  745              0.031853   let result.side = a:ctx.match =~# g:vimtex#delim#re.delim_all.open ? 'open' : 'close'
+  745              0.003164   let result.is_open = result.side ==# 'open'
+  745              0.002577   let result.gms_flags = result.is_open ? 'nW' : 'bnW'
+  745              0.007360   let result.gms_stopline = result.is_open ? line('.') + g:vimtex_delim_stopline : max([1, line('.') - g:vimtex_delim_stopline])
+                            
+                              " Find corresponding delimiter and the regexps
+  745              0.017774   if a:ctx.match =~# '^' . g:vimtex#delim#re.mods.both
+   19              0.000510     let m1 = matchstr(a:ctx.match, '^' . g:vimtex#delim#re.mods.both)
+   19              0.000400     let d1 = substitute(strpart(a:ctx.match, len(m1)), '^\s*', '', '')
+   19              0.000070     let s1 = !result.is_open
+   19   0.005038   0.000603     let re1 = s:get_re_for_delim(m1, s1, 'mods')  . '\s*' . s:get_re_for_delim(d1, s1, 'delim_math')
+                            
+   19   0.000811   0.000298     let m2 = s:get_corr_delimiter(m1, 'mods')
+   19   0.000748   0.000269     let d2 = s:get_corr_delimiter(d1, 'delim_math')
+   19              0.000062     let s2 = result.is_open
+   19   0.004853   0.000928     let re2 = s:get_re_for_delim(m2, s2, 'mods') . '\s*' . (m1 =~# '\\\%(left\|right\)'   ? '\%(' . s:get_re_for_delim(d2, s2, 'delim_math') . '\|\.\)'   : s:get_re_for_delim(d2, s2, 'delim_math'))
+  726              0.000894   else
+  726              0.002264     let d1 = a:ctx.match
+  726              0.001521     let m1 = ''
+  726   0.099745   0.010687     let re1 = s:get_re_for_delim(a:ctx.match, !result.is_open)
+                            
+  726   0.090601   0.012377     let d2 = s:get_corr_delimiter(a:ctx.match)
+  726              0.001714     let m2 = ''
+  726   0.088751   0.010602     let re2 = s:get_re_for_delim(d2, result.is_open)
+  745              0.000923   endif
+                            
+  745              0.002335   let result.delim = d1
+  745              0.001791   let result.mod = m1
+  745              0.003404   let result.corr = m2 . d2
+  745              0.002382   let result.corr_delim = d2
+  745              0.001689   let result.corr_mod = m2
+  745              0.007371   let result.re = { 'this'  : re1, 'corr'  : re2, 'open'  : result.is_open ? re1 : re2, 'close' : result.is_open ? re2 : re1,}
+                            
+  745              0.001450   return result
+
+FUNCTION  215()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/delim.vim:1009
+Called 669 times
+Total time:   2.697754
+ Self time:   2.691273
+
+count  total (s)   self (s)
+  669              0.001243   try
+  669   2.673082   2.666600     let [lnum, cnum] = searchpairpos(self.re.open, '', self.re.close, self.gms_flags, 'synIDattr(synID(line("."), col("."), 0), "name") =~? "comment"', 0, s:get_timeout())
+                              catch /E118/
+                                let [lnum, cnum] = searchpairpos(self.re.open, '', self.re.close, self.gms_flags, 'synIDattr(synID(line("."), col("."), 0), "name") =~? "comment"', self.gms_stopline)
+  669              0.001206   endtry
+                            
+  669              0.010123   let match = matchstr(getline(lnum), '^' . self.re.corr, cnum-1)
+  669              0.002967   return [match, lnum, cnum]
+
+FUNCTION  vimtex#pos#get_cursor()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/pos.vim:12
+Called 5002 times
+Total time:   0.030846
+ Self time:   0.030846
+
+count  total (s)   self (s)
+ 5002              0.026295   return getcurpos()
+
+FUNCTION  <SNR>125_indent_delims()
+    Defined: ~/.local/share/nvim/plugged/vimtex/indent/tex.vim:243
+Called 59 times
+Total time:   0.056195
+ Self time:   0.003755
+
+count  total (s)   self (s)
+   59              0.000421   if s:re_delim_trivial | return 0 | endif
+                            
+   59              0.000192   if s:re_opt.close_indented
+                                return s:sw*(vimtex#util#count(a:prev_line, s:re_open) - vimtex#util#count(a:prev_line, s:re_close))
+   59              0.000089   else
+   59   0.054817   0.002377     return s:sw*(vimtex#util#count_open(a:prev_line, s:re_open, s:re_close)      - vimtex#util#count_close(a:line, s:re_open, s:re_close))
+                              endif
+
+FUNCTION  228()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/matchparen.vim:66
+Called 3242 times
+Total time:   0.069285
+ Self time:   0.069285
+
+count  total (s)   self (s)
+ 3242              0.018478   if exists('w:vimtex_match_id1')
+ 1276              0.007082     call matchdelete(w:vimtex_match_id1)
+ 1276              0.004542     call matchdelete(w:vimtex_match_id2)
+ 1276              0.005616     unlet! w:vimtex_match_id1
+ 1276              0.001985     unlet! w:vimtex_match_id2
+ 3242              0.004217   endif
+
+FUNCTION  229()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/matchparen.vim:74
+Called 3242 times
+Total time:  20.333118
+ Self time:   0.347771
+
+count  total (s)   self (s)
+ 3242   0.094686   0.025401   call self.clear()
+                            
+ 3242   8.528254   0.051642   if vimtex#syntax#in_comment() | return | endif
+                            
+                              " This is a hack to ensure that $ in visual block mode adhers to the rule
+                              " specified in :help v_$
+ 3242              0.025364   if mode() ==# "\<c-v>"
+                                let l:pos = vimtex#pos#get_cursor()
+                                if len(l:pos) == 5 && l:pos[-1] == 2147483647
+                                  call feedkeys('$', 'in')
+                                endif
+ 3242              0.002605   endif
+                            
+ 3242   8.363560   0.084714   let l:current = vimtex#delim#get_current('all', 'both')
+ 3242              0.019662   if empty(l:current) | return | endif
+                            
+ 1379   3.188836   0.028233   let l:corresponding = vimtex#delim#get_matching(l:current)
+ 1379              0.007518   if empty(l:corresponding) | return | endif
+ 1379              0.006108   if empty(l:corresponding.match) | return | endif
+                            
+ 1276              0.008360   let [l:open, l:close] = l:current.is_open ? [l:current, l:corresponding] : [l:corresponding, l:current]
+                            
+ 1276              0.016211   let w:vimtex_match_id1 = matchaddpos('MatchParen', [[l:open.lnum, l:open.cnum, strlen(l:open.match)]])
+ 1276              0.011571   let w:vimtex_match_id2 = matchaddpos('MatchParen', [[l:close.lnum, l:close.cnum, strlen(l:close.match)]])
+
+FUNCTION  <SNR>82_text_between()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/cmd.vim:792
+Called 178 times
+Total time:   0.008731
+ Self time:   0.008731
+
+count  total (s)   self (s)
+  178              0.001431   let [l1, c1] = [a:p1.lnum, a:p1.cnum - (a:0 > 0)]
+  178              0.001112   let [l2, c2] = [a:p2.lnum, a:p2.cnum - (a:0 <= 0)]
+                            
+  178              0.001047   let lines = getline(l1, l2)
+  178              0.000695   if !empty(lines)
+  178              0.001158     let lines[0] = strpart(lines[0], c1)
+  178              0.001583     let lines[-1] = strpart(lines[-1], 0, l1 == l2 ? c2 - c1 : c2)
+  178              0.000248   endif
+  178              0.000959   return join(lines, "\n")
+
+FUNCTION  UltiSnips#LeavingInsertMode()
+    Defined: ~/.local/share/nvim/plugged/ultisnips/autoload/UltiSnips.vim:186
+Called 378 times
+Total time:   0.293521
+ Self time:   0.293521
+
+count  total (s)   self (s)
+  378              0.292896     py3 UltiSnips_Manager._leaving_insert_mode()
+
+FUNCTION  <SNR>96_parse_args()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/pos.vim:67
+Called 6711 times
+Total time:   0.264976
+ Self time:   0.263172
+
+count  total (s)   self (s)
+                              "
+                              " The arguments should be in one of the following forms (when unpacked):
+                              "
+                              "   [lnum, cnum]
+                              "   [bufnum, lnum, cnum, ...]
+                              "   {'lnum' : lnum, 'cnum' : cnum}
+                              "
+                            
+ 6711              0.033903   if len(a:args) > 1
+   38              0.000307     return s:parse_args([a:args])
+ 6673              0.024272   elseif len(a:args) == 1
+ 6673              0.034039     if type(a:args[0]) == v:t_dict
+ 1595              0.012951       return [get(a:args[0], 'lnum'), get(a:args[0], 'cnum')]
+ 5078              0.006483     else
+ 5078              0.016732       if len(a:args[0]) == 2
+   38              0.000122         return a:args[0]
+ 5040              0.004452       else
+ 5040              0.021704         return a:args[0][1:]
+                                  endif
+                                endif
+                              else
+                                return a:args
+                              endif
+
+FUNCTION  <SNR>82_get_cmd_name()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/cmd.vim:735
+Called 38 times
+Total time:   0.002332
+ Self time:   0.002332
+
+count  total (s)   self (s)
+   38              0.001143   let [l:lnum, l:cnum] = searchpos( '\v\\%([a-zA-Z@]+\*?|[,:;!])', a:next ? 'nW' : 'cbnW')
+   38              0.000876   let l:match = matchstr(getline(l:lnum), '^\v\\%([,:;!]|[a-zA-Z@]*\*?)', l:cnum-1)
+   38              0.000227   return [l:lnum, l:cnum, l:match]
+
+FUNCTION  233()
+    Defined: ~/.local/share/nvim/plugged/vimtex/indent/tex.vim:110
+Called 59 times
+Total time:   0.008434
+ Self time:   0.008434
+
+count  total (s)   self (s)
+   59              0.000311   let self.finished = 0
+   59              0.000293   let self.amp_ind = -1
+   59              0.000227   let self.init_ind = -1
+   59              0.000216   let self.prev_lnum = a:plnum
+   59              0.000215   let self.prev_line = a:pline
+   59              0.000569   let self.prev_ind = a:plnum > 0 ? indent(a:plnum) : 0
+   59              0.000493   if !g:vimtex_indent_on_ampersands | return self.prev_ind | endif
+                            
+   59              0.002138   if a:cline =~# s:re_align || a:cline =~# s:re_amp || a:cline =~# '^\v\s*\\%(end|])'
+                                call self.parse_context(a:lnum, a:cline)
+   59              0.000091   endif
+                            
+   59              0.000647   if a:cline =~# s:re_align
+                                let self.finished = 1
+                                let l:ind_diff =   strdisplaywidth(strpart(a:cline, 0, match(a:cline, s:re_amp))) - strdisplaywidth(strpart(a:cline, 0, match(a:cline, '\S')))
+                                return self.amp_ind - l:ind_diff
+   59              0.000070   endif
+                            
+   59              0.000454   if self.amp_ind >= 0 && (a:cline =~# '^\v\s*\\%(end|])' || a:cline =~# s:re_amp)
+                                let self.prev_lnum = self.init_lnum
+                                let self.prev_line = self.init_line
+                                return self.init_ind
+   59              0.000062   endif
+                            
+   59              0.000156   return self.prev_ind
+
+FUNCTION  <SNR>82_get_cmd()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/cmd.vim:665
+Called 38 times
+Total time:   0.254801
+ Self time:   0.010999
+
+count  total (s)   self (s)
+   38   0.003184   0.000852   let [lnum, cnum, match] = s:get_cmd_name(a:direction ==# 'next')
+   38              0.000267   if lnum == 0 | return {} | endif
+                            
+   38              0.000776   let res = { 'name' : match, 'text' : '', 'pos_start' : { 'lnum' : lnum, 'cnum' : cnum }, 'pos_end' : { 'lnum' : lnum, 'cnum' : cnum + strlen(match) - 1 }, 'args' : [], 'args_parens' : [], 'args_chevrons' : [], 'opts' : [],}
+                            
+                              " Environments always start with environment name and allows option
+                              " afterwards
+   38              0.000165   if res.name ==# '\begin'
+   38   0.103543   0.000737     let arg = s:get_cmd_part_delim('{', res.pos_end)
+   38              0.000260     if empty(arg) | return res | endif
+                            
+   38              0.000192     call add(res.args, arg)
+   38              0.000150     let res.pos_end.lnum = arg.close.lnum
+   38              0.000125     let res.pos_end.cnum = arg.close.cnum
+   38              0.000061   endif
+                            
+                              " Parse the arguments
+   51              0.000129   while v:true
+   51   0.083962   0.001162     let opt = s:get_cmd_part_delim('[', res.pos_end)
+   51              0.000206     if !empty(opt)
+   13              0.000065       call add(res.opts, opt)
+   13              0.000049       let res.pos_end.lnum = opt.close.lnum
+   13              0.000038       let res.pos_end.cnum = opt.close.cnum
+   13              0.000026       continue
+   38              0.000031     endif
+                            
+   38   0.051921   0.000963     let arg = s:get_cmd_part_delim('{', res.pos_end)
+   38              0.000171     if !empty(arg)
+                                  call add(res.args, arg)
+                                  let res.pos_end.lnum = arg.close.lnum
+                                  let res.pos_end.cnum = arg.close.cnum
+                                  continue
+   38              0.000029     endif
+                            
+   38   0.002451   0.000701     let arg = s:get_cmd_part_simple(['(', ')'], res.pos_end)
+   38              0.000122     if !empty(arg)
+                                  call add(res.args_parens, arg)
+                                  let res.pos_end.lnum = arg.close.lnum
+                                  let res.pos_end.cnum = arg.close.cnum
+                                  continue
+   38              0.000029     endif
+                            
+   38   0.002259   0.000697     let arg = s:get_cmd_part_simple(['<', '>'], res.pos_end)
+   38              0.000122     if !empty(arg)
+                                  call add(res.args_chevrons, arg)
+                                  let res.pos_end.lnum = arg.close.lnum
+                                  let res.pos_end.cnum = arg.close.cnum
+                                  continue
+   38              0.000028     endif
+                            
+   38              0.000035     break
+   38              0.000078   endwhile
+                            
+                              " Include entire cmd text
+   38   0.002208   0.000617   let res.text = s:text_between(res.pos_start, res.pos_end, 1)
+                            
+   38              0.000079   return res
+
+FUNCTION  <SNR>125_get_prev_lnum()
+    Defined: ~/.local/share/nvim/plugged/vimtex/indent/tex.vim:79
+Called 59 times
+Total time:   0.246808
+ Self time:   0.006559
+
+count  total (s)   self (s)
+   59              0.000373   let l:lnum = a:lnum
+   59              0.000555   let l:line = getline(l:lnum)
+                            
+   59   0.239422   0.002662   while l:lnum > 0 && (l:line =~# '^\s*%' || s:in_verbatim(l:lnum))
+                                let l:lnum = prevnonblank(l:lnum - 1)
+                                let l:line = getline(l:lnum)
+   59              0.000171   endwhile
+                            
+   59   0.005387   0.001898   return [ l:lnum, l:lnum > 0 ? s:clean_line(l:line) : '',]
+
+FUNCTION  <SNR>125_indent_items()
+    Defined: ~/.local/share/nvim/plugged/vimtex/indent/tex.vim:210
+Called 59 times
+Total time:   0.004900
+ Self time:   0.004900
+
+count  total (s)   self (s)
+   59              0.000440   if s:envs_lists_empty | return 0 | endif
+                            
+   59              0.001372   if a:prev_line =~# s:envs_item && (a:line !~# s:envs_enditem     || (a:line =~# s:envs_item && a:prev_line =~# s:envs_beglist))
+   12              0.000033     return s:sw
+   47              0.000762   elseif a:line =~# s:envs_endlist && a:prev_line !~# s:envs_begitem
+                                return -s:sw
+   47              0.000478   elseif a:line =~# s:envs_item && a:prev_line !~# s:envs_item
+    1              0.000009     let l:prev_lnum = a:prev_lnum
+    1              0.000008     let l:prev_line = a:prev_line
+    1              0.000009     while l:prev_lnum >= 1
+    1              0.000046       if l:prev_line =~# s:envs_begitem
+    1              0.000021         return -s:sw*(l:prev_line =~# s:envs_item)
+                                  endif
+                                  let l:prev_lnum = prevnonblank(l:prev_lnum - 1)
+                                  let l:prev_line = getline(l:prev_lnum)
+                                endwhile
+   46              0.000051   endif
+                            
+   46              0.000098   return 0
+
+FUNCTION  <SNR>85_get_delim()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/delim.vim:575
+Called 3369 times
+Total time:   8.308352
+ Self time:   3.804711
+
+count  total (s)   self (s)
+                              " Arguments:
+                              "   opts = {
+                              "     'direction'   :  next
+                              "                      prev
+                              "                      current
+                              "     'type'        :  env_tex
+                              "                      env_math
+                              "                      env_all
+                              "                      delim_tex
+                              "                      delim_math
+                              "                      delim_math_modq (possibly modified math delimiter)
+                              "                      delim_math_mod  (modified math delimiter)
+                              "                      delim_all
+                              "                      all
+                              "     'side'        :  open
+                              "                      close
+                              "                      both
+                              "     'syn_exclude' :  Don't match in given syntax
+                              "  }
+                              "
+                              " Returns:
+                              "   delim = {
+                              "     type    : env | delim
+                              "     side    : open | close
+                              "     name    : name of environment [only for type env]
+                              "     lnum    : number
+                              "     cnum    : number
+                              "     match   : unparsed matched delimiter
+                              "     corr    : corresponding delimiter
+                              "     re : {
+                              "       open  : regexp for the opening part
+                              "       close : regexp for the closing part
+                              "     }
+                              "     remove  : method to remove the delimiter
+                              "   }
+                              "
+ 3369   0.068024   0.045998   let l:save_pos = vimtex#pos#get_cursor()
+ 3369              0.031441   let l:re = g:vimtex#delim#re[a:opts.type][a:opts.side]
+ 3369              0.008324   while 1
+ 3369              2.770578     let [l:lnum, l:cnum] = a:opts.direction ==# 'next' ? searchpos(l:re, 'cnW', line('.') + g:vimtex_delim_stopline) : a:opts.direction ==# 'prev'   ? searchpos(l:re, 'bcnW', max([line('.') - g:vimtex_delim_stopline, 1]))   : searchpos(l:re, 'bcnW', line('.'))
+ 3369              0.026723     if l:lnum == 0 | break | endif
+                            
+ 2784              0.022102     if has_key(a:opts, 'syn_exclude') && vimtex#syntax#in(a:opts.syn_exclude, l:lnum, l:cnum)
+                                  call vimtex#pos#set_cursor(vimtex#pos#prev(l:lnum, l:cnum))
+                                  continue
+ 2784              0.001979     endif
+                            
+ 2784              0.004229     break
+ 3369              0.006320   endwhile
+ 3369   0.291835   0.075158   call vimtex#pos#set_cursor(l:save_pos)
+                            
+ 3369              0.258700   let l:match = matchstr(getline(l:lnum), '^' . l:re, l:cnum-1)
+                            
+ 3369              0.037974   if a:opts.direction ==# 'current' && l:cnum + strlen(l:match) + (mode() ==# 'i' ? 1 : 0) <= col('.')
+ 1863              0.005484     let l:match = ''
+ 1863              0.004025     let l:lnum = 0
+ 1863              0.003896     let l:cnum = 0
+ 3369              0.005340   endif
+                            
+16388              0.050703   for l:parser in s:parsers
+14525   2.099183   0.143759     if l:parser.detect(l:match)
+ 1506   2.223031   0.059927       return l:parser.parse({ 'lnum' : l:lnum, 'cnum' : l:cnum, 'match' : l:match, 'remove' : function('s:delim_remove'),}, a:opts)
+13019              0.013759     endif
+14882              0.014786   endfor
+                            
+ 1863              0.003799   return {}
+
+FUNCTION  VimtexIndentExpr()
+    Defined: ~/.local/share/nvim/plugged/vimtex/indent/tex.vim:32
+Called 59 times
+Total time:   0.459035
+ Self time:   0.003139
+
+count  total (s)   self (s)
+                              " This wrapper function is used because of rnoweb[0] that "misuses" the
+                              " indentexpr and assumes it takes no arguments.
+                              "
+                              " [0]: /usr/share/nvim/runtime/indent/rnoweb.vim:21
+                            
+   59   0.458020   0.002123   return VimtexIndent(v:lnum)
+
+FUNCTION  vimtex#delim#get_current()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/delim.vim:401
+Called 3242 times
+Total time:   8.278846
+ Self time:   0.119280
+
+count  total (s)   self (s)
+ 3242   8.273921   0.114355   return s:get_delim(extend({ 'direction' : 'current', 'type' : a:type, 'side' : a:side,}, get(a:, '1', {})))
+
+FUNCTION  <SNR>125_in_verbatim()
+    Defined: ~/.local/share/nvim/plugged/vimtex/indent/tex.vim:100
+Called 118 times
+Total time:   0.312166
+ Self time:   0.007542
+
+count  total (s)   self (s)
+  118   0.308380   0.003757   let l:synstack = vimtex#syntax#stack(a:lnum, col([a:lnum, '$']) - 2)
+                            
+  118              0.003442   return match(l:synstack, '\v^tex%(Lst|Verb|Markdown|Minted)Zone') >= 0 && match(l:synstack, '\v^tex%(Minted)?Env') < 0
+
+FUNCTION  vimtex#cmd#get_at()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/cmd.vim:614
+Called 38 times
+Total time:   0.275028
+ Self time:   0.002766
+
+count  total (s)   self (s)
+   38   0.000849   0.000557   let l:pos_saved = vimtex#pos#get_cursor()
+   38   0.004267   0.000867   call call('vimtex#pos#set_cursor', a:000)
+   38   0.267270   0.000671   let l:cmd = vimtex#cmd#get_current()
+   38   0.002449   0.000477   call vimtex#pos#set_cursor(l:pos_saved)
+   38              0.000091   return l:cmd
+
+FUNCTION  <SNR>125_indent_envs()
+    Defined: ~/.local/share/nvim/plugged/vimtex/indent/tex.vim:190
+Called 59 times
+Total time:   0.003814
+ Self time:   0.003814
+
+count  total (s)   self (s)
+   59              0.000278   let l:ind = 0
+                            
+   59              0.001938   let l:ind += s:sw*(    a:prev_line =~# s:envs_begin && a:prev_line !~# s:envs_end && a:prev_line !~# s:envs_ignored)
+   59              0.001151   let l:ind -= s:sw*(    a:line !~# s:envs_begin && a:line =~# s:envs_end && a:line !~# s:envs_ignored)
+                            
+   59              0.000179   return l:ind
+
+FUNCTION  vimtex#cmd#get_current()
+    Defined: ~/.local/share/nvim/plugged/vimtex/autoload/vimtex/cmd.vim:589
+Called 38 times
+Total time:   0.266599
+ Self time:   0.004342
+
+count  total (s)   self (s)
+   38   0.000891   0.000563   let l:save_pos = vimtex#pos#get_cursor()
+   38   0.003484   0.000585   let l:pos_val_cursor = vimtex#pos#val(l:save_pos)
+                            
+   38              0.000175   let l:depth = 3
+   38              0.000162   while l:depth > 0
+   38              0.000151     let l:depth -= 1
+   38   0.255440   0.000639     let l:cmd = s:get_cmd('prev')
+   38              0.000203     if empty(l:cmd) | break | endif
+                            
+   38   0.002361   0.000500     let l:pos_val = vimtex#pos#val(l:cmd.pos_end)
+   38              0.000113     if l:pos_val >= l:pos_val_cursor
+   38   0.002794   0.000425       call vimtex#pos#set_cursor(l:save_pos)
+   38              0.000126       return l:cmd
+                                else
+                                  call vimtex#pos#set_cursor(vimtex#pos#prev(l:cmd.pos_start))
+                                endif
+                              endwhile
+                            
+                              call vimtex#pos#set_cursor(l:save_pos)
+                            
+                              return {}
+
+FUNCTION  <SNR>20_Remove_Matches()
+    Defined: /usr/share/nvim/runtime/plugin/matchparen.vim:203
+Called 5950 times
+Total time:   0.167842
+ Self time:   0.167842
+
+count  total (s)   self (s)
+ 5950              0.037159   if exists('w:paren_hl_on') && w:paren_hl_on
+ 1924              0.008309     while !empty(w:matchparen_ids)
+  962              0.011571       silent! call remove(w:matchparen_ids, 0)->matchdelete()
+ 1924              0.003267     endwhile
+  962              0.004210     let w:paren_hl_on = 0
+ 5950              0.005554   endif
+
+FUNCTIONS SORTED ON TOTAL TIME
+count  total (s)   self (s)  function
+ 8114 421.306324             provider#python3#Call()
+ 3171 338.618016 338.617995  UltiSnips#CursorMoved()
+ 4417  49.004686  48.707938  UltiSnips#TrackChange()
+  148  33.585634  33.557435  UltiSnips#ExpandSnippetOrJump()
+ 3242  20.333118   0.347771  229()
+ 4999  12.246566             vimtex#syntax#stack()
+ 4686  11.737305   0.139659  vimtex#syntax#in()
+ 3242   8.476612   0.064246  vimtex#syntax#in_comment()
+ 3369   8.308352   3.804711  <SNR>85_get_delim()
+ 3242   8.278846   0.119280  vimtex#delim#get_current()
+ 5950   8.076897   7.826727  <SNR>20_Highlight_Matching_Pair()
+ 1430   3.205805   0.185755  vimtex#delim#get_matching()
+  669   2.697754   2.691273  215()
+  722   1.732341   0.095000  205()
+ 3331   1.725889   0.038290  204()
+   59   0.459035   0.003139  VimtexIndentExpr()
+   59   0.455897   0.017572  VimtexIndent()
+  745   0.427680   0.172897  214()
+ 6597   0.377121   0.116797  vimtex#pos#set_cursor()
+  136   0.320408   0.009634  vimtex#syntax#in_mathzone()
+
+FUNCTIONS SORTED ON SELF TIME
+count  total (s)   self (s)  function
+ 8114            421.306324  provider#python3#Call()
+ 3171 338.618016 338.617995  UltiSnips#CursorMoved()
+ 4417  49.004686  48.707938  UltiSnips#TrackChange()
+  148  33.585634  33.557435  UltiSnips#ExpandSnippetOrJump()
+ 4999             12.246566  vimtex#syntax#stack()
+ 5950   8.076897   7.826727  <SNR>20_Highlight_Matching_Pair()
+ 3369   8.308352   3.804711  <SNR>85_get_delim()
+  669   2.697754   2.691273  215()
+ 3242  20.333118   0.347771  229()
+  378              0.293521  UltiSnips#LeavingInsertMode()
+ 6711   0.264976   0.263172  <SNR>96_parse_args()
+ 1430   3.205805   0.185755  vimtex#delim#get_matching()
+  745   0.427680   0.172897  214()
+ 5950              0.167842  <SNR>20_Remove_Matches()
+ 1528   0.175566   0.150905  <SNR>85_get_re_for_delim()
+ 2608              0.146976  213()
+ 4686  11.737305   0.139659  vimtex#syntax#in()
+ 3242   8.278846   0.119280  vimtex#delim#get_current()
+ 6597   0.377121   0.116797  vimtex#pos#set_cursor()
+  722   1.732341   0.095000  205()
+

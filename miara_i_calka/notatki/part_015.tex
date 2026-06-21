@@ -1,0 +1,143 @@
+\section{Przestrzenie miarowe.}
+\begin{definition}[Miara]
+	Terminem \textbf{miara} będziemy określać przeliczalnie addytywną funkcję zbioru określoną na $\bm{ \sigma  } $ \textbf{-ciele.} 
+\end{definition} 
+
+\begin{definition}[Przestrzeń miarowa.]
+	Przestrzenią miarową nazywamy trójkę $\left( X, \Sigma, \mu \right) $, gdzie $\Sigma \subseteq \mathcal{P}(X) $ jest $\sigma$-ciałem, a $\mu: \Sigma \to [0,\infty)$ jest miarą. 
+\end{definition} 
+\begin{remark}
+	Zauważmy, że dla danej przestrzeni miarowej $\left( X, \Sigma, \mu \right)$, jeżeli $\Sigma' \subseteq \Sigma$ jest mniejszym $\sigma $-ciałem, to $\left( X, \Sigma', \mu' \right) $, gdzie $\mu' := \mu\restriction_{\scriptscriptstyle \Sigma'}$, jest formalnie rzecz biorąc, inną przestrzenią miarową. 
+
+	W późniejszym etapie, gdy już nabierzemy odpowiedniej wprawy i dla wygody, obcięcia $\mu$ do podrodzin $\Sigma $ będziemy oznaczać tą samą literą.
+\end{remark} 
+\begin{definition}[Skończona przestrzeń miarowa.]
+	Przestrzeń miarową $\left(X, \Sigma, \mu \right) $ nazywamy skończoną jeżeli $\mu\left( X \right) < \infty$ oraz probablistyczną w przypadku gdy $\mu\left( X \right) = 1$.
+
+	Przestrzeń taka jest $\sigma$-skończona, \textbf{jeżeli} istnieją zbiory $X_{k} \in \Sigma$, takie że $X=\bigcup_{k=1} ^{\infty} X_{k}$ i $\mu\left( X_{k} \right) < \infty $ dla każdego k.
+\end{definition} 
+
+W przestrzeniach miarowych można dokonywać operacji brania podprzestrzeni.
+\begin{theorem}[Podprzestrzeń miarowa.]
+	Dla przestrzeni miarowej $\left( X, \Sigma, \mu \right) $ i zbioru $Y \in \Sigma$ oznaczamy
+	\[
+	\Sigma_{Y}= \{A \in \Sigma: A \subseteq Y\} 
+	.\] 
+	Wtedy $\left( Y, \Sigma_{Y}, \mu_{Y} \right)$, gdzie $\mu_{Y}\left( A \right) := \mu\left( A \right) $ dla $A\in \Sigma_{Y}$ jest przestrzenią miarową. 
+\end{theorem} 
+\noindent Dowód jest ,,naturalny'' bowiem:
+	\begin{itemize}
+		\item $\Sigma _{Y}$ to po prostu ,,wycinek'' oryginalnego $\sigma $-ciała $\Sigma $, który pasuje do mniejszego uniwersum $Y$.
+		\item $\mu_{Y}$ to ta sama ,,linijka'', którą mierzyliśmy wcześniej. Teraz ,,przykładamy'' ją wyłącznie do obiektów leżących wewnątrz $Y$.
+	\end{itemize}
+W teorii miary takie podejście nazywamy \textbf{śladem} $\sigma $\textbf{-ciała} na zbiorze lub \textbf{miarą indukowaną.}
+
+Jest to techniczny sposób na powiedzenie: ,,Skoro umiemy mierzyć w całym $X$, to w szczególności umiemy mierzyć w jego mierzalnej części $Y$ ''.
+
+Mając na uwadze walor edukacyjny i techniczny tych notatek, udowodnimy powyższe twierdzenie. 
+\begin{proof}
+	Dowód sprowadza się do sprawdzenia dwóch głównych warunków wynikających z definicji:
+	\begin{enumerate}[label=\arabic*)]
+		\item $\Sigma_{Y}$ jest sigma-ciałem na przestrzeni $Y$.
+
+			Zgodnie z definicją $\Sigma _{\scriptscriptstyle Y}$, to rodzina tych zbiorów z $\sigma $-ciała $\Sigma $, które należą do $Y$. W szczególności
+
+			TODO
+			\begin{itemize}
+				\item \textbf{Zbiór pusty}: Ponieważ $\emptyset \in \Sigma $ 
+				\item \textbf{Cała przestrzeń} 
+				\item \textbf{Dopełnienie względem $Y$}
+				\item \textbf{Przeliczalna suma} 
+			\end{itemize}
+		\item $\mu_{\scriptscriptstyle Y}$ jest miarą na $\Sigma_{Y}$
+			
+			Tutaj sprawa jest jeszcze prostsza, bowiem $\mu_{\scriptscriptstyle Y}$ to ta sama funkcja co $\mu$, tylko ograniczona do $Y$.
+
+			DODO
+			\begin{itemize}
+				\item \textbf{Wartość na zbiorze pustym}
+				\item \textbf{Przeliczalna addytywność} 
+			\end{itemize}
+	\end{enumerate}
+\end{proof} 
+
+\begin{intuition}
+	Czasami bywa tak, że zbiór jest tak mały, że jest miary zero, ale jego podzbiory nie znajdują się w naszym sigma ciele. Dlaczego jest to istotne? Jeżeli zbiór ma miarę 0, to logiczne jest, że każdy jego podzbiór nie może być ,,większy''- on też powinien być miary zero. Nazywamy to \textbf{zupełność} : podzbiór czegoś zaniedbywalnego jest zawsze zaniedbywalny i mierzalny(należący do $\Sigma $).  
+\end{intuition} 
+\begin{definition}[Zupełna przestrzeń miarowa.]
+	Mówimy, że przestrzeń miarowa $\left( X,\Sigma,\mu \right) $ jest \textbf{zupełna} jeżeli dla każdego $A\in \Sigma$, jeżeli $\mu\left( A \right)= 0 $to wszystkie podzbiory $A$ należą do $\Sigma$(czyli są mierzalne). W takim przypadku mówimy, że $\Sigma$ jest  $\sigma$-ciałem zupełnym względem $\mu$.
+\end{definition} 
+
+\noindent\textbf{Jak naprawić przestrzeń, która nie jest zupełna?} 
+
+Poniższe twierdzenie, gwarantuje nam, że każdą przestrzeń miarową można powiększyć tak, aby stała się zupełna.
+\begin{theorem}
+	Dla każdej przestrzeni miarowej $\left( X,\Sigma, \mu \right) $ istnieje przestrzeń miarowa zupełna $\left( X, \hat{\Sigma}, \hat{\mu} \right) $, gdzie $\hat{\Sigma}\supseteq \Sigma$ i $\hat{\mu}$ jest rozszerzeniem miary  $\mu$ na $\hat{\Sigma}.$
+\end{theorem} 
+
+\noindent \textbf{Konstrukcja, jak to budujemy?} $\mathcal{A} $
+
+Tworzymy nowe $\sigma $-ciało $\hat{\Sigma }$, w którym każdy zbiór ma postać
+\[
+E = A \Delta N
+,\]
+
+gdzie:
+\begin{itemize}
+	\item $A \in \Sigma $ to stary ,,porządny'' zbiór mierzalny.
+	\item $N \subseteq  B \in \Sigma $, gdzie $\mu\left( B \right) = 0$. $N$ to nasz zaniedbywalny podzbiór zbioru $B$ który jest miary zero.
+	\item $\Sigma $ to oczywiście różnica symetryczna.
+\end{itemize}
+
+Dla tak zdefiniowanego $\sigma $-ciała $\hat{\Sigma }$, definiujemy miarę $\hat{\mu}$ następująco:
+\[
+\hat{\mu}\left( A \Sigma N \right) := \mu\left( A \right) 
+.\] 
+
+\noindent \textbf{Dlaczego to działa?} 
+
+Zauważmy co tu się dzieje:
+\begin{enumerate}[label=\arabic*.]
+	\item \textbf{Zbiory mierzalne stają się elastyczne:} Teraz zbiorem mierzalnym jest nie tylko $A$, ale też $A$ z dodanymi lub odjętymi okruchami ( $N$ ) ze zbiorów miary zero.
+	\item \textbf{Miara ignoruje okruchy:} Ponieważ $N$ pochodzi ze zbioru miary zero, to dodane go lub odjęcie nie powinno zmienić ,,objętości'' zbioru. $\hat{\mu}$ patrzy na miarę głównego składnika $A$.
+	\item \textbf{Zyskujemy zupełność:} Teraz, jeśli weźmiemy podzbiór zbioru miary zero, to z definicji nowej konstrukcji on sam będzie mierzalny jako $A \Sigma N$, przy $A = \emptyset $.
+\end{enumerate}
+
+\noindent \textbf{Przykład praktyczny}
+
+Zasygnalizujemy główne zastosowanie tej procedury, które dokładniej jest opisane w następnym rozdziale, dotyczącym \textbf{miary Lebesgue'a}. Zaczynamy od zbiorów mierzalnych $\bor\left(\mathbb{R} \right) $, które nie są zupełne. Po zastosowaniu powyższej procedury, otrzymamy $\sigma $-ciało zbiorów mierzalnych w sensie Lebesgue'a ($\mathcal{L}$), które jest już zupełne.
+
+Dzięki temu, gdy pracujemy z miarą Lebesgue'a, nie musimy się martwić, czy podzbiór zbioru miary zero ,,należy do systemu'' (czy jest mierzalny) - wiemy, że zawsze należy (jest mierzalny).
+
+\subsection{Dygresja}
+
+
+W trakcie pracy, pojawiła się wątpliwość, dlaczego wymagamy tego tylko dla podzbiorów zbioru miary zero?
+(Więcej o tym w następnym rozdziale, dotyczącym Miary Lebesgue'a).
+
+W skrócie: jeśli  $\mu\left( A \right) > 0$, to definicja \textbf{zupełności} nie wymaga, aby każdy podzbiór $A$ był mierzalny. Co więcej, w większości interesujących nas przypadków, zbiory o dodatniej mierze, \textbf{zawsze zawierają podzbiory niemierzalne}.
+
+\begin{enumerate}[label=\arabic*.]
+	\item \textbf{Dlaczego definicja zupełności skupia się tylko na zerze?} Ma na charakter ,,technicznego sprzątania''. Chcemy aby podzbiór czegoś co jest ,,nieistotne'' był nieistotny.
+		\begin{itemize}
+			\item Jeśli $A$ jest miary zero, to każdy jego podzbiór $N$ również powinien być miary zero.
+			\item Zupełność gwarantuje, że ten podzbiór $N$ ,,istnieje'' w naszym systemie ($\hat{\Sigma }$ ) i faktycznie jest miary zero.
+		\end{itemize}
+	\item \textbf{Co się dzieje gdy $\mu\left( A \right) > 0$?}
+
+		Gdybyśmy zażądali, aby każdy podzbiór zbioru miary dodatniej był mierzalny (np odcinka $\left[ 0,1 \right] $ o mierze 1), wpadlibyśmy w ogromne kłopoty.
+		\begin{itemize}
+			\item \textbf{Wszystko byłoby mierzalne.} Gdyby każdy podzbiór odcinka był mierzalny, to $\sigma $-ciało $\Sigma $ musiałoby być po prostu zbiorem potęgowym $\mathcal{P}(\left[ 0,1 \right] ) $.
+			\item \textbf{Paradoksy}. Wiemy jednak (z konstrukcji Vitalego czy zbiorów Bernsteina), że na prostej rzeczywistej istnieją zbiory, którym nie da się przypisać żadnej miary w sposób spójny.
+			\item \textbf{Wniosek.} Nawet w przestrzeni zupełnej (takiej jak przestrzeń z miarą Lebesgue'a), zbiór o mierze dodatniej jest jak ,,ser szwajcarski''- zawiera w sobie mnóstwo mierzalnych kawałków, ale też ,,dziury'' w postaci zbiorów niemierzalnych.  
+		\end{itemize}
+	\item \textbf{Różnica pomiędzy ,,Być podzbiorem'' a ,,Być mierzalnym''.} 
+		\begin{itemize}
+			\item W sytuacji gdy $\mu\left( A \right) = 0 $: Zupełność wymusza by system widział wszystkie podzbiory.
+			\item W sytuacji gdy $\mu\left( A \right) > 0:$ System widzi tylko niektóre podzbioru (te, które są wystarczająco ,,porządne'', np. borelowskie). Reszta podzbiorów dla miary $\mu$ po prostu nie istnieje- nie umiemy ich zmierzyć.
+		\end{itemize}
+\end{enumerate}
+
+\noindent \textbf{Podsumowanie.} Zupełność to nie jest prawo mówiące: ,,widzimy wszystkie podzbiory każdego podzbioru''. To prawo mówiące: ,,widzimy absolutnie wszystko, co dzieje się wewnątrz nicości (miary zero)''.
+
+Wszystko co ma miarę większą od zera, jest zbyt skomplikowane, by system mógł objąć wszystkie jego podzbiory bez popadania w sprzeczności logiczne (np paradoks Banacha-Tarskiego).

@@ -1,0 +1,178 @@
+\chapter{Wykład VII'}
+
+\section{Grupy rozwiązalne. Komutator i Komutant} 
+
+\begin{context}
+	Wkraczamy w teorię, która historycznie dała nazwę całej dziedzinie "rozwiązywania równań". Zbadamy, jak bardzo grupa różni się od grupy przemiennej. Narzędziem do tego pomiaru jest komutator.
+\end{context}
+
+\subsection{Komutatory i ich własności}
+
+Niech $G$ będzie dowolną grupą.
+
+\begin{definition}[Komutator]
+	Dla elementów $x,y \in G$ definiujemy ich komutator jako element:
+	\[
+		\left[ x,y \right] := xyx^{-1}y^{-1}.
+	\] 
+\end{definition} 
+
+\begin{remark}[Własności komutatora]
+	Komutator "mierzy" nieprzemienność elementów:
+	\begin{itemize}
+		\item $xy=yx \iff xyx^{-1}y^{-1} = e \iff \left[ x,y \right] = e$.
+		\item Grupa $G$ jest abelowa $\iff \forall\left( x,y \in G \right) \left( \left[ x,y \right] = e \right)$.
+		\item Zachowanie przy homomorfizmach: Niech $\varphi : G \to H$ będzie homomorfizmem. Wtedy:
+		\[ \varphi \left( \left[ x,y \right] \right) = \varphi(xyx^{-1}y^{-1}) = \varphi(x)\varphi(y)\varphi(x)^{-1}\varphi(y)^{-1} = \left[ \varphi (x), \varphi \left( y \right) \right]. \]
+		\item Odwracanie: $[x,y]^{-1} = (xyx^{-1}y^{-1})^{-1} = yxy^{-1}x^{-1} = [y,x]$.
+	\end{itemize}
+\end{remark}
+
+\begin{definition}[Komutant podgrup]
+	Niech $H, T \le G$. Wzajemnym komutantem tych podgrup nazywamy podgrupę generowaną przez wszystkie możliwe komutatory ich elementów:
+	\[ \left[ H,T \right] := \langle \{\left[ x,y \right]: x\in H, y\in T \}  \rangle. \]
+	W szczególności, jeśli $H=T=G$, to podgrupę $[G,G]$ nazywamy \textbf{komutantem grupy} $G$ i oznaczamy $G'$ lub $G^{(1)}$.
+\end{definition} 
+
+\begin{fact}
+	Jeżeli $H\unlhd G$ oraz $T\unlhd G$, to ich komutant też jest podgrupą normalną:
+	\[ \left[ H,T \right] \unlhd G. \]
+	W szczególności komutant grupy $G' = [G,G]$ jest zawsze podgrupą normalną w $G$.
+\end{fact}
+\begin{proof}
+	Pokażemy, że sprzężenie elementu z $[H,T]$ nadal należy do $[H,T]$. Wystarczy sprawdzić to na generatorach (czystych komutatorach).
+	Niech $h \in H, t \in T, g \in G$. Rozważmy sprzężenie komutatora $[h,t]$ przez $g$:
+	\begin{align*}
+		g [h,t] g^{-1} &= g (hth^{-1}t^{-1}) g^{-1} \\
+		&= (ghg^{-1}) (gtg^{-1}) (gh^{-1}g^{-1}) (gt^{-1}g^{-1}) \\
+		&= (ghg^{-1}) (gtg^{-1}) (ghg^{-1})^{-1} (gtg^{-1})^{-1} \\
+		&= [ghg^{-1}, gtg^{-1}].
+	\end{align*}
+	Ponieważ $H$ i $T$ są normalne, to $h' = ghg^{-1} \in H$ oraz $t' = gtg^{-1} \in T$.
+	Zatem wynik jest komutatorem $[h', t']$, który z definicji należy do $[H,T]$.
+\end{proof} 
+
+\subsection{Szereg pochodny i Abelianizacja}
+
+Tworzymy ciąg podgrup, biorąc kolejne komutanty komutantów.
+
+\begin{definition}[Szereg pochodny]
+	Definiujemy indukcyjnie ciąg podgrup (zwany szeregiem pochodnym):
+	\begin{itemize}
+		\item $G^{\left( 0 \right) }:= G$,
+		\item $G^{\left( 1 \right) }= G' := \left[ G,G \right] $ (komutant),
+		\item $G^{(n+1)} := \left( G^{(n)} \right)' = \left[ G^{\left( n \right) }, G^{\left( n \right) } \right] $.
+	\end{itemize}
+	Zauważmy, że tworzy to ciąg podgrup normalnych:
+	\[ G = G^{(0)} \unrhd G^{(1)} \unrhd G^{(2)} \unrhd \ldots \]
+\end{definition} 
+
+Komutant $G'$ jest najmniejszą podgrupą normalną, po której "zababicie" (iloraz) daje grupę przemienną.
+
+\begin{definition}[Abelianizacja]
+	Grupę ilorazową:
+	\[ G^{ab} := \mfaktor{G}{G'} \]
+	nazywamy \textbf{abelianizacją} grupy $G$. Jest to największa abelowa grupa ilorazowa $G$.
+\end{definition} 
+
+\begin{corollary}
+	$G^{ab}$ jest zawsze grupą abelową.
+\end{corollary}
+\begin{proof}
+	Niech $\bar{x}, \bar{y} \in G/G'$. Wtedy $[\bar{x}, \bar{y}] = \overline{[x,y]}$. Ale $[x,y] \in G'$, więc w ilorazie jest elementem neutralnym. Zatem $\bar{x}\bar{y}\bar{x}^{-1}\bar{y}^{-1} = e$, czyli $\bar{x}\bar{y} = \bar{y}\bar{x}$.
+\end{proof}
+
+\begin{theorem}[O uniwersalności komutanta]
+	Niech $N\unlhd G $. Wtedy:
+	\[ \mfaktor{G}{N} \text{ jest abelowa} \iff G' \subseteq N. \]
+\end{theorem} 
+\begin{proof}
+	$(\Rightarrow)$ Załóżmy, że $G/N$ jest abelowa.
+	Weźmy dowolne $x,y \in G$. W grupie ilorazowej mamy $(xN)(yN) = (yN)(xN)$.
+	To oznacza $xyN = yxN$, czyli mnożąc stronami: $x^{-1}y^{-1}xyN = N$.
+	Ale $x^{-1}y^{-1}xy = [x^{-1}, y^{-1}]$, a zbiór takich elementów generuje $G'$. 
+	Zatem każdy komutant należy do $N$, więc $G' \subseteq N$.
+	
+	$(\Leftarrow)$ Załóżmy, że $G' \subseteq N$.
+	Wtedy dla dowolnych $x,y$ mamy $[x,y] \in N$.
+	To oznacza, że $xyx^{-1}y^{-1} \in N$, czyli w ilorazie $xyN = yxN$. Grupa jest abelowa.
+\end{proof} 
+
+\subsection{Przykłady komutantów}
+
+Obliczmy komutanty $G'$ dla znanych grup.
+
+\begin{enumerate}[label=\arabic*)]
+	\item $S'_{3} = A_3$.
+	\begin{proposition}
+		$S_3$ nie jest abelowa, więc $S_3' \neq \{e\}$. $S_3/A_3 \cong \mathbb{Z}_2$ (abelowa), więc $S_3' \subseteq A_3$. Jedyną nietrywialną podgrupą $A_3$ jest samo $A_3$.
+		Konkretnie: $[(1,2), (1,3)] = (1,2)(1,3)(1,2)(1,3) = (1,3,2)(1,3) = (1,2,3) \in A_3$.
+	\end{proposition}
+
+	\item $A'_{4} = V_4 = \{\id, (1,2)(3,4), (1,3)(2,4), (1,4)(2,3)\} $.
+	\begin{proposition}
+		$A_4$ ma podgrupę normalną $V_4$. Iloraz $A_4/V_4 \cong \mathbb{Z}_3$ (abelowa), zatem $A_4' \subseteq V_4$.
+		Z drugiej strony obliczamy komutator cykli: $[(1,2,3), (1,2,4)] = (1,2)(3,4) \in V_4$.
+	\end{proposition}
+
+	\item $\mathcal{Q}'_{8} = \{\mathcal{I}, -\mathcal{I}\} = Z(\mathcal{Q}_8)$.
+	\begin{proposition}
+		Mamy $ij = k$, ale $ji = -k$. Zatem $[i,j] = iji^{-1}j^{-1} = k(-i)(-j) = k \cdot k = -1$.
+		Iloraz $Q_8 / \{1, -1\}$ to grupa Kleina $V_4$ (abelowa), więc komutant to dokładnie $\{-1, 1\}$.
+	\end{proposition}
+
+	\item $\forall\left( n \right)\left( S'_{n} = A_{n} \right)$.
+	\begin{proposition}
+		Dla $n \ge 2$ znak komutatora to $\sgn(xyx^{-1}y^{-1}) = \sgn(x)\sgn(y)\sgn(x)\sgn(y) = 1$, więc $S_n' \subseteq A_n$.
+	\end{proposition}
+
+	\item $\forall\left( n \ge 5 \right) \left( A'_{n} = A_{n} \right)$.
+	\begin{proposition}
+		To kluczowy fakt! Grupy $A_n$ dla $n \ge 5$ są \textbf{grupami prostymi} (nie mają właściwych podgrup normalnych) i są nieprzemienne.
+		Skoro $A_n' \unlhd A_n$, to $A_n'$ musi być równe $A_n$ (bo nie może być trywialne).
+		Taka grupa nazywa się \textbf{doskonała} (perfect).
+	\end{proposition}
+\end{enumerate}
+
+\section{Rozwiązalność}
+
+Idea rozwiązalności polega na sprawdzaniu, czy biorąc kolejne komutanty, dojdziemy w końcu do grupy trywialnej $\{e\}$. Jeśli tak - grupa jest "niezbyt skomplikowana" (złożona z warstw abelowych).
+
+\begin{definition}[Grupa rozwiązalna]
+	Grupę $G$ nazywamy \textbf{rozwiązalną}, gdy jej szereg pochodny kończy się na $\{e\}$.
+	Tzn. istnieje $n\in \N$, takie że:
+	\[ G^{(n)} = \{e\}. \]
+	Najmniejsze takie $n$ nazywamy stopniem rozwiązalności (lub długością pochodną).
+\end{definition} 
+
+\begin{remark}
+	$G$ jest abelowa $\iff G' = \{e\} \iff G$ jest rozwiązalna stopnia 1.
+\end{remark} 
+
+\textbf{Analiza rozwiązalności dla przykładów (zastosowanie definicji)}
+
+Sprawdźmy ciągi $G \unrhd G^{(1)} \unrhd G^{(2)} \dots$ dla powyższych grup.
+
+\begin{enumerate}[label=\arabic*)]
+	\item $G = S_3$.
+	\[ S_3 \triangleright S_3^{(1)} = A_3 \triangleright S_3^{(2)} = A_3' = \{e\}. \]
+	(Bo $A_3 \cong \mathbb{Z}_3$ jest abelowa, więc jej komutant to $\{e\}$).
+	\textbf{Wniosek:} $S_3$ jest rozwiązalna (stopnia 2).
+
+	\item $G = S_4$.
+	\[ S_4 \triangleright S_4^{(1)} = A_4 \triangleright S_4^{(2)} = V_4 \triangleright S_4^{(3)} = \{e\}. \]
+	(Bo $V_4 \cong \mathbb{Z}_2 \oplus \mathbb{Z}_2$ jest abelowa).
+	\textbf{Wniosek:} $S_4$ jest rozwiązalna (stopnia 3).
+
+	\item $G = \mathcal{Q}_8$.
+	\[ \mathcal{Q}_8 \triangleright \mathcal{Q}_8^{(1)} = \{1, -1\} \triangleright \mathcal{Q}_8^{(2)} = \{1\}. \]
+	(Bo $\{1, -1\}$ jest grupą cykliczną rzędu 2, więc abelową).
+	\textbf{Wniosek:} $\mathcal{Q}_8$ jest rozwiązalna.
+
+	\item $G = A_5$ (i ogólnie $A_n$ dla $n \ge 5$).
+	\[ A_5 \triangleright A_5^{(1)} = A_5 \triangleright A_5^{(2)} = A_5 \dots \]
+	Ciąg się ustabilizował i nigdy nie osiągnie $\{e\}$.
+	\textbf{Wniosek:} $A_5$ (oraz $S_n$ dla $n \ge 5$) \textbf{NIE} są rozwiązalne.
+	
+	\textit{Komentarz historyczny:} To właśnie ten fakt w teorii Galois odpowiada za brak ogólnych wzorów na pierwiastki wielomianów stopnia $\ge 5$.
+\end{enumerate}

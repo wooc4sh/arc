@@ -1,0 +1,3 @@
+\babel@toc {polish}{}\relax 
+\contentsline {chapter}{\numberline {1}Wykład I.}{2}{}%
+\contentsline {section}{\numberline {1.1}Wprowadzenie do równań różniczkowych.}{2}{}%

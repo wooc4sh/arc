@@ -1,0 +1,54 @@
+\documentclass[a4paper=12p]{report}
+\input{./preamble}
+
+\title{Notatki z Algebry}
+\author{Łukasz Kopyto}
+% ---MAKRO---
+\newif\ifcalosc
+\calosctrue  % Odkomentuj tę linię (usuń %), aby skompilować wszystko
+%\caloscfalse % Zostaw tak, aby kompilować tylko wybrany fragment
+
+\ifcalosc
+\else
+  \includeonly{part_13, part_14}
+  %\includeonly{homo}
+\fi
+% ---------------------------------
+\begin{document}
+    \maketitle
+    \tableofcontents
+    % start lectures
+    \include{prolog}
+    \include{part_01}
+    \include{part_02}
+    \include{part_03}
+    \include{part_04}
+    \include{part_05}
+    \include{part_06}
+    \include{part_07}
+    \include{part_08}
+    \include{part_09}
+    \include{part_10}
+    \include{part_11}
+    \include{part_12}
+    \include{part_13}
+    \include{part_14}
+    \include{homo}
+    %\include{brudnopis}
+    %\include{brudnopis2}
+    %\include{brudnopis3}
+    %\include{brudnopis4}
+    %\include{grind}
+    %\include{lista_01}
+    %\include{lista_02}
+    %\include{lista_03}
+    %\include{lista_04}
+    %\include{lista_05}
+    %\include{lista_09}
+    %\include{lista_10}
+    %\include{lista_11}
+    %\include{lista_12}
+    %\include{lista_13}
+    %\include{epilog}
+    % end lectures
+\end{document}

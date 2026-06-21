@@ -1,0 +1,2033 @@
+\chapter{Rodziny zbiorów i miary.}
+\begin{center}
+    \textbf{\large Dyrektywa Metodologiczna}
+\end{center}
+
+\begin{quote}
+    \textit{Fundamentem zrozumienia teorii miary jest płynne przełączanie się między perspektywami. Poniższy schemat wyznacza ramy naszego myślenia na cały ten kurs. Każdą definicję i twierdzenie będziemy filtrować przez:}
+\end{quote}
+
+\begin{enumerate}[label=\textbf{Poziom  \arabic*.}, wide]
+	\item \textbf{Geometryczny(Intuicja)} 
+
+		\textbf{To jest świat $R^{n}$.} 
+		\begin{itemize}
+			\item \textbf{O co chodzi:} Tutaj "miara" to poprostu uogólniona \textbf{objętość, pole powierzchni lub długość.} 
+			\item \textbf{Jak myśleć:} Myślimy obrazkami. Zbiór to po prostu "plama" na płaszczyźnie albo odcinek. Funkcja to wykres. Całka to objętość pod wykresem.
+			\item \textbf{Kiedy używać:} Kiedy potrzebujemy \textbf{kontrprzykładu} lub \textbf{idei dowodu}. Kiedy zastanawiamy się czy twierdzenie ma sens to rysujemy sobie przedział, kółko, sumę rozłącznych prostokątów.
+			\item \textbf{Pułapka:} Nie wszystko da się narysować. Intuicja geometryczna zawodzi przy przestrzeniach nieskończenie wymiarowych albo przy "dziwnych" zbiorach(jak zbiór Cantora czy zbiory niemierzalne). 
+		\end{itemize}
+	\item \textbf{Poziom Algebraiczny(Maszyneria)}
+
+		\textbf{To jest świat $\left( X, \sum, \mu \right) $. Świat definicji.} 
+		\begin{itemize}
+			\item \textbf{O co chodzi:} Tutaj zapominamy, że $X$ to prosta, a miara to długość. $X$ to po prostu jakiś zbiór. Zbiory mierzalne to po prostu elementy $\sigma$-ciała. 
+			\item \textbf{Jak myśleć:} Myślimy logiką zbioru. Nie interesuje nas "kształt" zbioru $A$, interesuje nas tylko to, że  $X \in \sum$. Dowody opierają się na własnościach algebraicznych(dopełnienia, sumy przeliczalne), a nie na geometrii.
+			\item \textbf{Kiedy używać:} Kiedy \textbf{piszemy dowód formalny}. Tutaj sprawdzamy $\sigma$-addytywność, mierzalność funkcji. To jest poziom "czystej matematyki".
+			\item \textbf{Pułapka:} Jeśli zostaniesz tutaj, stracisz sens tego, co robisz. Będziesz przesuwać symbole bez zrozumienia tego, co one reprezentują. 
+		\end{itemize}
+	\item \textbf{"Prawie wszędzie"(Analityczny/Probablityczny)}
+
+		\textbf{To jest świat Zaawansowanej Analizy.}
+		\begin{itemize}
+			\item \textbf{O co chodzi:} To jest najwyższy poziom wtajemniczenia. Tutaj zbiory miary zero \textbf{nie istnieją.}
+			\item \textbf{Jak myśleć:}
+				\begin{itemize}
+					\item Tutaj zbiór liczb wymiernych $\Q$ jest pusty(bo ma miarę zero)
+					\item Funkcje $f$ i $g$, które różnią się tylko na zbiorze miary zero, są dla nas \textbf{tą samą funkcją.}
+					\item Nie myślimy o wartości funkcji w punkcie $x$(bo punkt ma miarę zero), myślimy o globalnym zachowaniu funkcji "na masie"
+				\end{itemize}
+			\item \textbf{Kiedy używamy: } W teorii prawdopodobieństwa, w analizie funkcjonalnej(przestrzenie $L^{p}$), w równaniach różniczkowych. To jest poziom, na którym ignorujemy "szum"(zbiory miary zero) i  widzimy "sygnał".
+			\item  \textbf{Pułapka: } Czasem szczegóły mają znaczenie(np. w Topologii) a ten poziom uczy nas je ignorować. Trzeba uważać, by nie zastosować tego myślenia tam, gdzie ciągłość "każdego punktu" jest ważna.
+		\end{itemize}
+\end{enumerate}
+\begin{eg}[Jak to działa w praktyce?]
+	Weźmy funkcję Dirichleta $D(x) = 1$ dla  $x\in \Q$ i $0$ dla $x\not\in \Q$.
+	\begin{itemize}[label= \textbf{Poziom},wide]
+		\item \textbf{Geometryczny:} Widzimy prostą. W każdym punkcie wymiernym jest "szpilka" o wysokości 1. Trudno sobie wyobrazić pole pod tym wykresem- wygląda jak grzebień z nieskończenie cienkimi zębami.
+		\item \textbf{Algebraiczny:} Sprawdzasz mierzalność. $\Q$ jest zbiorem borelowskim(przeliczalna suma punktów). Przeciwobraz $\{1\} $ to $\Q$, przeciwobraz $\{0\} $ to $\R\setminus\Q$. Oba są w $\sigma$-ciele. Funkcja jest mierzalna.
+		\item \textbf{"Prawie wszędzie":} $\Q$ ma miarę zero. Zatem $D(x) = 0$ \textit{prawie wszędzie}. Dla analityka ta funkcja jest po prostu funkcją zerową. Jej całka wynosi 0. Koniec tematu. 
+	\end{itemize}
+\end{eg} 
+\section{Pierścień i  ciało(algebra) oraz $\sigma-$ pierścień i $\sigma-$ algebra}
+\begin{context}
+	X niepusta przestrzeń.
+\end{context}
+
+\begin{definition}[Pierścień i ciało zbiorów.]
+	
+	Mówimy, że rodzina $\mathcal{R}\subseteq \mathcal{P}(\left( X \right) ) $ jest \textbf{pierścieniem zbiorów}, jeżeli
+	\begin{enumerate}[label=\alph*)]
+		\item \textbf{Zawiera zbiór pusty:} $\O\in \mathcal{R}$,
+		\item \textbf{Jest zamknięta na skończone sumy i różnice:}  $A,B \in \mathcal{R} \implies A\cup B, A\setminus B \in \mathcal{R}$
+	\end{enumerate}
+
+	Mówimy, że rodzina $\mathcal{R}\subseteq \mathcal{P}(X) $ jest \textbf{ciałem(algebrą) zbiorów} jeśli $\mathcal{R}$ jest  \textbf{pierścieniem zbiorów} oraz $\bm{X \in \mathcal{R}}$. 
+\end{definition}
+W pierścieniu $\mathcal{R}$ możemy wykonywać operację różnicy symetrycznej $A\Delta  B$, dla dowolnych  $A,B \in \mathcal{R}$. Istotnie
+\begin{itemize}
+	\item Jeżeli $A,B \in \mathcal{R}$ to $A\Delta B = \overset{\Def}{=} A\setminus B \cup B\setminus A \in \mathcal{R}$.
+\end{itemize}
+Ponadto możemy także brać przekroje:
+ \begin{itemize}
+	\item $A\cap B = A \setminus \left( A\setminus B \right) \in \mathcal{R}$.
+\end{itemize}
+\begin{remark}
+	Na to, ażeby rodzina $\mathcal{R}\subseteq \mathcal{P}(X) $ była \textbf{ciałem(algebrą) } potrzeba i wystarcza $A\cup B, A^{c} \in \mathcal{R}$, dla dowolnych $A,B \in \mathcal{R}$ .
+\end{remark} 
+\begin{proof}
+	Ustalmy rodzinę $\mathcal{R} \subseteq \mathcal{P}(X)$. Dla dowolnych $A,B \in \mathcal{R}$, operację różnicy mnogościowej oraz zbiór $X$ możemy wyrazić przy pomocy dopełnień w sposób następujący.
+	\begin{itemize}
+		\item $A\setminus B = A^{c}\cap B = \overset{\text{de Morgan}}{=} \left( A \cup B^{c} \right) ^{c}$,
+	        \item $\O^{c} = X$.
+	\end{itemize}
+\end{proof} 
+
+	Jeżeli dana rodzina zbiorów $\mathcal{R}$ jest zamknięta na sumy dwóch swoich elementów, to na mocy indukcji, $\bigcup_{i=1} ^{n}A_{i}\in \mathcal{R}$ dla dowolnego $n$ i $A_{i}\in \mathcal{R}$.
+
+	Możemy więc powiedzieć, że \textbf{ciało(algebra)} zbiorów to rodzina zamknięta na wszystkie \textbf{skończone} operacje mnogościowe.
+
+	Należy tu zauważyć dosyć często spotykany błąd:
+\begin{remark}[Granica Indukcji: Dlaczego $\forall n$ to nie to samo co $n=\infty$?]
+    Niech $\mathcal{R}$ będzie pierścieniem. Z definicji wiemy, że $A \cup B \in \mathcal{R}$.
+    Stosując indukcję matematyczną, możemy udowodnić, że dla \textbf{każdego skończonego} $N \in \mathbb{N}$:
+    \[
+        \text{Jeżeli } A_1, \dots, A_N \in \mathcal{R}, \text{ to } \bigcup_{n=1}^{N} A_n \in \mathcal{R}.
+    \]
+    To oznacza, że mamy ciąg przynależności:
+    \[
+        S_1 \in \mathcal{R}, \quad S_2 \in \mathcal{R}, \quad \dots, \quad S_{1000} \in \mathcal{R}, \quad \dots
+    \]
+    Gdzie $S_N$ to suma częściowa.
+    
+    \textbf{Tu jest pułapka:} Indukcja zapewnia nas, że każdy wyraz tego ciągu z osobna należy do $\mathcal{R}$. Nie daje nam jednak żadnej gwarancji co do \textbf{granicy} tego ciągu (sumy nieskończonej).
+    \[
+        \bigcup_{n=1}^{\infty} A_n \overset{?}{\in} \mathcal{R}
+    \]
+    Symbol $\infty$ nie jest liczbą naturalną, więc indukcja do niego "nie dociera". Aby zagwarantować przynależność sumy nieskończonej, potrzebujemy nowego, silniejszego aksjomatu: definicji \textbf{$\sigma$-pierścienia}.
+    
+    \textbf{Przykład:} W pierścieniu przedziałów $[a, b)$:
+    \begin{itemize}
+        \item Suma skończona: $\bigcup_{n=1}^N [\frac{1}{n}, 1) = [\frac{1}{N}, 1) \in \mathcal{R}$. (Jest to przedział domknięto-otwarty).
+        \item Suma nieskończona: $\bigcup_{n=1}^\infty [\frac{1}{n}, 1) = (0, 1) \notin \mathcal{R}$. (Wynik "uciekł" z pierścienia, stając się zbiorem otwartym).
+    \end{itemize}
+\end{remark}
+\begin{definition}[$\sigma-$pierścień i $\sigma-$ciało zbiorów.]
+
+	Mówimy, że $\mathcal{R}\subseteq \mathcal{P}(X) $ jest \textbf{$\sigma$-pierścieniem zbiorów} jeżeli $\mathcal{R}$ jest \textbf{zamknięta na przeliczalne sumy}, to znaczy
+	\[
+		\bigcup_{n=1} ^{\infty}A_n \in \mathcal{R} \text{ dla dowolnego ciągu }A_n \in \mathcal{R}
+	.\] 
+	
+	Jeżeli $\mathcal{R}$ jest $\sigma$ \textbf{-pierścieniem} oraz $X\in \mathcal{R}$ to $\mathcal{R}$ nazywamy $\bm{\sigma-\text{ciałem}}$.
+\end{definition}
+
+\begin{remark}[Zamkniętość $\sigma$-ciała na operacje przeliczalne]
+    W $\sigma$-ciele $\mathcal{R}$ wykonywane są wszystkie przeliczalne operacje mnogościowe.
+    
+    Istotnie, niech $\Sigma$ będzie $\sigma$-ciałem. Z definicji wiemy, że jeżeli $A_n \in \Sigma$, to $\bigcup_{n=1}^\infty A_n \in \Sigma$ oraz $A_n^c \in \Sigma$.
+    Stąd wynika wykonalność wszystkich innych przeliczalnych operacji:
+    
+    \begin{enumerate}
+        \item \textbf{Przeliczalne przekroje:} Wynikają z praw de Morgana.
+        \[
+            \bigcap_{n=1}^{\infty} A_n = \left( \bigcup_{n=1}^{\infty} A_n^c \right)^c \in \Sigma.
+        \]
+        (Ponieważ $A_n^c \in \Sigma \implies \bigcup A_n^c \in \Sigma \implies (\dots)^c \in \Sigma$).
+        
+        \item \textbf{Granice zbiorów:} Wynikają z definicji konstrukcyjnych, będących kombinacją sum i przekrojów.
+        \[
+            \limsup_{n \to \infty} A_n \overset{\Def}{=} \bigcap_{n=1}^{\infty}\bigcup_{k=n}^{\infty}A_{n}  \in \Sigma, \quad
+            \liminf_{n \to \infty} A_n \overset{\Def}{=}\bigcup_{n=1}^{\infty}\bigcap_{k=n} ^{\infty}  \in \Sigma.
+        \]
+	Ponieważ $\sigma$-ciało jest zamknięte na przeliczalne sumy i przeliczalne przekroje, a granice zbiorów ($\lim\sup$ oraz $\lim\inf$ są zdefiniowane jako kombinacje tych dwóch operacji, więc granice górna i dolna także należą do $\sigma$-ciała.
+    \end{enumerate}
+    \textbf{Wniosek:} $\sigma$-ciało jest bezpiecznym środowiskiem dla Analizy – nie można z niego "wypaść" stosując przejścia graniczne na zbiorach.
+\end{remark}
+\begin{eg}
+	Rodzina $\mathcal{R}=\{\O\} $ jest oczywiście pierścieniem, a rodzina $\mathcal{A}=\{\O, X\} $ jest najmniejszym ciałem podzbiorów $X$.
+\end{eg} 
+\begin{eg}
+	Zbiór potęgowy $\mathcal{P}(X) $ jest $\sigma$-ciałem(algebrą).
+
+	Dodatkowo $\mathcal{P}(X) $ to \textbf{maksymalne możliwe $\sigma$-ciało} na przestrzeni $X$.
+	\begin{itemize}
+		\item Każde inne $\sigma$-ciało $\Sigma$ jest podzbiorem $\mathcal{P}(X) $ ($\Sigma \times \mathcal{P}(X) $ ).
+		\item Jest to struktura ,,najbogatsza''- nic więcej do niej nie da się dodać
+	\end{itemize}
+\end{eg} 
+\begin{eg}
+	Jeśli oznaczymy przez $\mathcal{R}$ rodzinę wszystkich skończonych podzbiorów nieskończonej przestrzeni $X$ to $\mathcal{R}$ jest pierścieniem, ale nie jest ciałem.
+
+	Istotnie $\O \in \mathcal{R}$ oraz dla dowolnych $A,B \in \mathcal{R}$ $A\cup B$ jest zbiorem skończonym, jak również $A\setminus B$. Zatem $\mathcal{R}$ jest pierścieniem. 
+	
+	Inaczej, ma się z byciem ciałem. Załóżmy niewprost, że $\mathcal{R}$ jest ciałem, wtedy $X\in \mathcal{R}$. No i tu już jest sprzeczność bowiem $X\subseteq X$, ale $X$ jest nieskończony, więć nie należy do $\mathcal{R}$.
+
+	Zauważmy, że tak zdefiniowne $\mathcal{R}$ nie jest $\sigma$-pierścieniem. Istotnie, załóżmy, że jest. Wtedy w  $X$ możemy wyróżnić różnowarościowy ciąg $x_{n}$. Połóżmy teraz $A_{n}= \{x_{k}: k<n\} $. Każdy element $A_{n}$ jest skończony i co za tym idzie, jest elementem $\mathcal{R}$.
+	Jednak $\bigcup_{i \in  I}^{\infty} A_{n} = {x_{n}}_{n=1}^{\infty}$, jest nieskończona. Nie może się zatem zawierać w $\mathcal{R}$.
+	
+	Analogicznie w nieprzeliczalnej przestrzeni $X$, rodzina $\mathcal{C}$ wszystkich podbiorów przeliczalnych stanowi naturalny przykład $\sigma$- pierścienia, który nie jest $\sigma$-ciałem.
+\end{eg} 
+\begin{theorem}[Skończona suma przedziałów jest pierścieniem.]
+	Niech $\mathcal{I}$ będzie rodziną przedziałów prostej rzeczywistej, która są lewostronnie domknięte:
+	\[
+	\mathcal{I} = \{[a,b): a,b\in \R\} 
+	.\] 
+	Niech $\mathcal{R}$ będzie rodziną zbiorów, które są \textbf{skończonymi sumami} elementów z $\mathcal{I}$ :  
+	\[
+	\mathcal{R} = \left\{\bigcup_{k=1}^{n}I_{k}: n\in \N \text{ oraz }I_{k}\in \mathcal{I}\right\} 
+	.\] 
+	Wtedy 
+	\begin{enumerate}[label=\arabic*.]
+		\item $\mathcal{R}$  jest \textbf{pierścieniem} .
+		\item Każdy zbiór $A\in \mathcal{R}$ ma takie przedstawienie, w którym przedziały $I_{k}$ są \textbf{parami rozłączne}. 
+	\end{enumerate}
+\end{theorem}
+\vspace{1em}
+
+\hrule
+
+\textbf{Początek dowodu}
+
+Tendencyjnie, dowód zostanie przeprowadzony nad wyraz formalnie, w celu ujęcia waloru technicznego i- co za tym idzie- edukacyjnego.
+
+
+\begin{lemma}[i) Różnica dwóch przedziałów jest elementem $\mathcal{R}$]
+	Dla dowolnych przedziałów $I,J \in \mathcal{I}$ ich różnica $I\setminus J$ należy do $\mathcal{R}$.
+\end{lemma} 
+\begin{proof}
+	Niech $I = [a, b)$ oraz $J = [c, d)$. Rozważmy możliwe relacje między tymi przedziałami. Poniższa lista wyczerpuje wszystkie przypadki wzajemnego położenia końców przedziałów.
+
+    \begin{enumerate}[label=\textbf{\arabic*.}]
+        
+        % PRZYPADEK 1: ROZŁĄCZNE
+        \item \textbf{Rozłączne} ($I \cap J = \emptyset$).\\
+        Sytuacja, gdy $J$ leży całkowicie na lewo lub na prawo od $I$. Wtedy odjęcie $J$ nie zmienia $I$.
+        \[
+            I \setminus J = I = [a, b) \in \mathcal{I} \subseteq \mathcal{R}.
+        \]
+        
+        \begin{center}
+        \begin{tikzpicture}[xscale=1.5]
+            % Oś
+            \draw[axis] (-0.5,0) -- (6,0) node[right] {$\R$};
+            
+            % Przedział I (a, b) = (1, 3)
+            \node[dot, blue] (a) at (1, 0.4) {}; 
+	    \node[open, blue] (b) at (3, 0.4) {};
+
+	    \draw[intervalI] (a) -- (b) node[midway, above] {$I$};
+                       
+            % Przedział J (c, d) = (4, 5.5)
+            \node[dot, red] (c) at (4, -0.4) {}; 
+	    \node[open, red] (d) at (5.5, -0.4) {};
+            \draw[intervalJ] (c) -- (d) node[midway, below] {$J$};
+
+            
+            % Wynik na osi (a, b)
+            \node[dot, green!60!black] (e) at (1, 0) {}; 
+	    \node[open, green!60!black] (f) at (3, 0) {};
+	    \draw[result] (e) -- (f);
+           
+            % Opisy
+            \node[below] at (1, -0.1) {$a$}; \node[below] at (3, -0.1) {$b$};
+            \node[below] at (4, -0.6) {$c$}; \node[below] at (5.5, -0.6) {$d$};
+        \end{tikzpicture}
+        \end{center}
+
+        % PRZYPADEK 2: ZAWIERANIE
+        \item \textbf{Zawieranie} ($I \subseteq J$).\\
+        Sytuacja, gdy przedział $J$ całkowicie przykrywa przedział $I$. Wtedy nic nie zostaje.
+        \[
+            I \setminus J = \emptyset = [0, 0) \in \mathcal{I} \subseteq \mathcal{R}.
+        \]
+
+        \begin{center}
+        \begin{tikzpicture}[xscale=1.5]
+            \draw[axis] (-0.5,0) -- (6,0);
+            
+            % Przedział I (2, 4)
+            \node[dot, blue] (a) at (2, 0.4) {}; \node[open, blue] (b) at (4, 0.4) {};
+            \draw[intervalI] (a) -- (b) node[midway, above] {$I$};
+
+            
+             Przedział J (1, 5) - przykrywa I
+            \node[dot, red] (c) at (1, -0.4) {}; \node[open, red] (d) at (5, -0.4) {};
+            \draw[intervalJ] (c) -- (d) node[midway, below] {$J$};
+
+            
+            % Linie pomocnicze
+            \draw[dashedline] (2, 0.4) -- (2, -0.4);
+            \draw[dashedline] (4, 0.4) -- (4, -0.4);
+            
+            % Wynik: Pusty (brak zielonej linii)
+            \node[green!60!black] at (3, 0.15) {$\bm{ \emptyset } $};
+            
+            \node[below] at (2, 0) {$a$}; \node[below] at (4, 0) {$b$};
+            \node[below] at (1, -0.6) {$c$}; \node[below] at (5, -0.6) {$d$};
+        \end{tikzpicture}
+        \end{center}
+
+        % PRZYPADEK 3: ODCIĘCIE LEWEJ STRONY
+        \item \textbf{Odcięcie lewej strony} ($c \le a < d < b$).\\
+        Przedział $J$ zachodzi na początek $I$, ucinając go do punktu $d$.
+        \[
+            [a, b) \setminus [c, d) = [d, b) \in \mathcal{I} \subseteq \mathcal{R}.
+        \]
+
+        \begin{center}
+        \begin{tikzpicture}[xscale=1.5]
+            \draw[axis] (-0.5,0) -- (6,0);
+            
+            % Przedział I (2, 5)
+            \node[dot, blue] (a) at (2, 0.4) {}; \node[open, blue] (b) at (5, 0.4) {};
+            \draw[intervalI] (a) -- (b) node[midway, above right] {$I$};
+
+            
+            % Przedział J (1, 3.5)
+            \node[dot, red] (c) at (1, -0.4) {}; \node[open, red] (d) at (3.5, -0.4) {};
+            \draw[intervalJ] (c) -- (d) node[midway, below] {$J$};
+
+            
+            % Wynik (3.5, 5) - od d do b
+            \node[dot, green!60!black] (e) at (3.5, 0) {}; \node[open, green!60!black] (f) at (5, 0) {};
+            \draw[result] (e) -- (f);
+
+            
+            \draw[dashedline] (3.5, -0.4) -- (3.5, 0.4);
+            
+            \node[below] at (2, 0.35) {$a$}; \node[below] at (5, -0.1) {$b$};
+            \node[below] at (1, -0.6) {$c$}; \node[below] at (3.5, -0.6) {$d$};
+        \end{tikzpicture}
+        \end{center}
+
+        % PRZYPADEK 4: ODCIĘCIE PRAWEJ STRONY
+        \item \textbf{Odcięcie prawej strony} ($a < c < b \le d$).\\
+        Przedział $J$ zachodzi na koniec $I$, ucinając go od punktu $c$.
+        \[
+            [a, b) \setminus [c, d) = [a, c) \in \mathcal{I} \subseteq \mathcal{R}.
+        \]
+
+        \begin{center}
+        \begin{tikzpicture}[xscale=1.5]
+            \draw[axis] (-0.5,0) -- (6,0);
+            
+            % Przedział I (1, 4)
+            \node[dot, blue] (a) at (1, 0.4) {}; \node[open, blue] (b) at (4, 0.4) {};
+            \draw[intervalI] (a) -- (b) node[midway, above left] {$I$};
+
+            
+            % Przedział J (3, 5)
+            \node[dot, red] (c) at (3, -0.4) {}; \node[open, red] (d) at (5, -0.4) {};
+            \draw[intervalJ] (c) -- (d) node[midway, below] {$J$};
+
+            % Wynik (1, 3) - od a do c
+            \node[dot, green!60!black] (e) at (1, 0) {}; \node[open, green!60!black] (f) at (3, 0) {};
+            \draw[result] (e) -- (f);
+
+            
+            \draw[dashedline] (3, -0.4) -- (3, 0.4);
+            
+            \node[below] at (1, -0.1) {$a$}; \node[below] at (4, 0.075) {$b$};
+            \node[below] at (3, -0.6) {$c$}; \node[below] at (5, -0.6) {$d$};
+        \end{tikzpicture}
+        \end{center}
+
+        % PRZYPADEK 5: WYCIĘCIE ŚRODKA
+        \item \textbf{Wycięcie środka} ($a < c < d < b$).\\
+        Przedział $J$ zawiera się ściśle wewnątrz $I$. W wyniku otrzymujemy sumę dwóch rozłącznych przedziałów lewostronnie domkniętych.
+        \[
+            [a, b) \setminus [c, d) = [a, c) \cup [d, b).
+        \]
+        Jest to suma dwóch elementów z $\mathcal{I}$, a zatem z definicji pierścienia generowanego, wynik należy do $\mathcal{R}$.
+
+        \begin{center}
+        \begin{tikzpicture}[xscale=1.5]
+            \draw[axis] (-0.5,0) -- (6,0);
+            
+            % Przedział I (1, 5.5)
+            \node[dot, blue] (a) at (1, 0.4) {}; \node[open, blue] (b) at (5.5, 0.4) {};
+            \draw[intervalI] (a) -- (b) node[pos=0.1, above] {$I$};
+
+            
+            % Przedział J (2.5, 4) - w środku
+            \node[dot, red] (c) at (2.5, -0.4) {}; \node[open, red] (d) at (4, -0.4) {};
+            \draw[intervalJ] (c) -- (d) node[midway, below] {$J$};
+            
+            % Wynik: [a,c) suma [d,b)
+            % Lewa część
+            \node[dot, green!60!black] (e) at (1, 0) {}; \node[open, green!60!black] (f) at (2.5, 0) {};
+            \draw[result] (e) -- (f);
+            
+            % Prawa część
+            \node[dot, green!60!black] (g) at (4, 0) {}; \node[open, green!60!black] (h) at (5.5, 0) {};
+            \draw[result] (g) -- (h);
+            
+            % Linie pomocnicze
+            \draw[dashedline] (2.5, -0.4) -- (2.5, 0.4);
+            \draw[dashedline] (4, -0.4) -- (4, 0.4);
+            
+            \node[below] at (1, -0.1) {$a$}; \node[below] at (5.5, -0.1) {$b$};
+            \node[below] at (2.5, -0.6) {$c$}; \node[below] at (4, -0.6) {$d$};
+        \end{tikzpicture}
+        \end{center}
+
+    \end{enumerate}
+    
+    W każdym przypadku wynik operacji jest skończoną sumą przedziałów z $\mathcal{I}$, co kończy dowód.
+\end{proof} 
+
+\begin{lemma}[ii) Zamkniętość $\mathcal{R}$ na sumy skończone]
+    Niech $A_1, \dots, A_n$ będą zbiorami należącymi do rodziny $\mathcal{R}$. Wtedy ich suma $\bigcup_{i=1}^{n} A_i$ również należy do $\mathcal{R}$.
+\end{lemma} 
+\begin{proof}
+	    Dowód przeprowadzimy przez indukcję względem liczby zbiorów $n$.
+
+    \textbf{1. Baza indukcji ($n=1$):} \\
+    Oczywiste jest, że $\bigcup_{i=1}^{1} A_i = A_1 \in \mathcal{R}$.
+
+    \textbf{2. Krok pomocniczy (dla dwóch zbiorów):} \\
+    Wykażemy najpierw, że suma dwóch zbiorów z $\mathcal{R}$ należy do $\mathcal{R}$.
+    Niech $A, B \in \mathcal{R}$. Z definicji rodziny $\mathcal{R}$, zbiory te są skończonymi sumami przedziałów (generatorów z $\mathcal{I}$). Istnieją zatem liczby $p, q \in \mathbb{N}$ oraz przedziały $I_1, \dots, I_p \in \mathcal{I}$ i $J_1, \dots, J_q \in \mathcal{I}$ takie, że:
+    \[
+        A = \bigcup_{k=1}^{p} I_k \quad \text{oraz} \quad B = \bigcup_{k=1}^{q} J_k.
+    \]
+    Zdefiniujmy nowy ciąg przedziałów $(K_m)_{m=1}^{p+q}$, dokonując reindeksacji (sklejenia obu rodzin):
+    \[
+        K_m = 
+        \begin{cases}
+            I_m & \text{dla } 1 \le m \le p, \\
+            J_{m-p} & \text{dla } p < m \le p+q.
+        \end{cases}
+    \]
+    Zauważmy, że suma tego nowego ciągu to dokładnie $A \cup B$:
+    \[
+        \bigcup_{m=1}^{p+q} K_m = \left( \bigcup_{k=1}^p I_k \right) \cup \left( \bigcup_{k=1}^q J_k \right) = A \cup B.
+    \]
+    Ponieważ każdy $K_m$ jest przedziałem (elementem $\mathcal{I}$), to $A \cup B$ jest skończoną sumą przedziałów, co oznacza, że $A \cup B \in \mathcal{R}$.
+
+    \textbf{3. Krok indukcyjny ($n \to n+1$):} \\
+    Załóżmy, że twierdzenie jest prawdziwe dla dowolnego układu $n$ zbiorów z $\mathcal{R}$. Rozważmy $n+1$ zbiorów $A_1, \dots, A_{n+1} \in \mathcal{R}$.
+    Zapiszmy ich sumę jako:
+    \[
+        \bigcup_{i=1}^{n+1} A_i = \left( \bigcup_{i=1}^{n} A_i \right) \cup A_{n+1}.
+    \]
+    Oznaczmy $S_n = \bigcup_{i=1}^{n} A_i$. Z założenia indukcyjnego wiemy, że $S_n \in \mathcal{R}$.
+    Mamy więc sumę dwóch elementów pierścienia: $S_n$ oraz $A_{n+1}$.
+    Na mocy udowodnionego w punkcie 2 kroku pomocniczego, suma ta należy do $\mathcal{R}$.
+    
+    Na mocy zasady indukcji matematycznej twierdzenie jest prawdziwe dla każdego $n$.
+\end{proof} 
+
+\begin{lemma}[iii) Różnica przedziału z $\mathcal{I}$ oraz zbioru z $\mathcal{R}$]
+	Dla dowolnego przedziału $I\in \mathcal{I}$ oraz dowolnego zbioru $B\in \mathcal{R}$ różnica $I\setminus B$ należy do $\mathcal{R}$.
+\end{lemma} 
+\begin{proof}
+	Ustalmy dowolny zbiór $I\in \mathcal{I}$. Przeprowadzimy dowód przez indukcję względem liczby elementów zbioru $B$. Niech $B = \bigcup_{j=1} ^{m}J_{j}$ gdzie $J_{j}\in \mathcal{I}$.
+
+\textbf{Baza indukcji} (m=1): Niech $B= J_{j}$. Wtedy $I\setminus B = I\setminus J_1$. Na mocy Lematu(i)) $I\setminus J_1 \in \mathcal{R}$. Zatem baza jest spełniona.
+
+\textbf{Założenie:} Załóżmy, że dla dowolnej sumy $m$ przedziałów $B_{m}$ różnica $I\setminus B_{m}\in \mathcal{R}$.
+
+\textbf{Krok indukcyjny ($m\to m+1$):} Niech $B_{m+1}= \bigcup_{j=1} ^{m+1}J_{j} = \left( \bigcup_{j=1} ^{m} J_{j}\right) \cup J_{m+1} $. Wtedy
+\[
+I\setminus B_{m+1} = I\setminus \left( B_{m}\cup J_{m+1} \right) \overset{\text{tożsamość}}{=} \left( I\setminus B_{m} \right) \setminus J_{m+1}
+.\] 
+    
+Z założenia indukcyjnego, $I\setminus B_{m}\in \mathcal{R}$. Oznacza to, że istnieje pewne $k\in N$ oraz przedziały  $K_1,K_2,\ldots,K_{k}\in \mathcal{R}$, takie że
+\[
+I\setminus B_{m} = \bigcup_{p=1}^{k}K_{p}
+.\] 
+Podstawiając to do wzoru wyjściowego:
+\[
+	\left( I\setminus B_{m} \right) \setminus J_{m+1} = \left( \bigcup_{p=1} ^{k}K_{p} \right) \setminus J_{m+1}
+.\] 
+Korzystając z prawa rozdzielnośći różnicy względem sumy($\bigcup A_{i} \setminus C = \bigcup \left( A_{i} \setminus C\right)$ ):
+\[
+\bigcup_{p=1} ^{k}K_{p}\setminus J_{m+1} = \bigcup_{p=1} ^{k}\left( K_{p}\setminus J_{m+1} \right) 
+.\] 
+
+Rozważmy teraz pojedynczy składnik sumy $\bigcup_{p=1} ^{k}\left( K_{p}\setminus J_{m+1} \right) $, mianowicie $K_{p}\setminus J_{m+1}$. $K_{p}$ jest przedziałem oraz $J_{m+1}$ jest przedziałem, zatem na mocy Lematu (i)) jest on elementem $\mathcal{R}$. 
+
+Powyższa suma jest skończoną($k$ elementów) sumą elementów z $\mathcal{R}$. Zatem na mocy Lematu (ii)), owa suma także jest elementem $\mathcal{R}$. Zatem $I\setminus B_{m+1} \in \mathcal{R}$.
+
+Na mocy zasady indukcji matematycznej, twierdzenie jest prawdziwe dla każdego $m$.
+\end{proof} 
+
+\vspace{1.5em}
+Poniżej finalny dowód tego, że $\mathcal{R}$ jest rzeczywiście pierścieniem
+\begin{proof}
+	\begin{enumerate}[label=\alph*)]
+		\item Dla dowolnego $a\in \R$, $\O = [a,a) \in \mathcal{I}\subseteq \mathcal{R}$.
+	        \item Dla dowolnych $A,B \in \mathcal{R}$ ich suma $A\cup B$ na mocy Lematu (ii) jest elementem $\mathcal{R}$.
+		\item Dla dowolnych $A,B \in \mathcal{R}$ ich różnica $A\setminus B$ jest elementem $\mathcal{R}$.
+		\begin{proof}
+	Z definicji rodziny $\mathcal{R}$ zbiór $A$ jest skończoną sumą przedziałów:
+\[
+A = \bigcup_{i=1} ^{n}I_{n}\text{, gdzie } I_{k} \in \mathcal{I}
+.\] 
+
+Obliczamy różnicę $A\setminus B$:
+\[
+	A\setminus B = \left(\bigcup_{i=1} ^{n} I_{k}  \right) \setminus B = \bigcup_{i=1} ^{n}\left( I_{k}\setminus B \right)
+.\] 
+
+Dla każdego $i\in \{1,\ldots,n\} $ zbiór $I_{i}$ jest przedziałem, a  $B$ jest elementem $\mathcal{R}$. Z Lematu (iii)) wnioskujemy, że każdy składnik $I_{i}\setminus B$ jest elementem $\mathcal{R}$.
+Ostatecznie zbiór $A\setminus B$ jest skończoną sumą elementów z $\mathcal{R}$. Na mocy Lematu (ii)), wnioskujemy, że $A\setminus B \in \mathcal{R}.$
+		\end{proof} 
+	\end{enumerate} 
+\end{proof} 
+Teraz udowodnimy, że każdy zbiór $A\in \mathcal{R}$ ma takie przedstawienie, w którym przedziały $A_{k}$ są \textbf{rozłączne}.
+\begin{proof}
+	Niech $A\in \mathcal{R}$, czyli $A = \bigcup_{i=1} ^{n}A_{i}$, gdzie $A_{i} \in  \mathcal{I}$.
+	Zdefiniujmy następujący układ zbiorów $B_{i}$ :
+	\begin{itemize}
+		\item $B_1 = A_1$.
+		\item $B_2 = A_2 \setminus A_1$.
+		\item $B_3 = A_3\setminus \left( A_2 \cup A_1 \right) $.
+		\item $B_4 = A_4\setminus \left( A_3\cup A_2 \cup A_1 \right) $.
+		\item $\vdots$
+		\item  $B_{n} = A_{n}\setminus \left( \bigcup_{k=1} ^{n-1}A_{k} \right) $
+	\end{itemize}
+
+    Niech $S_A = \bigcup_{n=1}^{\infty} A_n$ (suma ,,brudna'') oraz $S_B = \bigcup_{n=1}^{\infty} B_n$ (suma ,,czysta''), gdzie zbiory $B_n$ zdefiniowane są wzorem:
+    \[
+        B_1 = A_1, \quad B_n = A_n \setminus \bigcup_{i=1}^{n-1} A_i \quad \text{dla } n > 1.
+    \]
+
+    \noindent\textbf{1. W jedną stronę ($S_B \subseteq S_A$):} \\
+    Z definicji zbioru $B_n$ mamy:
+    \[
+        B_n = A_n \setminus \left( \bigcup_{i=1}^{n-1} A_i \right).
+    \]
+    Wynika stąd bezpośrednio, że $B_n \subseteq A_n$ dla każdego $n \in \mathbb{N}$.
+    Ponieważ każdy składnik sumy $S_B$ jest podzbiorem odpowiadającego mu składnika sumy $S_A$, to suma podzbiorów musi zawierać się w sumie nadzbiorów:
+    \[
+        \bigcup_{n=1}^{\infty} B_n \subseteq \bigcup_{n=1}^{\infty} A_n \implies S_B \subseteq S_A.
+    \]
+
+    \noindent\textbf{2. W drugą stronę ($S_A \subseteq S_B$):} \\
+    Weźmy dowolny punkt $x \in S_A$. Oznacza to, że $x$ należy do przynajmniej jednego zbioru z ciągu $(A_n)$.
+    Zdefiniujmy zbiór indeksów $K = \{ n \in \mathbb{N} : x \in A_n \}$. Skoro $x \in S_A$, to $K \neq \emptyset$.
+    
+    Z zasady minimum dla liczb naturalnych w zbiorze $K$ istnieje element najmniejszy. Oznaczmy go przez $k = \min K$.
+    
+    Co to oznacza?
+    \begin{itemize}
+        \item $x \in A_k$ (ponieważ $k \in K$),
+        \item $x \notin A_1, x \notin A_2, \dots, x \notin A_{k-1}$ (ponieważ $k$ jest najmniejszym indeksem, dla którego $x \in A_k$).
+    \end{itemize}
+    Zatem $x$ nie należy do sumy wcześniejszych zbiorów:
+    \[
+        x \notin \bigcup_{i=1}^{k-1} A_i.
+    \]
+    Łącząc te dwa fakty ($x \in A_k$ i $x \notin \bigcup_{i=1}^{k-1} A_i$), otrzymujemy z definicji zbioru $B_k$:
+    \[
+        x \in A_k \setminus \bigcup_{i=1}^{k-1} A_i \implies x \in B_k.
+    \]
+    Skoro $x \in B_k$, to tym bardziej $x \in \bigcup_{n=1}^{\infty} B_n$, czyli $x \in S_B$.
+    
+    \noindent\textbf{Wniosek:} \\
+    Każdy punkt z $S_A$ trafia do $S_B$ (konkretnie do swojej ,,pierwszej'' szufladki $B_k$). Żaden punkt nie ginie, żaden nowy nie powstaje. Zatem:
+    \[
+        \bigcup_{n=1}^{\infty} A_n = \bigcup_{n=1}^{\infty} B_n.
+    \]
+
+    \noindent\textbf{3. Uzasadnienie rozłączności ($B_n$ są parami rozłączne):} \\
+    Weźmy dwa różne indeksy $n, m \in \mathbb{N}$ i załóżmy bez straty ogólności, że $m < n$.
+    Sprawdźmy przekrój $B_n \cap B_m$.
+    Z definicji $B_n$:
+    \[
+        B_n = A_n \setminus \left( A_1 \cup \dots \cup A_m \cup \dots \cup A_{n-1} \right).
+    \]
+    Zauważmy, że zbiór $A_m$ jest jednym ze składników sumy, którą odejmujemy. Zatem $B_n$ jest z definicji rozłączny z $A_m$:
+    \[
+        B_n \cap A_m = \emptyset.
+    \]
+    Wiemy też z części 1., że $B_m \subseteq A_m$. Skoro $B_n$ jest rozłączny z całym $A_m$, to musi być też rozłączny z jego podzbiorem $B_m$.
+    \[
+        B_n \cap B_m \subseteq B_n \cap A_m = \emptyset \implies B_n \cap B_m = \emptyset.
+    \]
+    Zbiory $B_n$ są zatem parami rozłączne.
+\end{proof} 
+
+\textbf{Koniec dowodu.}
+\hrule
+\vspace{1em}
+Opisanie wprost (konstrukcyjnie) rodziny zbiorów zamkniętej na przeliczalne sumy bywa trudne. Dlatego wygodniej jest definiować takie rodziny poprzez ich \textbf{generatory}.
+
+\begin{contextline}
+\textbf{Uniwersalny Szablon: Rodziny Moore’a i Operatory Domknięcia}
+
+W matematyce abstrakcyjnej wielokrotnie spotykamy ten sam schemat definicji: ,,najmniejszy obiekt o danej własności zawierający zbiór A''. Poniższa sekcja wyjaśnia teoretyczne podstawy tego mechanizmu.
+
+\begin{definition}[Rodzina Moore'a / System Domknięć]
+    Niech $\mathcal{U}$ będzie ustalonym zbiorem. Rodzinę podzbiorów $\mathcal{M} \subseteq \mathcal{P}(\mathcal{U})$ nazywamy \textbf{Rodziną Moore’a} (lub \textbf{systemem domknięć}), jeżeli spełnia dwa warunki:
+    \begin{enumerate}
+        \item Cała przestrzeń należy do rodziny:
+		\[
+		 \mathcal{U} \in \mathcal{M}
+		.\] 
+        \item Rodzina jest \textbf{zamknięta na dowolne przekroje}:
+        Dla dowolnej podrodziny $\{A_i\}_{i \in I} \subseteq \mathcal{M}$ (gdzie $I$ jest dowolnym zbiorem indeksów, nawet nieprzeliczalnym), zachodzi:
+        \[
+            \bigcap_{i \in I} A_i \in \mathcal{M}.
+        \]
+    \end{enumerate}
+\end{definition}
+
+Jeśli własność $P$ (np. bycie $\sigma$-ciałem, bycie podprzestrzenią liniową) definiuje Rodzinę Moore'a, to automatycznie zyskujemy potężne narzędzie: \textbf{Operator Domknięcia}.
+
+\begin{theorem}[Istnienie Operatora Domknięcia]
+    Niech $\mathcal{M}$ będzie Rodziną Moore'a na $X$. Dla dowolnego zbioru $Z \subseteq X$ istnieje \textbf{najmniejszy} (w sensie inkluzji) zbiór należący do $\mathcal{M}$, który zawiera $Z$.
+    Zbiór ten nazywamy \textbf{domknięciem} lub \textbf{otoczką} zbioru $Z$ w rodzinie $\mathcal{M}$ i oznaczamy często przez $cl(Z)$.
+    
+    Konstrukcja tego zbioru jest zawsze taka sama:
+    \[
+        cl(Z) = \bigcap \big\{ M \in \mathcal{M} : Z \subseteq M \big\}.
+    \]
+\end{theorem}
+
+\begin{remark}[Jak to działa?]
+    Definicja ta mówi: ,,Weź wszystkie możliwe porządne zbiory (z rodziny $\mathcal{M}$), które zawierają $Z$, i weź ich część wspólną''.
+    \begin{itemize}
+        \item Ponieważ $X \in \mathcal{M}$ i $Z \subseteq X$, to rodzina, którą kroimy, jest niepusta (mamy co kroić).
+        \item Ponieważ $\mathcal{M}$ jest Rodziną Moore'a, wynik krojenia nadal należy do $\mathcal{M}$ (nie ,,psujemy'' własności przez krojenie).
+        \item Wynik jest najmniejszy, bo jest zawarty w każdym innym zbiorze spełniającym te warunki.
+    \end{itemize}
+\end{remark}
+
+\vspace{1em}
+\noindent\textbf{Przykłady z różnych dziedzin matematyki:}
+Poniższa tabela pokazuje, że ten sam mechanizm (Rodzina Moore'a $\to$ Operator Domknięcia) pojawia się wszędzie. W każdym przypadku $Z$ to zbiór początkowy (,,ziarno'').
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabularx}{\textwidth}{l l X c}
+        \toprule
+        \textbf{Dziedzina} & \textbf{Własność $P$ (Rodzina Moore'a)} & \textbf{Operator Domknięcia} & \textbf{Symbol} \\
+        \midrule
+        \textbf{Teoria Miary} & Bycie $\sigma$-ciałem & $\sigma$-ciało generowane & $\sigma(Z)$ \\
+        \addlinespace
+        \textbf{Topologia} & Bycie zbiorem domkniętym & Domknięcie zbioru & $\overline{Z}$ lub $\text{cl}(Z)$ \\
+        \addlinespace
+        \textbf{Algebra Liniowa} & Bycie podprzestrzenią & Powłoka liniowa (Span) & $\text{span}(Z)$ \\
+        \addlinespace
+        \textbf{Geometria} & Bycie zbiorem wypukłym & Otoczka wypukła & $\text{conv}(Z)$ \\
+        \addlinespace
+        \textbf{Teoria Grup} & Bycie podgrupą & Podgrupa generowana & $\langle Z \rangle$ \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\begin{summary}
+    Gdy widzimy definicję typu:
+    \[ \text{Obiekt}(A) = \bigcap \{ B : B \text{ ma własność } P \text{ oraz } A \subseteq B \} \]
+    to wiemy, że:
+    \begin{enumerate}
+        \item Własność $P$ tworzy Rodzinę Moore'a.
+        \item Definiujemy właśnie Operator Domknięcia.
+        \item Wynik jest najmniejszym obiektem o własności $P$ zawierającym $A$.
+    \end{enumerate}
+\end{summary}
+\end{contextline}
+\vspace{1em}
+Aby zastosować powyższy mechanizm do definicji (1.1.5 PlbSkrypt), musimy udowodnić, że struktury algebraiczne(pierścienie, $\sigma$-pierścienie, ciała, $\sigma$-pierścienie) są niezmiennicze na przekroje.
+
+\begin{theorem}
+    Niech $\{\mathcal{S}_i\}_{i \in I}$ będzie dowolną rodziną $\sigma$-pierścieni na przestrzeni $X$. Wtedy ich przekrój $\mathcal{S} = \bigcap_{i \in I} \mathcal{S}_i$ również jest $\sigma$-pierścieniem.
+\end{theorem}
+
+\begin{proof}
+    Sprawdzamy warunki definicji $\sigma$-pierścienia dla rodziny $\mathcal{S}$:
+    \begin{enumerate}
+        \item \textbf{Różnica zbiorów:} \\
+        Niech $A, B \in \mathcal{S}$. Z definicji przekroju oznacza to, że dla każdego $i \in I$ zachodzi $A \in \mathcal{S}_i$ oraz $B \in \mathcal{S}_i$.
+        Ponieważ każde $\mathcal{S}_i$ jest $\sigma$-pierścieniem (jest zamknięte na różnicę), to $A \setminus B \in \mathcal{S}_i$ dla każdego $i \in I$.
+        Skoro różnica należy do każdego składnika przekroju, to $A \setminus B \in \bigcap_{i \in I} \mathcal{S}_i = \mathcal{S}$.
+
+        \item \textbf{Przeliczalna suma:} \\
+        Niech $(A_n)_{n=1}^\infty$ będzie ciągiem zbiorów należących do $\mathcal{S}$.
+        Oznacza to, że dla każdego $n \in \mathbb{N}$ i każdego $i \in I$ mamy $A_n \in \mathcal{S}_i$.
+        Ustalmy dowolne $i$. Ponieważ $\mathcal{S}_i$ jest $\sigma$-pierścieniem, to $\bigcup_{n=1}^\infty A_n \in \mathcal{S}_i$.
+        Skoro suma ta należy do każdego $\mathcal{S}_i$ z osobna, to należy do ich przekroju: $\bigcup_{n=1}^\infty A_n \in \mathcal{S}$.
+    \end{enumerate}
+    Zatem $\mathcal{S}$ spełnia definicję $\sigma$-pierścienia.
+    (Analogiczny dowód przeprowadza się dla pierścieni, ciał i $\sigma$-ciał).
+\end{proof}
+
+Zatem poniższa definicja jest poprawna (definiuje obiekt istniejący, unikalny i najmniejszy).
+Dla dowolnej rodziny $\mathcal{F} \subseteq \mathcal{P}(X)$ definiujemy:
+    \begin{itemize}
+        \item $\bm{r(\mathcal{F})}$  najmniejszy \textbf{pierścień} zawierający $\mathcal{F}$ (\textbf{R}ing):
+		\[
+		r\left( \mathcal{F} \right) := \bigcap \{\mathcal{R}: \mathcal{R}\text{ jest pierścieniem oraz }\mathcal{F}\subseteq \mathcal{R}\}  
+		.\] 
+        \item $\bm{s(\mathcal{F})}$ najmniejszy \textbf{$\sigma$-pierścień} zawierający $\mathcal{F}$ (\textbf{S}igma ring):
+		\[
+			s\left( \mathcal{F} \right) := \bigcap \{\mathcal{R}: \mathcal{R}\text{ jest $\sigma$-pierścieniem oraz }\mathcal{F}\subseteq \mathcal{R}\} 
+		.\] 
+        \item $\bm{a(\mathcal{F})}$  najmniejsze \textbf{ciało} (algebrę) zawierające $\mathcal{F}$ (\textbf{A}lgebra):
+		\[
+		a\left( \mathcal{F} \right) := \bigcap \{\Sigma : \Sigma \text{ jest ciałem oraz }\mathcal{F}\subseteq \Sigma \}
+		.\] 
+	\item $\bm{\sigma(\mathcal{F})}$  najmniejsze \textbf{$\sigma$-ciało} ($\sigma$-algebra) zawierające $\mathcal{F}$ ($\bm{\sigma}$-algebra):
+		\[
+		\sigma\left( \mathcal{F} \right) := \bigcap \{\Sigma : \Sigma \text{ jest $\sigma$-ciałem oraz }\mathcal{F}\subseteq \Sigma \}
+		.\] 
+    \end{itemize}
+
+\begin{contextline}[Jak powyższe rozważanie ma się do rodzin Moore'a]
+
+Musimy bardzo precyzyjnie rozróżnić poziomy abstrakcji. Pytanie dotyczy tego, jak zbiór wszystkich $\sigma$-ciał pasuje do definicji Rodziny Moore'a.
+Musimy uważać, bo słowa ,,zbiór'' i ,,przestrzeń'' pojawiają się tu na dwóch różnych piętrach.
+
+Zróbmy to poprzez \textbf{Mapowanie Pojęć} (tłumaczenie definicji ogólnej na nasz przypadek).
+
+\textbf{Słownik: Świat Moore'a vs. Świat $\sigma$-ciał}
+Aby sprawdzić, czy $\sigma$-ciała tworzą Rodzinę Moore'a, musimy ustalić, czym jest ,,uniwersum'', w którym się poruszamy. W teorii miary naszym ,,placem zabaw'' jest Zbiór Potęgowy $\mathcal{P}(X)$.
+
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabularx}{\textwidth}{l X}
+        \toprule
+        \textbf{Pojęcie z Definicji Moore'a} & \textbf{Odpowiednik w Świecie $\sigma$-ciał} \\
+        \midrule
+	\textbf{Uniwersum } $\mathcal{U}$ & $\mathcal{U} = \mathcal{P}(X)$ \\
+       \addlinespace
+	\textbf{Rodzina}  $\mathcal{M} \subseteq \mathcal{P}(\mathcal{U})$ & $\mathcal{M}= \{\Sigma : \Sigma \text{ jest $\sigma$-ciałem na przestrzeni $X$}\} \subseteq \mathcal{P}(\mathcal{P}(X)) $ \\
+       \addlinespace
+        Elementy rodziny $\mathcal{M}$ & Konkretne $\sigma$-ciała (np. $Bor(\mathbb{R})$, $\{\emptyset, X\}$). \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\textbf{Weryfikacja Warunków (Punkt po punkcie)}
+Podstawiamy powyższe odpowiedniki do definicji Rodziny Moore'a:
+
+\begin{enumerate}[label=\textbf{Warunek \arabic*:}, wide]
+     \item \textbf{,,Cała przestrzeń należy do $\mathcal{M}$''} 
+	\begin{itemize}
+        \item \textit{W definicji Moore'a:} Czy ,,największy możliwy zbiór'' w naszym uniwersum jest elementem rodziny?
+        \item \textit{W naszym przypadku:} Czy zbiór potęgowy $\mathcal{P}(X)$ (zawierający absolutnie wszystkie podzbiory) jest $\sigma$-ciałem?
+        \item \textbf{Werdykt: TAK.} $\mathcal{P}(X)$ jest $\sigma$-ciałem (nazywamy go $\sigma$-ciałem niewłaściwym lub maksymalnym). Spełnia wszystkie warunki (ma $\emptyset$, ma dopełnienia, ma sumy). Jest to więc ,,największe'' możliwe $\sigma$-ciało.
+    \end{itemize}
+
+    \item \textbf{,,Przekrój dowolnej podrodziny należy do $\mathcal{M}$''}
+    \begin{itemize}
+        \item \textit{W definicji Moore'a:} Jeśli weźmiemy grupę elementów z $\mathcal{M}$, to ich część wspólna też musi być w $\mathcal{M}$.
+        \item \textit{W naszym przypadku:} Jeśli weźmiemy dowolną kolekcję $\sigma$-ciał $\{\Sigma_i\}_{i \in I}$, to czy ich część wspólna $\bigcap_{i \in I} \Sigma_i$ też jest $\sigma$-ciałem?
+        \item \textbf{Werdykt: TAK.} Jest to twierdzenie o niezmienniczości struktury $\sigma$-ciała na dowolne przekroje.
+    \end{itemize}
+\end{enumerate}
+
+\begin{summary}
+    \textbf{Wniosek:} Zbiór wszystkich możliwych $\sigma$-ciał na przestrzeni $X$ tworzy \textbf{Rodzinę Moore’a} (podzbiór zbioru potęgowego $\mathcal{P}(\mathcal{P}(X))$).
+    
+    \textbf{Co to oznacza w praktyce?}
+    Dzięki temu mamy matematyczną gwarancję, że dla dowolnego zbioru generatorów $\mathcal{F}$ (np. zbiorów otwartych) istnieje \textbf{najmniejsze} $\sigma$-ciało zawierające $\mathcal{F}$.
+    Możemy je legalnie zdefiniować jako przekrój wszystkich $\sigma$-ciał zawierających $\mathcal{F}$ (bo wiemy, że ten przekrój nie wypadnie poza rodzinę – nadal będzie $\sigma$-ciałem).
+\end{summary}
+\end{contextline}
+
+\begin{definition}[$\sigma$-ciało zbiorów borelowskich]
+    Niech $\mathcal{U}$ oznacza rodzinę wszystkich otwartych podzbiorów prostej $\mathbb{R}$.
+    \textbf{$\sigma$-ciałem zbiorów borelowskich} nazywamy najmniejsze $\sigma$-ciało zawierające rodzinę $\mathcal{U}$. Oznaczamy je symbolem $Bor(\mathbb{R})$:
+    \[
+        Bor(\mathbb{R}) = \sigma(\mathcal{U}).
+    \]
+\end{definition}
+\begin{lemma}[Monotoniczność operacji generowania]
+    Niech $X$ będzie przestrzenią oraz $G_1, G_2 \subseteq \mathcal{P}(X)$. 
+    Jeżeli $G_1 \subseteq \sigma(G_2)$, to $\sigma(G_1) \subseteq \sigma(G_2)$.
+\end{lemma}
+
+\begin{proof}
+    Dowód opiera się na definicji $\sigma$-ciała generowanego jako elementu minimalnego w rodzinie Moore'a.
+    
+    Zdefiniujmy rodzinę wszystkich $\sigma$-ciał zawierających zbiór $G_1$:
+    \[
+        \mathcal{S} = \{ \Sigma \subseteq \mathcal{P}(X) : \Sigma \text{ jest } \sigma\text{-ciałem} \land G_1 \subseteq \Sigma \}.
+    \]
+    Z definicji, $\sigma(G_1) = \bigcap \mathcal{S}$.
+    
+    Zauważmy teraz dwa fakty dotyczące zbioru $\sigma(G_2)$:
+    \begin{enumerate}
+        \item $\sigma(G_2)$ jest $\sigma$-ciałem (z definicji operacji generowania).
+        \item $G_1 \subseteq \sigma(G_2)$ (z założenia twierdzenia).
+    \end{enumerate}
+    
+    Powyższe warunki oznaczają, że $\sigma(G_2)$ jest elementem rodziny $\mathcal{S}$ ($\sigma(G_2) \in \mathcal{S}$).
+    Ponieważ przekrój rodziny zbiorów zawiera się w każdym jej elemencie, otrzymujemy tezę:
+    \[
+        \sigma(G_1) = \bigcap \mathcal{S} \subseteq \sigma(G_2).
+    \]
+\end{proof}
+\begin{lemma}
+	Niech $\mathcal{F}$ będzie rodziną przedziałów $[p,q)$ gdzie $p,q\in \Q$. Wtedy $\sigma\left( \mathcal{F} \right) = \bor\left(\R\right) $
+\end{lemma} 
+\begin{proof}
+	Pokażemy zawieranie w obie strony.
+
+	\noindent$\bm{ \sigma\left( \mathcal{F} \right)  \subseteq \bor\left(\R\right) }$ :
+
+	Ustalmy dowolny przedział $[a,b)\in \mathcal{F}$. Zauważmy, że $\left( a,b \right) = \bigcap_{n=1} ^{\infty}\left( a - \frac{1}{n},b \right)$. Przeliczalny przekrój zbiorów przedziałów otwartych z definicji jest elementem $\bor\left(\R\right) $. Zatem \[
+	\mathcal{F}\subseteq \bor\left(\R\right) 
+	.\] 
+	Na mocy monotoniczności operacji generowania $\sigma\left( \mathcal{F} \right) \subseteq \bor\left(\R\right) $.
+
+	\noindent$\bm{ \bor\left(\R\right)  \subseteq \sigma\left( \mathcal{F} \right):}$ 
+
+	Zauważmy, że z definicji $\bor\left(\R\right) = \sigma\left( \mathcal{I} \right) $, gdzie $\mathcal{I}$ to 
+	\[
+	\mathcal{I} = \{\left( a,b \right) : a,b \in \R\} 
+	.\] 
+	Ustalmy dowolny przedział $\left( a,b \right) \in \R$. Wiemy, że dowolny przedział otwarty (zbiór) możemy rozłożyć na przeliczalną sumą przedziałów o końcach wymiernych:
+	\[
+		\left( a,b \right) = \bigcup_{n=1} ^{\infty}\left( a_{n},b_{n} \right) \text{ gdzie } a_{n},b_{n}\in \Q
+	.\] 
+
+	Ponadto zauważmy, że dowolny przedział $\left( a_{n},b_{n} \right) $ można zapisać w postaci:
+	\[
+		\left( a_{n},b_{n} \right) = \bigcup_{k=1} ^{\infty} \left[a_{n}+\tfrac{1}{k}, b_{n}\right)
+	.\] 
+	Podsumowując, nasz wyjściowy przedział $\left( a,b \right) $ możemy zapisać w postaci:
+	\[
+		\left( a,b \right) = \bigcup_{n=1}^{\infty}\left( \bigcup_{k=1} ^{\infty} \left[a_{n}+ \tfrac{1}{k}, b_{n}\right) \right)  
+	.\] 
+	Następnie, korzystając z zamkniętości $\sigma\left( \mathcal{F} \right) $ na przeliczalne sumy, zauważmy, że skoro $[a_{n}+ \tfrac{1}{k}, b_{n})\in \mathcal{F}$, to $\bigcup_{k=1} ^{\infty} [a_{n}+ \tfrac{1}{k}, b_{n}) \in \sigma\left( \mathcal{F} \right).$ 
+
+\noindent Idąc dalej, ponieważ $\bigcup_{k=1} ^{\infty} [a_{n}+ \tfrac{1}{k}, b_{n}) \in \sigma\left( \mathcal{F} \right),$ więc $\bigcup_{n=1}^{\infty}( \bigcup_{k=1} ^{\infty} [a_{n}+ \tfrac{1}{k}, b_{n})) \in \sigma\left( \mathcal{F} \right) .$ 
+
+\noindent Zatem 
+\[
+		\left( a,b \right) = \bigcup_{n=1}^{\infty}\left( \bigcup_{k=1} ^{\infty} \left[a_{n}+ \tfrac{1}{k}, b_{n}\right) \right)  \in \sigma\left( \mathcal{F} \right) 
+.\] 
+Zatem na mocy monotoniczności generowania $\sigma\left( \bor\left(\R\right)  \right) \subseteq \sigma\left( \mathcal{F} \right) $.
+\end{proof} 
+\begin{remark}[Kluczowe rodziny generujące $Bor(\mathbb{R})$]
+    Warto pamiętać, że to samo $\sigma$-ciało jest generowane przez inne, prostsze rodziny zbiorów, np.:
+    \begin{enumerate}
+        \item \textbf{Przedziały otwarte:} Rodzina $\{(a,b) : a,b \in \mathbb{R}\}$.
+        \item \textbf{Przedziały domknięte:} Rodzina $\{[a,b] : a,b \in \mathbb{R}\}$.
+        \item \textbf{Półproste (Ważne w Probabilistyce!):} 
+        Rodzina $\{(-\infty, a] : a \in \mathbb{R}\}$ lub $\{(a, \infty) : a \in \mathbb{R}\}$.
+        \item \textbf{Przedziały "techniczne" (do definicji miary):} 
+        Rodzina przedziałów lewostronnie domkniętych $\{[a, b) : a,b \in \mathbb{R}\}$.
+        \item \textbf{Generatory przeliczalne (Topologiczne):}
+        Rodzina przedziałów o końcach \textbf{wymiernych} $\{(p, q) : p,q \in \mathbb{Q}\}$ (lub $[p, q)$).
+    \end{enumerate} 
+    Dzięki temu, aby sprawdzić mierzalność funkcji $f: X \to \mathbb{R}$, wystarczy sprawdzić przeciwobrazy zbiorów z jednej z tych prostszych rodzin (np. półprostych).
+\end{remark}
+
+\subsection{Wielki kompromis: $\bor\left(\R\right) $ jako Arena Mierzalności}
+Zasygnalizujemy tu pojecie, które dokładniej zostanie omówione w następnym rozdziale.
+
+\begin{remark}
+	\textbf{Problem: Chcemy umieć mierzyć ,,rozmiar'' zbiorów.}
+
+	W  \R(na prostej) mamy intuicyjne pojęcie "rozmiaru", nazywamy je \textbf{długością.} Potrafimy zmierzyć długość przedziału $[a,b]$- jest to b-a.
+
+	Co dalej?
+ 	\begin{itemize}
+ 		\item Jaka jest długość zbioru $\{1,2,3\} $? Intuicja mówi 0.
+		\item Jaka jest długość dwóch rozłącznych przedziałów $[0,1] \cup [2,3]$? Oczywiście 1 + 1 = 2.
+		\item Jak jest długość $\Q\cap [0,1]$? Jest to zbiór przeliczalny. Nasza intuicja podpowiada, że skoro trzy punkty mają długość 0, to przeliczalna suma punktów też powinna mieć długość 0. To wymaga  \textbf{przeliczalnej(sigma) addytywności}:
+			\[
+			m\left( \bigcup_{n=1}^{\infty} A_{n} \right) = \sum_{n=1}^{\infty} m\left( A_{n} \right)\text{ dla rozłącznych } A_{n}
+			.\]
+ 	\end{itemize}
+
+	Chcemy aby nasza "funkcja miary" miała dwie własności:
+	\begin{enumerate}[label=\alph*)]
+		\item Potrafiła mierzyć przedziały.
+		\item Była $\sigma$-addytywna.
+	\end{enumerate}
+
+	\textbf{Komplikacja: Na jakich zbiorach ta funkcja ma działać?}  
+
+	Chcielibyśmy aby działała na wszystkich podzbiorach \R. Niestety przy założeniu Aksjomatu Wyboru, można udowodnić(konstrukcja Vitalego), że nie da się zdefiniować takiej funkcji miary na wszystkich podzbiorach \R, która mierzyłaby przedziały tak jak chcemy i byłaby $\sigma$-addytywna(i do tego niezmiennicza względem przesunięć).
+
+	Musimy iść na kompromis- nie będziemy mierzyć wszystkich zbiorów. Będziemy mierzyć wszystkie "wystarczająco porządne" zbiory. 
+
+	To jest intuicja stojąca za $\bor\left(\R\right) $.
+
+	,,Porządne zbiory''(czyli te które będziemy mierzyć) powinny tworzyć rodzinę, która jest \textbf{zamknięta} na operacje, które chcemy wykonywać.
+
+	Jeśli potrafię zmierzyć zbiory A i B, to chcę też umieć zmierzyć $A\cup B$ oraz $A\cap B$. Jeśli potrafię zmierzyć zbior $A$ to chcę też umieć zmierzyć jego dopełninie- $A^{c}$. A ponieważ nasza miara ma być  $\sigma$- addytywna, to naturalnym też jest wymagać, że jeśli potrafię zmierzyć przeliczalnie wiele zbiorów $A_1,A_2,\ldots$ to potrafię zmierzyć ich sumę $\bigcup_{n=1} ^{\infty}A_{n}$.
+
+	Rodzina zbiorów, która spełnia te trzy warunki(zamkniętość na dopełnienia, przeliczalne sumy i przeliczalne przekroje- ten ostatni warunek wynika z dwóch pierwszych), to jest właśnie $\sigma$-ciało(lub też $\sigma$ algebra).
+
+	To jest nasz ,,\textbf{klub porządnych zbiorów}''.
+
+	\textbf{Wreszcie: Czym jest Bor(\R)?}
+
+	Mamy już maszynerię($\sigma$-ciało). Od czego zacząć? Jakie zbiory na pewno muszą być w naszym "klubie porządnych zbiorów"? Oczywiście \textbf{przedziały}, to od nich zaczęliśmy.
+
+Pomyślmy szerzej. W analize fundamentalną rolę odgrywają \textbf{zbiory otwarte}. Każdy zbiór otwarty w \R, jest \textbf{przeliczalną sumą rozłącznych przedziałów otwartych.} Skoro chcemy mierzyć przedziały i być zamknięci na przeliczalne sumy, to musimy umieć mierzyć zbiory otwarte.
+
+I tu dochodzimy do definicji.
+
+\textbf{Intuicja } $\bor\left(\R\right) $ : Zbiory borelowskie $\bor\left(\R\right) $ to jest \textbf{najmniejszy możliwy ,,klub''($\sigma$- algebra) ,,porządnych zbiorów'', który zawiera wszystkie zbiory otwarte w \R}.
+
+,,Najmniejszy'' oznacza, że nie wrzucamy tam niczego na siłę. Bierzemy zbiory otwarte i dodajemy tam tylko te zbiory, które są absolutnie niezbędne, aby ten "klub" był $\sigma-$ algebrą.
+
+\textbf{Co z tego wynika?}
+\begin{itemize}
+	\item Skoro $\bor\left(\R\right) $ zawiera \textbf{zbiory otwarte} to musi zawierać ich dopełnienia, czyli \textbf{zbiory domknięte}.
+	\item Skoro zawiera \textbf{zbiory domknięte}, to musi zawierać ich \textbf{przeliczalne sumy}(zbiory typu $F_{\sigma}$ ).  
+	\item Skoro zawiera \textbf{zbiory otwarte}, to musi zawierać ich \textbf{przeliczalne przekroje}(zbiory typu $G_{\delta}$.
+	\item I tak dalej\ldots. Można to kontynuować w nieskończoność(a nawet dalej, używając indukcję pozaskończoną), tworząc coraz bardziej skomplikowane zbiory, które też są "porządne", bo da się je skonstruować ze zbiorów otwartych w przeliczalnej liczbie kroków.
+\end{itemize}
+
+\textbf{Podsumowanie:}
+
+Zbiory borelowskie to nasza arena. To jest rodzina podzbiorów \R, która jest wystarczająco bogata, by zawierać \textbf{wszystkie zbiory}, jakie spotkamy w normalnej analizie(otwarte, domknięte, przedziały, punkty, zbiory przeliczalne), a jednocześnie wystarczająco ,,porządne'' aby dało się na nich \textbf{zawsze} określić miarę(jak miara Lebesgue'a)
+\end{remark} 
+
+\section{Addytywne funkcje zbioru}
+
+\begin{definition}[Funkcja zbioru]
+	Dla ustalonej rodziny $\mathcal{R}$, funkcję $f: \mathcal{R}\rightarrow \R$ nazywamy \textbf{funkcją zbioru}(chcemy tu wyraźnie zaznaczyć, że argumenty tej funkcji mają inną naturę niż zmienne rzeczywiste).
+
+	Naturalne jest zakładać, że funkcja zbioru może także przyjmować wartość $\infty$, czyli rozważać funkcje
+	\[
+		\mathcal{R}\rightarrow \R_{+}^{\ast} = \R_{+} \cup \{\infty\} = [0,\infty)
+	.\] 
+	O symbolu $\infty$ zakładamy póki co tylko tyle, że dla każdego $x\in \R, x<\infty, x+\infty = \infty$ oraz $\infty + \infty = \infty$
+\end{definition} 
+
+\begin{definition}[Addytywna funkcja zbioru.]
+	Niech $\mathcal{R}\subseteq \mathcal{P}(X) $ będzie \textbf{pierścieniem zbiorów}. Funkcję $\mu : \mathcal{R}\rightarrow [0,\infty)$ nazywamy \textbf{addytywną funkcją zbioru(miarą skończenie addytywną)} jeżeli
+	\begin{enumerate}[label=\arabic*)]
+		\item $\mu \left( \O \right) = 0$.
+		\item Jeżeli $ A,B \in \mathcal{R}$ i $A\cap B= \O$ to $\mu \left(A\cup B  \right) = \mu \left( A \right) + \mu \left( B \right) $
+	\end{enumerate}
+\end{definition} 
+\begin{remark}[Dlaczego wymagamy, by $\mu(\emptyset) = 0$?]
+    Warunek ten jest konieczny, aby wykluczyć przypadek, w którym funkcja miary jest tożsamościowo równa nieskończoności. Rozważmy sam warunek addytywności:
+    \[
+        \mu(\emptyset) = \mu(\emptyset \cup \emptyset) = \mu(\emptyset) + \mu(\emptyset).
+    \]
+    W zbiorze wartości $[0, \infty]$ równanie $x = x + x$ posiada tylko dwa rozwiązania: $x=0$ lub $x=\infty$.
+    
+    Gdybyśmy dopuścili możliwość $\mu(\emptyset) = \infty$, to dla \textbf{dowolnego} zbioru $A \in \mathcal{R}$ otrzymalibyśmy:
+    \[
+        \mu(A) = \mu(A \cup \emptyset) = \mu(A) + \infty = \infty.
+    \]
+    Zatem, jeśli istnieje choć jeden zbiór o mierze skończonej, musi zachodzić $\mu(\emptyset) = 0$. Warunek ten pełni rolę ,,bezpiecznika'', który odrzuca trywialny przypadek miary stale równej $\infty$.
+\end{remark}
+
+\begin{lemma}
+	Niech $\mu $ będzie \textbf{addytywną funkcją } na pierścieniu $\mathcal{R}$ i niech $A,B, A_{n} \in  \mathcal{R}$ 
+	Wtedy
+	\begin{enumerate}[label=\alph*)]
+		\item Jeżeli $A\subseteq B$ to $\mu \left( A \right) \le \mu\left( B \right) $.
+		\item Jeżeli $A\subseteq B$ oraz $\mu \left( A \right) < \infty$, to $\mu \left( B\setminus A \right) = \mu\left( B \right) - \mu \left( A \right) $ 
+
+			(Założenie o skończoności $\mu\left( A \right) $, tzn $\mu\left( A \right) < \infty$, jest nam potrzebne, aby uniknąć m.in. Sytuacji $\infty - \infty$.)
+		\item Jeżeli zbiory $A_1,\ldots, A_{n}$ są \textbf{parami rozłączne,} to
+			\[
+			\mu \left(\bigcup_{n=1} ^{\infty} A_{n} \right)= \sum_{n=1}^{\infty} \mu \left( A_{n} \right)  
+			.\] 
+	\end{enumerate}
+\end{lemma} 
+\begin{proof}
+	Kolejno:
+	\begin{enumerate}[label=\alph*)]
+
+		\item Ponieważ $B = B\setminus A \cup A$, więc \[
+		\mu\left( B \right) = \mu\left( B\setminus A \right) + \mu\left( A \right) 
+		.\]  
+		$\mu\left( B\setminus A \right) \ge 0$, zatem $\mu\left( B \right) \ge  \mu\left( A \right) $ 
+		\item Tym samym rachunkiem jak w podpunkcie a) wnioskujemy, że $\mu\left( B\setminus A \right) = \mu\left( B \right) - \mu\left( A \right) $.
+		\item Ustalmy dowolne, parami rozłączne zbiory $A_1,\ldots, A_{n}$. Przeprowadzimy dowód przez indukcję względem liczby zbiorów $A_{n}$.
+
+			\textbf{Baza (n=2):} $\mu\left(\bigcap_{i=1} ^{2} A_{i}\right) = \mu\left(A_{1} \cup A_{2} \right) = \mu\left( A_1 \right) + \mu\left( A_2 \right) = \sum_{i=1}^{2} \mu\left( A_{i} \right) $ 
+
+			\textbf{Założenie:} Załóżmy, że dla dowolnego $n$
+			\[
+			\mu\left( \bigcup_{i=1} ^{n} \right) = \sum_{i=1}^{n} \mu\left( A_{i} \right) 
+			.\] 
+
+			\textbf{Krok indukcyjny:} 
+	                \begin{align*}
+				\mu\left( \bigcup_{i=1} ^{n+1} A_{i}\right) &= \mu\left( \left( \bigcup_{i=1} ^{n}A_{i} \right) \cup A_{n+1} \right)\\
+			&= \mu\left( \left( \bigcup_{i=1} ^{n}A_{i} \right) \cup A_{n+1} \right) \\  
+			&= \mu\left( \bigcup_{i=1} ^{n} \right) + \mu\left( A_{n+1} \right) \\
+			&= \sum_{i=1}^{n} \mu\left( A_{i} \right) + \mu\left( A_{n+1} \right) \tag{Założenie indukcyjne}\\
+			&= \sum_{i=1}^{n+1} \mu\left( A_{i} \right) 
+	                .\end{align*}	
+			
+			Zatem krok zachodzi. Na mocy zasady indukcji, dla dowolnego $n\in \N$, $\mu$ jest zamknięta na skończone i rozłączne sumy.
+	\end{enumerate}
+\end{proof} 
+\begin{definition}[Przeliczalnie addytywna funkcja zbioru.]
+	Jeżeli $\mu $ jest \textbf{addytywną funkcją} na pierścieniu $\mathcal{R}$ to mówimy, że $\mu $ jest \textbf{przeliczalnie addytywną funkcją zbioru zbioru} jeżeli dla dowolnych $R \in \mathcal{R}$ i \textbf{parami rozłącznych} $A_{n}\in \mathcal{R}$, takich że $R = \bigcup_{n=1} ^{\infty}A_{n}$ zachodzi wzór
+	\[
+	\mu \left( \bigcup_{n_1}^{\infty} A_{n}\right) = \sum_{n=1}^{\infty}\mu \left( A_{n} \right) 
+	.\] 
+\end{definition} 
+\begin{remark}
+	Powyższa równość zachodzi w sensie arytmetyki na zbiorze wartości $[0,\infty]$. Oznacza to, że możliwe są dwa przypadki: 
+\begin{itemize} 
+	\item Obie strony równania są skończone (wtedy szereg jest zbieżny do wartości $\mu\left( R \right) $). 
+	\item Obie strony są równe $\infty$ (wtedy szereg jest rozbieżny do $\infty$, a $\mu\left( R \right) $ nieskończona.). 
+\end{itemize}
+
+Wykluczona jest sytuacja, w której jedna strona jest skończona, a druga nieskończona.
+
+Dodatkowo zauważmy, że w powyższej definicji musieliśmy założyć, że nieskończona suma zbiorów jest elementem $\mathcal{R}$, jako że rodzina $\mathcal{R}$ jest założenia jedynie pierścieniem. 
+
+	Podsumowując powyższa definicja przeliczalnej addytywności jest dostosowana do potrzeb twierdzenia o przedłużaniu miary(jej motywację wyjaśnimy przy analizie tego twierdzenia). Naszym docelowym obiektem będzie miara, czyli przeliczalnie addytywna funkcja zbioru określona na $\sigma$-ciele. 
+\end{remark} ]
+\begin{remark}[Warunkowy charakter $\sigma$-addytywności na pierścieniu]
+    Definicja \textbf{nie wymaga}, aby pierścień $\mathcal{R}$ był zamknięty na przeliczalne sumy (czyli nie musi być $\sigma$-pierścieniem). Warunek równości:
+    \[
+    \mu \left( \bigcup_{n=1}^{\infty} A_{n}\right) = \sum_{n=1}^{\infty}\mu \left( A_{n} \right)
+    \]
+    jest sformułowany jako implikacja, która uaktywnia się \textbf{tylko wtedy}, gdy nieskończona suma $\bigcup_{n=1}^{\infty} A_{n}$ przypadkiem (lub z konstrukcji) należy do $\mathcal{R}$.
+
+    \textbf{Przykład:}
+    Rozważmy pierścień $\mathcal{R}$ generowany przez przedziały $[a, b)$.
+    \begin{itemize}
+        \item Dla ciągu $A_n = [0, 1 - \frac{1}{n})$ suma wynosi $[0, 1)$. Ponieważ $[0, 1) \in \mathcal{R}$, definicja \textbf{wymaga}, aby $\mu([0, 1)) = \lim \sum \mu(A_n)$.
+        \item Dla ciągu $B_n = [\frac{1}{n}, 2)$ suma wynosi $(0, 2)$. Zbiór $(0, 2) \notin \mathcal{R}$. W tym przypadku definicja $\sigma$-addytywności nie stawia funkcji $\mu$ żadnych wymagań, ponieważ wynik wypadł poza dziedzinę funkcji.
+    \end{itemize}
+    Dzięki temu możemy badać własności miary na prostych strukturach (pierścieniach) zanim rozszerzymy je na całe $\sigma$-ciała.
+\end{remark}
+
+\begin{remark}[Logiczna struktura $\sigma$-addytywności na pierścieniu]
+    Niech $\mu$ będzie funkcją addytywną na pierścieniu $\mathcal{R}$. Mówimy, że $\mu$ jest \textbf{przeliczalnie addytywna}, jeśli dla każdego ciągu parami rozłącznych zbiorów $(A_n)_{n=1}^\infty \subseteq \mathcal{R}$ zachodzi następująca implikacja:
+    
+        \textbf{Warunek (Poprzednik implikacji):} \\
+        Jeżeli ich suma należy do pierścienia, tzn.
+        \[ \bigcup_{n=1}^{\infty} A_n \in \mathcal{R} \]
+        
+        \textbf{Wymóg (Następnik implikacji):} \\
+        To wtedy funkcja musi "umieć to policzyć":
+        \[ \mu \left( \bigcup_{n=1}^{\infty} A_n \right) = \sum_{n=1}^{\infty} \mu(A_n) \]
+    
+    \noindent\textbf{Komentarz:} Jeśli warunek nie jest spełniony (suma wypada poza pierścień), definicja nie stawia funkcji żadnych wymagań (implikacja jest prawdziwa, bo poprzednik jest fałszywy).
+\end{remark}
+
+\begin{lemma}[$\sigma$-podaddytwność]
+	Jeśli $\mu $ jest \textbf{przeliczalnie addytywną funkcją} na pierścieniu $R$ to dla $R\in \mathcal{R}$ i \textbf{dowolnego ciągu (niekoniecznie rozłącznego)}  $A_{n}\in \mathcal{R}$, takich że $\bigcup_{n=1} ^{\infty}A_{n} = R$ zachodzi nierówność:
+	\[
+	\mu\left( R \right) = \mu \left( \bigcup_{n=1} ^{\infty}A_{n} \right) \le \sum_{n=1}^{\infty} \mu \left( A_{n} \right) 
+	.\] 
+	Mówimy wtedy, że funkcja $\mu$ jest  $\sigma$\textbf{-podaddytywna} 
+\end{lemma} 
+\begin{proof}
+	Definiujemy układ zbiorów rozłącznych $B_{n}$, których suma nieskończona jest równa $R$:
+	 \begin{itemize}
+		 \item $B_1 = A_1$.
+		 \item $B_2 = A_2\setminus A_1$.
+		 \item $B_{3} = A_{3} \setminus \left( A_2\cup A_1 \right) $.
+		 \item $\vdots$
+		 \item  $B_{n} = A_{n}\setminus \left(\bigcup_{i=1} ^{n-1}A_{i}\right)$
+	\end{itemize}
+	Istotnie układ $B_{n}$ jest rozłączny parami oraz $\bigcup_{n=1} ^{\infty}B_{n} = R$.(Podobny dowód został już wcześniej przeprowadzony).
+
+	Następnie zauważmy:
+	\[
+	\mu\left( R \right) = \mu\left( \bigcup_{n=1} ^{\infty}B_{n} \right) \overset{\sigma\text{-add}}{=} \sum_{n=1}^{\infty} \mu\left( B_{n} \right) 
+	.\] 
+	Ponadto zauważmy, że dla dowolnego $n\in \N$, jest $B_{n}\subseteq A_{n}$, a co za tym idzie $\mu\left( B_{n} \right) \le  \mu\left( A_{n} \right) $. Indukcyjnie otrzymujemy, że $\sum_{n = 1}^{\infty} \mu\left( B_{n} \right) \le  \sum_{n = 1}^{\infty} \mu\left( A_{n} \right) $.
+
+	Zatem 
+	\[
+	\mu\left( R \right) \le \sum_{n = 1}^{\infty} \mu\left( A_{n} \right) 
+	.\] 
+\end{proof} 
+\begin{corollary}
+	\textbf{$\sigma-$ addytywność} (mocne żądanie równości dla zbiorów rozłącznych) pociąga za sobą \textbf{$\sigma-$ podaddytywność} (nierówność dla zbiorów dowolnych).
+\end{corollary}
+
+\begin{theorem}[$\sigma$-nadaddyywność]
+	\textbf{Założenia:}
+	\begin{itemize}
+		\item $\mu$ jest funkcją zbioru na pewnym pierścieniu/ciele $\mathcal{R}$ która jest addytywna (skończenie).
+		\item $R $ jest sumą parami rozłącznego ciągu zbiorów $A_{n}\in \mathcal{R}$ i należy o $\mathcal{R}$ :
+			 \[
+			R = \bigcup_{n=1} ^{\infty}A_{n} \text{ oraz } R \in \mathcal{R}
+			.\] 
+	\end{itemize}
+
+	\textbf{Teza ($\sigma$-nadaddytywność):} 
+
+	Dla dowolnego ciągu \textbf{rozłącznych} zbiorów $\left( A_{n} \right)_{n=1}^{\infty}$, zachodzi
+	\[
+	\mu\left( \bigcup_{n=1} ^{\infty}A_{n} \right) \ge \sum_{n = 1}^{\infty} \mu\left( A_{n} \right) 
+	.\] 
+\end{theorem} 
+\begin{proof}
+	Ustalmy dowolną funkcę $\mu$ i ciąg zbiorów $\left( A_{n} \right)_{n=1}^{\infty} $ spełniające założenie twierdzenia.
+
+	W celu klarowności, podzielimy rozumowanie na kroki.
+	\begin{enumerate}[label=\arabic*.]
+		\item \textbf{Skończona addytywność:}
+
+			Ustalmy dowolną liczbę naturalną $N\in \N$. Z założenia o skończonej addytywności dla zbiorów rozłącznych mamy:
+			\[
+			\mu\left( \bigcup_{n=1} ^{N}A_{n} \right) = \sum_{n = 1}^{N} \mu\left( A_{n} \right) 
+			.\] 
+		\item \textbf{Inkluzja i monotoniczność:} 
+
+			Zauważmy relację zawierania się zbiorów(suma skończona zawiera się w sumie skończonej:
+			\[
+			\bigcup_{n=1} ^{N}A_{n}\subseteq R
+			.\] 
+
+			Ponieważ $\mu$ jest funkcją skończenie addytywną, więc jest monotoniczna ($A\subseteq B \implies \mu\left( A \right) \le \mu\left( B \right) $ ). Stosująć monotoniczność do powyższej (2.) inkluzji otrzymujemy:
+			\[
+			\mu\left( \bigcup_{n=1} ^{N} A_{n}\right) \le \mu\left( R \right) 
+			.\] 
+		\item \textbf{Połączenie wyników:}
+
+			Łącząc wyniki z 1. i 2. otrzymujemy nierówność dla dowolnie ustalonego $N$:
+			 \[
+			\sum_{n = 1}^{N} \mu\left( A_{n} \right) \le \mu\left( R \right) 
+			.\] 
+		\item \textbf{Przejście graniczne:}
+
+			Powyższa nierówność (4.) jest prawdziwa dla każdego $N\in \N$. Po lewej mamy $S_{N}$- sumę częściową, a po prawej konkretną liczbę $M=\mu\left( R \right) $, która jest stałą- nie zależy od wyboru $N$.
+
+			Z własności granic ciągów liczbowych: Jeśli ciąg sum częściowych ($S_{N}$ ) jest ograniczony z góry przez stałą $M$ (czyli $S_{N}\le M$ dla każdego $N$), to granica tego ciągu (czyli suma szeregu) jest również ograniczona przez M.
+
+			Przechodząc z $N \to \infty$:
+			\[
+			\lim_{N \to \infty} \sum_{n=1}^{N} \mu\left( A_{n} \right) \le \mu\left( \bigcup_{n=1} ^{\infty} A_{n}\right) 
+			.\] 
+			Z definicji sumy szeregu:
+			\[
+			\sum_{n = 1}^{\infty} \mu\left( A_{n} \right) \le \mu\left( \bigcup_{n=1} ^{\infty}A_{n} \right) 
+			.\] 
+
+			Finalnie
+			\[
+			\mu\left( R \right) \ge \sum_{n = 1}^{\infty} \mu\left( A_{n} \right) 
+			.\] 
+	\end{enumerate}
+\end{proof} 
+\begin{remark}
+	Podczas powyższych rozważań, uwagę przykuło to, czy możemy rozważać $\mu\left( \bigcup_{n=1} ^{\infty} A_{n}\right) $ jeśli funkcja $\mu$ jest ,tylko' skończenie addytywna? Dokładniej mamy na myśli to, że argumentem $\mu$ jest przeliczalna suma.
+
+Aby temu sprostać dodajemy założenie, że $\bigcup_{n=1} ^{\infty}A_{n} \in \mathcal{R}$. Wtedy z tego, że $\mu$ jest określona $\mathcal{R}$, zapis $\mu\left( \bigcup_{n=1}^{\infty}A_{n} \right) $ ma sens, bo faktycznie $\mu$ jest określona dla $\bigcup_{n=1} ^{\infty}A_{n}$.
+	
+Należy poczynić tu jeszcze uwagę, że od  $\mu$ wymagamy jedynie aby była skończenie addytywna na pierścieniu $\mathcal{R}$. Wtedy, jeśli mamy rozłączny ciąg zbiorów $\left( A_{n} \right)_{n=1}^{\infty} \in \mathcal{R}$, taki, że jego suma $\bigcup_{n=1}^{\infty}\in \mathcal{R}$, skończona addytywność $\mu$ pociąga za sobą $\sigma$-nad addytywność, czyli
+ \[
+\mu\left( \bigcup_{n=1}^{\infty}A_{n} \right) \ge \sum_{n = 1}^{\infty} \mu\left( A_{n} \right) 
+.\] 
+\end{remark} 
+\begin{question}
+	Dlaczego \textbf{$\sigma$-addytywność} to mocny warunek? Mocniejszy od $\sigma$-nad addytywności.
+\end{question}
+
+	$\sigma$-addytywność nie jest darmowa. Nie wynika z skończonej addytywności.
+	\begin{eg}
+		 Niech $X = \N$ oraz $\mathcal{R} = \mathcal{P}(\N) $.
+	\begin{itemize}
+		\item \textbf{Definicja miary:} 
+			\begin{itemize}
+				\item $\mu\left( A \right) = 0$, jeśli $A$ jest skończony.
+				\item $\mu\left( A \right) = \infty$, jeśli $A$ jest nieskończony.
+			\end{itemize}
+		\item \textbf{Sprawdzenie:} Ta miara jest \textbf{skończenie addytywna}:
+			\begin{itemize}
+				\item $\mu\left( \O \right) = 0$.
+				\item Weźmy dwa dowolne zbiory $A, B \in \mathcal{P}(\N) $ i załóżmy, że $A\cap B = \O$, wtedy mamy przypadki:
+					\begin{itemize}
+						\item Jeśli $A,B$ są zbiorami skończonymi to ich suma $A\cup B$ również, czyli
+							 \[
+							\mu\left( A\cup B \right) = 0 = 0 + 0 = \mu\left( A \right) + \mu\left( B \right) 
+							.\] 
+						\item Jeśli $A$ jest zbiorem skończonym, a $B$ jest zbiorem skończonym, to ich suma $A\cup B$ jest nieskończona, czyli
+					 		\[
+							\mu\left( A\cup B \right) = \infty = 0 + \infty = \mu\left( A \right) + \mu\left( B \right) 							   .\]
+						\item W ostatnim przypadku, gdy $A$ i $B$ są zbiorami nieskończonymi wtedy ich suma $A\cup B$ również jest nieskończona, czyli
+							\[
+							\mu\left( A\cup B \right) = \infty = \infty + \infty = \mu\left( A \right) + \mu\left( B \right) 
+							.\] 
+					\end{itemize}
+			\end{itemize}
+		\item \textbf{Czy jest $\sigma$-addytywna?}
+
+			Otóż nie. Spójrzmy
+			\begin{itemize}
+				\item Weźmy zbiory(singletony) $A_{n} = \{n\} $.
+				\item Suma $R = \bigcup_{n=1} ^{\infty}A_{n} = \N$
+				\item \textbf{Lewa strona(z definicji):} $\mu\left( R \right) = \mu\left( \N \right) = \infty$.
+				\item \textbf{Prawa strona(z definicji):} $\sum_{n=1}^{\infty} \mu\left( A_{n} \right) = \sum_{n=1}^{\infty} \mu\left( \{n\}  \right) = \sum_{n=1}^{\infty} 0= 0$ 
+				\item Mamy $\infty \neq  0$
+			\end{itemize}
+	\end{itemize}
+	Ta miara "nie widzi", że przeliczalna suma zbiorów o mierze zero może dać zbiór o mierze nieskończonej.
+	\end{eg} 
+
+\begin{definition}[Ciągłość z góry i ciągłość z dołu. Ciągłość na zbiorze.]
+	Niech
+	\begin{itemize}
+		\item $\mathcal{R}$ będzie pierścieniem zbiorów.
+		\item $\mu$ addytywną funkcją zbioru określoną na pierścieniu $\mathcal{R}$.
+		\item $\left( A_{n} \right)_{n=1}^{\infty}$ ciągiem zbiorów $A_{n}$, takim że $\left( A_{n} \right)_{n=1}^{\infty}\in \mathcal{R}$.
+	\end{itemize}
+	Przy tych założeniach definiujemy następujące pojęcia:
+        \begin{enumerate}[label=\arabic*.]
+		\item \textbf{Ciągłość z dołu}
+
+			Jeżeli $A_{n}\uparrow A$ oraz $A\in \mathcal{R}$ to mówimy, że funkcja $\mu$ jest \textbf{ciągła z dołu} jeśli
+			\[
+			\lim_{n \to \infty}\mu\left( A_{n} \right) = \mu\left( A \right) 
+			.\] 
+		\item \textbf{Ciągłość z góry} 
+
+			Jeżeli $A_{n}\downarrow A$ oraz $A\in \mathcal{R}$ to mówimy, że funkcja $\mu$ jest \textbf{ciągła z góry} jeśli
+			\[
+			\lim_{n \to \infty}\mu\left( A_{n} \right) = \mu\left( A \right) 
+			.\] 
+		\item \textbf{Ciągłość z dołu na zbiorze B} 
+
+			Jeżeli $A_{n}\uparrow B$ oraz $B\in \mathcal{R}$ to mówimy, że funkcja $\mu$ jest \textbf{ciągła z dołu na zbiorze B} jeśli
+			\[
+			\lim_{n \to \infty}\mu\left( A_{n} \right) = \mu\left( B \right) 
+			.\] 
+		\item \textbf{Ciągłość z góry na zbiorze B} 
+
+			Jeżeli $A_{n}\downarrow B$ oraz $B\in \mathcal{R}$ to mówimy, że funkcja $\mu$ jest \textbf{ciągła z góry na zbiorze B} jeśli
+			\[
+			\lim_{n \to \infty}\mu\left( A_{n} \right) = \mu\left( B \right) 
+			.\] 
+        \end{enumerate}
+
+\end{definition} 
+\begin{theorem}[Inny sposób wyrażania przeliczalnej addytywnosci.]
+	Addytywna funkcja zbioru $\mu $ na pierścieniu $\mathcal{R}$ jest przeliczalnie addytywna wtedy i tylko wtedy kiedy jest ciągła z dołu,
+\end{theorem} 
+\begin{proof}
+Niech $\mathcal{R}$ będzie pierścieniem oraz $\mu$ funkcją skończenie addytywną określoną na $\mathcal{R}$. 
+$(\bm{ \implies } )$
+
+Załóżmy, że $\mu$ jest $\sigma$-addytywna. Ustalmy dowolny ciąg $\left( A_{n} \right)_{n=1}^{\infty} \in \mathcal{R}$, taki że $A_{n}\uparrow A$ oraz $A\in \mathcal{R}$. Rozdzielmy ciąg $A_n$ definiując \[
+B_{n} = A_{n}\setminus \bigcup_{k<n} A_{n}
+.\] 
+Mając $A = \bigcup_{n=1} ^{\infty}A_{n} = \bigcup_{n=1}^{\infty}B_{n}$ zauważmy
+\begin{align*}
+	\mu\left( A \right) &= \mu\left( \bigcup_{n=1} ^{\infty} B_{n}\right)\tag{własność $B_{n}$} \\
+	\mu\left( \bigcup_{n=1} ^{\infty} B_{n}\right)  &= \sum_{n = 1}^{\infty} \mu\left( B_{n} \right) \tag{$\sigma$-addytwność $\mu$} \\
+	\sum_{n = 1}^{\infty} \mu\left( B_{n} \right) &= \lim_{N \to \infty} \sum_{n = 1}^{N} \mu\left( B_{n} \right)\tag{definicja nieskończonego szeregu} \\
+	      \lim_{N \to \infty} \sum_{n = 1}^{N} \mu\left( B_{n} \right) &= \lim_{N \to \infty}  \mu\left( \bigcup_{n=1}^{N}B_{n} \right) \tag{addytywność $\mu$}\\
+	      \lim_{N \to \infty}  \mu\left( \bigcup_{n=1}^{N}B_{n} \right)  &= \lim_{N \to \infty} \mu\left( \bigcup_{n=1} ^{N}A_{n} \right)\tag{własność $B_{n}$} \\
+	       \lim_{N \to \infty} \mu\left( \bigcup_{n=1} ^{N}A_{n} \right)&= \lim_{N \to \infty} \mu\left( A_{N} \right) \tag{$A_{n}$ jest rodziną wstępującą}
+.\end{align*}	
+
+$\bm{ (\impliedby) } $
+
+Załóżmy, że $\mu$ jest ciągła z dołu. Ustalmy dowolny \textbf{rozłączny} ciąg $\left( A_{n} \right)_{n=1}^{\infty} \in \mathcal{R}$, taki że $A_{n}\uparrow A$ oraz $A\in \mathcal{R}$. 
+
+Rozważmy ciąg sum częściowych $S_{N} = \bigcup_{n=1} ^{N}A_{n}$. Ciąg ten jest wstępujący oraz jego granica to $A = \bigcup_{n=1} ^{\infty}A_{n}$. Czyli $S_{N}\uparrow A$.
+
+Zauważmy, że
+\begin{align*}
+	\mu\left( A \right) &= \lim_{N \to \infty} \mu\left( S_{N} \right) \tag{ciągłość z dołu} \\
+	\lim_{N \to \infty} \mu\left( S_{N} \right) &= \lim_{N \to \infty} \mu\left( \bigcup_{n=1} ^{N}A_{n} \right) \tag{definicja} \\  
+	\lim_{N \to \infty} \mu\left( \bigcup_{n=1} ^{N}A_{n} \right) &= \lim_{N \to \infty} \sum_{n=1}^{N} \mu\left( A_{n} \right) \tag{addytywność $\mu$ oraz rozłączność $A_{n}$} \\
+	\lim_{N \to \infty} \sum_{n=1}^{N} \mu\left( A_{n} \right) &= \sum_{n=1}^{\infty} \mu\left( A_{n} \right) \tag{definicja $\sum_{n = 1}^{\infty}$} 
+.\end{align*}
+\end{proof} 
+\begin{theorem}[Równoważne warunki $\sigma$-addytywności dla funkcji addytywnej]
+	Dla addytywnej funkcji zbioru $\mu $ na pierścieniu $\mathcal{R}$, przyjmującej tylko wartości skończone następujące warunki są równoważne(gdzie zawsze $A_{n}, A \in \mathcal{R}$ )
+	\begin{enumerate}[label=\alph*)]
+		\item $\mu $ jest przeliczalnie addytywna.
+		\item $\mu $ jest ciągła z góry, to znaczy $\lim_{n}\mu\left( A_{n} \right) = \mu\left( A \right)$ jeżeli $A_{n}\downarrow A$.
+		\item $\mu $ jest ciągła z góry na zbiorze $\O$, czyli $\lim_{n}\mu\left( A_{n} \right) = 0 $ jeżeli $A_{n}\downarrow \O$
+	\end{enumerate}
+\end{theorem} 
+\begin{proof}
+	Udowodnimy ciąg implikacji: $a) \implies b) \implies c) \implies a)$.
+
+\noindent 	Niech $\mathcal{R}$ będzie pierścieniem, a $\mu$ funkcją addytywną określoną na tym pierścieniu. 
+
+\noindent \textbf{$\bm{ a) \implies b) } $} 
+
+	\textbf{Założenie:}$\mu$ jest $\sigma$-addytywna. 
+
+	\textbf{Cel:} $\mu$ jest ciągła z góry.
+
+	Ustalmy dowolny ciąg zstępujący $\left( A_{n} \right)_{n=1}^{\infty}\in \mathcal{R}$, taki że $A_{n}\downarrow A$, czyli że $\bigcap_{n=1} ^{\infty} = A$. 
+
+	Rozdzielimy teraz ciąg $A_{n}$ definiując ciąg $B_{n}$ w sposób następujący:
+	\[
+	B_{n} := A_{n} \setminus A_{n+1}
+	.\] 
+	Elementy ciągu $B_{n}$ są oczywiście parami rozłączne. Co więcej 
+	 \[
+	\bigcup_{n=1} ^{\infty} B_{n} = A_{1} \setminus A = A_{1} \setminus \bigcap_{n=1}^{\infty}A_{n}
+	.\] 
+\noindent \textbf{Dowód:}
+
+Pokażemy obustronne zawieranie.
+
+\noindent $ \bm{\bigcup_{n=1} ^{\infty} B_{n} \subseteq    A_{1} \setminus A}$
+
+	Ustalmy dowolny $x\in \bigcup_{n=1}^{\infty}B_{n}$. Z definicji sumy nieskończonej istnieje $N\in \N $, takie że $x\in B_{N} = A_{N}\setminus A_{N+1}$. Ponieważ $A_{n}$ jest zstępującą rodziną zbiorów, więc skoro $x\in A_{N}$ to $x\in A_1$. Ponieważ $x\not\in  A_{N+1}$, więc $x\not\in \bigcap_{n=1}^{\infty}= A $. Zatem $x \in A_{1}\setminus \bigcap_{n=1} ^{\infty}$.
+
+	\noindent $ \bm{\bigcup_{n=1} ^{\infty} B_{n}  \supseteq    A_{1} \setminus A}$
+
+	Ustalmy dowolnego $x\in A_{1}\setminus A$. Zatem $x\in A_1$ oraz $x\not\in A$. Ponieważ $x\not\in A$ oraz $A_{n}$ jest zstępującą rodziną zbiorów, więc istnieje najmniejsze takie $N\in \N$, które spełnia $x\in A_{N}$ oraz $x\not\in A_{N+1}$. Czyli z definicji ciągu $B_{n}$, $x\in A_{N}\setminus A_{N+1} = B_{N}$. Zatem $x\in \bigcup_{n=1} ^{\infty}B_{n}$
+
+	\noindent Zatem $\bigcup_{n=1}^{\infty} B_{n} = A_1\setminus A$. Ponieważ rodzina zbiorów $B_{n}$ jest parami rozłączna oraz korzystając z założenia o $\sigma $-addytywności $\mu$ mamy
+	\[
+	\mu\left( A_1\setminus A \right) = \mu\left(\bigcup_{n=1}^{\infty}B_{n}  \right) = \sum_{n = 1}^{\infty} \mu\left( B_{n} \right) 
+	.\] 
+	Z definicji nieskończonego szeregu mamy
+	\[
+         \sum_{n = 1}^{\infty} \mu\left( B_{n} \right) = \lim_{N \to \infty} \sum_{n = 1}^{N} \mu\left( B_{n} \right) 
+	.\] 
+	Rozpisując szereg po prawej stronie powyższej równości mamy:
+	\[
+        \lim_{N \to \infty} \sum_{n = 1}^{N} \mu\left( B_{n} \right) = \lim_{N \to \infty} \sum_{n = 1}^{N} \mu\left( A_{n}\setminus A_{n+1} \right) 
+	.\] 
+        Korzystając z $\sigma $-addytywności $\mu$ oraz rozłączności rodziny zbiorów $B_{n}$, otrzymujemy sumę teleskopową:
+	\begin{align*}
+		\lim_{N \to \infty} \sum_{n = 1}^{N} \mu\left( A_{n}\setminus A_{n+1} \right) &= \lim_{N \to \infty} \sum_{n = 1}^{N} \mu\left( A_{n}\right) - \mu\left(A_{n+1} \right) \\ 
+											      &= \lim_{N \to \infty} \left(  \mu\left( A_1 \right) - \mu\left( A_2 \right) \right) + \left( \mu\left( A_2 \right) - \mu\left( A_3 \right)  \right) + \ldots + \left( \mu\left( A_{N} \right) - \mu\left( A_{N+1} \right)  \right)   
+	.\end{align*}
+	Po redukcji elementów w powyższej sumie otrzymujemy
+	\[
+	 \lim_{N \to \infty} \sum_{n = 1}^{N} \mu\left( A_{n}\setminus A_{n+1} \right) = \lim_{N \to \infty} \mu\left( A_1 \right) - \mu\left( A_{N+1} \right) 
+	.\] 
+	Z powyższych równości wynika
+	\[
+	\mu\left( A_1 \setminus A\right) = \lim_{N \to \infty} \left( \mu\left( A_1 \right)  - \mu\left( A_{N+1} \right) \right) 
+	.\] 
+	Zauważmy, że rodzina zbiorów $A_{n}$ jest zstępująca, zetem $A_1 \supseteq A = \bigcap_{n=1}^{\infty}A_{n}$, czyli $\mu$ jako $\sigma $-addytywna funkcja zbioru, gwarantuje nam to, że $\mu\left( A_1\setminus A \right)= \mu\left( A_1 \right) - \mu\left( A \right)  $.
+
+	Zatem
+	\[
+	\mu\left( A_1 \right) - \mu\left( A \right)  = \mu\left( A_1\setminus A \right) = \lim_{N \to \infty} \left( \mu\left( A_1 \right) - \mu\left( A_{N+1}\right)\right)
+	.\] 
+
+	Z własności granic wnioskujemy:
+	\[
+	\lim_{N \to \infty} \left( \mu\left( A_1 \right) - \mu\left( A_{N+1} \right)  \right) = \mu\left( A_1 \right) - \lim_{N \to \infty} \mu\left(A_{N+1} \right)  = \mu\left( A_1 \right) - \lim_{N \to \infty} \mu\left( A_{N}  \right) 
+	.\] 
+
+	Czyli
+	\[	
+	\mu\left( A_1 \right) - \mu\left( A \right)  = 	\mu\left( A_1\setminus A \right) = \lim_{N \to \infty} \left( \mu\left( A_1 \right) - \mu\left( A_{N+1}\right)\right) = \mu\left( A_1 \right) - \lim_{N \to \infty}\mu\left(A_{N} \right) 
+.\] 
+	Odejmując stronami $\mu\left( A_1 \right) $, następnie domnażając obie strony przez $(-1)$, otrzymujemy
+	 \[
+	\mu\left( A \right) = \lim_{n \to \infty} \mu\left( A_{n} \right) 
+	.\] 
+\end{proof} 
+\begin{proof}
+	\noindent $\bm{ b) \implies c) } $ 
+
+	\noindent \textbf{Założenie:} $\mu$ jest ciągła z góry.
+
+	\noindent \textbf{Cel:} $\mu$ jest ciągła z góry na zbiorze $\emptyset $, czyli dla rodziny zstępującej $A_{n}$, takież że $A_{n}\downarrow \emptyset $, zachodzi $\lim_{n \to \infty} \mu\left( A_{n} \right) = \mu\left( \emptyset  \right)$. 
+
+	Ustalmy dowolną rodziną zstępującą  $A_{n}$, taką że $A_{n}\downarrow \emptyset $. Z założenia, że  $\mu$ jest ciągła z góry, otrzymujemy, że $\lim_{n \to \infty} \mu\left( A_{n} \right) = \mu\left( \emptyset  \right) $
+\end{proof} 
+\begin{proof}
+	\noindent $\bm{ c) \implies a) } $ 
+
+	\noindent \textbf{Założenie:} $\mu$ jest (skończenie addytywną funkcją zbioru) ciągła z góry na zbiorze $\emptyset $.
+
+	\noindent \textbf{Cel:} $\mu$ jest $\sigma $-addytywna funkcją zbioru.
+
+	Wystarczy pokazać, że dla dowolnej rozłącznej rodziny zbiorów $\{A_{n}\}_{n=1}^{\infty} \in \mathcal{R}$, takiej że $\bigcup_{n=1}^{\infty}A_{n} = A \in \mathcal{R}$, zachodzi $\mu\left( A \right) = \sum_{n = 1}^{\infty} \mu\left( A_{n} \right) $.
+	\begin{itemize}
+		\item $B_1 = A$,
+		\item $B_2 = A \setminus A_{1}$,
+		\item $B_3 = A\setminus \left( A_2 \cup A_1 \right) $
+		\item $B_4 = A\setminus \left(A_3 \cup A_2 \cup A_1\right)$
+		\item $\vdots$
+		\item  $B_{n} = A \setminus \bigcup_{i=1}^{n-1}A_{i}$
+		\item $\vdots$
+	\end{itemize} 
+
+	Zauważmy, że $B_{n}$ jest zstępującą rodziną zbiorów oraz $B_{n}\downarrow \emptyset $. Zatem 
+	\[
+	\lim_{n \to \infty} \mu\left( B_{n} \right) = \mu\left( \emptyset  \right) = 0
+	.\] 
+	Korzystając z definicji zbioru $B_{n}$, mamy
+	\[
+	\lim_{n \to \infty} \mu\left( B_{n} \right) = \lim_{n \to \infty}\mu\left( A\setminus \bigcup_{i=1} ^{n-1}A_{i} \right) 
+	.\] 
+	Zauważmy, że $A\in \mathcal{R}$ oraz $\mu$ jest określona na $\mathcal{R}$, czyli $\mu\left( \mathcal{R} \right)$ jest dobrze zdefiniowana. Ponieważ $\bigcup_{i=1} ^{n-1}A_{i}\subseteq A$ oraz $\mu$ jest funkcją addytywną(skończenie) funkcją zbioru, więc
+	\[
+	\mu\left( A\setminus \bigcup_{i=1} ^{n-1}A_{i}  \right) = \mu\left( A \right) - \mu\left( \bigcup_{i=1}^{n-1} \right) 
+	.\] 
+	Zatem
+	\[
+	\lim_{n \to \infty} \mu\left( B_{n} \right) = \lim_{n \to \infty} \mu\left( A\setminus \bigcup_{i=1} ^{n-1}A_{i} \right) 
+	.\] 
+	Podsumowując
+	\begin{align*}	
+		\lim_{n \to \infty} \mu\left( B_{n} \right) &= \mu\left( \emptyset  \right) \iff \\
+		\lim_{n \to \infty} \mu\left( B_{n} \right) &= 0 \iff \\
+		\lim_{n \to \infty} \mu\left( A\setminus \bigcup_{i=1} ^{n-1}A_{i} \right) &= 0 \iff \\
+		\lim_{n \to \infty} \left(  \mu\left( A\right) - \mu\left(\bigcup_{i=1} ^{n-1}A_{i} \right)\right) &= 0 \iff \\
+		\lim_{n \to \infty} \mu\left( A \right) - \lim_{n \to \infty} \mu\left( \bigcup_{i=1} ^{n-1}A_{i} \right) &= 0 \iff \\
+		\lim_{n \to \infty} \mu\left( A \right) &= \lim_{n \to \infty} \mu\left( \bigcup_{i=1} ^{n-1}A_{i} \right) \iff \\
+		\mu\left( A \right) &= \lim_{n \to \infty} \mu\left( \bigcup_{i=1} ^{n-1}A_{i} \right) 
+	.\end{align*} 
+
+	Korzystając z skończonej addytywności $\mu$ 
+	 \[
+	\lim_{n \to \infty} \mu\left( \bigcup_{i=1}^{n-1} \right) = \lim_{n \to \infty} \sum_{i=1}^{n-1} \mu\left( A_{i} \right) 
+	.\] 
+	Następnie z własności granicy oraz definicji nieskończonej sumy
+	\[
+	\lim_{n \to \infty} \sum_{i=1}^{n-1} \mu\left( A_{i} \right) = \lim_{n \to \infty} \sum_{i=1}^{n} \mu\left( A_{i} \right) = \sum_{i=1}^{\infty} \mu\left( A_{i} \right) 
+	.\] 
+	Zatem
+	\[
+	\mu\left( A \right) = \sum_{n = 1}^{\infty} \mu\left( A_{i} \right) 
+	.\] 
+\end{proof} 
+\begin{eg}
+	Niech $\mathcal{A}$ będzie ciałem generowanym przez wszystkie skończone podzbiory $X$ gdzie $X$ jest nieskończony. Wtedy $A\in \mathcal{A}$ wtedy i tylko wtedy kiedy $A$ jest skończony lub $X\setminus A$ jest skończony.
+\end{eg} 
+\begin{proof}
+\noindent \textbf{Założenia:}Niech $X$ będzie zbiorem nieskończonym oraz $\mathcal{F}$ rodzina podzbiorów skończonych $X$:
+ \[
+ \mathcal{F} = \{A\subseteq X: \left| A \right| < \infty\} 
+ .\] 
+
+ Definiujemy zbiór $\mathcal{A}$ jako rodzinę podzbiorów skończonych i koskończonych $X$: i
+ \[
+ \mathcal{A} = \{A \subseteq X: \left| A \right| <\infty \text{ lub } \left| A^{c} \right| < \infty\} 
+ .\] 
+
+\noindent \textbf{Cel:} $a\left( \mathcal{F} \right) = \mathcal{A}$.
+
+Dowód przeprowadzimy, pokazując dwie inkluzje. 
+
+\noindent \textbf{Krok 1: Inkluzja $a(\mathcal{F}) \subseteq \mathcal{A}$} 
+
+Z definicji, $a(\mathcal{F})$ jest najmniejszym ciałem zawierającym $\mathcal{F}$ (przekrojem wszystkich takich ciał). Aby pokazać, że $a(\mathcal{F}) \subseteq \mathcal{A}$, wystarczy wykazać, że: 
+\begin{enumerate} 
+	\item $\mathcal{F} \subseteq \mathcal{A}$ (oczywiste, bo zbiory skończone należą do $\mathcal{A}$). 
+	\item $\mathcal{A}$ jest ciałem.
+\end{enumerate} 
+Sprawdźmy warunki na bycie ciałem dla $\mathcal{A}$: 
+\begin{itemize} 
+	\item $\emptyset \in \mathcal{A}$ (jako zbiór skończony).
+	\item Jeśli $A \in \mathcal{A}$, to $A^c \in \mathcal{A}$ (jeśli $A$ skończony, to $A^c$ koskończony; jeśli $A$ koskończony, to $A^c$ skończony). 
+	\item Jeśli $A, B \in \mathcal{A}$, to $A \cup B \in \mathcal{A}$. Mamy tu przypadki: 
+		\begin{itemize} 
+			\item $A, B$ skończone $\implies A \cup B$ skończony. 
+			\item Co najmniej jeden zbiór koskończony, WLOG $A$ jest koskończony $\implies (A \cup B)^c = A^c \cap B^c$. Ponieważ $A^c$ jest skończony, to przekrój też jest skończony. Zatem $A \cup B$ jest koskończony. 
+		\end{itemize} 
+\end{itemize} 
+Skoro $\mathcal{A}$ jest ciałem zawierającym $\mathcal{F}$, a $a(\mathcal{F})$ jest najmniejszym takim ciałem, to wnioskujemy, że $\bm{a(\mathcal{F}) \subseteq \mathcal{A}}$. 
+
+\noindent \textbf{Krok 2: Inkluzja $\mathcal{A} \subseteq a(\mathcal{F})$} Weźmy dowolny $A \in \mathcal{A}$. 
+\begin{itemize} 
+	\item Jeśli $A$ jest skończony, to $A \in \mathcal{F}$. Ponieważ $\mathcal{F} \subseteq a(\mathcal{F})$, to $A \in a(\mathcal{F})$. 
+	\item Jeśli $A$ jest koskończony, to $A^c$ jest skończony. Zatem $A^c \in \mathcal{F} \subseteq a(\mathcal{F})$. Skoro $a(\mathcal{F})$ jest ciałem, to jest zamknięte na dopełnienia, więc $(A^c)^c = A \in a(\mathcal{F})$. 
+\end{itemize} 
+
+W obu przypadkach $A \in a(\mathcal{F})$, co dowodzi, że $\bm{\mathcal{A} \subseteq a(\mathcal{F})}$. 
+
+\noindent \textbf{Wniosek:} Z obu inkluzji wynika, że $a(\mathcal{F}) = \mathcal{A}$. 
+\end{proof}
+\begin{remark}[Rodzina Moore'a]
+	Zauważmy, że własność $P\left( \Sigma  \right)  \equiv \Sigma \text{ jest ciałem oraz }\mathcal{F}\subseteq \Sigma $, definiuje nam rodzinę Moore'a $\mathcal{M}$ w uniwersum $\mathcal{P}(X) $.
+	 \[
+	\mathcal{M} = \{Q \in \mathcal{P}(X): P(Q) \} 
+	.\] 
+	\begin{itemize}
+		\item $\mathcal{P}(X) $ jest ciałem oraz zawiera $\mathcal{F}$. Zatem $\mathcal{P}(X) \in \mathcal{M} $
+		\item Przekrój ciał jest ciałem oraz każde z krojonych ciał zawiera $\mathcal{F}$, czyli własność $P$ jest niezmiennicza przy przekrojach. Zatem dla $\{A_{i}\}_{i \in I} \in \mathcal{M}$ jest $\bigcap_{i \in  I}A_{i} \in \mathcal{M} $. 
+	\end{itemize}
+Daje nam to domknięcie, i.e. $\cl(Z) = \bigcap\{M\in \mathcal{M}: Z\subseteq M\} $. $\cl(Z)$ jest najmniejszym w sensie inkluzji zbiorem spełniającym własność $P$, zawierającym zbiór $Z$.
+
+W naszym dowodzie rodzina  $\mathcal{S}$ tworzy rodzinę Moore'a w przestrzeni $\mathcal{P}(X) $. Ponadto $\mathcal{A}$ należy do $S$ oraz  $\cap S = \cl\left( \mathcal{F} \right) = a\left( \mathcal{F} \right) $. Zatem $a\left( \mathcal{F} \right) \subseteq \mathcal{A}$.
+\end{remark} 
+
+\begin{remark}[Czemu to ważny przykład?]
+    Ciało z przykładu powyżej jest jednym z najprostszych przykładów struktury, która pozwala nam operować na ,,końcach'' nieskończoności, ale nie pozwala na dzielenie jej na dwie nieskończone części.
+    
+    Mamy tu podział na zbiory ,,małe'' (skończone) i ,,duże'' (koskończone). \textbf{Brakuje w nim wszystkiego ,,pomiędzy''. Jeśli $X=\mathbb{N}$, to zbiór liczb parzystych nie należy do tego ciała – jest zbyt duży, by być skończonym, i zbyt mały, by być koskończonym.}
+    
+    To ciało jest istotne z dwóch powodów:
+    \begin{enumerate}
+        \item \textbf{Probabilistyka:} Jest to model dla prawa ,,Wszystko albo Nic'' (prawo 0-1). Jeśli miara znika na zbiorach skończonych (np. p-stwo wylosowania konkretnej liczby wynosi 0), to na tym ciele każde zdarzenie ma p-stwo 0 albo 1.
+        \item \textbf{Teoria Miary:} Jest to standardowy przykład \textbf{ciała, które nie jest $\sigma$-ciałem} (dla nieskończonego $X$). Przeliczalna suma zbiorów z tego ciała (np singletonów $\{2n\}$) może dać zbiór, który do niego nie należy (zbiór liczb parzystych).
+    \end{enumerate}
+\end{remark}
+
+\begin{remark}[Brak $\sigma$-addytywności]	
+ Na ciele $\mathcal{A}$ definiujemy funkcję zbioru $\mu$:
+    \[
+        \mu(A) = \begin{cases} 
+            0 & \text{gdy } A \text{ jest skończony}, \\
+            1 & \text{gdy } A^c \text{ jest skończony}.
+        \end{cases}
+\]
+    Załóżmy, że $X$ jest przeliczalny (np. $X = \mathbb{N}$).
+    Weźmy ciąg singletonów $A_n = \{n\}$.
+    \begin{itemize}
+        \item Są to zbiory skończone, więc $\mu(A_n) = 0$ dla każdego $n$.
+        \item Są parami rozłączne i należą do $\mathcal{A}$.
+        \item Ich suma to $\bigcup A_n = X$. Zbiór $X$ należy do $\mathcal{A}$ (bo $X^c = \emptyset$ jest skończony) i z definicji $\mu(X) = 1$.
+    \end{itemize}
+    Sprawdzamy warunek $\sigma$-addytywności:
+    \[
+        \mu\left( \bigcup_{n=1}^\infty A_n \right) = \mu(X) = 1 \neq 0 = \sum_{n=1}^\infty 0 = \sum_{n=1}^\infty \mu(A_n).
+   \]
+    Zatem $\mu$ \textbf{nie jest} przeliczalnie addytywna na ciele $\mathcal{A}$.
+
+    \textbf{Wariant $\sigma$-addytywny (Rozszerzenie):} \\
+    Jeśli zamiast "skończone" rozważymy "przeliczalne", otrzymamy $\sigma$-ciało:
+    \[
+        \Sigma = \{ A \subseteq X : A \text{ przeliczalny} \lor A^c \text{ przeliczalny} \}.
+    \]
+    Jeśli $X$ jest nieprzeliczalny, to funkcja $\mu(A)=0$ (dla $A$ przeliczalnych) i $\mu(A)=1$ (dla $A$ ,,koprzeliczalnego'') jest pełnoprawną \textbf{miarą} ($\sigma$-addytywną).
+\end{remark} 
+\section{Miara Lebesgue'a I}
+
+Zdefiniujemy naturalną funkcję zbioru $\lambda$	na pierścieniu $\mathcal{R}$, generowanym przez przedziały postaci $[a,b)$, tzn  $\mathcal{F} = \{[a,b): a,b \in R\} $ oraz $\mathcal{R} = r\left( \mathcal{F} \right) $. Ma ona za zadanie mierzyć ,,długość'' zbiorów na prostej rzeczywistej. 
+
+\begin{definition}[Funkcja $\lambda$]
+	
+	Definiujemy funkcję $\lambda: \mathcal{P}(\R) \to \R$, w sposób następujący
+	\begin{enumerate}[label=\alph*)]
+		\item Na pojedynczym odcinku lewostronnie domkniętym:
+			\[
+			\lambda\left( [a,b) \right) := b-a \text{, dla } a<b.
+			.\] 
+		\item Dla zbioru $R$ będącego skończona sumą rozłącznych przedziałów 
+	\[
+	R = \bigcup_{i=1} ^{n}[[a_{i}, b_{i}), \text{ gdzie }a_{i}<b_{i}\text{, oraz } [a_{i},b_{i}) \cap [a_{j}, b_{j}) = \O\text{ dla }i\neq j
+	.\] 
+	definiujemy
+	\[
+	\lambda\left( R \right) := \sum_{i=1}^{n} (b_{i}-a_{i})
+	.\]
+	\end{enumerate} 
+\end{definition} 
+Dla uproszczenia przyjmiemy konwencję, że dla każdego rozważanego przedziału $[a,b) $ milcząco zakładamy, że $[a,b)\neq \O$, czyli że $a<b$- przedziały są niezdegenerowane.
+
+ \begin{lemma}
+	Jeżeli $[a_{n},b_{n}) $ jest skończonym bądź nieskończonym ciągiem parami rozłącznych przedziałów zawartych w $[a,b)$ to
+	 \[
+	\sum_{n} (b_{n}-a_{n}) \le b-a
+	.\] 
+\end{lemma} 
+
+\vspace{1em}
+
+\begin{proof}
+	\textbf{Przypadek skończonego ciągu zbiorów:} 
+
+	Przeprowadzimy dowód przez indukcję względem liczby przedziałów $n$.
+	\begin{enumerate}[label=\arabic*.]
+		\item \textbf{Baza indukcji (n=1):} Niech $[a_1,b_1) \subseteq [a,b)$. Z własności inkluzji zbiorów wynika, że $a\le a_1$ oraz $b_1\le b$. Zatem
+			\[
+			b_1-a_1 \le  b_1 - a \le b-a
+			.\] 
+		\item \textbf{Krok indukcyjny:} Załóżmy, że nierówność zachodzi dla dowolnego układu $n-1$ przedziałów rozłącznych. Rozważmy układ $n$ przedziałów $\{[a_{i}, b_{i})\}_{i=1}^{n} $ zawartych w $[a,b)$.
+			\begin{enumerate}[label=\theenumi\arabic*., ref=\theenumi.\arabic*]
+				\item \textbf{Uporządkowanie:}
+
+					Niech $k\in \{1,\ldots,n\} $ dla którego prawy koniec jest maksymalny, tzn $b_{k} := \max\{b_1,b_2,\ldots,, b_{n}\} $. Bez straty ogólności (poprzez przenumerowanie) przyjmijmy, że jest to ostatni przedział, czyli $b_{n}= \max_{1\le i\le n}b_{i}$
+					\begin{remark}[Bez straty ogólności- przenumerowanie.] Mamy rozłączny ciąg przedziałów $\sum_{i=1}^{n} [a_{i}, b_{i})$. Czyli ciąg $\left( I_{k} \right)_{k=1}^{n}$, dany wzorem $I_{k} = [a_{k}, b_{k})$. Ponieważ przedziały są rozłączne, więc zbiór $\{\sup ( I_{k} ) \}_{k=1}^{n}$ składa się z $n$ parami różnych elementów, więc istnieje dokładnie jedna permutacja $\sigma$ zbioru indeksów $\{1,2,\ldots, n\} $, taka że ciąg $( \sup ( I_{\sigma ( k ) }) )_{k=1}^{n}$ jest rosnący.
+
+						Podsumowując, niech $b_{k} = \sup \left( I_{k} \right) $ dla $k=1,2,\ldots,n$, z rozłączności przedziałów, $b_{i}\neq b_{j}$ dla $i\neq j$.
+
+						Definiujemy $\sigma \in S_{n}$ jako jedyną permutację spełniającą warunek monotoniczności:
+						\[
+						b_{\sigma\left( 1 \right) }<b_{\sigma\left( 2 \right) }<\ldots< b_{\sigma\left( n \right) }
+						.\] 
+						Wówczas szukany (przenumerowany) ciąg to $\left( J_{k} \right)_{k=1}^{n} = I_{\sigma(k)}$, a elementem ,,najbardziej na prawo'' jest $J_{n}$.
+					\end{remark} 
+				\item \textbf{Separacja:} 
+
+					Dla każdego $i<n$ zachodzi
+					\[
+					[a_{i}, b_{i}) \subseteq [a, a_{n})
+					.\] 
+				\item \textbf{Zastosowanie założnia indukcyjnego:} Ciąg zbiorów $\left( [a_{i}, b_{i}) \right)_{i=1}^{n-1}$ składa się z $n-1$ rozłącznych przedziałów zawartych w  $[a, a_{n})$. Na mocy założenia indukcyjnego:
+					\[
+					\sum_{i=1}^{n-1} \left( b_{i}-a_{i} \right) \le a_{n}-a
+					.\] 
+				\item \textbf{Sumowanie:} Dodając do powyższej nierówności  długość $n$-tego przedziału $(b_{n}-a_{n})$ otrzymujemy:
+					\[
+						\sum_{i=1}^{n} \left( b_{i}-a_{i} \right) = \left(\sum_{i=1}^{n-1} \left( b_{i}-a_{i} \right) \right) + \left( b_{n}-a_{n} \right) \le \left( a_{n} -a \right) + \left( b_{n}-a_{n} \right)
+					.\] 
+
+					Ponieważ $[a_{n}, b_{n}) \subseteq [a, b)$, więc $b_{n}<b$. Zatem ostatecznie:
+					\[
+					\sum_{i=1}^{n} \left( b_{i}-a_{i} \right) \le  b-a
+					.\] 
+			\end{enumerate}
+	\end{enumerate}
+\end{proof} 
+\begin{proof}
+	\noindent \textbf{Przypadek nieskończonego ciągu zbiorów:} 
+
+
+\textbf{Schemat przejścia granicznego: Od $N$ do $\infty$}
+
+\textbf{1. Sformułowanie problemu}
+
+\textbf{Założenia:} \\
+Niech $\left( (a_n, b_n) \right)_{n=1}^{\infty}$ będzie ciągiem parami rozłącznych przedziałów zawartych w przedziale $[a, b)$. Formalnie definiujemy własność globalną (nieskończoną) $P(\infty)$ jako:
+\[
+    P(\infty) \equiv \bigcup_{n=1}^{\infty} (a_n, b_n) \subseteq [a, b).
+\]
+
+\textbf{Teza:} \\
+Chcemy wykazać własność $Q(\infty)$, orzekającą, że suma długości tych przedziałów nie przekracza długości przedziału, w którym się zawierają:
+\[
+    Q(\infty) \equiv \sum_{n=1}^{\infty} (b_n - a_n) \le b - a.
+\]
+
+\textbf{Definicje własności dla skończonego $N$:} \\
+Dla dowolnego $N \in \mathbb{N}$ definiujemy aproksymacje skończone:
+\begin{itemize}
+    \item $P(N) \equiv \bigcup_{n=1}^{N} (a_n, b_n) \subseteq [a, b)$ \quad (zawieranie sumy skończonej),
+    \item $Q(N) \equiv \sum_{n=1}^{N} (b_n - a_n) \le b - a$ \quad (oszacowanie sumy skończonej).
+\end{itemize}
+
+\hrule
+\vspace{0.5cm}
+
+\textbf{2. Schemat dowodu}
+
+Dowód opiera się na redukcji problemu do przypadku skończonego, a następnie powrocie do nieskończoności poprzez przejście graniczne. Zakładając prawdziwość $P(\infty)$, dowodzimy $Q(\infty)$ według następującego ciągu implikacji:
+
+\[
+    P(\infty)
+    \xrightarrow[\text{monotoniczność inkluzji}]{\text{restrykcja}}
+    (\forall N)\, P(N)
+    \xrightarrow[\text{lemat dla skończonej sumy}]{\text{wynikanie}}
+    (\forall N)\, Q(N)
+    \xrightarrow[\text{ciągłość nierówności}]{\text{przejście graniczne } N \to \infty}
+    Q(\infty)
+\]
+
+\textbf{3. Formalne uzasadnienie kroków}
+
+\begin{enumerate}
+    \item \textbf{Restrykcja (Zstępowanie):} \quad $P(\infty) \implies (\forall N) P(N)$ \\
+    Jest to konsekwencja monotoniczności sumy zbiorów. Ponieważ suma skończona jest podzbiorem sumy nieskończonej:
+    \[
+        \bigcup_{n=1}^{N} (a_n, b_n) \subseteq \bigcup_{n=1}^{\infty} (a_n, b_n),
+    \]
+    to z przechodniości zawierania ($\subseteq$), jeśli cała seria mieści się w $[a, b)$, to każda jej skończona część również.
+
+    \item \textbf{Wynikanie (Przypadek skończony):} \quad $P(N) \implies Q(N)$ \\
+    Dla ustalonego $N$ jest to fakt znany (udowodniony np. indukcyjnie). Suma długości skończonej liczby rozłącznych podprzedziałów jest zawsze mniejsza lub równa długości przedziału, w którym się zawierają.
+
+    \item \textbf{Przejście graniczne (Wstępowanie):} \quad $(\forall N) Q(N) \implies Q(\infty)$ \\
+    To jest istota przejścia do nieskończoności. Niech $S_N = \sum_{n=1}^{N} (b_n - a_n)$.
+    \begin{itemize}
+        \item Z kroku 2 wiemy, że ciąg sum częściowych $(S_N)$ jest ograniczony z góry przez $M = b - a$.
+        \item Ponieważ wyrazy szeregu są nieujemne (długości przedziałów), ciąg $(S_N)$ jest niemalejący.
+    \end{itemize}
+    Z twierdzenia o granicy ciągu monotonicznego i ograniczonego wynika, że:
+    \[
+        \lim_{N \to \infty} S_N \le M \implies \sum_{n=1}^{\infty} (b_n - a_n) \le b - a.
+    \]
+    \textit{Kluczowym elementem jest tu zachowanie słabej nierówności ($\le$) w granicy.}
+\end{enumerate}
+
+
+	\noindent \textbf{Przejście z $N$ do $\infty$}
+
+		Chcemy skorzystać z tego, że dla skończonego ciągu zbiorów nierówność jest prawdziwa.
+
+		Jak dokładnie to wygląda?
+
+		Załóżmy, że mamy nieskończony ciąg przedziałów (rozłączny) $\left( a_{n}, b_{n} \right)_{n=1}^{\infty}$ zawarty w $[a,b)$, tzn
+		\[
+		\bigcup_{n=1}^{\infty}\left( a_{n}, b_{n} \right) \subseteq [a,b)
+		.\] 
+		
+		Chcemy pokazać, że 
+		\[
+		\sum_{n = 1}^{\infty} (b_{n}-a_{n}) \le b-a	
+		.\] 
+
+	Określmy własność 
+	\[P\left( N \right) \equiv N\text{-elementowa suma przedziałów rozłącznych jest zawarta w } [a,b),\]
+	oraz własność 
+	\[
+	Q\left( N \right) \equiv N\text{-elementowa suma długości przedziałów rozłącznych jest mniejsza lub równa od }b-a  
+	.\] 
+
+	Przez indukcję udowodniliśmy, że
+	\[
+	\left(\forall N\in \N \right) \left(P(N) \implies A\left( N\right)\right)  
+	.\] 
+
+	Chcemy teraz pokazać, że $P\left(\infty \right) \implies Q\left( \infty \right) $.
+
+        Czyli, zakładając $P\left( \infty \right) $, chcemy pokazać $Q\left( \infty \right) $.
+
+	\[
+	P\left( \infty \right) \implies \left(\forall N \right) P\left( N \right)\implies \left(\forall N \right)Q\left( N \right)\implies Q\left( \infty \right)  
+	.\] 
+	Ponieważ dla każdego $n \in \N$ mamy $\sum_{n=1}^{N} \left( b_{n}-a_{n} \right) \le b-a$, więc $S_{N} := \sum_{i=1}^{N} \left( b_{i}-a_{i} \right) $, jest ciągiem liczbowym, który jest ograniczony i niemalejący, zatem jego granica spełnia nierówność  $\lim_{N \to \infty} S_{N}\le b-a$. A to odpowiada 
+	\[
+	\lim_{N \to \infty} S_{N} = \lim_{N \to \infty} \sum_{i=1}^{N} \left( b_{i}-a_{i} \right) \overset{\Def}{=} \sum_{n = 1}^{\infty} \left( b_{n}-a_{n} \right)\le  b-a
+	.\]
+
+\end{proof} 
+\begin{lemma}
+	Jeżeli $[a_{n},b_{n}) $ jest skończonym bądź nieskończonym ciągiem przedziałów \textbf{oraz} $[a,b) \subseteq \bigcup_{n}[a_{n},b_{n})$ to
+	\[
+		b-a\le \sum_{n} (b_{n}-a_{n})
+	.\] 
+\end{lemma} 
+\begin{proof}
+\noindent \textbf{Przypadek skończony:} 
+\end{proof} 
+\begin{lemma}
+	Definicja $\lambda$ jest poprawna.
+\end{lemma} 
+\begin{remark}
+	Dlaczego to musimy udowodnić? Gdzie jest haczyk?
+\end{remark} 
+\begin{proof}
+	Poniższy obrazek jest po coś
+
+	Nie wiem jescze po co
+
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\textwidth]{"common_refinment.png"}
+	\end{figure}
+\end{proof} 
+\begin{corollary}
+
+Jeżeli $[a,b) = \bigcup_{i=1}^{n}$  to $\lambda\left( [a,b) \right) = b-a$	
+\end{corollary}
+\begin{theorem}[$\lambda$ jest  $\sigma$-addtywna]
+	Funkcja $\lambda$ jest przeliczalnie addytywną funkcją zbioru na pierścieniu przedziałów $\mathcal{R}$
+\end{theorem} 
+Aby formalnie wykazać, że $\lambda$ jest przeliczalnie addytywną funkcją zbioru na pierścieniu $\mathcal{R}$, trzeba sprawdzić
+\begin{enumerate}[label=\roman*)]
+	\item Dla $\O$ jest $\lambda \left( \O \right) = 0$.
+	\item Jeśli $A,B \in \mathcal{R}$, takie że $A\cap B= \O$ to $\lambda \left( A\cup B \right) = \lambda \left( A \right) + \lambda\left( B \right) $.
+	\item Jeśli $R = \bigcup_{n=1} ^{\infty}R_{n}$ to $\lambda\left( R \right) = \sum_{n = 1}^{\infty} \lambda\left( R_{n} \right) $.
+\end{enumerate}
+Zauważmy, że $iii) \implies ii)$ oraz z definicji $\lambda$ warunek $i)$ zachodzi. Zatem aby sprawdzić $\sigma$-addytywność funkcji $\lambda$, wystarczy rozpatrzyć sytuację, w której spełnione są trzy warunki wejściowe:
+\begin{enumerate}[label=\arabic*.]
+	\item \textbf{Elementy z pierścienia:} Mamy ciąg zbiorów $\left( R_{n} \right) _{n=1}^{\infty}$, gdzie każdy $R_{n}\in \mathcal{R}$.
+	\item \textbf{Rozłączność:} Zbiory te są parami rozłączne, tzn $R_{i}\cap R_{j} = \O$ dla $i\neq j$.
+	\item \textbf{Suma w pierścieniu: } Ich nieskończona suma $R = \bigcup_{n=1} ^{\infty}R_{n}\in \mathcal{R}$.
+		\begin{remark}
+			Pierścień sam w sobie nie gwarantuje, że nieskończona suma w nim zostanie. Jeśli nieskończona suma ,,wyleci'' poza pierścień, to definicja $\sigma$-addytywności nas nie dotyczy.
+                    
+			Definicja $\lambda$ opiera się na skończonej addytywności dla rozłącznych przedziałów. Sprawdzamy czy ta ,,skończona definicja'' wytrzymuje zderzenie z nieskończonością- czyli czy $\lambda$ zadziała poprawnie, gdy $R$ poskładamy z nieskończonej liczby kawałków.
+		\end{remark} 
+\end{enumerate}
+
+Przy powyższych warunkach, jeśli są spełnione to musi zachodzić
+\[
+\lambda\left( \bigcup_{n=1} ^{\infty}R_{n} \right) = \sum_{n = 1}^{\infty} \lambda\left( R_{n} \right) 
+.\] 
+\begin{proof}
+Załóżmy, że $R=\bigcup_{n=1} ^{\infty}R_{n}$ jest rozłączną sumą przedziałów $R_{n}\in \mathcal{R}$ oraz $R \in \mathcal{R}$.
+
+\textbf{Przypadek I: $R$ jest pojedynczym przedziałem $[a,b)$}
+
+\textbf{Przypadek II: $R$ jest skończoną sumą przedziałów} 
+\end{proof} 
+\section{Twierdzenie o konstrukcji miary.}
+
+\begin{definition}[$\sigma$-skończoność]
+    Niech $\mu$ będzie addytywną funkcją zbioru na pierścieniu $\mathcal{R}$ podzbiorów przestrzeni $X$.
+    Mówimy, że funkcja $\mu$ jest \textbf{$\sigma$-skończona}, jeżeli przestrzeń $X$ daje się pokryć przeliczalną rodziną zbiorów o miarach skończonych.
+    
+    Formalnie: Istnieje ciąg zbiorów $(X_n)_{n=1}^{\infty} \subseteq \mathcal{R}$, taki że:
+    \begin{enumerate}
+        \item $X = \bigcup_{n=1}^{\infty} X_n$ \quad (zbiory te sumują się do całej przestrzeni),
+        \item $\mu(X_n) < \infty$ dla każdego $n$.
+    \end{enumerate}
+\end{definition}
+
+\begin{remark}[O co chodzi z tą definicją?]
+    Ta definicja ma na celu ,,okiełznanie'' nieskończoności. Wyróżniamy dwa przypadki:
+    \begin{itemize}
+        \item \textbf{Przypadek trywialny ($\mu(X) < \infty$):} Jeśli cała przestrzeń ma miarę skończoną, to warunek $\sigma$-skończoności jest spełniony automatycznie (wystarczy wziąć jeden zbiór $X_1 = X$).
+        \item \textbf{Przypadek istotny ($\mu(X) = \infty$):} Jeśli cała przestrzeń ma miarę nieskończoną (np. prosta $\mathbb{R}$), to $\sigma$-skończoność gwarantuje nam, że ta nieskończoność jest ,,kontrolowalna''. Nie jest to ,,jednolita plama nieskończoności'', ale konstrukcja zbudowana z cegiełek o skończonych rozmiarach (np. odcinków $[-n, n]$).
+    \end{itemize}
+    \textbf{Wniosek:} Dzięki temu założeniu, w dowodach twierdzeń możemy zawsze sprowadzić problem ,,wielkiego $X$'' do serii problemów na ,,małych $X_n$'', a następnie skorzystać z przeliczalnej addytywności, by skleić wyniki.
+\end{remark}
+
+W dalszym ciągu ograniczymy się do rozważania $\sigma$-skończonych funkcji zbioru.
+\begin{theorem}[Rozszerzenie $\mu$ do miary na $\sigma$-ciele]
+	Jeżeli $\mu$ jest przeliczalnie addytywną i $\sigma$-skończoną funkcją na pierścieniu $\mathcal{R}$ to $\mu$ \textbf{rozszerza } się \textbf{jednoznacznie } do miary na $\sigma\left( \mathcal{R} \right) $.
+\end{theorem} 
+\begin{proof}
+	Dowód jest skomplikowany i zostawiamy go na koniec naszych rozważań na temat miary.
+\end{proof} 
+\begin{remark}[Co gdy $X$ jest ,,nieskończenie wielkie''?]
+
+W twierdzeniu pojawia się założenie o \textbf{$\sigma$-skończoności}. Jest ono ,,bezpiecznikiem'' w sytuacji, gdy $\mu(X) = \infty$ (np. długość całej prostej rzeczywistej).
+\begin{itemize}
+    \item \textbf{Problem:} Sama informacja, że $\mu(X) = \infty$, to za mało, by jednoznacznie określić miarę na skomplikowanych zbiorach (nieskończoność jest ,,nieczuła'' na dodawanie stałych).
+    \item \textbf{Rozwiązanie ($\sigma$-skończoność):} Żądamy, aby tę nieskończoną przestrzeń dało się pokryć przeliczalną rodziną zbiorów $X_n \in \mathcal{R}$ o miarach skończonych ($X = \bigcup_{n} X_n$ oraz $\mu(X_n) < \infty$).
+    \item \textbf{Efekt:} Dzięki temu możemy ,,pokroić'' problem nieskończony na serię problemów skończonych. Skoro rozszerzenie jest jednoznaczne na każdym ,,małym'' kawałku $X_n$, to jest też jednoznaczne na całej przestrzeni.
+\end{itemize}
+
+\end{remark} 
+\begin{remark}[Rozszerzenie- co oznacza?] 
+       Mamy przeliczalnie addytywną funkcję zbioru $\mu $ określoną na pierścieniu   $\mathcal{R}$. Umie ona liczyć tylko zbiory ,,proste'' (należące do $\mathcal{R}$ ). \textbf{Rozszerzenie } oznacza tu znalezienie nowej funkcji (nazwijmy ją $\hat{\mu}$), która:
+       \begin{itemize}
+       	\item \textbf{Jest określona na wszystkim:} Jej dziedziną jest ,,całe wielkie'' $\sigma$-ciało $\sigma\left( \mathcal{R} \right) $, a nie tylko mały pierścień $\mathcal{R}$.
+	\item \textbf{Jest zgodna z oryginałem:} Dla każdego zbioru $A$, który należał już do 'starej dziedziny', czyli do pierścienia $\mathcal{R}$, nowa funkcja daje ten sam wynik: $\hat{\mu}\left( A \right) = \mu\left( A \right) $. 
+	\item \textbf{Jest przeliczalnie addytywna:} Nowa funkcja $\hat{\mu}$ jest przeliczalnie addytywną funkcją zbioru na $\sigma\left( \mathcal{R} \right) $. 
+       \end{itemize}
+
+       Twierdzenie to mówi (przy założeniu $\sigma$-skończoności $\mu$) o dwóch kluczowych własnościach tego procesu (rozszerzenie $\mu$ ):
+       \begin{itemize}
+       	\item \textbf{Istnienie:} Taka funkcja istnieje.
+	\item \textbf{Jednoznaczność: } Istnieje \textbf{tylko jedna} taka funkcja. 
+       \end{itemize}
+
+       \textbf{Podsumowując:} To twierdzenie mówi, że jeśli zdefiniujemy (sensownie) $\sigma$-addytywną funkcję zbioru na prostych ,,klockach''(pierścień $\mathcal{R}$ ) to automatycznie i w jedyny możliwy sposób otrzymamy $\sigma$-addytywną funkcję zbioru na wszystkich skomplikowanych konstrukcji zburowanych z $\mathcal{R}$ ($\sigma$- ciele $\sigma\left( \mathcal{R} \right) $).
+\end{remark} 
+
+\vspace{1em}
+
+Do momentu udowodnienia tego twierdzenia, będziemy używać pewnika, że 
+\begin{quote}
+	\textbf{wystarczy wierzyć w istnienie miary, aby wyprowadzić jej własności}.
+\end{quote} 
+
+\begin{remark}[Wiara.]
+Powyższe zdanie jest kluczowe, bo oddziela \textbf{techniczną udrękę konstrukcji} (czy miara w ogóle istnieje?) od \textbf{badania jej struktury} (jak wygląda, gdy już jest).
+
+Podejście to pozwala nam od razu przejść do \textbf{twierdzenia o aproksymacji}(poniżej). Jeśli ,,uwierzymy'', że miara $\mu$ na $\mathcal{R}$ istnieje, to natychmiast dostajemy potężne narzędzie do opisów zbiorów mierzalnych.
+
+Oto jak ta ,,wiara'' przekłada się na matematykę:
+
+\noindent \textbf{Co zyskujemy ,,na kredyt''?}(Twierdzenie o aproksymacji)
+
+Zakładamy, że rozszerzenie miary istnieje (zgodnie z twierdzeniem o rozszerzeniu \ldots). Wtedy okazuje się, że \textbf{nie ma nowych ,,dziwnych'' zbiorów} w $\sigma $-ciele, które byłyby całkowicie obce zbiorom z pierścienia $\mathcal{R}$.
+
+\noindent \textbf{Twierdzenie o aproksymacji:}
+
+Dla każdego zbioru mierzalnego $A\in \sigma\left( \mathcal{R} \right)  $ o skończonej mierze i każdego $\varepsilon > 0 $, istnieje zbiór $R$ z pierścienia $\mathcal{R}$, taki że różnica symetryczna jest mała:
+\[
+\mu\left( A \Delta R \right) < \varepsilon 
+.\] 
+\noindent \textbf{Interpretacja:} 
+
+Każdy skomplikowany zbiór mierzalny (na przykład) zbiór borelowski jest ,,prawie'' zbiorem prostym (na przykład skończoną sumą przedziałów). Błąd aproksymacji $\mu\left( A \Delta R \right) $ możemy uczynić dowolnie małym.
+
+\noindent \textbf{Jak to udowodnić ,,wierząc w miarę''?} (Metoda ,,Dobrych Zbiorów'')
+
+Pokażemy teraz jedną z najważniejszych technik dowodowych w teorii miary. Stosujemy ją, gdy chcemy pokazać, że \textbf{wszystkie} zbiory z $\sigma\left( \mathcal{R} \right) $ mają pewną własność $W$.
+
+\noindent Schemat dowodu twierdzenia o aproksymacji wygląda tak:
+\begin{enumerate}[label=\arabic*)]
+	\item \textbf{Definiujemy rodzinę ,,Dobrych Zbiorów''}$\bm{ \left( \mathcal{A} \right)  } :$ 
+
+		Niech $\mathcal{A}$ to zbiór wszystkich $A\in \sigma \left( \mathcal{R} \right) $, które \textbf{dają się aproksymować} zbiorami z $\mathcal{R}$ (czyli spełniają tezę).
+		\[
+		\mathcal{A} = \{A\in \sigma\left( \mathcal{R} \right): \left(\forall \varepsilon > 0 \right)\left(\exists R \in \mathcal{R} \right)\left( \mu\left( A \Delta R \right) < \varepsilon  \right)    \}  
+		.\] 
+
+	\item \textbf{Sprawdzanie bazy (generatora)}$\bm{ \mathcal{R}\subseteq \mathcal{A} } :$ 
+	
+		Czy zbiory z pierścienia dają się aproksymować zbiorami z pierścienia? Tak, trywialnie- bierzemy ten sam zbiór, ich różnica symetryczna wynosi 0. Zatem $\mathcal{R} \subseteq \mathcal{A}$.
+
+\item \textbf{Sprawdzamy strukturę} ($\bm{\mathcal{A}}$ jest $\sigma\text{-ciałem}$) 
+
+		To jest kluczowy moment ,,wiary''. Używamy własności miary (którą założyliśmy, że mamy), aby pokazać, że
+		\begin{itemize}
+			\item Jeśli $A$ jest ,,dobry'' to $A^{c}$ również jest ,,dobry'' (bo $A^{c}\Delta R^{c} = A \Delta R$ ).
+			\item Przeliczalna suma zbiorów ,,dobrych'' jest ,,dobra'' (tutaj korzystamy z ciągłości miary, czyli z faktu, że szereg miar jest zbieżny)
+		\end{itemize}
+
+	\item \textbf{Wniosek końcowy:} 
+
+		Skoro $\mathcal{A}$ jest $\sigma $-ciałem i zawiera $\mathcal{R}$, a $\sigma\left( \mathcal{R} \right) $ jest \textbf{najmniejszym} takim $\sigma $-ciałem, to musi zachodzić:
+		\[
+		\sigma\left( \mathcal{R} \right) \subseteq \mathcal{A}
+		.\] 
+		Czyli każdy zbiór z $\sigma\left( \mathcal{R} \right) $ jest ,,dobry''(da się aproksymować).
+\end{enumerate}
+\noindent \textbf{Gdzie tu jest walor edukacyjny?}
+
+Gdybyśmy zaczęli od dowodu konstrukcji miary (twierdzenie 1.4.2), to utknęlibyśmy w miarach zewnętrznych, warunku Caratheodory'ego i technicznych lematach. Dzięki ,,uwierzeniu'':
+\begin{enumerate}[label=\arabic*)]
+	\item Widzimy od razu \textbf{strukturę} zbiorów mierzalnych (są granicami zbiorów prostych),
+	\item Uczymy się techniki dowodzenia (rodzina zbiorów ,,dobrych''), którą będziemy stosowali wielokrotnie.
+\end{enumerate}
+\end{remark} 
+
+\begin{theorem}[O aproksymacji.]
+	\noindent \textbf{Założenia:} 
+	\begin{enumerate}[label=\arabic*)]
+		\item $\mathcal{R}$ jest pierścieniem zbiorów.
+		\item $\mu$ jest funkcją addytywną na $\mathcal{R}$, która:
+			\begin{itemize}
+				\item jest przeliczalnie addytywna.
+				\item jest $\sigma $-skończona.
+			\end{itemize}
+		\item $\hat{\mu}$ jest rozszerzeniem $\mu$ do miary na $\sigma\left( \mathcal{R} \right) $.
+	\end{enumerate}
+	\noindent \textbf{Teza:}
+
+	Dla każdego $A\in \sigma \left( \mathcal{R} \right) $ o skończonej mierze ($\hat{\mu}\left( A \right) <\infty$ ) i dla każdego $\varepsilon > 0 $:
+	\begin{quote}
+		Istnieje zbiór $R\in \mathcal{R}$ (,,klocek ze starego świata''), taki że błąd przybliżenia mierzony ,,nową'' miarą jest znikomy:
+		\[
+		\hat{\mu}\left( A \Delta R \right) < \varepsilon 
+		.\] 
+	\end{quote} 
+
+\end{theorem} 
+
+\textbf{Dowód Twierdzenia 1.4.3 (o aproksymacji)}
+
+Jasne, przejdźmy przez dowód Twierdzenia 1.4.3 (o aproksymacji) ze skryptu prof. Plebanka. Rozpiszę go w formie "krok po kroku", wydobywając logiczny szkielet spod technicznego zapisu.
+
+Zastosujemy metodę \textbf{"Rodziny Dobrych Zbiorów"}, o której rozmawialiśmy.
+
+\begin{center}
+    \rule{0.5\textwidth}{0.4pt}
+\end{center}
+
+\textbf{Cel Twierdzenia}
+
+Chcemy pokazać, że jeśli mamy miarę $\mu$ na $\sigma$-ciele generowanym przez pierścień $\mathcal{R}$ (czyli na $\sigma(\mathcal{R})$), to każdy zbiór mierzalny $A$ (o skończonej mierze) można z dowolną dokładnością przybliżyć zbiorem prostym $B \in \mathcal{R}$.
+
+Miarą błędu jest różnica symetryczna: $\mu(A \triangle B) < \epsilon$.
+
+\begin{center}
+    \rule{0.5\textwidth}{0.4pt}
+\end{center}
+
+\textbf{KROK 1: Ustalenie "Pojemnika na Dobre Zbiory"}
+
+Zdefiniujmy rodzinę $\mathcal{D}$ (zbiór wszystkich zbiorów, dla których twierdzenie jest prawdziwe):
+\[ \mathcal{D} = \{ A \in \sigma(\mathcal{R}) : \forall \epsilon > 0, \exists B \in \mathcal{R}, \mu(A \triangle B) < \epsilon \} \]
+
+\textbf{Nasza strategia:} Chcemy pokazać, że ta rodzina $\mathcal{D}$ jest tak bogata, że zawiera całe $\sigma$-ciało $\sigma(\mathcal{R})$. Aby to zrobić, pokażemy, że $\mathcal{D}$ samo w sobie jest $\sigma$-ciałem i zawiera $\mathcal{R}$.
+
+\textit{(Na początku zakładamy dla uproszczenia, że cała przestrzeń ma miarę skończoną, czyli $\mu(X) < \infty$. Wtedy pierścień $\mathcal{R}$ jest ciałem, bo $X \in \mathcal{R}$)}.
+
+\textbf{KROK 2: Baza (Start)}
+
+Czy zbiory z pierścienia $\mathcal{R}$ są "dobre"?\\
+Tak. Weźmy dowolne $A \in \mathcal{R}$. Jako jego przybliżenie weźmy ten sam zbiór $B = A$.\\
+Wtedy $\mu(A \triangle A) = \mu(\emptyset) = 0 < \epsilon$.\\
+\textbf{Wniosek:} $\mathcal{R} \subseteq \mathcal{D}$.
+
+\textbf{KROK 3: Dopełnienia (Symetria)}
+
+Jeśli zbiór $A$ jest "dobry", to czy jego dopełnienie $A^c$ też jest "dobre"?\\
+Tak. Skoro $A$ jest dobry, to istnieje $B \in \mathcal{R}$ bliskie $A$.\\
+Zauważmy własność różnicy symetrycznej: $A^c \triangle B^c = A \triangle B$.\\
+Zatem $B^c$ (które należy do pierścienia/ciała $\mathcal{R}$) jest tak samo dobrym przybliżeniem dla $A^c$.
+\[ \mu(A^c \triangle B^c) = \mu(A \triangle B) < \epsilon \]
+
+\textbf{Wniosek:} Rodzina $\mathcal{D}$ jest zamknięta na dopełnienia.
+
+\textbf{KROK 4: Sumy skończone (Zamykanie "małych" dziur)}
+
+Jeśli $A_1$ i $A_2$ są "dobre", to czy $A_1 \cup A_2$ jest "dobre"?\\
+Tak.
+\begin{enumerate}
+    \item Dobieramy $B_1 \in \mathcal{R}$ bliskie $A_1$ (błąd $\epsilon/2$).
+    \item Dobieramy $B_2 \in \mathcal{R}$ bliskie $A_2$ (błąd $\epsilon/2$).
+    \item Wtedy suma prostych zbiorów $B_1 \cup B_2$ przybliża sumę $A_1 \cup A_2$. Błąd sumy jest mniejszy bądź równy sumie błędów (to wynika z własności $(A_1 \cup A_2) \triangle (B_1 \cup B_2) \subseteq (A_1 \triangle B_1) \cup (A_2 \triangle B_2)$).
+\end{enumerate}
+\[ \mu((A_1 \cup A_2) \triangle (B_1 \cup B_2)) \le \mu(A_1 \triangle B_1) + \mu(A_2 \triangle B_2) < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon \]
+
+\textbf{Wniosek:} $\mathcal{D}$ jest ciałem zbiorów.
+
+\textbf{KROK 5: Przejście graniczne (Kluczowy "Skok Wiary")}
+
+Tu wykorzystujemy fakt, że $\mu$ jest już miarą (jest ciągła).\\
+Niech $A_n$ będzie rosnącym ciągiem zbiorów "dobrych" ($A_n \in \mathcal{D}$). Niech $A = \bigcup A_n$. Czy $A$ jest "dobre"?
+
+\begin{enumerate}
+    \item \textbf{Aproksymacja od wewnątrz:} Ponieważ $A_n \nearrow A$ i $\mu(A) < \infty$, to miara "reszty" maleje do zera: $\mu(A \setminus A_n) \to 0$.\\
+    Znajdźmy takie duże $n$, że $\mu(A \setminus A_n) < \epsilon/2$.
+    \item \textbf{Aproksymacja zbiorem prostym:} Skoro $A_n$ jest "dobry" (z założenia), to istnieje $B \in \mathcal{R}$, że $\mu(A_n \triangle B) < \epsilon/2$.
+    \item \textbf{Łączenie:} Zbiór $A$ różni się od $A_n$ o $\epsilon/2$, a $A_n$ różni się od $B$ o $\epsilon/2$. Zatem $A$ różni się od $B$ o mniej niż $\epsilon$.
+\end{enumerate}
+
+\textbf{Wniosek:} $\mathcal{D}$ jest zamknięta na przeliczalne sumy wstępujące.\\
+Skoro $\mathcal{D}$ jest ciałem i jest zamknięta na ciągi wstępujące (klasa monotoniczna), to \textbf{$\mathcal{D}$ jest $\sigma$-ciałem}.
+
+\textbf{KROK 6: Konkluzja (Zamykanie pułapki)}
+
+Mamy trzy fakty:
+\begin{enumerate}
+    \item $\mathcal{R} \subseteq \mathcal{D}$ (zbiory proste są w rodzinie).
+    \item $\mathcal{D}$ jest $\sigma$-ciałem (rodzina jest stabilna).
+    \item $\sigma(\mathcal{R})$ to \textbf{najmniejsze} $\sigma$-ciało zawierające $\mathcal{R}$.
+\end{enumerate}
+
+Zatem: $\sigma(\mathcal{R}) \subseteq \mathcal{D}$.\\
+Oznacza to, że \textbf{każdy} zbiór z $\sigma(\mathcal{R})$ daje się aproksymować.
+
+\textbf{KROK 7: Przypadek nieskończony ($\sigma$-skończony)}
+
+Co jeśli $\mu(X) = \infty$? (np. prosta rzeczywista).\\
+Dzielimy przestrzeń na kawałki $X_n$ o mierze skończonej (z definicji $\sigma$-skończoności).\\
+Dla dowolnego zbioru $A$ (o skończonej mierze), jego kawałki $A \cap X_n$ też mają skończoną miarę. Aproksymujemy każdy kawałek z osobna (korzystając z dowodu wyżej), a ponieważ miara $A$ jest skończona, "ogon" tej sumy jest pomijalnie mały. Suma przybliżeń kawałków daje przybliżenie całości $A$.
+
+\textbf{Podsumowanie intuicyjne}
+
+Dowód ten mówi: "Skoro zbiory mierzalne powstają ze zbiorów prostych poprzez przeliczalne sumy i dopełnienia, a błąd aproksymacji przy tych operacjach się nie kumuluje w nieskończoność (dzięki ciągłości miary), to zbiory proste zawsze 'dogonią' zbiory mierzalne".
+
+\section{Przestrzenie miarowe.}
+Terminem miara będziemy określać przeliczalnie addytywną funkcję zbioru określoną na $\sigma$-ciele.
+
+\begin{definition}[Przestrzeń miarowa.]
+	Przestrzenią miarową nazywamy trójkę $\left( X, \Sigma, \mu \right) $, gdzie $\Sigma \subseteq \mathcal{P}(X) $ jest $\sigma$-ciałem, a $\mu: \Sigma \to [0,\infty)$ jest miarą. 
+\end{definition} 
+\begin{remark}
+	Zauważmy \ldots
+\end{remark} 
+\begin{definition}[Skończona przestrzeń miarowa.]
+	Przestrzeń miarową $\left(X, \Sigma, \mu \right) $ nazywamy skończoną jeżeli $\mu\left( X \right) < \infty$ oraz probablistyczną w przypadku gdy $\mu\left( X \right) = 1$.
+
+	Przestrzeń taka jest $\sigma$-skończona, \textbf{jeżeli} istnieją zbiory $X_{k} \in \Sigma$, takie że $X=\bigcup_{k=1} ^{\infty} X_{k}$ i $\mu\left( X_{k} \right) < \infty $ dla każdego k.
+	
+\end{definition} 
+
+W przestrzeniach miarowych można dokonywać operacji brania podprzestrzeni.
+\begin{theorem}[Podprzestrzeń miarowa.]
+	Dla przestrzeni miarowej $\left( X, \Sigma, \mu \right) $ i zbioru $Y \in \Sigma$ oznaczamy
+	\[
+	\Sigma_{Y}= \{A \in \Sigma: A \subseteq Y\} 
+	.\] 
+	Wtedy $\left( Y, \Sigma_{Y}, \mu_{Y} \right)$, gdzie $\mu_{Y}\left( A \right) = \mu\left( A \right) $ dla $A\in \Sigma_{Y}$ jest przestrzenią miarową. 
+\end{theorem} 
+\begin{proof}
+	TODO
+\end{proof} 
+Każdą miarę można, tanim kosztem, uzupełnić.
+\begin{definition}[Zupełna przestrzeń miarowa.]
+	Mówimy, że przestrzeń miarowa $\left( X,\Sigma,\mu \right) $ jest \textbf{zupełna} jeżeli dla każdego $A\in \Sigma$, jeżeli $\mu\left( A \right)= 0 $to wszystkie podzbiory $A$ należą do $\Sigma$. W takim przypadku mówimy, że $\Sigma$ jest  $\sigma$-ciałem zupełnym względem $\mu$.
+\end{definition} 
+\begin{theorem}
+	Dla każdej przestrzeni miarowej $\left( X,\Sigma, \mu \right) $ istnieje przestrzeń miarowa zupełna $\left( X, \hat{\Sigma}, \hat{\mu} \right) $, gdzie $\hat{\Sigma}\supseteq \Sigma$ i $\hat{\mu}$ jest rozszerzeniem miary  $\mu$ na $\hat{\Sigma}.$
+\end{theorem} 
+\section{Miara Lebesgue'a II}
+
+Wcześniej zdefiniowaliśmy funkcję zbioru $\lambda$ na pierścieniu $\mathcal{R}$ podzbiorów prostej, generowanym przez przedziały postaci $[a,b)$. Ponieważ $\lambda$ jest przeliczalnie addytywną funkcją zbioru na pierścieniu  $\mathcal{R}$, więc na mocy twierdzenia o rozszerzeniu do miary,  $\lambda$ jest \textbf{miarą} na  $\bor\left(\mathbb{R} \right) $. I to jest słynna \textbf{miara Lebesgue'a} (na prostej rzeczywistej).
+
+Liniowa \textbf{miara Lebesgue'a} jest więc po prostu uogólnieniem elementarnej koncepcji długości odcinka. Tak jak zaznaczyliśmy wcześniej, z samego faktu istnienia jedynej takiej miary, wyprowadzimy jej własności.
+
+
+

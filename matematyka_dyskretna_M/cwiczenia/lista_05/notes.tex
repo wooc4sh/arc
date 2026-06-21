@@ -1,0 +1,286 @@
+\documentclass[12]{article}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\definecolor{processblue}{cmyk}{0.96, 0, 0, 0}
+\usepackage{import}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{amsmath}
+\usepackage{upgreek}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\usepackage[margin=0.25in]{geometry}
+\usepackage{listings}
+\usepackage[T1]{fontenc}
+%\geometry{letterpaper}
+%Commands definitions
+\newcommand{\setbackgroundcolour}{\pagecolor[rgb]{0.19, 0.19, 0.19}}
+\newcommand{\settextcolour}{\color[rgb]{0.87, 0.87, 0.87}}
+\newcommand{\invertbackgroundtext}{\setbackgroundcolour\settextcolour}
+
+%Command execution
+%If this line is commented, then the appearance remaind as usual.
+\invertbackgroundtext
+
+\lstset{
+    language=C,
+    basicstyle=\ttfamily,
+    keywordstyle=\color{cyan},
+    commentstyle=\color{green!70!black},
+    stringstyle=\color{red},
+    showstringspaces=false,
+    tabsize=4,
+    breaklines=true,
+    breakatwhitespace=false,
+}
+
+% Ponizsze linijki sa templatka do zadan i problemow                                                                                                           
+% Wziete gdzies z internetu
+% Assignment class for homework and exams.                                                                                                                  
+%
+% Gabriel Antonius
+%
+%
+\NeedsTeXFormat{LaTeX2e}
+\RequirePackage{placeins}
+\RequirePackage{environ}
+\RequirePackage{xifthen}
+
+
+% \solutiontrue and \solutionfalse control whether solutions are shown
+\newif\ifsolution
+\solutiontrue
+%\solutionfalse
+
+
+% Redefine these if you want to change the language
+\newcommand{\problemlabel}{Zadanie}
+\newcommand{\solutionlabel}{Rozwi\k{a}zanie}
+
+
+% Set up counters for problems and subproblems
+\newcounter{ProblemNum}
+\newcounter{SubProblemNum}[ProblemNum]
+\renewcommand{\theProblemNum}{\arabic{ProblemNum}}
+\renewcommand{\theSubProblemNum}{\alph{SubProblemNum}}
+
+
+% The problem environment is the base unit of content for this class.
+\newcommand{\subsectiontitle}{}
+\newenvironment{problem}[1]%
+  {
+  \stepcounter{ProblemNum}
+  \renewcommand{\subsectiontitle}{\problemlabel \ \theProblemNum \ifthenelse{\isempty{#1}}{}{: #1}}
+  \medskip \subsection*{\subsectiontitle}  % new line after title
+  {\large Tre\'{s}\'{c}: } 
+  \FloatBarrier
+  }
+  {
+  \FloatBarrier
+  }
+
+
+% The subproblem command divides a problem into parts a), b), c), ...
+\newcommand*{\subproblem}{%
+  \vspace*{3pt}
+  \stepcounter{SubProblemNum}%
+  {\bf \theSubProblemNum)\hspace{2pt}}
+  }
+
+
+% The solution environment should be used within the problem environment
+\NewEnviron{solution}{
+  \setcounter{SubProblemNum}{0}
+  \ifsolution
+    \FloatBarrier
+    \subsubsection*{\solutionlabel}
+    \BODY
+  \fi}
+
+
+%\documentclass[12pt]{myassignment}
+%\usepackage{amsmath}                                                                                                                                        
+\setlength{\parindent}{0pt}
+
+\solutiontrue  % <---- Toggle showing solutions or not
+%\solutionfalse
+
+%koniec templatki do zadan i problemow
+
+
+
+
+%\author{Lukasz Kopyto}
+%\title{tytul}
+
+\begin{document}
+%\maketitle
+\noindent \L ukasz Kopyto \hfill 12.12.2024 \\
+
+\begin{center}
+
+    {\large Notki do listy 5}
+\end{center}
+\section*{Twierdzenie Eulera i pewne jego zastosowania}
+
+
+Niech $m > 1$ i $m\in \mathbb{N}$ oraz niech
+
+\[r_{1}, r_{2}, \dots, r_{\phi(m)} \tag{1}\]
+
+bedzie ciagiem wszystkich liczb naturalnych $\leq m$ i wzglednie pierwszych do $m$. Niech a bedzie jakakolwiek liczba calkowita wzglednie pierwsza do $m$. Dla $k=1,2,\dots, \phi(m)$ oznaczmy przez $\delta_{k}$ reszte z dzielenia liczby $ar_{k}$ przez $m$. Bedzie wiec:
+
+\[ \delta_{k}\equiv ar_{k}\text{(mod m) dla } k = 1,2,\dots \phi(m)\tag{2}\]
+
+Pokazemy, ze ciag (2) rozni sie co najwyzej porzadkiem wyrazow do ciagu (1). W tym celu wystarczy pokazac, ze
+\begin{enumerate}
+    \item kazdy wyraz ciagu (2) jest liczba naturalna $\leq m$ i wzglednie pierwsza do m
+    \item wszystkie wyrazy ciagu (2) sa rozne
+\end{enumerate}
+
+Poniewaz liczby z ciagu (2) sa resztami z dzielenie przez m, wiec oczywiscie sa one $\geq 0$ oraz $< m$. Wobec (2) mamy $\delta_{k} = ar_{k} + mt_{k}$, dla $k = 1, 2, \dots, \phi(m)$, gdzie $t_{k}$ jest liczba calkowita. Wobec $gcd(a, m) = 1$ oraz $gcd(r_{k}, m) = 1$ dla $k = 1,2,\dots, \phi(m)$ mamy $gcd(ar_{k}, m) = 1$. Gdyby bylo tak, ze $d | \delta_{k}$ i $d|m$ to wobec wzoru na $\delta_{k}$ mielibysmy $d|ar_{k}$, co wobec $d|m$ i $gcd(ar_{k}, m) = 1$, daje $d|1$. Jest wiec $gcd(\delta_{k}, m)= 1$. Warunek 1. jest wiec spelniony.
+
+Przypuscmy teraz, ze przy pewnych liczbach k i l, gdzie $1\leq k < l < \phi(m)$, mamy $\delta{k} = \delta_{1}$. Wobec (2) byloby $ar_{k} \equiv ar_{1}\text{(mod m)}$, skad $m| (r_{1} - r_{k})$ co, wobec $gcd(a,m) = 1$ daje $m| r_{1} - r_{k}$.
+
+Ale $r_{k}$ i $r_{1}$ sa to liczby naturalne < m, zatem wartosc bezwzgledna ich roznicy jest < m. i z ostatniego wzoru wynika, ze $r_{k} = r_{l}$, zatem k = l, wbrew zalozeniu. Jest wiec, ze $\delta_{k} \neq \delta_{1}$, dla $k \neq l$ i w ten sposob warunek 2. jest spelniony.
+
+Pokazalismy, ze liczby z ciagu (2) co najwyzej porzadkiem roznia sie od liczb ciagu (1).
+
+Wynika stad, ze $\delta_{1}\delta_{2}\dots \delta_{\phi(m)} = r_{1}r_{2}\dots r_{\phi(m)}$
+
+Zatem, wobec (2),
+
+\[ \tag{3} ar_{1}ar_{2}\dots ar_{\phi(m)} = a^{\phi(m)}r_{1}r_{2}\dots r_{\phi(m)} \equiv r_{1}r_{2}\dots r_{\phi(m)} \]  
+
+Niech $P = r_{1}r_{2}\dots r_{\phi(m)}$; poniewaz $gcd(r_{k}, m) = 1$ dla $k = 1,2,\dots, \phi(m)$, wiec bedzie $gcd(P, m) = 1$, a poniewaz wobec (3) mamy $a^{\phi(m)}P \equiv P\text{(mod m)}$, czyli $m|P(a^{\phi(m)}-1)$, wiec musi byc $m| a^{\phi(m)}-1$, czyli $a^{\phi(m)}\equiv 1\text{(mod m)}$, 
+
+Udowodnilismy zatem ze:
+
+\begin{tcolorbox}[colback=white!90!blue,colframe=white!35!blue,title=Twierdzenie Eulera]
+    Dla kazdej liczby calkowitej a, ktora jest wzglednie pierwsza do liczby naturalnej m zachodzi kongruencja \[ a^{\phi(m)} \equiv 1\text{(mod m)} \]
+ 
+\end{tcolorbox}
+
+Zauwazmy, ze twierdzenie to jest uogolnieniem malego twierdzenia Fermata, gdyz jesli m jest liczpa pierwsza p, to mamy jak wiadomo, $\phi(m) = \phi(p) = p-1$ a warunek $gcd(a,p) = 1$ jest rownowazny warunkowi $p \nmid a$
+
+Przypomnienie:
+
+\begin{tcolorbox}[colback=white!90!blue,colframe=white!35!blue,title=Male twierdzenie Fermata]
+
+    Jezeli liczba calkowita D jest niepodzielna przez liczbe pierwsza p, to 
+    \[ D^{p-1} \equiv 1\text{(mod p)} \]
+
+\end{tcolorbox}
+
+Teraz inne wazne twierdzenie:
+
+\begin{tcolorbox}[colback=white!90!blue,colframe=white!35!blue,title=Funkcja Eulera jest funkcja multiplikatywna]
+
+    Jezeli a i b sa liczbami naturalnymi wzglednie pierwszymi(piszemy $a \perp b$) to:
+
+    \[ \phi(ab) = \phi(a)\phi(b) \tag{4}\]
+
+\end{tcolorbox}
+
+Aby to udowodnic, wykazemy najpierw pomocniczy lemat, zreszta bardzo wazny
+
+\begin{tcolorbox}[colback=white!90!green,colframe=black!35!green,title= Reszty z dzielenia przez a kolejnych liczb od r az do ab - b + r]
+
+    Jezeli a i b sa danymi liczbami naturalnymi takimi, ze $gcd(a,b) = 1$ oraz jezeli r jest dowolna liczba calkowita, to reszty z dzielenia przez a liczb:
+
+    \[r, b+r, b+2r, \dots, (a-1)b + r \tag{5}\]
+  
+ roznia sie co najwyzej kolejnoscia od liczb:
+
+    \[ 0, 1, 2, \dots, a-1 \tag{6} \]
+
+\end{tcolorbox}
+
+$\textbf{Dowod lematu}$
+
+Zalozmy, ze dla pewnych liczb calkowitych k i l, gdzie $0\leq k < l < a$ liczby kb+r i lb +r daja te sama reszte przy dzieleniu przez a. Byloby wiec $a| lb + r - (kb + r)$ skad $a|(l-k)b$, co wobec $gcd(a, b) = 1$ daje $a| l-k$, co wobe $0\leq k < l < a$ czyli $0 < l-k < a$, jest niemozliwe. Liczby (5) daja wiec same rozne reszty przy dzieleniu przez a, a poniewaz jest ich a, to jest ich tyle ile wszystkich roznych reszt z dzielenia przez a, wiec liczby ciagu (5) roznia sie co najwyzej kolejnoscia od liczb ciagu (6). c.b.d.o.
+
+$\textbf{Dowod twierdzenia o multiplikatywnosci funkcji $\phi$:}$
+
+Wobec $\phi(1) = 1 $ twierdzenie jest prawdziwe, gdy conjamniej jedna z liczb a i b jest rowna 1. Mozemy wiec dalej zakladac, ze a > 1 i b > 1. Liczba $\phi(ab)$ jest liczba tych liczb tablicy(o a wierszach i b kolumnach)
+
+\begin{tabular}{|r|r|r|r|r|r|}
+    \hline
+    1 & 2 & \dots & r & \dots & b \\
+    b+1 & b+2 & \dots & b+r & \dots & 2b \\
+    2b+1 & 2b+2 & \dots & 2b+r & \dots& 3b \\
+    \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
+    (a-1)b + 1 & (a-1)b + 2 & \dots &(a-1)b + r & \dots& ab \\
+    \hline
+\end{tabular}
+
+ktore sa wzglednie pierwsze wzlgedem ab, a wiec ktore sa wzglednie pierwsza z a i wzglednie pierwsze z b.
+
+Niech r bedzie dana liczba naturalna $\leq b$ i wezmy pod uwage r-ta kolumne naszej tablicy. Jezeli $gcd(r,b) = 1$, to wszystkie wyrazy tej kolumny sa wzglednie pierwsze z b, w przeciwnym razie zaden z nich nie jest wzglednie pierwszy z b.
+
+Liczba takich naturalnych $r\leq b$ dla ktorych $gcd(r,b) = 1$  wynosi oczywiscie $\phi(b)$. Tyle tez jest kolumn, ktorych wszystkie wyrazy sa pierwsze wzgledem b. Wezmy teraz ktorakolwiek z takich kolumn, niech to bedzie r-ta kolumna. W mysl naszego lematu(?) reszty z dzielenia przez a liczb wybranej kolumny roznia sie co najwyzej porzadkiem od liczb 0, 1, 2, ..., a-1, skad wynika natychmiast, ze wsrod nich jest $\phi(a)$ liczb pierwszych wzgledem a. W kazdej wiec z $\phi(b)$ kolumn, ktorych wyrazy sa wzglednie pierwsze z b, mamy $\phi(a)$ wyrazow wzglednie pierwszych do a. Wynika stad, ze liczba wyrazow naszej tablicy pierwszych wzgledem a oraz wzgledem b wynosi $\phi(a)\cdot \phi(b)$. Stad wzor (4) i twierdzenie zostalo udowodnione.
+
+Z tego twierdzenia(4) latwo wynika z pomoca indukcji, ze
+
+\begin{tcolorbox}[colback=white!90!blue,colframe=white!35!blue,title=Funkcja $\phi$ jest przeliczalnie multiplikatywna]
+
+    Jezeli $a_{1} a_{2}, \dots, a_{m}$ sa liczbami naturalnymi, parami wzglednie pierwszymi, to
+
+    \[ \phi(a_{1}a_{2}\dots a_{m}) = \phi(a_{1})\phi(a_{2})\dots \phi(a_{m}) \]
+\end{tcolorbox}
+
+
+\begin{problem}{Uogolnione male twierdzenie Fermata}
+
+    Niech $n = p_{1}^{n_{1}}p_{2}^{n_{2}}\dots p_{s}^{n_{s}}$, $\phi$ jest funkcja eulera oraz $\psi(n) = lcm(\phi(p_{1}^{n_{1}}), \phi(p_{2}^{n_{2}}), \dots, \phi(p_{s}^{n_{s}}))$
+
+Udowodnij, ze dla $a\perp n$ zachodzi $n|a^{\psi(n)}-1$
+
+\begin{solution}
+    
+\end{solution}
+\end{problem}
+
+\begin{problem}{Suma funkcji Eulera}
+    
+    Pokaz, ze $\sum_{d: d|n} \phi(d) = n$
+
+    \begin{solution}
+        
+    \end{solution}
+\end{problem}
+
+\begin{problem}{smh}
+    Pokaz wzor: $loglcm(1,2,\dots,n) = \sum_{p \in \mathbb{P}}\lfloor log_p(n) \rfloor log(p)$
+    
+    \begin{solution}
+        
+    \end{solution}
+
+\end{problem}
+
+    \begin{problem}{Zasada szufladkowa}
+        Udowodnij nastepujace stwierdzenia za pomoca zasady szufladkowej.
+
+        \subproblem
+        W turnieju kazda druzyna gra z kazda inna dokladnie raz. W kazdym momencie trwania turnieju istnieja dwie druzyny, ktore rozegraly tyle samo meczow.
+
+        \subproblem
+
+        Wsrod pieciu punktow wybranych w trojkacie rownobocznym o boku 1, istnieje przynajmniej jedna para punktow odleglych od siebie o co najwyzej $\frac{1}{2}$.
+
+        \subproblem
+
+        Kazdy wieloscian wypukly zawiera przynajmniej dwie sciany o tej samej liczbie krawedzi.
+        
+    \begin{solution}
+        
+
+    \end{solution}
+
+    \end{problem}
+
+
+\end{document}
+

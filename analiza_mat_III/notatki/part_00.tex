@@ -1,0 +1,233 @@
+\chapter{Point zero.}
+Wprowadzamy tu pojęcia, a raczej przypominamy, które są potrzebne do sprawnego obchodzenia się z tematyką wymaganą na wykładzie.
+\section{Fundamenty.}
+\subsection{Pochodna i różniczka.}
+
+\paragraph{Część I: Funkcje jednej zmiennej rzeczywistej($f:\R \to \R$).}
+Zaczynamy od klasyki, patrzymy na nią przez pryzmat aproksymacji liniowej.
+\begin{enumerate}[label=\arabic*.]
+	\item \textbf{Pochodna (Derrivative)}
+
+		Niech $f: \R\to\R$ oraz $x_0\in \R$.
+
+		\textbf{Definicja formalna:} Pochodną funkcji f w punkcie $x_0$ nazywamy granicę(o ile istnieje i jest skończona):
+		\[
+		f'\left( x_0 \right) = \lim_{h \to 0} \frac{f\left( x_0 + h \right) + f\left( x_0 \right) }{h}
+		.\] 
+		\textbf{Istota:} Pochodna w tym ujęciu jest liczbą. Mówi nam o ,,prędkości'' zmian funkcji. Geometrycznie jest to współczynnik kierunkowy(tangens kąta nachylenia) stycznej do wykresu.
+
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.8\textwidth]{"vis00.png"}
+			\caption{Wykres wielomianu oraz jego pochodna w punkcie $x_0$}
+		\end{figure}
+	\item \textbf{Różniczkowalność i różniczka (Differentiability \& Differential).} 
+
+		Definicja pochodnej to jedno, ale definicja różniczkowalności to co innego, chociaż w $\R$ to jest równoważne(?).
+
+		\textbf{Definicja formalna:} Funkcję f nazywamy \textbf{różniczkowalną} w punkcie $x_0$, jeśli przyrost funkcji $\Delta f:= f(x_0 + h) - f(x_0)$ można przedstawić w postaci
+		\[
+		f\left( x_0 + h \right) - f\left( x_0 \right) = A\cdot h + r(h)
+		,\] 
+		gdzie:
+		\begin{enumerate}[label=\arabic*.]
+			\item $A$ jest pewną stałą(niezależną od h).
+			\item $r(h)$ jest ,,resztą'', która znika szybciej niż $h$, tzn $\lim_{h \to 0} \frac{r(h)}{h}=0$
+		\end{enumerate}
+		\textbf{Wniosek:} W wymiarze jednowymiarowym okazuje się, że ta stała $A$, to nasza pochodna $f'\left(  x_0\right) $
+
+		\textbf{Definicja różniczki:} Ten pierwszy, liniowy składnik przyrostu, czyli funkcję liniową względem h:
+		\[
+		d_{x_0}f\left( h \right) = A\cdot h= f'\left( x_0 \right) \cdot h
+		.\] 
+		nazywamy  \textbf{różniczką funkcji} $f$ w punkcie $x_0$.
+
+		Tradycyjnie oznaczamy przyrost argumentu h jako dx. Wtedy
+		\[
+		dy = f'\left( x_0 \right) dx
+		.\] 
+		\textbf{Kluczowa różnica dla $\R^{1}$:}
+		\begin{itemize}
+			\item \textbf{Pochodna ($f'\left( x_0 \right) $ ):} to \textbf{liczba}(współczynnik).
+			\item \textbf{Różniczka ($dy$):} to \textbf{funkcja liniowa} przyrostu $dx$, która najlepiej przybliża przyrost funkcji.
+		\end{itemize}
+\end{enumerate}
+\paragraph{Część II: Funkcja wielu zmiennych: $f: \R^{n}\to \R^{m}$}
+
+Niech $f: U\in \R^{n}\to \R^{m}$ gdzie $U$ jest zbiorem otwartym, a $x_0 \in \R^{n}$.
+\begin{enumerate}[label=\arabic*.]
+	\item \textbf{Różniczkowalność (Pochodna zupełna/Frcheta):}
+
+		\textbf{Definicja formalna:} Funkcję $f$ nazywamy \textbf{różniczkowalną} w punkcie $x_0$ jeśli istnieje odwzorowanie liniowe ciągłe $L: \R^{n}\to \R^{m}$, takie że
+		\[
+		f\left( x_0 + h \right) - f\left( x_0 \right) = L\left( h \right) + r(h)
+		,\] 
+		gdzie reszta $r(h)$ spełnia warunek:
+		\[
+		\lim_{h \to 0} \frac{\|r\left( h \right) \|}{\|h\|}= 0
+		.\] 
+		Owo odwzorowanie liniowe $L$ nazywamy \textbf{pochodaną(mocną/total?) funkcji }  w punkcie $x_0$ i oznaczamy $Df\left( x_0 \right) $ lub $f'(x_0)$.
+	\item \textbf{Różniczka (Differential)} 
+		
+		Jeśli funkcja jest różniczkowalna, to \textbf{różniczką}($df$ ) nazywamy wartość tego odwzorowania liniowego na wektorze przyrostu
+		$h$ :
+		\[
+		df\left( x_0 \right) = L\left( h \right) 
+		.\] 
+	\item \textbf{Związek z macierzą Jacobiego} 
+
+		Jak to policzyć w praktyce? Jeśli $f$ jest różniczkowalna, to odwzorowanie liniowe $L$ jest reprezentowane przez macierz, zwaną \textbf{Macierzą Jacobiego (Jakobian)}. Elementy tej macierzy to pochodne cząstkowe.
+		\[
+			J =
+		\begin{bmatrix} 
+			\frac{\partial f_1}{\partial x_1} &\ldots & \frac{\partial f_{1}}{\partial x_{n}} \\
+			\vdots & \ddots & \vdots \\
+			\frac{\partial f_{m}}{\partial x_{1}}&  \hdots & \frac{\partial f_{m}}{\partial x_{n}} 
+		\end{bmatrix} 
+		\] 
+Wtedy \textbf{różniczka} to iloczyn macierzy i wektora przyrostu.
+\[
+df = J\cdot h = \sum_{i=1}^{n} \frac{\partial f}{\partial x_{i}}d_{x_{i}} 
+.\] 
+(dla przypadku m=1, czyli funkcji skalarnej)
+\begin{remark}
+	potrzebna intuicja
+\end{remark} 
+\end{enumerate}
+
+\begin{table}[H]
+	\centering
+	\caption{Wstępne podsumowanie}
+	\begin{tabularx}{\textwidth}{l X X X}
+	\toprule
+	Pojęcie & Wymiar 1 ($f:\R\to\R$) & Wymiar n ($f: \R^{n}\to\R^{m}$) & Natura obiektu \\
+	\midrule
+	\textbf{Pochodna} & $f'\left( x_0 \right) $ & $Df\left( x_0 \right)$(Macierz Jacobiego) & \textbf{Operator} (Liczba, Macierz,Przekształcenie)\\
+	\addlinespace
+	\textbf{Różniczka} & $dy = f'\left( x_0 \right) dx$ & $df = Df\left( x_0 \right)\left( h \right) $ & \textbf{Wartość} operatora na wektorze przyrostu (najlepsze przybliżenie liniowe zmiany funkcji) \\
+	\addlinespace
+	\textbf{Różniczkowalność} & Istnienie $f'\left( x_0 \right) $ & Istnienie $Df\left( x_0 \right)$ (nie tylko cząstkowych) & Cecha funkcji(gładkość) \\
+	\bottomrule
+	\end{tabularx}
+\end{table}
+\textbf{Wstępnie podsumowując:} 
+\begin{enumerate}[label=\arabic*.]
+	\item \textbf{Pochodna cząstkowa} to tylko badanie funkcji wzdłuż jednej nitki (osi). Istnienie wszystkich pochodnych cząstkowych \textbf{nie gwarantuje} różniczkowalności funkcji zmiennej wielu zmiennych.
+	\item \textbf{Różniczkowalność} oznacza, że istnieje płaszczyzna (lub hiperpłaszczyzna) styczna, która gładko przylega do wykresu funkcji.
+		\begin{remark}
+			Co to hiperplaszczyzna oraz co oznacza, że gładko przylega do wykresu funkcji.
+		\end{remark} 
+	\item \textbf{Pochodna} definiuje ten obiekt styczny (jego nachylenie), a \textbf{różniczka} mówi, o ile zmieniłaby się wartość na tej płaszczyźnie stycznej przy przesunięciu o wektor $h$. 
+\end{enumerate}
+\paragraph{Fundamenty Analizy Wielowymiarowej: Od cząstki do całości.}
+
+Niech $f:U \subseteq \R^{n}\to\R$ będzie funkcją określoną na zbiorze otwartym $U$, a $x_0 = \left( x_1^{0},x_2^{0},\ldots, x_{n}^{0} \right) $ punktem w tym zbiorze.
+
+\begin{enumerate}[label=\arabic*.]
+	\item \textbf{Redukcja do wymiaru jeden: Pochodna Cząstkowa (Partial Derivative)} 
+	Zanim zapytamy, czy funkcja jest gładka w senise ,,powierzchniowym'', pytamy jak zmienia się ona, gdy poruszamy się \textbf{tylko} wzdłuż jednej osi układu współrzędnych. Zamrażamy wszystkie zmienne poza jedną.
+
+	\textbf{Definicja formalna:} Pochodną cząstkową funkcji $f$ w punkcie $x_0$ względem  zmiennej $x_{i}$ nazywamy granicę (o ile istnieje):
+	\[
+		\frac{\partial f}{\partial x_{i}} \left( x_0 \right) = \lim_{h \to 0} \frac{f\left( x_1^{0},\ldots,x_{i}^{0}+h,\ldots,x_{n}^{0}-f\left( x_1^{0}, x_2^{0},\ldots,x_{n}^{0} \right)  \right) }{h}
+	.\] 
+	\textbf{Interpretacja:} Jest to zwykła pochodna funkcji jednej zmiennej $g\left( t \right) = f\left( x_1^{0},x_2^{0},\ldots,x_{i}+t,\ldots, x_{n}^{0} \right) $ w punkcie $t = 0$.
+	\begin{remark}
+		Obrazek
+	\end{remark} 
+
+	\textbf{Kluczowa uwaga:} Istnienie wszystkich pochodnych cząstkowych $\frac{\partial f}{\partial x_1} , \frac{\partial f}{\partial x_2} ,\ldots, \frac{\partial f}{\partial x_{n}} $, oznacza \textbf{jedynie}, że wykres jest gładki wzdłuż $n$ konkretnych kierunków (osi). Między tymi osiami mogą stać się rzeczy straszne.
+	\begin{remark}
+		Rozwinń.
+	\end{remark} 
+\item \textbf{Uogólnienie kierunku: Pochodna kierunkowa (Directional Derivative)}
+
+	Pójście wzdłuż osi to szczególny przypadek. Możemy badać zmiane  funkci w dowolnym kierunku wektora jednostkowego $v\in \R^{n}$ $\left( \|v\| \right) = 1$.
+	\textbf{Definicja formalna:} Pochodną kierunkową funkcji $f$ w punkcie $x_0$ w kierunku wektora $v$ nazywamy granicę
+	\[
+		\frac{\partial f}{\partial v} \left( x_0 \right) = \lim_{t \to 0} \frac{f\left( x_0 + tv \right) - f\left( x_0 \right) }{t} 
+	.\] 
+	Xauważmy: Jeśli $v=e_{i}$ (wektor jednostkowy na i-tej miejscu jest 1 reszta 0), to pochodna kierunkowa staje się pochodną cząstkowa.
+	\begin{remark}
+		rozważ
+	\end{remark} 
+	\item	\textbf{Obiekt zbierający: Gradient} 
+
+		Mając policzone wszystkie pochodne cząstkowe, możemy złożyc je w jeden wektor.
+
+		\textbf{Definicja formalna:} Gradientem funkcji $f$ w punkcie $x_0$ nazywamy wektor
+		\[
+			\nabla  f\left( x_0 \right) = \begin{bmatrix} \frac{\partial f}{\partial x_1}\left( x_0 \right) , \frac{\partial f}{\partial x_2} \left( x_0 \right) ,\ldots, \frac{\partial f}{\partial x_{n}}\left( x_0 \right)   \end{bmatrix} 
+		.\] 
+		Na tym etapie gradient to tylko worek z liczbami. Dopiero pojęcie różniczkowalności nada mu sens geometryczny.
+
+	\item \textbf{Synteza: Różniczkowalność i Różniczka (Differentiability \& Differental)} 
+		
+	Tu dochodzimy do sedna- pojęcia, które odróżnia ,,posiadania pochodnych cząstkowych'' od bycia funkcją ,,porządną'' (lokalnie płaską).
+
+	\textbf{Definicja formalna (Przypomnienie z doprecyzowaniem):} Funkcję $f$ nazywamy \textbf{różniczkowalną} w punkcie $x_0$, jeśli jej przyrost całkowity(? Czyli jaki), da się zapisać jako:
+	\[
+	f\left( x_0 + h \right) - f\left( x_0 \right) = L\left( h \right) + r\left( h \right) 
+	\] 
+	gdzie:
+
+	\begin{enumerate}[label=\alph*)]
+		\item $L : \R^{n}\to\R$ jest odwzorowaniem liniowym (czyli $L\left( h \right) = A\cdot h$ dla pewnego $A$ ).
+		\item $\lim_{h \to 0} \frac{r\left( h \right)}{\|h\|}=0$
+	\end{enumerate}
+
+	To odwzorowanie liniowe $L$ to \textbf{różniczka (zupełna)} $df\left( x_0 \right) $. (Jak po angielsku?)
+\end{enumerate}
+\paragraph{Twierdzenie fundamentalne (Most między światami).}
+
+\begin{theorem}[Most]
+	Jeżeli funkcja $f$ jest \textbf{różniczkowalna} w punkcie $x_0$ (w sensie definicji z punktu 4.), to
+	\begin{enumerate}[label=\arabic*.]
+		\item Istnieją w tym punkcie \textbf{wszystkie } pochodne cząstkowe $\frac{\partial df}{\partial dx_{i}} $.
+		\item Odwzorowanie liniowe $L$ (różniczka) jest zadane przez gradient:
+			\[
+			df\left( x_0 \right) \left( h \right) = \nabla f \circ h = \sum_{i=1}^{n} \frac{\partial f}{\partial x_{i}}\left( x_{0} \right) \cdot h_{i}
+			.\] 
+	\end{enumerate}
+\end{theorem} 
+\begin{corollary}[Praktyczny]
+
+	Różniczka $df$ to iloczyn skalarny gradientu i wektora przesunięcia  $dx = \left( dx_1, fx_2,\ldots,dx_{n} \right) $ :
+	\[
+	df = \frac{\partial f}{\partial x_1} dx_1 + \frac{\partial f}{\partial x_2} dx_2 + \ldots + \frac{\partial f}{\partial x_{n}}dx_{n} 
+	.\] 
+\end{corollary}
+\paragraph{Hierarchia gładkości.}
+Implikacja zachodzi tylko w dół:
+\begin{enumerate}
+	\item \textbf{Klasa $C^{1}$ (Ciągłe pochodne cząstkowe):} Pochodne cząstkowe istnieją i są ciągłe w otoczeniu punktu 
+	\item \textbf{Różniczkowalność:} Istnieje płaszczyzna styczna (różniczka zupełna(? co to znaczy)
+	\item \textbf{Pochodne kierunkowe:} Istnienie \textbf{wszystkich} pochodnych kierunkowych.
+	\item \textbf{Pochodne cząstkowe:} Istnienie \textbf{wszystkich} pochodnych cząstkowych- funkcja jest gładka \textbf{ale tylko} wzdłuż osi układu. 
+\end{enumerate}
+\textbf{Uwaga:} to nie implikuje ciągłości funkcji.
+
+\subsection{Da się przedstawić jako\ldots}
+\textbf{Interpretacja warunku różniczkowalnośći- lokalna liniowość.} 
+\begin{enumerate}[label=\arabic*.]
+	\item \textbf{Istota warunku: Co oznacza ,,można przedstawić''?} 
+
+\textbf{Definicjia wyjściowa:} Funkcja $f$ jest \textbf{różniczkowalna} w $x_0$ gdy przyrost $\Delta f$ jako
+\[
+\Delta f = A\cdot h + r\left( h \right) \text{, gdzie }  \lim_{h \to 0} \frac{r\left( h \right) }{h} = 0 \text{$\leftarrow$ tutaj chyba normy ogolnie?}
+.\] 
+\begin{itemize}
+	\item \textbf{Sens geometryczny:} Wykres funkcji $f$ w dostatecznie małym otoczeniu (dużym przybliżeniu) punktu $x_0$ jest ,,nieodróżnialny'' od linii prostej.
+	\item \textbf{Sens analityczny:} Istnieje \textbf{dokładnie jedna} liczba $A$ (współczynnik kierunkowy) który definiuje tę prostą (styczna).
+\end{itemize}
+\begin{intuition}
+	Jeśli funkcja jest różniczkowalna, to ,,pod mikroskopem'' o nieskończonym powiększeniu w punkcie $x_0$, krzywa staje się prostą o równaniu:
+	\[
+	y = f\left( x_0 \right) + A\left( x-x_0 \right) 
+	.\] 
+\end{intuition} 
+\item \textbf{Studium przypadku: Dlaczego $f\left( x \right) = \left| x \right| $ nie jest różniczkowalna w punkcie $x_0$ = 0}?
+
+	Analiza tzw. ,,kantu'' dowodzi, że niemożność przedstawienia przyrostu w zadanej postaci wynika z braku jednoznaczności kierunku $A$ (różne granice lewo i prawostronne)
+\end{enumerate}
+

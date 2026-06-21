@@ -1,0 +1,208 @@
+\chapter{Wykład X: Wstęp do Teorii Pierścieni}
+
+\section{Definicja Pierścienia}
+
+Zaczynamy od ustalenia zbioru $R$ z dwoma działaniami: dodawaniem ($+$) i mnożeniem ($\cdot$).
+\begin{align*}
+    +: R \times R &\to R \\
+    \cdot: R \times R &\to R
+\end{align*}
+Dla uproszczenia notacji przyjmujemy kolejność wykonywania działań: $x \cdot y + z := (x \cdot y) + z$.
+
+\begin{definition}[Aksjomaty Pierścienia]
+    Strukturę $(R, +, \cdot)$ nazywamy \textbf{pierścieniem}, jeśli spełnione są następujące warunki (oznaczmy je A1-A3):
+    \begin{enumerate}[label=A\arabic*.]
+        \item $(R, +)$ jest \textbf{grupą abelową} (przemienną).
+        \begin{itemize}
+            \item Element neutralny dodawania oznaczamy przez $\mathbf{0}$ (zero pierścienia).
+            \item Element przeciwny do $a$ oznaczamy przez $-a$.
+        \end{itemize}
+        \item \textbf{Rozdzielność} mnożenia względem dodawania:
+        \[ (\forall a,b,c \in R) \left( a \cdot (b+c) = a \cdot b + a \cdot c \quad \land \quad (b+c) \cdot a = b \cdot a + c \cdot a \right) \]
+        \item \textbf{Łączność} mnożenia:
+        \[ (\forall a,b,c \in R) \left( a \cdot (b \cdot c) = (a \cdot b) \cdot c \right) \]
+    \end{enumerate}
+    
+    Dodatkowo wyróżniamy specjalne typy pierścieni, jeśli spełniają kolejne aksjomaty:
+    \begin{enumerate}[label=A\arabic*., start=4]
+        \item \textbf{Istnienie jedynki}:
+        \[ (\exists \mathbf{1} \in R)(\forall a \in R) (a \cdot \mathbf{1} = \mathbf{1} \cdot a = a) \]
+        Jeśli zachodzi A1-A4, mówimy o \textbf{pierścieniu z jednością} (lub z jedynką).
+        \textit{Uwaga: Z aksjomatów wynika, że jedynka jest wyznaczona jednoznacznie.}
+        
+        \item \textbf{Przemienność mnożenia}:
+        \[ (\forall a,b \in R) (a \cdot b = b \cdot a) \]
+        Jeśli zachodzi A1-A3 oraz A5, mówimy o \textbf{pierścieniu przemiennym}.
+    \end{enumerate}
+\end{definition}
+
+\noindent \textbf{Podsumowanie nazewnictwa:}
+\begin{itemize}
+    \item \textbf{Pierścień:} Spełnia A1, A2, A3.
+    \item \textbf{Pierścień z jednością:} Spełnia A1, A2, A3, A4.
+    \item \textbf{Pierścień przemienny:} Spełnia A1, A2, A3, A5.
+    \item \textbf{Pierścień przemienny z jednością:} Spełnia wszystkie warunki A1-A5. (To jest nasz główny obiekt zainteresowań w dalszej części kursu).
+\end{itemize}
+
+\begin{remark}[Konwencje zapisu]
+    W dalszej części, pisząc "pierścień $R$", będziemy stosować skróty:
+    \begin{itemize}
+        \item $ab := a \cdot b$ (opuszczanie kropki),
+        \item $a^n := \underbrace{a \cdot \ldots \cdot a}_{n \text{ razy}}$ dla $n \in \mathbb{N}_{>0}$,
+        \item $a - b := a + (-b)$.
+    \end{itemize}
+\end{remark}
+
+\section{Podpierścienie i Przykłady}
+
+\begin{definition}[Podpierścień]
+    Niech $(R, +, \cdot)$ będzie pierścieniem. Podzbiór $S \subseteq R$ nazywamy \textbf{podpierścieniem} (ozn. $S \underset{\text{podp}}{\subseteq} R$), gdy:
+    \begin{enumerate}
+        \item $S$ jest podgrupą grupy addytywnej $(R, +)$ (czyli $S \le (R,+)$),
+        \item $S$ jest zamknięty na mnożenie: $(\forall x,y \in S)(xy \in S)$.
+    \end{enumerate}
+    Wtedy $(S, +, \cdot)$ sam w sobie jest pierścieniem (dziedziczy własności z $R$).
+\end{definition}
+
+\subsection{Katalog przykładów}
+
+\begin{enumerate}[label=\arabic*)]
+    \item $(\mathbb{Z}, +, \cdot)$: Wzorcowy przykład pierścienia przemiennego z jedynką $\mathbf{1}=1$.
+    
+    \item $(\mathbb{N}, +, \cdot)$: \textbf{NIE} jest pierścieniem (nie jest grupą ze względu na dodawanie – brak elementów przeciwnych).
+    
+    \item $(2\mathbb{Z}, +, \cdot)$: Zbiór liczb parzystych. Jest to pierścień przemienny, ale \textbf{bez jedynki} (bo $1 \notin 2\mathbb{Z}$). Jest to podpierścień $\mathbb{Z}$.
+    
+    \item $(\mathbb{Z}_n, +_n, \cdot_n)$: Pierścień reszt modulo $n$. Jest przemienny z jedynką.
+    
+    \item Liczby wymierne $\mathbb{Q}$, rzeczywiste $\mathbb{R}$, zespolone $\mathbb{C}$: Wszystkie są pierścieniami przemiennymi z jedynką. Mamy ciąg inkluzji podpierścieni:
+    \[ 2\mathbb{Z} \underset{\text{podp}}{\subseteq} \mathbb{Z} \underset{\text{podp}}{\subseteq} \mathbb{Q} \underset{\text{podp}}{\subseteq} \mathbb{R} \underset{\text{podp}}{\subseteq} \mathbb{C} \]
+    
+    \item \textbf{Pierścienie macierzy} $M_n(R)$:
+    Niech $R$ będzie pierścieniem przemiennym z $\mathbf{1}$. Zbiór macierzy kwadratowych $n \times n$ o wyrazach z $R$ tworzy pierścień z naturalnym dodawaniem i mnożeniem macierzy.
+    \begin{itemize}
+        \item Jedynką jest macierz identycznościowa $I = \text{diag}(\mathbf{1}_R, \dots, \mathbf{1}_R)$.
+        \item \textbf{Uwaga:} Jeśli $n > 1$, ten pierścień jest \textbf{nieprzemienny} (nawet jeśli $R$ jest przemienny).
+    \end{itemize}
+    
+    \item \textbf{Pierścienie funkcyjne} $\text{Fun}(X, R)$:
+    Niech $X$ będzie dowolnym zbiorem, a $R$ pierścieniem. Zbiór wszystkich funkcji $f: X \to R$ (oznaczany też $R^X$) z działaniami "po punktach":
+    \begin{align*}
+        (f+g)(x) &:= f(x) +_R g(x) \\
+        (f \cdot g)(x) &:= f(x) \cdot_R g(x)
+    \end{align*}
+    jest pierścieniem.
+    \begin{itemize}
+        \item Jeśli $R$ ma jedynkę, to $\text{Fun}(X,R)$ też ma (funkcja stała równa $\mathbf{1}_R$).
+        \item Ważne podpierścienie dla $R=\mathbb{R}$:
+        $C(\mathbb{R})$ (funkcje ciągłe) $\supseteq C^n(\mathbb{R})$ (różniczkowalne $n$-krotnie) $\supseteq C^\infty(\mathbb{R})$ (gładkie).
+    \end{itemize}
+    
+    \item \textbf{Pierścień Endomorfizmów} $\text{End}(A)$:
+    Niech $(A, +)$ będzie grupą abelową. Rozważmy zbiór wszystkich homomorfizmów grupowych z $A$ w $A$:
+    \[ \text{End}(A) := \{ f: A \to A \mid f \text{ jest homomorfizmem grup} \} \]
+    Definiujemy działania:
+    \begin{itemize}
+        \item Dodawanie: $(f+g)(a) := f(a) +_A g(a)$ (wynika ze struktury grupy $A$).
+        \item Mnożenie: $(f \cdot g)(a) := f(g(a)) = (f \circ g)(a)$ (składanie funkcji!).
+    \end{itemize}
+    Jest to pierścień z jedynką ($\mathbf{1} = \text{id}_A$), zazwyczaj \textbf{nieprzemienny} (bo składanie funkcji nie jest przemienne).
+\end{enumerate}
+
+\section{Podstawowe własności arytmetyczne}
+
+\begin{fact}[Arytmetyka pierścienia]
+    Niech $R$ będzie pierścieniem, $a,b \in R$, $n,m \in \mathbb{N}_{>0}$, $\alpha, \beta \in \mathbb{Z}$. Wtedy zachodzą znane prawa, m.in.:
+    \begin{enumerate}
+        \item Prawa potęg: $a^n a^m = a^{n+m}, \quad (a^n)^m = a^{nm}$.
+        \item Mnożenie przez zero: $a \cdot \mathbf{0} = \mathbf{0} = \mathbf{0} \cdot a$.
+        \item Reguła znaków: $(-a)b = -(ab) = a(-b)$ oraz $(-a)(-b) = ab$.
+        \item Rozdzielność odejmowania: $a(b-c) = ab - ac$.
+        \item Jeśli $R$ ma jedynkę, to $(-\mathbf{1})a = -a$.
+        \item \textbf{Wzór skróconego mnożenia:} Jeśli $R$ jest \textbf{przemienny}, to zachodzi wzór Newtona:
+        \[ (a+b)^n = \sum_{k=0}^n \binom{n}{k} a^k b^{n-k} \]
+        \textit{Uwaga: Bez założenia przemienności wzór ten nie działa (np. dla macierzy $(A+B)^2 = A^2 + AB + BA + B^2 \neq A^2 + 2AB + B^2$).}
+    \end{enumerate}
+\end{fact}
+
+\begin{remark}
+    Druga własność ($a \cdot \mathbf{0} = \mathbf{0}$) implikuje, że jeśli w pierścieniu $R$ mamy $\mathbf{0} = \mathbf{1}$, to pierścień ten składa się tylko z jednego elementu $R=\{\mathbf{0}\}$. Nazywamy go pierścieniem trywialnym lub zerowym.
+\end{remark}
+
+\section{Elementy odwracalne ($R^*$)}
+
+To kluczowe pojęcie, które odróżnia "dzielenie" od "mnożenia".
+
+\begin{definition}[Element odwracalny]
+    Niech $R$ będzie pierścieniem z jedynką. Element $a \in R$ nazywamy \textbf{odwracalnym} (lub jednością arytmetyczną), jeśli posiada element odwrotny względem mnożenia:
+    \[ (\exists b \in R) (ab = \mathbf{1} \land ba = \mathbf{1}) \]
+    Taki element $b$ oznaczamy $a^{-1}$ i jest on wyznaczony jednoznacznie.
+    
+    Zbiór wszystkich elementów odwracalnych oznaczamy symbolem $R^*$ (lub $U(R)$):
+    \[ R^* := \{ a \in R \mid a \text{ jest odwracalny} \} \]
+\end{definition}
+
+\begin{fact}
+    Para $(R^*, \cdot)$ tworzy \textbf{grupę} (zwaną grupą multiplikatywną pierścienia).
+    \begin{itemize}
+        \item Element neutralny $\mathbf{1} \in R^*$.
+        \item Jeśli $a, b \in R^*$, to $ab \in R^*$ (bo $(ab)^{-1} = b^{-1}a^{-1}$).
+        \item $\mathbf{0} \notin R^*$ (chyba że pierścień jest zerowy).
+    \end{itemize}
+\end{fact}
+
+\noindent \textbf{Przykłady grup $R^*$:}
+\begin{enumerate}
+    \item $\mathbb{Z}^* = \{ -1, 1 \}$. (Tylko te liczby mają odwrotności całkowite).
+    \item $\mathbb{Q}^* = \mathbb{Q} \setminus \{0\}, \quad \mathbb{R}^* = \mathbb{R} \setminus \{0\}, \quad \mathbb{C}^* = \mathbb{C} \setminus \{0\}$.
+    \item $(\mathbb{Z}_n)^* = \{ a \in \mathbb{Z}_n \mid \text{NWD}(a,n) = 1 \}$.
+    \item $M_n(R)^* = GL_n(R) = \{ A \in M_n(R) \mid \det(A) \in R^* \}$. (Pełna grupa liniowa).
+\end{enumerate}
+
+\section{Dzielniki zera i Dziedziny}
+
+W pierścieniach może zdarzyć się patologia: iloczyn dwóch niezerowych liczb daje zero.
+
+\begin{definition}[Dzielnik zera]
+    Element $x \in R$ ($x \neq \mathbf{0}$) jest \textbf{dzielnikiem zera}, gdy istnieje $y \neq \mathbf{0}$, takie że $xy = \mathbf{0}$ (lub $yx = \mathbf{0}$).
+\end{definition}
+
+\begin{eg}
+    W pierścieniu $\mathbb{Z}_4$: $2 \cdot 2 = 4 \equiv 0 \pmod 4$. Zatem $2$ jest dzielnikiem zera.
+    W pierścieniu $M_2(\mathbb{R})$: $\begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix} \begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix} = \begin{pmatrix} 0 & 0 \\ 0 & 0 \end{pmatrix}$.
+\end{eg}
+
+\begin{definition}[Dziedzina Całkowitości]
+    Pierścień $R$ nazywamy \textbf{dziedziną} (ang. \textit{integral domain}), gdy spełnia trzy warunki:
+    \begin{enumerate}
+        \item Jest przemienny z jedynką.
+        \item Jest nietrywialny ($\mathbf{1} \neq \mathbf{0}$).
+        \item \textbf{Nie posiada dzielników zera} (tzn. $ab=0 \implies a=0 \lor b=0$).
+    \end{enumerate}
+\end{definition}
+
+\begin{intuition}
+    Dziedziny to pierścienie, w których arytmetyka przypomina tę w liczbach całkowitych $\mathbb{Z}$. Najważniejszą własnością dziedzin jest \textbf{prawo skracania}:
+    \[ \text{Jeśli } ax = ay \text{ i } a \neq \mathbf{0}, \text{ to } x = y. \]
+\end{intuition}
+
+\section{Ciała}
+
+\begin{definition}[Ciało]
+    Pierścień przemienny z jedynką $R$ ($\mathbf{1} \neq \mathbf{0}$) jest \textbf{ciałem}, gdy każdy niezerowy element jest odwracalny.
+    \[ R^* = R \setminus \{ \mathbf{0} \} \]
+\end{definition}
+
+\noindent \textbf{Hierarchia struktur:}
+\[ \text{Ciała} \subset \text{Dziedziny} \subset \text{Pierścienie Przemienne z } \mathbf{1} \]
+
+\begin{remark}
+    \begin{enumerate}
+        \item Każde ciało jest dziedziną (bo elementy odwracalne nie mogą być dzielnikami zera).
+        \item Nie każda dziedzina jest ciałem (np. $\mathbb{Z}$ jest dziedziną, ale nie ciałem, bo $2^{-1} \notin \mathbb{Z}$).
+        \item \textbf{Ważne twierdzenie (Zadanie z listy):} Każda \textbf{skończona} dziedzina jest ciałem. (Dlatego $\mathbb{Z}_p$ dla $p$ pierwszego jest ciałem).
+    \end{enumerate}
+\end{remark}
+
+\begin{definition}[Podciało]
+    Niech $L$ będzie

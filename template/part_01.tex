@@ -1,0 +1,107 @@
+\section{Wprowadzenie do analizy}
+\lipsum[1] % Zwykły tekst akapitu.
+
+% Użycie środowiska 'verbetering'
+\begin{remark}
+To jest ważna uwaga dotycząca zbieżności szeregów.
+Pamiętaj, aby zawsze sprawdzać warunek konieczny. Ten boks ma stały tytuł "Opmerking" i ciemnozieloną ramkę.
+\end{remark}
+
+\[
+	\mfaktor{A}{B}
+.\] 
+
+\lipsum[2]
+A teraz przejdziemy do definicji. 
+% Użycie środowiska 'noot' z własnym tytułem
+\begin{note}{Definicja: Ciągłość funkcji}
+Mówimy, że funkcja $f(x)$ jest ciągła w punkcie $x_0$, jeśli spełnione są trzy warunki:
+\begin{enumerate}
+    \item Istnieje wartość funkcji $f(x_0)$.
+    \item Istnieje granica $\lim_{x \to x_0} f(x)$.
+    \item Granica ta jest równa wartości funkcji: $\lim_{x \to x_0} f(x) = f(x_0)$.
+\end{enumerate}
+Ten boks ma szarą ramkę, a jego tytuł został podany jako argument.
+\end{note}
+
+\lipsum[3]
+\begin{definition}[Podgrupa grupy]	
+
+	Podgrupą grupy G nazywamy taki podzbiór $H\subseteq G$, który spełnia następujące warunki:
+\begin{itemize}
+	\item Zamkniętość na mnożenie-  $\left( \forall x,y \in H \right) x\cdot y \in H$
+	\item Zamkniętość na branie elementu odwrotnego- $\left( \forall x \in H \right)x^{-1} \in H$
+	\item Element neutralny jest zawarty- $\mathbf{1}\in H$
+\end{itemize}
+\end{definition}
+
+Zapis  $H\leq G$ będzie oznaczać, że H jest podgrupą grupy G.
+
+Zauważmy, że $\mathbf{1} = \{1\} \le G$. Taką podgrupę będziemy nazywać podgrupą trywialną. Cała grupa G także jest swoją podgrupą, tzn. $G\le G$.
+
+Przykłady:
+\begin{enumerate}
+	\item Tutaj przykłady
+	\item Dalsze przykłady
+\end{enumerate}
+
+\begin{definition}{Homomorfizm grup.}
+
+	Niech G, H- grupy.
+	Przekształcenie $\varphi: G \rightarrow H$ nazywamy homomorfizmem grup wtedy i tylko wtedy gdy $\left( \forall g_1, g_2 \in G \right) \varphi(g_1\cdot g_2) = \varphi(g_1)\cdot \varphi(g_2)$
+\end{definition}
+
+(Cwiczenie) Homomorfizm $\varphi$ przeprowadza element neutralny na element neutralny, a element odwrotny do g na element odwrotny $\varphi(g)$.
+Istnieją rożne szczególne rodzaje homomorfizmów:
+
+\begin{itemize}
+	\item Izomorfizm. Jest to taki homomorfizm $\varphi: G \rightarrow H$, dla którego istnieje homomorfizm $\psi : H \rightarrow G$, taki że $\varphi\psi = \text{id}_{H}$ oraz $\psi\varphi = \text{id}_{G}$.
+		\begin{remark}
+
+			Homomorfizm grup jest izomorfizmem wtedy i tylko wtedy kiedy jest homomorfizmem i bijekcją zbiorów.
+		\end{remark}
+		Grupy izomorficzne będziemy uważać za takie same.
+	\item coasa
+\end{itemize}
+\begin{proof}
+
+	DOWo
+	\lipsum[1]
+\end{proof}
+
+
+\lipsum[2]
+
+
+\begin{theorem}[Lagrange'a]
+    Jeśli G jest grupą skończoną, a H jej podgrupą, to $|G| = |H| \cdot [G:H]$.
+\end{theorem}
+\begin{proof}
+	Z lematu o warstwach wiemy, że lewe warstwy H tworzą partycję\marginnote{Czyli jest relacją równoważności} zbioru G. Oznacza to, że G jest rozłączną sumą swoich warstw. Wszystkich warstw jest $[G:H]$. Z tego samego lematu wiemy, że każda warstwa ma moc $|H|$. Zatem sumując moce wszystkich warstw, otrzymujemy $|G| = \underbrace{|H| + |H| + \dots + |H|}_{[G:H] \text{ razy}} = [G:H] \cdot |H|$.
+\end{proof}
+
+\lipsum[2]
+
+\begin{eg}
+    Jeśli G jest grupą skończoną, a H jej podgrupą, to $|G| = |H| \cdot [G:H]$.
+\end{eg}
+
+\lipsum[1]
+
+\begin{note}[Notatka]
+
+	\lipsum[1]
+\end{note}
+\lipsum[2]
+\begin{remark}[Inna notatka]
+	\lipsum[1]	
+\end{remark}
+\lipsum[3]
+\begin{corollary}[Wazny wniosek]
+	\lipsum[1]	
+\end{corollary}
+\begin{ex}
+
+	Udowodnić powyższe stwierdzenia. Następnie zrobić notatkę.
+\end{ex}
+

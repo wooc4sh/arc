@@ -1,0 +1,267 @@
+\chapter{Brudnopis}
+
+Wykład V: Teoria Sylowa
+
+\section{Motywacja: Odwracanie Twierdzenia Lagrange'a}
+
+Przypomnijmy fundamentalne twierdzenie teorii grup skończonych:
+
+\begin{theorem}[Lagrange'a]
+    Niech $G$ będzie grupą skończoną o rzędzie $n$. Jeżeli $H \le G$, to $|H|$ dzieli $n$.
+\end{theorem}
+
+Naturalnym pytaniem ambitnego matematyka jest: \textit{Czy twierdzenie odwrotne jest prawdziwe?}
+Czyli: jeśli $k$ dzieli $|G|$, to czy istnieje podgrupa rzędu $k$?
+
+\begin{context}
+    \textbf{Kontrprzykład:}
+    Rozważmy grupę alternującą $A_4$ rzędu 12. Liczba 6 dzieli 12, ale $A_4$ nie posiada podgrupy rzędu 6.
+    (Dowód tego faktu jest pouczającym ćwiczeniem).
+\end{context}
+
+\textbf{Cel:} Dążymy do częściowego odwrócenia Twierdzenia Lagrange'a. Pokażemy, że odpowiedź jest \textbf{TAK}, jeśli $k$ jest potęgą liczby pierwszej.
+
+\section{p-grupy i ich działanie na zbiorach}
+
+Niech $p$ będzie ustaloną liczbą pierwszą.
+
+\begin{definition}[p-grupa]
+    Grupę skończoną $G$ nazywamy \textbf{p-grupą}, jeżeli jej rząd jest potęgą liczby $p$, tzn. $|G| = p^k$ dla pewnego $k \ge 1$.
+\end{definition} 
+
+\begin{eg}
+    Przykłady p-grup:
+    \begin{itemize}
+        \item Grupa kwaternionów $\mathcal{Q}_{8}$ (rząd $8=2^3$, jest to 2-grupa).
+        \item Grupa dihedralna $D_{2^{n}}$ (rząd $2^n$, jest to 2-grupa).
+        \item Grupa cykliczna $\Z_{p^{k}}$.
+        \item Produkt $\Z_{p}^{l} = \Z_{p}\times \ldots\times \Z_{p}$ (rząd $p^l$).
+    \end{itemize}
+\end{eg} 
+
+Kluczem do zrozumienia struktury p-grup jest analiza ich działania na zbiorach skończonych.
+
+\begin{definition}[Punkty stałe]
+    Niech grupa $G$ działa na zbiorze $X$. Zbiorem punktów stałych tego działania nazywamy:
+    \[
+    \fix_{X}(G) := \{x\in X \mid \forall_{g\in G} \, g\cdot x = x \}.
+    \] 
+\end{definition} 
+
+\begin{remark}
+    Dla $x \in X$ następujące warunki są równoważne:
+    \begin{enumerate}[label=\alph*)]
+        \item $x\in \fix_{X}(G)$.
+        \item Orbita elementu $x$ jest jednoelementowa, tzn. $|G\cdot x| = 1$.
+        \item Stabilizator elementu $x$ to cała grupa, tzn. $G_x = G$.
+    \end{enumerate}
+\end{remark}
+
+Poniższy lemat jest \textbf{fundamentalnym narzędziem} w teorii p-grup.
+
+\begin{lemma}[O punktach stałych p-grupy]
+    Niech $G$ będzie p-grupą działającą na zbiorze skończonym $X$. Wówczas:
+    \[
+    |X| \equiv |\fix_{X}(G)| \pmod{p}.
+    \]
+\end{lemma} 
+\begin{proof}
+    \textbf{Szkic:} Rozbijamy $X$ na rozłączne orbity. Orbity jednoelementowe tworzą zbiór $\fix_X(G)$. Długość każdej innej orbity jest indeksem podgrupy w $G$, więc musi dzielić rząd $G$. Skoro $G$ jest p-grupą, długość każdej nietrywialnej orbity jest podzielna przez $p$. Sumując to, otrzymujemy tezę.
+
+    \framebox[1.1\width]{Dowód do uzupełnienia (formalny zapis sumy orbit)}
+\end{proof} 
+
+\section{Własności p-grup}
+
+Wykorzystamy Lemat o punktach stałych do zbadania wewnętrznej struktury p-grup. Niech $G$ działa na sobie przez sprzężenia ($g \cdot x := gxg^{-1}$). Wtedy $\fix_G(G) = Z(G)$ (centrum grupy).
+
+\begin{theorem}[O centrum p-grupy]
+    Jeżeli $G$ jest nietrywialną p-grupą, to jej centrum $Z(G)$ jest nietrywialne. Dokładniej:
+    \[ p \mid |Z(G)|. \]
+\end{theorem} 
+\begin{proof}
+    \framebox[1.1\width]{Zastosuj Lemat o punktach stałych do działania przez sprzężenia.}
+\end{proof} 
+
+\begin{corollary}
+    Każda grupa rzędu $p^2$ jest abelowa. (Wynika to z faktu, że jeśli $G/Z(G)$ jest cykliczna, to $G$ jest abelowa).
+\end{corollary}
+
+Poniższy lemat (Zadanie 2 z Listy 6) jest kluczowym narzędziem przy przenoszeniu własności podgrup między grupą a jej obrazem homomorficznym. Jest niezbędny w dowodach indukcyjnych względem rzędu grupy.
+
+\begin{lemma}[O przeciwobrazie]
+    Niech $\varphi : G \to H$ będzie homomorfizmem grup, a $N \le H$ podgrupą w $H$. Wtedy:
+    \begin{enumerate}[label=\arabic*.]
+        \item Jeśli $G$ jest skończona i $\varphi$ jest epimorfizmem (,,na''), to wielkość przeciwobrazu wyraża się wzorem:
+            \[ \left| \varphi ^{-1} [ N ] \right| = \left| \ker(\varphi ) \right| \cdot \left| N \right|. \]
+            (Intuicja: Każdy punkt w $N$ ,,puchnie'' o wielkość jądra).
+        \item Zachowanie normalności:
+            \[ N \unlhd H \implies \varphi ^{-1}[ N ] \unlhd G. \]
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    \framebox[1.1\width]{Dowód z Listy 6 (Zadanie 2). Skorzystać z własności warstw.}
+\end{proof}
+
+Kolejne ważne twierdzenie mówi, że p-grupy są ,,gęsto wypełnione'' podgrupami.
+
+\begin{theorem}[O ciągu podgrup normalnych]
+    Niech $|G| = p^m$. Wówczas istnieje ciąg podgrup:
+    \[
+    \{e\} = G_0 \le G_1 \le \ldots \le G_m = G,
+    \] 
+    taki że dla każdego $i \in \{0, \ldots, m\}$:
+    \begin{enumerate}
+        \item $|G_i| = p^i$,
+        \item $G_i \unlhd G$ (każda z tych podgrup jest normalna w całej grupie $G$).
+    \end{enumerate}
+\end{theorem} 
+\begin{proof}
+    \framebox[1.1\width]{Indukcja względem $m$, wykorzystująca $Z(G) \neq \{e\}$.}
+\end{proof} 
+
+Zatem Twierdzenie Lagrange'a można odwrócić dla grupy $G$ będącej $p$-grupą. Zmierzamy do dowodu istnienia $p$-grup, które są podgrupami dowolnej grupy skończonej.
+\section{Twierdzenia Sylowa}
+
+Przechodzimy do głównego tematu -- analizy podgrup w dowolnych grupach skończonych (niekoniecznie p-grupach).
+
+Najpierw zdefiniujmy precyzyjnie obiekty, którymi będziemy operować.
+
+\begin{definition}[p-podgrupa Sylowa]
+    Niech $G$ będzie grupą skończoną, a $p$ liczbą pierwszą.
+    \begin{enumerate}[label=\arabic*.]
+        \item Podgrupę $H \le G$ nazywamy \textbf{p-podgrupą}, gdy $|H| = p^k$ dla pewnego $k \ge 1$.
+        \item Używamy zapisu $p^n \parallel |G|$ (czytamy: $p^n$ dokładnie dzieli $|G|$), jeżeli $|G| = p^n \cdot m$ oraz $p \nmid m$.
+        \item Podgrupę $H \le G$ nazywamy \textbf{p-podgrupą Sylowa}, gdy jest maksymalną możliwą p-podgrupą, tzn:
+              \[ H \text{ jest p-podgrupą Sylowa} \iff |H| = p^n, \text{ gdzie } p^n \parallel |G|. \]
+              Równoważnie: indeks podgrupy nie dzieli się przez $p$: $p \nmid [G:H]$.
+        \item Przez $\mathfrak{X}_{p}$ (lub $Syl_p(G)$) oznaczamy zbiór wszystkich p-podgrup Sylowa grupy $G$.
+        \item $s_p := |\mathfrak{X}_{p}|$ (liczba p-podgrup Sylowa).
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}[p-podgrupa Sylowa]
+    Niech $G$ będzie grupą skończoną rzędu $n = p^k \cdot m$, gdzie $p \nmid m$.
+    Podgrupę $P \le G$ nazywamy \textbf{p-podgrupą Sylowa}, jeżeli:
+    \[ |P| = p^k. \]
+    Innymi słowy, jest to p-podgrupa o maksymalnym możliwym rzędzie (taka, której indeks nie dzieli się przez $p$).
+\end{definition}
+
+\begin{theorem}[I Twierdzenie Sylowa -- Istnienie]
+    Niech $|G| = p^k \cdot m$, gdzie $p \nmid m$. Wówczas w grupie $G$ istnieje co najmniej jedna p-podgrupa Sylowa.
+\end{theorem}
+\begin{proof}
+    \textbf{Idea (Dowód Wielandta):} Rozważamy działanie $G$ na zbiorze $\Omega$ wszystkich podzbiorów grupy $G$ o mocy $p^k$. Pokazujemy, że istnieje orbita niepodzielna przez $p$ i stabilizator elementu z tej orbity jest szukaną podgrupą.
+    \framebox[1.1\width]{Dowód do uzupełnienia}
+\end{proof}
+
+\begin{theorem}[II Twierdzenie Sylowa -- Sprzężenie i Zawieranie]
+    \begin{enumerate}
+        \item Każde dwie p-podgrupy Sylowa są sprzężone. Tzn. jeśli $P_1, P_2 \in \mathfrak{X}_p$, to istnieje $g \in G$, takie że $g P_1 g^{-1} = P_2$.
+        \item Każda p-podgrupa grupy $G$ jest zawarta w pewnej p-podgrupie Sylowa.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    \framebox[1.1\width]{Dowód do uzupełnienia}
+\end{proof}
+
+\begin{theorem}[III Twierdzenie Sylowa -- Liczba podgrup]
+    Liczba $s_p$ p-podgrup Sylowa spełnia warunki:
+    \begin{enumerate}
+        \item $s_p \equiv 1 \pmod{p}$,
+        \item $s_p \mid m$ (gdzie $|G| = p^k \cdot m$),
+        \item $s_p = [G : N_G(P)]$, gdzie $P \in \mathfrak{X}_p$.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    \framebox[1.1\width]{Dowód do uzupełnienia}
+\end{proof}
+
+\begin{corollary}[Kryterium normalności]
+    Niech $P \in \mathfrak{X}_p$. Wtedy:
+    \[ P \unlhd G \iff s_p = 1. \]
+    Jest to potężne narzędzie do wykazywania, że grupa nie jest prosta.
+\end{corollary}
+
+\section{Twierdzenie Cauchy'ego}
+
+Jako bezpośredni wniosek z teorii Sylowa (lub jako krok pośredni w innych dowodach) otrzymujemy:
+
+\begin{theorem}[Cauchy]
+    Jeżeli liczba pierwsza $p$ dzieli rząd grupy $G$, to w grupie $G$ istnieje element rzędu $p$.
+\end{theorem}
+\begin{proof}
+    \framebox[1.1\width]{Dowód do uzupełnienia}
+\end{proof}
+
+\begin{remark}[Rząd elementu vs Rząd podgrupy]
+    Twierdzenie Sylowa (wyżej) gwarantuje istnienie \textbf{podgrupy} rzędu $p^k$. Nie gwarantuje ono istnienia \textbf{elementu} rzędu $p^k$.
+    
+    \textbf{Kontrprzykład:} Niech $G = \Z_2 \times \Z_2$. Rząd $|G| = 4 = 2^2$.
+    Zauważmy, że $4 \mid |G|$, ale w $G$ \textbf{nie ma elementu rzędu 4} (wszystkie elementy $\neq e$ mają rząd 2).
+    Twierdzenie Cauchy'ego działa tylko dla pierwszej potęgi $p$.
+\end{remark}
+
+\section{Przykłady i Zastosowania}
+
+Analiza struktury grup małych rzędów przy użyciu Twierdzeń Sylowa.
+
+\subsection{Przykład: Grupa rzędu 12}
+Niech $|G| = 12 = 2^2 \cdot 3$.
+\begin{itemize}
+    \item $n_2$ (liczba podgrup rzędu 4): $n_2 \equiv 1 \pmod 2$ oraz $n_2 \mid 3 \implies n_2 \in \{1, 3\}$.
+    \item $n_3$ (liczba podgrup rzędu 3): $n_3 \equiv 1 \pmod 3$ oraz $n_3 \mid 4 \implies n_3 \in \{1, 4\}$.
+\end{itemize}
+
+\textbf{Analiza przypadków:}
+\begin{enumerate}
+    \item $G = \Z_{12}$: $n_2=1, n_3=1$. (Obie podgrupy normalne).
+    \item $G = A_4$: 
+        \begin{itemize}
+            \item Podgrupy rzędu 3 są generowane przez 3-cykle. Jest ich 8, więc mamy 4 podgrupy (bo $8/2=4$). Zatem $n_3 = 4$.
+            \item Skoro $n_3=4$, to podgrupy te nie są normalne.
+            \item Pozostaje podgrupa rzędu 4 (grupa Kleina wewnątrz $A_4$). Musi być jedyna ($n_2=1$), więc jest normalna.
+        \end{itemize}
+    \item Czy możliwy jest przypadek $n_2=3$ i $n_3=4$?
+    \framebox[1.1\width]{Zadanie: Wykazać, że to niemożliwe (zliczanie elementów).}
+\end{enumerate}
+
+\subsection{Przykład: Grupa rzędu 40}
+$|G| = 40 = 2^3 \cdot 5$.
+\begin{itemize}
+    \item $n_5 \equiv 1 \pmod 5$ oraz $n_5 \mid 8$. Jedyną możliwością jest $n_5 = 1$.
+\end{itemize}
+\textbf{Wniosek:} W każdej grupie rzędu 40 istnieje normalna podgrupa rzędu 5. Grupa ta nie może być prosta.
+
+\subsection{Przykład: Grupa rzędu 30}
+$|G| = 30 = 2 \cdot 3 \cdot 5$.
+Pokażemy, że $G$ posiada normalną podgrupę rzędu 3 lub 5.
+\begin{proof}
+    \framebox[1.1\width]{Analiza $n_3$ i $n_5$ poprzez zliczanie elementów.}
+\end{proof}
+
+\subsection{Przykład: Grupa rzędu 24}
+$|G| = 24 = 2^3 \cdot 3$.
+Pokażemy, że $G$ nie jest prosta (istnieje $N \unlhd G, N \neq \{e\}, G$).
+\begin{itemize}
+    \item $n_2 \in \{1, 3\}$. Jeśli $n_2=1$, to koniec (mamy podgrupę normalną rzędu 8).
+    \item Załóżmy, że $n_2=3$. Niech $P, Q$ będą różnymi 2-podgrupami Sylowa.
+    \item Rozważmy $H = P \cap Q$.
+    \item \textbf{Wskazówka:} Użyć faktu, że jeśli $H \le G$, to $\bigcap_{g\in G} gHg^{-1}$ jest podgrupą normalną. Ewentualnie rozważyć działanie $G$ na zbiorze warstw lub zbiór $Syl_2(G)$ (homomorfizm w $S_3$).
+\end{itemize}
+\begin{proof}
+    \framebox[1.1\width]{Dowód do uzupełnienia}
+\end{proof}
+
+\section{Przydatne Lematu do Zadań}
+
+\begin{lemma}[O przecięciu sprzężeń (Core)]
+    Niech $H \le G$. Wtedy
+    \[ N := \bigcap_{g \in G} gHg^{-1} \]
+    jest największą podgrupą normalną $G$ zawartą w $H$. Nazywamy ją rdzeniem (core) podgrupy $H$.
+\end{lemma}
+\begin{proof}
+    \framebox[1.1\width]{Dowód do uzupełnienia}
+\end{proof}
+
+

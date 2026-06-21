@@ -1,0 +1,569 @@
+\chapter{Wykład XI: Wielomiany i Szeregi Formalne}
+
+TODO EWALUACJA NOTATKA- OGÓLNIE CAŁY CHAPTER DO POPRAWKI- FINALNA REDAKCJA
+
+\section{Pierścień Szeregów Formalnych $R[[X]]$}
+
+Niech $R$ będzie pierścieniem przemiennym z jedynką. Często chcemy pracować z "nieskończonymi sumami" typu $a_0 + a_1X + a_2X^2 + \dots$, nie martwiąc się o to, czy są zbieżne. Służy do tego konstrukcja szeregów formalnych.
+
+\begin{definition}[Pierścień szeregów formalnych]
+    Zbiór wszystkich ciągów nieskończonych o wyrazach z $R$:
+    \[ R[[X]] := R^{\mathbb{N}} = \{ (a_0, a_1, a_2, \dots) : a_i \in R \} \]
+    wyposażamy w dwa działania:
+    \begin{enumerate}
+        \item \textbf{Dodawanie} (po współrzędnych):
+        \[ (a_n)_{n=0}^\infty + (b_n)_{n=0}^\infty := (a_n + b_n)_{n=0}^\infty \]
+        \item \textbf{Mnożenie} (Splot Cauchy'ego):
+        To nie jest mnożenie po współrzędnych! Definiujemy je tak, jakbyśmy mnożyli "nawias przez nawias" i zbierali wyrazy przy tych samych potęgach $X$.
+        \[ (a_n)_{n=0}^\infty \cdot (b_n)_{n=0}^\infty := (c_n)_{n=0}^\infty, \quad \text{gdzie } c_n = \sum_{k=0}^n a_k b_{n-k} \]
+        Wzór na $c_n$: $c_n = a_0b_n + a_1b_{n-1} + \dots + a_nb_0$.
+    \end{enumerate}
+    Tak zdefiniowana struktura $(R[[X]], +, \cdot)$ jest pierścieniem przemiennym z jedynką.
+    \begin{itemize}
+        \item \textbf{Zero:} $\mathbf{0} = (0_{\scriptscriptstyle R}, 0_{\scriptscriptstyle R}, 0_{\scriptscriptstyle R}, \dots)$
+        \item \textbf{Jedynka:} $\mathbf{1} = (1_{\scriptscriptstyle R}, 0_{\scriptscriptstyle R}, 0_{\scriptscriptstyle R}, \dots)$ (dlaczego? Sprawdź mnożenie splotowe!)
+    \end{itemize}
+\end{definition}
+
+\begin{remark}[Notacja potęgowa]
+    Dla wygody wprowadzamy oznaczenie $X := (0, 1, 0, 0, \dots)$.
+    Wtedy $X^2 = (0, 0, 1, 0, \dots)$, $X^n$ ma jedynkę na $n$-tym miejscu.
+    Dzięki temu ciąg $(a_n)$ możemy zapisywać jako sumę (formalną):
+    \[ \sum_{n=0}^\infty a_n X^n = a_0 + a_1X + a_2X^2 + \dots \]
+\end{remark}
+
+\subsection*{Pierścień Wielomianów $R[X]$}
+
+Wielomiany to "szczególny przypadek" szeregów, które kiedyś się kończą.
+
+\begin{definition}[Wielomian]
+    Pierścień wielomianów $R[X]$ to podzbiór $R[[X]]$ składający się z ciągów, które mają \textbf{tylko skończenie wiele wyrazów niezerowych}.
+    \[ R[X] := \left\{ \sum_{n=0}^\infty a_n X^n \in R[[X]] : (\exists N)(\forall n \ge N)(a_n = \mathbf{0}) \right\} \]
+    Ponieważ $R[X]$ jest zamknięty na dodawanie i mnożenie splotowe, jest on \textbf{podpierścieniem} $R[[X]]$.
+\end{definition}
+
+\begin{definition}[Stopień wielomianu]
+    Niech $f = \sum a_n X^n \in R[X] \setminus \{\mathbf{0}\}$.
+    \textbf{Stopniem wielomianu} (ozn. $\deg f$ lub $\text{st } f$) nazywamy największy indeks $n$, dla którego $a_n \neq 0$.
+    \begin{itemize}
+        \item Stopień wielomianu zerowego $\mathbf{0}$ przyjmuje się jako $-\infty$.
+        \item Współczynnik $a_{\deg f}$ nazywamy \textbf{współczynnikiem wiodącym}.
+	\item Współczynnik $a_0$ nazywamy \textbf{współczynnikiem wolnym}. 
+    \end{itemize}
+\end{definition}
+
+\begin{fact}[Elementy odwracalne w R X  - ważne do Zadania 6/L10]
+    Wielomian $f \in R[X]$ jest odwracalny wtedy i tylko wtedy, gdy $a_0 \in R^*$ oraz \textbf{wszystkie pozostałe współczynniki są nilpotentne} (w dziedzinie oznacza to, że muszą być zerami).
+    \begin{itemize}
+        \item Jeśli $R$ jest \textbf{dziedziną}, to $R[X]^* = R^*$ (odwracalne są tylko wielomiany stałe, które są odwracalne w $R$).
+    \end{itemize}
+\end{fact}
+
+\subsubsection*{Wielomian a Funkcja Wielomianowa (Kluczowe!)}
+
+Należy ściśle rozróżniać dwa byty:
+\begin{enumerate}
+    \item \textbf{Wielomian} – to ciąg symboli (element pierścienia).
+    \item \textbf{Funkcja wielomianowa} – to przyporządkowanie wartości (element zbioru funkcji).
+\end{enumerate}
+
+\begin{intuition}
+    Wielomian $f = X^2 + X$ to \textbf{napis}, czyli formalnie ciąg współczynników $(0, 1, 1, 0, \dots)$.\\
+    Funkcja wielomianowa $\overline{f}: R \to R$ to \textbf{przepis} $r \mapsto r^2 + r$.
+\end{intuition}
+
+\begin{definition}[Funkcja wielomianowa]
+    Dla każdego wielomianu $f = \sum_{i=0}^N a_i X^i \in R[X]$ definiujemy funkcję $\overline{f}: R \to R$ zadaną przez ewaluację (podstawienie):
+    \[ 
+        \overline{f}(r) := a_0 + a_1r + \dots + a_N r^N \quad \text{dla } r \in R.
+    \]
+    Odwzorowanie $\Phi: R[X] \to \text{Fun}(R,R)$ dane wzorem $\Phi(f) = \overline{f}$ jest homomorfizmem pierścieni.
+\end{definition}
+
+\begin{remark}[O niejednoznaczności]
+    Dwa \textbf{różne} wielomiany mogą wyznaczać tę samą funkcję wielomianową! Homomorfizm $\Phi$ nie musi być różnowartościowy. 
+
+    \textbf{Przykład:} Rozważmy pierścień $\mathbb{Z}_2 = \{0, 1\}$. Weźmy wielomian $f = X^2 + X$.
+    \begin{itemize}
+        \item $f \neq \mathbf{0}$ jako wielomian (gdyż ciąg współczynników $(0, 1, 1, \dots)$ nie jest ciągiem zerowym).
+        \item Funkcja $\overline{f}$ jest tożsamościowo równa zero:
+        \[ 
+            \begin{cases}
+                \overline{f}(0) = 0^2 + 0 = 0 \\
+                \overline{f}(1) = 1^2 + 1 = 1+1 = 0 \pmod 2
+            \end{cases}
+        \]
+    \end{itemize}
+    Zatem w $\mathbb{Z}_2$ zachodzi $\overline{X^2+X} = \overline{\mathbf{0}}$, mimo że $X^2+X \neq \mathbf{0}$.
+    
+    \textbf{Przykład:} Rozważmy pierścień $\mathbb{Z}_{2} = \{0,1\} $ oraz wielomiany:
+    \begin{itemize}
+    	\item $f_1 = X$,
+	\item $f_2 = X^2$,
+	\item $f_3 = X^3$.
+    \end{itemize}
+Wtedy $\overline{f_1} = \overline{f_2} = \overline{f_3} = \id_{\scriptscriptstyle \mathbb{Z}_{2}}$, bo
+\[
+			\begin{cases}
+				0 &= 0^2 = 0^3 \\
+				1 &= 1^2 = 1^3
+			\end{cases}
+.\] 
+
+
+    \textbf{Wniosek:} Nie należy utożsamiać wielomianów z funkcjami wielomianowymi, chyba że pracujemy w ciele nieskończonym (gdzie izomorfizm zachodzi).
+\end{remark}
+
+\begin{remark}[Szeregi formalne]
+    Szereg formalny $F = \sum_{n=0}^{\infty} a_n X^n \in R[[X]]$ (gdzie nieskończenie wiele $a_n \neq 0$) zazwyczaj \textbf{nie wyznacza} żadnej funkcji $R \to R$. 
+    Aby mówić o wartości szeregu, w pierścieniu $R$ musi istnieć pojęcie granicy (topologia), co pozwala zdefiniować zbieżność (np. $\exp(x) = \sum \frac{x^n}{n!}$ w analizie rzeczywistej). W algebrze abstrakcyjnej $X$ jest tylko zmienną formalną.
+\end{remark}
+
+\section{Szeregi formalne i wielomiany wielu zmiennych}
+
+Niech $R$ będzie pierścieniem przemiennym z jedynką.
+
+\begin{definition}[Definicja rekurencyjna]
+\begin{enumerate}[label=\arabic*)]
+    \item \textbf{Dla $n=1$}: $R[[X]]$ – pierścień szeregów formalnych jednej zmiennej.
+    \item \textbf{Dla $n \geq 2$}:
+    \[
+    R[[X_1,\dots,X_n]] \;:=\; R[[X_1,\dots,X_{n-1}]][[X_n]]
+    \]
+    Każdy krok dodaje nową zmienną, traktując dotychczasowe szeregi jako współczynniki.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}[Definicja funkcyjna (globalna)]
+\[
+R[[X_1,\dots,X_n]] \;=\; \bigl\{ f \colon \mathbb{N}^n \to R \bigr\}
+\]
+Element to funkcja przypisująca każdemu punktowi $(i_1,\dots,i_n) \in \mathbb{N}^n$ współczynnik $a_{i_1\dots i_n} \in R$.  
+Zapisujemy ją jako \textbf{sumę formalną}:
+\[
+f \;=\; \sum_{(i_1,\dots,i_n)\in\mathbb{N}^n} a_{i_1\dots i_n} \, X_1^{i_1}\cdots X_n^{i_n}
+\]
+\textbf{Wielomiany} to podzbiór tych funkcji o \textbf{skończonym nośniku} (tylko skończenie wiele niezerowych współczynników).
+\end{definition}
+\subsubsection*{Równoważność obu definicji}
+
+\begin{theorem}[Naturalny izomorfizm]
+Dla dowolnego $n \geq 1$ istnieje naturalny izomorfizm pierścieni:
+\[
+\bigl( R[[X_1,\dots,X_{n-1}]] \bigr)[[X_n]] \;\cong\; \{ f \colon \mathbb{N}^n \to R \}
+\]
+Izomorfizm działa następująco:  
+jeśli $F = \sum_{k=0}^{\infty} F_k X_n^k$ z $F_k \in R[[X_1,\dots,X_{n-1}]]$,  
+to odpowiadająca funkcja $f \colon \mathbb{N}^n \to R$ spełnia
+\[
+f(i_1,\dots,i_{n-1}, i_n) \;=\; F_{i_n}(i_1,\dots,i_{n-1}).
+\]
+
+Dowód na liście zadań.
+\end{theorem}
+\subsection*{Pierścienie i ciała liczbowe}
+
+\begin{definition}[Pierścień Gaussa i rozszerzenia kwadratowe]
+    \begin{enumerate}[label=\arabic*)]
+        \item \textbf{Pierścień Gaussa} $\mathbb{Z}[i]$ definiujemy jako zbiór liczb zespolonych o współczynnikach całkowitych:
+        \[ \mathbb{Z}[i] := \{a + bi : a, b \in \mathbb{Z}\} \subseteq \mathbb{C}. \]
+        Jest to podpierścień ciała liczb zespolonych.
+        
+        \item Niech $\alpha \in \mathbb{C} \setminus \mathbb{Q}$ oraz $\alpha^2 \in \mathbb{Q}$. Definiujemy \textbf{rozszerzenie kwadratowe ciała} $\mathbb{Q}$ jako:
+        \[ \mathbb{Q}(\alpha) := \{a + b\alpha : a, b \in \mathbb{Q}\} \subseteq \mathbb{C}. \]
+        Struktura ta tworzy podciało w $\mathbb{C}$ (każdy niezerowy element jest odwracalny).
+    \end{enumerate}
+\end{definition}
+
+\begin{remark}[{Ogólna konstrukcja $\mathbb{Z}\left[\alpha\right]$}]
+    Jeśli $\alpha \in \mathbb{C} \setminus \mathbb{Z}$ oraz $\alpha^2 \in \mathbb{Z}$, to zbiór:
+    \[ \mathbb{Z}[\alpha] := \{a + b\alpha : a, b \in \mathbb{Z}\} \]
+    jest podpierścieniem pierścienia $\mathbb{C}$. 
+    
+    \textbf{Dowód zamkniętości na mnożenie:}
+    Weźmy dwa elementy $x = a + b\alpha$ oraz $y = c + d\alpha$. Ich iloczyn wynosi:
+    \[ xy = (a + b\alpha)(c + d\alpha) = ac + ad\alpha + bc\alpha + bd\alpha^2 = (ac + bd\alpha^2) + (ad + bc)\alpha. \]
+    Ponieważ $a, b, c, d \in \mathbb{Z}$ oraz $\alpha^2 \in \mathbb{Z}$, to współczynniki $(ac + bd\alpha^2)$ oraz $(ad + bc)$ również są całkowite, zatem $xy \in \mathbb{Z}[\alpha]$.
+\end{remark}
+\section*{Notacja: Rozszerzenia pierścieniowe $R[\alpha]$ a ciałowe $K(\alpha)$}
+
+Rozróżnienie między nawiasami kwadratowymi a okrągłymi w notacji algebraicznej informuje nas o rodzaju struktury, którą generujemy.
+
+\subsection*{Krótka odpowiedź}
+\begin{itemize}
+    \item \textbf{Nawiasy kwadratowe $[\dots]$:} Oznaczają \textbf{rozszerzenie pierścieniowe}. Generujemy najmniejszy pierścień zawierający dany pierścień bazowy i nowy element.
+    \item \textbf{Nawiasy okrągłe $(\dots)$:} Oznaczają \textbf{rozszerzenie ciałowe}. Generujemy najmniejsze ciało zawierające dane ciało bazowe i nowy element.
+\end{itemize}
+
+\subsection*{Analiza różnicy}
+
+\subsubsection*{1. Przypadek $\mathbb{Z}[i]$ (Nawiasy kwadratowe)}
+Symbol $R[\alpha]$ oznacza zbiór wszystkich wielomianów zmiennej $\alpha$ o współczynnikach z $R$. Działania dostępne w pierścieniu to dodawanie, odejmowanie i mnożenie. 
+\begin{itemize}
+    \item $\mathbb{Z}$ jest pierścieniem, ale nie jest ciałem (brak elementów odwrotnych, np. $\frac{1}{2} \notin \mathbb{Z}$).
+    \item $\mathbb{Z}[i]$ to zbiór elementów postaci $a_0 + a_1i + a_2i^2 + \dots$. Ponieważ $i^2 = -1$, redukuje się to do postaci $a + bi$, gdzie $a, b \in \mathbb{Z}$ (liczby całkowite Gaussa).
+    \item \textbf{Uwaga:} Zapis $\mathbb{Z}(i)$ oznaczałby ciało ułamków pierścienia $\mathbb{Z}[i]$, co w efekcie dałoby ciało liczb wymiernych Gaussa $\mathbb{Q}(i)$.
+\end{itemize}
+
+\subsubsection*{2. Przypadek $\mathbb{Q}(\alpha)$ (Nawiasy okrągłe)}
+Symbol $K(\alpha)$ oznacza zbiór wszystkich funkcji wymiernych (ułamków wielomianów) zmiennej $\alpha$ o współczynnikach z $K$. W ciele mamy dodatkowo do dyspozycji dzielenie przez elementy niezerowe.
+\begin{itemize}
+    \item $\mathbb{Q}$ jest ciałem. Rozszerzenie $\mathbb{Q}(\alpha)$ konstruujemy tak, aby również było ciałem.
+    \item Z definicji $\mathbb{Q}(\alpha)$ to najmniejsze ciało zawierające $\mathbb{Q}$ i $\alpha$.
+\end{itemize}
+
+\subsection*{Subtelność matematyczna}
+W przypadku, gdy $\alpha$ jest \textbf{liczbą algebraiczną} (np. gdy $\alpha^2 \in \mathbb{Q}$), zachodzi równość zbiorów:
+\[ \mathbb{Q}[\alpha] = \mathbb{Q}(\alpha) \]
+\textbf{Dlaczego?} Ponieważ proces "usuwania niewymierności z mianownika" pozwala zamienić każdy ułamek $\frac{1}{a+b\alpha}$ na wielomian postaci $c+d\alpha$. Mimo że zbiory są identyczne, używamy nawiasów okrągłych $\mathbb{Q}(\alpha)$, aby podkreślić strukturę ciała (możliwość dzielenia).
+
+\subsection*{Podsumowanie}
+\begin{center}
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Notacja} & \textbf{Nazwa} & \textbf{Definicja} & \textbf{Elementy} \\ \hline
+$R[\alpha]$ & Pierścień generowany & Najmniejszy pierścień $\supseteq R \cup \{\alpha\}$ & Wielomiany: $\sum r_i \alpha^i$ \\ \hline
+$K(\alpha)$ & Ciało generowane & Najmniejsze ciało $\supseteq K \cup \{\alpha\}$ & Ułamki: $\frac{P(\alpha)}{Q(\alpha)}$ \\ \hline
+\end{tabular}
+\end{center}
+
+\textbf{Zastosowanie w materiale:}
+\begin{itemize}
+    \item $\mathbb{Z}[i]$ jest zdefiniowane jako \textbf{podpierścień} $\mathbb{C}$ (brak dzielenia wewnątrz zbioru).
+    \item $\mathbb{Q}(\alpha)$ jest zdefiniowane jako \textbf{podciało} $\mathbb{C}$ (każdy element niezerowy jest odwracalny).
+\end{itemize}
+\section*{Intuicja: Pierścień $\mathbb{Q}[\alpha]$ a ciało $\mathbb{Q}(\alpha)$}
+
+Intuicja podpowiada nam, że zbiór wielomianów (pierścień $\mathbb{Q}[\alpha]$) jest "mniejszy" niż zbiór ułamków (ciało $\mathbb{Q}(\alpha)$). Przecież w pierścieniu $\mathbb{Z}$ nie możemy odwracać elementów (np. $\frac{1}{2} \notin \mathbb{Z}$), więc $\mathbb{Z} \neq \mathbb{Q}$. 
+
+Dlaczego więc dla $\alpha$ algebraicznego ta różnica znika? Kluczem jest wielomian minimalny i własności pierścienia wielomianów nad ciałem.
+
+\subsection*{Dowód formalny: $\mathbb{Q}(\alpha) = \mathbb{Q}[\alpha]$}
+
+\begin{enumerate}
+    \item \textbf{Inkluzja trywialna ($\mathbb{Q}[\alpha] \subseteq \mathbb{Q}(\alpha)$)} \\
+    Każdy element postaci $a_0 + a_1\alpha + \dots + a_n\alpha^n$ (wielomian) można zapisać jako ułamek o mianowniku $1$. Zatem $\mathbb{Q}[\alpha]$ zawsze zawiera się w $\mathbb{Q}(\alpha)$. Jest to prawdziwe dla dowolnej liczby $\alpha$.
+
+    \item \textbf{Inkluzja nietrywialna ($\mathbb{Q}(\alpha) \subseteq \mathbb{Q}[\alpha]$)} \\
+    W tym miejscu konieczne jest założenie o algebraiczności $\alpha$. Musimy pokazać, że dla dowolnego niezerowego elementu $\beta \in \mathbb{Q}[\alpha]$, jego odwrotność $\beta^{-1}$ nadal należy do $\mathbb{Q}[\alpha]$.
+\end{enumerate}
+
+\textbf{Dowód punktu 2:}
+\begin{enumerate}[label=\roman*)]
+    \item Niech $\beta$ będzie dowolnym niezerowym elementem z $\mathbb{Q}[\alpha]$. Oznacza to, że $\beta = f(\alpha)$ dla pewnego wielomianu $f \in \mathbb{Q}[X]$.
+    \item Skoro $\alpha$ jest liczbą algebraiczną, istnieje jej wielomian minimalny $\mu(X) \in \mathbb{Q}[X]$. Jest to wielomian nierozkładalny, taki że $\mu(\alpha) = 0$.
+    \item Skoro $\mu(X)$ jest nierozkładalny, to $\text{NWD}(f, \mu)$ może wynosić albo $1$, albo $\mu$ (z dokładnością do stałej).
+    \item Ponieważ $\beta = f(\alpha) \neq 0$, to wielomian $f$ nie może być wielokrotnością $\mu$ (gdyby był, to z własności homomorfizmu ewaluacji $f(\alpha)$ byłoby zerem).
+    \item Zatem $\text{NWD}(f, \mu) = 1$.
+    \item Pierścień $\mathbb{Q}[X]$ jest euklidesowy względem stopnia wielomianu, zatem istnieją wielomiany $A(X), B(X) \in \mathbb{Q}[X]$ spełniające tożsamość Bézouta:
+    \[ A(X) \cdot f(X) + B(X) \cdot \mu(X) = 1 \]
+    \item Podstawiając do powyższej tożsamości $X = \alpha$ (stosując homomorfizm ewaluacji $\text{ev}_{\alpha}$):
+    \[ A(\alpha) \cdot f(\alpha) + B(\alpha) \cdot \mu(\alpha) = 1 \]
+    \item Wiemy, że $\mu(\alpha) = 0$. Zatem:
+    \[ A(\alpha) \cdot f(\alpha) = 1 \implies A(\alpha) \cdot \beta = 1 \implies \beta^{-1} = A(\alpha) \]
+\end{enumerate}
+
+\textbf{Wniosek:} Element odwrotny $\beta^{-1}$ jest równy $A(\alpha)$. Skoro $A(X)$ jest wielomianem, to $A(\alpha)$ jest elementem pierścienia $\mathbb{Q}[\alpha]$. Zatem każdy ułamek w $\mathbb{Q}(\alpha)$ można "uwymiernić" do postaci wielomianu.
+
+\subsection*{Kontrprzykład: Liczba przestępna}
+Gdyby $\alpha$ było liczbą przestępną (np. $\pi$), nie istniałby wielomian minimalny $\mu(X) \in \mathbb{Q}[X]$ zerujący się w $\pi$. Kroki dowodu oparte na nierozkładalności $\mu$ i tożsamości Bézouta nie zadziałają. Nie znajdziemy wielomianu $A(X)$ takiego, że $A(\pi) \cdot \pi = 1$. Dlatego $\pi^{-1} \in \mathbb{Q}(\pi)$, ale $\pi^{-1} \notin \mathbb{Q}[\pi]$.
+
+\begin{quote}
+    \textit{,,Algebraiczność pozwala nam usuwać mianowniki, zamieniając je na wielomiany.''}
+\end{quote}
+
+\section{Homomorfizmy pierścieni}
+
+\begin{definition}[Homomorfizm pierścieni]
+    Odwzorowanie $f: R \to S$ nazywamy \textbf{homomorfizmem pierścieni}, jeśli dla każdych $x, y \in R$ zachodzą warunki:
+    \begin{enumerate}
+        \item $f(x +_R y) = f(x) +_S f(y)$,
+        \item $f(x \cdot_R y) = f(x) \cdot_S f(y)$.
+    \end{enumerate}
+    Pojęcia monomorfizmu, epimorfizmu i izomorfizmu definiujemy analogicznie jak w teorii grup.
+\end{definition}
+
+\begin{remark}[Własności strukturalne]
+    \begin{enumerate}[label=\arabic*)]
+        \item Homomorfizm pierścieni jest w szczególności homomorfizmem grup addytywnych, skąd $f(\mathbf{0}_R) = \mathbf{0}_S$ oraz $f(-r) = -f(r)$.
+        \item Jeśli pierścienie posiadają jedynkę, to nie zawsze $f(\mathbf{1}_R) = \mathbf{1}_S$. Przykładem jest homomorfizm zerowy $f(r) = 0$ dla każdego $r \in R$, gdzie wtedy $f(1) = 0$.
+    \end{enumerate}
+\end{remark}
+
+\begin{theorem}
+    Niech $f: R \to S$ będzie homomorfizmem, gdzie $R, S$ to pierścienie przemienne z jedynką, a $S$ jest dodatkowo dziedziną całkowitości.
+
+    Jeśli $f$ nie jest odwzorowaniem zerowym, to $f(\mathbf{1}_R) = \mathbf{1}_S$.
+\end{theorem}
+
+\begin{proof}
+    Niech $e = f(\mathbf{1}_R) \in S$. Zauważmy, że:
+    \[ e = f(\mathbf{1}_R \cdot \mathbf{1}_R) = f(\mathbf{1}_R) \cdot f(\mathbf{1}_R) = e^2. \]
+    W pierścieniu $S$ otrzymujemy równanie $e^2 - e = 0$, co po wyłączeniu przed nawias daje $e(e - \mathbf{1}_S) = \mathbf{0}_S$. 
+    Ponieważ $S$ jest dziedziną całkowitości, to nie posiada dzielników zera, zatem:
+    \[ e = \mathbf{0}_S \quad \text{lub} \quad e = \mathbf{1}_S. \]
+    Gdyby $e = \mathbf{0}_S$, to dla dowolnego $r \in R$ zachodziłoby $f(r) = f(r \cdot \mathbf{1}_R) = f(r) \cdot \mathbf{0}_S = \mathbf{0}_S$, co oznaczałoby, że $f$ jest odwzorowaniem zerowym. Ponieważ z założenia $f \neq 0$, musi zachodzić $f(\mathbf{1}_R) = \mathbf{1}_S$.
+\end{proof}
+
+
+\subsection*{Homomorfizm Ewaluacji}
+
+Uogólnienie podstawiania liczby do wielomianu.
+Niech $R$ będzie podpierścieniem $S$ (np. $\mathbb{Z} \subset \mathbb{R}$), a $c \in S$ ustalonym elementem.
+
+\begin{definition}[Ewaluacja]
+    Odwzorowanie $\text{ev}_c: R[X] \to S$ dane wzorem:
+    \[ \text{ev}_c \left( \sum a_i X^i \right) := \sum a_i c^i \]
+    nazywamy \textbf{homomorfizmem ewaluacji} (w punkcie $c$).
+    
+    Wartość $\text{ev}_c(f)$ oznaczamy po prostu $f(c)$.
+\end{definition}
+
+\noindent TYMCZASOWA NOTKA O EWALUACJI
+
+
+\noindent Dla wielomianu $f = \sum_{i=0}^{N} a_{iX^{i}} \in R\left[ X \right] $ definiujemy funkcję (wielomianową?) $\overline{f} : R \to R$ zadaną przez podstawienie(ewaluację):
+\[
+\overline{f}\left( r \right) := a_0 + a_1r + \ldots + a_{N}r^{N}.
+.\] 
+Odwzorowanie $\psi: R\left[ X \right] \to \text{Fun}\left( R,R \right) $ dane wzorem $\psi\left( f \right) := \overline{f}$ jest homomorfizmem pierścieni.
+
+Następnie niech $Y$ będzie dowolnym zbiorem oraz  $y \in Y$. Definiujemy funkcję ewaluacji w punkcie $y$: $\text{ev}_{y}: \text{Fun}\left( Y, R \right) \to R$, daną wzorem $\text{ev}_{y}\left( g \right) := g\left( y \right) $, dla każdego $g \in \text{Fun}\left( Y,R \right) $. Jest to epimorfizm (funkcje stałe przechodzą na swoją wartość).  
+
+Mamy zatem
+\[
+R\left[ X \right] \overset{\psi}{\longrightarrow } \text{Fun}\left( R,R \right) \overset{\text{ev}_{r}}{\longrightarrow } R
+.\] 
+Zatem
+\[
+\underbrace{f}_{\in R\left[ X \right] } \overset{\psi}{\longrightarrow } \underbrace{\overline{f}}_{\in \text{Fun}\left( R,R \right) } \overset{\text{ev}_{r}}{\longrightarrow } \underbrace{\overline{f}\left( r \right) }_{\in R}
+.\] 
+Co tu się dzieje?
+\begin{enumerate}[label=\arabic*)]
+	\item $R\left[ X \right] $ (Punkt startowy): Mamy wielomian $f$. Jest to ciąg symboli (współczynników z $R$ ). Nie jest to funkcja, tylko ,,przepis''.
+	\item $\psi$ (Transformacja): To odwzorowanie bierze ten przepis ($f$ ) i tworzy z niego konkretną funkcję $\overline{f}$. Jest to obraz elementu $f$ w odwzorowaniu $\psi$, czyli $\psi\left( f \right) = \overline{f}$.
+	\item $\text{Fun}\left( R,R \right) $ tutaj ,,mieszka'' $\overline{f}$. Jest jedną z wielu możliwych funkcji w tym zbiorze.
+	\item $\text{ev}_{r}$ (Ewaluacja): Ta funkcja bierze element z $\text{Fun}\left( R,R \right) $ (w naszym przypadku akurat  $\overline{f}$ ) i ,,karmi'' go argumentem $r$.
+	\item Wynik: otrzymujemy wartość $\overline{f}\left( r \right) $.
+\end{enumerate}
+\noindent Podsumowując wygląda to tak:
+\[
+\text{ev}_{r} \circ \psi\left( f \right) = \text{ev}_{r}\left( \overline{f} \right) = \overline{f}\left( r \right) 
+.\] 
+
+Ogólna definicja ewaluacji $\text{ev}_{r}$ działa na \textbf{każdej} funkcji $g \in \text{Fun}\left( R,R \right) $, nieważne skąd się wzięła. 
+
+W naszym kontekście my ,,karmimy'' ewaluację funkcją $\overline{f}$, którą dostarczył nam homomorfizm $\psi$.
+
+W codziennej praktyce jednak używamy ,,nadużycia'', tzn traktujemy $\text{ev}_{r}$ jako homomorfizm/funkcję ewaluacji, czyli $\text{ev}_{r}: R\left[ X \right] \to R$, gdzie formalnie jest to złożenie $\text{ev}_{r} \circ \psi$.
+
+,,Definiuje'' się to jako \textbf{Własność Uniwersalna Pierścienia Wielomianów}. Mianowicie, zamiast pisać o $\text{Fun}\left( R,R \right) $ formalnie definiuje się to tak:
+
+Dla każdego $r \in R$, istnieje dokładnie jeden homomorfizm pierścieni $\Phi_{r} : R\left[ X \right] \to R$, taki że
+\begin{enumerate}[label=\arabic*)]
+	\item $\Phi_{r}\left( a \right) = a$ dla każdego $a \in R$ (stałe przechodzą na stałe).
+	\item $\Phi_{r}\left( X \right) = r$.
+\end{enumerate}
+Ten jedyny homomorfizm $\phi_{r}$ to właśnie złożenie $\text{ev}_{r} \circ \psi$.
+
+Warto jeszcze podkreślić, że $\psi$ nie musi być różnowartościowa ani ,,na'', ale w ciele nieskończonym $\psi$ jest monomorfizmem. TODO
+
+
+\subsubsection*{Przykłady homomorfizmów i struktur pierścieniowych}
+
+Niech $R$ (lub $P$) będzie pierścieniem przemiennym z jedynką.
+\begin{enumerate}[label=\arabic*)] 
+	\item \textbf{Redukcja modulo $n$:} Odwzorowanie 
+		\[
+		r_{n}: \mathbb{Z} \to \mathbb{Z} _{n}
+		,\] 
+		dane wzorem 
+		\[
+		r_{n}\left( a \right) := \left[ a \right] n \text{(reszta z dzielenia przez n)}
+	,\] 
+	jest epimorfizmem pierścieni. 
+	\begin{itemize} 
+		\item Zachowuje dodawanie i mnożenie: to wynika bezpośrednio z definicji działań w $\mathbb{Z} _{n} $. 
+		\item Jest ,,na'' (surjekcja), ponieważ każda klasa abstrakcji $\left[ 0 \right], \ldots, \left[ n-1 \right] $ ma swój pierwowzór w Z. 
+	\end{itemize}
+\item \textbf{Zanurzenie kanoniczne w pierścień wielomianów:}
+Odwzorowanie $\varphi: R \to R[X]$ zdefiniowane jako $\varphi(r) := rX^0$ (gdzie $rX^0$ to wielomian stały) jest \textbf{monomorfizmem}  pierścieni.
+
+Utożsamiamy pierścień $R$ z jego obrazem $\varphi[R] = \{rX^0 : r \in R\}$. Dzięki temu możemy pisać $R \subseteq R[X]$.
+
+\begin{remark}[Wyjaśnienie struktury $R X $]
+    Formalnie wielomian to suma $\sum a_i X^i$. Zapis $a_0 X^0$ pozwala nam traktować elementy pierścienia $R$ jako \textbf{część}  świata wielomianów. Dzięki temu każdy wielomian możemy zapisać jako:
+    \[ a_0 + a_1 X + \dots + a_n X^n \]
+    gdzie współczynniki $a_i$ traktujemy jako elementy $R$.
+    Kluczową własnością $R[X]$ (jako obiektu swobodnego) jest to, że dwa wielomiany są równe wtedy i tylko wtedy, gdy ich współczynniki przy odpowiednich potęgach $X$ są identyczne:
+    \[ \sum a_i X^i = \sum b_i X^i \iff \forall i: a_i = b_i. \]
+\end{remark}
+
+\item \textbf{Homomorfizm ewaluacji funkcji:}
+$\psi: R[X] \to \text{Fun}(R, R)$ dane przez $\psi(f) := \overline{f}$ (przypisanie wielomianowi jego funkcji wielomianowej).
+\begin{itemize}
+    \item $\psi$ jest homomorfizmem, ale jak widzieliśmy wcześniej (przykład z $\mathbb{Z}_2$), nie musi być różnowartościowy (nie jest monomorfizmem).
+    \item Nie musi być też "na" (surjekcją). Dla $R = \mathbb{Q}$ zbiór wielomianów jest przeliczalny ($\aleph_0$), a zbiór wszystkich funkcji $\mathbb{Q} \to \mathbb{Q}$ ma moc continuum ($2^{\aleph_0}$), więc wielomiany nie mogą "wyczerpać" wszystkich funkcji.
+\end{itemize}
+
+\item \textbf{Ewaluacja w punkcie (dla funkcji):}
+Niech $Y$ będzie zbiorem, a $y \in Y$ ustalonym elementem. Odwzorowanie $\text{ev}_y: \text{Fun}(Y, R) \to R$ dane wzorem:
+\[ \text{ev}_y(f) := f(y) \]
+jest epimorfizmem pierścieni. Wybieramy funkcję i "patrzymy" tylko na jej wartość w jednym punkcie.
+
+\item \textbf{Ewaluacja w punkcie (dla wielomianów) – ,,Nadużycie notacji'':}
+W praktyce matematycznej często utożsamiamy wielomian $f$ z funkcją $\overline{f}$ i piszemy po prostu:
+\[ \text{ev}_r: R[X] \to R, \quad \text{ev}_r(f) := f(r). \]
+Formalnie jest to złożenie dwóch homomorfizmów: $R[X] \xrightarrow{\psi} \text{Fun}(R, R) \xrightarrow{\text{ev}_r} R$. 
+Zauważ kierunek strzałek: $\text{ev}_r$ bierze wielomian i zwraca element pierścienia $R$. Jest to epimorfizm (aby otrzymać $r_0 \in R$, wystarczy wziąć wielomian stały $f = r_0$).
+
+\item \textbf{Lewa reprezentacja regularna:}
+Rozważamy pierścień endomorfizmów grupy addytywnej $(R, +)$, oznaczany $\text{End}(R, +)$. Elementami tego pierścienia są homomorfizmy grupowe, a mnożeniem jest składanie funkcji.
+Definiujemy $\alpha: R \to \text{End}(R, +)$ wzorem $\alpha(r) = \lambda_r$, gdzie $\lambda_r(x) = rx$.
+
+
+\begin{figure}[H] % [h!] to sugestia, by umieścić "tutaj"
+        \centering
+	\adjustbox{scale = 1.3}{
+	\begin{tikzpicture}[node distance = 0.7cm and 1.4cm]
+  % Tell it where the nodes are
+  \node (A) [label={[xshift=4pt]left:$\alpha :$}] {$R$};
+  \node (B) [below=of A] {$r$};
+  \node (C) [right=of A] {$\text{End}(( R,+ )) $};
+  %\node (D) [below=of C] {$\lambda_{r} $};
+   \node (D) at (B -| C) {$\lambda_{r}$};
+   % Składnia (B -| C) oznacza: weź współrzędną Y z punktu B i współrzędną X z punktu C
+  % Tell it what arrows to draw
+  \draw[draw=none] (A)-- node[midway] {\small $\rotatein$} (B);
+  \draw[|->] (B)--(D);
+  \draw[-stealth] (A)--(C);
+  \draw[draw=none] (C)-- node [midway] {\small $\rotatein$} (D);
+\end{tikzpicture}}
+\end{figure}
+
+Gdzie:
+\begin{itemize}
+	\item $\alpha $ jest homomorfizmem,
+	\item $\lambda_{r}\left( x \right) := rx$,
+	\item $\alpha \left( r \right) := \lambda_{r}$.
+\end{itemize}
+
+
+\textbf{Dowód zachowania mnożenia:}
+Sprawdzamy, czy $\alpha(r_1 r_2) = \alpha(r_1) \circ \alpha(r_2)$:
+\[ \alpha(r_1 r_2)(x) = \lambda_{r_1 r_2}(x) = (r_1 r_2)x = r_1(r_2 x) = \lambda_{r_1}(\lambda_{r_2}(x)) = (\lambda_{r_1} \circ \lambda_{r_2})(x). \]
+Ponieważ zachodzi to dla każdego $x$, mamy równość operatorów.
+
+Dla $R = \mathbb{Z}$ lub $R = \mathbb{Z}_n$, $\alpha$ jest \textbf{izomorfizmem}. Oznacza to, że cała struktura pierścienia $\mathbb{Z}$ jest "zakodowana" w tym, jak jego elementy działają na siebie nawzajem przez mnożenie.
+
+\end{enumerate}
+
+\subsubsection*{Komentarz do przykładów}
+
+\begin{remark}[Twierdzenie Cayleya dla pierścieni]
+Dlaczego przykład z lewą reprezentacją regularną ($\lambda: R \to \operatorname{End}_{\mathbb{Z}}(R)$) jest tak ważny?
+
+\begin{quote}
+W teorii grup twierdzenie Cayleya mówi, że każda grupa jest izomorficzna z pewną grupą permutacji. W pierścieniach sytuacja jest analogiczna: \textbf{każdy pierścień z jedynką jest izomorficzny z pewnym podpierścieniem pierścienia endomorfizmów.}
+
+To zmienia naszą ontologię:
+\begin{itemize}
+    \item Zamiast myśleć o elementach $r \in R$ jako o „punktach” czy „liczbach”, zaczynamy ich używać jako \textbf{operatorów} $\lambda_r$. 
+    \item Mnożenie $r \cdot s$ w pierścieniu to tak naprawdę \textbf{składanie przekształceń} $\lambda_r \circ \lambda_s$.
+\end{itemize}
+To podejście jest fundamentem \textbf{teorii reprezentacji}, gdzie badamy abstrakcyjne struktury poprzez ich działanie na obiektach geometrycznych (przestrzeniach wektorowych).
+\end{quote}
+\end{remark}
+
+\begin{definition}[Własność uniwersalna pierścienia wielomianów]
+Mówienie, że $R[X]$ jest „najprostszym rozszerzeniem”, można sformalizować. Pierścień $R[X]$ posiada tzw. \textbf{własność uniwersalną}:
+
+\begin{quote}
+Niech $S$ będzie pierścieniem przemiennym, a $h: R \to S$ homomorfizmem. Dla każdego elementu $s \in S$ istnieje \textbf{dokładnie jeden} homomorfizm $\Phi: R[X] \to S$ taki, że:
+\begin{enumerate}[label=\roman*)]
+    \item $\Phi|_R = h$ (na stałych zachowuje się jak $h$),
+    \item $\Phi(X) = s$ (posyła zmienną formalną na wybrany element $s$).
+\end{enumerate}
+
+To dlatego homomorfizm ewaluacji $\text{ev}_r$ jest „naturalny”. Wielomian to nic innego jak „przepis”, który mówi, co zrobić z elementem $X$. Własność uniwersalna gwarantuje, że możemy ten przepis wykonać w dowolnym pierścieniu $S$, podstawiając dowolny $s \in S$.
+\end{quote}
+\end{definition}
+
+\begin{remark}
+Własność uniwersalna, o której wspominano wyżej, to bardzo mocny koncept. W matematyce nie definiujemy już obiektów tylko przez to, „z czego się składają”, ale przez to, \textbf{„co robią z innymi obiektami”}.
+
+Pierścień $R[X]$ jest „wolny” (free), ponieważ $X$ nie podlega żadnym ograniczeniom (równaniom) poza tymi wynikającymi z aksjomatów pierścienia. Gdybyśmy do pierścienia $R[X]$ dodali element $Y$ taki, że $Y^2=0$, to nie byłby on już wolny, bo nałożyliśmy na niego więzy. $R[X]$ to czysta swoboda.
+
+W kolejnym rozdziale zobaczymy co się się stanie jeśli tę swobodę zaczniemy ograniczać poprzez ideały i pierścienie ilorazowe. To tam zaczyna się ,,prawdziwa magia'' tworzenia nowych ciał
+\end{remark} 
+
+
+\section{$R$-moduły — uogólnienie przestrzeni liniowych}
+
+\begin{definition}[$R$-moduł]
+Niech $R$ będzie pierścieniem przemiennym z jedynką $1_R$. Grupa przemienna $(M, +)$ wraz z odwzorowaniem (działaniem pierścienia na module):
+\begin{align*}
+R \times M &\longrightarrow M \\
+(r, m) &\longmapsto r \cdot m
+\end{align*}
+nazywamy \textbf{$R$-modułem}, jeśli dla dowolnych $r, s \in R$ oraz $m, n \in M$ spełnione są warunki:
+\begin{enumerate}[label=\roman*)]
+\item $r \cdot (m + n) = r \cdot m + r \cdot n$ \quad (rozdzielność względem sumy elementów modułu),
+\item $(r + s) \cdot m = r \cdot m + s \cdot m$ \quad (rozdzielność względem sumy skalarów),
+\item $(r s) \cdot m = r \cdot (s \cdot m)$ \quad (łączność mieszana),
+\item $1_R \cdot m = m$ \quad (unitalność).
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Równoważność z homomorfizmem]
+Pojęcie $R$-modułu $M$ jest równoważne istnieniu homomorfizmu pierścieni:
+\[
+\varphi: R \to \operatorname{End}_{\mathbb{Z}}(M)
+\]
+zadanego wzorem $\varphi(r)(m) = r \cdot m$. W tej interpretacji każdy element pierścienia $R$ staje się endomorfizmem grupy $M$, a warunek $\varphi(1_R) = \operatorname{id}_M$ gwarantuje unikalność działania jedynki.
+\end{theorem}
+
+\begin{remark}[Przestrzenie liniowe i moduły wolne]
+\begin{itemize}
+\item \textbf{Przestrzenie liniowe:} Jeśli $K$ jest ciałem, to $K$-moduł nazywamy przestrzenią liniową. Fakt, że nad ciałem każdy moduł ma bazę, jest cechą szczególną ciał (wynika to z lematu Kuratowskiego-Zorna).
+\item \textbf{Moduły wolne:} $R$-moduł $M$ nazywamy \textbf{wolnym}, jeśli posiada bazę (zbiór liniowo niezależny, który generuje $M$). Każdy moduł wolny o bazie mocy $\kappa$ jest izomorficzny z sumą prostą $\bigoplus_{\kappa} R$ kopii pierścienia $R$:
+\[
+M \cong R^{(\kappa)} = \bigoplus_{i \in \kappa} R.
+\]
+\item \textbf{Przykład kanoniczny:} Sam pierścień $R$ jest $R$-modułem wolnym o bazie $\{1_R\}$. Podobnie pierścień wielomianów $R[X]$ jest $R$-modułem wolnym o bazie $\{1, X, X^2, \dots\}$.
+\end{itemize}
+\end{remark}
+
+\begin{remark}[Przykłady i konstrukcje]
+\begin{enumerate}
+\item \textbf{Rozszerzenia pierścieni:} Jeśli $S$ jest pierścieniem zawierającym $R$ jako podpierścieniem, to $S$ jest w naturalny sposób $R$-modułem (skalary z $R$ mnożą elementy z $S$ poprzez mnożenie pierścieniowe).
+\item \textbf{Liczby rzeczywiste nad $\mathbb{Q}$:} $\mathbb{R}$ jest przestrzenią liniową nad $\mathbb{Q}$. Ponieważ $\dim_{\mathbb{Q}}(\mathbb{R}) = \mathfrak{c}$, mamy izomorfizm grup (i przestrzeni): $\mathbb{R} \cong \mathbb{Q}^{(\mathfrak{c})}$. To samo dotyczy $\mathbb{C}$.
+\item \textbf{Kluczowy przykład: Grupy abelowe:} Każda grupa przemienna $(A, +)$ jest w sposób jednoznaczny $\mathbb{Z}$-modułem. Działanie definiujemy indukcyjnie:
+\[
+n \cdot a = \begin{cases}
+\underbrace{a + \dots + a}_{n \text{ razy}}, & n > 0,\\
+0, & n = 0,\\
+\underbrace{(-a) + \dots + (-a)}_{|n| \text{ razy}}, & n < 0.
+\end{cases}
+\]
+Zatem: \textbf{Teoria grup abelowych to w rzeczywistości teoria $\mathbb{Z}$-modułów.}
+\end{enumerate}
+\end{remark}
+
+\begin{intuition}	
+Przejście do $R$-modułów jest jednym z najpiękniejszych momentów w algebrze. Zauważ, co to oznacza: wszystkie twierdzenia, które udowodnimy dla modułów nad ogólnymi pierścieniami (a zwłaszcza nad dziedzinami ideałów głównych, jak $\mathbb{Z}$), od razu dają nam potężne narzędzia do klasyfikacji grup abelowych.
+
+Zwróć jednak uwagę na istotną różnicę między modułami a przestrzeniami liniowymi. W przestrzeni liniowej każdy podzbiór liniowo niezależny można rozszerzyć do bazy. W modułach — nie. Weź $\mathbb{Z}$-moduł $\mathbb{Z}$. Zbiór $\{2\}$ jest liniowo niezależny (bo $n \cdot 2 = 0 \implies n=0$), ale nie da się go rozszerzyć do bazy $\mathbb{Z}$, bo żadna kombinacja liniowa dwójki nie wygeneruje jedynki.
+
+Dlatego pojęcie \textbf{modułu wolnego} jest tak cenne — to są te „grzeczne” moduły, które zachowują się niemal jak przestrzenie liniowe. Większość modułów (np. grupy cykliczne skończone jako $\mathbb{Z}$-moduły) nie są wolne, bo mają \textbf{torsję} (elementy $m \neq 0$, takie że $r \cdot m = 0$ dla pewnego $r \neq 0$).
+
+    Moduł nad pierścieniem to uogólnienie przestrzeni wektorowej. W przestrzeni wektorowej skalary są z ciała. W module skalary są z pierścienia.
+\end{intuition}
+
+\begin{eg}
+    \begin{itemize}
+        \item Każda grupa abelowa $A$ jest w naturalny sposób $\mathbb{Z}$-modułem ($n \cdot a = a + \dots + a$).
+        \item Sam pierścień $R$ jest $R$-modułem nad samym sobą.
+        \item Ideał $\mathcal{I} \trianglelefteqslant  R$ jest podmodułem $R$.
+    \end{itemize}
+\end{eg}

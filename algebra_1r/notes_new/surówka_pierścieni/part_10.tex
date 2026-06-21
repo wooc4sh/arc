@@ -1,0 +1,350 @@
+\chapter{Wykład X.}
+
+
+\section{Teoria pierścieni.}
+
+Ustalmy zbiór z dwoma działaniami $+$ i $\cdot $: $\left( R, +,  \cdot  \right) $.
+
+Uwaga notacyjna: $x\cdot y + z := \left( x\cdot y \right) + z$ .
+
+Kilka potencjalnych własności tych działań:
+\begin{enumerate}[label=A\arabic*.]
+	\item $\left( R, + \right) $ jest grupą abelową- element neutralny oznaczamy przez $\mathbf{0}$.
+	\item $\left(\forall a,b,c \in R \right)\left( a\cdot \left( b+c \right) = a\cdot b + a\cdot c \land (b+c)\cdot a = b\cdot a + c\cdot a\right) $ -rozdzielność $\cdot $ względem $+$.
+	\item $\left(\forall a,b,c\in R \right) \left( a\cdot \left( b\cdot c \right) = \left( a\cdot b \right) \cdot c = a\cdot b\cdot c \right) $- łączność mnożenia.
+	\item $\left(\exists \mathbf{1}\in R \right)\left(\forall a\in R \right)\left( a\cdot \mathbf{1} = \mathbf{1}\cdot a = a\right)$- jedynka mnożenia.  ($A4 \text{ i } A3 \implies $ jedyność $\mathbf{1}$).
+	\item $\left(\forall a,b\in R \right)\left( a\cdot b = b\cdot a\right)  $-przemienność $\cdot $.
+\end{enumerate}
+\begin{definition}[Pierścień]
+	Dla ustalonego zbioru $R$ oraz działań $+$ i $\cdot $, definiujemy zbiór $\left( R, +, \cdot  \right) $ jako:
+	\begin{enumerate}[label=\arabic*.]
+		\item \textbf{Pierścień}: jeśli spełnione są warunki $A1, A2$ oraz $A3$.
+		\item  \textbf{Pierścień z jednością(z jedynką):} jeśli spełnione są warunki $A1, A2, A3$ oraz $A4$.
+		\item \textbf{Pierścień przemienny:} jeśli spełnione są warunki $A1, A2, A3$ oraz $A5$.
+		\item \textbf{Pierścień przemienny z jednością(z jedynką):} jeśli spełnione są warunki $A1, A2, A3, A4$ oraz $A5$.
+	\end{enumerate}
+\end{definition} 
+
+Konwencja (R- pierścień):
+\begin{itemize}
+	\item $ab:= a\cdot b$,
+	\item dla $n\in \N_{>0}$ mamy $a^{n}=\underbrace{a\cdot \ldots\cdot a}_{\text{n razy}}$,
+	\item  $a-b := a+ (-b)$
+\end{itemize}
+\begin{definition}[Podpierścień.]
+	Niech $\left( R,+,\cdot  \right) $ będzie pierścieniem. $S\subseteq R$ jest \textbf{podpierścieniem} gdy
+	\begin{enumerate}[label=\arabic*.]
+		\item $S\le (R,+)$, czyli $S$ podgrupą  $R$,
+		\item  $\left(\forall x,y\in S \right)\left( xy \in S \right)  $.
+	\end{enumerate}
+	\noindent \textbf{Oznaczenie:} $S \underset{\scriptscriptstyle\text{podp}}{\subseteq}  R$ 
+\end{definition} 
+\begin{remark}
+Oczywiście $(S, +\restriction_{S\times S}, \cdot\restriction_{S\times S})$ jest pierścieniem, gdy $S$ jest podpierścieniem $R$.
+\end{remark} 
+
+\noindent \textbf{Przykłady:} 
+\begin{enumerate}[label=\arabic*)]
+	\item $\left( \mathbb{Z} , +, \cdot  \right) $ : pierścień przemienny z $\mathbf{1}$.
+	\item $\left( \N, +, \cdot  \right) $ : \textbf{nie} jest pierścieniem. 
+	\item $\left( 2\mathbb{Z}, +, \cdot  \right) $: pierścień przemienny (bez $\mathbf{1}$ ).
+	\item $\left( \mathbb{Z} _{n}, +_{\scriptscriptstyle n}, \cdot _{\scriptscriptstyle n} \right) $.
+	\item $\left( \mathbb{Q} , +,\cdot  \right) $, $\left( \mathbb{R} , +, \cdot  \right) $, $\left( \mathbb{C}, +, \cdot  \right) $ : pierścienie przemienne z $\mathbf{1}$.
+
+	Ponadto \[
+	2\mathbb{Z} \underset{\scriptscriptstyle\text{podp}}{\subseteq} \mathbb{Z} \underset{\scriptscriptstyle\text{podp}}{\subseteq} \mathbb{Q} \underset{\scriptscriptstyle\text{podp}}{\subseteq} \mathbb{R} \underset{\scriptscriptstyle\text{podp}}{\subseteq} \mathbb{C} 
+	.\] 
+	\item $\left( M_{n}\left( \mathbb{R}  \right), +, \cdot  \right) $ : pierścień z $\mathbf{1}$.
+
+	Jest on przemienny $\iff n=1$.
+    	\item Niech R będzie pierścieniem przemiennym z $\mathbf{1}$. Tak samo jak w $M_{n}\left( \mathbb{R}  \right) $ definiujemy dodawanie i mnożenie macierzy (używamy $+$ i $\cdot $ z $R$ ).
+	
+	Wtedy $\left( M_{n}\left( \mathbb{R}  \right)  \right) $ to pierścień z $\mathbf{1}$, tzn.
+	\[
+		\mathbf{1} = \mathcal{I} = \begin{pmatrix} \mathbf{1}_{R} & \ldots & 0 \\ \vdots & \ddots & \vdots \\ 0 & \ldots & \mathbf{1}_{R} \end{pmatrix} 
+	.\] 
+	Czyli przykładowo mamy pierścień $M_3\left( \mathbb{Z}_{3} \right) $.
+	\item Niech $X$- zbiór oraz $R$- pierścień, wtedy $\underbrace{\text{Fun}\left( X,R \right)}_{R^{X}}$ -pierścień z działaniem 
+		\begin{align*}
+			\left( f + g \right) \left( x \right) &:= f\left( x \right) +_{R} g\left( x \right), \\
+			\left( f \cdot g \right) &:= f\left( x \right) \cdot_{R} g\left( x \right) 
+		.\end{align*}
+		oraz
+		\begin{align*}
+			R: \text{ pierścień przemienny } &\implies \text{Fun}\left( X,R \right) \text{ przemienny},\\
+			R: \text{ pierścień przemienny z} \mathbf{1} &\implies \text{Fun}\left( X,R \right) \text{ przemienny z } \mathbf{1}.
+		.\end{align*}
+	\item Definiujemy podpierścienie $\text{Fun}\left( R, R \right)$:
+		\begin{itemize}
+			\item $C\left( R \right) $ : pierścień funkcji ciągłych.
+			\item $C^{n}\left( R \right)$: pierścień funkcji $n$-krotnie różniczkowalnych,
+			\item $C^{\infty}$ : pierścień funkcji nieskończenie wiele różniczkowalnych (gładkich).
+		\end{itemize}
+	\item Niech $A$ będzie grupą abelową. Wtedy
+		\[
+		\text{End}\left( A \right) := \{f: A\ to A: f \text{ jest endomorfizmem grupy }\left( A,+ \right) \}
+		.\] 
+		Dla $f,g \in \text{End}\left( A \right) $ definiujemy:
+		\begin{enumerate}[label=\roman*)]
+			\item $f+g: A \to A$ wzorem
+				\[
+					\left( f+g \right) \left( a \right) := f\left( a \right) +_{A} g\left( a \right) 
+				.\]
+			(WYMAGA KOMENTARZA czy to nie wynika samo przez się?)
+		        \item $f\cdot g: A \to A$ wzorem
+				\[
+					\left( f\cdot g \right)\left( a \right) := f\left( a \right) \cdot_{A} g\left( a \right) 
+				.\] 
+		\end{enumerate}
+		Wtedy $\left( \text{End}\left( A \right), +, \cdot  \right) $ jest pierścieniem z $\mathbf{1}=\id_{A}$, zwykle nieprzemienny.
+\end{enumerate}
+\begin{fact}
+	Niech 
+	\begin{itemize}
+		\item $R$ będzie pierścieniem,
+		\item $a,b,c \in R$,
+		\item $n,m \in \N_{>0}$,
+		\item $\alpha , \beta \in \mathbb{Z} $.
+	\end{itemize}
+	Wtedy
+	\begin{enumerate}[label=\arabic*)]
+		\item $a^{n}b^{m} = a^{n+m}$,
+		\item $\left( a^{n} \right)^{m} = a^{nm}$,
+		\item $\alpha a + \beta a = \left( \alpha +\beta  \right) a$,
+		\item $\alpha \left( \beta a \right) = \left( \alpha \beta  \right) a$,
+		\item $a\mathbf{0} = \mathbf{0} = \mathbf{0}a$,
+		\item $\left( -a \right) b = -\left( ab \right) = a\left( -b \right) $,
+		\item $a\cdot \left(b-c  \right) = ab-ac$,
+		\item $\left( b-c \right) a = ba-ca$.
+		\item $R$-przemienny $\implies \left( a+b \right)^{n} = \sum_{n = 1}^{\infty} \begin{pmatrix} n \\ i \end{pmatrix} a^{i}b^{n-1}$,
+		\item $R$ z $\mathbf{1} \implies \left( -\mathbf{1} \right) a = -a = a\left( -\mathbf{1} \right) $.
+	\end{enumerate}
+\end{fact}
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{remark}
+	Z faktu $5)$ mamy: 
+	\[
+		\left( R, \cdot  \right) \text{ jest grupą }\iff R = \underbrace{ \{\mathbf{0}\} }_{\text{pierścień zerowy}}\iff \mathbf{0} = \mathbf{1}
+	.\] 
+\end{remark} 
+\begin{remark}
+	$A2$ mówi dokładnie, że dla  $\left(\forall r\in R \right) $ funkcja
+	\[
+	\lambda_{r}: R \to R\text{, dana wzorem } \lambda_{r}\left( x \right) := r\cdot x
+	.\] 
+	jest \textbf{endomorfizmem} grupy $\left( R,+ \right) $.
+\end{remark} 
+\begin{remark}
+	Od teraz  $\mathbb{Z} _{n}, \mathbb{Z} ,\mathbb{Q} ,\mathbb{R} ,\mathbb{C} $ będą oznaczać pierścienie.
+\end{remark} 
+
+\begin{definition}[Element odwracalny pierścienia]
+	Niech $R$ będzie pierścieniem z $\mathbf{1}$ oraz $a\in R$.
+	\begin{enumerate}[label=\arabic*)]
+		\item $a$ jest \textbf{odwracalny} gdy
+			\[
+			\left(\exists b\in R \right)\left( ab = ba = \mathbf{1} \right)  
+			.\] 
+		\item $R^{\ast }:= \{a\in R: a \text{ jest odwracalny}\} $
+	\end{enumerate}
+\end{definition} 
+\begin{fact}
+      $\left( R^{\ast}, \cdot \right) $ jest grupą.
+\end{fact}
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{remark}
+	$R \neq \{\mathbf{0}\} \implies \mathbf{0}\not\in R^{\ast}$
+\end{remark} 
+\begin{definition}
+	Niech $R$ będzie pierścieniem z $\mathbf{1}$. Wtedy
+	\begin{enumerate}[label=\arabic*)]
+		\item $\left( R,+ \right) $ jest \textbf{grupą addytywną} $R$,
+		\item $\left( R^{\ast}, \cdot  \right) $ jest \textbf{grupą multiplikatywną} $R$.
+	\end{enumerate}
+\end{definition} 
+\begin{remark}
+	Niech $R$ będzie pierścieniem z $\mathbf{1}$.
+	Wtedy
+	\[
+	\left(\forall a \in R^{\ast} \right)\left(\exists !b\in R^{\ast} \right)\left( ab = ba = \mathbf{1} \right)   
+	.\] 
+	Oznaczamy wtedy $b = a^{-1}$.
+
+	\noindent \textbf{Ogólniej:}
+
+	$\left(\forall n\in \mathbb{Z}  \right)\left(\forall a \in R^{\ast} \right)  $ mamy zdefiniowane $a^{n}$. Wtedy:
+	\begin{itemize}
+		\item $a^{-1}$ jest elementem odwrotnym do $a$ w sensie mnożenia,
+		\item $-a$ jest elementem odwrotnym do $a$ w sensie dodawania (czyli elementem \textbf{przeciwnym} do $a$ ).
+	\end{itemize}
+\end{remark}
+\begin{remark}
+	Dodawanie ($+$ ) nie jest działaniem na $R^{\ast}$ (chyba że $R=\{\mathbf{0}\} $ ).
+\end{remark} 
+
+\noindent \textbf{Przykłady:} 
+\begin{enumerate}[label=\arabic*)]
+	\item $\mathbb{Z} ^{\ast}=\{-1, 1\} $,
+	\item $\left( \mathbb{Z} _{n} \right)^{\ast} = \mathbb{Z}_{n}^{\ast} = \{a \in \mathbb{Z} _{n}: \text{NWD}\left( a,n \right) = 1\} $ ($\cong \aut\left(\mathbb{Z}_{n}\right) $),
+	\item $\mathbb{Q} ^{\ast} = Q\setminus \{\mathbf{0}\} $, $\mathbb{R} ^{\ast} = \mathbb{R} \setminus \{\mathbf{0}\}$, $\mathbb{C} ^{\ast} = \mathbb{C} \setminus \{\mathbf{0}\} $.
+	\item $M_{n}\left( \mathbb{R}  \right) ^{\ast} = GL_{n}\left( \mathbb{R}  \right) $. Podobnie dla $\mathbb{Q} \text{ oraz }\mathbb{C} $.
+	\item Niech $R$ będzie pierścieniem przemiennym z $\mathbf{1}$.
+		Mamy 
+		\[
+		GL_{n} (R) := \{A\in M_{n}\left( R \right) : \det\left( A \right) \in R^{\ast} \} 
+		.\] 
+		Wtedy
+		\[
+		GL_{n} \left( R \right) = M_{n}\left( R \right) ^{\ast} 
+		.\] 
+	\noindent Przykładowo
+	\begin{align*}
+		GL_{n} \left( \mathbb{Z}  \right) &= \{A\in M_{n} \left( \mathbb{Z}  \right): \det\left( A \right) \in \{-1,1\}  \}, \\
+		GL_{n} \left( \mathbb{Z} _{n}  \right) &= \{A\in M_{n} \left( \mathbb{Z}  \right): \det\left( A \right) \in \{1,3\}  \}, \\
+		SL_{n} \left( R \right) &= \{A \in GL_{n} \left( R \right) : \det\left( A \right)  = 1\} 
+	.\end{align*}
+	W trzeciej równości i.e. dotyczącej $SL_{n} \left( R \right) $ mamy $SL_{n} \left( R \right) \unlhd GL_{n} \left( R \right) $ i dostajemy 
+	\[
+	DSL_{n}\left( R \right) := \mfaktor{SL_{n} \left(R\right)}{Z\left( SL_{n}\left( R \right)   \right) } 
+	.\] 
+	\item Niech $X$ będzie zbiorem oraz $R$ pierścieniem z $\mathbf{1}$. Wtedy
+		\[
+		\text{Fun}\left( X,R \right) ^{\ast} = \text{Fun}\left( X, R^{\ast}  \right) 
+		.\] 
+	\item Niech $A$ będzie grupą abelową, wtedy
+		\[
+		\text{End}\left( A \right) ^{\ast} = \aut\left(A\right) 
+		.\] 
+\end{enumerate}
+\section{Teoria podzielności.}
+\begin{context}
+
+	Zakładamy teraz, że $R$ jest \textbf{pierścieniem przemiennym}.
+\end{context}
+\begin{definition}
+	Niech $x,y \in R$. 
+	\begin{enumerate}[label=\arabic*)]
+		\item $x \mid y$, gdy $\left(\exists r\in R \right)\left( y = rx \right) $ 
+		\item $x\sim y$ ($x$ jest \textbf{stowarzyszony} z $y$, gdy $x \mid y$ oraz $y \mid x$
+	\end{enumerate}
+\end{definition} 
+\begin{eg}
+	Dla $x,y \in \mathbb{Z} $ 
+	\[
+	x\sim y \iff x = \pm y 
+	.\] 
+\end{eg} 
+\begin{fact}
+
+	Niech $x,y,z \in R$.
+	\begin{enumerate}[label=\arabic*)]
+		\item $\left(\exists n \in R^{\ast}\right) \left( y = nx \right)\implies y\sim x  $,
+		\item $x \mid y$ oraz $y \mid z$ $\implies x \mid z $,
+		\item $R$ jest z $\mathbf{1}$ $\implies \sim  $ jest relacją równoważności.
+	\end{enumerate}
+\end{fact}
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{definition}[Dzielnik zera.]
+	$x$ jest dzielnikiem zera, gdy:
+	\begin{enumerate}[label=\arabic*)]
+		\item $x\neq \mathbf{0}$,
+		\item $\left(\exists y\neq \mathbf{0} \right)\left( xy =0 \right)  $.
+	\end{enumerate}
+\end{definition} 
+\begin{definition}[Dziedzina]
+	$R$ jest dziedziną (całkowitości), gdy:
+	\begin{enumerate}[label=\arabic*)]
+		\item $R$ jest pierścieniem przemiennym z $\mathbf{1}$.
+		\item $\mathbf{0}\neq \mathbf{1}$ (tzn. $R \neq \{\mathbf{0}\}) $.
+		\item $R$ nie ma dzielnika $\mathbf{0}$.
+	\end{enumerate}
+\end{definition} 
+\begin{fact}
+	Niech $R$ będzie pierścieniem przemiennym z $\mathbf{1}$ oraz $x,y \in R$. Wtedy:
+	\begin{enumerate}[label=\arabic*)]
+		\item $R$ jest dziedziną $\implies$ 
+	\end{enumerate}
+\end{fact}
+
+\noindent \textbf{Przykłady:}
+\begin{enumerate}[label=\arabic*)]
+	\item $\mathbb{Z}, \mathbb{Q} , \mathbb{R} , \mathbb{C} $ są dziedzinami.
+	\item $2\in \mathbb{Z} _{4}$ jest dzielnikiem $\mathbf{0}$ (bo $2\neq 0$ i $2-2=0$).
+
+		Czyli $\mathbb{Z}_{4}$ nie jest dziedziną. 
+	\item Podpierścień z $\mathbf{1}$ dziedziny jest dziedziną.
+\end{enumerate}
+\begin{fact}
+	Niech $R$ będzie pierścieniem przemiennym z $\mathbf{1}$ oraz $x,y \in R$. Wtedy
+	\begin{enumerate}[label=\arabic*)]
+		\item $R$ jest dziedziną $\implies \left( x\sim y \iff \left(\exists n \in R^{\ast}  \right)\left( y = nx \right)   \right) $.
+		\item $x\in R^{\ast} \implies x$ nie jest dzielnikiem $\mathbf{0}$.
+	\end{enumerate}
+\end{fact}
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{remark}
+	Zauważmy, że
+	\begin{enumerate}[label=\arabic*)]
+		\item Istnieją pierścienie z $\mathbf{1}$, gdzie $a\sim b$ ale nie ma $a\in R^{\ast} $, takiego że $a=ab$ (być może  $C\left[ 0,1 \right] $?)
+		\item W dowodzie pojawiło się \textbf{prawo skracania dla dziedzin}:
+
+			Dla $R$ będącym dziedziną, oraz $a,b \in R$ 
+			\[
+			ab = ac\text{ oraz }a\neq \mathbf{0}\implies b = c
+			.\] 
+	\end{enumerate}
+\end{remark} 
+\begin{definition}[Pierścień z dzielnikiem. Ciało]
+	\begin{enumerate}[label=\arabic*)]
+		\item $R$ jest \textbf{pierścieniem z dzielnikiem} gdy $R$ jest pierścieniem z $\mathbf{1}$ oraz $Ra^{\ast} = R\setminus \{\mathbf{0}\} $ ($\implies \mathbf{0}\neq \mathbf{1}$ )
+		\item $R$ jest \textbf{ciałem }, gdy $R$ jest \textbf{przemiennym} pierścieniem z dzielnikiem.
+	\end{enumerate}
+\end{definition} 
+\textbf{Przykłady:}
+\begin{enumerate}[label=\arabic*)]
+	\item $\mathbb{Q}, \mathbb{R} , \mathbb{C}  $ są ciałami.
+	\item $\mathbb{Z} $ nie jest ciałem.
+	\item Niech $n\in \N_{>0}$. Wtedy następujące warunki są równoważne:
+		\begin{enumerate}[label=\roman*)]
+			\item $\mathbb{Z}_{n}$.
+			\item $\mathbb{Z} _{n} $ jest dziedziną.
+			\item $n$ jest liczbą pierwszą.
+		\end{enumerate}
+		\noindent Ogólniej: $i)\iff ii)$ dla pierścieni przemiennych skończonych (dowód na liście zadań).
+\end{enumerate}
+\noindent \textbf{Oznaczenie: } $\mathbb{F}_{p}: \mathbb{Z}_{p}$ ciało p-elementowe. 
+
+\begin{remark}
+	Mamy:
+	ciało $\implies$ dziedzina $\implies$ pierścień przemienny z $\mathbf{1}$ $\implies$ pierścień z $\mathbf{1}$.
+
+	Ale
+	\[
+	\mathbb{R} \nLeftarrow \mathbb{Z} \nLeftarrow \mathbb{Z} _{n} \nLeftarrow M_{2}\left( \mathbb{R}  \right) 
+	.\] 
+\end{remark} 
+\begin{definition}[Podciało.]
+	Niech $L$ będzie ciałem oraz $K\subseteq L$ podzbiorem $L$. Wtedy $K$ jest \textbf{podciałem} $L$, gdy:
+	\begin{enumerate}[label=\arabic*)]
+		\item $K\underset{\scriptscriptstyle\text{podp}}{\subseteq} L$,
+		\item $\mathbf{1} \in K$,
+		\item $\left(\forall a \in K\setminus \{\mathbf{0}\}  \right) \left( a^{-1}\in K \right) $
+	\end{enumerate}
+\noindent Oznaczamy $K\underset{\scriptscriptstyle\text{podc}}{\subseteq} L$ .
+\end{definition} 
+\begin{remark}
+	Wtedy $\left( K, +\restriction_{\scriptscriptstyle K\times K}, \cdot\restriction_{\scriptscriptstyle K\times K} \right) $ jest ciałem.
+\end{remark} 
+\noindent \textbf{Przykłady:}
+\begin{enumerate}[label=\arabic*)]
+	\item $\mathbb{Q} \underset{\scriptscriptstyle\text{podc}}{\subseteq} \mathbb{R} \underset{\scriptscriptstyle\text{podc}}{\subseteq} \mathbb{C} $.
+	\item $\mathbb{Z} \underset{\scriptscriptstyle\text{podp}}{\subseteq} \mathbb{Q} $, ale  $\mathbb{Z} $ nie jest podciałem $\mathbb{Q} $.
+\end{enumerate}

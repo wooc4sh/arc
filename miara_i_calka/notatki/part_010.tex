@@ -1,0 +1,52 @@
+\chapter{Rodziny zbiorów i miary.}
+\begin{center}
+    \textbf{\large Dyrektywa Metodologiczna}
+\end{center}
+
+\begin{quote}
+    \textit{Fundamentem zrozumienia teorii miary jest płynne przełączanie się między perspektywami. Poniższy schemat wyznacza ramy naszego myślenia na cały ten kurs. Każdą definicję i twierdzenie będziemy filtrować przez:}
+\end{quote}
+
+\begin{enumerate}[label=\textbf{Poziom  \arabic*.}, wide]
+	\item \textbf{Geometryczny(Intuicja)} 
+
+		\textbf{To jest świat $R^{n}$.} 
+		\begin{itemize}
+			\item \textbf{O co chodzi:} Tutaj "miara" to poprostu uogólniona \textbf{objętość, pole powierzchni lub długość.} 
+			\item \textbf{Jak myśleć:} Myślimy obrazkami. Zbiór to po prostu "plama" na płaszczyźnie albo odcinek. Funkcja to wykres. Całka to objętość pod wykresem.
+			\item \textbf{Kiedy używać:} Kiedy potrzebujemy \textbf{kontrprzykładu} lub \textbf{idei dowodu}. Kiedy zastanawiamy się czy twierdzenie ma sens to rysujemy sobie przedział, kółko, sumę rozłącznych prostokątów.
+			\item \textbf{Pułapka:} Nie wszystko da się narysować. Intuicja geometryczna zawodzi przy przestrzeniach nieskończenie wymiarowych albo przy "dziwnych" zbiorach(jak zbiór Cantora czy zbiory niemierzalne). 
+		\end{itemize}
+	\item \textbf{Poziom Algebraiczny(Maszyneria)}
+
+		\textbf{To jest świat $\left( X, \sum, \mu \right) $. Świat definicji.} 
+		\begin{itemize}
+			\item \textbf{O co chodzi:} Tutaj zapominamy, że $X$ to prosta, a miara to długość. $X$ to po prostu jakiś zbiór. Zbiory mierzalne to po prostu elementy $\sigma$-ciała. 
+			\item \textbf{Jak myśleć:} Myślimy logiką zbioru. Nie interesuje nas "kształt" zbioru $A$, interesuje nas tylko to, że  $X \in \sum$. Dowody opierają się na własnościach algebraicznych(dopełnienia, sumy przeliczalne), a nie na geometrii.
+			\item \textbf{Kiedy używać:} Kiedy \textbf{piszemy dowód formalny}. Tutaj sprawdzamy $\sigma$-addytywność, mierzalność funkcji. To jest poziom "czystej matematyki".
+			\item \textbf{Pułapka:} Jeśli zostaniesz tutaj, stracisz sens tego, co robisz. Będziesz przesuwać symbole bez zrozumienia tego, co one reprezentują. 
+		\end{itemize}
+	\item \textbf{"Prawie wszędzie"(Analityczny/Probablityczny)}
+
+		\textbf{To jest świat Zaawansowanej Analizy.}
+		\begin{itemize}
+			\item \textbf{O co chodzi:} To jest najwyższy poziom wtajemniczenia. Tutaj zbiory miary zero \textbf{nie istnieją.}
+			\item \textbf{Jak myśleć:}
+				\begin{itemize}
+					\item Tutaj zbiór liczb wymiernych $\Q$ jest pusty(bo ma miarę zero)
+					\item Funkcje $f$ i $g$, które różnią się tylko na zbiorze miary zero, są dla nas \textbf{tą samą funkcją.}
+					\item Nie myślimy o wartości funkcji w punkcie $x$(bo punkt ma miarę zero), myślimy o globalnym zachowaniu funkcji "na masie"
+				\end{itemize}
+			\item \textbf{Kiedy używamy: } W teorii prawdopodobieństwa, w analizie funkcjonalnej(przestrzenie $L^{p}$), w równaniach różniczkowych. To jest poziom, na którym ignorujemy "szum"(zbiory miary zero) i  widzimy "sygnał".
+			\item  \textbf{Pułapka: } Czasem szczegóły mają znaczenie(np. w Topologii) a ten poziom uczy nas je ignorować. Trzeba uważać, by nie zastosować tego myślenia tam, gdzie ciągłość "każdego punktu" jest ważna.
+		\end{itemize}
+\end{enumerate}
+\begin{eg}[Jak to działa w praktyce?]
+	Weźmy funkcję Dirichleta $D(x) = 1$ dla  $x\in \Q$ i $0$ dla $x\not\in \Q$.
+	\begin{itemize}[label= \textbf{Poziom},wide]
+		\item \textbf{Geometryczny:} Widzimy prostą. W każdym punkcie wymiernym jest "szpilka" o wysokości 1. Trudno sobie wyobrazić pole pod tym wykresem- wygląda jak grzebień z nieskończenie cienkimi zębami.
+		\item \textbf{Algebraiczny:} Sprawdzasz mierzalność. $\Q$ jest zbiorem borelowskim(przeliczalna suma punktów). Przeciwobraz $\{1\} $ to $\Q$, przeciwobraz $\{0\} $ to $\R\setminus\Q$. Oba są w $\sigma$-ciele. Funkcja jest mierzalna.
+		\item \textbf{"Prawie wszędzie":} $\Q$ ma miarę zero. Zatem $D(x) = 0$ \textit{prawie wszędzie}. Dla analityka ta funkcja jest po prostu funkcją zerową. Jej całka wynosi 0. Koniec tematu. 
+	\end{itemize}
+\end{eg} 
+

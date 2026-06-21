@@ -1,0 +1,337 @@
+% basic
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{emptypage}
+\usepackage{subcaption}
+\usepackage{multicol}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[polish]{babel}
+\usepackage{marginnote}
+\usepackage{polski, antpolt} % Czcionka Antyka Półtawskiego
+\usepackage{mathpazo}
+\usepackage[margin=2.5cm]{geometry} 	     % Pakiet potrzebny ustawiania marginesów 
+\definecolor{FerrariRed}{RGB}{255,40,0}
+\usepackage{adjustbox}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{amsmath, amssymb, amsfonts, mathtools, amsthm}
+\usepackage{mathrsfs}
+\usepackage{cancel}
+\usepackage{bm}
+\newcommand\N{\ensuremath{\mathbb{N}}}
+\newcommand\R{\ensuremath{\mathbb{R}}}
+\newcommand\Z{\ensuremath{\mathbb{Z}}}
+\renewcommand\O{\ensuremath{\emptyset}}
+\newcommand\Q{\ensuremath{\mathbb{Q}}}
+\newcommand\C{\ensuremath{\mathbb{C}}}
+\DeclareMathOperator{\sgn}{sgn}
+\usepackage{systeme}
+\let\svlim\lim\def\lim{\svlim\limits}
+\let\implies\Rightarrow
+\let\impliedby\Leftarrow
+\let\iff\Leftrightarrow
+\let\epsilon\varepsilon
+\usepackage{stmaryrd} % for \lightning
+\newcommand\contra{\scalebox{1.1}{$\lightning$}}
+\let\phi\varphi
+
+
+
+
+% correct
+\definecolor{correct}{HTML}{009900}
+\newcommand\correct[2]{\ensuremath{\:}{\color{red}{#1}}\ensuremath{\to }{\color{correct}{#2}}\ensuremath{\:}}
+\newcommand\green[1]{{\color{correct}{#1}}}
+
+
+
+% horizontal rule
+\newcommand\hr{
+    \noindent\rule[0.5ex]{\linewidth}{0.5pt}
+}
+
+
+% hide parts
+\newcommand\hide[1]{}
+
+
+
+% si unitx
+\usepackage{siunitx}
+\sisetup{locale = FR}
+\renewcommand\vec[1]{\mathbf{#1}}
+\newcommand\mat[1]{\mathbf{#1}}
+
+
+% tikz
+
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{shapes.geometric, fit, intersections, angles, quotes, calc, positioning}
+\usetikzlibrary{arrows.meta}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.13}
+\usetikzlibrary{babel}
+\newcommand{\tikzmark}[1]{\tikz[baseline,remember picture] \coordinate (#1) {};}
+\tikzset{
+    axis/.style={->, >=Stealth, thick, black},
+    intervalI/.style={blue, line width=1.5pt},
+    intervalJ/.style={red, line width=1.5pt},
+    result/.style={green!60!black, line width=2.5pt},
+    dot/.style={circle, fill, inner sep=1.5pt}, 
+    open/.style={circle, draw, inner sep=1.5pt, thick}, 
+    dashedline/.style={dashed, gray, thin}
+}
+
+
+
+
+% theorems
+\makeatother
+\usepackage{thmtools}
+\usepackage[framemethod=TikZ]{mdframed}
+\mdfsetup{skipabove=1em,skipbelow=0em}
+
+
+\theoremstyle{definition}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{ForestGreen!70!black}, bodyfont=\normalfont, postheadspace=\newline,
+    mdframed={
+        linewidth=1pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=ForestGreen, backgroundcolor=ForestGreen!3,
+    }
+]{thmgreenbox}
+
+
+
+\declaretheoremstyle[
+     headfont=\bfseries\sffamily\color{NavyBlue!70!black}, bodyfont=\normalfont, postheadspace=\newline,
+    mdframed={
+        linewidth=1pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=NavyBlue, backgroundcolor=NavyBlue!5,
+    }
+]{thmbluebox}
+
+\declaretheoremstyle[
+     headfont=\bfseries\sffamily\color{Black}, bodyfont=\normalfont, 
+    mdframed={
+        linewidth=0.25pt,
+	linecolor=Black
+    }
+]{thmblackbox}
+
+\declaretheoremstyle[
+headfont=\bfseries\sffamily\color{Magenta!70!black}, bodyfont=\normalfont, headpunct = {:},
+    mdframed={
+        linewidth=1pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=Magenta
+    }
+]{thmmagentaline}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{RoyalBlue!70!black}, bodyfont=\normalfont, postheadspace=\newline,
+    mdframed={
+        linewidth=1.0pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=RoyalBlue
+    }
+]{thmblueline}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{Goldenrod!70!black}, bodyfont=\normalfont, postheadspace=\newline,
+    mdframed={
+        linewidth=1pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=Goldenrod!95!black
+    }
+]{thmgoldline}
+
+\declaretheoremstyle[
+headfont=\bfseries\sffamily\color{BlueViolet!70!black}, bodyfont=\normalfont, headpunct = {:}, mdframed={
+        linewidth=1pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=BlueViolet
+    }
+]{thmcyanline}
+
+\declaretheoremstyle[
+headfont=\bfseries\sffamily\color{Orchid!70!black}, bodyfont=\normalfont, headpunct = {:}, mdframed={
+        linewidth=1pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=Orchid
+    }
+]{thmcntxtline}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{RawSienna!70!black}, bodyfont=\normalfont,postheadspace=\newline, mdframed={
+        linewidth=1pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=RawSienna, backgroundcolor=RawSienna!5,
+    }
+]{thmredbox}
+
+%% Goal styles
+\declaretheoremstyle[
+headfont=\bfseries\sffamily\color{FerrariRed!70!black}, bodyfont=\normalfont, headpunct = {:}, mdframed={
+        linewidth=1pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=FerrariRed
+    }
+]{thmgoalline}
+
+\declaretheoremstyle[
+headfont=\bfseries\sffamily\color{FerrariRed!70!black}, bodyfont=\normalfont, headpunct = {:}, mdframed={
+        linewidth=1pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=FerrariRed, backgroundcolor=FerrariRed!5,
+    }
+]{thmgoalbox}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{Magenta!70!black}, bodyfont=\normalfont,postheadspace=\newline, mdframed={
+        linewidth=1pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=Magenta, backgroundcolor=Magenta!5,
+    }
+]{thmmgntbox}
+
+\declaretheoremstyle[
+headfont=\bfseries\sffamily\color{Orchid!70!black}, bodyfont=\normalfont, headpunct={:}, mdframed={
+        linewidth=1pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=Orchid, backgroundcolor=Orchid!5,
+    }
+]{thmcntxtbox}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{Magenta!70!black}, bodyfont=\normalfont, postheadspace=\newline, numbered=no,mdframed={
+        linewidth=1pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=Magenta, backgroundcolor=Magenta!1,
+    },
+    qed=\qedsymbol
+]{thmproofbox}
+
+\declaretheoremstyle[
+    headfont=\bfseries\sffamily\color{NavyBlue!70!black}, bodyfont=\normalfont, postheadspace=\newline,
+    numbered=no,
+    mdframed={
+        linewidth=1pt,
+        rightline=false, topline=false, bottomline=false,
+        linecolor=NavyBlue, backgroundcolor=NavyBlue!3,
+    },
+]{thmexplanationbox}
+
+\declaretheorem[style=thmgreenbox, name=Definicja]{definition}
+\declaretheorem[style=thmgoalline, numbered=no, name=Cel]{goall}
+\declaretheorem[style=thmgoalbox, numbered=no, name=Cel]{goal}
+\declaretheorem[style=thmmagentaline, numbered=no, name=Podsumowanie]{summary}
+\declaretheorem[style=thmcyanline, numbered=no, name=Przykład]{eg}
+\declaretheorem[style=thmmagentaline, numbered=no, name=Pytanie]{question}
+\declaretheorem[style=thmcntxtbox, numbered=no, name=Kontekst]{context}
+\declaretheorem[style=thmblueline, numbered=no, name=Blok kontekstowy]{contextline}
+\declaretheorem[style=thmgoldline, numbered=no, name=Intuicja]{intuition}
+\declaretheorem[style=thmmgntbox, name=Fakt]{fact}
+\declaretheorem[style=thmmgntbox, name=Twierdzenie]{theorem}
+\declaretheorem[style=thmmgntbox, numbered=no, name=Lemat]{lemma}
+\declaretheorem[style=thmmgntbox, name=Wniosek]{corollary}
+\declaretheorem[style=thmblackbox, name=Ćwiczenie]{ex}
+
+\declaretheorem[style=thmproofbox, name=Dowód]{replacementproof}
+\renewenvironment{proof}[1][\proofname]{\vspace{-10pt}\begin{replacementproof}}{\end{replacementproof}}
+
+
+\declaretheorem[style=thmexplanationbox, name=Proof]{tmpexplanation}
+\newenvironment{explanation}[1][]{\vspace{-10pt}\begin{tmpexplanation}}{\end{tmpexplanation}}
+
+\declaretheorem[style=thmblueline, numbered=no, name=Spostrzeżenie]{remark}
+\declaretheorem[style=thmblueline, numbered=no, name=Note]{note}
+
+\newtheorem*{uovt}{UOVT}
+\newtheorem*{notation}{Notation}
+\newtheorem*{previouslyseen}{As previously seen}
+\newtheorem*{problem}{Zadanie}
+\newtheorem*{observe}{Observe}
+\newtheorem*{property}{Property}
+\newtheorem*{solution}{Rozwiązanie}
+
+% figure support
+\usepackage{import}
+\usepackage{xifthen}
+\pdfminorversion=7
+\usepackage{pdfpages}
+\usepackage{transparent}
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+% START OF CONTEXT SECTION
+% --- OTWARCIE KONTEKSTU (Styl Symetryczny) ---
+\newcommand{\contextsection}[1]{%
+    \noindent
+        % Kolor i czcionka dla całości
+        \color{Black}
+        % Lewa linia
+
+        \noindent
+        \raisebox{0ex}{\small $\blacksquare$} 
+	\sffamily\bfseries #1
+	\rule[0.5ex]{0.8\linewidth}{1pt} 
+
+    \par\vspace{1.5em} % Odstęp po tytule przed treścią
+    \noindent\ignorespaces % Usuwa wcięcie pierwszego akapitu
+}
+
+% --- ZAMKNIĘCIE KONTEKSTU ---
+\newcommand{\contextend}{%
+    \par\vspace{2em}
+    \noindent\begin{center}
+        \color{Orchid}
+        % Linia - Kropka - Linia
+        \rule[0.5ex]{0.3\linewidth}{0.5pt} 
+        \hspace{0.5em}
+        \raisebox{0ex}{\scriptsize $\blacksquare$} 
+        \hspace{0.5em}
+        \rule[0.5ex]{0.3\linewidth}{0.5pt}
+    \end{center}
+    \par\vspace{3em} % Odstęp po zamknięciu
+}
+% END OF CONTEXT SECTION
+% %http://tex.stackexchange.com/questions/76273/multiple-pdfs-with-page-group-included-in-a-single-page-warning
+\pdfsuppresswarningpagegroup=1
+
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\cl}{cl}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\aut}{Aut}
+\DeclareMathOperator{\bor}{Bor}
+\DeclareMathOperator{\Def}{def.}
+\DeclareMathOperator{\tor}{Tor}
+\newcommand{\rotatein}{\rotatebox[origin=c]{90}{$\in$}} %obrocony \in 90stopni counterclockwie
+
+\usepackage{faktor}
+\makeatletter
+\DeclareRobustCommand*{\mfaktor}[3][]
+{
+   { \mathpalette{\mfaktor@impl@}{{#1}{#2}{#3}} }
+}
+\newcommand*{\mfaktor@impl@}[2]{\mfaktor@impl#1#2}
+\newcommand*{\mfaktor@impl}[4]{
+   \settoheight{\faktor@zaehlerhoehe}{\ensuremath{#1#2{#3}}}%
+   \settoheight{\faktor@nennerhoehe}{\ensuremath{#1#2{#4}}}%
+      \raisebox{0.5\faktor@zaehlerhoehe}{\ensuremath{#1#2{#3}}}%
+      \mkern-4mu\diagup\mkern-5mu%
+      \raisebox{-0.5\faktor@nennerhoehe}{\ensuremath{#1#2{#4}}}%
+}
+\makeatother

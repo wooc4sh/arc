@@ -1,0 +1,33 @@
+\documentclass[a4paper=12pt]{report}
+\input{./preamble}
+\title{Notatki z Teorii Miary i Całki}
+\author{Łukasz Kopyto}
+
+% ---MAKRO---
+\newif\ifcalosc
+\calosctrue  % Odkomentuj tę linię (usuń %), aby skompilować wszystko
+%\caloscfalse % Zostaw tak, aby kompilować tylko wybrany fragment
+
+\ifcalosc
+\else
+  \includeonly{part_013} % Tutaj wpisujesz nazwę pliku (bez )
+\fi
+% ---------------------------------
+\begin{document}
+    \maketitle
+    \tableofcontents
+    % start lectures
+    \include{prolog}
+    \setcounter{chapter}{-1}
+    \include{part_00}
+    \include{part_010}   
+    \include{part_011}   
+    \include{part_012}
+    \include{part_013}
+    \include{part_014}
+    \include{part_015}
+    \include{part_temp}
+    \include{part_016}
+    \include{exercises_01}
+   % end lectures
+\end{document}

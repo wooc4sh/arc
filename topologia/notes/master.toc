@@ -1,0 +1,10 @@
+\babel@toc {polish}{}\relax 
+\contentsline {chapter}{\numberline {1}Przestrzenie metryczne i przestrzenie topologiczne.}{3}{}%
+\contentsline {section}{\numberline {1.1}Przestrzenie metryczne}{3}{}%
+\contentsline {section}{\numberline {1.2}Przestrzenie topologiczne}{10}{}%
+\contentsline {section}{\numberline {1.3}Ciągłość przekształceń}{23}{}%
+\contentsline {section}{\numberline {1.4}Iloczyny skończone przestrzeni topologicznych}{26}{}%
+\contentsline {section}{\numberline {1.5}Iloczyny przeliczalne przestrzeni topologicznych}{26}{}%
+\contentsline {section}{\numberline {1.6}Twierdzenie Tietzego o przedłużaniu przekształceń}{26}{}%
+\contentsline {section}{\numberline {1.7}Ośrodkowość}{26}{}%
+\contentsline {section}{\numberline {1.8}Zadania uzupełniające}{27}{}%

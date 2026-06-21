@@ -1,0 +1,344 @@
+\chapter{Wykład V}
+
+\section{Przypomnienie warstw i lagrnage}
+
+\section{Motywacja: Odwracanie Twierdzenia Lagrange'a}
+
+Przypomnijmy fundamentalne twierdzenie teorii grup skończonych:
+
+\begin{theorem}[Wniosek z twierdzenia Lagrange'a]
+    Niech $G$ będzie grupą skończoną o rzędzie $n$. Jeżeli $H \le G$, to $|H|$ dzieli $n$.
+\end{theorem}
+
+Naturalnym pytaniem jest: \textit{Czy twierdzenie odwrotne jest prawdziwe?}
+Czyli: jeśli $k$ dzieli $|G|$, to czy istnieje podgrupa rzędu $k$?
+
+\noindent \textbf{Kontrprzykład:}
+    
+Rozważmy grupę alternującą $A_4$ rzędu 12. Liczba 6 dzieli 12, ale $A_4$ nie posiada podgrupy rzędu 6.
+(Dowód jako zadanie).
+
+\textbf{Cel:} Dążymy do częściowego odwrócenia Twierdzenia Lagrange'a. Pokażemy, że odpowiedź jest \textbf{TAK}, jeśli $k$ jest potęgą liczby pierwszej.
+
+\section{p-grupy i ich działanie na zbiorach}
+
+Niech $p$ będzie ustaloną liczbą pierwszą.
+
+\begin{definition}[p-grupa]
+    Grupę skończoną $G$ nazywamy \textbf{p-grupą}, jeżeli jej rząd jest potęgą liczby $p$, tzn. $|G| = p^k$ dla pewnego $k \ge 1$.
+\end{definition} 
+
+\begin{eg}
+    Przykłady p-grup:
+    \begin{itemize}
+        \item Grupa kwaternionów $\mathcal{Q}_{8}$ (rząd $8=2^3$, jest to 2-grupa).
+        \item Grupa diedralna $D_{2^{n}}$ (rząd $2^n$, jest to 2-grupa).
+        \item Grupa cykliczna $\Z_{p^{k}}$.
+        \item Produkt $\Z_{p}^{l} = \Z_{p}\times \ldots\times \Z_{p}$ (rząd $p^l$).
+    \end{itemize}
+\end{eg} 
+
+Chcemy zrozumieć strukturę $p$-grup. W tym celu najpierw zbadamy własności działań $p$-grup na zbiorach skończonych(?).
+
+\begin{definition}[Punkty stałe]
+    Niech grupa $G$ działa na zbiorze $X$. Zbiorem punktów stałych tego działania nazywamy:
+    \[
+    \fix_{X}(G) := \{x \in X: \left(\forall g\in G \right)\left( g\cdot x = x\right)\} 
+    \] 
+\end{definition} 
+
+Gdy kontekst jest znany, to piszemy po prostu $\fix(G) $
+
+\noindent \textbf{Przykłady} 
+	
+\begin{enumerate}[label=\arabic*.]
+	\item $G$ działa na sobie przez automorfizmy wewnętrzne, wtedy 
+		 \[
+		\fix_{G}(G) = Z(G)
+		.\] 
+	\item $G\neq \{e\}$ działa na $G$ poprzesz lewe translacje, czyli $g\cdot x:= gx$, wtedy
+		 \[
+		\fix_{G}(G) = \O
+		.\] 
+	\item $GL_{n}(\R)$ działa na $\R^{n}$ w naturalny sposób, czyli $A\cdot x:= Ax$, wtedy
+		\[
+			\fix_{\R^{n}}(GL_{n}(\R)) = \{\vec{0}\} 
+		.\] 
+\end{enumerate}
+
+\begin{context}
+	Zakładamy teraz, że $G$ działa na $X$
+\end{context}
+
+\begin{theorem}
+    Dla $x \in X$ następujące warunki są równoważne:
+    \begin{enumerate}[label=\alph*)]
+        \item $x\in \fix_{X}(G)$.
+        \item Orbita elementu $x$ jest jednoelementowa, tzn. $|G\cdot x| = 1$.
+        \item Stabilizator elementu $x$ to cała grupa, tzn. $G_x = G$.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+	Mamy trzy implikacje:
+
+	\noindent$\bullet$ a)  $\implies$ b)
+
+	\noindent$\bullet$ b) $\implies$ c)
+
+	\noindent$\bullet$ c) $\implies$ a)
+
+\end{proof} 
+
+\begin{lemma}[O punktach stałych p-grupy]
+    Niech $G$ będzie p-grupą działającą na zbiorze skończonym $X$. Wówczas:
+    \[
+    |X| \equiv |\fix_{X}(G)| \pmod{p}.
+    \]
+\end{lemma}  
+\begin{proof}
+	Niech $x_1,x_2,\ldots,x_{n}\in X\setminus \fix_{X}(G)$ będą, takie że
+	\[
+		X = \fix_{X}(G) \uplus G\cdot x_1 \uplus \ldots \uplus G\cdot x_{n}\tag{$\uplus$ to suma rozłączna}
+	.\] 
+	Stąd 
+	 \begin{align*}
+		\left| X \right| &= \left| \fix_{X}(G)  \right| + \left| G\cdot x_1 \right| + \ldots + \left| G\cdot x_{n} \right|  \\
+		&= \left| \fix_{X}(G)  \right| + \left[ G:Gx_{1} \right] + \ldots + \left[ G:x_{n} \right] 
+	.\end{align*}
+	
+	Zauważmy, że $x_{i}\not\in \fix_{X}(G) \implies G\neq G_{x_{i}} \implies \left[ G:G_{x_{i}} \right] \neq 1$,
+	ale $\left[ G:G_{x_{i}} \right] \mid \left| G \right| $, a $\left| G \right| $ jest potęgą liczby $p$.
+
+	Stąd wynika $\left| X \right|  \equiv \left| \fix_{X}(G)  \right| \pmod{p} $
+\end{proof} 
+
+\section{Własności p-grup}
+
+Wykorzystamy Lemat o punktach stałych do zbadania wewnętrznej struktury p-grup. Niech $G$ działa na sobie przez sprzężenia ($g \cdot x := gxg^{-1}$). Wtedy $\fix_G(G) = Z(G)$ (centrum grupy).
+
+\begin{theorem}[O centrum p-grupy]
+    Jeżeli $G$ jest nietrywialną p-grupą, to jej centrum $Z(G)$ jest nietrywialne. Dokładniej:
+    \[ p \mid |Z(G)|. \]
+\end{theorem} 
+\begin{proof}
+	Stosujemy dowód lematu dla $G$ działającej na sobie przez automorfizmy wewnętrzne. Wtedy
+	\[
+	\left| Z(G) \right| = \left| \fix_{X}(G)  \right| \equiv \left| G \right|  \equiv 0 \pmod{p} \implies p\mid \left| Z(G) \right|  
+	.\] 
+\end{proof} 
+\begin{corollary}
+    Każda grupa rzędu $p^2$ jest abelowa. (Wynika to z faktu, że jeśli $G/Z(G)$ jest cykliczna, to $G$ jest abelowa).
+\end{corollary}
+\begin{proof}
+	TODO, to było jako zadanie na którejś liście
+\end{proof} 
+
+\noindent \textbf{Przykłady}
+\begin{enumerate}[label=\arabic*.]
+	\item $-\mathcal{I}\in Z(\mathcal{Q}_{8}).$ 
+	\item $O_{\pi}\in Z(D_{2^{n}}).$
+\end{enumerate}
+
+\begin{lemma}[O przeciwobrazie]
+    Niech $\varphi : G \to H$ będzie homomorfizmem grup, a $N \le H$ podgrupą w $H$. Wtedy:
+    \begin{enumerate}[label=\arabic*.]
+        \item Jeśli $G$ jest skończona i $\varphi$ jest epimorfizmem (,,na''), to wielkość przeciwobrazu wyraża się wzorem:
+            \[ \left| \varphi ^{-1} [ N ] \right| = \left| \ker(\varphi ) \right| \cdot \left| N \right|. \]
+            (Intuicja: Każdy punkt w $N$ ,,puchnie'' o wielkość jądra).
+        \item Zachowanie normalności:
+            \[ N \unlhd H \implies \varphi ^{-1}[ N ] \unlhd G. \]
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+    TODO Dowód z Listy 6 (Zadanie 2). Skorzystać z własności warstw.
+\end{proof}
+
+\noindent Kolejne ważne twierdzenie mówi, że p-grupy są ,,gęsto wypełnione'' podgrupami.
+
+\begin{theorem}[O ciągu podgrup normalnych]
+    Niech $|G| = p^m$. Wówczas istnieje ciąg podgrup:
+    \[
+    \{e\} = G_0 \le G_1 \le \ldots \le G_m = G,
+    \] 
+    taki że dla każdego $i \in \{0, \ldots, m\}$:
+    \begin{enumerate}
+        \item $|G_i| = p^i$,
+        \item $G_i \unlhd G$ (każda z tych podgrup jest normalna w całej grupie $G$).
+    \end{enumerate}
+\end{theorem} 
+\begin{proof}
+    \framebox[1.1\width]{Indukcja względem $m$, wykorzystująca $Z(G) \neq \{e\}$.}
+\end{proof} 
+
+\begin{corollary}
+	Zatem Twierdzenie Lagrange'a można odwrócić dla grupy $G$ będącej $p$-grupą. Zmierzamy do dowodu istnienia $p$-grup, które są podgrupami dowolnej grupy skończonej.
+\end{corollary}
+
+\section{Twierdzenia Sylowa}
+
+Przechodzimy do głównego tematu -- analizy podgrup w dowolnych grupach skończonych (niekoniecznie p-grupach).
+
+Najpierw zdefiniujmy precyzyjnie obiekty, którymi będziemy operować.
+
+\begin{definition}[p-podgrupa Sylowa]
+    Niech $G$ będzie grupą skończoną, a $p$ liczbą pierwszą.
+    \begin{enumerate}[label=\arabic*.]
+        \item Podgrupę $H \le G$ nazywamy \textbf{p-podgrupą}, gdy $|H| = p^k$ dla pewnego $k \ge 1$.
+        \item Używamy zapisu $p^n \parallel |G|$ (czytamy: $p^n$ dokładnie dzieli $|G|$), jeżeli $|G| = p^n \cdot m$ oraz $p \nmid m$.
+        \item Podgrupę $H \le G$ nazywamy \textbf{p-podgrupą Sylowa}, gdy jest maksymalną możliwą p-podgrupą, tzn:
+              \[ H \text{ jest p-podgrupą Sylowa} \iff |H| = p^n, \text{ gdzie } p^n \parallel |G|. \]
+              Równoważnie: indeks podgrupy nie dzieli się przez $p$: $p \nmid [G:H]$.
+        \item Przez $\mathfrak{X}_{p}$ oznaczamy zbiór wszystkich p-podgrup Sylowa grupy $G$.
+        \item $s_p := |\mathfrak{X}_{p}|$ (liczba p-podgrup Sylowa).
+    \end{enumerate}
+\end{definition}
+\begin{remark}
+	$\left| G \right| = p^{n\cdot k}$ dla pewnych $n,k\in \N$, takich że $p\nmid k$. Piszemy wtedy $p^{n}\parallel \left| G \right| $. Czytamy to, że $p^{n}$ dokładnie dzieli $\left| G \right| $. Wtedy $H\le G$ jest $p $-podgrupą Sylowa $\iff \left| H \right| = p^{n}$.
+\end{remark} 
+
+\noindent \textbf{Przykłady}
+
+\begin{enumerate}[label=\arabic*)]
+	\item $G = \Z_{12}$, $\left| G \right| = 12 = 2^{2}\cdot 3$
+		\begin{itemize}
+			\item 2-podgrupy Sylowa mają moc 4. Jest jedyna taka: $\{0,3,6,9\} $, czyli $s_{2} = 1$ 
+			\item 3-podgrupy Sylowa mają moc 3. Jest jedyna taka:  $\{0,4,8\} $, czyli $s_3 = 1$.
+
+				(w grupie cyklicznej zawsze jest jedyna?)
+		\end{itemize}
+	\item $G=S_3$, $\left| G \right| = 6 = 2\cdot 3$ 
+		\begin{itemize}
+			\item 2-podgrupy Sylowa są mocy 2: $\langle \left( 1,2 \right)  \rangle , \langle \left( 1,3 \right)  \rangle , \langle \left( 2,3 \right)  \rangle $.
+
+				Stąd wynika że $s_{2}= 3$
+			\item 3-podgrupy Sylowa: $\langle \left( 1,2,3 \right)  \rangle = A_3 \implies s_{3} = 1$
+		\end{itemize}
+	\item $G = A_4$, $\left| G \right| = 12 = 2^2\cdot 3$
+		\begin{itemize}
+			\item 2-podgrupy Sylowa są rzędu 4: $\{\id, \left( 1,2 \right)\left( 3,4 \right), \left( 1,3 \right)\left( 2,4 \right), \left( 1,4 \right)\left( 2,3 \right) \} \implies s_2=1$ 
+			\item 3-podgrupy Sylowa są rzędu 4:
+				$\langle \left( 1,2,3 \right)  \rangle , \langle \left( 1,2,4 \right)  \rangle , \langle \left( 1,3,4 \right)  \rangle , \langle \left( 2,3,4 \right)  \rangle \implies s_3= 4$
+		\end{itemize}
+\end{enumerate}
+\begin{theorem}[Sylowa]
+	Załóżmy, że $\left| G \right| = p^{n}\cdot k, n\ge 1\text{ oraz }p\nmid k$. Wtedy
+	\begin{enumerate}[label=\arabic*.]
+		\item Zawsze istnieje  $p$-podgrupa Sylowa H grupy G ($\implies k = \left[ G:H \right] $ ) 
+		\item Dla każdej $p$-podgrupy grupy $G$ i dla każdego $H\in \mathfrak{X}_{p}$ istnieje $g\in G$, $K\subseteq gHg^{-1}$:
+			\[
+				\forall\left(K \colon \text{$p$-podgr. } G\right) \forall\left(H \in \mathfrak{X}_{p}\right) \exists\left(g \in G\right) \left( K \subseteq gHg^{-1} \right)
+			.\] 
+		\item $\forall\left(H_1,H_2\in \mathfrak{X}_{p}\right)\exists\left(g\in G\right)\left( gH_1g^{-1} = H_2\right)   $ 
+		\item $s_{p} \mid \left| G \right| $ oraz $s_{p} \equiv 1 \pmod{p}$ ($\implies s_{p}\mid k$) oraz $s_{p} = \left[ G: N_{G}(H) \right] $, dla $H \in \mathfrak{X}_{p}$
+	\end{enumerate}
+\end{theorem} 
+W powyższym twierdzeniu są zawarte 1,2 i 3 twierdzenia Sylowa.
+\begin{proof}
+	Będziemy używać wielu różnych działań grup.
+	\begin{enumerate}[label=\arabic*.]
+		\item Niech $X:= \{A\subseteq G: \left| A \right| = p^{n}\} $. Mamy tu zbiór podzbiorów $G$ mocy $p^{n}$.
+			$\left| X \right| = \begin{pmatrix} p^{n}\cdot k \\ p^{n} \end{pmatrix} $ TODO
+	\end{enumerate}
+\end{proof} 
+
+\begin{theorem}[Cauchy'ego]
+	Załóżmy, że $p\mid \left| G \right| $. Wtedy $\exists\left( g\in G \right)\left( \text{rząd}\left( g \right) = p\right)  $
+\end{theorem} 
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{theorem}[I Twierdzenie Sylowa -- Istnienie]
+    Niech $|G| = p^k \cdot m$, gdzie $p \nmid m$. Wówczas w grupie $G$ istnieje co najmniej jedna p-podgrupa Sylowa.
+\end{theorem}
+\begin{proof}
+    \textbf{Idea (Dowód Wielandta):} Rozważamy działanie $G$ na zbiorze $\Omega$ wszystkich podzbiorów grupy $G$ o mocy $p^k$. Pokazujemy, że istnieje orbita niepodzielna przez $p$ i stabilizator elementu z tej orbity jest szukaną podgrupą.
+    \framebox[1.1\width]{Dowód do uzupełnienia}
+\end{proof}
+
+\begin{theorem}[II Twierdzenie Sylowa -- Sprzężenie i Zawieranie]
+    \begin{enumerate}
+        \item Każde dwie p-podgrupy Sylowa są sprzężone. Tzn. jeśli $P_1, P_2 \in \mathfrak{X}_p$, to istnieje $g \in G$, takie że $g P_1 g^{-1} = P_2$.
+        \item Każda p-podgrupa grupy $G$ jest zawarta w pewnej p-podgrupie Sylowa.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    \framebox[1.1\width]{Dowód do uzupełnienia}
+\end{proof}
+
+\begin{theorem}[III Twierdzenie Sylowa -- Liczba podgrup]
+    Liczba $s_p$ p-podgrup Sylowa spełnia warunki:
+    \begin{enumerate}
+        \item $s_p \equiv 1 \pmod{p}$,
+        \item $s_p \mid m$ (gdzie $|G| = p^k \cdot m$),
+        \item $s_p = [G : N_G(P)]$, gdzie $P \in \mathfrak{X}_p$.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    \framebox[1.1\width]{Dowód do uzupełnienia}
+\end{proof}
+
+\begin{corollary}[Kryterium normalności]
+    Niech $P \in \mathfrak{X}_p$. Wtedy:
+    \[ P \unlhd G \iff s_p = 1. \]
+    Jest to potężne narzędzie do wykazywania, że grupa nie jest prosta.
+\end{corollary}
+
+Jako bezpośredni wniosek z teorii Sylowa (lub jako krok pośredni w innych dowodach) otrzymujemy twierdzenie cauchyego.
+
+\begin{remark}
+	Twierdzenia Cauchy'ego nie można udowodnić do wszystkich potęg liczby $p$, na przykład $4=2^2 \mid \Z_2\times \Z_2$ nie ma elementu rzędu 4.
+\end{remark}
+\begin{theorem}
+	Niech $H$ będzie $p $- podgrupą Sylowa grupy G. Wtedy $H\unlhd G \iff s_{p}=1$ (czyli H jest jedyną $p$-podgrupą Sylowa)
+\end{theorem} 
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{theorem}
+	Dla $G$ będącą grupą skończoną $p$-podgrupa $H$ grupy $G$ jest $p$-podgrupą Sylowa wtedy i tylko wtedy gdy $H$ jest maksymalną $p$-podgrupa
+	(w sensie inkluzji)
+\end{theorem} 
+\begin{proof}
+	TODO
+\end{proof} 
+\begin{eg}
+	$G=A_4$, $\left| A_4 \right| = 2^2\cdot 3$, czyli 2-podgrupy Sylowa są rzędu 4, 3-podgrupy Sylowa są rzędu 4.
+	W $A_4$ jest 8 elementów rzędu 3(cykle rzędu 3) i dają łącznie 4 podgrupy rzędu 3, czyli $s_{3} = 4$
+
+	Pozostają 4 elementy: $\id,\left( 1,2 \right)\left( 3,4 \right) , \left( 1,3 \right) \left( 2,4 \right) , \left( 1,4 \right)\left( 2,3 \right) $ 
+	czyli muszą stanowić jedynie 2-podgrupy Sylowa $H$. Z powyższego wniosku $\implies H\unlhd G$
+\end{eg} 
+\begin{remark}	
+	W $A_4$ mamy $s_2=1$, $s_3=4$ i mamy dzielnik normalny rzędu 4.
+	\begin{question}	
+		Czy można to dostać z samego twiedzenia Sylowa i tego, że $\left| G \right| =12$?
+	\end{question}
+	$s_2 \equiv 1 \pmod{2} $ oraz $s_2\mid 3\implies s_2=1 \lor s_2=3$,
+
+	$s_3 \equiv 1 \pmod{3} $ oraz $s_3\mid 4\implies s_3=1 \lor s_3=4$
+
+	\begin{enumerate}[label=(\roman*)]
+		\item dla $G=\mathbb{Z}_{12}$ : $s_2=1$ i $s_3=1$,
+		\item dla $G=S_3\times \mathbb{Z}_{2}$: $s_2=3$ i $s_3=1$ 
+		\item (ZADANIE) Nie moze sie zdarzyć $s_2=3$ i $s_3=4$
+	\end{enumerate}
+\end{remark} 
+\textbf{Przykłady} 
+
+\begin{enumerate}[label=\alph*)]
+	\item $\left| G \right| = 40 = 2^3\cdot 5$. $s_5\mid 8$i $ s_5 \equiv 1 \pmod{5} \implies s_5=1$. Stąd $G$ ma dzielnik normalny rzędu 5.
+	\item $\left| G \right| = 30 = 2\cdot 3\cdot 5$. Pokażemy, że istnieje $N\unlhd G$ takie że $\left| N \right| = 3 $lub $\left| N \right| = 5$ 
+		\begin{proof}
+			TODO
+		\end{proof} 
+	\item $\left| G \right| = 24 = 2^3\cdot 3$. Pokażemy, że istnieje $N\unlhd G$, taka że $N\neq \{e\} $ oraz $N\neq G$
+		\begin{proof}
+			TODO na 2 sposoby
+		\end{proof} 
+\end{enumerate}
+\begin{remark}
+	Niech $H\le G$. Wtedy $\bigcap_{g\in G} gHg^{-1}$ jest najmniejszym dzielnikiem normalnym.
+\end{remark} 
+\begin{proof}
+	TODO (jest jako zadanie)
+\end{proof} 

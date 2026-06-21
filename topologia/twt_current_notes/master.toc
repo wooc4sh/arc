@@ -1,0 +1,4 @@
+\babel@toc {polish}{}\relax 
+\contentsline {chapter}{\numberline {1}Przestrzenie topologiczne.}{3}{}%
+\contentsline {section}{\numberline {1.1}Topologia.}{3}{}%
+\contentsline {subsection}{\numberline {1.1.1}Zbiory otwarte, domknięte i clopen.}{4}{}%

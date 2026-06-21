@@ -1,0 +1,271 @@
+\section{Miara Lebesgue'a I}
+
+Zdefiniujemy naturalną funkcję zbioru $\lambda$	na pierścieniu $\mathcal{R}$, generowanym przez przedziały postaci $[a,b)$, tzn  $\mathcal{F} = \{[a,b): a,b \in R\} $ oraz $\mathcal{R} = r\left( \mathcal{F} \right) $. Ma ona za zadanie mierzyć ,,długość'' zbiorów na prostej rzeczywistej. 
+
+\begin{definition}[Funkcja $\lambda$]
+	
+	Definiujemy funkcję $\lambda: \mathcal{P}(\R) \to \R$, w sposób następujący
+	\begin{enumerate}[label=\alph*)]
+		\item Na pojedynczym odcinku lewostronnie domkniętym:
+			\[
+			\lambda\left( [a,b) \right) := b-a \text{, dla } a<b.
+			.\] 
+		\item Dla zbioru $R$ będącego skończona sumą rozłącznych przedziałów 
+	\[
+	R = \bigcup_{i=1} ^{n}[[a_{i}, b_{i}), \text{ gdzie }a_{i}<b_{i}\text{, oraz } [a_{i},b_{i}) \cap [a_{j}, b_{j}) = \O\text{ dla }i\neq j
+	.\] 
+	definiujemy
+	\[
+	\lambda\left( R \right) := \sum_{i=1}^{n} (b_{i}-a_{i})
+	.\]
+	\end{enumerate} 
+\end{definition} 
+Dla uproszczenia przyjmiemy konwencję, że dla każdego rozważanego przedziału $[a,b) $ milcząco zakładamy, że $[a,b)\neq \O$, czyli że $a<b$- przedziały są niezdegenerowane.
+
+ \begin{lemma}
+	Jeżeli $[a_{n},b_{n}) $ jest skończonym bądź nieskończonym ciągiem parami rozłącznych przedziałów zawartych w $[a,b)$ to
+	 \[
+	\sum_{n} (b_{n}-a_{n}) \le b-a
+	.\] 
+\end{lemma} 
+
+\vspace{1em}
+
+\begin{proof}
+	\textbf{Przypadek skończonego ciągu zbiorów:} 
+
+	Przeprowadzimy dowód przez indukcję względem liczby przedziałów $n$.
+	\begin{enumerate}[label=\arabic*.]
+		\item \textbf{Baza indukcji (n=1):} Niech $[a_1,b_1) \subseteq [a,b)$. Z własności inkluzji zbiorów wynika, że $a\le a_1$ oraz $b_1\le b$. Zatem
+			\[
+			b_1-a_1 \le  b_1 - a \le b-a
+			.\] 
+		\item \textbf{Krok indukcyjny:} Załóżmy, że nierówność zachodzi dla dowolnego układu $n-1$ przedziałów rozłącznych. Rozważmy układ $n$ przedziałów $\{[a_{i}, b_{i})\}_{i=1}^{n} $ zawartych w $[a,b)$.
+			\begin{enumerate}[label=\theenumi\arabic*., ref=\theenumi.\arabic*]
+				\item \textbf{Uporządkowanie:}
+
+					Niech $k\in \{1,\ldots,n\} $ dla którego prawy koniec jest maksymalny, tzn $b_{k} := \max\{b_1,b_2,\ldots,, b_{n}\} $. Bez straty ogólności (poprzez przenumerowanie) przyjmijmy, że jest to ostatni przedział, czyli $b_{n}= \max_{1\le i\le n}b_{i}$
+
+					\begin{remark}[Bez straty ogólności- przenumerowanie.] Mamy rozłączny ciąg przedziałów $\sum_{i=1}^{n} [a_{i}, b_{i})$. Czyli ciąg $\left( I_{k} \right)_{k=1}^{n}$, dany wzorem $I_{k} = [a_{k}, b_{k})$. Ponieważ przedziały są rozłączne, więc zbiór $\{\sup ( I_{k} ) \}_{k=1}^{n}$ składa się z $n$ parami różnych elementów, więc istnieje dokładnie jedna permutacja $\sigma$ zbioru indeksów $\{1,2,\ldots, n\} $, taka że ciąg $( \sup ( I_{\sigma ( k ) }) )_{k=1}^{n}$ jest rosnący.
+
+						Podsumowując, niech $b_{k} = \sup \left( I_{k} \right) $ dla $k=1,2,\ldots,n$, z rozłączności przedziałów, $b_{i}\neq b_{j}$ dla $i\neq j$.
+
+						Definiujemy $\sigma \in S_{n}$ jako jedyną permutację spełniającą warunek monotoniczności:
+						\[
+						b_{\sigma\left( 1 \right) }<b_{\sigma\left( 2 \right) }<\ldots< b_{\sigma\left( n \right) }
+						.\] 
+						Wówczas szukany (przenumerowany) ciąg to $\left( J_{k} \right)_{k=1}^{n} = I_{\sigma(k)}$, a elementem ,,najbardziej na prawo'' jest $J_{n}$.
+					\end{remark} 
+				\item \textbf{Separacja:} 
+
+					Dla każdego $i<n$ zachodzi
+					\[
+					[a_{i}, b_{i}) \subseteq [a, a_{n})
+					.\] 
+				\item \textbf{Zastosowanie założnia indukcyjnego:} Ciąg zbiorów $\left( [a_{i}, b_{i}) \right)_{i=1}^{n-1}$ składa się z $n-1$ rozłącznych przedziałów zawartych w  $[a, a_{n})$. Na mocy założenia indukcyjnego:
+					\[
+					\sum_{i=1}^{n-1} \left( b_{i}-a_{i} \right) \le a_{n}-a
+					.\] 
+				\item \textbf{Sumowanie:} Dodając do powyższej nierówności  długość $n$-tego przedziału $(b_{n}-a_{n})$ otrzymujemy:
+					\[
+						\sum_{i=1}^{n} \left( b_{i}-a_{i} \right) = \left(\sum_{i=1}^{n-1} \left( b_{i}-a_{i} \right) \right) + \left( b_{n}-a_{n} \right) \le \left( a_{n} -a \right) + \left( b_{n}-a_{n} \right)
+					.\] 
+
+					Ponieważ $[a_{n}, b_{n}) \subseteq [a, b)$, więc $b_{n}<b$. Zatem ostatecznie:
+					\[
+					\sum_{i=1}^{n} \left( b_{i}-a_{i} \right) \le  b-a
+					.\] 
+			\end{enumerate}
+	\end{enumerate}
+\end{proof} 
+\begin{proof}
+	\noindent \textbf{Przypadek nieskończonego ciągu zbiorów:} 
+
+
+\textbf{Schemat przejścia granicznego: Od $N$ do $\infty$}
+
+\textbf{1. Sformułowanie problemu}
+
+\textbf{Założenia:} \\
+Niech $\left( (a_n, b_n) \right)_{n=1}^{\infty}$ będzie ciągiem parami rozłącznych przedziałów zawartych w przedziale $[a, b)$. Formalnie definiujemy własność globalną (nieskończoną) $P(\infty)$ jako:
+\[
+    P(\infty) \equiv \bigcup_{n=1}^{\infty} (a_n, b_n) \subseteq [a, b).
+\]
+
+\textbf{Teza:} \\
+Chcemy wykazać własność $Q(\infty)$, orzekającą, że suma długości tych przedziałów nie przekracza długości przedziału, w którym się zawierają:
+\[
+    Q(\infty) \equiv \sum_{n=1}^{\infty} (b_n - a_n) \le b - a.
+\]
+
+\textbf{Definicje własności dla skończonego $N$:} \\
+Dla dowolnego $N \in \mathbb{N}$ definiujemy aproksymacje skończone:
+\begin{itemize}
+    \item $P(N) \equiv \bigcup_{n=1}^{N} (a_n, b_n) \subseteq [a, b)$ \quad (zawieranie sumy skończonej),
+    \item $Q(N) \equiv \sum_{n=1}^{N} (b_n - a_n) \le b - a$ \quad (oszacowanie sumy skończonej).
+\end{itemize}
+
+\hrule
+\vspace{0.5cm}
+
+\textbf{2. Schemat dowodu}
+
+Dowód opiera się na redukcji problemu do przypadku skończonego, a następnie powrocie do nieskończoności poprzez przejście graniczne. Zakładając prawdziwość $P(\infty)$, dowodzimy $Q(\infty)$ według następującego ciągu implikacji:
+
+\[
+    P(\infty)
+    \xrightarrow[\text{monotoniczność inkluzji}]{\text{restrykcja}}
+    (\forall N)\, P(N)
+    \xrightarrow[\text{lemat dla skończonej sumy}]{\text{wynikanie}}
+    (\forall N)\, Q(N)
+    \xrightarrow[\text{ciągłość nierówności}]{\text{przejście graniczne } N \to \infty}
+    Q(\infty)
+\]
+
+\textbf{3. Formalne uzasadnienie kroków}
+
+\begin{enumerate}
+    \item \textbf{Restrykcja (Zstępowanie):} \quad $P(\infty) \implies (\forall N) P(N)$ \\
+    Jest to konsekwencja monotoniczności sumy zbiorów. Ponieważ suma skończona jest podzbiorem sumy nieskończonej:
+    \[
+        \bigcup_{n=1}^{N} (a_n, b_n) \subseteq \bigcup_{n=1}^{\infty} (a_n, b_n),
+    \]
+    to z przechodniości zawierania ($\subseteq$), jeśli cała seria mieści się w $[a, b)$, to każda jej skończona część również.
+
+    \item \textbf{Wynikanie (Przypadek skończony):} \quad $P(N) \implies Q(N)$ \\
+    Dla ustalonego $N$ jest to fakt znany (udowodniony np. indukcyjnie). Suma długości skończonej liczby rozłącznych podprzedziałów jest zawsze mniejsza lub równa długości przedziału, w którym się zawierają.
+
+    \item \textbf{Przejście graniczne (Wstępowanie):} \quad $(\forall N) Q(N) \implies Q(\infty)$ \\
+    To jest istota przejścia do nieskończoności. Niech $S_N = \sum_{n=1}^{N} (b_n - a_n)$.
+    \begin{itemize}
+        \item Z kroku 2 wiemy, że ciąg sum częściowych $(S_N)$ jest ograniczony z góry przez $M = b - a$.
+        \item Ponieważ wyrazy szeregu są nieujemne (długości przedziałów), ciąg $(S_N)$ jest niemalejący.
+    \end{itemize}
+    Z twierdzenia o granicy ciągu monotonicznego i ograniczonego wynika, że:
+    \[
+        \lim_{N \to \infty} S_N \le M \implies \sum_{n=1}^{\infty} (b_n - a_n) \le b - a.
+    \]
+    \textit{Kluczowym elementem jest tu zachowanie słabej nierówności ($\le$) w granicy.}
+\end{enumerate}
+
+
+	\noindent \textbf{Przejście z $N$ do $\infty$}
+
+		Chcemy skorzystać z tego, że dla skończonego ciągu zbiorów nierówność jest prawdziwa.
+
+		Jak dokładnie to wygląda?
+
+		Załóżmy, że mamy nieskończony ciąg przedziałów (rozłączny) $\left( a_{n}, b_{n} \right)_{n=1}^{\infty}$ zawarty w $[a,b)$, tzn
+		\[
+		\bigcup_{n=1}^{\infty}\left( a_{n}, b_{n} \right) \subseteq [a,b)
+		.\] 
+		
+		Chcemy pokazać, że 
+		\[
+		\sum_{n = 1}^{\infty} (b_{n}-a_{n}) \le b-a	
+		.\] 
+
+	Określmy własność 
+	\[P\left( N \right) \equiv N\text{-elementowa suma przedziałów rozłącznych jest zawarta w } [a,b),\]
+	oraz własność 
+	\[
+	Q\left( N \right) \equiv N\text{-elementowa suma długości przedziałów rozłącznych jest mniejsza lub równa od }b-a  
+	.\] 
+
+	Przez indukcję udowodniliśmy, że
+	\[
+	\left(\forall N\in \N \right) \left(P(N) \implies A\left( N\right)\right)  
+	.\] 
+
+	Chcemy teraz pokazać, że $P\left(\infty \right) \implies Q\left( \infty \right) $.
+
+        Czyli, zakładając $P\left( \infty \right) $, chcemy pokazać $Q\left( \infty \right) $.
+
+	\[
+	P\left( \infty \right) \implies \left(\forall N \right) P\left( N \right)\implies \left(\forall N \right)Q\left( N \right)\implies Q\left( \infty \right)  
+	.\] 
+	Ponieważ dla każdego $n \in \N$ mamy $\sum_{n=1}^{N} \left( b_{n}-a_{n} \right) \le b-a$, więc $S_{N} := \sum_{i=1}^{N} \left( b_{i}-a_{i} \right) $, jest ciągiem liczbowym, który jest ograniczony i niemalejący, zatem jego granica spełnia nierówność  $\lim_{N \to \infty} S_{N}\le b-a$. A to odpowiada 
+	\[
+	\lim_{N \to \infty} S_{N} = \lim_{N \to \infty} \sum_{i=1}^{N} \left( b_{i}-a_{i} \right) \overset{\Def}{=} \sum_{n = 1}^{\infty} \left( b_{n}-a_{n} \right)\le  b-a
+	.\]
+
+\end{proof} 
+\begin{lemma}
+	Jeżeli $[a_{n},b_{n}) $ jest skończonym bądź nieskończonym ciągiem przedziałów \textbf{oraz} $[a,b) \subseteq \bigcup_{n}[a_{n},b_{n})$ to
+	\[
+		b-a\le \sum_{n} (b_{n}-a_{n})
+	.\] 
+\end{lemma} 
+\begin{proof}
+\noindent \textbf{Przypadek skończony:} 
+\end{proof} 
+\begin{lemma}
+	Definicja $\lambda$ jest poprawna.
+\end{lemma} 
+\begin{remark}
+	Dlaczego udawadniamy, że definicja $\lambda$ jest poprawna?  
+
+\noindent Zauważmy, że dowolny zbiór możemy przedstawić w różnych postaciach, na przykład zbiór $[0,6)$ możemy przedstawić w formie 
+\begin{itemize}
+    \item $[0,6) = [0,4) \cup [4,6)$.
+		\item $[0,6) = [0,3) \cup [3,6)$. 
+\end{itemize}
+
+Dowodząc poprawności definicji funkcji $\lambda$, chcemy pokazać, że jej wynik nie zależy od tego jak dany zbiór zaprezentujemy. 
+\end{remark} 
+
+Zauważmy, że mając zbiór, przedstawiony w formie dwóch różnych sum przedziałów, mianowicie
+\[
+    C = \bigcup_{i = 1}^{n} A_{i} = \bigcup_{j = 1}^{m} B_{i}       
+,\]
+możemy spojrzeć na jego \textbf{wspólne rozdrobnienie} (common refinement):
+\[
+    \bigcup_{i = 1}^{n}\bigcup_{j = 1}^{m} A_{i}\cap B_{j} \text{ oraz } \bigcup_{j = 1} \bigcup_{i = 1} B_{j} \cap A_{i}            
+.\]
+
+Ponieważ mam dwie \textbf{skończone} sumy oraz operacje brania sumy i brania przekroju są przemienne i łączne, więc oba rozdrobnienia są równe:  
+\[   
+    \bigcup_{i = 1}^{n}\bigcup_{j = 1}^{m} A_{i}\cap B_{j} = \bigcup_{j = 1} \bigcup_{i = 1} B_{j} \cap A_{i}            
+.\]
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.8\textwidth]{"common_refinment.png"}
+	\end{figure}
+\begin{proof}
+TODO
+\end{proof} 
+\begin{corollary}
+Jeśli $[a,b)$ jest rozłączną sumą przedziałów, tzn $[a,b) = \bigcup_{i = 1}^{n} [a_{i}, b_{i})$, gdzie zbiory $[a_{i}, b_{i})$ są parami rozłączne to $\lambda\left( [a,b) \right) = b-a$	
+\end{corollary}
+\begin{proof}
+    TODO
+\end{proof} 
+\begin{theorem}[$\lambda$ jest  $\sigma$-addtywna]
+	Funkcja $\lambda$ jest przeliczalnie addytywną funkcją zbioru na pierścieniu przedziałów $\mathcal{R}$.
+\end{theorem} 
+Aby formalnie wykazać, że $\lambda$ jest przeliczalnie addytywną funkcją zbioru na pierścieniu $\mathcal{R}$, trzeba sprawdzić
+\begin{enumerate}[label=\roman*)]
+	\item Dla $\O$ jest $\lambda \left( \O \right) = 0$.
+	\item Jeśli $A,B \in \mathcal{R}$, takie że $A\cap B= \O$ to $\lambda \left( A\cup B \right) = \lambda \left( A \right) + \lambda\left( B \right) $.
+	\item Jeśli $R = \bigcup_{n=1} ^{\infty}R_{n}$ to $\lambda\left( R \right) = \sum_{n = 1}^{\infty} \lambda\left( R_{n} \right) $.
+\end{enumerate}
+Zauważmy, że $iii) \implies ii)$ oraz z definicji $\lambda$ warunek $i)$ zachodzi. Zatem aby sprawdzić $\sigma$-addytywność funkcji $\lambda$, wystarczy rozpatrzyć sytuację, w której spełnione są trzy warunki wejściowe:
+\begin{enumerate}[label=\arabic*.]
+	\item \textbf{Elementy z pierścienia:} Mamy ciąg zbiorów $\left( R_{n} \right) _{n=1}^{\infty}$, gdzie każdy $R_{n}\in \mathcal{R}$.
+	\item \textbf{Rozłączność:} Zbiory te są parami rozłączne, tzn $R_{i}\cap R_{j} = \O$ dla $i\neq j$.
+	\item \textbf{Suma w pierścieniu: } Ich nieskończona suma $R = \bigcup_{n=1} ^{\infty}R_{n}\in \mathcal{R}$.
+\[
+\lambda\left( \bigcup_{n=1} ^{\infty}R_{n} \right) = \sum_{n = 1}^{\infty} \lambda\left( R_{n} \right) 
+.\] 
+\end{enumerate}
+\begin{proof}
+	
+	W istocie sprawdzamy to, czy $\mu\left( \bigcup_{n=1}^{\infty} \right) A_{i} = \sum_{n=1}^{\infty} \mu\left( A_{n} \right)$, gdzie rodzina $\{A_{n}\}_{n=1}^{\infty} in \mathcal{R}$.
+
+Podzielimy to na przypadki:
+\begin{itemize}
+	\item $\bigcup_{i=1}^{\infty}A_{i} = [a,b)$
+	\item $\bigcup_{i=1}^{\infty}A_{i} = \bigcup_{j=1}^{m}I_{j} $, gdzie $I_{j}$ jest pojedynczym przedziałem.
+\end{itemize}
+\end{proof} 
+

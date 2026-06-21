@@ -1,0 +1,669 @@
+\chapter{Epilog.}
+
+Nierywialnosc centrum-important
+To "coś więcej" w centrum jest punktem zaczepienia do dowodzenia przez indukcję. Skoro Z(G) nie jest trywialne, to możesz wziąć element z centrum, stworzyć podgrupę normalną, zrzutować grupę na mniejszą (G/Z(G)) i powtórzyć ro`zumowanie. Tak się dowodzi większości własności p-grup!
+
+\section{Twierdzenie o Podgrupie o Najmniejszym Indeksie Pierwszym}
+
+Twierdzenie to jest potężnym kryterium normalności, wynikającym z arytmetycznych własności rzędu grupy.
+
+\begin{theorem}
+Niech $G$ będzie grupą skończoną rzędu $n$. Niech $p$ będzie \textbf{najmniejszą} liczbą pierwszą dzielącą $n$.
+Jeżeli $H$ jest podgrupą $G$ o indeksie $[G:H] = p$, to $H$ jest podgrupą normalną w $G$ ($H \trianglelefteq G$).
+\end{theorem}
+
+\begin{intuition}
+Wiemy, że podgrupa o indeksie 2 jest zawsze normalna. To twierdzenie mówi, że ta "wyjątkowość" dwójki bierze się stąd, że jest najmniejszą liczbą pierwszą. Jeśli rząd grupy jest np. nieparzysty, a najmniejszym dzielnikiem jest 3, to podgrupa o indeksie 3 musi być normalna.
+\end{intuition}
+
+\begin{proof}
+Niech $X = G/H = \{g_1H, g_2H, \dots, g_pH\}$ będzie zbiorem lewostronnych warstw podgrupy $H$. Wiemy, że $|X| = p$.
+
+\textbf{Krok 1: Konstrukcja homomorfizmu (Działanie na warstwach)}
+Zdefiniujmy działanie grupy $G$ na zbiorze $X$ przez lewostronne mnożenie:
+\[ g \cdot (aH) := (ga)H. \]
+To działanie wyznacza homomorfizm $\phi: G \to S_X \cong S_p$ (grupę permutacji zbioru $p$-elementowego), dany wzorem $\phi(g)(aH) = gaH$.
+
+\textbf{Krok 2: Badanie jądra}
+Niech $K = \ker \phi$. Z własności jądra wiemy, że $K \trianglelefteq G$.
+Co oznacza, że $g \in K$? Oznacza to, że $g$ działa na warstwach trywialnie, czyli dla każdej warstwy $aH$, $gaH = aH$.
+W szczególności dla warstwy $1H = H$:
+\[ gH = H \implies g \in H. \]
+Zatem $K \subseteq H$. Mamy więc ciąg podgrup $K \subseteq H \subseteq G$.
+
+\textbf{Krok 3: Analiza indeksów}
+Zauważmy, że $[G:K] = [G:H] \cdot [H:K] = p \cdot [H:K]$.
+Z drugiej strony, na mocy I Twierdzenia o Izomorfizmie:
+\[ G/K \cong \im \phi \le S_p. \]
+Zatem rząd grupy ilorazowej $|G/K|$ (czyli indeks $[G:K]$) musi dzielić rząd grupy $S_p$, który wynosi $p!$.
+Mamy więc relację podzielności:
+\[ p \cdot [H:K] \mid p! \]
+Dzieląc stronami przez $p$:
+\[ [H:K] \mid (p-1)! \]
+
+\textbf{Krok 4: Sprzeczność arytmetyczna}
+Załóżmy nie wprost, że $H$ nie jest normalna. Wtedy $K \neq H$ (bo $H$ nie jest jądrem), więc $[H:K] > 1$.
+Niech $q$ będzie liczbą pierwszą dzielącą $[H:K]$.
+\begin{enumerate}
+    \item Skoro $q \mid [H:K]$, a $K \le H \le G$, to $q$ musi dzielić rząd grupy $|G|$.
+    \item Z założenia twierdzenia, $p$ jest \textbf{najmniejszą} liczbą pierwszą dzielącą $|G|$. Zatem $q \ge p$.
+    \item Z drugiej strony, wykazaliśmy wcześniej, że $[H:K] \mid (p-1)!$. Zatem $q$ musi dzielić $(p-1)!$.
+    \item Jednak dzielniki pierwsze $(p-1)!$ to liczby mniejsze lub równe $p-1$. Czyli $q \le p-1$.
+\end{enumerate}
+Otrzymujemy sprzeczność: $p \le q \le p-1$.
+Zatem założenie, że $[H:K] > 1$ było fałszywe. Musi zachodzić $[H:K] = 1$, co oznacza $H = K$.
+Ponieważ $K$ (jako jądro) jest podgrupą normalną, to $H$ jest podgrupą normalną.
+\end{proof}
+
+\begin{remark}
+Zwróć uwagę na elegancję tego dowodu. Nie "grzebiemy" w elementach, tylko patrzymy na strukturę rzędów i homomorfizmów. To jest esencja nowoczesnej algebry.
+\end{remark}
+
+\subsection{Wykładnik grupy (Exponent)}
+\begin{definition}[Wykładnik grupy]
+    Niech $G$ będzie grupą skończoną. Wykładnikiem grupy, oznaczanym jako $\exp(G)$, nazywamy najmniejszą liczbę naturalną $n > 0$, taką że dla każdego elementu $g \in G$ zachodzi:
+    \[ g^n = e. \]
+    Innymi słowy, jest to Najmniejsza Wspólna Wielokrotność (NWW) rzędów wszystkich elementów w grupie.
+\end{definition}
+
+\begin{eg}[Dlaczego to jest ważne?]
+    Rozważmy dwie grupy abelowe rzędu 4: $\mathbb{Z}_4$ oraz $\mathbb{Z}_2 \times \mathbb{Z}_2$.
+    \begin{itemize}
+        \item W $\mathbb{Z}_4$ mamy element rzędu 4 (generator). Zatem $\exp(\mathbb{Z}_4) = 4$.
+        \item W $\mathbb{Z}_2 \times \mathbb{Z}_2$ każdy element (oprócz neutralnego) ma rząd 2. Zatem $\forall g, g^2=e$, więc $\exp(\mathbb{Z}_2 \times \mathbb{Z}_2) = 2$.
+    \end{itemize}
+    Dzięki temu pojęciu możemy rozróżniać grupy izomorficzne sprawdzając tylko rzędy elementów, bez budowania izomorfizmu.
+\end{eg}
+
+\section{Klasyfikacja grup rzędu 8}
+
+\begin{goall}
+    Chcemy znaleźć wszystkie (z dokładnością do $\cong$) grupy rzędu 8.
+\end{goall}
+
+\subsection{Przypadek A: Grupy Abelowe}
+Korzystając z Twierdzenia Fundamentalnego, szukamy grup postaci produktów cyklicznych, których rzędy sumują się do $2^3=8$. Mamy dokładnie 3 możliwości partycji wykładnika 3:
+
+\begin{enumerate}
+    \item \textbf{Partycja $3$ (jeden składnik):}
+        \[ \mathbb{Z}_{2^3} = \mathbb{Z}_8 \]
+        \textit{Cechy:} Grupa cykliczna, posiada element rzędu 8. $\exp(G)=8$.
+
+    \item \textbf{Partycja $2+1$:}
+        \[ \mathbb{Z}_{2^2} \times \mathbb{Z}_{2^1} = \mathbb{Z}_4 \times \mathbb{Z}_2 \]
+        \textit{Cechy:} Brak elementu rzędu 8. Maksymalny rząd to 4. $\exp(G)=4$.
+
+    \item \textbf{Partycja $1+1+1$:}
+        \[ \mathbb{Z}_2 \times \mathbb{Z}_2 \times \mathbb{Z}_2 \]
+        \textit{Cechy:} Wszystkie elementy (poza $e$) mają rząd 2. $\exp(G)=2$.
+\end{enumerate}
+
+\subsection{Przypadek B: Grupy Nieabelowe (Analiza szczegółowa)}
+Załóżmy teraz, że $G$ jest grupą rzędu 8 i \textbf{nie jest abelowa}.
+\begin{enumerate}[label=\Roman*)]
+
+\item{Krok 1: Eliminacja rzędów}
+    \begin{itemize}
+        \item $G$ nie ma elementu rzędu 8 (wtedy byłaby cykliczna $\implies$ abelowa).
+        \item $G$ nie może składać się z samych elementów rzędu 2 (wtedy $x^2=e \implies x=x^{-1}$, co w dowolnej grupie implikuje abelowość: $xy = (xy)^{-1} = y^{-1}x^{-1} = yx$).
+    \end{itemize}
+    \textbf{Wniosek:} $G$ musi posiadać element rzędu 4.
+ 
+
+\item{Krok 2: Konstrukcja podgrupy normalnej}
+    Niech $a \in G$ będzie elementem rzędu 4. Zdefiniujmy podgrupę:
+    \[ N = \langle a \rangle = \{e, a, a^2, a^3\}. \]
+    Ponieważ $|N|=4$ a $|G|=8$, indeks podgrupy wynosi $[G:N]=2$.
+    \textbf{Wniosek:} Podgrupa $N$ jest \textbf{normalna} w $G$ ($N \unlhd G$).
+ 
+
+\item{Krok 3: Wybór drugiego generatora}
+    Wybierzmy dowolny element $b \in G \setminus N$.
+    Wówczas $G$ rozkłada się na sumę warstw: $G = N \cup Nb$.
+    Każdy element $G$ jest postaci $a^k$ lub $a^k b$.
+ 
+
+\item{Krok 4: Analiza działania przez sprzężenie}
+    Skoro $N \unlhd G$, to $bab^{-1} \in N$. Ponieważ $b \notin N$, elementy $a$ i $b$ nie mogą być przemienne (inaczej grupa generowana przez $a, b$ byłaby abelowa, a $G = \langle a, b \rangle$).
+    Zatem $bab^{-1} \neq a$.
+    Ponadto, sprzężenie zachowuje rząd elementu, więc $bab^{-1}$ musi mieć rząd 4 (tak jak $a$). W $N$ są tylko dwa elementy rzędu 4: $a$ oraz $a^3$.
+    Skoro $bab^{-1} \neq a$, to musi zachodzić:
+    \[ \bm{bab^{-1} = a^3 = a^{-1}} \]
+    To jest pierwsza kluczowa relacja definiująca strukturę nieabelową.
+ 
+
+\item{Krok 5: Analiza rzędu elementu $b$}
+    To jest moment, w którym drogi się rozchodzą. Pytamy: \textbf{ile wynosi $b^2$?}
+    Wiemy, że $b^2 \in N$ (bo w grupie ilorazowej $G/N \cong \mathbb{Z}_2$ kwadrat jest neutralny).
+    $b^2$ musi być przemienne z $b$. W $N$ elementami przemiennymi z $b$ są tylko $e$ oraz $a^2$ (sprawdźmy: $b a^2 = b a a = a^{-1} b a = a^{-1} a^{-1} b = a^2 b$). Elementy $a$ i $a^3$ nie są przemienne z $b$.
+    
+    Zatem mamy tylko dwie możliwości dla $b^2$:
+    
+    \textbf{Opcja 1: $b^2 = e$}
+    Mamy grupę generowaną przez $\{a, b\}$ z relacjami:
+    \[ a^4 = e, \quad b^2 = e, \quad bab^{-1} = a^{-1} \]
+    To jest dokładnie definicja \textbf{grupy dihedralnej $D_4$} (izometrie kwadratu: $a$ to obrót, $b$ to symetria).
+    
+    \textbf{Opcja 2: $b^2 = a^2$} (Zauważmy, że $a^2$ to jedyny element rzędu 2 w $N$).
+    Mamy grupę z relacjami:
+    \[ a^4 = e, \quad b^2 = a^2, \quad bab^{-1} = a^{-1} \]
+    Podstawiając $a = \mathbf{i}, b = \mathbf{j}$ (oraz $a^2 = -1$), otrzymujemy relacje \textbf{grupy kwaternionów $Q_8$}.
+\end{enumerate}
+
+\section{Klasyfikacja w duchu Produktu Półprostego (Podejście Konstrukcyjne)}
+
+Zamiast zgadywać tabelki, spróbujmy \textbf{skonstruować} grupę nieabelową rzędu 8 z mniejszych klocków. Jest to podejście systematyczne, zwane \textit{problemem rozszerzeń}.
+
+\begin{enumerate}[label=\Roman*]
+\item{Krok 1: Wybór fundamentu (Podgrupa Normalna)}
+    Ponieważ szukamy grupy nieabelowej, musi ona posiadać element rzędu 4 (gdyby wszystkie były rzędu 2, byłaby abelowa $\mathbb{Z}_2^3$).
+    Niech $N = \langle a \rangle \cong \mathbb{Z}_4$.
+    Ponieważ $[G:N] = 8/4 = 2$, podgrupa $N$ jest automatycznie \textbf{normalna} w $G$.
+    
+    Mamy więc sytuację:
+    \[ G = N \cup Nb, \quad \text{gdzie } G/N \cong \mathbb{Z}_2. \]
+    Oznacza to, że $G$ składa się z "warstwy" $N$ (elementy $a^k$) oraz "warstwy zewnętrznej" $Nb$ (elementy $a^k b$).
+ 
+
+\item{Krok 2: Poszukiwanie dopełnienia (Czy istnieje $H$?)}
+    Produkt półprosty $N \rtimes H$ istnieje wtedy, gdy wewnątrz grupy $G$ znajdziemy podgrupę $H$, która jest izomorficzna z grupą ilorazową (u nas $\mathbb{Z}_2$) i niezależna od $N$.
+    
+    Szukamy więc w warstwie zewnętrznej ($G \setminus N$) elementu $b$, który wygeneruje nam $H \cong \mathbb{Z}_2$.
+    Warunek: $b$ musi mieć rząd 2 (czyli $b^2 = e$).
+    
+    \textbf{Pytanie:} Czy w naszej nieznanej grupie $G$ istnieje element rzędu 2 poza podgrupą $N$?
+ 
+
+\item{Krok 3: Analiza przypadków (Rozgałęzienie)}
+    Mamy tylko dwie możliwości: albo taki element istnieje, albo nie.
+    
+    \textbf{Przypadek A: Istnieje $b \notin N$, taki że $b^2 = e$.}
+    \begin{itemize}
+        \item Mamy podgrupę $H = \{e, b\} \cong \mathbb{Z}_2$.
+        \item $N \cap H = \{e\}$.
+        \item Zatem $G$ jest produktem półprostym $N \rtimes H \cong \mathbb{Z}_4 \rtimes \mathbb{Z}_2$.
+        \item Jakie jest działanie? Skoro $G$ nieabelowa, $b$ nie może być przemienne z $a$. Jedyny nietrywialny automorfizm $\mathbb{Z}_4$ to inwersja ($x \mapsto x^{-1}$).
+        \item Zatem $bab^{-1} = a^{-1}$.
+        \item \textbf{Wynik:} Otrzymaliśmy grupę o relacjach: $a^4=1, b^2=1, bab=a^{-1}$. Jest to \textbf{Grupa Dihedralna $D_4$}.
+    \end{itemize}
+
+    \textbf{Przypadek B: NIE istnieje element rzędu 2 poza $N$.}
+    \begin{itemize}
+        \item Oznacza to, że każdy element $x \in G \setminus N$ musi mieć rząd 4 (bo rząd 8 wykluczyliśmy, a rząd 2 wykluczyliśmy w założeniu tego przypadku).
+        \item Skoro $b$ ma rząd 4, to $b^2$ ma rząd 2.
+        \item Jedynym elementem rzędu 2 w całej grupie jest $a^2 \in N$ (oznaczmy go $-1$).
+        \item Zatem musi zachodzić $b^2 = a^2 (= -1)$.
+        \item Mamy relacje: $a^4=1, b^2=a^2, bab^{-1}=a^{-1}$.
+        \item To uniemożliwia strukturę produktu półprostego (nie ma podgrupy $H \cong \mathbb{Z}_2$ "obok" $N$, jest tylko "uwikłana").
+        \item \textbf{Wynik:} Jest to \textbf{Grupa Kwaternionów $Q_8$}.
+    \end{itemize}
+\end{enumerate} 
+
+\begin{remark}
+    Analiza struktury $G$ jako rozszerzenia $\mathbb{Z}_4$ przez $\mathbb{Z}_2$ prowadzi do kompletnej klasyfikacji nieabelowych grup rzędu 8:
+    \begin{enumerate}
+        \item Jeśli rozszerzenie jest "rozszczepialne" (produkt półprosty) $\implies D_4$.
+        \item Jeśli rozszerzenie jest "nierozszczepialne" $\implies Q_8$.
+    \end{enumerate}
+\end{remark}
+
+\section{Grupa Kwaternionów $Q_8$}
+TO JEST STARA WERSJA
+\begin{context}
+    Do tej pory poznaliśmy jedną nieabelową grupę rzędu 8 – grupę dihedralną $D_4$ (izometrii kwadratu). Istnieje jednak inna, strukturalnie odmienna grupa nieabelowa tego samego rzędu, która nie posiada realizacj jako grupa symetrii wielokąta w $\mathbb{R}^3$. Jest to grupa kwaternionów.
+\end{context}
+
+\begin{definition}[Grupa Kwaternionów]
+    Grupę kwaternionów $Q_8$ definiujemy jako podgrupę ogólnej grupy liniowej $GL(2, \mathbb{C})$ generowaną przez następujące macierze:
+    \[
+        \mathbf{1} = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}, \quad
+        \mathbf{i} = \begin{bmatrix} i & 0 \\ 0 & -i \end{bmatrix}, \quad
+        \mathbf{j} = \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}, \quad
+        \mathbf{k} = \begin{bmatrix} 0 & i \\ i & 0 \end{bmatrix}.
+    \]
+    Zbiór elementów grupy to $Q_8 = \{ \pm \mathbf{1}, \pm \mathbf{i}, \pm \mathbf{j}, \pm \mathbf{k} \}$.
+\end{definition}
+
+\begin{proposition}[Własności algebraiczne $Q_8$]
+    W grupie $Q_8$ zachodzą następujące tożsamości (relacje Hamiltona):
+    \begin{enumerate}
+        \item $\mathbf{i}^2 = \mathbf{j}^2 = \mathbf{k}^2 = -\mathbf{1}$.
+        \item $\mathbf{i}\mathbf{j} = \mathbf{k}, \quad \mathbf{j}\mathbf{k} = \mathbf{i}, \quad \mathbf{k}\mathbf{i} = \mathbf{j}$.
+        \item $\mathbf{j}\mathbf{i} = -\mathbf{k}, \quad \mathbf{k}\mathbf{j} = -\mathbf{i}, \quad \mathbf{i}\mathbf{k} = -\mathbf{j}$ (antyprzemienność).
+        \item Centrum grupy $Z(Q_8) = \{ \mathbf{1}, -\mathbf{1} \}$.
+        \item $Q_8$ posiada dokładnie jeden element rzędu 2 (jest nim $-\mathbf{1}$).
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    % Tutaj miejsce na Twój dowód poprzez rachunek macierzowy
+    \textbf{Dowód do uzupełnienia.} (Wystarczy sprawdzić mnożenie macierzy dla punktów 1-3 oraz przeanalizować rzędy dla punktu 5).
+\end{proof}
+
+\section{Klasyfikacja grup rzędu $\le 8$}
+
+\begin{goall}
+    Celem tej sekcji jest kompletna klasyfikacja grup skończonych o rzędzie $|G| \in \{1, \dots, 8\}$ z dokładnością do izomorfizmu.
+\end{goall}
+
+\subsection{Przypadki trywialne i rzędy pierwsze}
+
+\begin{fact}[Rząd pierwszy]
+    Jeśli rząd grupy $|G| = p$ jest liczbą pierwszą, to $G \cong \mathbb{Z}_p$.
+\end{fact}
+\begin{proof}
+    \textbf{Dowód do uzupełnienia.} (Skorzystaj z Twierdzenia Lagrange'a i rzędu elementu).
+\end{proof}
+
+\noindent Z powyższego faktu natychmiast otrzymujemy klasyfikację dla rzędów: 2, 3, 5, 7.
+
+\subsection{Rząd 4 (Kwadrat liczby pierwszej)}
+
+\begin{fact}
+    Jeśli $|G| = p^2$, gdzie $p$ jest liczbą pierwszą, to $G$ jest abelowa.
+\end{fact}
+\begin{proof}
+    \textbf{Dowód do uzupełnienia.} (Można skorzystać z faktu o nietrywialnym centrum $p$-grupy i ilorazie $G/Z(G)$).
+\end{proof}
+
+\begin{corollary}[Klasyfikacja rzędu 4]
+    Istnieją dokładnie dwie grupy rzędu 4 (obie abelowe):
+    \begin{enumerate}
+        \item $\mathbb{Z}_4$ (cykliczna).
+        \item $\mathbb{Z}_2 \times \mathbb{Z}_2$ (Grupa Kleina $V_4$).
+    \end{enumerate}
+\end{corollary}
+
+\subsection{Rząd 6 (Produkt liczb pierwszych)}
+
+\begin{theorem}
+    Jeśli $|G| = 6$, to $G \cong \mathbb{Z}_6$ lub $G \cong S_3$.
+\end{theorem}
+\begin{proof}
+    \textbf{Szkic dowodu do uzupełnienia:}
+    1. Z twierdzenia Cauchy'ego istnieją elementy $a, b$ o rzędach odpowiednio 3 i 2.
+    2. Niech $N = \langle a \rangle$. Ponieważ $[G:N]=2$, to $N \unlhd G$.
+    3. Analizujemy działanie $b$ na $N$ przez sprzężenie: $bab^{-1} \in N$.
+    4. Ponieważ rząd $a$ to 3, są dwie opcje na $bab^{-1}$:
+       a) $bab^{-1} = a \implies G$ abelowa $\implies G \cong \mathbb{Z}_6$.
+       b) $bab^{-1} = a^2 (= a^{-1}) \implies G$ nieabelowa $\implies G \cong S_3 \cong D_3$.
+\end{proof}
+
+\subsection{Rząd 8 (Analiza przypadków)}
+
+Dla grup rzędu 8 wyróżniamy dwa główne przypadki: grupy abelowe i nieabelowe.
+
+\subsubsection{Przypadek A: Grupy Abelowe}
+Z Twierdzenia o Klasyfikacji Skończonych Grup Abelowych, grupa rzędu $8=2^3$ jest izomorficzna z jednym z poniższych produktów:
+\begin{enumerate}
+    \item $\mathbb{Z}_8$ (element rzędu 8).
+    \item $\mathbb{Z}_4 \times \mathbb{Z}_2$ (brak el. rzędu 8, exp(G)=4).
+    \item $\mathbb{Z}_2 \times \mathbb{Z}_2 \times \mathbb{Z}_2$ (wszystkie el. poza neutralnym mają rząd 2).
+\end{enumerate}
+
+\subsubsection{Przypadek B: Grupy Nieabelowe}
+Załóżmy, że $G$ jest nieabelowa i $|G|=8$.
+\begin{itemize}
+    \item $G$ nie ma elementu rzędu 8 (bo byłaby cykliczna $\implies$ abelowa).
+    \item $G$ nie może mieć wszystkich elementów rzędu 2 (bo wtedy $ab=ba \implies$ abelowa).
+\end{itemize}
+Zatem $G$ musi posiadać element rzędu 4. Niech $a \in G$ oraz $|a|=4$.
+Definiujemy podgrupę $N = \langle a \rangle$. Jest ona normalna w $G$ (indeks 2).
+Wybierzmy element $b \in G \setminus N$. Wówczas $G = N \cup Nb$.
+
+Rozważamy sprzężenie $bab^{-1}$. Ponieważ $N \unlhd G$, $bab^{-1} \in \{a, a^3\}$.
+Gdyby $bab^{-1} = a$, to $ab=ba$, co dałoby grupę abelową. Zatem musi zachodzić:
+\[ bab^{-1} = a^3 = a^{-1}. \]
+Teraz kluczowe pytanie klasyfikacyjne: \textbf{Jaki jest rząd elementu $b$?}
+Zauważmy, że $b^2 \in N$ (bo $G/N \cong \mathbb{Z}_2$). Możliwe są dwa podprzypadki:
+
+\paragraph{1. Przypadek rozszczepialny ($D_4$):}
+Istnieje w $G \setminus N$ element $b$ rzędu 2 (tzn. $b^2 = e$).
+Wtedy $N \cap \langle b \rangle = \{e\}$, więc $G$ jest produktem półprostym $N \rtimes \langle b \rangle$.
+Otrzymujemy relacje: $a^4=1, b^2=1, bab^{-1}=a^{-1}$.
+Jest to definicja grupy dihedralnej $D_4$.
+
+\paragraph{2. Przypadek nierozszczepialny ($Q_8$):}
+Nie istnieje w $G \setminus N$ element rzędu 2.
+Wówczas dla każdego $x \in G \setminus N$ musi zachodzić $x^2 = a^2$ (jedyny element rzędu 2 w $N$).
+Otrzymujemy relacje: $a^4=1, b^2=a^2, bab^{-1}=a^{-1}$.
+Podstawiając $a=\mathbf{i}, b=\mathbf{j}$, widzimy, że jest to grupa kwaternionów $Q_8$.
+
+\begin{summary}[Tabela klasyfikacji grup rzędu 8]
+\begin{center}
+\begin{tabular}{l|c|c}
+    \textbf{Typ} & \textbf{Grupa} & \textbf{Charakterystyka} \\ \hline
+    Abelowe & $\mathbb{Z}_8$ & Cykliczna \\
+            & $\mathbb{Z}_4 \times \mathbb{Z}_2$ & $Exp(G)=4$, brak el. rzędu 8 \\
+            & $\mathbb{Z}_2^3$ & Wszystkie el. rzędu 2 (Grupa Boolowska) \\ \hline
+    Nieabelowe & $D_4$ & 5 elementów rzędu 2 (rozszczepialna) \\
+               & $Q_8$ & 1 element rzędu 2 (nierozszczepialna)
+\end{tabular}
+\end{center}
+\end{summary}
+
+
+
+\section{Brudnopis}
+\begin{theorem}
+      Niech $A$ będzie grupą. Jeśli każdy element $A$ jest rzędu 2 to grupa $A$ jest Abelowa.
+\end{theorem} 
+\begin{proof}
+	Ustalmy dowolną grupę $A$. Załóżmy, że każdy jej element ma rząd 2. Weźmy dwa dowolne elementy $a,b\in A$.
+	
+	\textbf{Cel:} $a+b = b+a$
+
+	\begin{align*}	
+		\textit{L} =& a+b \\
+		=& \mathbf{0} + a + b + \mathbf{0} \\
+		=& b + b + a + b + a + a \\
+		=& b + (\underbrace{(b+a)}_{=c \in A} + \underbrace{(b+a)}_{=c \in A} )+ a  \\
+		=& b + \mathbf{0} + a \\
+		=& b+ a \\
+		=& \textit{P}  
+	.\end{align*} 
+
+\end{proof} 
+
+Przypominienie: indeks podgrupy B w  
+\begin{theorem}
+	Niech $A$ będzie grupą oraz $B$ jej podgrupą. Jeśli indeks $B$ w $A$ wynosi 2, to $B \unlhd A$.
+\end{theorem} 
+\begin{proof}
+	todo
+\end{proof} 
+
+\begin{definition}[Prezentacja Grupy]
+Niech $F(S)$ będzie grupą wolną generowaną przez zbiór $S$. Niech $R$ będzie zbiorem słów w $F(S)$.
+Grupę $G$ zdefiniowaną przez prezentację $\langle S \mid R \rangle$ definiujemy jako grupę ilorazową:
+\[ G \cong F(S) / N(R), \]
+gdzie $N(R)$ jest najmniejszą podgrupą normalną w $F(S)$ zawierającą zbiór $R$ (tzw. domknięcie normalne).
+Oznacza to, że w grupie $G$ wszystkie słowa ze zbioru $R$ stają się elementem neutralnym ($r=1$ dla $r \in R$).
+\end{definition}
+
+\section{Konwencja Notacyjna Produktu Półprostego}
+
+\begin{remark}[Zasada Interpretacji Symboli]
+W zapisie produktu półprostego symbole $\rtimes$ i $\ltimes$ niosą informację 
+nie o \emph{geometrii znaku}, lecz o \emph{tym, która podgrupa działa}, oraz która 
+jest podgrupą normalną. Należy pamiętać o zasadzie:
+
+\begin{center}
+\textbf{"Symbol określa kierunek działania, a nie stronę pionowej kreski."}
+\end{center}
+
+Kluczowa reguła:
+\begin{itemize}
+    \item w zapisie $N \rtimes H$ – \textbf{H działa na N},
+    \item w zapisie $H \ltimes N$ – \textbf{H działa na N}.
+\end{itemize}
+
+W obu przypadkach pierwsza grupa jest podgrupą \textbf{normalną}, druga – 
+\textbf{działającą}. Położenie pionowej kreski w typografii symbolu nie jest
+informacją matematyczną i nie należy go interpretować wizualnie.
+\end{remark}
+
+\begin{definition}[Kierunek Zapisu]
+Jeśli $N$ jest podgrupą normalną, a $H$ działa na $N$, to stosujemy zapis
+\[
+    \underbrace{N}_{\text{podgrupa normalna}}
+    \rtimes_\varphi
+    \underbrace{H}_{\text{podgrupa działająca}}.
+\]
+
+Rzadziej spotykaną alternatywą – zgodną znaczeniowo – jest zapis
+\[
+    H \ltimes_\varphi N,
+\]
+w którym symbol $\ltimes$ informuje, że to grupa stojąca po \emph{lewej}
+wykonuje działanie na drugiej.
+
+W obu konwencjach kluczowe jest to \emph{która grupa działa}, a nie wizualny
+kształt symbolu.
+\end{definition}
+
+\begin{eg}[Zastosowanie w $D_n$]
+W grupie diedralnej $D_n$:
+\begin{itemize}
+    \item podgrupą normalną jest grupa obrotów $\cong \mathbb{Z}_n$,
+    \item podgrupą działającą (przez inwersję) jest odbicie $\cong \mathbb{Z}_2$.
+\end{itemize}
+
+Zatem poprawny zapis strukturalny to
+\[
+    D_n \cong \mathbb{Z}_n \rtimes \mathbb{Z}_2.
+\]
+
+Zapis $\mathbb{Z}_2 \rtimes \mathbb{Z}_n$ opisywałby inną, zwykle niepoprawną
+strukturę działania.
+\end{eg}
+
+\begin{remark}[LaTeX]
+W \LaTeX u używamy komend:
+\begin{itemize}
+    \item \verb+\rtimes+ dla symbolu $\rtimes$,
+    \item \verb+\ltimes+ dla symbolu $\ltimes$.
+\end{itemize}
+
+Uwaga: warianty te różnią się \emph{znaczeniem algebraicznym}, a nie układem
+pionowej kreski w kroju pisma (który może różnić się wizualnie między fontami).
+Najczęściej spotykamy zapis $N \rtimes H$.
+\end{remark}
+
+
+% BEGIN
+\subsection{Grupa Diedralna $D_n$ – Analiza Kompletna}
+
+\begin{context}
+Grupa diedralna $D_n$ jest grupą symetrii wielokąta foremnego o $n$ wierzchołkach. Jest to pierwszy nietrywialny przykład rodziny grup nieprzemiennych. W literaturze bywa oznaczana jako $D_{2n}$ (odnosząc się do jej rzędu), my będziemy używać oznaczenia $D_n$, gdzie $n \ge 3$ oznacza liczbę wierzchołków.
+\end{context}
+
+\subsubsection{Definicja i Prezentacja}
+
+\begin{definition}[Geometryczna]
+Niech $P_n$ będzie wielokątem foremnym o $n$ wierzchołkach na płaszczyźnie euklidesowej. Grupa $D_n$ to zbiór wszystkich izometrii płaszczyzny, które przekształcają $P_n$ na samego siebie, z działaniem składania przekształceń.
+\end{definition}
+
+\begin{fact}[Generatory]
+Grupę generują dwa elementy:
+\begin{itemize}
+    \item $r$ (rotacja) – obrót o kąt $2\pi/n$ przeciwnie do ruchu wskazówek zegara.
+    \item $s$ (symetria/odbicie) – symetria względem ustalonej osi przechodzącej przez środek wielokąta i jeden z wierzchołków.
+\end{itemize}
+\end{fact}
+
+\begin{theorem}[Prezentacja Grupy]
+Grupa $D_n$ jest zdefiniowana przez generatory i relacje:
+\[ D_n = \langle r, s \mid r^n = 1, \ s^2 = 1, \ srs^{-1} = r^{-1} \rangle. \]
+\end{theorem}
+
+\begin{remark}[Kluczowa Relacja]
+Relacja $srs^{-1} = r^{-1}$ (równoważna $sr = r^{-1}s$) jest sercem arytmetyki w $D_n$. Mówi ona, że \textbf{przesunięcie symetrii przez obrót odwraca kierunek obrotu}.
+Dzięki temu każdy element grupy można zapisać w postaci kanonicznej $s^j r^k$, gdzie $j \in \{0,1\}, k \in \{0, \dots, n-1\}$.
+\end{remark}
+
+\subsubsection{Struktura Elementów}
+
+Rząd grupy wynosi $|D_n| = 2n$. Elementy dzielą się na dwa rozłączne typy:
+
+\begin{enumerate}
+    \item \textbf{Obroty (Rotacje):} Podgrupa $R = \langle r \rangle = \{1, r, r^2, \dots, r^{n-1}\}$.
+    \begin{itemize}
+        \item Tworzą podgrupę cykliczną rzędu $n$.
+        \item Są to izometrie zachowujące orientację.
+        \item Podgrupa $R$ ma indeks 2 w $D_n$, zatem $R \unlhd D_n$.
+        \item $R \cong \mathbb{Z}_n$.
+    \end{itemize}
+    
+    \item \textbf{Symetrie (Odbicia):} Zbiór $S = \{s, sr, sr^2, \dots, sr^{n-1}\}$.
+    \begin{itemize}
+        \item Każdy element tej postaci ma rząd 2 ($(sr^k)^2 = 1$).
+        \item Są to izometrie zmieniające orientację.
+        \item Geometrycznie odpowiadają symetriom względem osi przechodzących przez wierzchołki (i środki boków, gdy $n$ parzyste).
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Własności Algebraiczne}
+
+Struktura $D_n$ zależy istotnie od parzystości $n$.
+
+\begin{theorem}[Centrum Grupy $Z(D_n)$]
+Centrum zależy od $n$:
+\begin{itemize}
+    \item Jeśli $n$ jest \textbf{nieparzyste}: $Z(D_n) = \{1\}$. (Tylko identyczność komutuje ze wszystkim).
+    \item Jeśli $n$ jest \textbf{parzyste}: $Z(D_n) = \{1, r^{n/2}\}$. (Obrót o $180^\circ$ komutuje ze wszystkimi obrotami i odbiciami).
+\end{itemize}
+\end{theorem}
+
+\begin{theorem}[Klasy Sprzężoności]
+Analiza orbit działania $D_n$ na sobie przez sprzęganie ($gxg^{-1}$):
+\begin{enumerate}
+    \item \textbf{Obroty:} Dla dowolnego $k$, $r^k$ jest sprzężone z $r^{-k}$. 
+    \begin{itemize}
+        \item Klasy sprzężoności obrotów to zbiory $\{r^k, r^{-k}\}$.
+    \end{itemize}
+    \item \textbf{Symetrie:}
+    \begin{itemize}
+        \item Jeśli $n$ \textbf{nieparzyste}: Wszystkie symetrie są sprzężone. Tworzą jedną klasę wielkości $n$. (Geometrycznie: każda oś symetrii przechodzi przez wierzchołek i przeciwległy bok).
+        \item Jeśli $n$ \textbf{parzyste}: Symetrie rozpadają się na dwie klasy:
+        \begin{enumerate}
+            \item Symetrie względem osi przechodzących przez przeciwległe wierzchołki ($n/2$ elementów).
+            \item Symetrie względem osi przechodzących przez środki przeciwległych boków ($n/2$ elementów).
+        \end{enumerate}
+    \end{itemize}
+\end{enumerate}
+\end{theorem}
+\begin{theorem}[Komutant]
+\begin{itemize}
+    \item Jeśli $n$ jest nieparzyste: $[D_n, D_n] = \langle r \rangle \cong \mathbb{Z}_n$.
+    \item Jeśli $n$ jest parzyste: $[D_n, D_n] = \langle r^2 \rangle \cong \mathbb{Z}_{n/2}$.
+\end{itemize}
+\end{theorem}
+
+\subsubsection{Reprezentacja Macierzowa}
+
+Grupę $D_n$ możemy wiernie zanurzyć w $GL(2, \mathbb{R})$, interpretując $r$ i $s$ jako macierze:
+
+\[ r \mapsto \begin{pmatrix} \cos \frac{2\pi}{n} & -\sin \frac{2\pi}{n} \\ \sin \frac{2\pi}{n} & \cos \frac{2\pi}{n} \end{pmatrix}, \quad 
+   s \mapsto \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix} \]
+   
+W tej reprezentacji działanie $\varphi$ z produktu półprostego $\mathbb{Z}_n \rtimes_\varphi \mathbb{Z}_2$ jest widoczne jako sprzężenie macierzy obrotu przez macierz odbicia (co zmienia znak kąta w macierzy obrotu).
+
+\subsubsection{Struktura Produktu Półprostego}
+
+Podsumowując w języku naszej teorii:
+\begin{itemize}
+    \item $N = \langle r \rangle \cong \mathbb{Z}_n$ (Podgrupa normalna, cykliczna).
+    \item $H = \langle s \rangle \cong \mathbb{Z}_2$.
+    \item Działanie $\varphi: H \to \text{Aut}(N)$ to inwersja: $\varphi(s)(r^k) = r^{-k}$.
+\end{itemize}
+Zatem:
+\[ D_n \cong \mathbb{Z}_n \rtimes_{\text{inv}} \mathbb{Z}_2 \]
+
+
+\section{Szukanie homomorfizmów.}
+
+\section{Określanie Homomorfizmów na Generatorach}
+
+Problem znalezienia wszystkich homomorfizmów $\phi: G \to H$ sprowadza się często do zbadania, gdzie mogą trafić generatory grupy $G$. Jest to znacznie prostsze niż badanie funkcji na wszystkich elementach, ale wymaga rygorystycznego sprawdzenia tzw. warunku relacji.
+
+\begin{theorem}[Jednoznaczność]
+Niech $G$ będzie grupą generowaną przez zbiór $S$ (tzn. $G = \langle S \rangle$). Jeżeli $\phi, \psi: G \to H$ są homomorfizmami takimi, że dla każdego generatora $s \in S$ zachodzi $\phi(s) = \psi(s)$, to $\phi = \psi$.
+\end{theorem}
+
+\begin{intuition}
+To twierdzenie mówi, że \textbf{wartości na generatorach jednoznacznie determinują homomorfizm}. Jeśli wiesz, gdzie trafiają "cegiełki", wiesz, gdzie trafia cała konstrukcja.
+\end{intuition}
+
+Jednakże, nie każde przyporządkowanie generatorów definiuje homomorfizm. Tu wchodzi kluczowe pojęcie:
+
+\begin{theorem}[Zasada Przedłużania / Twierdzenie von Dycka]
+Niech $G$ będzie grupą zdefiniowaną przez prezentację $\langle S \mid R \rangle$, gdzie $S$ to zbiór generatorów, a $R$ to zbiór relacji.
+Niech $H$ będzie dowolną grupą.
+Odwzorowanie $f: S \to H$ przedłuża się do homomorfizmu $\phi: G \to H$ wtedy i tylko wtedy, gdy \textbf{obrazy generatorów spełniają te same relacje w $H$}, które generatory spełniają w $G$.
+
+Formalnie: Jeśli $r(s_1, \dots, s_n) = e_G$ jest relacją w $G$, to musi zachodzić:
+\[ r(f(s_1), \dots, f(s_n)) = e_H. \]
+\end{theorem}
+
+\begin{remark}
+W praktyce oznacza to procedurę dwukrokową:
+\begin{enumerate}
+    \item \textbf{Zaproponuj obrazy generatorów:} "Wyślijmy generator $g$ na element $h$".
+    \item \textbf{Sprawdź zgodność rzędów i relacji:} Czy "nowe wcielenie" generatorów zachowuje się tak samo (lub bardziej restrykcyjnie) jak oryginał?
+\end{enumerate}
+\end{remark}
+
+\subsection{Przykład klasyczny: Grupy Cykliczne}
+
+Rozważmy homomorfizmy z $G = \mathbb{Z}_n$ (grupa cykliczna rzędu $n$, generator $1$, relacja $n \cdot 1 = 0$) do dowolnej grupy $H$.
+
+Niech $\phi: \mathbb{Z}_n \to H$ będzie homomorfizmem.
+Wartość $\phi$ jest wyznaczona przez $\phi(1) = h \in H$.
+\textbf{Warunek relacji:}
+W $\mathbb{Z}_n$ mamy relację:
+\[ \underbrace{1 + 1 + \dots + 1}_{n} = 0. \]
+Zatem w $H$ musi zachodzić:
+\[ \phi(0) = \phi(\underbrace{1 + \dots + 1}_{n}) = \underbrace{\phi(1) + \dots + \phi(1)}_{n} = n \cdot h. \]
+Ponieważ $\phi(0) = e_H$, otrzymujemy warunek konieczny i wystarczający:
+\[ \text{Rząd elementu } h \text{ w grupie } H \text{ musi dzielić } n. \]
+(Formalnie: $h^n = e_H$ w notacji multiplikatywnej).
+
+\begin{eg}[Homomorfizmy $\mathbb{Z}_{12} \to \mathbb{Z}_3$]
+Generator $1 \in \mathbb{Z}_{12}$ ma rząd 12. Gdzie może trafić?
+Niech $\phi(1) = y \in \mathbb{Z}_3$. Element $y$ musi spełniać warunek: $12 \cdot y = 0$ w $\mathbb{Z}_3$.
+W $\mathbb{Z}_3$:
+\begin{itemize}
+    \item Dla $y=0$: $12 \cdot 0 = 0$. (OK) $\implies$ Homomorfizm trywialny.
+    \item Dla $y=1$: $12 \cdot 1 = 12 \equiv 0 \pmod 3$. (OK)
+    \item Dla $y=2$: $12 \cdot 2 = 24 \equiv 0 \pmod 3$. (OK)
+\end{itemize}
+Zatem istnieją 3 homomorfizmy.
+\end{eg}
+
+\begin{eg}[Homomorfizmy $\mathbb{Z}_3 \to \mathbb{Z}_{12}$]
+Generator $1 \in \mathbb{Z}_3$ ma rząd 3. Niech $\phi(1) = y \in \mathbb{Z}_{12}$.
+Warunek: $3 \cdot y = 0$ w $\mathbb{Z}_{12}$.
+Szukamy elementów rzędu 1 lub 3 w $\mathbb{Z}_{12}$.
+\begin{itemize}
+    \item $y=0$ (rząd 1). OK.
+    \item $y=4$ (rząd 3, bo $3 \cdot 4 = 12 \equiv 0$). OK.
+    \item $y=8$ (rząd 3, bo $3 \cdot 8 = 24 \equiv 0$). OK.
+\end{itemize}
+Inne elementy, np. $y=1$, nie działają, bo $3 \cdot 1 = 3 \neq 0$.
+Zatem istnieją 3 homomorfizmy.
+\end{eg}
+
+\subsection{Przykład dla twardzieli: $S_3 \to \mathbb{Z}_6$}
+
+Grupa $S_3$ ma prezentację:
+\[ S_3 = \langle \sigma, \tau \mid \sigma^3 = e, \tau^2 = e, \tau\sigma\tau = \sigma^{-1} \rangle. \]
+Szukamy homomorfizmów $\phi: S_3 \to \mathbb{Z}_6$.
+Oznaczmy $\phi(\sigma) = x$, $\phi(\tau) = y$ (gdzie $x, y \in \mathbb{Z}_6$).
+
+Sprawdźmy relacje w grupie docelowej (która jest abelowa, co jest kluczowe!):
+\begin{enumerate}
+    \item $\sigma^3 = e \implies 3x = 0$ w $\mathbb{Z}_6$. (Możliwe $x \in \{0, 2, 4\}$).
+    \item $\tau^2 = e \implies 2y = 0$ w $\mathbb{Z}_6$. (Możliwe $y \in \{0, 3\}$).
+    \item $\tau\sigma\tau = \sigma^{-1}$ (relacja "warkocza").
+    Przenieśmy to na $\mathbb{Z}_6$:
+    \[ \phi(\tau) + \phi(\sigma) + \phi(\tau) = -\phi(\sigma) \]
+    \[ y + x + y = -x \]
+    \[ 2y + x = -x \]
+    Ponieważ $2y = 0$ (z punktu 2), mamy $x = -x$, czyli $2x = 0$.
+\end{enumerate}
+
+Teraz łączymy fakty:
+\begin{itemize}
+    \item Z (1) wiemy, że $3x = 0$.
+    \item Z (3) wiemy, że $2x = 0$.
+\end{itemize}
+Jeśli $2x=0$ i $3x=0$, to odejmując stronami: $3x - 2x = 0 \implies x = 0$.
+Wniosek: $\phi(\sigma)$ \textbf{musi} być $0$. Obraz permutacji parzystych jest trywialny.
+Dla $y$ (obrazu transpozycji) mamy $2y=0$, więc $y \in \{0, 3\}$.
+
+Istnieją zatem tylko dwa homomorfizmy:
+1. Trywialny: $x=0, y=0$.
+2. "Znak permutacji" (izomorficzny z sgn): $x=0, y=3$. (Zauważ, że podgrupa $\{0, 3\}$ w $\mathbb{Z}_6$ jest izomorficzna z $\mathbb{Z}_2$).
+
+\textbf{Wniosek:} Nie można "bezkarnie" odwzorować $\sigma$ na element rzędu 3 w $\mathbb{Z}_6$ (np. na 2), mimo że rzędy by się zgadzały ($3 \cdot 2 = 6 \equiv 0$), ponieważ zabiłaby nas trzecia relacja (interakcja między generatorami).

@@ -1,0 +1,82 @@
+\section{Miara Lebesgue'a II}
+
+Wcześniej zdefiniowaliśmy funkcję zbioru $\lambda$ na pierścieniu $\mathcal{R}$ podzbiorów prostej, generowanym przez przedziały postaci $[a,b)$. Ponieważ $\lambda$ jest przeliczalnie addytywną funkcją zbioru na pierścieniu  $\mathcal{R}$, więc na mocy twierdzenia o rozszerzeniu do miary,  $\lambda$ jest \textbf{miarą} na  $\bor\left(\mathbb{R} \right) $. I to jest słynna \textbf{miara Lebesgue'a} (na prostej rzeczywistej).
+
+Liniowa \textbf{miara Lebesgue'a} jest więc po prostu uogólnieniem elementarnej koncepcji długości odcinka. Tak jak zaznaczyliśmy wcześniej, z samego faktu istnienia jedynej takiej miary, wyprowadzimy jej własności.
+
+
+W podrozdziale 3 zdefiniowaliśmy funkcję zbioru \( \lambda \) na pierścieniu \( R \) podzbiorów prostej, generowanym przez przedziały postaci \( [a, b] \). Ponieważ \( \lambda \) jest przeliczalnie addytywną funkcją zbioru na \( R \) więc z Twierdzenia 1.4.2 wynika, że \( \lambda \) rozszerza się jednoznacznie do miary na \( Bor(\mathbb{R}) \). I to jest owa słynna miara Lebesgue’a (na prostej rzeczywistej). Liniowa miara Lebesgue’a jest więc po prostu uogólnieniem elementarnej koncepcji długości odcinka. Tak jak obiecaliśmy, z samego faktu istnienia jedynej takiej miary wprowadzimy jej podstawowe własności.
+
+Mamy więc pierwszy niebanalny przykład przestrzeni miarowej: \( (\mathbb{R}, Bor(\mathbb{R}), \lambda) \). Stosując zabieg opisany w Twierdzeniu 1.5.3 możemy też wyróżnić podstawową przestrzeń probabilistyczną: \( ([0, 1], Bor[0, 1], \lambda) \).
+
+Zbiory borelowskie można uzupełnić względem miary Lebesgue’a, jak to opisano w twierdzeniu 1.5.5. Oznaczamy takie uzupełnione $\sigma $-ciało przez \( \mathfrak{L} \) (na cześć Lebesgue’a). Zbiór \( A \in \mathfrak{L} \) nazywamy \textit{mierzalnym w sensie Lebesgue’a}. Taki zbiór można więc zapisać jako \( A = B \bigtriangleup N \), gdzie \( B \in Bor(\mathbb{R}) \) i \( N \) jest podzbiorem zbioru miary zero (zbiór mierzalny to modyfikacja zbioru borelowskiego na zbiorze miary zero). Otrzymujemy zupełną przestrzeń miarową \( (\mathbb{R}, \mathfrak{L}, \lambda) \) (jak zwykle pozostawiamy to samo oznaczenie na miarę). Jak się okaże, zabieg uzupełniania jest drobny, ale bywa istotny.
+
+Odnotujmy przede wszystkim, że \( \lambda(x) = 0 \) dla każdego \( x \in \mathbb{R} \) (dlatego że \( \lambda([x, x + \delta]) = \delta \) dla \( \delta > 0 \). Stąd wynika natychmiast że dla \( a < b \) mamy
+\[
+\lambda([a, b]) = \lambda([a, b]) = \lambda([a, b]).
+\]
+
+\begin{theorem}[1.6.1]
+(a) Każdy zbiór przeliczalny jest miary Lebesgue’a zero.
+(b) Dla każdego \( A \in \mathfrak{L} \) istnieją zbiory borelowskie \( B_1 \subseteq A \subseteq B_2 \), takie że \( \lambda(B_2 \backslash B_1) = 0 \).
+(c) Dla każdego zbioru mierzalnego \( A \in \mathfrak{L} \) i \(\varepsilon > 0\) istnieje zbiór otwarty \( V \) i zbiór domknięty \( F \), takie że \( F \subseteq A \subseteq V \) i \(\lambda(V \setminus F) < \varepsilon\).
+\end{theorem}
+
+\textbf{Dowód.} Zbiór przeliczalny \( A \) jest przeliczalną sumą postaci \( A = \bigcup_{x \in A}\{x\} \) więc \(\lambda(A) = 0\) wprost z przeliczalnej addytywności.
+
+Każdy zbiór \( A \in \mathfrak{L} \) jest postaci \( A = B \triangle N \) gdzie \( N \) jest podzbiorem borelowskiego zbioru \( C \) miary zero. Wtedy można przyjąć \( B_1 = B \setminus C \) i \( B_2 = B \cup C \).
+
+Z uwagi na (b), wystarczy (c) sprawdzić dla \( A \in Bor(\mathbb{R}) \). Rozważamy najpierw zbiory borelowskie \( A \) zawarte w \([0,1]\) i stosujemy znany chwyt: Niech \( A \) będzie rodziną tych borelowskich \( A \subseteq [0,1]\), które aproksymują się od góry zbiorami otwartymi \( V \) (otwartymi w \(\mathbb{R}\)), i od dołu zbiorami domkniętymi. Jest to rodzina podzbiorów \([0,1]\) zamknięta na branie dopełnień (w \([0,1]\)). Istotnie, jeżeli \( F \subseteq A \subseteq V \) to
+\[
+[0,1] \setminus V \subseteq [0,1] \setminus A \subseteq [0,1] \cap F^c.
+\]
+Tutaj \([0,1] \setminus V\) jest zbiorem domkniętym; zbiór \([0,1] \cap F^c\) nie musi być co prawda otwarty, ale można go powiększyć, kosztem nieznacznego zwiększenia miar, do otwartego zbioru \((-\delta, 1 + \delta) \cap F^c\).
+
+Sprawdzamy teraz bez trudu, że \( A \) jest ciałem podzbiorów \([0,1]\) (zbiory otwarte są zamknięte na skończone sumy i przekroje, tę samą własność mają zbiory domknięte). Ostatecznie rozważamy rosnący ciąg \( A_n \in A \) i sprawdzamy, że \( A = \bigcup_n A_n \in A \), postępując jak w dowodzie 1.4.3.
+
+Pierwszą część dowodu można oczywiście odnieść do ustalonego odcinka \([n,n+1]\). Ostatecznie, biorąc dowolny zbiór borelowski \( A \), dla danego \(\varepsilon > 0\) przykrywamy każdy zbiór \( A \cap [n,n+1] \) otwartym zbiorem \( V_n \) z dokładnością \(\varepsilon/2^{|n|+2} \) (tutaj n przebiega liczby całkowite). Wtedy \( V = \bigcup_n V_n \supseteq A \) i
+\[
+\lambda(V \setminus A) \leq \sum_{n=-\infty}^{\infty} \lambda(V_n \setminus A \cap [n,n+1]) \leq \varepsilon.
+\]
+Aproksymacja od dołu zbiorem domkniętym przebiega analogicznie. Co prawda na ogół nieskończona suma zbiorów domkniętych nie musi być domknięta, ale \( \bigcup_n F_n \) jest zbiorem domkniętym, o ile zbiory domknięte spełniają warunek \( F_n \subseteq [n.n+1] \), proszę sprawdzić!
+
+Stosując Twierdzenie 1.4.3 otrzymujemy inny ważny fakt.
+
+\begin{theorem}[1.6.2]
+Jeżeli \( A \in \mathfrak{L} \) i \(\lambda(A) < \infty \) to dla każdego \(\varepsilon > 0\) istnieje zbiór \( J \) będący skończoną sumą odcinków i taki że \(\lambda(A \triangle J) < \varepsilon\).
+\end{theorem}
+
+Odnotujmy jeszcze następujący wniosek.
+
+\begin{corollary}[1.6.3]
+Jeżeli \( A \in \mathfrak{L} \) i \(\lambda(A) < \infty \) to dla każdego \(\varepsilon > 0\) istnieje zbiór zwarty (czyli domknięty i ograniczony) \( K \subseteq A \), taki że \(\lambda(A \setminus K) < \varepsilon \).
+\end{corollary}
+
+\textbf{Dowód.} Dla \( A_n = A \cap (-n,n) \) mamy \( A_n \uparrow A \) i dlatego \(\lambda(A_n)\) zbiega do \(\lambda(A)\). Wybierzmy \( n \) takie że \(\lambda(A_n) > \lambda(A) - \varepsilon/2\); z Twierdzenia 1.6.1 istnieje zbiór domknięty \( K \subseteq A_n \) o własności \(\lambda(A_n \setminus K) < \varepsilon/2\). Wtedy \( K \) jest zbiorem zwartym i
+\[
+\lambda(A \setminus K) \leq \lambda(A \setminus A_n) + \lambda(A_n \setminus K) < \varepsilon.
+\]
+
+Jak się okazuje dowolny zbiór mierzalny można na różne sposoby aproksymować z punktu widzenia miary stosunkowo prostymi podzbiorami prostej. Nie należy jednak mylić inkluzji w Twierdzeniu 1.6.1(c): zbiór \([0,1] \setminus \mathbb{Q}\) jest miary 1, ale nie zawiera niepustych zbiorów otwartych. Podobnie zbiór \([0,1] \cap \mathbb{Q}\) jest miary zero, ale każdy domknięty \(F \supseteq [0,1] \cap \mathbb{Q}\) w istocie zawiera \([0,1]\) więc \(\lambda(F) \geq 1\); por. Zadanie 10.23.
+
+\begin{eg}[1.6.4]
+Niech \(C \subseteq [0,1]\) będzie “trójkowym” zbiorem Cantora; przypomnijmy, że zbiór \(C\) powstaje w ten sposób, że odcinek jednostkowy dzielimy na 3 części punktami \(1/3 i 2/3\) i usuwamy z niego środkowy odcinek otwarty \((1/3, 2/3)\). Następnie w drugim kroku stosujemy analogiczną operację w odcinkach \([0,1/3] i [2/3, 1]\), usuwając odpowiednio odcinki \((1/9, 2/9)\) i \((7/9, 8/9)\). Itd. . . Nietrudno policzyć, że łączna długość usuwanych odcinków wynosi 1; tym samym \(\lambda(C) = 1 - 1 = 0\). Zauważmy, że \(C\) jest zbiorem domkniętym i nie zawiera żadnego niepustego przedziału.
+
+Inaczej mówiąc, zbiór \(C\) składa się ze wszystkich liczb \(x \in [0,1]\), które można zapisać w systemie trójkowym za pomocą cyfr 0 i 2. W ten sposób można uzasadnić, że \(C\) jest zbiorem nieprzeliczalnym, równolicznym ze zbiorem \(\mathbb{R}\). Istnieją też wersje takiej konstrukcji, prowadzące do zbioru “typu Cantora” miary dodatniej, patrz Zadanie 10.24 
+\end{eg}
+
+Wykorzystując własności zbioru Cantora wspomniane powyżej oraz Problem 11.C można wywnioskować, że \(2 \neq Bor(\mathbb{R})\). Istotnie, każdy zbiór \(A \subseteq C\) jest mierzalny, jako że \(\lambda(C) = 0\). W teorii mnogości dowodzi się, że rodzina \(\mathcal{P}(C)\) jest mocy \(2^c > c\), a moc \(Bor(\mathbb{R})\) wynosi jedynie c. Dlatego też \(C\) zawiera nieborelowskie zbiory mierzalne.
+
+W tym miejscu warto wspomnieć o własnościach miary Lebesgue’a związanych ze strukturą grupy addytywnej \((\mathbb{R}, +)\). Dla \(B \subseteq \mathbb{R} \) i \(x \in \mathbb{R}\) piszemy \(x + B\) na oznaczenie translacji zbioru \(B\), czyli \(\{x + b : b \in B\}\).
+
+\begin{theorem}[1.6.5]
+Dla dowolnego \(B \in Bor(\mathbb{R}) \) i \(x \in \mathbb{R}\) mamy \(x + B \in Bor(\mathbb{R}) \) i \(\lambda(x + B) = \lambda(B)\).
+\end{theorem}
+
+\textbf{Dowód.} Jeśli oznaczymy przez \(\mathcal{A}\) rodzinę tych \(B \in Bor(\mathbb{R})\), dla których wszystkie translacje są borelowskie to \(\mathcal{A}\) zawiera wszystkie odcinki otwarte \((a, b)\), jako że \(x + (a, b) = (a + x, b + x)\). Wystarczy teraz zauważyć, że rodzina \(\mathcal{A}\) jest \(\sigma\)-ciałem, aby otrzymać \(\mathcal{A} = Bor(\mathbb{R})\). Dla ustalonego \(x\) rozważmy miarę \(\mu\) na \(Bor(\mathbb{R})\), daną przez wzór \(\mu(A) = \lambda(x + A)\) (sprawdzenie, że \(\mu\) jest istotnie przeliczalnie addytywna pozostawiamy czytelnikowi). Dla \(a < b\) mamy
+\[
+\mu([a, b]) = \lambda([x + b, x + b]) = b - a = \lambda([a, b]);
+\]
+wynika stąd że \(\mu(R) = \lambda(R)\) dla \(R\) z pierścienia przedziałów i tym samym \(\mu(B) = \lambda(B)\) dla \(B \in Bor(\mathbb{R})\) z jednoznaczności rozszerzenia miary Lebesgue’a.
+
+Nietrudno rozszerzyć niezmienniczość opisaną w Twierdzeniu 1.6.5 na \(\sigma\)-ciało zbiorów mierzalnych \(\mathfrak{L}\). Prowadzi to do klasycznej konstrukcji Vitalego, która pokazuje, że można za pomocą pewnika wyboru udowodnić istnienie podzbioru prostej rzeczywistej, który nie jest mierzalny, por. Problem 11.F.

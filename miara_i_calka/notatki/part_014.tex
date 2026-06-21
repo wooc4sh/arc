@@ -1,0 +1,248 @@
+\section{Twierdzenie o konstrukcji miary.}
+
+\noindent W poprzedniej części pokazaliśmy, że miarę można zdefiniować efektywnym wzorem na rodzinie podzbiorów prostej zbudowanych w sposób elementarny. Aby taką funkcję $\lambda$ rozszerzyć do miary na $\sigma $- ciele $\bor\left(\mathbb{R}\right) $ potrzebna jest jednak pewna ogólna procedura, która pozwoli nam pokonać trudności ze śledzeniem, jak z danego układu zbiorów generowane jest $\sigma $-ciało.
+
+\begin{definition}[$\sigma$-skończoność]
+    Niech $\mu$ będzie addytywną funkcją zbioru na pierścieniu $\mathcal{R}$ podzbiorów przestrzeni $X$.
+    Mówimy, że funkcja $\mu$ jest \textbf{$\sigma$-skończona}, jeżeli przestrzeń $X$ daje się pokryć przeliczalną rodziną zbiorów o miarach skończonych.
+    
+    Formalnie: Istnieje ciąg zbiorów $(X_n)_{n=1}^{\infty} \subseteq \mathcal{R}$, taki że:
+    \begin{enumerate}
+        \item $X = \bigcup_{n=1}^{\infty} X_n$ \quad (zbiory te sumują się do całej przestrzeni),
+        \item $\mu(X_n) < \infty$ dla każdego $n$.
+    \end{enumerate}
+\end{definition}
+
+\begin{remark}[O co chodzi z tą definicją?]
+    Ta definicja ma na celu ,,okiełznanie'' nieskończoności. Wyróżniamy dwa przypadki:
+    \begin{itemize}
+        \item \textbf{Przypadek trywialny ($\mu(X) < \infty$):} Jeśli cała przestrzeń ma miarę skończoną, to warunek $\sigma$-skończoności jest spełniony automatycznie (wystarczy wziąć jeden zbiór $X_1 = X$).
+        \item \textbf{Przypadek istotny ($\mu(X) = \infty$):} Jeśli cała przestrzeń ma miarę nieskończoną (np. prosta $\mathbb{R}$), to $\sigma$-skończoność gwarantuje nam, że ta nieskończoność jest ,,kontrolowalna''. Nie jest to ,,jednolita plama nieskończoności'', ale konstrukcja zbudowana z cegiełek o skończonych rozmiarach (np. odcinków $[-n, n]$).
+    \end{itemize}
+    \textbf{Wniosek:} Dzięki temu założeniu, w dowodach twierdzeń możemy zawsze sprowadzić problem ,,wielkiego $X$'' do serii problemów na ,,małych $X_n$'', a następnie skorzystać z przeliczalnej addytywności, by skleić wyniki.
+\end{remark}
+
+W dalszym ciągu ograniczymy się do rozważania $\sigma$-skończonych funkcji zbioru.
+\begin{theorem}[Rozszerzenie $\mu$ do miary na $\sigma$-ciele]
+	Jeżeli $\mu$ jest przeliczalnie addytywną i $\sigma$-skończoną funkcją na pierścieniu $\mathcal{R}$ to $\mu$ \textbf{rozszerza } się \textbf{jednoznacznie } do miary na $\sigma\left( \mathcal{R} \right) $.
+\end{theorem} 
+\begin{proof}
+	Dowód jest skomplikowany i zostawiamy go na koniec naszych rozważań na temat miary.
+\end{proof} 
+\begin{remark}[Co gdy $X$ jest ,,nieskończenie wielkie''?]
+
+W twierdzeniu pojawia się założenie o \textbf{$\sigma$-skończoności}. Jest ono ,,bezpiecznikiem'' w sytuacji, gdy $\mu(X) = \infty$ (np. długość całej prostej rzeczywistej).
+\begin{itemize}
+    \item \textbf{Problem:} Sama informacja, że $\mu(X) = \infty$, to za mało, by jednoznacznie określić miarę na skomplikowanych zbiorach (nieskończoność jest ,,nieczuła'' na dodawanie stałych).
+    \item \textbf{Rozwiązanie ($\sigma$-skończoność):} Żądamy, aby tę nieskończoną przestrzeń dało się pokryć przeliczalną rodziną zbiorów $X_n \in \mathcal{R}$ o miarach skończonych ($X = \bigcup_{n} X_n$ oraz $\mu(X_n) < \infty$).
+    \item \textbf{Efekt:} Dzięki temu możemy ,,pokroić'' problem nieskończony na serię problemów skończonych. Skoro rozszerzenie jest jednoznaczne na każdym ,,małym'' kawałku $X_n$, to jest też jednoznaczne na całej przestrzeni.
+\end{itemize}
+
+\end{remark} 
+\begin{remark}[Rozszerzenie- co oznacza?] 
+       Mamy przeliczalnie addytywną funkcję zbioru $\mu $ określoną na pierścieniu   $\mathcal{R}$. Umie ona liczyć tylko zbiory ,,proste'' (należące do $\mathcal{R}$ ). \textbf{Rozszerzenie } oznacza tu znalezienie nowej funkcji (nazwijmy ją $\hat{\mu}$), która:
+       \begin{itemize}
+       	\item \textbf{Jest określona na wszystkim:} Jej dziedziną jest ,,całe wielkie'' $\sigma$-ciało $\sigma\left( \mathcal{R} \right) $, a nie tylko mały pierścień $\mathcal{R}$.
+	\item \textbf{Jest zgodna z oryginałem:} Dla każdego zbioru $A$, który należał już do 'starej dziedziny', czyli do pierścienia $\mathcal{R}$, nowa funkcja daje ten sam wynik: $\hat{\mu}\left( A \right) = \mu\left( A \right) $. 
+	\item \textbf{Jest przeliczalnie addytywna:} Nowa funkcja $\hat{\mu}$ jest przeliczalnie addytywną funkcją zbioru na $\sigma\left( \mathcal{R} \right) $. 
+       \end{itemize}
+
+       Twierdzenie to mówi (przy założeniu $\sigma$-skończoności $\mu$) o dwóch kluczowych własnościach tego procesu (rozszerzenie $\mu$ ):
+       \begin{itemize}
+       	\item \textbf{Istnienie:} Taka funkcja istnieje.
+	\item \textbf{Jednoznaczność: } Istnieje \textbf{tylko jedna} taka funkcja. 
+       \end{itemize}
+
+       \textbf{Podsumowując:} To twierdzenie mówi, że jeśli zdefiniujemy (sensownie) $\sigma$-addytywną funkcję zbioru na prostych ,,klockach''(pierścień $\mathcal{R}$ ) to automatycznie i w jedyny możliwy sposób otrzymamy $\sigma$-addytywną funkcję zbioru na wszystkich skomplikowanych konstrukcji zburowanych z $\mathcal{R}$ ($\sigma$- ciele $\sigma\left( \mathcal{R} \right) $).
+\end{remark} 
+
+\vspace{1em}
+
+\noindent Do momentu udowodnienia tego twierdzenia, będziemy używać pewnika, że 
+\begin{quote}
+	\textbf{wystarczy wierzyć w istnienie miary, aby wyprowadzić jej własności}.
+\end{quote} 
+
+\begin{remark}[Wiara.]
+Powyższe zdanie jest kluczowe, bo oddziela \textbf{techniczną udrękę konstrukcji} (czy miara w ogóle istnieje?) od \textbf{badania jej struktury} (jak wygląda, gdy już jest).
+
+Podejście to pozwala nam od razu przejść do \textbf{twierdzenia o aproksymacji}(poniżej). Jeśli ,,uwierzymy'', że miara $\mu$ na $\mathcal{R}$ istnieje, to natychmiast dostajemy potężne narzędzie do opisów zbiorów mierzalnych.
+
+Oto jak ta ,,wiara'' przekłada się na matematykę:
+
+\noindent \textbf{Co zyskujemy ,,na kredyt''?}(Twierdzenie o aproksymacji)
+
+Zakładamy, że rozszerzenie do miary istnieje (zgodnie z twierdzeniem o rozszerzeniu \ldots). Wtedy okazuje się, że \textbf{nie ma nowych ,,dziwnych'' zbiorów} w $\sigma $-ciele, które byłyby całkowicie obce zbiorom z pierścienia $\mathcal{R}$.
+
+\noindent \textbf{Twierdzenie o aproksymacji:}
+
+Dla każdego zbioru mierzalnego $A\in \sigma\left( \mathcal{R} \right)  $ o skończonej mierze i każdego $\varepsilon > 0 $, istnieje zbiór $R$ z pierścienia $\mathcal{R}$, taki że różnica symetryczna jest mała:
+\[
+\mu\left( A \Delta R \right) < \varepsilon 
+.\] 
+\noindent \textbf{Interpretacja:} 
+
+Każdy skomplikowany zbiór mierzalny (na przykład) zbiór borelowski jest ,,prawie'' zbiorem prostym (na przykład skończoną sumą przedziałów). Błąd aproksymacji $\mu\left( A \Delta R \right) $ możemy uczynić dowolnie małym.
+
+\noindent \textbf{Jak to udowodnić ,,wierząc w miarę''?} (Metoda ,,Dobrych Zbiorów'')
+
+Pokażemy teraz jedną z najważniejszych technik dowodowych w teorii miary. Stosujemy ją, gdy chcemy pokazać, że \textbf{wszystkie} zbiory z $\sigma\left( \mathcal{R} \right) $ mają pewną własność $W$.
+
+\noindent Schemat dowodu twierdzenia o aproksymacji wygląda tak:
+\begin{enumerate}[label=\arabic*)]
+	\item \textbf{Definiujemy rodzinę ,,Dobrych Zbiorów''}$\bm{ \left( \mathcal{A} \right)  } :$ 
+
+		Niech $\mathcal{A}$ to zbiór wszystkich $A\in \sigma \left( \mathcal{R} \right) $, które \textbf{dają się aproksymować} zbiorami z $\mathcal{R}$ (czyli spełniają tezę).
+		\[
+		\mathcal{A} = \{A\in \sigma\left( \mathcal{R} \right): \left(\forall \varepsilon > 0 \right)\left(\exists R \in \mathcal{R} \right)\left( \mu\left( A \Delta R \right) < \varepsilon  \right)    \}  
+		.\] 
+
+	\item \textbf{Sprawdzanie bazy (generatora)}$\bm{ \mathcal{R}\subseteq \mathcal{A} } :$ 
+	
+		Czy zbiory z pierścienia dają się aproksymować zbiorami z pierścienia? Tak, trywialnie- bierzemy ten sam zbiór, ich różnica symetryczna wynosi 0. Zatem $\mathcal{R} \subseteq \mathcal{A}$.
+
+\item \textbf{Sprawdzamy strukturę} ($\bm{\mathcal{A}}$ jest $\sigma\text{-ciałem}$) 
+
+		To jest kluczowy moment ,,wiary''. Używamy własności miary (którą założyliśmy, że mamy), aby pokazać, że
+		\begin{itemize}
+			\item Jeśli $A$ jest ,,dobry'' to $A^{c}$ również jest ,,dobry'' (bo $A^{c}\Delta R^{c} = A \Delta R$ ).
+			\item Przeliczalna suma zbiorów ,,dobrych'' jest ,,dobra'' (tutaj korzystamy z ciągłości miary, czyli z faktu, że szereg miar jest zbieżny)
+		\end{itemize}
+
+	\item \textbf{Wniosek końcowy:} 
+
+		Skoro $\mathcal{A}$ jest $\sigma $-ciałem i zawiera $\mathcal{R}$, a $\sigma\left( \mathcal{R} \right) $ jest \textbf{najmniejszym} takim $\sigma $-ciałem, to musi zachodzić:
+		\[
+		\sigma\left( \mathcal{R} \right) \subseteq \mathcal{A}
+		.\] 
+		Czyli każdy zbiór z $\sigma\left( \mathcal{R} \right) $ jest ,,dobry''(da się aproksymować).
+\end{enumerate}
+\noindent \textbf{Gdzie tu jest walor edukacyjny?}
+
+Gdybyśmy zaczęli od dowodu konstrukcji miary (twierdzenie 1.4.2), to utknęlibyśmy w miarach zewnętrznych, warunku Caratheodory'ego i technicznych lematach. Dzięki ,,uwierzeniu'':
+\begin{enumerate}[label=\arabic*)]
+	\item Widzimy od razu \textbf{strukturę} zbiorów mierzalnych (są granicami zbiorów prostych),
+	\item Uczymy się techniki dowodzenia (rodzina zbiorów ,,dobrych''), którą będziemy stosowali wielokrotnie.
+\end{enumerate}
+\end{remark} 
+
+\begin{theorem}[O aproksymacji.]
+	\noindent \textbf{Założenia:} 
+	\begin{enumerate}[label=\arabic*)]
+		\item $\mathcal{R}$ jest pierścieniem zbiorów.
+		\item $\mu$ jest funkcją addytywną na $\mathcal{R}$, która:
+			\begin{itemize}
+				\item jest przeliczalnie addytywna.
+				\item jest $\sigma $-skończona.
+			\end{itemize}
+		\item $\hat{\mu}$ jest rozszerzeniem $\mu$ do miary na $\sigma\left( \mathcal{R} \right) $.
+	\end{enumerate}
+	\noindent \textbf{Teza:}
+
+	Dla każdego $A\in \sigma \left( \mathcal{R} \right) $ o skończonej mierze ($\hat{\mu}\left( A \right) <\infty$ ) i dla każdego $\varepsilon > 0 $:
+	\begin{quote}
+		Istnieje zbiór $R\in \mathcal{R}$ (,,klocek ze starego świata''), taki że błąd przybliżenia mierzony ,,nową'' miarą jest znikomy:
+		\[
+		\hat{\mu}\left( A \Delta R \right) < \varepsilon 
+		.\] 
+	\end{quote} 
+
+\end{theorem} 
+
+\textbf{Dowód Twierdzenia 1.4.3 (o aproksymacji)}
+
+Jasne, przejdźmy przez dowód Twierdzenia 1.4.3 (o aproksymacji) ze skryptu prof. Plebanka. Rozpiszę go w formie "krok po kroku", wydobywając logiczny szkielet spod technicznego zapisu.
+
+Zastosujemy metodę \textbf{"Rodziny Dobrych Zbiorów"}, o której rozmawialiśmy.
+
+\begin{center}
+    \rule{0.5\textwidth}{0.4pt}
+\end{center}
+
+\textbf{Cel Twierdzenia}
+
+Chcemy pokazać, że jeśli mamy miarę $\mu$ na $\sigma$-ciele generowanym przez pierścień $\mathcal{R}$ (czyli na $\sigma(\mathcal{R})$), to każdy zbiór mierzalny $A$ (o skończonej mierze) można z dowolną dokładnością przybliżyć zbiorem prostym $B \in \mathcal{R}$.
+
+Miarą błędu jest różnica symetryczna: $\mu(A \triangle B) < \epsilon$.
+
+\begin{center}
+    \rule{0.5\textwidth}{0.4pt}
+\end{center}
+
+\textbf{KROK 1: Ustalenie "Pojemnika na Dobre Zbiory"}
+
+Zdefiniujmy rodzinę $\mathcal{D}$ (zbiór wszystkich zbiorów, dla których twierdzenie jest prawdziwe):
+\[ \mathcal{D} = \{ A \in \sigma(\mathcal{R}) : \forall \epsilon > 0, \exists B \in \mathcal{R}, \mu(A \triangle B) < \epsilon \} \]
+
+\textbf{Nasza strategia:} Chcemy pokazać, że ta rodzina $\mathcal{D}$ jest tak bogata, że zawiera całe $\sigma$-ciało $\sigma(\mathcal{R})$. Aby to zrobić, pokażemy, że $\mathcal{D}$ samo w sobie jest $\sigma$-ciałem i zawiera $\mathcal{R}$.
+
+\textit{(Na początku zakładamy dla uproszczenia, że cała przestrzeń ma miarę skończoną, czyli $\mu(X) < \infty$. Wtedy pierścień $\mathcal{R}$ jest ciałem, bo $X \in \mathcal{R}$)}.
+
+\textbf{KROK 2: Baza (Start)}
+
+Czy zbiory z pierścienia $\mathcal{R}$ są "dobre"?\\
+Tak. Weźmy dowolne $A \in \mathcal{R}$. Jako jego przybliżenie weźmy ten sam zbiór $B = A$.\\
+Wtedy $\mu(A \triangle A) = \mu(\emptyset) = 0 < \epsilon$.\\
+\textbf{Wniosek:} $\mathcal{R} \subseteq \mathcal{D}$.
+
+\textbf{KROK 3: Dopełnienia (Symetria)}
+
+Jeśli zbiór $A$ jest "dobry", to czy jego dopełnienie $A^c$ też jest "dobre"?\\
+Tak. Skoro $A$ jest dobry, to istnieje $B \in \mathcal{R}$ bliskie $A$.\\
+Zauważmy własność różnicy symetrycznej: $A^c \triangle B^c = A \triangle B$.\\
+Zatem $B^c$ (które należy do pierścienia/ciała $\mathcal{R}$) jest tak samo dobrym przybliżeniem dla $A^c$.
+\[ \mu(A^c \triangle B^c) = \mu(A \triangle B) < \epsilon \]
+
+\textbf{Wniosek:} Rodzina $\mathcal{D}$ jest zamknięta na dopełnienia.
+
+\textbf{KROK 4: Sumy skończone (Zamykanie "małych" dziur)}
+
+Jeśli $A_1$ i $A_2$ są "dobre", to czy $A_1 \cup A_2$ jest "dobre"?\\
+Tak.
+\begin{enumerate}
+    \item Dobieramy $B_1 \in \mathcal{R}$ bliskie $A_1$ (błąd $\epsilon/2$).
+    \item Dobieramy $B_2 \in \mathcal{R}$ bliskie $A_2$ (błąd $\epsilon/2$).
+    \item Wtedy suma prostych zbiorów $B_1 \cup B_2$ przybliża sumę $A_1 \cup A_2$. Błąd sumy jest mniejszy bądź równy sumie błędów (to wynika z własności $(A_1 \cup A_2) \triangle (B_1 \cup B_2) \subseteq (A_1 \triangle B_1) \cup (A_2 \triangle B_2)$).
+\end{enumerate}
+\[ \mu((A_1 \cup A_2) \triangle (B_1 \cup B_2)) \le \mu(A_1 \triangle B_1) + \mu(A_2 \triangle B_2) < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon \]
+
+\textbf{Wniosek:} $\mathcal{D}$ jest ciałem zbiorów.
+
+\textbf{KROK 5: Przejście graniczne (Kluczowy "Skok Wiary")}
+
+Tu wykorzystujemy fakt, że $\mu$ jest już miarą (jest ciągła).\\
+Niech $A_n$ będzie rosnącym ciągiem zbiorów "dobrych" ($A_n \in \mathcal{D}$). Niech $A = \bigcup A_n$. Czy $A$ jest "dobre"?
+
+\begin{enumerate}
+    \item \textbf{Aproksymacja od wewnątrz:} Ponieważ $A_n \nearrow A$ i $\mu(A) < \infty$, to miara "reszty" maleje do zera: $\mu(A \setminus A_n) \to 0$.\\
+    Znajdźmy takie duże $n$, że $\mu(A \setminus A_n) < \epsilon/2$.
+    \item \textbf{Aproksymacja zbiorem prostym:} Skoro $A_n$ jest "dobry" (z założenia), to istnieje $B \in \mathcal{R}$, że $\mu(A_n \triangle B) < \epsilon/2$.
+    \item \textbf{Łączenie:} Zbiór $A$ różni się od $A_n$ o $\epsilon/2$, a $A_n$ różni się od $B$ o $\epsilon/2$. Zatem $A$ różni się od $B$ o mniej niż $\epsilon$.
+\end{enumerate}
+
+\textbf{Wniosek:} $\mathcal{D}$ jest zamknięta na przeliczalne sumy wstępujące.\\
+Skoro $\mathcal{D}$ jest ciałem i jest zamknięta na ciągi wstępujące (klasa monotoniczna), to \textbf{$\mathcal{D}$ jest $\sigma$-ciałem}.
+
+\textbf{KROK 6: Konkluzja (Zamykanie pułapki)}
+
+Mamy trzy fakty:
+\begin{enumerate}
+    \item $\mathcal{R} \subseteq \mathcal{D}$ (zbiory proste są w rodzinie).
+    \item $\mathcal{D}$ jest $\sigma$-ciałem (rodzina jest stabilna).
+    \item $\sigma(\mathcal{R})$ to \textbf{najmniejsze} $\sigma$-ciało zawierające $\mathcal{R}$.
+\end{enumerate}
+
+Zatem: $\sigma(\mathcal{R}) \subseteq \mathcal{D}$.\\
+Oznacza to, że \textbf{każdy} zbiór z $\sigma(\mathcal{R})$ daje się aproksymować.
+
+\textbf{KROK 7: Przypadek nieskończony ($\sigma$-skończony)}
+
+Co jeśli $\mu(X) = \infty$? (np. prosta rzeczywista).\\
+Dzielimy przestrzeń na kawałki $X_n$ o mierze skończonej (z definicji $\sigma$-skończoności).\\
+Dla dowolnego zbioru $A$ (o skończonej mierze), jego kawałki $A \cap X_n$ też mają skończoną miarę. Aproksymujemy każdy kawałek z osobna (korzystając z dowodu wyżej), a ponieważ miara $A$ jest skończona, "ogon" tej sumy jest pomijalnie mały. Suma przybliżeń kawałków daje przybliżenie całości $A$.
+
+\textbf{Podsumowanie intuicyjne}
+
+Dowód ten mówi: "Skoro zbiory mierzalne powstają ze zbiorów prostych poprzez przeliczalne sumy i dopełnienia, a błąd aproksymacji przy tych operacjach się nie kumuluje w nieskończoność (dzięki ciągłości miary), to zbiory proste zawsze 'dogonią' zbiory mierzalne".
+
+
